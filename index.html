@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="CZKApp">
+
+<head>
+    <title>Centrum zarządzania klubem</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="---------">
+    <meta name="keywords" content="---------">
+    <meta name="author" content="---------">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <!-- Tutaj będzie menu/ trzeba bedzie ogarnac ta strone jako glowna, to bedzie to boczne menu, mozemy dodac jeszcze pasek gorny w sumie -->
+    <p><a href="#/">Main</a></p>
+    <a href="#opcja1">Tabela wyników</a>
+    <a href="#opcja2">Podsumowanie</a>
+    <a href="#opcja3">Dodaj zawodnika</a>
+
+    <!-- Po wyborze z menu zmieniac bedzie sie zawartosc tego diva, beda sie ladowac rzeczy ustawione w js/route.js -->
+    <div ng-view></div>
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
+<script src="js/route.js"></script>
