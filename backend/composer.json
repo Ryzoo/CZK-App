@@ -1,0 +1,9 @@
+{
+    "require": {
+        "simplon/mysql": "*",
+        "kherge/json": "*"
+    },
+    "autoload": {
+        "classmap": ["class/"]
+    }
+}

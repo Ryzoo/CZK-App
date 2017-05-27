@@ -1,16 +1,10 @@
 var app = angular.module("CZKApp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
-        .when("/opcja1", {
-            templateUrl: "template/templatka1.html",
-            controller: "kontrolerTemplatki1"
+        .when("/", {
+            templateUrl: "/template/main.html",
         })
-        .when("/opcja2", {
-            templateUrl: "template/templatka2.html",
-            controller: "kontrolerTemplatki2"
-        })
-        .when("/opcja3", {
-            templateUrl: "template/templatka3.html",
-            controller: "kontrolerTemplatki3"
-        })
+        .when("/templatkazprzyciskiem", {
+            templateUrl: "template/templatkazprzyciskiem.html",
+        });
 });
