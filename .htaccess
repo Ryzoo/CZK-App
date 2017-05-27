@@ -12,3 +12,4 @@ RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{3,4}
 RewriteRule !^(backend/?([a-z]+)?)|(panel/?([a-z]+)?)$ login.html
 RewriteRule ^backend/?([a-z]+)?$ backend/index.php
 RewriteRule ^(panel)$ $1.html
+AddType application/x-httpd-php71 .php

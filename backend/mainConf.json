@@ -1,8 +1,8 @@
 {
     "database": {
-        "host": "localhost",
+        "host": "mysql15.mydevil.net",
         "user": "m1080_admin",
-        "password": "iPgSICq5Ih4EBXWBx1pe",
+        "password": "aiUrpOmuTM2G8YwWSepr",
         "dbName": "m1080_czk"
     }
 }

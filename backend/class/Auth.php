@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '\..\vendor\autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use \Simplon\Mysql\PDOConnector;
 use \Simplon\Mysql\Mysql;
@@ -14,7 +14,7 @@ class Auth{
     private $dbConn;
     function __construct(){
         $json = new JSON();
-        $settings = $json->decodeFile(__DIR__. '\..\mainConf.json' );
+        $settings = $json->decodeFile(__DIR__. '/../mainConf.json' );
         $pdo = new PDOConnector(
             $settings->database->host,          // server
             $settings->database->user,          // user
