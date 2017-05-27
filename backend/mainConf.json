@@ -1,8 +1,8 @@
 {
     "database": {
         "host": "localhost",
-        "user": "root",
-        "password": "",
-        "dbName": "czk"
+        "user": "m1080_admin",
+        "password": "iPgSICq5Ih4EBXWBx1pe",
+        "dbName": "m1080_czk"
     }
 }
