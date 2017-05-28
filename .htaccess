@@ -1,4 +1,5 @@
 AddDefaultCharset UTF-8
+AddType application/x-httpd-php71 .php
 DirectoryIndex index.html index.php login.html
 RewriteEngine On
 RewriteBase /
@@ -9,7 +10,6 @@ RewriteCond %{REQUEST_URI} !\.woff$
 RewriteCond %{REQUEST_URI} !\.woff2$
 RewriteCond %{REQUEST_URI} !img/(.*)\.
 RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{3,4}
-RewriteRule !^(backend/?([a-z]+)?)|(panel/?([a-z]+)?)$ login.html
-RewriteRule ^backend/?([a-z]+)?$ backend/index.php
+RewriteRule !^(backend/?([a-zA-Z]+)?)|(panel/?([a-zA-Z]+)?)$ login.html
+RewriteRule ^backend/?([a-zA-Z]+)?$ backend/index.php
 RewriteRule ^(panel)$ $1.html
-AddType application/x-httpd-php71 .php

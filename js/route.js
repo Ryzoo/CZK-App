@@ -6,5 +6,8 @@ app.config(function($routeProvider) {
         })
         .when("/templatkazprzyciskiem", {
             templateUrl: "template/templatkazprzyciskiem.html",
+        })
+        .when("/badPerm", {
+            templateUrl: "template/badPerm.html",
         });
 });

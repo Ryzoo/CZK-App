@@ -4,5 +4,11 @@
         "user": "m1080_admin",
         "password": "aiUrpOmuTM2G8YwWSepr",
         "dbName": "m1080_czk"
+    },
+    "ldatabase": {
+        "host": "localhost",
+        "user": "root",
+        "password": "",
+        "dbName": "czk"
     }
 }

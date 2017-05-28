@@ -1,14 +1,17 @@
-app.controller('accountController', function($scope, auth) {
-
+app.controller('accountController', function($scope, auth, $rootScope) {
     $scope.initAccount = function() {
-        if (!auth.checkIsLogged()) {
-            document.location = "login";
-        }
+        if (!auth.checkIsLogged()) auth.logout();
     };
 
-    $scope.logout = function() {
-        Cookies.remove('tq');
-        document.location = "login";
-    };
+    $scope.$on('$viewContentLoaded', function() {
+        console.log($rootScope.viewPerm);
+        if (!auth.checkPerm($rootScope.viewPerm)) document.location = "#!badPerm";
+    });
+
+    $scope.setPerm = function(perm) {
+        $rootScope.viewPerm = perm;
+    }
+
+    $scope.logout = auth.logout;
 
 });
