@@ -2,7 +2,8 @@ app.controller('loginController', function($scope, auth) {
 
     $scope.initLogin = function() {
         if (auth.checkIsLogged()) {
-            document.location = "panel";
+            var req = auth.getUserData();
+            if (req.success) document.location = "panel";
         }
     };
     $scope.login = function(email, password) {

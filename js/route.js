@@ -2,12 +2,14 @@ var app = angular.module("CZKApp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "/template/main.html",
+            templateUrl: "/templates/mainDashboard.html"
         })
         .when("/templatkazprzyciskiem", {
-            templateUrl: "template/templatkazprzyciskiem.html",
+            templateUrl: "templates/templatkazprzyciskiem.html"
         })
         .when("/badPerm", {
-            templateUrl: "template/badPerm.html",
+            templateUrl: "templates/badPerm.html"
+        }).otherwise({
+            templateUrl: "templates/badPerm.html"
         });
 });
