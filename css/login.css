@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@fontface {
+  font-family: 'Montserrat';
+  src: url("..fonts\montserrat\Montserrat-Regular.ttf");
+}
+
 body {
     font-family: 'Montserrat';
 }
@@ -58,14 +62,14 @@ body {
     margin-bottom: 20px;
 }
 
-.welcome h1 {
+.welcome p {
     color: #fff;
     font-size: 30px;
     letter-spacing: 5px;
     font-weight: bold;
 }
 
-.login h3 {
+.login p {
     color: #fff;
     font-size: 15px;
     letter-spacing: 5px;
@@ -90,11 +94,10 @@ body {
     margin: 5px 0px;
 }
 
-input[type=submit] {
-    width: 100%;
+button[type=submit] {
     background-color: rgba(0, 0, 0, 0.4);
     color: rgb(158, 158, 158);
-    padding: 14px 20px;
+
     border-radius: 4px;
     cursor: pointer;
     border: none;
@@ -107,7 +110,17 @@ input[type=submit] {
     transition: all 0.3s ease-out;
 }
 
-input[type=submit]:hover {
+button[type=submit]:hover {
+    background-color: #26a69a;
+    color: #fff;
+}
+
+button[type=submit]:focus {
+    background-color: #26a69a;
+    color: #fff;
+}
+
+button[type=submit]:active {
     background-color: #26a69a;
     color: #fff;
 }
@@ -120,7 +133,7 @@ input[type=submit]:hover {
     height: auto;
 }
 
-.footer a {
+.footer p {
     color: rgb(158, 158, 158);
     font-weight: normal;
     font-size: 10px;
