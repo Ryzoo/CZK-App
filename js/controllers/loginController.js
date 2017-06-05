@@ -7,13 +7,13 @@ app.controller('loginController', function($scope, auth) {
         }
     };
     $scope.login = function(email, password) {
-        if (email == null || password == null) console.log("Podaj poprawnie dane");
+        if (email == null || password == null) $(".error").html("<p> Podaj poprawnie dane </p>");
         else {
             var req = auth.logIn(email, password);
             if (req.success) {
                 document.location = "panel";
             } else {
-                console.log(req.error);
+                $(".error").html("<p>" + req.error + "</p>");
             }
         }
     };
