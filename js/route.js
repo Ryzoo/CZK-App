@@ -9,7 +9,12 @@ app.config(function($routeProvider) {
         })
         .when("/badPerm", {
             templateUrl: "templates/badPerm.html"
-        }).otherwise({
+        })
+        .when("/myProfile", {
+            templateUrl: "templates/myProfile.html",
+            controller: "accountController"
+        })
+        .otherwise({
             templateUrl: "templates/badPerm.html"
         });
 });

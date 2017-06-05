@@ -45,11 +45,12 @@ class Auth{
     }
 
     function getUserData( $token ){
+
         $error = "";
         $success = true;
         $data = array();
 
-        $result = ($this->db->getConnection())->fetchRow('SELECT email, roles.name as name FROM users JOIN roles ON roles.id = users.id_role WHERE token = :tq', ['tq' => $token]);
+        $result = ($this->db->getConnection())->fetchRow('SELECT * FROM users, roles, user_data WHERE user_data.user_id = users.id AND users.id_role = roles.id AND token = :tq', ['tq' => $token]);
         if( !is_null($result) ){
             $data = $result;
         }else{
@@ -58,6 +59,45 @@ class Auth{
         }
         
         return array( "error"=>$error,"success"=>$success,"data"=>$data );
+    }
+
+    function getUserId( $token ){
+        $result = ($this->db->getConnection())->fetchRow('SELECT id FROM users WHERE  token = :tq', ['tq' => $token]);
+        if( !is_null($result) ){
+            return $result["id"];
+        }else return false;
+    }
+
+    function updateUserData( $post ){
+        $file_name = "";
+        if( isset($_FILES["userImgFile"]) ){
+            $ext = pathinfo($_FILES["userImgFile"]["name"],PATHINFO_EXTENSION);
+            $target_dir = __DIR__ . "/../../";
+            $file_name = 'img/users/' . $post['token'] . "." . $ext;
+            $target_file = $target_dir . $file_name;
+            if ($_FILES["userImgFile"]["size"] > 500000) $file_name = "";
+            if ($ext != "jpg") $file_name = "";
+            if ($file_name != "" ) move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file);
+        }
+
+        $condsUsers = [];
+        $dataUsers =[];
+        
+
+        if( isset($post["token"]) ){
+            $userId = $this->getUserId($post["token"]);
+            if(!$userId){
+                return array( "error"=>"Blad z uwierzytelnieniem" ,"success"=>false,"data"=>null );
+            }else $condsUsers['user_id'] = $userId;
+            if( isset( $post["firstname"] ) ) $dataUsers["firstname"] = trim($post["firstname"]);
+            if( isset( $post["lastname"] ) ) $dataUsers["lastname"] = trim($post["lastname"]);
+            if( isset( $post["birthdate"] ) ) $dataUsers["birthdate"] = trim($post["birthdate"]);
+            if( isset( $file_name ) && $file_name != "" ) $dataUsers["user_img_path"] = $file_name;
+        }
+
+        $result = ($this->db->getConnection())->update('user_data', $condsUsers, $dataUsers);
+
+        return array( "error"=>"" ,"success"=>true,"data"=>array("url"=>$file_name,"post"=>$post) );
     }
 
     function checkStillLogged( $email, $token ){

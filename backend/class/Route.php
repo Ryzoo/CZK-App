@@ -21,6 +21,9 @@ class Route{
         }else if( $this->request === "userData" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->authorize->getUserData($this->postData['token']);
+        }else if( $this->request === "updateUserData" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->authorize->updateUserData($this->postData);
         }
     }
 
