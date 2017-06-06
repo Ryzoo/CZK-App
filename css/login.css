@@ -1,10 +1,6 @@
-@fontface {
-  font-family: 'Montserrat';
-  src: url("..fonts\montserrat\Montserrat-Regular.ttf");
-}
 
 body {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
 }
 
 .background-photo {
@@ -25,7 +21,7 @@ body {
 
 .error p {
     font-size: 17px;
-    font-weight: bold;
+    font-weight: 900;
     text-align: center;
     color: #f44336;
 }
@@ -33,7 +29,7 @@ body {
 .main-title {
     text-transform: uppercase;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 900;
     text-align: center;
     color: #fff;
     margin-top: 25px;
@@ -58,7 +54,7 @@ body {
 
 .text {
     text-align: center;
-    font-weight: bold;
+    font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
@@ -67,14 +63,14 @@ body {
     color: #fff;
     font-size: 30px;
     letter-spacing: 5px;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .login p {
     color: #fff;
     font-size: 15px;
     letter-spacing: 5px;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .login-form {
@@ -136,7 +132,7 @@ button[type=submit]:active {
 
 .footer p {
     color: rgb(158, 158, 158);
-    font-weight: normal;
+    font-weight: 400;
     font-size: 10px;
 }
 
@@ -160,7 +156,7 @@ button[type=submit]:active {
 }
 
 .login-as:hover {
-    font-weight: bold;
+    font-weight: 900;
     cursor: pointer;
 }
 
