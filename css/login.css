@@ -108,17 +108,17 @@ button[type=submit] {
 }
 
 button[type=submit]:hover {
-    background-color: #26a69a;
+    background-color: #68dff0;
     color: #fff;
 }
 
 button[type=submit]:focus {
-    background-color: #26a69a;
+    background-color: #68dff0;
     color: #fff;
 }
 
 button[type=submit]:active {
-    background-color: #26a69a;
+    background-color: #68dff0;
     color: #fff;
 }
 
