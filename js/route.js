@@ -14,6 +14,10 @@ app.config(function($routeProvider) {
             templateUrl: "templates/myProfile.html",
             controller: "accountController"
         })
+        .when("/tab", {
+            templateUrl: "templates/tab.html",
+            controller: "tabController"
+        })
         .otherwise({
             templateUrl: "templates/badPerm.html"
         });
