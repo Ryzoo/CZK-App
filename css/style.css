@@ -489,10 +489,14 @@ ul.top-menu>li {
     float: left;
 }
 
+.external {
+  text-align: center;
+}
+
 .notify-row {
-    float: left;
+    float: right;
     margin-top: 15px;
-    margin-left: 92px;
+    margin-right: 35px;
 }
 
 .notify-row .notification span.label {
