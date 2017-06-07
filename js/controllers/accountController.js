@@ -30,6 +30,7 @@ app.controller('accountController', function($scope, auth, $rootScope, request) 
                     $rootScope.user.firstname = msg.data.post.firstname;
                     $rootScope.user.lastname = msg.data.post.lastname;
                     $rootScope.user.birthdate = msg.data.post.birthdate;
+                    $rootScope.user.token = Cookies.get('tq');
                     if (msg.data.url.length > 2)
                         $rootScope.user.imgPath = msg.data.url;
                     $(document).ready(function() {
