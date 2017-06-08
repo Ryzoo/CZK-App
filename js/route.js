@@ -1,7 +1,7 @@
 var app = angular.module("CZKApp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
-        .when("/mainDashboard", {
+        .when("/", {
             templateUrl: "/templates/mainDashboard.html",
             controller: "mainDashboardController"
         })
