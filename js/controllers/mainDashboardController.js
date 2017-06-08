@@ -2,6 +2,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     var day = new Date().getDate();
     var month = new Date().getMonth() + 1;
     var monthName;
+
     switch (month) {
         case 1:
             monthName = 'Stycznia';
