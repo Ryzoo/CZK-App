@@ -1030,11 +1030,8 @@ PANELS CONFIGURATIONS
 
 /*Panel Size*/
 
-.pn-height {
-  height: 500px;
-}
-
 .pn {
+    height: 250px;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -1146,11 +1143,6 @@ PANELS CONFIGURATIONS
 
 /*White Panel */
 
-.today-date {
-  font-size: 40px;
-  color: #2d2d2d;
-}
-
 .white-panel {
     text-align: center;
     background: #ffffff;
@@ -1180,6 +1172,7 @@ PANELS CONFIGURATIONS
     padding-right: 4px;
     font-size: 14px;
 }
+
 
 /*STOCK CARD Panel*/
 
