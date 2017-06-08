@@ -19,6 +19,7 @@ class Auth{
     }
 
     function login( $email, $password ){
+
         $error = "";
         $success = true;
         $token = "";
@@ -45,6 +46,7 @@ class Auth{
     }
 
     function getUserData( $token ){
+
 
         $error = "";
         $success = true;

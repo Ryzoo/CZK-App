@@ -61,6 +61,7 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
     public static $classMap = array (
         'Auth' => __DIR__ . '/../..' . '/class/Auth.php',
         'Database' => __DIR__ . '/../..' . '/class/Database.php',
+        'Post' => __DIR__ . '/../..' . '/class/Post.php',
         'Route' => __DIR__ . '/../..' . '/class/Route.php',
     );
 

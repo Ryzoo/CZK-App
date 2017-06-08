@@ -1,105 +1,104 @@
-<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
-<!--main content start-->
-<div class="row">
-    <div class="col-lg-12 main-chart">
-        <div class="row mt">
-            <div class="col-md-4 col-sm-4 mb">
-                <div class="white-panel pn pn-height">
-                    <div class="white-header">
-                        <h5>REMINDER</h5>
-                    </div>
-                    <div class="row">
-                     <div class="col-sm-12 centered mt">
-                       <h4>Dzisiaj jest:</h4>
-                     </div>
-                   </div>
-                   <div class="row">
-                     <div class="col-sm-12 centered mt">
-                       <h1 class="today-date">
-                       </h1>
-                     </div>
-                   </div>
-                </div>
-            </div>
-            <!--/col-->
-            <div class="col-md-4 col-sm-4 mb">
-                <div class="white-panel pn pn-height">
-                    <div class="white-header">
-                        <h5>OSTATNIA AKTYWNOŚĆ</h5>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6 col-xs-6 goleft">
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <!--/col-->
-            <div class="col-md-4 mb">
-                <div class="white-panel pn pn-height">
-                    <div class="white-header">
-                        <h5>NOTATNIK</h5>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6 col-xs-6 goleft">
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <!--/col-->
-        </div>
-        <!-- /row -->
-    </div>
-</div>
-<!--main content end-->
-<!--footer start-->
-<footer class="site-footer">
-    <div class="text-center">
-        Wirtualne Centrum Piłkarskie
-        <a href="#!/" class="go-top">
-            <i class="fa fa-angle-up"></i>
-        </a>
-    </div>
-</footer>
-<!--footer end-->
-
-<script type="application/javascript">
-    $(document).ready(function() {
-        $("#date-popover").popover({
-            html: true,
-            trigger: "manual"
-        });
-        $("#date-popover").hide();
-        $("#date-popover").click(function(e) {
-            $(this).hide();
-        });
-
-        $("#my-calendar").zabuto_calendar({
-            action: function() {
-                return myDateFunction(this.id, false);
-            },
-            action_nav: function() {
-                return myNavFunction(this.id);
-            },
-            ajax: {
-                url: "show_data.php?action=1",
-                modal: true
-            },
-            legend: [{
-                type: "text",
-                label: "Special event",
-                badge: "00"
-            }, {
-                type: "block",
-                label: "Regular event",
-            }]
-        });
-    });
-
-
-    function myNavFunction(id) {
-        $("#date-popover").hide();
-        var nav = $("#" + id).data("navigation");
-        var to = $("#" + id).data("to");
-        console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-</script>
+<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
+<div class="row">
+    <div class="col-lg-12 main-chart">
+        <div class="row mt">
+            <div class="col-md-4 col-sm-4 mb">
+                <div class="white-panel pn pn-height">
+                    <div class="white-header">
+                        <h5>REMINDER</h5>
+                    </div>
+                    <div class="row">
+                     <div class="col-sm-12 centered mt">
+                       <h4>Dzisiaj jest:</h4>
+                     </div>
+                   </div>
+                   <div class="row">
+                     <div class="col-sm-12 centered mt">
+                       <h1 class="today-date">
+                       </h1>
+                     </div>
+                   </div>
+                </div>
+            </div>
+            <!--/col-->
+            <div class="col-md-4 col-sm-4 mb">
+                <div class="white-panel pn pn-height">
+                    <div class="white-header">
+                        <h5>OSTATNIA AKTYWNOŚĆ</h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6 col-xs-6 goleft">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <!--/col-->
+            <div class="col-md-4 mb">
+                <div class="white-panel pn pn-height">
+                    <div class="white-header">
+                        <h5>NOTATNIK</h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6 col-xs-6 goleft">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <!--/col-->
+        </div>
+        <!-- /row -->
+    </div>
+</div>
+<!--main content end-->
+<!--footer start-->
+<footer class="site-footer">
+    <div class="text-center">
+        Wirtualne Centrum Piłkarskie
+        <a href="#!/" class="go-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+</footer>
+<!--footer end-->
+
+<script type="application/javascript">
+    $(document).ready(function() {
+        $("#date-popover").popover({
+            html: true,
+            trigger: "manual"
+        });
+        $("#date-popover").hide();
+        $("#date-popover").click(function(e) {
+            $(this).hide();
+        });
+
+        $("#my-calendar").zabuto_calendar({
+            action: function() {
+                return myDateFunction(this.id, false);
+            },
+            action_nav: function() {
+                return myNavFunction(this.id);
+            },
+            ajax: {
+                url: "show_data.php?action=1",
+                modal: true
+            },
+            legend: [{
+                type: "text",
+                label: "Special event",
+                badge: "00"
+            }, {
+                type: "block",
+                label: "Regular event",
+            }]
+        });
+    });
+
+
+    function myNavFunction(id) {
+        $("#date-popover").hide();
+        var nav = $("#" + id).data("navigation");
+        var to = $("#" + id).data("to");
+        console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+    }
+</script>

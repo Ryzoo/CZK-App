@@ -1,61 +1,61 @@
-<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
-<div class="row mt">
-    <div class="col-md-offset-2 col-md-8">
-        <div class="form-panel">
-            <h4 class="mb"><i class="fa fa-angle-right"></i> Twoje aktualne dane </h4>
-            <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
-                <input type="hidden" name="token" value="{{user.token}}">
-
-                <div class="form-group">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label">Zdjęcie główne</label>
-                    <div class="col-xs-6 col-md-6">
-                        <img id="imgPrev" style="width:150px;" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
-                        <input type="file" name="userImgFile" id="userImgFile">
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Twój adres email</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <p class="form-control-static ">{{user.email}}</p>
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Jesteś z nami od</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <p class="form-control-static ">{{user.addAccountDate}}</p>
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Imię</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="firstname" placeholder="Imię " value="{{user.firstname}} ">
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Nazwisko</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="lastname" placeholder="Nazwisko " value="{{user.lastname}} ">
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Data urodzenia</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="birthdate" placeholder="Data urodzenia " value="{{user.birthdate}} ">
-                        <span class="help-block ">Data urodzenia w formacie: yyyy:mm:dd</span>
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <button type="button " class="btn btn-round btn-success col-md-offset-4 col-md-4 col-xs-6 col-xs-offset-3 " ng-click="updateUserDate()">Zmień dane</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- col-lg-12-->
-</div>
-<!-- /row -->
+<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
+<div class="row mt">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Twoje aktualne dane </h4>
+            <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
+                <input type="hidden" name="token" value="{{user.token}}">
+
+                <div class="form-group">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label">Zdjęcie główne</label>
+                    <div class="col-xs-6 col-md-6">
+                        <img id="imgPrev" style="width:150px;" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
+                        <input type="file" name="userImgFile" id="userImgFile">
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Twój adres email</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <p class="form-control-static ">{{user.email}}</p>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Jesteś z nami od</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <p class="form-control-static ">{{user.addAccountDate}}</p>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Imię</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <input type="text " class="form-control round-form " name="firstname" placeholder="Imię " value="{{user.firstname}} ">
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Nazwisko</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <input type="text " class="form-control round-form " name="lastname" placeholder="Nazwisko " value="{{user.lastname}} ">
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Data urodzenia</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <input type="text " class="form-control round-form " name="birthdate" placeholder="Data urodzenia " value="{{user.birthdate}} ">
+                        <span class="help-block ">Data urodzenia w formacie: yyyy:mm:dd</span>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <button type="button " class="btn btn-round btn-success col-md-offset-4 col-md-4 col-xs-6 col-xs-offset-3 " ng-click="updateUserDate()">Zmień dane</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- col-lg-12-->
+</div>
+<!-- /row -->
