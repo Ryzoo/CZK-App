@@ -43,5 +43,5 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
         default:
             "Błędny miesiąc";
     }
-    $(".today-date").html("marchewka");
+    $(".today-date").html(day + " " + monthName);
 });
