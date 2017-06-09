@@ -199,6 +199,11 @@ hr {
     margin-top: 25px;
 }
 
+/* bigger margin-top */
+.bmt {
+    margin-top: 35px;
+}
+
 .mb {
     margin-bottom: 25px;
 }
@@ -455,9 +460,20 @@ ul.sidebar-menu li a.active i {
     width: 100%;
 }
 
+.logo {
+    overflow: hidden;
+    float: left;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    width: 180px;
+}
+
 .logo img {
     float: left;
-    height: 60px;
+    height: 40px;
+    margin: 0 auto;
 }
 
 a.logo {
@@ -757,7 +773,7 @@ ul.top-menu>li>a:focus {
     margin-top: 0;
     opacity: 0;
     position: absolute;
-    left: 7px;
+    right: 21px;
     top: -18px;
     transition: all 0.25s ease 0s;
     width: 0;
@@ -791,6 +807,7 @@ ul.top-menu>li>a:focus {
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
+    color: #fff;
 }
 
 .sidebar-closed>#sidebar>ul {
@@ -1031,7 +1048,7 @@ PANELS CONFIGURATIONS
 /*Panel Size*/
 
 .pn {
-    height: 250px;
+    height: 500px;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -2468,4 +2485,9 @@ label {
 
 .badPermCenter {
     margin-top: 150px;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: inherit;
 }
