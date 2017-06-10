@@ -30,9 +30,9 @@ class Route{
         }else if( $this->request === "getPost" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->postMenager->getPost($this->postData);
-        }else if( $this->request === "getComments" ){
+        }else if( $this->request === "addPost" ){
             if( isset($this->postData['token']) )
-                $this->dataToReturn = $this->postMenager->getComments($this->postData);
+                $this->dataToReturn = $this->postMenager->addPost($this->postData);
         }
         
     }

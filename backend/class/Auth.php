@@ -46,8 +46,6 @@ class Auth{
     }
 
     function getUserData( $token ){
-
-
         $error = "";
         $success = true;
         $data = array();
