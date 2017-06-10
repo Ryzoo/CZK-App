@@ -1,55 +1,76 @@
 <div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK'])"></div>
-<div class="row" ng-controller="tabController" ng-init="getLastPost()">
-    <div class="col-md-offset-1 col-md-10">
-        <div class="form-panel">
-            <div class="row">
-                <div class="col-xs-9 ">
-                    <input id="newPostInput" type="text" class="form-control round-form " name="newPost" placeholder="Podaj tresc postu">
+<div class="row mt" ng-controller="tabController" ng-init="getLastPost()">
+    <div class="col-xs-12">
+        <div class="col-md-4">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
+                <div class="white-header">
+                    <h5>Dodawanie nowego wpisu</h5>
                 </div>
-                <div class="col-xs-3 centered ">
-                    <button class="btn btn-round btn-success " ng-click="addPost()"><i class="fa fa-paper-plane" aria-hidden="true"></i> Dodaj</button>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <textarea style="max-width:100%" id="newPostInput" class="form-control" rows="2" name="newPost" placeholder="Podaj treść"></textarea>
+                    </div>
+                    <div id='errorNewPost' class="col-xs-10 col-xs-offset-1 errorShow">
+
+                    </div>
+                    <div class="col-xs-12 centered" style="margin-top:20px; margin-bottom: 20px;">
+                        <button class="btn  btn-success " ng-click="addPost()"><i class="fa fa-paper-plane" aria-hidden="true"></i> Dodaj post</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-10 col-md-offset-1">
-            <div class="form-panel" ng-repeat="ps in posts">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="col-xs-2 col-md-1">
-                            <a href="#!/myProfile"><img src="{{ps.user_img_path}}" class="img-circle" width="55"></a>
+        <div class="col-md-8">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px; text-align: left;" ng-repeat="ps in posts |orderBy: '-date_add'">
+                <div class="white-header" style="padding-left: 50px; padding-right: 50px;">
+                    <h5>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div style="width: 55px; float: left;">
+                                    <a href="#!/myProfile"><img src="{{ps.user_img_path}}" class="img-circle" width="55"></a>
+                                </div>
+                                <div style="float: left;">
+                                    <p style="font-weight: bold; font-size: 18px; margin-bottom: 5px;">{{ps.firstname}}</p>
+                                    <p style="font-weight: bold; font-size: 18px; margin-top: 5px; margin-bottom: 5px;">{{ps.lastname}}</p>
+                                </div>
+                                <div style="float:right;">
+                                    <p> {{ps.date_add}} </p>
+                                    <div style="float:right;" ng-show="user.id == ps.usid ">
+                                        <button class="btn btn-danger" style="float:right;" ng-click="deletePost(ps.psid)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xs-6 col-md-6">
-                            <p style="font-weight: bold; font-size: 18px;">{{ps.firstname}} {{ps.lastname}}</p>
-                        </div>
-                        <div class="col-xs-6 col-md-6">
-                            <p> {{ps.date_add}} </p>
-                        </div>
-                    </div>
+                    </h5>
                 </div>
+
                 <div class="row" style="margin-top: 20px;">
-                    <div class="col-xs-10 col-xs-offset-1">
+                    <div class="col-xs-12">
                         <p>{{ps.content}}</p>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 20px;">
-                    <div class="col-xs-9 ">
-                        <input type="text " class="form-control round-form " name="newComment" placeholder="Skomentuj post">
-                    </div>
-                    <div class="col-xs-3 centered ">
-                        <button class="btn btn-round btn-success " ng-click="addComment(posts.psid)"><i class="fa fa-commenting" aria-hidden="true"></i> Dodaj</button>
+                    <div class="col-xs-12" style="padding: 10px 30px;">
+                        <div style="float:left; width:calc(100% - 100px);">
+                            <textarea id="tx_{{ps.psid}}" style="max-width:100%" id="newPostInput" class="form-control" rows="1" name="newComment" placeholder="Skomentuj post"></textarea>
+                        </div>
+                        <div style="float:right; width:80px; transform:translateY(20%)">
+                            <button class="btn btn-success " ng-click="addComment(ps.psid)"><i class="fa fa-commenting" aria-hidden="true"></i> Dodaj</button>
+                        </div>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 20px;">
                     <ul class="media-list col-xs-10 col-xs-offset-1">
-                        <li class="media">
+                        <li class="media" ng-repeat="cm in ps.comments">
                             <div class="media-left media-middle">
                                 <a href="#">
-                                    <img src="{{user.imgPath}}" class="img-circle media-object" width="55">
+                                    <img src="{{cm.user_img_path}}" class="img-circle media-object" width="55">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">Media heading <span style="font-size:13px;">12-07-2017 13:23</span> </h4>
-                                <p>askjdh jaskd nasjkd nasjkd najks dnajks ndajksn jkdansd asj</p>
+                                <h4 class="media-heading">{{cm.firstname}} {{cm.lastname}} <span style="font-size:13px;"> {{cm.date_add}}</span>
+                                    <button ng-show="cm.usid == user.id" class="btn btn-danger" style="float:right;" ng-click="deleteComment(cm.cmid)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </h4>
+                                <p>{{cm.content}}</p>
                             </div>
                         </li>
                     </ul>

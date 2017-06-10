@@ -199,7 +199,9 @@ hr {
     margin-top: 25px;
 }
 
+
 /* bigger margin-top */
+
 .bmt {
     margin-top: 35px;
 }
@@ -510,6 +512,13 @@ ul.top-menu>li {
     text-align: center;
 }
 
+.errorShow {
+    color: #F44336;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
 .notify-row {
     float: right;
     margin-top: 15px;
@@ -521,6 +530,11 @@ ul.top-menu>li {
     height: 18px;
     width: 20px;
     padding: 5px;
+}
+
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 ul.top-menu>li>a {
@@ -1172,7 +1186,7 @@ PANELS CONFIGURATIONS
 .white-panel {
     text-align: center;
     background: #ffffff;
-    color: #ccd1d9;
+    color: #757575;
 }
 
 .white-panel p {
@@ -1182,10 +1196,10 @@ PANELS CONFIGURATIONS
 }
 
 .white-panel .white-header {
-    background: #f4f4f4;
+    background: #607D8B;
     padding: 3px;
     margin-bottom: 15px;
-    color: #c6c6c6;
+    color: #fafafa;
 }
 
 .white-panel .white-header h5{
@@ -1198,7 +1212,6 @@ PANELS CONFIGURATIONS
 }
 
 .white-panel i {
-    color: #68dff0;
     padding-right: 4px;
     font-size: 14px;
 }
