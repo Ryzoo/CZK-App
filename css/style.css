@@ -763,6 +763,15 @@ ul.top-menu>li>a:focus {
     top: -10px;
 }
 
+/*--caledar on main site*/
+.today-date {
+  margin-bottom: 50px;
+}
+
+.rectangle {
+  height: 5px;
+  background: #000;
+}
 
 /*----*/
 
@@ -1108,7 +1117,7 @@ PANELS CONFIGURATIONS
     margin-bottom: 15px;
 }
 
-.darkblue-panel h1 {
+.darkblue-panel  {
     color: #f2f2f2;
 }
 
@@ -1177,6 +1186,10 @@ PANELS CONFIGURATIONS
     padding: 3px;
     margin-bottom: 15px;
     color: #c6c6c6;
+}
+
+.white-panel .white-header h5{
+    color: inherit;
 }
 
 .white-panel .small {
