@@ -14,7 +14,7 @@
 
                     </div>
                     <div class="col-xs-12 centered" style="margin-top:20px; margin-bottom: 20px;">
-                        <button class="btn btn-round btn-success " ng-click="addPost()"><i class="fa fa-paper-plane" aria-hidden="true"></i> Dodaj post</button>
+                        <button class="btn  btn-success " ng-click="addPost()"><i class="fa fa-paper-plane" aria-hidden="true"></i> Dodaj post</button>
                     </div>
                 </div>
             </div>
@@ -34,6 +34,9 @@
                                 </div>
                                 <div style="float:right;">
                                     <p> {{ps.date_add}} </p>
+                                    <div style="float:right;" ng-show="user.id == ps.usid ">
+                                        <button class="btn btn-danger" style="float:right;" ng-click="deletePost(ps.psid)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +54,7 @@
                             <textarea id="tx_{{ps.psid}}" style="max-width:100%" id="newPostInput" class="form-control" rows="1" name="newComment" placeholder="Skomentuj post"></textarea>
                         </div>
                         <div style="float:right; width:80px; transform:translateY(20%)">
-                            <button class="btn btn-round btn-success " ng-click="addComment(ps.psid)"><i class="fa fa-commenting" aria-hidden="true"></i> Dodaj</button>
+                            <button class="btn btn-success " ng-click="addComment(ps.psid)"><i class="fa fa-commenting" aria-hidden="true"></i> Dodaj</button>
                         </div>
                     </div>
                 </div>
@@ -64,7 +67,9 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">{{cm.firstname}} {{cm.lastname}} <span style="font-size:13px;"> {{cm.date_add}}</span> </h4>
+                                <h4 class="media-heading">{{cm.firstname}} {{cm.lastname}} <span style="font-size:13px;"> {{cm.date_add}}</span>
+                                    <button ng-show="cm.usid == user.id" class="btn btn-danger" style="float:right;" ng-click="deleteComment(cm.cmid)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </h4>
                                 <p>{{cm.content}}</p>
                             </div>
                         </li>

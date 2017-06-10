@@ -6,10 +6,11 @@ app.controller('mainController', function($scope, auth, $rootScope) {
         firstname: "",
         lastname: "",
         birthdate: "",
-        imgPath: ""
+        imgPath: "",
+        id: ""
     }
     $scope.mainInit = function() {
-        $rootScope.viewPerm = ["USER", "ADMIN"];
+        $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD"];
         if (!auth.checkIsLogged()) {
             auth.logout();
         } else {
@@ -18,6 +19,7 @@ app.controller('mainController', function($scope, auth, $rootScope) {
                 $rootScope.user.email = data.data.email;
                 $rootScope.user.token = Cookies.get('tq');
                 $rootScope.user.role = data.data.name;
+                $rootScope.user.id = data.data.id;
                 $rootScope.user.firstname = data.data.firstname;
                 $rootScope.user.lastname = data.data.lastname;
                 $rootScope.user.birthdate = data.data.birthdate;

@@ -104,8 +104,11 @@ class Auth{
 
     }
 
-    function checkPermission( $email, $token, $perm){
-
+    function checkPerm($token, $perm){
+        $result = ($this->db->getConnection())->fetchRow('SELECT roles.name as role FROM users, roles WHERE users.id_role = roles.id AND token = :tq', ['tq' => $token]);
+        if( !is_null($result) && $result['role'] == $perm){
+            return true;
+        }else return false;
     }
 
 }

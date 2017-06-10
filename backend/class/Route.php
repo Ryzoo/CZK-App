@@ -36,6 +36,12 @@ class Route{
         }else if( $this->request === "addComment" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->postMenager->addComment($this->postData);
+        }else if( $this->request === "deleteComment" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->postMenager->deleteComment($this->postData);
+        }else if( $this->request === "deletePost" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->postMenager->deletePost($this->postData);
         }
         
     }
