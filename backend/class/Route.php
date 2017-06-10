@@ -33,6 +33,9 @@ class Route{
         }else if( $this->request === "addPost" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->postMenager->addPost($this->postData);
+        }else if( $this->request === "addComment" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->postMenager->addComment($this->postData);
         }
         
     }

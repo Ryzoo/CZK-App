@@ -76,4 +76,34 @@ class Post{
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
+    function addComment($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        if( isset($post["msg"]) && isset($post["token"]) && isset($post["post_id"]))
+        {
+            $message = $post["msg"];
+            $token = $post["token"];
+            $post_id = $post["post_id"];
+            $idUser = ($this->auth)->getUserId($token);
+            if( !$idUser ){
+                $error = "Uzytkownik o danym tokenie nieodnalleziony";
+                $success = false;
+            }else{
+                $data = [
+                    'id_user' => $idUser,
+                    'id_post' => $post_id,
+                    'content' => $message,
+                    'date_add'  => date("Y-m-d H:i:s"),
+                ];
+                $toReturn = ($this->db->getConnection())->insert('comments', $data);
+            }
+        }else{
+            $error = "Brak potrzebnych danych";
+            $success = false;
+        }
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
 }

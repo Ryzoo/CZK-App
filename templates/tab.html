@@ -48,7 +48,7 @@
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-xs-12" style="padding: 10px 30px;">
                         <div style="float:left; width:calc(100% - 100px);">
-                            <textarea ng-model="['field_' + ps.psid]" style="max-width:100%" id="newPostInput" class="form-control" rows="1" name="newComment" placeholder="Skomentuj post"></textarea>
+                            <textarea id="tx_{{ps.psid}}" style="max-width:100%" id="newPostInput" class="form-control" rows="1" name="newComment" placeholder="Skomentuj post"></textarea>
                         </div>
                         <div style="float:right; width:80px; transform:translateY(20%)">
                             <button class="btn btn-round btn-success " ng-click="addComment(ps.psid)"><i class="fa fa-commenting" aria-hidden="true"></i> Dodaj</button>
