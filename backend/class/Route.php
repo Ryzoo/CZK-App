@@ -7,12 +7,14 @@ class Route{
     private $postData = "";
     private $authorize = "";
     private $postMenager = "";
+    private $teamMenager ="";
 
     function __construct( $allPost ){
         $this->postData = $allPost;
         $this->request = str_replace("/backend/","",$_SERVER['REQUEST_URI']);
         $this->authorize = new Auth();
         $this->postMenager = new Post();
+        $this->teamMenager = new Teams();
         $this->dataToReturn = array( "error"=>"Brak danych" ,"success"=>false,"token"=>"" );
         $this->checkRequest();
     }
@@ -42,7 +44,11 @@ class Route{
         }else if( $this->request === "deletePost" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->postMenager->deletePost($this->postData);
+        }else if( $this->request === "getTeams" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->getTeamsByToken($this->postData['token']);
         }
+
         
     }
 

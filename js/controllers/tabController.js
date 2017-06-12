@@ -3,7 +3,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
     $scope.posts = [];
 
     $scope.getLastPost = function() {
-        var dataToSend = { token: Cookies.get('tq'), last: $scope.lastId };
+        var dataToSend = { token: Cookies.get('tq'), last: $scope.lastId, tmid: $rootScope.user.tmid };
         var urlToPost = 'backend/getPost';
         $.ajax({
             url: urlToPost,
@@ -16,7 +16,20 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                         $scope.posts.push(msg.data[i]);
                     }
                     if (msg.data[0] != null && msg.data[0].psid != null) $scope.lastId = msg.data[0].psid;
-                } else console.log($scope.lastId);
+
+                } else {
+                    console.log(msg);
+                    $(document).ready(function() {
+                        var unique_id = $.gritter.add({
+                            title: 'Bład',
+                            text: 'Brak postów do wyświetlenia',
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    });
+                }
             },
             error: function(jqXHR, textStatus) {
                 console.log("Blad podczas laczenia z serverem: " + textStatus);
@@ -42,7 +55,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
             $('#errorNewPost').html("Wiadomosc musi być dłuższa niż 5 znaków oraz krótsza niż 500").show();
             return;
         }
-        var dataToSend = { token: Cookies.get('tq'), msg: message };
+        var dataToSend = { token: Cookies.get('tq'), msg: message, tmid: $rootScope.user.tmid };
         var urlToPost = 'backend/addPost';
         $.ajax({
             url: urlToPost,
@@ -54,7 +67,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                     $scope.getLastPost();
                     $(document).ready(function() {
                         var unique_id = $.gritter.add({
-                            title: 'Dodanie postu',
+                            title: 'Dodawanie postu',
                             text: 'Twój post został pomyślnie dodany',
                             image: '',
                             sticky: true,
