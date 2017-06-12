@@ -28,72 +28,7 @@
 <body ng-controller="accountController" ng-init="mainInit()">
 
     <!-- Menu gorne -->
-    <header class="header black-bg">
-        <div class="sidebar-toggle-box">
-            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-        </div>
-        <!--logo start-->
-        <div class="logo"><img src="img/club_logo.png"></img>
-        </div>
-        <!--logo end-->
-
-        <div class="top-menu">
-            <ul class="nav pull-right top-menu">
-                <li><button class=" logout" ng-click="logout()"> Wyloguj się </button></li>
-            </ul>
-        </div>
-
-        <div class="nav notify-row" id="top_menu">
-            <!--  notification start -->
-            <ul class="nav top-menu">
-                <!-- calendar start -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="">
-                        <i class="fa fa-calendar"></i>
-                    </a>
-                </li>
-                <!-- calendar end -->
-                <!-- settings start -->
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                        <i class="fa fa-tasks"></i>
-                        <span class="badge bg-theme">3</span>
-                    </a>
-                    <ul class="dropdown-menu extended tasks-bar">
-                        <div class="notify-arrow notify-arrow-green"></div>
-                        <li>
-                            <p class="green">Masz 3 nowe powiadomienia</p>
-                        </li>
-                        <li>
-                            <a href="index.html#">
-                                <div class="task-info">
-                                    <div class="desc">Trener dodał wydarzenie</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html#">
-                                <div class="task-info">
-                                    <div class="desc">Wstawiono wyniki testów</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html#">
-                                <div class="task-info">
-                                    <div class="desc">Tomek opublikował post</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="external">
-                            <a href="#">Pokaż wszystkie</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- settings end -->
-            </ul>
-            <!--  notification end -->
-        </div>
+    <header class="header black-bg">      <div class="container-fluid header-container">        <div class="row header-row">          <div class="col-xs-2">            <div class="sidebar-toggle-box">              <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>            </div>            <!--logo start-->            <div class="logo"><img src="img/club_logo.png"></img></div>            <!--Logo end-->          </div>          <div class="col-xs-7">            <!-- teamSelect start -->              <div class="team-selector">                <select class="select-style">                  <option value="orlik">E1 Orliki</option>                  <option value="mlodzik_mlodszy">D2 Młodziki Młodsi</option>                  <option value="mlodzik">D1 Młodziki</option>                  <option value="trampkarz mlodszy">C2 Trampkarze Młodsi</option>                  <option value="trampkarz">C1 Trampkarze</option>                  <option value="junior">B1 Juniorzy</option>                </select>              <!-- teamSelect end -->            </div>          </div>          <div class="col-xs-3">            <div class="nav notify-row" id="top_menu">                <!--  notification start -->                <ul class="nav top-menu">                    <!-- calendar start -->                    <li class="dropdown">                        <a class="dropdown-toggle" href="">                            <i class="fa fa-calendar"></i>                        </a>                    </li>                    <!-- calendar end -->                    <!-- settings start -->                    <li class="dropdown">                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">                            <i class="fa fa-tasks"></i>                            <span class="badge bg-theme">3</span>                        </a>                        <ul class="dropdown-menu extended tasks-bar">                            <div class="notify-arrow notify-arrow-green"></div>                            <li>                                <p class="green">Masz 3 nowe powiadomienia</p>                            </li>                            <li>                                <a href="index.html#">                                    <div class="task-info">                                        <div class="desc">Trener dodał wydarzenie</div>                                    </div>                                </a>                            </li>                            <li>                                <a href="index.html#">                                    <div class="task-info">                                        <div class="desc">Wstawiono wyniki testów</div>                                    </div>                                </a>                            </li>                            <li>                                <a href="index.html#">                                    <div class="task-info">                                        <div class="desc">Tomek opublikował post</div>                                    </div>                                </a>                            </li>                            <li class="external">                                <a href="#">Pokaż wszystkie</a>                            </li>                        </ul>                    </li>                    <!-- settings end -->                </ul>                <!--  notification end -->            </div>            <!-- logout start -->            <div class="top-menu">                <ul class="nav top-menu">                    <li><button class=" logout" ng-click="logout()"> Wyloguj się </button></li>                </ul>            <!-- logout end!-->            </div>          </div>        </div>      </div>
     </header>
 
     <aside>
@@ -206,3 +141,6 @@
 <script src="/js/controllers/accountController.js"></script>
 <script src="/js/controllers/mainDashboardController.js"></script>
 <script src="/js/controllers/tabController.js"></script>
+
+
+<script src="/js/controllers/TeamSelectController.js"></script>
