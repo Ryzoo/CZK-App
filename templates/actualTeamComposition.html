@@ -1,1 +1,80 @@
-<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
+<div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK'])"></div>
+<div class="row mt" ng-controller="tabController" ng-init="getLastPost()">
+    <div class="col-xs-12">
+        <div class="col-md-6">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
+                <div class="white-header">
+                    <h5>Ławka rezerwowych</h5>
+                </div>
+                <div class="row" style="padding: 20px;" ondrop="drop(event)">
+                    <table class="table table-hover" ng-init="getTeam()">
+                        <thead>
+                            <tr>
+                                <th>Imię</th>
+                                <th>Nazwisko</th>
+                                <th>Numer na koszulce</th>
+                                <th>Zmień pozycje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr draggable="true" ondragstart="startDrag(event)" ng-repeat="us in lawka">
+                                <td>{{us.firstname}}</td>
+                                <td>{{us.lastname}}</td>
+                                <td>{{us.nr_on_tshirt}}</td>
+                                <td>{{us.is_master}}</td>
+                                <td>
+                                    <select name="" id="">
+                                        <option value="">asdasd</option>
+                                        <option value="">asdasd</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
+                <div class="white-header">
+                    <h5>Aktualny skład</h5>
+                </div>
+                <div class="row" style="padding: 20px; padding-top: 0px">
+                    <div ondrop="drop(event)">
+                        <h3>Bramka</h3>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>Numer na koszulce</th>
+                                    <th>Akcja</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr draggable="true" ondragstart="startDrag(event)">
+                                    <td>Adam</td>
+                                    <td>Kowalski</td>
+                                    <td>8</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col-lg-12-->
+</div>
+<!-- /row -->
+
+<script>
+    function drop(ev) {
+        console.log("drop");
+    }
+
+    function startDrag(ev) {
+        console.log("start");
+    }
+</script>

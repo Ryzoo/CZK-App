@@ -20,6 +20,7 @@ class Teams{
         $this->auth = new Auth();
     }
 
+    // pobiera teamy od usera o podanym tokenie
     function getTeamsByToken( $token ){
         $toReturn = null;
         $success = true;
@@ -33,6 +34,16 @@ class Teams{
             $success = false;
             $error = "bledny token";
         }
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function getUserFromTeam( $id ){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT team_members.id as tmmid, firstname, lastname, nr_on_tshirt, position, is_master FROM teams, team_members, users, user_data WHERE teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id GROUP BY team_members.id_user' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
