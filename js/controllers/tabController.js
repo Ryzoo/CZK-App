@@ -20,12 +20,12 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                             $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(changeProgress)));
                             $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                         });
-                        setTimeout(function() {
-                            $scope.$apply(function() {
-                                $scope.showContent = true;
-                            });
-                        }, 500);
                     }
+                    setTimeout(function() {
+                        $scope.$apply(function() {
+                            $scope.showContent = true;
+                        });
+                    }, 500);
                     if (msg.data[0] != null && msg.data[0].psid != null) $scope.lastId = msg.data[0].psid;
 
                 } else {
