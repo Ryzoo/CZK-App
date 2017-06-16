@@ -43,7 +43,33 @@ class Teams{
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT team_members.id as tmmid, firstname, lastname, nr_on_tshirt, position, is_master FROM teams, team_members, users, user_data WHERE teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id GROUP BY team_members.id_user' );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT team_members.id as tmmid, firstname, lastname, nr_on_tshirt, id_position, positions.name as posname, is_master FROM teams, team_members, users, user_data, positions WHERE positions.id = team_members.id_position AND teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id AND team_members.id_team = '.$id );
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function getAllPosition(){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT * FROM positions' );
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function changeCollection($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        $condsUsers = [];
+        $dataUsers = [];
+
+        if( isset($post['tmmid']) && isset($post['val']) && isset($post['type']) ){
+            $condsUsers['id'] = $post['tmmid'];
+            $dataUsers[$post['type']] = $post['val'];
+            $result = ($this->db->getConnection())->update('team_members', $condsUsers, $dataUsers);
+        }
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }

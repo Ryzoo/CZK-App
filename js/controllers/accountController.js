@@ -4,7 +4,6 @@ app.controller('accountController', function($scope, auth, $rootScope, request) 
     };
 
     $scope.$on('$viewContentLoaded', function() {
-        console.log($rootScope.viewPerm);
         if (!auth.checkPerm($rootScope.viewPerm)) document.location = "#!badPerm";
     });
 
@@ -22,10 +21,8 @@ app.controller('accountController', function($scope, auth, $rootScope, request) 
             url: urlToPost,
             type: "POST",
             data: dataToSend,
-            async: false,
+            async: true,
             success: function(msg) {
-                console.log(msg);
-
                 if (msg.success) {
                     $rootScope.user.firstname = msg.data.post.firstname;
                     $rootScope.user.lastname = msg.data.post.lastname;
