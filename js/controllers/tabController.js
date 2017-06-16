@@ -3,17 +3,28 @@ app.controller('tabController', function($scope, auth, $rootScope) {
     $scope.posts = [];
 
     $scope.getLastPost = function() {
+        $rootScope.showContent = false;
         var dataToSend = { token: Cookies.get('tq'), last: $scope.lastId, tmid: $rootScope.user.tmid };
         var urlToPost = 'backend/getPost';
         $.ajax({
             url: urlToPost,
             type: "POST",
             data: dataToSend,
-            async: false,
+            async: true,
             success: function(msg) {
                 if (msg.success) {
+                    var changeProgress = 100 / msg.data.length;
                     for (var i = 0; i < msg.data.length; i++) {
-                        $scope.posts.push(msg.data[i]);
+                        $scope.$apply(function() {
+                            $scope.posts.push(msg.data[i]);
+                            $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(changeProgress)));
+                            $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
+                        });
+                        setTimeout(function() {
+                            $scope.$apply(function() {
+                                $scope.showContent = true;
+                            });
+                        }, 500);
                     }
                     if (msg.data[0] != null && msg.data[0].psid != null) $scope.lastId = msg.data[0].psid;
 
@@ -47,7 +58,6 @@ app.controller('tabController', function($scope, auth, $rootScope) {
         });
     }
 
-
     $scope.addPost = function() {
         $('#errorNewPost').html("").hide();
         var message = $("#newPostInput").val();
@@ -61,7 +71,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
             url: urlToPost,
             type: "POST",
             data: dataToSend,
-            async: false,
+            async: true,
             success: function(msg) {
                 if (msg.success) {
                     $scope.getLastPost();
@@ -126,7 +136,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
             url: urlToPost,
             type: "POST",
             data: dataToSend,
-            async: false,
+            async: true,
             success: function(msg) {
                 if (msg.success) {
                     $scope.lastId = 0;
@@ -180,7 +190,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
             url: urlToPost,
             type: "POST",
             data: dataToSend,
-            async: false,
+            async: true,
             success: function(msg) {
                 if (msg.success) {
                     $scope.lastId = 0;
@@ -226,8 +236,6 @@ app.controller('tabController', function($scope, auth, $rootScope) {
         });
     }
 
-
-
     $scope.deleteComment = function(id) {
         var dataToSend = { token: Cookies.get('tq'), cmid: id };
         var urlToPost = 'backend/deleteComment';
@@ -235,7 +243,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
             url: urlToPost,
             type: "POST",
             data: dataToSend,
-            async: false,
+            async: true,
             success: function(msg) {
                 if (msg.success) {
                     $scope.lastId = 0;

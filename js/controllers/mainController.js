@@ -27,7 +27,6 @@ app.controller('mainController', function($scope, auth, $rootScope, $route) {
                 $rootScope.user.imgPath = data.data.user_img_path;
                 $rootScope.user.addAccountDate = data.data.create_account_date;
                 $rootScope.user.addAccountDate = data.data.create_account_date;
-                console.log($rootScope.user);
                 var dataToSend = { token: Cookies.get('tq') };
                 var urlToPost = 'backend/getTeams';
                 $.ajax({

@@ -47,6 +47,15 @@ class Route{
         }else if( $this->request === "getTeams" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->teamMenager->getTeamsByToken($this->postData['token']);
+        }else if( $this->request === "getUserFromTeam" ){
+            if( isset($this->postData['tmid']) )
+                $this->dataToReturn = $this->teamMenager->getUserFromTeam($this->postData['tmid']);
+        }else if( $this->request === "getAllPosition" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->getAllPosition();
+        }else if( $this->request === "changeCollection" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->changeCollection($this->postData);
         }
 
         
