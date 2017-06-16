@@ -24,6 +24,10 @@ app.config(function($routeProvider) {
             templateUrl: "templates/actualTeamComposition.html",
             controller: "compositionController"
         })
+        .when("/staff", {
+            templateUrl: "templates/staff.html",
+            controller: "staffController"
+        })
         .otherwise({
             templateUrl: "templates/badPerm.html"
         });

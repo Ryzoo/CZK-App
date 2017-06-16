@@ -83,7 +83,6 @@ class Auth{
         $condsUsers = [];
         $dataUsers =[];
         
-
         if( isset($post["token"]) ){
             $userId = $this->getUserId($post["token"]);
             if(!$userId){
@@ -98,10 +97,6 @@ class Auth{
         $result = ($this->db->getConnection())->update('user_data', $condsUsers, $dataUsers);
 
         return array( "error"=>"" ,"success"=>true,"data"=>array("url"=>$file_name,"post"=>$post) );
-    }
-
-    function checkStillLogged( $email, $token ){
-
     }
 
     function checkPerm($token, $perm){

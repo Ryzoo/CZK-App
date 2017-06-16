@@ -10,5 +10,6 @@ return array(
     'Database' => $baseDir . '/class/Database.php',
     'Post' => $baseDir . '/class/Post.php',
     'Route' => $baseDir . '/class/Route.php',
+    'Staff' => $baseDir . '/class/Staff.php',
     'Teams' => $baseDir . '/class/Teams.php',
 );
