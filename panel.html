@@ -22,74 +22,66 @@
 
 <body ng-controller="accountController" ng-init="mainInit()">
     <header class="header black-bg">
-        <div class="container-fluid header-container">
-            <div class="row header-row">
-                <div class="col-xs-2">
-                    <div class="sidebar-toggle-box">
-                        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-                    </div>
-                    <div class="logo"><img src="img/club_logo.png"></img>
-                    </div>
-                </div>
-                <div class="col-xs-7">
-                    <div class="team-selector">
-                        <select id='teamSelect' class="select-style">
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="nav notify-row" id="top_menu">
-                        <ul class="nav top-menu">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#!/calendar">
-                                    <i class="fa fa-calendar"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                                    <i class="fa fa-tasks"></i>
-                                    <span class="badge bg-theme">3</span>
-                                </a>
-                                <ul class="dropdown-menu extended tasks-bar">
-                                    <div class="notify-arrow notify-arrow-green"></div>
-                                    <li>
-                                        <p class="green">Masz 3 nowe powiadomienia</p>
-                                    </li>
-                                    <li>
-                                        <a href="index.html#">
-                                            <div class="task-info">
-                                                <div class="desc">Trener dodał wydarzenie</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html#">
-                                            <div class="task-info">
-                                                <div class="desc">Wstawiono wyniki testów</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html#">
-                                            <div class="task-info">
-                                                <div class="desc">Tomek opublikował post</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="external">
-                                        <a href="#">Pokaż wszystkie</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="top-menu">
-                        <ul class="nav top-menu">
-                            <li><button class=" logout" ng-click="logout()"> Wyloguj się </button></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Menu nawigacyjne"></div>
+        </div>
+        <a href="#!/" class="logo"><b>CZK-App</b></a>
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#!/calendar">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                        <i class="fa fa-bell-o" aria-hidden="true"></i>
+                        <span class="badge bg-theme">3</span>
+                    </a>
+                    <ul class="dropdown-menu extended tasks-bar">
+                        <div class="notify-arrow notify-arrow-green"></div>
+                        <li>
+                            <p class="green">Masz 3 nowe powiadomienia</p>
+                        </li>
+                        <li>
+                            <a href="index.html#">
+                                <div class="task-info">
+                                    <div class="desc">Trener dodał wydarzenie</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#">
+                                <div class="task-info">
+                                    <div class="desc">Wstawiono wyniki testów</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#">
+                                <div class="task-info">
+                                    <div class="desc">Tomek opublikował post</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="external">
+                            <a href="#">Pokaż wszystkie</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <select id='teamSelect' class="select-style">
+                    </select>
+                </li>
+            </ul>
+            <!--  notification end -->
+        </div>
+        <div class="top-menu">
+            <ul class="nav pull-right top-menu">
+                <li><a class="logout" href="" ng-click="logout()">Wyloguj się</a></li>
+            </ul>
         </div>
     </header>
     <aside>
@@ -153,6 +145,11 @@
 <script type="text/javascript" src="/js/libraries/js.cookie.js"></script>
 <script src="/js/libraries/sparkline-chart.js"></script>
 <script src="/js/libraries/zabuto_calendar.js"></script>
+<script src="/js/libraries/jquery-ui.js"></script>
+<script src="/js/libraries/fullcalendar/fullcalendar.min.js"></script>
+<script src="/js/libraries/moments.js"></script>
+<script src="/js/libraries/calendar-conf-events.js"></script>
+<script src="/js/libraries/jquery.datetimepicker.full.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
 <script src="/js/route.js"></script>
@@ -162,7 +159,6 @@
 <script src="/js/controllers/accountController.js"></script>
 <script src="/js/controllers/mainDashboardController.js"></script>
 <script src="/js/controllers/tabController.js"></script>
-<script src="/js/controllers/TeamSelectController.js"></script>
 <script src="/js/controllers/compositionController.js"></script>
 <script src="/js/controllers/staffController.js"></script>
 <script src="/js/controllers/calendarController.js"></script>

@@ -1,6 +1,21 @@
 app.controller('tabController', function($scope, auth, $rootScope) {
     $scope.lastId = 0;
     $scope.posts = [];
+    $scope.maxPost = 1;
+
+
+    $scope.morePost = function() {
+        $scope.maxPost += 5;
+    }
+
+    $scope.moreComment = function(id) {
+        for (var i = 0; i < $scope.posts.length; i++) {
+            if ($scope.posts[i].psid == id) {
+                $scope.posts[i].maxComment += 5;
+                return;
+            }
+        }
+    }
 
     $scope.getLastPost = function() {
         $rootScope.showContent = false;
@@ -17,6 +32,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                     for (var i = 0; i < msg.data.length; i++) {
                         $scope.$apply(function() {
                             $scope.posts.push(msg.data[i]);
+                            $scope.posts[i].maxComment = 1;
                             $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(changeProgress)));
                             $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                         });

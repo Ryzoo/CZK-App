@@ -25,15 +25,13 @@ app.controller('staffController', function($scope, auth, $rootScope) {
                     }, 500);
                 } else {
                     console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Brak osób do wyświetlenia',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Brak osób do wyświetlenia',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 }
             },
@@ -96,6 +94,57 @@ app.controller('staffController', function($scope, auth, $rootScope) {
                     var unique_id = $.gritter.add({
                         title: 'Bład',
                         text: 'Błąd podczas dodawania',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
+                    });
+                });
+            },
+        });
+    }
+
+    $scope.deleteStaff = function(staffId) {
+        var dataToSend = { token: Cookies.get('tq'), stid: staffId };
+        var urlToPost = 'backend/deleteStaff';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                if (msg.success) {
+                    $scope.getStaffMembers();
+                    $(document).ready(function() {
+                        var unique_id = $.gritter.add({
+                            title: 'Sukces',
+                            text: 'Personel usunięty pomyślnie',
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    });
+                } else {
+                    console.log(msg);
+                    $(document).ready(function() {
+                        var unique_id = $.gritter.add({
+                            title: 'Bład',
+                            text: 'Błąd podczas usuwania',
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $(document).ready(function() {
+                    var unique_id = $.gritter.add({
+                        title: 'Bład',
+                        text: 'Błąd podczas usuwania',
                         image: '',
                         sticky: true,
                         time: '5',

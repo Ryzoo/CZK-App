@@ -7,25 +7,25 @@
                 <div class="white-header">
                     <h5>Ławka rezerwowych</h5>
                 </div>
-                <div class="row" style="padding: 20px;" ondrop="drop(event)">
+                <div class="row" style="padding: 20px;">
                     <table class="table table-hover" ng-init="getTeam()">
                         <thead>
                             <tr>
                                 <th style="text-align:center;">Imię</th>
                                 <th style="text-align:center;">Nazwisko</th>
                                 <th style="text-align:center;">Numer na koszulce</th>
-                                <th style="text-align:center;">Pozycja</th>
+                                <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr draggable="true" ondragstart="startDrag(event)" ng-repeat="us in positions[0].users">
+                            <tr ng-repeat="us in positions[0].users">
                                 <td>{{us.firstname}}</td>
                                 <td>{{us.lastname}}</td>
                                 <td>
-                                    <input ng-show="user.role == 'KOORD' || user.role == 'TRENER' " class='changeNumber form-control' id='changeNumber-{{us.tmmid}}-0' style="width: 50px;  text-align:center;" type="text" value="{{us.nr_on_tshirt}}">
+                                    <input ng-show="user.role != 'ZAWODNIK' " class='changeNumber form-control' id='changeNumber-{{us.tmmid}}-0' style="width: 50px;  text-align:center;" type="text" value="{{us.nr_on_tshirt}}">
                                     <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
                                 </td>
-                                <td>
+                                <td ng-show="user.role != 'ZAWODNIK' ">
                                     <select class='selectPosition form-control' id="selectPosition-{{us.tmmid}}-0">
                                         <option ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
                                     </select>
@@ -48,25 +48,26 @@
                                 <th style="text-align:center;">Imię</th>
                                 <th style="text-align:center;">Nazwisko</th>
                                 <th style="text-align:center;">Numer na koszulce</th>
-                                <th style="text-align:center;">Pozycja</th>
+                                <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
                             </tr>
                         </thead>
                     </table>
-                    <div ondrop="drop(event)" ng-repeat="posit in positions | limitTo:50:1">
+                    <div ng-repeat="posit in positions | limitTo:50:1">
                         <h3>{{posit.name}}</h3>
                         <table class="table table-hover">
                             <tbody>
-                                <tr draggable="true" ondragstart="startDrag(event)" ng-repeat="us in posit.users">
+                                <tr ng-repeat="us in posit.users">
                                     <td>{{us.firstname}}</td>
                                     <td>{{us.lastname}}</td>
                                     <td>
-                                        <input ng-show="user.role == 'KOORD' || user.role == 'TRENER' " ng-model="us.nr_on_tshirt" class='changeNumber form-control' id='changeNumber-{{us.tmmid}}-{{posit.id}}' style="width: 50px; text-align:center;" type="text" value="{{us.nr_on_tshirt}}">
-                                        <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
+                                        <input ng-show="user.role != 'ZAWODNIK' " ng-model="us.nr_on_tshirt" class='changeNumber form-control' id='changeNumber-{{us.tmmid}}-{{posit.id}}' style="width: 50px; text-align:center;" type="text" value="{{us.nr_on_tshirt}}">
+                                        <p ng-show="user.role == 'ZAWODNIK' ">{{us.nr_on_tshirt}}</p>
                                     </td>
-                                    <td>
+                                    <td ng-show="user.role != 'ZAWODNIK' ">
                                         <select class='selectPosition form-control' id="selectPosition-{{us.tmmid}}-{{posit.id}}">
-                                        <option ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
-                                    </select>
+                                            <option ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
+                                        </select>
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -85,13 +86,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function drop(ev) {
-        console.log("drop");
-    }
-
-    function startDrag(ev) {
-        console.log("start");
-    }
-</script>

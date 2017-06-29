@@ -93,4 +93,22 @@ class News{
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
+    function editNews($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        $condsUsers = [];
+        $dataUsers = [];
+
+        if( isset($post['id'])){
+            $condsUsers['id'] = $post['id'];
+            if(isset($post['title'])) $dataUsers['title'] = $post['title'];
+            if(isset($post['start'])) $dataUsers['start'] = $post['start'];
+            if(isset($post['end'])) $dataUsers['end'] = $post['end'];
+            $toReturn = ($this->db->getConnection())->update('events', $condsUsers, $dataUsers);
+        }
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
 }
