@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px; text-align: left;" ng-repeat="ps in posts |orderBy: '-date_add'">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px; text-align: left;" ng-repeat="ps in posts |orderBy: '-date_add' | limitTo: maxPost">
                 <div class="white-header" style="padding-left: 50px; padding-right: 50px;">
                     <h5>
                         <div class="row">
@@ -34,8 +34,8 @@
                                 </div>
                                 <div style="float:right;">
                                     <p> {{ps.date_add}} </p>
-                                    <div style="float:right;" ng-show="user.id == ps.usid ">
-                                        <button class="btn btn-danger" style="float:right;" ng-click="deletePost(ps.psid)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <div style="position: absolute; top: -5px; right: -35px; color: white; font-size: 20px; cursor: pointer" ng-show="user.id == ps.usid ">
+                                        <i class="fa fa-times" aria-hidden="true" ng-click="deletePost(ps.psid)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -60,23 +60,30 @@
                 </div>
                 <div class="row" style="margin-top: 20px;">
                     <ul class="media-list col-xs-10 col-xs-offset-1">
-                        <li class="media" ng-repeat="cm in ps.comments">
+                        <li class="media" ng-repeat="cm in ps.comments | limitTo: ps.maxComment">
                             <div class="media-left media-middle">
                                 <a href="#">
                                     <img src="{{cm.user_img_path}}" class="img-circle media-object" width="55">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">{{cm.firstname}} {{cm.lastname}} <span style="font-size:13px;"> {{cm.date_add}}</span>
-                                    <button ng-show="cm.usid == user.id" class="btn btn-danger" style="float:right;" ng-click="deleteComment(cm.cmid)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                </h4>
+                                <div style="position: absolute; top: -5px; right: -35px; color: red; font-size: 20px; cursor: pointer" ng-show="cm.usid == user.id">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="deleteComment(cm.cmid)"></i>
+                                </div>
+                                <h4 class="media-heading">{{cm.firstname}} {{cm.lastname}} <span style="font-size:13px;"> {{cm.date_add}}</span></h4>
                                 <p>{{cm.content}}</p>
                             </div>
                         </li>
+                        <button class="btn btn-success col-md-8 col-md-offset-2" ng-click="moreComment( ps.psid );">Pokaż wcześniejsze komentarze</button>
                     </ul>
                 </div>
             </div>
+
+            <button class="btn btn-success col-md-8 col-md-offset-2" ng-click="morePost();">Wyświetl więcej postów</button>
+
         </div>
+
+
 
     </div>
     <div ng-hide='showContent' class="" style="position:relative; margin-top:25%; width: 60%; margin-left: auto; margin-right: auto;">

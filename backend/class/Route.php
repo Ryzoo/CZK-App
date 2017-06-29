@@ -69,6 +69,9 @@ class Route{
         }else if( $this->request === "addStaff" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->staffMenager->addStaff($this->postData);
+        }else if( $this->request === "deleteStaff" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->staffMenager->deleteStaff($this->postData);
         }else if( $this->request === "getNews" ){
             if( isset($this->postData['token']) && isset($this->postData['tmid']) )
                 $this->dataToReturn = $this->newsMenager->getAllNews($this->postData['tmid']);
@@ -78,6 +81,9 @@ class Route{
         }else if( $this->request === "addNews" ){
             if( isset($this->postData['token']) && isset($this->postData['tmid']) )
                 $this->dataToReturn = $this->newsMenager->addNews($this->postData);
+        }else if( $this->request === "editNews" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->newsMenager->editNews($this->postData);
         }
     }
 

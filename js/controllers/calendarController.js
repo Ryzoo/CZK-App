@@ -29,10 +29,26 @@ app.controller('calendarController', function($scope, auth, $rootScope, request)
                     initCalendar();
                 } else {
                     console.log(msg);
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
+                        image: '',
+                        sticky: true,
+                        time_alive: '5',
+                        class_name: 'my-sticky-class'
+                    });
                 }
             },
             error: function(jqXHR, textStatus) {
                 console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
+                    image: '',
+                    sticky: true,
+                    time_alive: '5',
+                    class_name: 'my-sticky-class'
+                });
             },
         });
     };
@@ -56,19 +72,88 @@ app.controller('calendarController', function($scope, auth, $rootScope, request)
                         $("#addTitleNews").val('');
                         $("#addStartNews").val('');
                         $("#addEndNews").val('');
+                        $.gritter.add({
+                            title: 'Sukces',
+                            text: 'Dodano wydarzenie pomyślnie',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
                     } else {
                         console.log(msg);
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: 'Niestety nie udało się dodać wydarzenia',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
                     }
                 },
                 error: function(jqXHR, textStatus) {
                     console.log("Blad podczas laczenia z serverem: " + textStatus);
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się dodać wydarzenia',
+                        image: '',
+                        sticky: true,
+                        time_alive: '5',
+                        class_name: 'my-sticky-class'
+                    });
                 },
             });
         }
     };
 
     $scope.editEvent = function() {
+        if ($scope.actualEdit != '' && $("#editTitle").val().length > 2) {
+            var dataToSend = { token: Cookies.get('tq'), id: $scope.actualEdit.id, title: $("#editTitle").val() };
+            var urlToPost = 'backend/editNews';
+            $.ajax({
+                url: urlToPost,
+                type: "POST",
+                data: dataToSend,
+                async: true,
+                success: function(msg) {
+                    if (msg.success) {
+                        $scope.getAllEvents();
+                        $.gritter.add({
+                            title: 'Sukces',
+                            text: 'Wydarzenie edytowane pomyślnie',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    } else {
+                        console.log(msg);
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: 'Niestety edycja nie powiodła się',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus) {
+                    console.log("Blad podczas laczenia z serverem: " + textStatus);
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety edycja nie powiodła się',
+                        image: '',
+                        sticky: true,
+                        time_alive: '5',
+                        class_name: 'my-sticky-class'
+                    });
+                },
+            });
+        }
         $('.editEvent').hide();
+        $scope.actualEdit = '';
     };
 
     $scope.deleteEvent = function() {
@@ -83,12 +168,36 @@ app.controller('calendarController', function($scope, auth, $rootScope, request)
                 success: function(msg) {
                     if (msg.success) {
                         $scope.getAllEvents();
+                        $.gritter.add({
+                            title: 'Sukces',
+                            text: 'Wydarzenie usunięte pomyślnie',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
                     } else {
                         console.log(msg);
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: 'Niestety nie udało się usunąć wydarzenia',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
                     }
                 },
                 error: function(jqXHR, textStatus) {
                     console.log("Blad podczas laczenia z serverem: " + textStatus);
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się usunąć wydarzenia',
+                        image: '',
+                        sticky: true,
+                        time_alive: '5',
+                        class_name: 'my-sticky-class'
+                    });
                 },
             });
         }
@@ -117,6 +226,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request)
                 var copiedEventObject = $.extend({}, originalEventObject);
                 copiedEventObject.start = date;
                 copiedEventObject.allDay = allDay;
+
                 $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
                 $(this).remove();
             },
@@ -128,15 +238,93 @@ app.controller('calendarController', function($scope, auth, $rootScope, request)
                 $(this).css('border-color', 'red');
 
             },
-            eventDrop: function(event, delta, revertFunc) {
-
-                console.log(event);
-
+            eventDrop: function(event) {
+                var dataToSend = { token: Cookies.get('tq'), id: event.id, start: moment(event.start).format('YYYY-MM-DD HH:mm:ss'), end: moment(event.end).format('YYYY-MM-DD HH:mm:ss') };
+                var urlToPost = 'backend/editNews';
+                $.ajax({
+                    url: urlToPost,
+                    type: "POST",
+                    data: dataToSend,
+                    async: true,
+                    success: function(msg) {
+                        if (msg.success) {
+                            $scope.getAllEvents();
+                            $.gritter.add({
+                                title: 'Sukces',
+                                text: 'Wydarzenie edytowane pomyślnie',
+                                image: '',
+                                sticky: true,
+                                time_alive: '5',
+                                class_name: 'my-sticky-class'
+                            });
+                        } else {
+                            console.log(msg);
+                            $.gritter.add({
+                                title: 'Bład',
+                                text: 'Niestety edycja nie powiodła się',
+                                image: '',
+                                sticky: true,
+                                time_alive: '5',
+                                class_name: 'my-sticky-class'
+                            });
+                        }
+                    },
+                    error: function(jqXHR, textStatus) {
+                        console.log("Blad podczas laczenia z serverem: " + textStatus);
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: 'Niestety edycja nie powiodła się',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    },
+                });
             },
             eventResize: function(event, delta, revertFunc) {
-
-                console.log(event);
-
+                var dataToSend = { token: Cookies.get('tq'), id: event.id, start: moment(event.start).format('YYYY-MM-DD HH:mm:ss'), end: moment(event.end).format('YYYY-MM-DD HH:mm:ss') };
+                var urlToPost = 'backend/editNews';
+                $.ajax({
+                    url: urlToPost,
+                    type: "POST",
+                    data: dataToSend,
+                    async: true,
+                    success: function(msg) {
+                        if (msg.success) {
+                            $scope.getAllEvents();
+                            $.gritter.add({
+                                title: 'Sukces',
+                                text: 'Wydarzenie edytowane pomyślnie',
+                                image: '',
+                                sticky: true,
+                                time_alive: '5',
+                                class_name: 'my-sticky-class'
+                            });
+                        } else {
+                            console.log(msg);
+                            $.gritter.add({
+                                title: 'Bład',
+                                text: 'Niestety edycja nie powiodła się',
+                                image: '',
+                                sticky: true,
+                                time_alive: '5',
+                                class_name: 'my-sticky-class'
+                            });
+                        }
+                    },
+                    error: function(jqXHR, textStatus) {
+                        console.log("Blad podczas laczenia z serverem: " + textStatus);
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: 'Niestety edycja nie powiodła się',
+                            image: '',
+                            sticky: true,
+                            time_alive: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    },
+                });
             },
             events: $scope.allEvents
         });

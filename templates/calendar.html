@@ -2,7 +2,7 @@
 
 <div class="row mt">
     <div ng-show='showContent' ng-init='initAllEv();' class="row">
-        <div class="col-md-4">
+        <div class='col-md-4' ng-hide="user.role == 'ZAWODNIK'">
             <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
                 <div class="row">
                     <div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class='col-md-8' ng-class=" user.role == 'ZAWODNIK' ? 'col-md-offset-2' : 'col-md-offset-0' ">
             <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
                 <div class="row">
                     <aside class="col-xs-12 mt">
@@ -80,12 +80,6 @@
 </div>
 
 
-<script src='../js/libraries/jquery.js'></script>
-<script src="../js/libraries/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="../js/libraries/fullcalendar/fullcalendar.min.js"></script>
-<script src="../js/libraries/moments.js"></script>
-<script src="../js/libraries/calendar-conf-events.js"></script>
-<script src="../js/libraries/jquery.datetimepicker.full.js"></script>
 
 <script>
     $('.datetimepicker').datetimepicker({

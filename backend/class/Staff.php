@@ -74,5 +74,28 @@ class Staff{
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
+    function deleteStaff( $post ){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        if( isset($post["stid"])  )
+        {
+            $stid = $post["stid"];
+            $token = $post["token"];
+            $isAdmin = !(($this->auth)->checkPerm($token,"ZAWODNIK"));
+            if( !$isAdmin ){
+                $error = "Brak uprawnień";
+                $success = false;
+            }else{
+                $toReturn = ($this->db->getConnection())->delete('staff', ['id' => $stid]); 
+            }
+        }else{
+            $error = "Brak potrzebnych danych";
+            $success = false;
+        }
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
 
 }
