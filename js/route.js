@@ -28,6 +28,10 @@ app.config(function($routeProvider) {
             templateUrl: "templates/staff.html",
             controller: "staffController"
         })
+        .when("/calendar", {
+            templateUrl: "templates/calendar.html",
+            controller: "calendarController"
+        })
         .otherwise({
             templateUrl: "templates/badPerm.html"
         });

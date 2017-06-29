@@ -7,8 +7,9 @@ class Route{
     private $postData = "";
     private $authorize = "";
     private $postMenager = "";
-    private $teamMenager ="";
-    private $staffMenager ="";
+    private $teamMenager = "";
+    private $staffMenager = "";
+    private $newsMenager = "";
 
     function __construct( $allPost ){
         $this->postData = $allPost;
@@ -17,6 +18,7 @@ class Route{
         $this->postMenager = new Post();
         $this->teamMenager = new Teams();
         $this->staffMenager = new Staff();
+        $this->newsMenager = new News();
         $this->dataToReturn = array( "error"=>"Brak danych" ,"success"=>false,"token"=>"" );
         $this->checkRequest();
     }
@@ -67,9 +69,16 @@ class Route{
         }else if( $this->request === "addStaff" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->staffMenager->addStaff($this->postData);
+        }else if( $this->request === "getNews" ){
+            if( isset($this->postData['token']) && isset($this->postData['tmid']) )
+                $this->dataToReturn = $this->newsMenager->getAllNews($this->postData['tmid']);
+        }else if( $this->request === "deleteNews" ){
+            if( isset($this->postData['token']) && isset($this->postData['tmid']) )
+                $this->dataToReturn = $this->newsMenager->deleteNews($this->postData);
+        }else if( $this->request === "addNews" ){
+            if( isset($this->postData['token']) && isset($this->postData['tmid']) )
+                $this->dataToReturn = $this->newsMenager->addNews($this->postData);
         }
-
-        
     }
 
     function returnData(){
