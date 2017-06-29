@@ -8,65 +8,43 @@
     <meta name="author" content="---------">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wirtualne Centrum Piłkarskie</title>
-    <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="/js/libraries/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="/lineicons/style.css">
-    <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/style-responsive.css" rel="stylesheet">
+    <link href="/js/libraries/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="/css/jquery.datetimepicker.min.css" rel="stylesheet" />
     <script src="/js/libraries/chart-master/Chart.js"></script>
 </head>
 
 <body ng-controller="accountController" ng-init="mainInit()">
-
-    <!-- Menu gorne -->
     <header class="header black-bg">
-
         <div class="container-fluid header-container">
             <div class="row header-row">
                 <div class="col-xs-2">
                     <div class="sidebar-toggle-box">
                         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                     </div>
-
-                    <!--logo start-->
-
                     <div class="logo"><img src="img/club_logo.png"></img>
                     </div>
-
-                    <!--Logo end-->
-
                 </div>
                 <div class="col-xs-7">
-                    <!-- teamSelect start -->
                     <div class="team-selector">
                         <select id='teamSelect' class="select-style">
                         </select>
-                        <!-- teamSelect end -->
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="nav notify-row" id="top_menu">
-
-                        <!--  notification start -->
-
                         <ul class="nav top-menu">
-
-                            <!-- calendar start -->
-
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="">
+                                <a class="dropdown-toggle" href="#!/calendar">
                                     <i class="fa fa-calendar"></i>
                                 </a>
                             </li>
-
-                            <!-- calendar end -->
-                            <!-- settings start -->
-
                             <li class="dropdown">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                                     <i class="fa fa-tasks"></i>
@@ -103,24 +81,12 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            <!-- settings end -->
-
                         </ul>
-
-                        <!--  notification end -->
-
                     </div>
-
-                    <!-- logout start -->
-
                     <div class="top-menu">
                         <ul class="nav top-menu">
                             <li><button class=" logout" ng-click="logout()"> Wyloguj się </button></li>
                         </ul>
-
-                        <!-- logout end!-->
-
                     </div>
                 </div>
             </div>
@@ -151,41 +117,15 @@
                         <li><a href="#!/staff">Sztab</a></li>
                     </ul>
                 </li>
-                <li class="bmt">
-                    <a class="javascript:;" href="#!/myProfile">
+                <li class="sub-menu">
+                    <a href="javascript:;">
                         <i class="fa fa-user"></i>
-                        <span>Statystyki indywidualne</span>
+                        <span>Mój profil</span>
                     </a>
-                </li>
-                <li class="bmt">
-                    <a class="javascript:;" href="#!/myProfile">
-                        <i class="fa fa-soccer-ball-o"></i>
-                        <span>Technika</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a class="javascript:;" href="#!/myProfile">
-                        <i class="fa fa-tachometer"></i>
-                        <span>Szybkość</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a class="javascript:;" href="#!/myProfile">
-                        <i class="fa fa-hand-grab-o"></i>
-                        <span>Siła</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a class="javascript:;" href="#!/myProfile">
-                        <i class="fa fa-heartbeat"></i>
-                        <span>Wytrzymałość</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a class="javascript:;" href="#!/myProfile">
-                        <i class="fa fa-graduation-cap"></i>
-                        <span>Taktyka</span>
-                    </a>
+                    <ul class="sub">
+                        <li><a href="#!/myProfile">Moje dane</a></li>
+                        <li><a href="#!/myStat">Moje statystyki</a></li>
+                    </ul>
                 </li>
             </ul>
             <!-- sidebar menu end-->
@@ -225,3 +165,4 @@
 <script src="/js/controllers/TeamSelectController.js"></script>
 <script src="/js/controllers/compositionController.js"></script>
 <script src="/js/controllers/staffController.js"></script>
+<script src="/js/controllers/calendarController.js"></script>
