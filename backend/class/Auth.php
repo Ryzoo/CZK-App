@@ -91,12 +91,20 @@ class Auth{
             if( isset( $post["firstname"] ) ) $dataUsers["firstname"] = trim($post["firstname"]);
             if( isset( $post["lastname"] ) ) $dataUsers["lastname"] = trim($post["lastname"]);
             if( isset( $post["birthdate"] ) ) $dataUsers["birthdate"] = trim($post["birthdate"]);
+            if( isset( $post["mainPosition"] ) ) $dataUsers["main_position"] = trim($post["mainPosition"]);
+            if( isset( $post["mainLeg"] ) ) $dataUsers["main_leg"] = trim($post["mainLeg"]);
+            if( isset( $post["tel"] ) ) $dataUsers["tel"] = trim($post["tel"]);
+            if( isset( $post["parentTel"] ) ) $dataUsers["parent_tel"] = trim($post["parentTel"]);
+            if( isset( $post["weight"] ) ) $dataUsers["weight"] = trim($post["weight"]);
+            if( isset( $post["height"] ) ) $dataUsers["height"] = trim($post["height"]);
+            if( isset( $post["address"] ) ) $dataUsers["address"] = trim($post["address"]);
+            
             if( isset( $file_name ) && $file_name != "" ) $dataUsers["user_img_path"] = $file_name;
         }
 
         $result = ($this->db->getConnection())->update('user_data', $condsUsers, $dataUsers);
 
-        return array( "error"=>"" ,"success"=>true,"data"=>array("url"=>$file_name,"post"=>$post) );
+        return array( "error"=>"" ,"success"=>true, "data"=>array("url"=>$file_name, "post"=>$post) );
     }
 
     function checkPerm($token, $perm){

@@ -8,7 +8,14 @@ app.controller('mainController', function($scope, auth, $rootScope, $route) {
         birthdate: "",
         imgPath: "",
         id: "",
-        tmid: ""
+        tmid: "",
+        height: "",
+        tel: "",
+        parentTel: "",
+        weight: "",
+        mainLeg: "",
+        mainPosition: "",
+        address: ""
     }
     $scope.mainInit = function() {
         $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD"];
@@ -27,6 +34,13 @@ app.controller('mainController', function($scope, auth, $rootScope, $route) {
                 $rootScope.user.imgPath = data.data.user_img_path;
                 $rootScope.user.addAccountDate = data.data.create_account_date;
                 $rootScope.user.addAccountDate = data.data.create_account_date;
+                $rootScope.user.height = data.data.height;
+                $rootScope.user.tel = data.data.tel;
+                $rootScope.user.parentTel = data.data.parent_tel;
+                $rootScope.user.weight = data.data.weight;
+                $rootScope.user.mainLeg = data.data.main_leg;
+                $rootScope.user.mainPosition = data.data.main_position;
+                $rootScope.user.address = data.data.address;
                 var dataToSend = { token: Cookies.get('tq') };
                 var urlToPost = 'backend/getTeams';
                 $.ajax({
