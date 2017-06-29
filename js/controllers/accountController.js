@@ -24,32 +24,35 @@ app.controller('accountController', function($scope, auth, $rootScope, request) 
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $rootScope.user.firstname = msg.data.post.firstname;
-                    $rootScope.user.lastname = msg.data.post.lastname;
-                    $rootScope.user.birthdate = msg.data.post.birthdate;
-                    $rootScope.user.token = Cookies.get('tq');
-                    if (msg.data.url.length > 2)
-                        $rootScope.user.imgPath = msg.data.url;
+
+                    $scope.$apply(function() {
+                        $rootScope.user.firstname = msg.data.post.firstname;
+                        $rootScope.user.lastname = msg.data.post.lastname;
+                        $rootScope.user.birthdate = msg.data.post.birthdate;
+                        $rootScope.user.height = msg.data.post.height;
+                        $rootScope.user.tel = msg.data.post.tel;
+                        $rootScope.user.parentTel = msg.data.post.parentTel;
+                        $rootScope.user.weight = msg.data.post.weight;
+                        $rootScope.user.mainLeg = msg.data.post.mainLeg;
+                        $rootScope.user.mainPosition = msg.data.post.mainPosition;
+                        $rootScope.user.address = msg.data.post.address;
+                        if (msg.data.url.length > 2)
+                            $rootScope.user.imgPath = msg.data.url;
+                    });
+
                     $(document).ready(function() {
                         var unique_id = $.gritter.add({
-                            // (string | mandatory) the heading of the notification
                             title: 'Aktualizacja danych',
-                            // (string | mandatory) the text inside the notification
                             text: 'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',
-                            // (string | optional) the image to display on the left
                             image: '',
-                            // (bool | optional) if you want it to fade out on its own or just sit there
                             sticky: true,
-                            // (int | optional) the time you want it to be alive for before fading out
                             time: '',
-                            // (string | optional) the class name you want to apply to that specific message
                             class_name: 'my-sticky-class'
                         });
-
                         return false;
                     });
                 } else {
-                    console.log(data.error);
+                    console.log(msg);
                 }
             },
             error: function(jqXHR, textStatus) {

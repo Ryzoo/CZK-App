@@ -43,7 +43,60 @@
                         <span class="help-block ">Data urodzenia w formacie: yyyy:mm:dd</span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Adres</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <input type="text " class="form-control round-form " name="address" placeholder="Adres " value="{{user.address}} ">
+                    </div>
+                </div>
                 <div class="form-group ">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Preferowana pozycja</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <select name="mainPosition" class="form-control round-form ">
+                            <option value="bramka" ng-selected="user.mainPosition == 'bramka'" >Bramka</option>
+                            <option value="obrona" ng-selected="user.mainPosition == 'obrona'">Obrona</option>
+                            <option value="pomoc" ng-selected="user.mainPosition == 'pomoc'">Pomoc</option>
+                            <option value="atak" ng-selected="user.mainPosition == 'atak'">Atak</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Noga wiodąca</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <select name="mainLeg" class="form-control round-form ">
+                            <option value="prawa" ng-selected="user.mainLeg == 'prawa'" >Prawa</option>
+                            <option value="lewa" ng-selected="user.mainLeg == 'lewa'">Lewa</option>
+                            <option value="obunozny" ng-selected="user.mainLeg == 'obunozny'">Obunożny</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Telefon</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <input type="text " class="form-control round-form " name="tel" placeholder="Telefon " value="{{user.tel}} ">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Telefon rodzica</label>
+                    <div class="col-xs-6 col-md-6 ">
+                        <input type="text " class="form-control round-form " name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}} ">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Waga</label>
+                    <div class="input-group col-xs-2 ">
+                        <input type="text " class="form-control round-form " name="weight" placeholder="Waga " value="{{user.weight}} ">
+                        <div class="input-group-addon">kg</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Wzrost</label>
+                    <div class="input-group col-xs-2 ">
+                        <input type="text " class="form-control round-form " name="height" placeholder="Wzrost " value="{{user.height}} ">
+                        <div class="input-group-addon">cm</div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <button type="button " class="btn btn-round btn-success col-md-offset-4 col-md-4 col-xs-6 col-xs-offset-3 " ng-click="updateUserDate()">Zmień dane</button>
                 </div>
             </form>
