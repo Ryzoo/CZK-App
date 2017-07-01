@@ -30,6 +30,26 @@ class News{
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
+    function getNowEvents( $tmid ){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT * FROM events WHERE id_team = '.$tmid. ' AND CURDATE() >= DATE(`start`) AND CURDATE() <= DATE(`end`)');
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function getNextEvents( $tmid ){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT * FROM events WHERE id_team = '.$tmid. ' AND CURDATE() < DATE(`start`) AND (CURDATE()+INTERVAL 14 DAY) >= DATE(`start`) ');
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
     function deleteNews( $post ){
         $toReturn = null;
         $success = true;

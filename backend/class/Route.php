@@ -84,7 +84,18 @@ class Route{
         }else if( $this->request === "editNews" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->newsMenager->editNews($this->postData);
+        }else if( $this->request === "getNowEvents" ){
+            if( isset($this->postData['token']) && isset($this->postData['tmid']))
+                $this->dataToReturn = $this->newsMenager->getNowEvents($this->postData['tmid']);
+        }else if( $this->request === "getNextEvents" ){
+            if( isset($this->postData['token']) && isset($this->postData['tmid']))
+                $this->dataToReturn = $this->newsMenager->getNextEvents($this->postData['tmid']);
+        }else if( $this->request === "getLastPost" ){
+            if( isset($this->postData['token']) && isset($this->postData['tmid']))
+                $this->dataToReturn = $this->postMenager->getLastPost($this->postData['tmid']);
         }
+
+        
     }
 
     function returnData(){
