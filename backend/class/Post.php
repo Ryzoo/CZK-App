@@ -46,6 +46,16 @@ class Post{
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
+    function getLastPost( $tmid ){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT * FROM posts, users, user_data WHERE posts.id_user = users.id AND users.id = user_data.user_id AND id_team = '.$tmid.' ORDER BY date_add DESC LIMIT 1');
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
     function addPost($post){
         $toReturn = null;
         $success = true;
@@ -136,6 +146,7 @@ class Post{
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
+
 
     function deletePost($post){
         $toReturn = null;

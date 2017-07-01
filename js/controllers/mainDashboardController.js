@@ -1,4 +1,157 @@
 app.controller('mainDashboardController', function($scope, auth, $rootScope, request) {
+    $scope.nowEvents = [];
+    $scope.nextEvents = [];
+    $scope.lastPost = [];
+
+    $scope.getAllEvents = function() {
+        $rootScope.showContent = false;
+        $scope.getNextEvents();
+        $('#prBar').attr('aria-valuenow', 20);
+        $('#prBar').css('width', '20%');
+        $scope.getNowStartEvents();
+        $('#prBar').attr('aria-valuenow', 60);
+        $('#prBar').css('width', '60%');
+        $scope.getLastPost();
+        $('#prBar').attr('aria-valuenow', 100);
+        $('#prBar').css('width', '100%');
+        setTimeout(function() {
+            $scope.$apply(function() {
+                $scope.showContent = true;
+            });
+        }, 500);
+    }
+
+    $scope.getNextEvents = function() {
+        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
+        var urlToPost = 'backend/getNextEvents';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                if (msg.success) {
+                    $scope.$apply(function() {
+                        $scope.nextEvents = msg.data;
+                    });
+                } else {
+                    console.log(msg);
+                    $(document).ready(function() {
+                        var unique_id = $.gritter.add({
+                            title: 'Bład',
+                            text: 'Nie można pobrać wydarzeń',
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $(document).ready(function() {
+                    var unique_id = $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się pobrać wydarzeń',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
+                    });
+                });
+            },
+        });
+    }
+
+    $scope.getNowStartEvents = function() {
+        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
+        var urlToPost = 'backend/getNowEvents';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                if (msg.success) {
+                    $scope.$apply(function() {
+                        $scope.nowEvents = msg.data;
+                    });
+
+                } else {
+                    console.log(msg);
+                    $(document).ready(function() {
+                        var unique_id = $.gritter.add({
+                            title: 'Bład',
+                            text: 'Nie można pobrać wydarzeń',
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $(document).ready(function() {
+                    var unique_id = $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się pobrać wydarzeń',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
+                    });
+                });
+            },
+        });
+    }
+
+    $scope.getLastPost = function() {
+        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
+        var urlToPost = 'backend/getLastPost';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                if (msg.success) {
+                    $scope.$apply(function() {
+                        $scope.lastPost = msg.data;
+                        console.log(msg);
+                    });
+                } else {
+                    console.log(msg);
+                    $(document).ready(function() {
+                        var unique_id = $.gritter.add({
+                            title: 'Bład',
+                            text: 'Nie można pobrać ostatniego postu',
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $(document).ready(function() {
+                    var unique_id = $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się pobrać ostatniego postu',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
+                    });
+                });
+            },
+        });
+    }
+
     var day = new Date().getDate();
     var month = new Date().getMonth() + 1;
     var monthName;
