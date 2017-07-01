@@ -6,19 +6,9 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.getAllEvents = function() {
         $rootScope.showContent = false;
         $scope.getNextEvents();
-        $('#prBar').attr('aria-valuenow', 20);
-        $('#prBar').css('width', '20%');
         $scope.getNowStartEvents();
-        $('#prBar').attr('aria-valuenow', 60);
-        $('#prBar').css('width', '60%');
         $scope.getLastPost();
-        $('#prBar').attr('aria-valuenow', 100);
-        $('#prBar').css('width', '100%');
-        setTimeout(function() {
-            $scope.$apply(function() {
-                $scope.showContent = true;
-            });
-        }, 500);
+
     }
 
     $scope.getNextEvents = function() {
@@ -33,6 +23,8 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                 if (msg.success) {
                     $scope.$apply(function() {
                         $scope.nextEvents = msg.data;
+                        $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(40)));
+                        $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                     });
                 } else {
                     console.log(msg);
@@ -76,6 +68,8 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                 if (msg.success) {
                     $scope.$apply(function() {
                         $scope.nowEvents = msg.data;
+                        $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(60)));
+                        $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                     });
 
                 } else {
@@ -120,7 +114,13 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                 if (msg.success) {
                     $scope.$apply(function() {
                         $scope.lastPost = msg.data;
-                        console.log(msg);
+                        $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(100)));
+                        $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
+                        setTimeout(function() {
+                            $scope.$apply(function() {
+                                $scope.showContent = true;
+                            });
+                        }, 500);
                     });
                 } else {
                     console.log(msg);
