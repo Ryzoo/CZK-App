@@ -1,10 +1,12 @@
 app.service('request', function($http, $rootScope) {
-    this.sync = function(sendType, urlToPost, dataToSend) {
+    this.sync = function(sendType, urlToPost, dataToSend, successFunction, errorFunction) {
         return $.ajax({
             async: false,
             type: sendType,
             url: urlToPost,
-            data: dataToSend
+            data: dataToSend,
+            success: successFunction,
+            error: errorFunction,
         });
     }
 });
@@ -43,11 +45,11 @@ app.service('auth', function($http, $rootScope, request) {
         if (tq != null && tq.length > 5) {
             var dataToSend = { token: tq };
             var urlToPost = "backend/userData";
-            request.sync('POST', urlToPost, dataToSend)
-                .done(function(reqData) {
+            request.sync('POST', urlToPost, dataToSend,
+                function(reqData) {
                     toReturn = reqData;
-                })
-                .fail(function(jqXHR, textStatus) {
+                },
+                function(jqXHR, textStatus) {
                     console.log("Bład podczas komunikacji z serverem: " + textStatus);
                     toReturn = false;
                 });

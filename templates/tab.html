@@ -66,8 +66,8 @@
                                     <img src="{{cm.user_img_path}}" class="img-circle media-object" width="55">
                                 </a>
                             </div>
-                            <div class="media-body">
-                                <div style="position: absolute; top: -5px; right: -35px; color: red; font-size: 20px; cursor: pointer" ng-show="cm.usid == user.id">
+                            <div class="media-body" style='position:relative;'>
+                                <div style="position: absolute; top: -5px; right: 0px; color: red; font-size: 20px; cursor: pointer" ng-show="cm.usid == user.id">
                                     <i class="fa fa-times" aria-hidden="true" ng-click="deleteComment(cm.cmid)"></i>
                                 </div>
                                 <h4 class="media-heading">{{cm.firstname}} {{cm.lastname}} <span style="font-size:13px;"> {{cm.date_add}}</span></h4>
