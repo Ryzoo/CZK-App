@@ -1,10 +1,23 @@
 app.controller('accountController', function($scope, auth, $rootScope, request) {
+
+
     $scope.initAccount = function() {
-        if (!auth.checkIsLogged()) auth.logout();
+        if (!auth.checkIsLogged()) {
+            auth.logout();
+            return;
+        }
+
+        $('#mainProfileImg').attr("src", $rootScope.user.imgPath);
     };
 
     $scope.$on('$viewContentLoaded', function() {
-        if (!auth.checkPerm($rootScope.viewPerm)) document.location = "#!badPerm";
+        if (!auth.checkPerm($rootScope.viewPerm)) {
+            if (!auth.checkIsLogged()) {
+                auth.logout();
+                return;
+            }
+            document.location = "#!badPerm";
+        }
     });
 
     $scope.setPerm = function(perm) {

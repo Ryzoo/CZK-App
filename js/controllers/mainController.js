@@ -17,10 +17,13 @@ app.controller('mainController', function($scope, auth, $rootScope, $route) {
         mainPosition: "",
         address: ""
     }
+    $scope.contentLoaded = false;
+
     $scope.mainInit = function() {
         $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD"];
         if (!auth.checkIsLogged()) {
             auth.logout();
+            return;
         } else {
             var data = auth.getUserData();
             if (data.success) {
@@ -55,32 +58,32 @@ app.controller('mainController', function($scope, auth, $rootScope, $route) {
                                 $('#teamSelect').append("<option value='" + msg.data[i].tmid + "'>" + msg.data[i].name + "</option>");
                             }
                             if (msg.data[0] != null && msg.data[0].tmid != null) $rootScope.user.tmid = msg.data[0].tmid;
-
+                            setTimeout(function() {
+                                $('#showRun').show('fade');
+                            }, 200);
+                            setTimeout(function() {
+                                $('#loadingContent').hide('fade', 'slow');
+                            }, 2000);
                         } else {
-                            console.log(msg.error);
-                            $(document).ready(function() {
-                                var unique_id = $.gritter.add({
+                            if (msg.error)
+                                $.gritter.add({
                                     title: 'Bład',
-                                    text: 'Niestety coś poszło źle',
+                                    text: msg.error,
                                     image: '',
                                     sticky: true,
                                     time: '5',
                                     class_name: 'my-sticky-class'
                                 });
-                            });
                         }
                     },
                     error: function(jqXHR, textStatus) {
-                        console.log("Blad podczas laczenia z serverem: " + textStatus);
-                        $(document).ready(function() {
-                            var unique_id = $.gritter.add({
-                                title: 'Bład',
-                                text: 'Niestety nie udało się wczytać Twoich drużyn',
-                                image: '',
-                                sticky: true,
-                                time: '5',
-                                class_name: 'my-sticky-class'
-                            });
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: "Blad podczas laczenia z serverem: " + textStatus,
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
                         });
                     },
                 });

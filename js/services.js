@@ -33,6 +33,11 @@ app.service('auth', function($http, $rootScope, request) {
         return toReturn;
     }
 
+    this.logout = function() {
+        Cookies.remove('tq');
+        document.location = "login";
+    }
+
     this.checkIsLogged = function() {
         var token = Cookies.get('tq');
         if (token != null && token.length > 5) return true;
@@ -57,10 +62,7 @@ app.service('auth', function($http, $rootScope, request) {
         return toReturn;
     }
 
-    this.logout = function() {
-        Cookies.remove('tq');
-        document.location = "login";
-    }
+
 
     this.checkPerm = function(permission) {
         if ($rootScope.user != null && $rootScope.user.role != null) {
