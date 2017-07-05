@@ -62,6 +62,7 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Auth' => __DIR__ . '/../..' . '/class/Auth.php',
         'Database' => __DIR__ . '/../..' . '/class/Database.php',
         'News' => __DIR__ . '/../..' . '/class/News.php',
+        'Players' => __DIR__ . '/../..' . '/class/Players.php',
         'Post' => __DIR__ . '/../..' . '/class/Post.php',
         'Route' => __DIR__ . '/../..' . '/class/Route.php',
         'Staff' => __DIR__ . '/../..' . '/class/Staff.php',

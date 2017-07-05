@@ -32,7 +32,13 @@ app.config(function($routeProvider) {
             templateUrl: "templates/calendar.html",
             controller: "calendarController"
         })
+        .when("/showPlayers", {
+            templateUrl: "templates/showPlayers.html",
+            controller: "showPlayersController"
+        })
         .otherwise({
             templateUrl: "templates/badPerm.html"
         });
+
+
 });

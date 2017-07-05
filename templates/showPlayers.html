@@ -1,0 +1,145 @@
+<div ng-init="setPerm(['KOORD','TRENER'])"></div>
+
+<div class="row mt" ng-init="getAllPlayers()">
+    <div ng-show='showContent' class="col-xs-12">
+        <div class="col-md-6">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
+                <div class="white-header">
+                    <h5>Lista zawodników</h5>
+                </div>
+                <div class="row">
+                    <table class="table table-hover" ng-init="getTeam()">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Imię</th>
+                                <th style="text-align:center;">Nazwisko</th>
+                                <th style="text-align:center;">Rola</th>
+                                <th style="text-align:center;">Usuń</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="player in players">
+                                <td style='cursor:pointer; ' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.firstname}}</td>
+                                <td style='cursor:pointer; ' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.lastname}}</td>
+                                <td style='padding: 5px;'>{{player.roleName}}</td>
+                                <td ng-click="deleteUser(player.usid)" style='padding: 5px; color:red; cursor:pointer;'><i class="fa fa-times" aria-hidden="true"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
+                <div class="white-header">
+                    <h5>Podgląd zawodnika</h5>
+                </div>
+                <div class="row" ng-init="prof=1;">
+                    <ul ng-show="showPlayerNow" class="nav nav-pills" style="padding:10px 20px; padding-bottom: 20px;">
+                        <li class="active"><a data-toggle="pill" href="" ng-click='prof=1; stat=0; rapo=0'>Profil</a></li>
+                        <li><a data-toggle="pill" href="" ng-click='prof=0; stat=1; rapo=0'>Statystyki</a></li>
+                        <li><a data-toggle="pill" href="" ng-click='prof=0; stat=0; rapo=1'>Raporty</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="prof" class="tab-pane active" ng-show="prof">
+                            <div ng-show="showPlayerNow" style="padding:20px; padding-top: 0px;">
+                                <div style="display: flex; justify-content: space-around;">
+                                    <div><img src="{{actualSelectedUser.user_img_path}}" class="img-circle" width="60" height="60"></div>
+                                    <div>
+                                        <strong>{{actualSelectedUser.firstname}} {{actualSelectedUser.lastname}}</strong>
+                                        </br>
+                                        {{actualSelectedUser.birthdate}}
+                                        </br>
+                                        {{actualSelectedUser.name}}
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: flex-start; flex-direction: column; text-align: left; padding:20px 10px;">
+                                    <div>
+                                        <strong>Ostatnie logowanie:</strong> {{actualSelectedUser.last_login_date}}
+                                    </div>
+                                    <div>
+                                        <strong>Adres zamieszkania:</strong> {{actualSelectedUser.address}}
+                                    </div>
+                                    <div>
+                                        <strong>Adres email:</strong> {{actualSelectedUser.email}}
+                                    </div>
+                                    <div>
+                                        <strong>Telefon:</strong> {{actualSelectedUser.tel}}
+                                    </div>
+                                    <div>
+                                        <strong>Główna noga:</strong> {{actualSelectedUser.main_leg}}
+                                    </div>
+                                    <div>
+                                        <strong>Preferowana pozycja:</strong> {{actualSelectedUser.main_position}}
+                                    </div>
+                                    <div>
+                                        <strong>Telefon rodzica:</strong> {{actualSelectedUser.parent_tel}}
+                                    </div>
+                                    <div>
+                                        <strong>Wzrost:</strong> {{actualSelectedUser.height}}
+                                    </div>
+                                    <div>
+                                        <strong>Waga:</strong> {{actualSelectedUser.weight}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="stat" class="tab-pane" ng-show="stat">
+                            <h3>Menu 2</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        </div>
+                        <div id="rapo" class="tab-pane" ng-show="rapo">
+                            <h3>Menu 3</h3>
+                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        </div>
+                    </div>
+
+
+                    <p ng-hide="showPlayerNow" style="padding:20px; margin: 0;"><strong>Wybierz zawodnika z listy, aby mieć wgląd do wszystkich danych.</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
+                <div class="white-header">
+                    <h5>Dodaj nową osobę do teamu</h5>
+                </div>
+                <div class="row" style="padding:20px;">
+                    <p style="padding:20px; padding-top:0px; margin: 0;"><strong>Możesz dodać zawodnika lub osoby związane z personelem </br> Dodanie spowoduje stworzenie konta użytkownika na podanym adresie email oraz wygenerowanie i wysłanie na niego hasła </strong></p>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="addedFirstname" placeholder="Imię" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="addedLastname" placeholder="Nazwisko" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="addedEmail" placeholder="Adres email" required>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="addedIsPersonel"> Dodaj jako personel ( w przeciwnym razie zostanie dodany jako zwodnik )
+                            </label>
+                        </div>
+                        <button class="btn btn-success" ng-click="addPerson()">Dodaj</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:25%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h2 style='text-align:center;'>Wczytywanie zawartości...</h2>
+        <div class="progress">
+            <div id='prBar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                <span class="sr-only">Complete</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="text-center">
+        Wirtualne Centrum Piłkarskie
+    </div>
+</footer>

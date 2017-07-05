@@ -10,6 +10,7 @@ class Route{
     private $teamMenager = "";
     private $staffMenager = "";
     private $newsMenager = "";
+    private $playersMenager = "";
 
     function __construct( $allPost ){
         $this->postData = $allPost;
@@ -19,6 +20,7 @@ class Route{
         $this->teamMenager = new Teams();
         $this->staffMenager = new Staff();
         $this->newsMenager = new News();
+        $this->playersMenager = new Players();
         $this->dataToReturn = array( "error"=>"Brak danych" ,"success"=>false,"token"=>"" );
         $this->checkRequest();
     }
@@ -93,8 +95,19 @@ class Route{
         }else if( $this->request === "getLastPost" ){
             if( isset($this->postData['token']) && isset($this->postData['tmid']))
                 $this->dataToReturn = $this->postMenager->getLastPost($this->postData['tmid']);
+        }else if( $this->request === "getAllPlayers" ){
+            if( isset($this->postData['token']) && isset($this->postData['tmid']))
+                $this->dataToReturn = $this->playersMenager->getAllPlayers($this->postData['tmid']);
+        }else if( $this->request === "addPerson" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->playersMenager->addPerson($this->postData);
+        }else if( $this->request === "getAllUserData" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->playersMenager->getAllUserData($this->postData);
+        }else if( $this->request === "deleteUser" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->playersMenager->deleteUser($this->postData);
         }
-
         
     }
 
