@@ -22,11 +22,11 @@
                                 <td>{{us.firstname}}</td>
                                 <td>{{us.lastname}}</td>
                                 <td>
-                                    <input ng-show="user.role != 'ZAWODNIK' " class='changeNumber form-control' id='changeNumber-{{us.tmmid}}-0' style="width: 50px;  text-align:center;" type="text" value="{{us.nr_on_tshirt}}">
+                                    <input ng-show="user.role != 'ZAWODNIK' " class='changeNumber ' id='changeNumber-{{us.tmmid}}-0' style="width: 50px; text-align:center; height: 20px;" type="text" value="{{us.nr_on_tshirt}}" required>
                                     <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
                                 </td>
                                 <td ng-show="user.role != 'ZAWODNIK' ">
-                                    <select class='selectPosition form-control' id="selectPosition-{{us.tmmid}}-0">
+                                    <select style='height: 20px;' class='selectPosition ' id="selectPosition-{{us.tmmid}}-0">
                                         <option ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
                                     </select>
                                 </td>
@@ -60,14 +60,13 @@
                                     <td>{{us.firstname}}</td>
                                     <td>{{us.lastname}}</td>
                                     <td>
-                                        <input ng-show="user.role != 'ZAWODNIK' " ng-model="us.nr_on_tshirt" class='changeNumber form-control' id='changeNumber-{{us.tmmid}}-{{posit.id}}' style="width: 50px; text-align:center;" type="text" value="{{us.nr_on_tshirt}}">
+                                        <input ng-show="user.role != 'ZAWODNIK' " ng-model="us.nr_on_tshirt" class='changeNumber ' id='changeNumber-{{us.tmmid}}-{{posit.id}}' style="width: 50px; text-align:center; height: 20px;" type="text" value="{{us.nr_on_tshirt}}" required>
                                         <p ng-show="user.role == 'ZAWODNIK' ">{{us.nr_on_tshirt}}</p>
                                     </td>
                                     <td ng-show="user.role != 'ZAWODNIK' ">
-                                        <select class='selectPosition form-control' id="selectPosition-{{us.tmmid}}-{{posit.id}}">
+                                        <select style='height: 20px;' class='selectPosition ' id="selectPosition-{{us.tmmid}}-{{posit.id}}">
                                             <option ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
                                         </select>
-
                                     </td>
                                 </tr>
                             </tbody>

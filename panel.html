@@ -78,11 +78,6 @@
             </ul>
             <!--  notification end -->
         </div>
-        <div class="top-menu">
-            <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="" ng-click="logout()">Wyloguj się</a></li>
-            </ul>
-        </div>
     </header>
     <aside>
         <div id="sidebar" class="nav-collapse ">
@@ -118,6 +113,18 @@
                         <li><a href="#!/myProfile">Moje dane</a></li>
                         <li><a href="#!/myStat">Moje statystyki</a></li>
                     </ul>
+                </li>
+                <li class="sub-menu" ng-show="user.role != 'ZAWODNIK'">
+                    <a class="" href="#!/showPlayers">
+                        <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                        <span>Menadżer zawodników</span>
+                    </a>
+                </li>
+                <li class="main-sidebar mt">
+                    <a class="" href="" ng-click="logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <span>Wyloguj się</span>
+                    </a>
                 </li>
             </ul>
             <!-- sidebar menu end-->
@@ -162,3 +169,4 @@
 <script src="/js/controllers/compositionController.js"></script>
 <script src="/js/controllers/staffController.js"></script>
 <script src="/js/controllers/calendarController.js"></script>
+<script src="/js/controllers/showPlayersController.js"></script>

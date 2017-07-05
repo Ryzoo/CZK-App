@@ -57,7 +57,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             data: dataToSend,
             async: true,
             success: function(msg) {
-                if (msg.success) {
+                if (msg.success && msg.data) {
                     var changeProgress = 100 / msg.data.length;
                     for (var i = 0; i < msg.data.length; i++) {
                         $scope.$apply(function() {
@@ -66,18 +66,12 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(changeProgress)));
                         $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                     }
-                    setTimeout(function() {
-                        $scope.$apply(function() {
-                            $scope.showContent = true;
-                        });
-                    }, 500);
-
                 } else {
                     console.log(msg.error);
                     $(document).ready(function() {
                         var unique_id = $.gritter.add({
                             title: 'Bład',
-                            text: 'Niestety coś poszło źle',
+                            text: 'Niestety coś poszło źle lub brak wyników',
                             image: '',
                             sticky: true,
                             time: '5',
@@ -85,6 +79,11 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         });
                     });
                 }
+                setTimeout(function() {
+                    $scope.$apply(function() {
+                        $scope.showContent = true;
+                    });
+                }, 500);
             },
             error: function(jqXHR, textStatus) {
                 console.log("Blad podczas laczenia z serverem: " + textStatus);

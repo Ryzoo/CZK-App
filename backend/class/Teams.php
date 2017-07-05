@@ -43,7 +43,7 @@ class Teams{
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT team_members.id as tmmid, firstname, lastname, nr_on_tshirt, id_position, positions.name as posname, is_master FROM teams, team_members, users, user_data, positions WHERE positions.id = team_members.id_position AND teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id AND team_members.id_team = '.$id );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, team_members.id as tmmid, firstname, lastname, nr_on_tshirt, id_position, positions.name as posname, is_master FROM teams, team_members, users, user_data, positions, roles WHERE positions.id = team_members.id_position AND teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id AND users.id_role = 3 AND team_members.id_team = '.$id.' GROUP BY usid' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
