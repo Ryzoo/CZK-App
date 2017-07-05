@@ -40,23 +40,35 @@ app.controller('accountController', function($scope, auth, $rootScope, request) 
                             $rootScope.user.imgPath = msg.data.url;
                     });
 
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Aktualizacja danych',
-                            text: 'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',
+                    $.gritter.add({
+                        title: 'Aktualizacja danych',
+                        text: 'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',
+                        image: '',
+                        sticky: true,
+                        time: '',
+                        class_name: 'my-sticky-class'
+                    });
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Błąd',
+                            text: msg.error,
                             image: '',
                             sticky: true,
                             time: '',
                             class_name: 'my-sticky-class'
                         });
-                        return false;
-                    });
-                } else {
-                    console.log(msg);
                 }
             },
             error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Błąd',
+                    text: 'Bład z połączeniem : ' + textStatus,
+                    image: '',
+                    sticky: true,
+                    time: '',
+                    class_name: 'my-sticky-class'
+                });
             },
             cache: false,
             contentType: false,

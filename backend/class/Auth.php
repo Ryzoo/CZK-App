@@ -69,15 +69,29 @@ class Auth{
     }
 
     function updateUserData( $post ){
+        $error = "";
+        $success = true;
+
         $file_name = "";
         if( isset($_FILES["userImgFile"]) ){
             $ext = pathinfo($_FILES["userImgFile"]["name"],PATHINFO_EXTENSION);
             $target_dir = __DIR__ . "/../../";
-            $file_name = 'img/users/' . $post['token'] . "." . $ext;
+            $file_name = 'img/users/' . trim($post['birthdate']) . trim($post['lastname']) . "." . $ext;
             $target_file = $target_dir . $file_name;
-            if ($_FILES["userImgFile"]["size"] > 500000) $file_name = "";
-            if ($ext != "jpg") $file_name = "";
-            if ($file_name != "" ) move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file);
+            if ($_FILES["userImgFile"]["size"] <= 2500000){
+                if (($ext == "jpg" || $ext == "png" || $ext == "jpeg")){
+                    if(!move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file)){
+                        $success = false;
+                        $error = "Nie udało się skopiowac: " . $_FILES["userImgFile"]['name'];
+                    }
+                }else{
+                    $success = false;
+                    $error = "Błędne rozszerzenie pliku";
+                }
+            }else{
+                $success = false;
+                $error = "Zbyt duży plik";
+            }
         }
 
         $condsUsers = [];
@@ -100,11 +114,13 @@ class Auth{
             if( isset( $post["address"] ) ) $dataUsers["address"] = trim($post["address"]);
             
             if( isset( $file_name ) && $file_name != "" ) $dataUsers["user_img_path"] = $file_name;
+        }else{
+            $success = false;
+            $error = "Brak danych";
         }
 
         $result = ($this->db->getConnection())->update('user_data', $condsUsers, $dataUsers);
-
-        return array( "error"=>"" ,"success"=>true, "data"=>array("url"=>$file_name, "post"=>$post) );
+        return array( "error"=>$error ,"success"=>$success, "data"=>array("url"=>$file_name, "post"=>$post) );
     }
 
     function checkPerm($token, $perm){
