@@ -272,8 +272,8 @@ ul.top-menu>li>.logout:hover {
     position: relative;
 }
 
-#sidebar .sub-menu>.sub li {
-    padding-left: 32px;
+#sidebar .sub-menu>.sub li a {
+    padding-left: 52px;
 }
 
 #sidebar .sub-menu>.sub li:last-child {
@@ -367,9 +367,7 @@ ul.sidebar-menu li ul.sub li:last-child {
 
 ul.sidebar-menu li ul.sub li a {
     font-size: 12px;
-    padding: 6px 0;
-    line-height: 35px;
-    height: 35px;
+    padding: 10px 0;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -433,6 +431,10 @@ ul.sidebar-menu li a:focus {
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+}
+
+#sidebar .sub-menu>.sub li a.active {
+    background: #455a64 !important;
 }
 
 ul.sidebar-menu li a i {
