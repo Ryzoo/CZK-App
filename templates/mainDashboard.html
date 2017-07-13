@@ -2,78 +2,114 @@
 <div class="row mt" ng-init="getAllEvents();">
     <div ng-show='showContent' class="col-xs-12">
         <div class="col-md-4">
-            <div class="white-panel pn pn-height">
+            <div class="white-panel">
                 <div class="white-header">
                     <h5>REMINDER</h5>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 centered">
-                        <h4>Dzisiaj jest:</h4>
-                        <h1 class="today-date"></h1>
+                    <div class="row">
+                        <div class="col-sm-12 centered">
+                            <h4>Dzisiaj jest:</h4>
+                            <h1 class="today-date"></h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4>Aktualnie trwają:</h4>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Nazwa</th>
+                                    <th style="text-align:center;">Data zakończenia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="now in nowEvents">
+                                    <td>{{now.title}}</td>
+                                    <td>{{now.end}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <h4>Najbliższe wydarzenia:</h4>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Nazwa</th>
+                                    <th style="text-align:center;">Data rozpoczęcia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="next in nextEvents | limitTo: 3 ">
+                                    <td>{{next.title}}</td>
+                                    <td>{{next.start}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="row">
-                    <h4>Aktualnie trwają:</h4>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center;">Nazwa</th>
-                                <th style="text-align:center;">Data zakończenia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="now in nowEvents">
-                                <td>{{now.title}}</td>
-                                <td>{{now.end}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <a style='float:right; padding:5px;' href="#!/calendar">Przejdź do kalendarza ></a>
                 </div>
-                <div class="row">
-                    <h4>Najbliższe wydarzenia:</h4>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center;">Nazwa</th>
-                                <th style="text-align:center;">Data rozpoczęcia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="next in nextEvents | limitTo: 3 ">
-                                <td>{{next.title}}</td>
-                                <td>{{next.start}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div style="position: absolute; bottom: 5px; right: 25px; font-size: 12px;"><a href="#!/calendar">Przejdź do kalendarza ></a></div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="white-panel pn pn-height">
+            <div class="white-panel">
                 <div class="white-header">
                     <h5>OSTATNIA AKTYWNOŚĆ</h5>
                 </div>
-                <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 90%">
-                    <p class="centered">
-                        <a href="#!/myProfile"><img src="{{lastPost[0].user_img_path}}" class="img-circle" width="60"></a>
-                    </p>
-                    <h5 class="centered"><strong>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</strong></h5>
-                    <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
-                        {{lastPost[0].content}}
+                <div class="row">
+                    <div class="row" style="margin: 20px; margin-top: 0;">
+                        <p class="centered">
+                            <a href="#!/myProfile"><img src="{{lastPost[0].user_img_path}}" class="img-circle" width="60"></a>
+                        </p>
+                        <h5 class="centered"><strong>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</strong></h5>
+                        <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
+                            {{lastPost[0].content}}
+                        </div>
+                        <div style='font-size: 10px; padding-top: 10px;'><strong>{{lastPost[0].date_add}}</strong></div>
                     </div>
-                    <div style='font-size: 10px; padding-top: 10px;'><strong>{{lastPost[0].date_add}}</strong></div>
                 </div>
-                <div style="position: absolute; bottom: 5px; right: 25px; font-size: 12px;"><a href="#!/tab">Przejdź do tablicy ></a></div>
+                <div class="row">
+                    <a href="#!/tab" style="float: right; padding:5px;">Przejdź do tablicy ></a>
+                </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="white-panel pn pn-height">
+            <div class="white-panel" ng-controller="todoController" ng-init='initToDo();'>
                 <div class="white-header">
-                    <h5>NOTATNIK</h5>
+                    <h5>TODO</h5>
                 </div>
                 <div class="row">
-
+                    <div class="row">
+                        <h4>Dodaj nowe zadanie</h4>
+                        <div class="col-sm-12" id='todoAdd'>
+                            <input type="color" id="todoColor" value="#f44336">
+                            <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia"></input>
+                            <button id='todoButton' ng-click="addTodo();"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>Twoje aktulane zadania</h4>
+                            <table class='todoTable'>
+                                <tbody>
+                                    <tr ng-repeat="tod in todoList |orderBy: '-date_add' | limitTo: 10" style="margin: 5px 0;">
+                                        <td class='todoColorMain ' style='background:{{tod.color}}; border-color: {{tod.color}}'>
+                                        </td>
+                                        <td class="todoMain" style='border-color:{{tod.color}}'>
+                                            {{tod.title}}
+                                        </td>
+                                        <td class="endTodo" style='border-color:{{tod.color}}'>
+                                            <button ng-click="endTodo(tod.id)">
+                                                <i class="fa fa-check fa-4x" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
