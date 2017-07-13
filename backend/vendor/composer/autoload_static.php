@@ -67,6 +67,7 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Route' => __DIR__ . '/../..' . '/class/Route.php',
         'Staff' => __DIR__ . '/../..' . '/class/Staff.php',
         'Teams' => __DIR__ . '/../..' . '/class/Teams.php',
+        'Todo' => __DIR__ . '/../..' . '/class/Todo.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

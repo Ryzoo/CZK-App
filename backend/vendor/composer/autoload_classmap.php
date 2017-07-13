@@ -14,4 +14,5 @@ return array(
     'Route' => $baseDir . '/class/Route.php',
     'Staff' => $baseDir . '/class/Staff.php',
     'Teams' => $baseDir . '/class/Teams.php',
+    'Todo' => $baseDir . '/class/Todo.php',
 );
