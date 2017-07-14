@@ -56,12 +56,14 @@
             </div>
         </div>
         <div class='col-md-8' ng-class=" user.role == 'ZAWODNIK' ? 'col-md-offset-2' : 'col-md-offset-0' ">
-            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
+            <div class="white-panel">
                 <div class="row">
-                    <aside class="col-xs-12 mt">
+                    <aside class="col-xs-12 " style='margin-top: 40px;'>
                         <section class="panel">
-                            <div class="panel-body">
-                                <div id="calendar" class="has-toolbar"></div>
+                            <div class="panel-body row">
+                                <div class="col-sm-12">
+                                    <div id="calendar" class="has-toolbar"></div>
+                                </div>
                             </div>
                         </section>
                     </aside>
@@ -86,8 +88,12 @@
 </footer>
 
 <script>
-    $('.datetimepicker').datetimepicker({
-        format: 'Y-m-d H:i',
-        lang: 'pl'
-    });
+    $(document).ready(
+        function() {
+            $('.datetimepicker').datetimepicker({
+                format: 'Y-m-d H:i',
+                lang: 'pl'
+            });
+        }
+    )
 </script>

@@ -67,9 +67,6 @@
     }
     #sidebar>ul>li>ul.sub>li>a:hover {}
     /* sidebar */
-    #sidebar {
-        margin: 0px !important;
-    }
     /* sidebar collabler */
     #sidebar .btn-navbar.collapsed .arrow {
         display: none;

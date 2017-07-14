@@ -1,131 +1,113 @@
 <div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
-<div class="row mt" ng-init="getAllEvents();">
-    <div ng-show='showContent' class="col-xs-12">
-        <div class="col-md-4">
-            <div class="white-panel">
-                <div class="white-header">
-                    <h5>REMINDER</h5>
-                </div>
-                <div class="row">
+<div class="section" ng-init="getAllEvents();">
+    <div ng-show='showContent' class="row">
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        WYDARZENIA
+                    </div>
                     <div class="row">
-                        <div class="col-sm-12 centered">
-                            <h4>Dzisiaj jest:</h4>
-                            <h1 class="today-date"></h1>
+                        <div class="col s12">
+                            <div class="col s12">
+                                <div class="today-date"></div>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="col s12">
+                                <div class="titleIn">Aktualne</div>
+                                <ul class="collection">
+                                    <li class="collection-item" ng-repeat="now in nowEvents">{{now.title}}</br>Zakończy się: {{now.end}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="col s12">
+                                <div class="titleIn">Najbliższe</div>
+                                <ul class="collection">
+                                    <li class="collection-item" ng-repeat="next in nextEvents | limitTo: 3 ">{{next.title}}</br>Rozpocznie się: {{next.end}}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <h4>Aktualnie trwają:</h4>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th style="text-align:center;">Nazwa</th>
-                                    <th style="text-align:center;">Data zakończenia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="now in nowEvents">
-                                    <td>{{now.title}}</td>
-                                    <td>{{now.end}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <a href="#!/calendar">Przejdź do kalendarza ></a>
                     </div>
-                    <div class="row">
-                        <h4>Najbliższe wydarzenia:</h4>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th style="text-align:center;">Nazwa</th>
-                                    <th style="text-align:center;">Data rozpoczęcia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="next in nextEvents | limitTo: 3 ">
-                                    <td>{{next.title}}</td>
-                                    <td>{{next.start}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <a style='float:right; padding:5px;' href="#!/calendar">Przejdź do kalendarza ></a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="white-panel">
-                <div class="white-header">
-                    <h5>OSTATNIA AKTYWNOŚĆ</h5>
-                </div>
-                <div class="row">
-                    <div class="row" style="margin: 20px; margin-top: 0;">
-                        <p class="centered">
-                            <a href="#!/myProfile"><img src="{{lastPost[0].user_img_path}}" class="img-circle" width="60"></a>
-                        </p>
-                        <h5 class="centered"><strong>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</strong></h5>
-                        <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
-                            {{lastPost[0].content}}
-                        </div>
-                        <div style='font-size: 10px; padding-top: 10px;'><strong>{{lastPost[0].date_add}}</strong></div>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        OSTATNIA AKTYWNOŚĆ
                     </div>
-                </div>
-                <div class="row">
-                    <a href="#!/tab" style="float: right; padding:5px;">Przejdź do tablicy ></a>
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="col s12 centered" style="padding-top:15px;">
+                                <a href="#!/myProfile"><img src="{{lastPost[0].user_img_path}}" class="circle responsive-img" width="60" height="60"></a>
+                            </p>
+                            <div class="titleIn"><strong>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</strong></div>
+                            <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
+                                {{lastPost[0].content}}
+                            </div>
+                            <div style='font-size: 10px; padding-top: 10px;'><strong>{{lastPost[0].date_add}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top:15px;">
+                        <a href="#!/tab">Przejdź do tablicy ></a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="white-panel" ng-controller="todoController" ng-init='initToDo();'>
-                <div class="white-header">
-                    <h5>TODO</h5>
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <h4>Dodaj nowe zadanie</h4>
-                        <div class="col-sm-12" id='todoAdd'>
-                            <input type="color" id="todoColor" value="#f44336">
-                            <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia"></input>
-                            <button id='todoButton' ng-click="addTodo();"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                        </div>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-content" ng-controller="todoController" ng-init='initToDo();'>
+                    <div class="card-title">
+                        ZADANIA
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h4>Twoje aktulane zadania</h4>
-                            <table class='todoTable'>
-                                <tbody>
-                                    <tr ng-repeat="tod in todoList |orderBy: '-date_add' | limitTo: 10" style="margin: 5px 0;">
-                                        <td class='todoColorMain ' style='background:{{tod.color}}; border-color: {{tod.color}}'>
-                                        </td>
-                                        <td class="todoMain" style='border-color:{{tod.color}}'>
-                                            {{tod.title}}
-                                        </td>
-                                        <td class="endTodo" style='border-color:{{tod.color}}'>
-                                            <button ng-click="endTodo(tod.id)">
-                                                <i class="fa fa-check fa-4x" aria-hidden="true"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="titleIn">Dodaj nowe</div>
+                                <div class="col s12" id='todoAdd'>
+                                    <input type="color" id="todoColor" value="#f44336">
+                                    <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia"></input>
+                                    <button id='todoButton' ng-click="addTodo();"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="titleIn">Aktualne</div>
+                                <ul class="collection todoTable">
+                                    <li class="collection-item" ng-repeat="tod in todoList |orderBy: '-date_add' | limitTo: 10">
+                                        <div class='todoColorMain ' style='background:{{tod.color}};'></div>
+                                        {{tod.title}}
+                                        <button ng-click="endTodo(tod.id)">
+                                            <i class="fa fa-check fa-4x" aria-hidden="true"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:25%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h2 style='text-align:center;'>Wczytywanie zawartości...</h2>
-        <div class="progress">
-            <div id='prBar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
-                <span class="sr-only">Complete</span>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<footer class="site-footer">
-    <div class="text-center">
-        Wirtualne Centrum Piłkarskie
-    </div>
-</footer>

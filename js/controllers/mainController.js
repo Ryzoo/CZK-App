@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, auth, $rootScope, $route) {
+app.controller('mainController', function($scope, auth, $rootScope, $route, notify) {
     $rootScope.user = {
         email: "",
         token: "",
@@ -18,6 +18,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route) {
         address: ""
     }
     $scope.contentLoaded = false;
+    $rootScope.newNotify = [];
+    $rootScope.allNotify = [];
+    $rootScope.lastNotifyId = 0;
+    $rootScope.notifyCount = 0;
+    $rootScope.setNotifyOff = notify.setNewOff;
 
     $scope.mainInit = function() {
         $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD"];
@@ -64,6 +69,10 @@ app.controller('mainController', function($scope, auth, $rootScope, $route) {
                             setTimeout(function() {
                                 $('#loadingContent').hide('fade', 'slow');
                             }, 2000);
+                            setInterval(function() {
+                                notify.getNew();
+                            }, 2000);
+                            $('select').material_select();
                         } else {
                             if (msg.error)
                                 $.gritter.add({

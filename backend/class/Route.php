@@ -12,6 +12,7 @@ class Route{
     private $newsMenager = "";
     private $playersMenager = "";
     private $todoMenager = "";
+    private $notifyMenager = "";
 
     function __construct( $allPost ){
         $this->postData = $allPost;
@@ -23,6 +24,7 @@ class Route{
         $this->newsMenager = new News();
         $this->playersMenager = new Players();
         $this->todoMenager = new Todo();
+        $this->notifyMenager = new Notify();
         $this->dataToReturn = array( "error"=>"Brak danych" ,"success"=>false,"token"=>"" );
         $this->checkRequest();
     }
@@ -118,11 +120,19 @@ class Route{
         }else if( $this->request === "addTodo" ){
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->todoMenager->addTodo($this->postData);
+        }else if( $this->request === "addNotify" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->notifyMenager->addNotify($this->postData);
+        }else if( $this->request === "getNewNotify" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->notifyMenager->getNewNotify($this->postData);
+        }else if( $this->request === "getAllNotify" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->notifyMenager->getAllNotify($this->postData);
+        }else if( $this->request === "setNewNotifyOff" ){
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->notifyMenager->setNewNotifyOff($this->postData);
         }
-        
-
-
-        
     }
 
     function returnData(){
