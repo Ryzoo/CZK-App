@@ -1,111 +1,133 @@
 <div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
-<div class="row mt">
-    <div class="col-md-offset-2 col-md-8">
-        <div class="form-panel">
-            <h4 class="mb"><i class="fa fa-angle-right"></i> Twoje aktualne dane </h4>
-            <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
-                <input type="hidden" name="token" value="{{user.token}}">
-                <div class="form-group">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label">Zdjęcie główne</label>
-                    <div class="col-xs-6 col-md-6">
-                        <img id="imgPrev" style="width:150px; height:150px;" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
-                        <input type="file" name="userImgFile" id="userImgFile">
-                    </div>
+<div class="section row">
+    <div class="col m8 offset-m2">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-title">Twoje aktualne dane </div>
+                <div style="box-sizing:border-box; padding: 20px;">
+                    <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
+                        <input type="hidden" name="token" value="{{user.token}}">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="row">
+                                    <img id="imgPrev" style="width:150px; height:150px;" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
+                                </div>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Dodaj</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" name="userImgFile" id="userImgFile" type="text" placeholder="Zmień zdjęcie">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input disabled value="{{user.email}}" id="disabled" type="text" class="validate">
+                                    <label for="disabled">Twój adres email</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input disabled value="{{user.addAccountDate}}" id="disabled" type="text" class="validate">
+                                    <label for="disabled">Jesteś z nami od</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='imieInput' type="text" name="firstname" placeholder="Imię" value="{{user.firstname}}" class="validate">
+                                    <label for="imieInput">Imię</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='nazwiskoInput' type="text" name="lastname" placeholder="Nazwisko" value="{{user.lastname}}" class="validate">
+                                    <label for="nazwiskoInput">Nazwisko</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='dataInput' type="text" name="birthdate" placeholder="Data urodzenia " value="{{user.birthdate}}" class="validate">
+                                    <label for="dataInput">Data urodzenia w formacie: yyyy:mm:dd</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='adresInput' type="text" name="address" placeholder="Adres " value="{{user.address}}" class="validate">
+                                    <label for="adresInput">Adres</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <select>
+                                        <option value="" disabled selected>Preferowana pozycja</option>
+                                        <option value="bramka" ng-selected="user.mainPosition == 'bramka'" >Bramka</option>
+                                        <option value="obrona" ng-selected="user.mainPosition == 'obrona'">Obrona</option>
+                                        <option value="pomoc" ng-selected="user.mainPosition == 'pomoc'">Pomoc</option>
+                                        <option value="atak" ng-selected="user.mainPosition == 'atak'">Atak</option>
+                                    </select>
+                                    <label>Preferowana pozycja</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <select>
+                                        <option value="" disabled selected>Noga wiodąca</option>
+                                        <option value="prawa" ng-selected="user.mainLeg == 'prawa'" >Prawa</option>
+                                        <option value="lewa" ng-selected="user.mainLeg == 'lewa'">Lewa</option>
+                                        <option value="obunozny" ng-selected="user.mainLeg == 'obunozny'">Obunożny</option>
+                                    </select>
+                                    <label>Noga wiodąca</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='TelefonInput' type="text" name="tel" placeholder="Telefon " value="{{user.tel}}" class="validate">
+                                    <label for="TelefonInput">Telefon</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}}" class="validate">
+                                    <label for="parenInput">Telefon rodzica</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='wagaInput' type="text" name="weight" placeholder="Waga " value="{{user.weight}}" class="validate">
+                                    <label for="wagaInput">Waga</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='wzrostInput' type="text" name="height" placeholder="Wzrost " value="{{user.height}}" class="validate">
+                                    <label for="wzrostInput">Wzrost</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate()">Zmień dane</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Twój adres email</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <p class="form-control-static ">{{user.email}}</p>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Jesteś z nami od</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <p class="form-control-static ">{{user.addAccountDate}}</p>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Imię</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="firstname" placeholder="Imię " value="{{user.firstname}} ">
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Nazwisko</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="lastname" placeholder="Nazwisko " value="{{user.lastname}} ">
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Data urodzenia</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="birthdate" placeholder="Data urodzenia " value="{{user.birthdate}} ">
-                        <span class="help-block ">Data urodzenia w formacie: yyyy:mm:dd</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Adres</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="address" placeholder="Adres " value="{{user.address}} ">
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Preferowana pozycja</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <select name="mainPosition" class="form-control round-form ">
-                            <option value="bramka" ng-selected="user.mainPosition == 'bramka'" >Bramka</option>
-                            <option value="obrona" ng-selected="user.mainPosition == 'obrona'">Obrona</option>
-                            <option value="pomoc" ng-selected="user.mainPosition == 'pomoc'">Pomoc</option>
-                            <option value="atak" ng-selected="user.mainPosition == 'atak'">Atak</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Noga wiodąca</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <select name="mainLeg" class="form-control round-form ">
-                            <option value="prawa" ng-selected="user.mainLeg == 'prawa'" >Prawa</option>
-                            <option value="lewa" ng-selected="user.mainLeg == 'lewa'">Lewa</option>
-                            <option value="obunozny" ng-selected="user.mainLeg == 'obunozny'">Obunożny</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Telefon</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="tel" placeholder="Telefon " value="{{user.tel}} ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Telefon rodzica</label>
-                    <div class="col-xs-6 col-md-6 ">
-                        <input type="text " class="form-control round-form " name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}} ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Waga</label>
-                    <div class="input-group col-xs-2 ">
-                        <input type="text " class="form-control round-form " name="weight" placeholder="Waga " value="{{user.weight}} ">
-                        <div class="input-group-addon">kg</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Wzrost</label>
-                    <div class="input-group col-xs-2 ">
-                        <input type="text " class="form-control round-form " name="height" placeholder="Wzrost " value="{{user.height}} ">
-                        <div class="input-group-addon">cm</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="button " class="btn btn-round btn-success col-md-offset-4 col-md-4 col-xs-6 col-xs-offset-3 " ng-click="updateUserDate()">Zmień dane</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
-<footer class="site-footer">
-    <div class="text-center">
-        Wirtualne Centrum Piłkarskie
-    </div>
-</footer>
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

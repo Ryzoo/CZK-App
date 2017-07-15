@@ -1,8 +1,7 @@
 app.controller('tabController', function($scope, auth, $rootScope) {
     $scope.lastId = 0;
     $scope.posts = [];
-    $scope.maxPost = 1;
-
+    $scope.maxPost = 5;
 
     $scope.morePost = function() {
         $scope.maxPost += 5;
@@ -28,13 +27,10 @@ app.controller('tabController', function($scope, auth, $rootScope) {
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    var changeProgress = 100 / msg.data.length;
                     for (var i = 0; i < msg.data.length; i++) {
                         $scope.$apply(function() {
                             $scope.posts.push(msg.data[i]);
                             $scope.posts[i].maxComment = 1;
-                            $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(changeProgress)));
-                            $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                         });
                     }
                     setTimeout(function() {
@@ -78,7 +74,14 @@ app.controller('tabController', function($scope, auth, $rootScope) {
         $('#errorNewPost').html("").hide();
         var message = $("#newPostInput").val();
         if (message.length < 5 || message.length > 500) {
-            $('#errorNewPost').html("Wiadomosc musi być dłuższa niż 5 znaków oraz krótsza niż 500").show();
+            $.gritter.add({
+                title: 'Walidacja',
+                text: 'Wiadomosc musi być dłuższa niż 5 znaków oraz krótsza niż 500',
+                image: '',
+                sticky: true,
+                time: '5',
+                class_name: 'my-sticky-class'
+            });
             return;
         }
         var dataToSend = { token: Cookies.get('tq'), msg: message, tmid: $rootScope.user.tmid };
@@ -91,34 +94,17 @@ app.controller('tabController', function($scope, auth, $rootScope) {
             success: function(msg) {
                 if (msg.success) {
                     $scope.getLastPost();
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Dodawanie postu',
-                            text: 'Twój post został pomyślnie dodany',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Dodawanie postu',
+                        text: 'Twój post został pomyślnie dodany',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 } else {
                     console.log(msg.error);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Niestety coś poszło źle',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Niestety coś poszło źle',
                         image: '',
@@ -126,6 +112,17 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety coś poszło źle',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });
@@ -134,15 +131,13 @@ app.controller('tabController', function($scope, auth, $rootScope) {
     $scope.addComment = function(psid) {
         var message = $("#tx_" + psid).val();
         if (message.length < 5 || message.length > 500) {
-            $(document).ready(function() {
-                var unique_id = $.gritter.add({
-                    title: 'Bład',
-                    text: 'Komentarz musi zawierać od 5 do 500 znaków',
-                    image: '',
-                    sticky: true,
-                    time: '5',
-                    class_name: 'my-sticky-class'
-                });
+            $.gritter.add({
+                title: 'Bład',
+                text: 'Komentarz musi zawierać od 5 do 500 znaków',
+                image: '',
+                sticky: true,
+                time: '5',
+                class_name: 'my-sticky-class'
             });
             return;
         }
@@ -158,34 +153,17 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                     $scope.lastId = 0;
                     $scope.posts = [];
                     $scope.getLastPost();
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Dodanie komentarza',
-                            text: 'Twój komentarz został pomyślnie dodany',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Dodanie komentarza',
+                        text: 'Twój komentarz został pomyślnie dodany',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 } else {
                     console.log(msg.error);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Niestety coś poszło źle',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Niestety coś poszło źle',
                         image: '',
@@ -193,6 +171,17 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety coś poszło źle',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });
@@ -212,34 +201,17 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                     $scope.lastId = 0;
                     $scope.posts = [];
                     $scope.getLastPost();
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Usuwanie posta',
-                            text: 'Post został usunięty pomyślnie',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Usuwanie posta',
+                        text: 'Post został usunięty pomyślnie',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 } else {
                     console.log(msg.error);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Niestety coś poszło źle',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Niestety coś poszło źle',
                         image: '',
@@ -247,6 +219,17 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety coś poszło źle',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });
@@ -265,41 +248,37 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                     $scope.lastId = 0;
                     $scope.posts = [];
                     $scope.getLastPost();
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Usuwanie komentarza',
-                            text: 'Komentarz został usunięty pomyślnie',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Usuwanie komentarza',
+                        text: 'Komentarz został usunięty pomyślnie',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 } else {
                     console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Niestety coś poszło źle',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Niestety coś poszło źle',
                         image: '',
                         sticky: true,
                         time: '5',
                         class_name: 'my-sticky-class'
+
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety coś poszło źle',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
+
                 });
             },
         });

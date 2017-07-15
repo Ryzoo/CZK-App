@@ -1,6 +1,8 @@
 app.controller('compositionController', function($scope, auth, $rootScope, request) {
     $scope.positions = [];
 
+
+
     $scope.getAllPostion = function() {
         $rootScope.showContent = false;
         var dataToSend = { token: Cookies.get('tq') };
@@ -16,7 +18,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                     for (var i = 0; i < $scope.positions.length; i++) {
                         $scope.positions[i].users = [];
                     }
-
+                    $('select').material_select();
                 } else {
                     console.log(msg.error);
                     $(document).ready(function() {
@@ -63,20 +65,17 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         $scope.$apply(function() {
                             $scope.positions[msg.data[i].id_position].users.push(msg.data[i]);
                         });
-                        $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(changeProgress)));
-                        $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
+                        $('select').material_select();
                     }
                 } else {
                     console.log(msg.error);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Niestety coś poszło źle lub brak wyników',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety coś poszło źle lub brak wyników',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 }
                 setTimeout(function() {
@@ -87,15 +86,13 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             },
             error: function(jqXHR, textStatus) {
                 console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety coś poszło źle',
-                        image: '',
-                        sticky: true,
-                        time: '5',
-                        class_name: 'my-sticky-class'
-                    });
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety coś poszło źle',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });
@@ -142,34 +139,18 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Zapis',
-                            text: 'Zmiana zapisana',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Zapis',
+                        text: 'Zmiana zapisana',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
+                    $('select').material_select();
                 } else {
                     console.log(msg.error);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Niestety coś poszło źle',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Niestety coś poszło źle',
                         image: '',
@@ -177,6 +158,17 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety coś poszło źle',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });

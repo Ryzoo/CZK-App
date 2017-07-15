@@ -23,8 +23,6 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                 if (msg.success) {
                     $scope.$apply(function() {
                         $scope.nextEvents = msg.data;
-                        $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(40)));
-                        $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                     });
                 } else {
                     console.log(msg);
@@ -68,8 +66,6 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                 if (msg.success) {
                     $scope.$apply(function() {
                         $scope.nowEvents = msg.data;
-                        $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(60)));
-                        $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                     });
 
                 } else {
@@ -114,8 +110,6 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                 if (msg.success) {
                     $scope.$apply(function() {
                         $scope.lastPost = msg.data;
-                        $('#prBar').attr('aria-valuenow', (parseInt($('#prBar').attr('aria-valuenow')) + parseInt(100)));
-                        $('#prBar').css('width', $('#prBar').attr('aria-valuenow') + '%');
                         setTimeout(function() {
                             $scope.$apply(function() {
                                 $scope.showContent = true;

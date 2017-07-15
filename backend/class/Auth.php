@@ -71,31 +71,35 @@ class Auth{
     function updateUserData( $post ){
         $error = "";
         $success = true;
-
+        $condsUsers = [];
+        $dataUsers =[];
         $file_name = "";
+
         if( isset($_FILES["userImgFile"]) ){
             $ext = pathinfo($_FILES["userImgFile"]["name"],PATHINFO_EXTENSION);
             $target_dir = __DIR__ . "/../../";
             $file_name = 'img/users/' . trim($post['birthdate']) . trim($post['lastname']) . "." . $ext;
             $target_file = $target_dir . $file_name;
-            if ($_FILES["userImgFile"]["size"] <= 2500000){
-                if (($ext == "jpg" || $ext == "png" || $ext == "jpeg")){
-                    if(!move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file)){
+            if($_FILES["userImgFile"]["size"] <> 25){
+                if ($_FILES["userImgFile"]["size"] <= 2500000){
+                    if (($ext == "jpg" || $ext == "png" || $ext == "jpeg")){
+                        if(!move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file)){
+                            $success = false;
+                            $error = "Nie udało się skopiowac: " . $_FILES["userImgFile"]['name'];
+                        }else{
+                            if( isset( $file_name ) && $file_name != "" ) $dataUsers["user_img_path"] = $file_name;
+                        }
+                    }else{
                         $success = false;
-                        $error = "Nie udało się skopiowac: " . $_FILES["userImgFile"]['name'];
+                        $error = "Błędne rozszerzenie pliku";
                     }
                 }else{
                     $success = false;
-                    $error = "Błędne rozszerzenie pliku";
+                    $error = "Zbyt duży plik";
                 }
-            }else{
-                $success = false;
-                $error = "Zbyt duży plik";
             }
         }
-
-        $condsUsers = [];
-        $dataUsers =[];
+        
         
         if( isset($post["token"]) ){
             $userId = $this->getUserId($post["token"]);
@@ -113,7 +117,6 @@ class Auth{
             if( isset( $post["height"] ) ) $dataUsers["height"] = trim($post["height"]);
             if( isset( $post["address"] ) ) $dataUsers["address"] = trim($post["address"]);
             
-            if( isset( $file_name ) && $file_name != "" ) $dataUsers["user_img_path"] = $file_name;
         }else{
             $success = false;
             $error = "Brak danych";

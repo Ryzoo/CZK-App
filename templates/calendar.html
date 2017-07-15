@@ -1,53 +1,67 @@
 <div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
 
-<div class="row mt">
+<div class="section">
     <div ng-show='showContent' ng-init='initAllEv();' class="row">
-        <div class='col-md-4' ng-hide="user.role == 'ZAWODNIK'">
-            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
-                <div class="row">
-                    <div>
-                        <h4>Dodaj nowe wydarzenie</h4>
+        <div class='col s12 m4' ng-hide="user.role == 'ZAWODNIK'">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Dodaj nowe wydarzenie</div>
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='imieInput' type="text" name="firstname" placeholder="Imię" class="validate">
+                                    <label for="imieInput">Imię</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='nazwiskoInput' type="text" name="lastname" placeholder="Nazwisko" class="validate">
+                                    <label for="nazwiskoInput">Nazwisko</label>
+                                </div>
+                            </div>
+                        </div>
                         <form name="eventForm" class="form-horizontal style-form" id="addEventForm">
                             <div class="form-group">
-                                <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Tytuł</label>
-                                <div class="col-xs-6 col-md-6 ">
-                                    <input type="text" id='addTitleNews' class="form-control round-form " name="title" placeholder="Tytuł" required>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id='addTitleNews' type="text" name="title" placeholder="Tytuł" required class="validate">
+                                        <label for="addTitleNews">Tytuł</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Początek</label>
-                                <div class="col-xs-6 col-md-6 ">
-                                    <input type="text" id='addStartNews' class="datetimepicker form-control round-form " name="start" placeholder="Początek" required>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id='addStartNews' type="text" class="datetimepicker" name="title" placeholder="Początek" required class="validate">
+                                        <label for="addStartNews">Początek</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id='addEndNews' type="text" class="datetimepicker" name="title" placeholder="Koniec" required class="validate">
+                                        <label for="addEndNews">Koniec</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Koniec</label>
-                                <div class="col-xs-6 col-md-6 ">
-                                    <input type="text" id='addEndNews' class="datetimepicker form-control round-form " name="end" placeholder="Koniec" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="button " class="btn btn-round btn-success col-md-offset-4 col-md-4 col-xs-6 col-xs-offset-3 " ng-click="addEvent();">Dodaj</button>
+                                <button type="button " class="waves-effect waves-light btn" ng-click="addEvent();">Dodaj</button>
                             </div>
                         </form>
                     </div>
-                    <div>
+                    <div class="row">
                         <p>Wybierz wydarzenie w kalendarzu, aby je edytować lub usunąć </p>
                         <div class='editEvent' style='display: none;'>
-                            <h4>Edycja wydarzenia</h4>
+                            <div class='titleIn'>Edycja wydarzenia</div>
                             <form class="form-horizontal style-form" id="userUpdateDataForm">
                                 <input type="hidden" value='{{actualEdit.id}}'>
                                 <div class="form-group">
-                                    <label class="col-md-offset-1 col-md-4 col-xs-6 control-label ">Tytuł</label>
-                                    <div class="col-xs-6 col-md-6 ">
-                                        <input id='editTitle' type="text" class="form-control round-form " name="title" placeholder="Tytuł" value='{{actualEdit.title}}'>
+                                    <div class="input-field col s6">
+                                        <input id='editTitle' type="text" name="title" placeholder="Tytuł" value='{{actualEdit.title}}' required class="validate">
+                                        <label for="editTitle">Tytuł</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="button " class="btn btn-round btn-success col-md-offset-4 col-md-4 col-xs-6 col-xs-offset-3 " ng-click="editEvent();">Zapisz</button>
+                                    <button type="button " class="waves-effect waves-light btn" ng-click="editEvent();">Zapisz</button>
                                 </div>
                                 <div class="form-group">
-                                    <button type="button " class="btn btn-round btn-warning col-md-offset-4 col-md-4 col-xs-6 col-xs-offset-3 " ng-click="deleteEvent();">Usuń</button>
+                                    <button type="button " class="waves-effect waves-light btn" ng-click="deleteEvent();">Usuń</button>
                                 </div>
                             </form>
                         </div>
@@ -55,13 +69,16 @@
                 </div>
             </div>
         </div>
-        <div class='col-md-8' ng-class=" user.role == 'ZAWODNIK' ? 'col-md-offset-2' : 'col-md-offset-0' ">
-            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
-                <div class="row">
-                    <aside class="col-xs-12 mt">
-                        <section class="panel">
-                            <div class="panel-body">
-                                <div id="calendar" class="has-toolbar"></div>
+        <div class='col s12 m8' ng-class="user.role == 'ZAWODNIK' ? 'offset-m2' : 'offset-m0' ">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Kalendarz</div>
+                    <aside class="row" style='margin-top: 60px;'>
+                        <section>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div id="calendar" class="has-toolbar"></div>
+                                </div>
                             </div>
                         </section>
                     </aside>
@@ -69,25 +86,35 @@
             </div>
         </div>
     </div>
-    <div ng-hide='showContent' class="" style="position:relative; margin-top:25%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h2 style='text-align:center;'>Wczytywanie zawartości...</h2>
-        <div class="progress">
-            <div id='prBar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
-                <span class="sr-only">Complete</span>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<footer class="site-footer">
-    <div class="text-center">
-        Wirtualne Centrum Piłkarskie
-    </div>
-</footer>
-
 <script>
-    $('.datetimepicker').datetimepicker({
-        format: 'Y-m-d H:i',
-        lang: 'pl'
-    });
+    $(document).ready(
+        function() {
+            $('.datetimepicker').datetimepicker({
+                format: 'Y-m-d H:i',
+                lang: 'pl'
+            });
+            setTimeout(function() {
+                Materialize.updateTextFields();
+                $('select').material_select();
+            }, 500);
+        }
+    )
 </script>
