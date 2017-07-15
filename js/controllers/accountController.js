@@ -37,7 +37,6 @@ app.controller('accountController', function($scope, auth, $rootScope, request) 
             async: true,
             success: function(msg) {
                 if (msg.success) {
-
                     $scope.$apply(function() {
                         $rootScope.user.firstname = msg.data.post.firstname;
                         $rootScope.user.lastname = msg.data.post.lastname;

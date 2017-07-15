@@ -21,7 +21,6 @@
     #sidebar {
         height: auto;
         overflow: hidden;
-        position: absolute;
         width: 100%;
         z-index: 1001;
     }
@@ -185,6 +184,12 @@
     /*---*/
     .img-responsive {
         width: 100%;
+    }
+}
+
+@media(max-width: 601px) {
+    #sidebar {
+        margin-top: 50px;
     }
 }
 

@@ -1,72 +1,40 @@
 <div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK'])"></div>
 
-<div class="row mt">
-    <div ng-show='showContent' class="col-xs-12">
-        <div class="col-md-6">
-            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
-                <div class="white-header">
-                    <h5>Ławka rezerwowych</h5>
-                </div>
-                <div class="row" style="padding: 20px;">
-                    <table class="table table-hover" ng-init="getTeam()">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center;">Imię</th>
-                                <th style="text-align:center;">Nazwisko</th>
-                                <th style="text-align:center;">Numer na koszulce</th>
-                                <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="us in positions[0].users">
-                                <td>{{us.firstname}}</td>
-                                <td>{{us.lastname}}</td>
-                                <td>
-                                    <input ng-show="user.role != 'ZAWODNIK' " class='changeNumber ' id='changeNumber-{{us.tmmid}}-0' style="width: 50px; text-align:center; height: 20px;" type="text" value="{{us.nr_on_tshirt}}" required>
-                                    <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
-                                </td>
-                                <td ng-show="user.role != 'ZAWODNIK' ">
-                                    <select style='height: 20px;' class='selectPosition ' id="selectPosition-{{us.tmmid}}-0">
-                                        <option ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="white-panel pn pn-height" style="height: auto; margin-bottom:20px;">
-                <div class="white-header">
-                    <h5>Aktualny skład</h5>
-                </div>
-                <div class="row" style="padding: 20px; padding-top: 0px">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center;">Imię</th>
-                                <th style="text-align:center;">Nazwisko</th>
-                                <th style="text-align:center;">Numer na koszulce</th>
-                                <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <div ng-repeat="posit in positions | limitTo:50:1">
-                        <h3>{{posit.name}}</h3>
-                        <table class="table table-hover">
+<div class="section">
+    <div ng-show='showContent' class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Ławka rezerwowych
+                    </div>
+                    <div class="row">
+                        <table class="table highlight" ng-init="getTeam()">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Imię</th>
+                                    <th style="text-align:center;">Nazwisko</th>
+                                    <th style="text-align:center;">Numer na koszulce</th>
+                                    <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr ng-repeat="us in posit.users">
-                                    <td>{{us.firstname}}</td>
-                                    <td>{{us.lastname}}</td>
-                                    <td>
-                                        <input ng-show="user.role != 'ZAWODNIK' " ng-model="us.nr_on_tshirt" class='changeNumber ' id='changeNumber-{{us.tmmid}}-{{posit.id}}' style="width: 50px; text-align:center; height: 20px;" type="text" value="{{us.nr_on_tshirt}}" required>
-                                        <p ng-show="user.role == 'ZAWODNIK' ">{{us.nr_on_tshirt}}</p>
+                                <tr ng-repeat="us in positions[0].users" class='row'>
+                                    <td style="text-align: center;">{{us.firstname}}</td>
+                                    <td style="text-align: center;">{{us.lastname}}</td>
+                                    <td style="text-align: center; padding: 0px">
+                                        <div class="input-field col" style="text-align: center; padding: 0 5px; margin: 0">
+                                            <input style="text-align: center; margin: 0" ng-show="user.role != 'ZAWODNIK' " id='changeNumber' class='changeNumber' id='changeNumber-{{us.tmmid}}-0' type="text" value="{{us.nr_on_tshirt}}" required>
+                                        </div>
+                                        <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
                                     </td>
-                                    <td ng-show="user.role != 'ZAWODNIK' ">
-                                        <select style='height: 20px;' class='selectPosition ' id="selectPosition-{{us.tmmid}}-{{posit.id}}">
-                                            <option ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
-                                        </select>
+                                    <td style="text-align: center; padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
+                                        <div class="input-field col " style="text-align: center; padding: 0 5px; margin: 0">
+                                            <select class='selectPosition' id="selectPosition-{{us.tmmid}}-0" style="text-align: center; margin: 0">
+                                                <option style="text-align: center;" ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
+                                                <label>Materialize Select</label>
+                                            </select>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -75,19 +43,68 @@
                 </div>
             </div>
         </div>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Aktualny skład
+                    </div>
+                    <div class="row">
+                        <table class="table highlight">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Imię</th>
+                                    <th style="text-align:center;">Nazwisko</th>
+                                    <th style="text-align:center;">Numer na koszulce</th>
+                                    <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div ng-repeat="posit in positions | limitTo:50:1">
+                            <div class='titleIn'> {{posit.name}}</div>
+                            <table class="table highlight">
+                                <tbody>
+                                    <tr ng-repeat="us in posit.users" class='row'>
+                                        <td style="text-align: center;">{{us.firstname}}</td>
+                                        <td style="text-align: center;">{{us.lastname}}</td>
+                                        <td style="text-align: center; padding: 0px">
+                                            <div class="input-field col" style="text-align: center; padding: 0 5px; margin: 0">
+                                                <input style="text-align: center; margin: 0" ng-show="user.role != 'ZAWODNIK' " id='changeNumber' class='changeNumber' id='changeNumber-{{us.tmmid}}-0' type="text" value="{{us.nr_on_tshirt}}" required>
+                                            </div>
+                                            <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
+                                        </td>
+                                        <td style="text-align: center; padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
+                                            <div class="input-field col " style="text-align: center; padding: 0 5px; margin: 0">
+                                                <select class='selectPosition' id="selectPosition-{{us.tmmid}}-{{posit.id}}" style="text-align: center; margin: 0">
+                                                    <option style="text-align: center;" ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
+                                                    <label>Materialize Select</label>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div ng-hide='showContent' class="" style="position:relative; margin-top:25%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h2 style='text-align:center;'>Wczytywanie zawartości...</h2>
-        <div class="progress">
-            <div id='prBar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
-                <span class="sr-only">Complete</span>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<footer class="site-footer">
-    <div class="text-center">
-        Wirtualne Centrum Piłkarskie
-    </div>
-</footer>

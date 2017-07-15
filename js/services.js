@@ -12,9 +12,12 @@ app.service('request', function($http, $rootScope) {
 });
 
 app.service('notify', function($http, $rootScope, request) {
-    this.Notification = function(_title, _to) {
+    this.Notification = function(_title, _to, _toAll = false) {
         this.title = _title;
         this.to = _to;
+        this.toAll = _toAll;
+        this.senderId = $rootScope.user.id;
+        this.teamId = $rootScope.user.tmid;
     }
 
     this.addNew = function(notifyObj) {

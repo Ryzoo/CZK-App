@@ -41,6 +41,10 @@ header nav {
     text-align: center;
 }
 
+.select-dropdown {
+    margin-bottom: 0px !important;
+}
+
 .sidebar-menu .caret {
     color: white !important;
 }
@@ -1290,6 +1294,7 @@ PANELS CONFIGURATIONS
 
 .card {
     margin: 0 5px !important;
+    margin-bottom: 15px !important;
 }
 
 .card .card-title {
@@ -2747,4 +2752,62 @@ input[type="color"]::-webkit-color-swatch {
 .collection-item button:focus {
     outline: none !important;
     background: white !important;
+}
+
+.showAllNewsNotify {
+    max-width: 300px;
+    box-sizing: border-box;
+    z-index: 990;
+    text-align: center;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 13px;
+    position: fixed;
+    right: 0;
+    top: 60px;
+    color: #757575;
+    -webkit-box-shadow: -5px 5px 38px 0px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: -5px 5px 38px 0px rgba(0, 0, 0, 0.55);
+    box-shadow: -5px 5px 38px 0px rgba(0, 0, 0, 0.55);
+}
+
+.notifyContener {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: white;
+}
+
+.notifyContenerTitle {
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    background: #263238;
+    padding: 5px 20px;
+}
+
+.notif {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.notifyContener .end a {
+    padding: 10px 10px;
+}
+
+.notif a {
+    transition: background-color 0.2s;
+    background: white;
+    padding: 20px 10px;
+    width: 100%;
+    display: block;
+}
+
+.notif a:hover {
+    transition: background-color 0.2s;
+    background: #c9cdd7;
 }

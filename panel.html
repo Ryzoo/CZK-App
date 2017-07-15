@@ -8,8 +8,7 @@
     <meta name="author" content="---------">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wirtualne Centrum Piłkarskie</title>
-
-
+    <link href="/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -27,12 +26,26 @@
                     <a href="#!/" class="brand-logo"><b>CZK-App</b></a>
                     <ul class="right">
                         <li><a href="#!/calendar" class='waves-effect waves-light'><i class="fa fa-calendar" aria-hidden="true"></i></a></li>
-                        <li><a href="" class='waves-effect waves-light'><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
-
+                        <li><a ng-click='showNotifications()' href="" class='waves-effect waves-light'><i class="fa fa-bell-o" aria-hidden="true"></i><span class="new badge" ng-show="notifyCount > 0">{{notifyCount}}</span></a></li>
                     </ul>
                 </div>
             </nav>
         </header>
+
+        <div ng-show="showAllNewsNotify" class="showAllNewsNotify">
+            <div class="notifyContenerTitle" ng-click='showNotifications()'>
+                <p ng-show="notifyCount > 0">Masz {{notifyCount}} nieprzeczytanych powiadomień</p>
+                <p ng-show="notifyCount <= 0">Nie masz żadnych nowych powiadomień</p>
+            </div>
+            <div class="notifyContener">
+                <div class="notif" ng-repeat="notify in newNotify" ng-click='showNotifications(false)'>
+                    <a href="{{notify.url}}">{{notify.title}}</a>
+                </div>
+                <div class="notif end" ng-click='showNotifications(false)'>
+                    <a href="/">Pokaż wszystkie moje powiadomienia</a>
+                </div>
+            </div>
+        </div>
 
         <aside>
             <div id="sidebar" class="nav-collapse">
@@ -93,9 +106,9 @@
                 </ul>
             </div>
         </aside>
+
         <section id="main-content" ng-init="mainInit()">
             <section class="wrapper" ng-view ng-init="initAccount()">
-
             </section>
         </section>
     </div>
@@ -105,7 +118,6 @@
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="/js/libraries/jquery-ui.js"></script>
-<link href="/css/style.css" rel="stylesheet">
 
 <script src="/js/libraries/jquery.dcjqaccordion.2.7.js"></script>
 <script src="/js/libraries/jquery.scrollTo.min.js"></script>

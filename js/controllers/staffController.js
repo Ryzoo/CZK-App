@@ -37,15 +37,13 @@ app.controller('staffController', function($scope, auth, $rootScope) {
             },
             error: function(jqXHR, textStatus) {
                 console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
-                        image: '',
-                        sticky: true,
-                        time: '5',
-                        class_name: 'my-sticky-class'
-                    });
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety nie udało się pobrać danych',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });
@@ -64,34 +62,17 @@ app.controller('staffController', function($scope, auth, $rootScope) {
             success: function(msg) {
                 if (msg.success) {
                     $scope.getStaffMembers();
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Sukces',
-                            text: 'Personel dodany pomyślnie',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Sukces',
+                        text: 'Personel dodany pomyślnie',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 } else {
                     console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Błąd podczas dodawania',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Błąd podczas dodawania',
                         image: '',
@@ -99,6 +80,17 @@ app.controller('staffController', function($scope, auth, $rootScope) {
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Błąd podczas dodawania',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });
@@ -115,34 +107,17 @@ app.controller('staffController', function($scope, auth, $rootScope) {
             success: function(msg) {
                 if (msg.success) {
                     $scope.getStaffMembers();
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Sukces',
-                            text: 'Personel usunięty pomyślnie',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
+                    $.gritter.add({
+                        title: 'Sukces',
+                        text: 'Personel usunięty pomyślnie',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
                     });
                 } else {
                     console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Błąd podczas usuwania',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Błąd podczas usuwania',
                         image: '',
@@ -150,6 +125,17 @@ app.controller('staffController', function($scope, auth, $rootScope) {
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Błąd podczas usuwania',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });
@@ -172,31 +158,28 @@ app.controller('staffController', function($scope, auth, $rootScope) {
                     for (var i = 0; i < msg.data.length; i++) {
                         $('#addStaffMembersSelect').append("<option value='" + msg.data[i].usid + "'>" + msg.data[i].firstname + " " + msg.data[i].lastname + " [ " + msg.data[i].rlname + " ] </option>");
                     }
+                    $('select').material_select();
                 } else {
                     console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Brak osób do wyświetlenia',
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
+                    $.gritter.add({
                         title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
+                        text: 'Brak osób do wyświetlenia',
                         image: '',
                         sticky: true,
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety nie udało się pobrać danych',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });

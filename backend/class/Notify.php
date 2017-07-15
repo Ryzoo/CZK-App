@@ -34,7 +34,7 @@ class Notify{
         if(isset($post['usid']) && isset($post['tmid'])){
             $usid = $post['usid'];
             $tmid = $post['tmid'];
-            $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id, notifications.title FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid.' AND user_notifications.is_new = 1 GROUP BY user_notifications.id');
+            $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id, notifications.title, notifications.url FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid.' AND user_notifications.is_new = 1 GROUP BY user_notifications.id');
         }else{
             $error = 'Brak potrzebnych danych';
             $success = false;
@@ -51,7 +51,7 @@ class Notify{
         if(isset($post['usid']) && isset($post['tmid'])){
             $usid = $post['usid'];
             $tmid = $post['tmid'];
-            $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id, notifications.title FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid);
+            $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id, notifications.title, notifications.url FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid);
         }else{
             $error = 'Brak potrzebnych danych';
             $success = false;

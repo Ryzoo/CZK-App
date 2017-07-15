@@ -22,7 +22,18 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $rootScope.allNotify = [];
     $rootScope.lastNotifyId = 0;
     $rootScope.notifyCount = 0;
-    $rootScope.setNotifyOff = notify.setNewOff;
+    $scope.showAllNewsNotify = false;
+
+    $scope.showNotifications = function(isMainClik = true) {
+        if (isMainClik) {
+            if ($scope.showAllNewsNotify == false) {
+                $scope.showAllNewsNotify = true;
+                notify.setNewOff();
+            } else $scope.showAllNewsNotify = false;
+        } else {
+            $scope.showAllNewsNotify = false;
+        }
+    }
 
     $scope.mainInit = function() {
         $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD"];
