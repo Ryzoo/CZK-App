@@ -121,6 +121,7 @@ class Route{
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->todoMenager->addTodo($this->postData);
         }else if( $this->request === "addNotify" ){
+            
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->notifyMenager->addNotify($this->postData);
         }else if( $this->request === "getNewNotify" ){

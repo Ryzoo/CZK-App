@@ -1,4 +1,4 @@
-app.controller('mainDashboardController', function($scope, auth, $rootScope, request) {
+app.controller('mainDashboardController', function($scope, auth, $rootScope, request, notify) {
     $scope.nowEvents = [];
     $scope.nextEvents = [];
     $scope.lastPost = [];

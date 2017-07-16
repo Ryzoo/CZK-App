@@ -1,4 +1,4 @@
-app.controller('calendarController', function($scope, auth, $rootScope, request) {
+app.controller('calendarController', function($scope, auth, $rootScope, request, notify) {
 
     $scope.actualEdit = '';
     $scope.allEvents = '';
@@ -80,6 +80,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request)
                             time_alive: '5',
                             class_name: 'my-sticky-class'
                         });
+                        notify.addNew(new notify.Notification("Dodano wydarzenie: '" + title1 + "'", null, "#!/calendar", true));
                     } else {
                         console.log(msg);
                         $.gritter.add({

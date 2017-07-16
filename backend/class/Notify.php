@@ -23,7 +23,56 @@ class Notify{
     }
 
     function addNotify($post){
-
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        if( isset($post["usid"]) && isset($post["tmid"]) && isset($post["title"]) && isset($post["to"]) && isset($post["toAll"]) )
+        {
+            $title = $post["title"];
+            $tmid = $post["tmid"];
+            $token = $post["token"];
+            $to = $post["to"];
+            $toAll = $post["toAll"];
+            $url = $post["url"];
+            $idUser = ($this->auth)->getUserId($token);
+            
+            if( !$idUser ){
+                $error = "Uzytkownik o danym tokenie nieodnalleziony";
+                $success = false;
+            }else{
+                $data = [
+                    'title'   => $title,
+                    'url'   => $url
+                ];
+                $notId = ($this->db->getConnection())->insert('notifications', $data);
+                if( $notId != null ){
+                    if( $toAll == true || $tmid == 'true'){
+                        $userids = ($this->db->getConnection())->fetchRowMany('SELECT id FROM team_members WHERE id_team='.$tmid.' GROUP BY id_user');
+                        $to = [];
+                        for($i=0;$i<count($userids);$i++){
+                            //if( $userids[$i] != $usid)
+                                array_push($to,$userids[$i]['id']);
+                        }
+                    }
+                    $data = [];
+                    for($i=0;$i<count($to);$i++){
+                        array_push($data,[
+                            'id_user' => intval($to[$i]),
+                            'id_team' => $tmid,
+                            'id_notification' => $notId,
+                        ]);
+                    }
+                    $toReturn = ($this->db->getConnection())->insertMany('user_notifications', $data);
+                }else{
+                    $error = "Nie udalo sie zapisac powiadomienia w bazie";
+                    $success = false;
+                }
+            }
+        }else{
+            $error = "Brak potrzebnych danych";
+            $success = false;
+        }
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
     function getNewNotify($post){
@@ -75,7 +124,7 @@ class Notify{
             ];
             for($i=0;$i<count($ntid);$i++){
                 $condsUsers = [ 
-                    'id' => $ntid[$i],
+                    'id_notification' => $ntid[$i],
                     'id_user'=> $usid,
                     'id_team'=> $tmid
                 ];

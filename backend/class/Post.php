@@ -60,7 +60,7 @@ class Post{
         $toReturn = null;
         $success = true;
         $error = "";
-        if( isset($post["msg"]) && isset($post["token"])  && isset($post["token"]) )
+        if( isset($post["msg"]) && isset($post["tmid"])  && isset($post["token"]) )
         {
             $message = $post["msg"];
             $tmid = $post["tmid"];

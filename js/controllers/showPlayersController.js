@@ -1,4 +1,4 @@
-app.controller('showPlayersController', function($scope, auth, $rootScope) {
+app.controller('showPlayersController', function($scope, auth, $rootScope, notify) {
     $scope.players;
     $scope.actualSelectedUser;
     $scope.showPlayerNow = false;

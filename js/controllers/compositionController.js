@@ -1,4 +1,4 @@
-app.controller('compositionController', function($scope, auth, $rootScope, request) {
+app.controller('compositionController', function($scope, auth, $rootScope, request, notify) {
     $scope.positions = [];
 
 
@@ -148,6 +148,11 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         class_name: 'my-sticky-class'
                     });
                     $('select').material_select();
+                    if (typeOfChange == 'id_position') {
+                        notify.addNew(new notify.Notification("Twoja pozycja na boisku została zmieniona na: " + value, null, "#!/teamComposition", true));
+                    } else {
+                        notify.addNew(new notify.Notification("Twój numer na boisku został zmieniony na: " + value, null, "#!/teamComposition", true));
+                    }
                 } else {
                     console.log(msg.error);
                     $.gritter.add({

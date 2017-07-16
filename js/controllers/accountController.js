@@ -1,4 +1,4 @@
-app.controller('accountController', function($scope, auth, $rootScope, request) {
+app.controller('accountController', function($scope, auth, $rootScope, request, notify) {
 
 
     $scope.initAccount = function() {

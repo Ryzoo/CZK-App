@@ -12,24 +12,27 @@ app.service('request', function($http, $rootScope) {
 });
 
 app.service('notify', function($http, $rootScope, request) {
-    this.Notification = function(_title, _to, _toAll = false) {
+    this.Notification = function(_title, _to, _url = '', _toAll = false) {
         this.title = _title;
         this.to = _to;
         this.toAll = _toAll;
-        this.senderId = $rootScope.user.id;
-        this.teamId = $rootScope.user.tmid;
+        this.url = _url
     }
 
     this.addNew = function(notifyObj) {
         var urlToPost = "backend/addNotify";
         var dataToSend = {
-            token: $rootScop.user.token,
+            token: $rootScope.user.token,
             usid: $rootScope.user.id,
             tmid: $rootScope.user.tmid,
             title: notifyObj.title,
-            to: notifyObj.to
+            to: notifyObj.to,
+            toAll: notifyObj.toAll,
+            url: notifyObj.url
         };
-        request.sync('POST', urlToPost, dataToSend, null, function(jqXHR, textStatus) {
+        request.sync('POST', urlToPost, dataToSend, function(e) {
+            console.log(e);
+        }, function(jqXHR, textStatus) {
             console.log("Bład podczas komunikacji z serverem: " + textStatus);
         }, true);
 

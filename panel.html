@@ -38,11 +38,8 @@
                 <p ng-show="notifyCount <= 0">Nie masz żadnych nowych powiadomień</p>
             </div>
             <div class="notifyContener">
-                <div class="notif" ng-repeat="notify in newNotify" ng-click='showNotifications(false)'>
+                <div class="notif" ng-repeat="notify in newNotify |orderBy: '-id'" ng-click='showNotifications(false)'>
                     <a href="{{notify.url}}">{{notify.title}}</a>
-                </div>
-                <div class="notif end" ng-click='showNotifications(false)'>
-                    <a href="/">Pokaż wszystkie moje powiadomienia</a>
                 </div>
             </div>
         </div>
@@ -58,8 +55,9 @@
                     <li class='row teamSelect'>
                         <div class="input-field col s12">
                             <select id='teamSelect' class="white-text">
+                                <option value="" disabled selected>Wybierz drużynę</option>
                             </select>
-                            <label class="centered">Wybierz swoją drużynę</label>
+                            <label class="centered">Wybierz drużynę</label>
                         </div>
                     </li>
 

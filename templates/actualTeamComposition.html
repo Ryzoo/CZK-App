@@ -9,26 +9,26 @@
                         Ławka rezerwowych
                     </div>
                     <div class="row">
-                        <table class="table highlight" ng-init="getTeam()">
+                        <table class="table highlight centered" ng-init="getTeam()">
                             <thead>
                                 <tr>
-                                    <th style="text-align:center;">Imię</th>
-                                    <th style="text-align:center;">Nazwisko</th>
-                                    <th style="text-align:center;">Numer na koszulce</th>
-                                    <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>Numer na koszulce</th>
+                                    <th ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="us in positions[0].users" class='row'>
-                                    <td style="text-align: center;">{{us.firstname}}</td>
-                                    <td style="text-align: center;">{{us.lastname}}</td>
-                                    <td style="text-align: center; padding: 0px">
+                                    <td>{{us.firstname}}</td>
+                                    <td>{{us.lastname}}</td>
+                                    <td style=" padding: 0px">
                                         <div class="input-field col" style="text-align: center; padding: 0 5px; margin: 0">
                                             <input style="text-align: center; margin: 0" ng-show="user.role != 'ZAWODNIK' " id='changeNumber' class='changeNumber' id='changeNumber-{{us.tmmid}}-0' type="text" value="{{us.nr_on_tshirt}}" required>
                                         </div>
                                         <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
                                     </td>
-                                    <td style="text-align: center; padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
+                                    <td style=" padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
                                         <div class="input-field col " style="text-align: center; padding: 0 5px; margin: 0">
                                             <select class='selectPosition' id="selectPosition-{{us.tmmid}}-0" style="text-align: center; margin: 0">
                                                 <option style="text-align: center;" ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
@@ -50,34 +50,33 @@
                         Aktualny skład
                     </div>
                     <div class="row">
-                        <table class="table highlight">
+                        <table class="table highlight centered">
                             <thead>
                                 <tr>
-                                    <th style="text-align:center;">Imię</th>
-                                    <th style="text-align:center;">Nazwisko</th>
-                                    <th style="text-align:center;">Numer na koszulce</th>
-                                    <th style="text-align:center;" ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>Numer na koszulce</th>
+                                    <th ng-show="user.role != 'ZAWODNIK' ">Pozycja</th>
                                 </tr>
                             </thead>
                         </table>
                         <div ng-repeat="posit in positions | limitTo:50:1">
                             <div class='titleIn'> {{posit.name}}</div>
-                            <table class="table highlight">
+                            <table class="table highlight centered">
                                 <tbody>
                                     <tr ng-repeat="us in posit.users" class='row'>
-                                        <td style="text-align: center;">{{us.firstname}}</td>
-                                        <td style="text-align: center;">{{us.lastname}}</td>
-                                        <td style="text-align: center; padding: 0px">
+                                        <td>{{us.firstname}}</td>
+                                        <td>{{us.lastname}}</td>
+                                        <td style=" padding: 0px">
                                             <div class="input-field col" style="text-align: center; padding: 0 5px; margin: 0">
                                                 <input style="text-align: center; margin: 0" ng-show="user.role != 'ZAWODNIK' " id='changeNumber' class='changeNumber' id='changeNumber-{{us.tmmid}}-0' type="text" value="{{us.nr_on_tshirt}}" required>
                                             </div>
                                             <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
                                         </td>
-                                        <td style="text-align: center; padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
+                                        <td style=" padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
                                             <div class="input-field col " style="text-align: center; padding: 0 5px; margin: 0">
                                                 <select class='selectPosition' id="selectPosition-{{us.tmmid}}-{{posit.id}}" style="text-align: center; margin: 0">
                                                     <option style="text-align: center;" ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
-                                                    <label>Materialize Select</label>
                                                 </select>
                                             </div>
                                         </td>

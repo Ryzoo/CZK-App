@@ -1,4 +1,4 @@
-app.controller('staffController', function($scope, auth, $rootScope) {
+app.controller('staffController', function($scope, auth, $rootScope, notify) {
     $scope.lastId = 0;
     $scope.staffMembers = [];
     $scope.personelMembers = [];
@@ -70,6 +70,7 @@ app.controller('staffController', function($scope, auth, $rootScope) {
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                    notify.addNew(new notify.Notification("Dodano nowy personel: " + addName, null, "#!/staff", true));
                 } else {
                     console.log(msg);
                     $.gritter.add({

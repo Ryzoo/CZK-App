@@ -24,6 +24,10 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $rootScope.notifyCount = 0;
     $scope.showAllNewsNotify = false;
 
+    $rootScope.openCard = function(name) {
+        $('#' + name).toggle('blind', null, 'fast');
+    }
+
     $scope.showNotifications = function(isMainClik = true) {
         if (isMainClik) {
             if ($scope.showAllNewsNotify == false) {
@@ -70,6 +74,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                     success: function(msg) {
                         if (msg.success) {
                             $('#teamSelect').html('');
+                            $('#teamSelect').append("<option value='' disabled selected> Wybierz drużynę </option>");
                             for (var i = 0; i < msg.data.length; i++) {
                                 $('#teamSelect').append("<option value='" + msg.data[i].tmid + "'>" + msg.data[i].name + "</option>");
                             }

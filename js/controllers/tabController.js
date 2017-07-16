@@ -1,4 +1,4 @@
-app.controller('tabController', function($scope, auth, $rootScope) {
+app.controller('tabController', function($scope, auth, $rootScope, notify) {
     $scope.lastId = 0;
     $scope.posts = [];
     $scope.maxPost = 5;
@@ -102,6 +102,7 @@ app.controller('tabController', function($scope, auth, $rootScope) {
                         time: '5',
                         class_name: 'my-sticky-class'
                     });
+                    notify.addNew(new notify.Notification($rootScope.user.firstname + " " + $rootScope.user.lastname + " dodał post", null, "#!/tab", true));
                 } else {
                     console.log(msg.error);
                     $.gritter.add({
