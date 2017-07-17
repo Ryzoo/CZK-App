@@ -3,66 +3,67 @@
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="initMyStats();">
 
-        <div class="col s12 col m6 l4">
+        <div class="col s12">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
-                        Technika
+                        Statystyki
                     </div>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 col m6 l4">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Szybkość
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 col m6 l4">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Siła
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 col m6 l4">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Wytrzymałość
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 col m6 l4">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Taktyka
-                    </div>
-                    <div>
-
+                    <div class="row">
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="input-field col s6 m5 offset-m1">
+                                        <select id='selectPotential'>
+                                        <option value="" disabled selected>Grupy testowe</option>
+                                    </select>
+                                        <label>Wybierz grupę testową</label>
+                                    </div>
+                                    <div class="input-field col s6 m5">
+                                        <select id='selectDataType'>
+                                        <option value="" disabled >Sposób wyświetlania</option>
+                                        <option value="tabele" selected>Tabela</option>
+                                        <option value="wykresy">Wykres</option>
+                                    </select>
+                                        <label>Wybierz sposób prezentacji danych</label>
+                                    </div>
+                                </div>
+                                <div ng-hide='showPreLoad' class="col s12" style='margin-top:20px;'>
+                                    <div class="row">
+                                        <ul class="collapsible" data-collapsible="accordion">
+                                            <li ng-repeat="test in acutalSelectedGroupTest" ng-init='initChart()'>
+                                                <div class="collapsible-header">{{test.name}}</div>
+                                                <div class="grey lighten-4 collapsible-body">
+                                                    <div class="row">
+                                                        <table ng-show='dataViewAsTable' class='highlight responsive-table centered'>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="padding: 2px 2px">Czas</th>
+                                                                    <th style="padding: 2px 2px">Najlepszy czas</th>
+                                                                    <th style="padding: 2px 2px">Data</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-show='test.scores.length > 0' ng-repeat="score in test.scores">
+                                                                    <td style="padding: 2px 2px">{{score.wynik}}</td>
+                                                                    <td style="padding: 2px 2px">{{test.best}}</td>
+                                                                    <td style="padding: 2px 2px">{{score.data}}</td>
+                                                                </tr>
+                                                                <tr ng-show='test.scores.length <= 0 || test.scores == null'>
+                                                                    <td colspan='3'>Brak danych</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div ng-hide='dataViewAsTable' style='overflow:hidden;' class="row" id="chart-{{test.id}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,3 +87,13 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

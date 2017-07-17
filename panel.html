@@ -86,6 +86,7 @@
                         <ul class="sub">
                             <li><a href="#!/myProfile">Moje dane</a></li>
                             <li><a href="#!/myStats">Moje statystyki</a></li>
+                            <li><a href="#!/myRaports">Moje raporty</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu" ng-show="user.role != 'ZAWODNIK'">
@@ -117,6 +118,7 @@
 <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="/js/libraries/jquery-ui.js"></script>
 
+<scirpt src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></scirpt>
 <script src="/js/libraries/jquery.dcjqaccordion.2.7.js"></script>
 <script src="/js/libraries/jquery.scrollTo.min.js"></script>
 <script src="/js/libraries/jquery.nicescroll.js"></script>
@@ -124,6 +126,8 @@
 <script src="/js/libraries/jquery.datetimepicker.full.js"></script>
 
 <script src="/js/libraries/chart-master/Chart.js"></script>
+<script src="/js/libraries/d3.min.js"></script>
+<script src="/js/libraries/c3.min.js"></script>
 <script src="/js/libraries/gritter/js/jquery.gritter.js"></script>
 <script src="/js/libraries/gritter-conf.js"></script>
 <script src="/js/libraries/js.cookie.js"></script>
@@ -154,6 +158,7 @@
 <script src="/js/controllers/myStatsController.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/css/zabuto_calendar.css">
+<link rel="stylesheet" type="text/css" href="/css/c3.min.css">
 <link rel="stylesheet" type="text/css" href="/js/libraries/gritter/css/jquery.gritter.css" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link href="/css/style-responsive.css" rel="stylesheet">

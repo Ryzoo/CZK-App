@@ -11,6 +11,35 @@ app.service('request', function($http, $rootScope) {
     }
 });
 
+
+app.service('statistic', function($http, $rootScope, request) {
+
+    this.getStats = function(userId, functionSuccess) {
+        var urlToPost = "backend/getStats";
+        var dataToSend = {
+            token: $rootScope.user.token,
+            usid: userId,
+            tmid: $rootScope.user.tmid
+        };
+        request.sync('POST', urlToPost, dataToSend,
+            function(reqData) {
+                console.log(reqData);
+                if (reqData.success) {
+                    $rootScope.$apply(function() {
+                        $rootScope.actualStats = reqData.data;
+                        functionSuccess();
+                    });
+                } else {
+                    console.log('blad');
+                }
+            },
+            function(jqXHR, textStatus) {
+                console.log("Bład podczas komunikacji z serverem: " + textStatus);
+            }, true);
+    }
+
+});
+
 app.service('notify', function($http, $rootScope, request) {
     this.Notification = function(_title, _to, _url = '', _toAll = false) {
         this.title = _title;

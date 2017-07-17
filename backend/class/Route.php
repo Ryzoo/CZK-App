@@ -14,6 +14,7 @@ class Route{
     private $todoMenager = "";
     private $notifyMenager = "";
     private $raportsMenager = "";
+    private $statsMenager = "";
 
     function __construct( $allPost ){
         $this->postData = $allPost;
@@ -181,7 +182,12 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->raportsMenager->deleteRaport($this->postData);
+        }else if( $this->request === "getStats" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->getStats($this->postData);
         }
+
     }
 
     function returnData(){
