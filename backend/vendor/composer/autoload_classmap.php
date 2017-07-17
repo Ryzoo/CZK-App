@@ -12,8 +12,10 @@ return array(
     'Notify' => $baseDir . '/class/Notify.php',
     'Players' => $baseDir . '/class/Players.php',
     'Post' => $baseDir . '/class/Post.php',
+    'Raports' => $baseDir . '/class/Raports.php',
     'Route' => $baseDir . '/class/Route.php',
     'Staff' => $baseDir . '/class/Staff.php',
+    'Stats' => $baseDir . '/class/Stats.php',
     'Teams' => $baseDir . '/class/Teams.php',
     'Todo' => $baseDir . '/class/Todo.php',
 );

@@ -2621,7 +2621,7 @@ label {
 #loadingContent p,
 #loadingContent p span {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Roboto';

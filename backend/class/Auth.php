@@ -80,7 +80,7 @@ class Auth{
             $target_dir = __DIR__ . "/../../";
             $file_name = 'img/users/' . trim($post['birthdate']) . trim($post['lastname']) . "." . $ext;
             $target_file = $target_dir . $file_name;
-            if($_FILES["userImgFile"]["size"] <> 25){
+            if($_FILES["userImgFile"]["size"] >= 25){
                 if ($_FILES["userImgFile"]["size"] <= 2500000){
                     if (($ext == "jpg" || $ext == "png" || $ext == "jpeg")){
                         if(!move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file)){

@@ -5,10 +5,12 @@
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
-                        <div class="card-title" ng-click="openCard('contentAddPerson')" style="cursor:pointer;">
+                        <div class="card-title" ng-click="openCard('contentAddPersonShow')" style="cursor:pointer;">
                             Dodaj nową osobę do drużyny
+                            <p ng-hide='personShow' style='font-size: 12px; text-align:right; float: right;'>Rozwiń <i class="fa fa-chevron-down" aria-hidden="true"></i></p>
+                            <p ng-show='personShow' style='font-size: 12px; text-align:right; float: right;'>Zwiń <i class="fa fa-chevron-up" aria-hidden="true"></i></p>
                         </div>
-                        <div class="row" style='padding:20px;' id='contentAddPerson'>
+                        <div class="row" style='padding:20px; display: none;' id='contentAddPersonShow' ng-show='personShow'>
                             <p style="padding:20px; padding-top:0px; margin: 0;"><strong>Możesz dodać zawodnika lub osoby związane z personelem </br> Dodanie spowoduje stworzenie konta użytkownika na podanym adresie email oraz wygenerowanie i wysłanie na niego hasła </strong></p>
                             <form>
                                 <div class="form-group">
@@ -80,6 +82,21 @@
                     </div>
                     <p style='margin-top: 20px;'>Wybierz zawodnika z listy, aby wyświetlić jego dane</p>
                 </div>
+                <div ng-show='showPreLoad' style="position:relative; margin-top:15%; margin-bottom: 20px; margin: auto">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-tabs" ng-show="showPlayerNow">
                     <ul class="tabs tabs-fixed-width" ng-init="prof=1;">
                         <li class="tab"><a class="active" href="" ng-click='prof=1; stat=0; rapo=0'>Profil</a></li>
@@ -88,73 +105,113 @@
                     </ul>
                 </div>
                 <div class="card-content grey lighten-4" ng-show="showPlayerNow">
-                    <div id="test4" ng-show="prof">
+                    <div ng-show="prof">
                         <div class="row">
                             <div ng-show="showPlayerNow" style="padding:20px; padding-bottom:0">
                                 <div style="display: flex; justify-content: space-around;">
-                                    <div><img src="{{actualSelectedUser.user_img_path}}" style="border-radius: 50% 50%;" width="60" height="60"></div>
+                                    <div><img src="{{actualSelectedUserData.user_img_path}}" style="border-radius: 50% 50%;" width="60" height="60"></div>
                                     <div>
-                                        <strong>{{actualSelectedUser.firstname}} {{actualSelectedUser.lastname}}</strong>
+                                        <strong>{{actualSelectedUserData.firstname}} {{actualSelectedUserData.lastname}}</strong>
                                         </br>
-                                        {{actualSelectedUser.birthdate}}
+                                        {{actualSelectedUserData.birthdate}}
                                         </br>
-                                        {{actualSelectedUser.name}}
+                                        {{actualSelectedUserData.name}}
                                     </div>
                                 </div>
                                 <div style="display: flex; justify-content: flex-start; flex-direction: column; text-align: left; padding:20px 10px;">
                                     <div>
-                                        <strong>Ostatnie logowanie:</strong> {{actualSelectedUser.last_login_date}}
+                                        <strong>Ostatnie logowanie:</strong> {{actualSelectedUserData.last_login_date}}
                                     </div>
                                     <div>
-                                        <strong>Adres zamieszkania:</strong> {{actualSelectedUser.address}}
+                                        <strong>Adres zamieszkania:</strong> {{actualSelectedUserData.address}}
                                     </div>
                                     <div>
-                                        <strong>Adres email:</strong> {{actualSelectedUser.email}}
+                                        <strong>Adres email:</strong> {{actualSelectedUserData.email}}
                                     </div>
                                     <div>
-                                        <strong>Telefon:</strong> {{actualSelectedUser.tel}}
+                                        <strong>Telefon:</strong> {{actualSelectedUserData.tel}}
                                     </div>
                                     <div>
-                                        <strong>Główna noga:</strong> {{actualSelectedUser.main_leg}}
+                                        <strong>Główna noga:</strong> {{actualSelectedUserData.main_leg}}
                                     </div>
                                     <div>
-                                        <strong>Preferowana pozycja:</strong> {{actualSelectedUser.main_position}}
+                                        <strong>Preferowana pozycja:</strong> {{actualSelectedUserData.main_position}}
                                     </div>
                                     <div>
-                                        <strong>Telefon rodzica:</strong> {{actualSelectedUser.parent_tel}}
+                                        <strong>Telefon rodzica:</strong> {{actualSelectedUserData.parent_tel}}
                                     </div>
                                     <div>
-                                        <strong>Wzrost:</strong> {{actualSelectedUser.height}}
+                                        <strong>Wzrost:</strong> {{actualSelectedUserData.height}}
                                     </div>
                                     <div>
-                                        <strong>Waga:</strong> {{actualSelectedUser.weight}}
+                                        <strong>Waga:</strong> {{actualSelectedUserData.weight}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="test5" ng-show="stat">Test 2</div>
-                    <div id="test6" ng-show="rapo">Test 3</div>
+                    <div ng-show="stat">Test 2</div>
+                    <div ng-show="rapo">
+                        <div class="row">
+                            <div class="form-group col s12">
+                                <form id="raportForm" enctype="multipart/form-data">
+                                    <input hidden type="text" name='token' value='{{user.token}}'>
+                                    <input hidden type="text" name='usid' value='{{actualSelectedUserData.id}}'>
+                                    <input hidden type="text" name='tmid' value='{{user.tmid}}'>
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>Wczytaj plik</span>
+                                            <input type="file" name="raportFile" id="raportFile">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" name="raportFile" type="text" placeholder="Dodaj nowy raport">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id='raportName' type="text" name="name" placeholder="Nazwa raportu" class="validate">
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <button type="button" class="waves-effect waves-light btn" ng-click="addRaport()">Prześlij raport</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <ul class="collection col s12">
+                                <div class="col s6" style='padding: 5px 5px;' ng-repeat="raport in actualSelectedUserRaports">
+                                    <li class="collection-item" style="position:relative">
+                                        {{raport.name}}<br/>
+                                        <a href="{{raport.file_path}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
+                                        <div style="position: absolute; top: 5px; right: 15px; color: black; font-size: 20px; cursor: pointer">
+                                            <i class="fa fa-times" aria-hidden="true" ng-click="deleteRaport(raport.id)"></i>
+                                        </div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
     <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
-        <div class="preloader-wrapper big active" style="margin-left: 45%">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</p>
+            <div class="preloader-wrapper big active" style="margin-left: 45%">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 

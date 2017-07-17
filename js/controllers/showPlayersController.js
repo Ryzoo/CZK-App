@@ -1,7 +1,17 @@
 app.controller('showPlayersController', function($scope, auth, $rootScope, notify) {
     $scope.players;
-    $scope.actualSelectedUser;
+    $scope.actualSelectedUserData;
+    $scope.actualSelectedUserStats;
+    $scope.actualSelectedUserRaports;
     $scope.showPlayerNow = false;
+    $scope.showPreLoad = false;
+    $scope.personShow = false;
+
+    $rootScope.openCard = function(name) {
+        $('#' + name).toggle('blind', null, 'fast');
+        $scope.personShow = !$scope.personShow;
+        console.log($scope.personShow);
+    }
 
     $scope.getAllPlayers = function() {
         $rootScope.showContent = false;
@@ -51,6 +61,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     }
 
     $scope.showThisPlayer = function(usidN) {
+        $scope.showPreLoad = true;
         var dataToSend = { token: Cookies.get('tq'), usid: usidN };
         var urlToPost = 'backend/getAllUserData';
         $.ajax({
@@ -61,9 +72,10 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
             success: function(msg) {
                 if (msg.success) {
                     $scope.$apply(function() {
-                        $scope.actualSelectedUser = msg.data;
-                        $scope.showPlayerNow = true;
+                        $scope.actualSelectedUserData = msg.data;
+                        $scope.actualSelectedUserData.id = usidN;
                     });
+                    getUserRaports(usidN);
                 } else {
                     if (msg.error) {
                         $.gritter.add({
@@ -206,6 +218,164 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                 console.log("Blad podczas laczenia z serverem: " + textStatus);
                 $(document).ready(function() {
                     var unique_id = $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się pobrać danych',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
+                    });
+                });
+            },
+        });
+    }
+
+    function getUserStats() {
+
+    }
+
+    function getUserRaports($userId) {
+        var dataToSend = { token: Cookies.get('tq'), usid: $userId, tmid: $rootScope.user.tmid };
+        var urlToPost = 'backend/getRaport';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                console.log(msg);
+                if (msg.success) {
+                    $scope.$apply(function() {
+                        $scope.actualSelectedUserRaports = msg.data;
+                        $scope.showPlayerNow = true;
+                        $scope.showPreLoad = false;
+                    });
+                } else {
+                    if (msg.error) {
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                    }
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $(document).ready(function() {
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się pobrać danych',
+                        image: '',
+                        sticky: true,
+                        time: '5',
+                        class_name: 'my-sticky-class'
+                    });
+                });
+            },
+        });
+    }
+
+    $scope.addRaport = function() {
+        $name = $("#raportName").val();
+        if ($name.length <= 3) {
+            $.gritter.add({
+                title: 'Walidacja',
+                text: 'Wpisz nazwę raportu',
+                image: '',
+                sticky: true,
+                time: '',
+                class_name: 'my-sticky-class'
+            });
+            return;
+        }
+
+        var dataToSend = new FormData($("#raportForm")[0]);
+        var urlToPost = 'backend/addRaport';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                console.log(msg);
+                if (msg.success) {
+                    $.gritter.add({
+                        title: 'Przesyłanie pliku',
+                        text: 'Twoj plik został przesłany pomyślnie.',
+                        image: '',
+                        sticky: true,
+                        time: '',
+                        class_name: 'my-sticky-class'
+                    });
+                    notify.addNew(new notify.Notification("Uzyskałeś raport: " + $name, [$scope.actualSelectedUserData.id], "#!/myRaports"));
+                    getUserRaports($scope.actualSelectedUserData.id);
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Błąd',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: '',
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: 'Błąd',
+                    text: 'Bład z połączeniem : ' + textStatus,
+                    image: '',
+                    sticky: true,
+                    time: '',
+                    class_name: 'my-sticky-class'
+                });
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    };
+
+    $scope.deleteRaport = function(rpid) {
+        var dataToSend = { token: Cookies.get('tq'), id: rpid };
+        var urlToPost = 'backend/deleteRaport';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                if (msg.success) {
+                    $.gritter.add({
+                        title: 'Usuwanie pliku',
+                        text: 'Plik zostal usuniety',
+                        image: '',
+                        sticky: true,
+                        time: '',
+                        class_name: 'my-sticky-class'
+                    });
+                    getUserRaports($scope.actualSelectedUserData.id);
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $(document).ready(function() {
+                    $.gritter.add({
                         title: 'Bład',
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',

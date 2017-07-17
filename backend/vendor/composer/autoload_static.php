@@ -65,8 +65,10 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Notify' => __DIR__ . '/../..' . '/class/Notify.php',
         'Players' => __DIR__ . '/../..' . '/class/Players.php',
         'Post' => __DIR__ . '/../..' . '/class/Post.php',
+        'Raports' => __DIR__ . '/../..' . '/class/Raports.php',
         'Route' => __DIR__ . '/../..' . '/class/Route.php',
         'Staff' => __DIR__ . '/../..' . '/class/Staff.php',
+        'Stats' => __DIR__ . '/../..' . '/class/Stats.php',
         'Teams' => __DIR__ . '/../..' . '/class/Teams.php',
         'Todo' => __DIR__ . '/../..' . '/class/Todo.php',
     );

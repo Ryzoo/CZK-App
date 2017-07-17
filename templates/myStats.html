@@ -1,0 +1,88 @@
+<div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK'])"></div>
+
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init="initMyStats();">
+
+        <div class="col s12 col m6 l4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Technika
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 col m6 l4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Szybkość
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 col m6 l4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Siła
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 col m6 l4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Wytrzymałość
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 col m6 l4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Taktyka
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
