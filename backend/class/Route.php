@@ -186,7 +186,32 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->statsMenager->getStats($this->postData);
+        }else if( $this->request === "getCategoryWitchTest" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->getCategoryWitchTest();
+        }else if( $this->request === "addCategoryTest" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->addCategoryTest($this->postData);
+        }else if( $this->request === "deleteCategoryTest" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->deleteCategoryTest($this->postData);
+        }else if( $this->request === "addTestToCategory" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->addTestToCategory($this->postData);
+        }else if( $this->request === "changeTest" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->changeTest($this->postData);
+        }else if( $this->request === "deleteTestFromCat" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->deleteTestFromCat($this->postData);
         }
+        
 
     }
 

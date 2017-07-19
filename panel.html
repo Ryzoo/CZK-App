@@ -95,6 +95,12 @@
                             <span>Menadżer zawodników</span>
                         </a>
                     </li>
+                    <li class="sub-menu" ng-show="user.role != 'ZAWODNIK'">
+                        <a class="waves-effect waves-light" href="#!/testMenager">
+                            <i class="fa fa-cubes" aria-hidden="true"></i>
+                            <span>Menadżer testów</span>
+                        </a>
+                    </li>
                     <li class="main-sidebar">
                         <a class="waves-effect waves-light" href="" ng-click="logout()">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -156,6 +162,7 @@
 <script src="/js/controllers/todoController.js"></script>
 <script src="/js/controllers/showPlayersController.js"></script>
 <script src="/js/controllers/myStatsController.js"></script>
+<script src="/js/controllers/testMenagerController.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css" href="/css/c3.min.css">

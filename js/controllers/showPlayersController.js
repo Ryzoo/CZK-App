@@ -374,15 +374,13 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
             },
             error: function(jqXHR, textStatus) {
                 console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
-                        image: '',
-                        sticky: true,
-                        time: '5',
-                        class_name: 'my-sticky-class'
-                    });
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety nie udało się pobrać danych',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
                 });
             },
         });

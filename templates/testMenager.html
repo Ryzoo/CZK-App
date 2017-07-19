@@ -1,0 +1,138 @@
+<div ng-init="setPerm(['KOORD','TRENER'])"></div>
+<div class="section" ng-init="getAllPlayers()">
+    <div ng-show='showContent' class="row" ng-init="initTestMenager();">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        KATEGORIE
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="categoryName" type="text" name="categoryName" placeholder="Nazwa kategorii" class="validate">
+                                        <label for="categoryName">Nazwa kategorii</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button class="waves-effect waves-light btn" ng-click="addCategory();">Dodaj</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table highlight">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center;">Nazwa</th>
+                                        <th style="text-align:center;">Ilość dostępnych testów</th>
+                                        <th style="text-align:center;">Usuwanie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="category in categories" id='category-{{category.id}}' class='category-item'>
+                                        <td style='cursor:pointer; text-align:center; padding: 2px 0' ng-click='selectCategory(category.id)' style='padding: 5px;'>{{category.name}}</td>
+                                        <td style='cursor:pointer;  text-align:center; padding: 2px 0' ng-click='selectCategory(category.id)' style='padding: 5px;'>{{category.testCount}}</td>
+                                        <td ng-click="deleteCategory(category.id)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'>
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        TESTY
+                    </div>
+                    <div class="row" ng-show="showTest">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="maxScore" type="text" name="maxScore" placeholder="Maksymalny możliwy wynik" class="validate">
+                                        <label for="maxScore">Maksymalny możliwy wynik</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="minScore" type="text" name="minScore" placeholder="Minimalny możliwy wynik" class="validate">
+                                        <label for="minScore">Minimalny możliwy wynik</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="testName" type="text" name="testName" placeholder="Nazwa testu" class="validate">
+                                        <label for="testName">Nazwa testu</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button class="waves-effect waves-light btn" ng-click="addTest();">Dodaj</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table highlight">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center;">Nazwa</th>
+                                        <th style="text-align:center;">Maks wynik</th>
+                                        <th style="text-align:center;">Min wynik</th>
+                                        <th style="text-align:center;">Usuń</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="test in tests" class='test-item'>
+                                        <td style='text-align:center; padding: 2px 0'>{{test.name}}</td>
+                                        <td style='text-align:center; padding: 2px 0'>
+                                            <input style="text-align: center; margin: 0; width: 50px; height: 25px;" class='changeBest' id="changeBest-{{test.id}}" type="text" value="{{test.best}}" required>
+                                        </td>
+                                        <td style='text-align:center; padding: 2px 0'>
+                                            <input style="text-align: center; margin: 0; width: 50px; height: 25px;" class='changeWorst' id="changeWorst-{{test.id}}" type="text" value="{{test.worst}}" required>
+                                        </td>
+                                        <td ng-click="deleteTest(test.id)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'>
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" ng-hide="showTest">
+                        <div class="titleIn" style='margin-top:10px;'>Wybierz kategorie, aby mieć możliwość podglądu oraz dodawania testów</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

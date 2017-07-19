@@ -40,6 +40,10 @@ app.config(function($routeProvider) {
             templateUrl: "templates/myStats.html",
             controller: "myStatsController"
         })
+        .when("/testMenager", {
+            templateUrl: "templates/testMenager.html",
+            controller: "testMenagerController"
+        })
         .otherwise({
             templateUrl: "templates/badPerm.html"
         });
