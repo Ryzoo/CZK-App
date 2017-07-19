@@ -72,9 +72,9 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                     success: function(msg) {
                         if (msg.success) {
                             $('#teamSelect').html('');
-                            $('#teamSelect').append("<option value='' disabled selected> Wybierz drużynę </option>");
+                            $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
                             for (var i = 0; i < msg.data.length; i++) {
-                                $('#teamSelect').append("<option value='" + msg.data[i].tmid + "'>" + msg.data[i].name + "</option>");
+                                $('#teamSelect').append("<option value='" + msg.data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + msg.data[i].name + "</option>");
                             }
                             if (msg.data[0] != null && msg.data[0].tmid != null) $rootScope.user.tmid = msg.data[0].tmid;
                             setTimeout(function() {
