@@ -7,6 +7,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
     var selectedTestId = -1;
     var selectedUserId = -1;
     var selectedCategoryKey = -1;
+    var selectedTestKey = -1;
     $scope.isSelectedTest = false;
     $scope.isSelectedUser = false;
     $scope.scores = [];
@@ -115,7 +116,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                 if (msg.success) {
                     $scope.users = msg.data;
                     for (key in msg.data) {
-                        if (msg.data[key].roleName == 'ZAWODNIK') {
+                        if (msg.data[key].roleName != 'ZAWODNIK') {
                             $('#userSelect').append('<option value="' + key + '">' + msg.data[key].firstname + ' ' + msg.data[key].lastname + '</option>');
 
                         }
@@ -183,6 +184,8 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             class_name: 'my-sticky-class'
                         });
                         getUserScore();
+                        $('#scoreInput').val('');
+                        notify.addNew(new notify.Notification("Otrzymałeś nowy wynik z kategorii : " + $scope.categories[selectedCategoryKey].name + " -- " + $scope.categories[selectedCategoryKey].tests[selectedTestKey].name, [selectedUserId], "#!/myStats"));
                     } else {
                         if (msg.error)
                             $.gritter.add({
@@ -281,6 +284,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
     $(document).on('change', '#testSelect', function() {
         $scope.isSelectedTest = true;
         selectedTestId = $scope.categories[selectedCategoryKey].tests[$(this).val()].id;
+        selectedTestKey = $(this).val();
         checkChange();
     });
 

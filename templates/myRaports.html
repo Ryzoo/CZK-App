@@ -1,0 +1,49 @@
+<div ng-init="setPerm(['ZAWODNIK','TRENER'])"></div>
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init="initRaports();">
+        <div class="col s12 m8 offset-m2">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        RAPORTY
+                    </div>
+                    <div class="row">
+                        <ul class="collection col s12" style='background:#ededed'>
+                            <div class="col s6" style='padding: 5px 5px;' ng-repeat="raport in raportsList">
+                                <li class="collection-item" style="position:relative">
+                                    {{raport.name}}<br/>
+                                    <a href="{{raport.file_path}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

@@ -48,6 +48,11 @@ app.config(function($routeProvider) {
             templateUrl: "templates/newScore.html",
             controller: "newScoreController"
         })
+        .when("/myRaports", {
+            templateUrl: "templates/myRaports.html",
+            controller: "myRaportsController"
+        })
+
 
     .otherwise({
         templateUrl: "templates/badPerm.html"
