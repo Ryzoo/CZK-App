@@ -67,7 +67,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
 
     function getUserScore() {
         $scope.scores = [];
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid, tsid: selectedTestId, usid: $rootScope.user.id };
+        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid, tsid: selectedTestId, usid: selectedUserId };
         var urlToPost = 'backend/getScoreFromTestId';
         $.ajax({
             url: urlToPost,
@@ -115,7 +115,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                 if (msg.success) {
                     $scope.users = msg.data;
                     for (key in msg.data) {
-                        if (msg.data[key].roleName) {
+                        if (msg.data[key].roleName == 'ZAWODNIK') {
                             $('#userSelect').append('<option value="' + key + '">' + msg.data[key].firstname + ' ' + msg.data[key].lastname + '</option>');
 
                         }
@@ -163,8 +163,8 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
     }
 
     $scope.addScore = function() {
-        if ($.isNumeric($('#scoreInput').val())) {
-            var score = parseFloat($('#scoreInput').val());
+        if ($.isNumeric($('#scoreInput').val().replace(',', '.'))) {
+            var score = parseFloat($('#scoreInput').val().replace(',', '.'));
             var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid, usid: selectedUserId, tsid: selectedTestId, score: score };
             var urlToPost = 'backend/addScore';
             $.ajax({
@@ -210,7 +210,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
         } else {
             $.gritter.add({
                 title: 'Walidacja',
-                text: 'Wpisz najpierw wynik. Musi być on liczbą.',
+                text: 'Wpisz najpierw wynik. Musi być on liczbą. ',
                 image: '',
                 sticky: true,
                 time: '5',
