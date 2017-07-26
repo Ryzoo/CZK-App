@@ -37,6 +37,68 @@ class Stats{
         return array( "error"=>$error ,"success"=>$success,"data"=>$allPotential );
     }
 
+    function getScoreFromTestId($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        if( isset($post["usid"]) && isset($post["tmid"]) && isset($post["tsid"]) ){
+            $usid = $post["usid"];
+            $tmid = $post["tmid"];
+            $allScores =  ($this->db->getConnection())->fetchRowMany('SELECT id, data, wynik FROM potential_score WHERE id_test='.$post["tsid"].' AND id_team='.$tmid.' AND id_user='.$usid);
+        }
+        return array( "error"=>$error ,"success"=>$success,"data"=>$allScores );
+    }
+
+    function deleteScore($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+      
+        $id = $post["tsid"];
+        $token = $post["token"];
+        $isAdmin = !(($this->auth)->checkPerm($token,"ZAWODNIK"));
+        if( !$isAdmin ){
+            $error = "Uzytkownik o danym tokenie nieodnaleziony lub brak uprawnien";
+            $success = false;
+        }else{
+            $toReturn = ($this->db->getConnection())->delete('potential_score', ['id' => $id]);
+        }
+       
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function addScore($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        if( isset($post["score"]) && isset($post["usid"]) && isset($post["tmid"]) && isset($post["tsid"]))
+        {
+            $usid = $post["usid"];
+            $tmid = $post["tmid"];
+            $tsid = $post["tsid"];
+            $score = $post["score"];
+            $token = $post["token"];
+            $isAdmin = !(($this->auth)->checkPerm($token,"ZAWODNIK"));
+            if( !$isAdmin ){
+                $error = "Uzytkownik o danym tokenie nieodnaleziony lub nie ma uprawnien";
+                $success = false;
+            }else{
+                $data = [
+                    'id_test' => $tsid,
+                    'id_user' => $usid,
+                    'id_team' => $tmid,
+                    'wynik' => $score
+                ];
+                $toReturn = ($this->db->getConnection())->insert('potential_score', $data);
+            }
+        }else{
+            $error = "Brak potrzebnych danych";
+            $success = false;
+        }
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+
     function getCategoryWitchTest(){
         $toReturn = null;
         $success = true;

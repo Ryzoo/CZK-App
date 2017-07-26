@@ -44,9 +44,14 @@ app.config(function($routeProvider) {
             templateUrl: "templates/testMenager.html",
             controller: "testMenagerController"
         })
-        .otherwise({
-            templateUrl: "templates/badPerm.html"
-        });
+        .when("/newScore", {
+            templateUrl: "templates/newScore.html",
+            controller: "newScoreController"
+        })
+
+    .otherwise({
+        templateUrl: "templates/badPerm.html"
+    });
 
 
 });

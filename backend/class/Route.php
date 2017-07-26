@@ -130,6 +130,10 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) && isset($this->postData['tmid']))
                 $this->dataToReturn = $this->playersMenager->getAllPlayers($this->postData['tmid']);
+        }else if( $this->request === "getScoreFromTestId" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->getScoreFromTestId($this->postData);
         }else if( $this->request === "addPerson" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
@@ -186,6 +190,14 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->statsMenager->getStats($this->postData);
+        }else if( $this->request === "addScore" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->addScore($this->postData);
+        }else if( $this->request === "deleteScore" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) && isset($this->postData['tsid']))
+                $this->dataToReturn = $this->statsMenager->deleteScore($this->postData);
         }else if( $this->request === "getCategoryWitchTest" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
