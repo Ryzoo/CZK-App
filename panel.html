@@ -74,7 +74,7 @@
                         </a>
                         <ul class="sub">
                             <li><a href="#!/tab">Tablica</a></li>
-                            <li><a href="#!/teamComposition">Skład</a></li>
+                            <li><a href="#!/teamComposition">Skład meczowy</a></li>
                             <li><a href="#!/staff">Sztab</a></li>
                         </ul>
                     </li>
@@ -85,11 +85,11 @@
                         </a>
                         <ul class="sub">
                             <li><a href="#!/myProfile">Moje dane</a></li>
-                            <li><a href="#!/myStats">Moje statystyki</a></li>
+                            <li ng-show="user.role == 'ZAWODNIK'"><a href="#!/myStats">Moje statystyki</a></li>
                             <li><a href="#!/myRaports">Moje raporty</a></li>
                         </ul>
                     </li>
-                    <li class="sub-menu">
+                    <li class="sub-menu" ng-show="user.role != 'ZAWODNIK'">
                         <a href="javascript:;">
                             <i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
                             <span>Menadżer testów</span>
@@ -99,7 +99,7 @@
                             <li><a href="#!/newScore">Zarządzaj wynikami</a></li>
                         </ul>
                     </li>
-                    <li class="sub-menu">
+                    <li class="sub-menu" ng-show="user.role != 'ZAWODNIK'">
                         <a href="javascript:;">
                             <i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i>
                             <span>Menadżer statystyk</span>
@@ -115,6 +115,18 @@
                             <span>Menadżer zawodników</span>
                         </a>
                     </li>
+                    <li class="main-sidebar" ng-show="user.role == 'KOORD'">
+                        <a class="waves-effect waves-light" href="#!/masterMenager">
+                            <i class="fa fa-user-secret fa-fw" aria-hidden="true"></i>
+                            <span>Menadżer trenerów</span>
+                        </a>
+                    </li>
+                    <li class="main-sidebar" ng-show="user.role == 'KOORD'">
+                        <a class="waves-effect waves-light" href="#!/teamsMenager">
+                            <i class="fa fa-address-card-o fa-fw" aria-hidden="true"></i>
+                            <span>Menadżer drużyn</span>
+                        </a>
+                    </li>
 
                     <li class="main-sidebar">
                         <a class="waves-effect waves-light" href="" ng-click="logout()">
@@ -122,9 +134,6 @@
                             <span>Wyloguj się</span>
                         </a>
                     </li>
-
-
-
                 </ul>
             </div>
         </aside>
@@ -183,9 +192,8 @@
 <script src="/js/controllers/newScoreController.js"></script>
 <script src="/js/controllers/myRaportsController.js"></script>
 <script src="/js/controllers/usersStatisticController.js"></script>
-<script src="/js/controllers/teamStatisticController.js"></script>
-
-
+<script src="/js/controllers/masterMenagerController.js"></script>
+<script src="/js/controllers/teamsMenagerController.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css" href="/css/c3.min.css">

@@ -115,6 +115,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
 
             } else {
                 document.location = "login";
+                return;
                 console.log(data.error);
             }
         }

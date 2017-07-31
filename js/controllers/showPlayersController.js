@@ -7,10 +7,9 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     $scope.showPreLoad = false;
     $scope.personShow = false;
 
-    $rootScope.openCard = function(name) {
+    $scope.openCard = function(name) {
         $('#' + name).toggle('blind', null, 'fast');
         $scope.personShow = !$scope.personShow;
-        console.log($scope.personShow);
     }
 
     $scope.getAllPlayers = function() {

@@ -104,9 +104,10 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         var changedNumber = $(this).val();
         for (var i = 0; i < $scope.positions[positionId].users.length; i++) {
             if ($scope.positions[positionId].users[i].tmmid == teamMembersId) {
+                var usid = $scope.positions[positionId].users[i].usid;
                 $scope.$apply(function() {
                     $scope.positions[positionId].users[i].nr_on_tshirt = changedNumber;
-                    saveComposition('nr_on_tshirt', teamMembersId, changedNumber);
+                    saveComposition('nr_on_tshirt', teamMembersId, changedNumber, usid);
                 });
                 break;
             }
@@ -119,17 +120,18 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         for (var i = 0; i < $scope.positions[positionId].users.length; i++) {
             if ($scope.positions[positionId].users[i].tmmid == teamMembersId) {
                 $scope.positions[positionId].users[i].id_position = changedNumber;
+                var usid = $scope.positions[positionId].users[i].usid;
                 $scope.$apply(function() {
                     $scope.positions[changedNumber].users.push($scope.positions[positionId].users[i]);
                     $scope.positions[positionId].users.splice(i, 1);
-                    saveComposition('id_position', teamMembersId, changedNumber);
+                    saveComposition('id_position', teamMembersId, changedNumber, usid);
                 });
                 break;
             }
         }
     })
 
-    function saveComposition(typeOfChange, tmid, value) {
+    function saveComposition(typeOfChange, tmid, value, usid) {
         var dataToSend = { token: Cookies.get('tq'), tmmid: tmid, val: value, type: typeOfChange };
         var urlToPost = 'backend/changeCollection';
         $.ajax({
@@ -148,10 +150,17 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         class_name: 'my-sticky-class'
                     });
                     $('select').material_select();
+
                     if (typeOfChange == 'id_position') {
-                        notify.addNew(new notify.Notification("Twoja pozycja na boisku została zmieniona na: " + value, null, "#!/teamComposition", true));
+                        for (var index = 0; index < $scope.positions.length; index++) {
+                            if ($scope.positions[index].id == value) {
+                                value = $scope.positions[index].name;
+                                break;
+                            }
+                        }
+                        notify.addNew(new notify.Notification("Twoja pozycja na boisku została zmieniona na: " + value, [usid], "#!/teamComposition"));
                     } else {
-                        notify.addNew(new notify.Notification("Twój numer na boisku został zmieniony na: " + value, null, "#!/teamComposition", true));
+                        notify.addNew(new notify.Notification("Twój numer na boisku został zmieniony na: " + value, [usid], "#!/teamComposition"));
                     }
                 } else {
                     console.log(msg.error);

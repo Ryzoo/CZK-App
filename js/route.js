@@ -60,6 +60,14 @@ app.config(function($routeProvider) {
             templateUrl: "templates/teamStatistic.html",
             controller: "teamStatisticController"
         })
+        .when("/masterMenager", {
+            templateUrl: "templates/masterMenager.html",
+            controller: "masterMenagerController"
+        })
+        .when("/teamsMenager", {
+            templateUrl: "templates/teamsMenager.html",
+            controller: "teamsMenagerController"
+        })
         .otherwise({
             templateUrl: "templates/badPerm.html"
         });

@@ -1,4 +1,4 @@
-<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK'])"></div>
+<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK','STAFF'])"></div>
 <div class="section row">
     <div class="col m8 offset-m2">
         <div class="card">
@@ -64,7 +64,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group ">
+                        <div class="form-group " ng-show="user.role == 'ZAWODNIK'">
                             <div class="row">
                                 <div class="input-field col s6">
                                     <select name='mainPosition'>
@@ -88,13 +88,54 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
                             <div class="row">
                                 <h5>Wybierz budowę ciała która najlepiej Cię opisuje z listy poniżej </h5>
                                 <div class="row">
-                                    <div class="col s4">Ekto opis</div>
-                                    <div class="col s4">Mezo opis</div>
-                                    <div class="col s4">Endo opis</div>
+                                    <div class="col s12 m4">
+                                        <h5>Ektomorfik</h5>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Cechy fizyczne</p>
+                                        <ul style='list-style: square'>
+                                            <li>Chudy</li>
+                                            <li>Delikatna budowa</li>
+                                            <li>Słabo umięśniony</li>
+                                        </ul>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Wpływ na sport</p>
+                                        <ul style='list-style: square'>
+                                            <li>Problemy z budowaniem mięśni</li>
+                                            <li>Łatwość odchudzania</li>
+                                            <li>Problemy w dyscyplinach wymagających siły</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <h5>Mezomorfik</h5>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Cechy fizyczne</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Muskularna budowa</li>
+                                            <li>Wyprostowana postawa</li>
+                                            <li>Postura zamknięta w prostokąt</li>
+                                        </ul>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Wpływ na sport</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Łatwość budowania mięśni</li>
+                                            <li>Łatwość odchudzania</li>
+                                            <li>Urodzony sportowiec</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <h5>Endomorfik</h5>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Cechy fizyczne</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Tendencja do otłuszczenia</li>
+                                            <li>Słabo rozwinięta muskulatura</li>
+                                            <li>Postura zamknięta w okrąg</li>
+                                        </ul>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Wpływ na sport</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Przeciętna zdolność budowania masy mięśniowej</li>
+                                            <li>Duże odkładanie się tłuszczu</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" style='margin-top: 20px;'>
@@ -116,14 +157,14 @@
                                     <input id='TelefonInput' type="text" name="tel" placeholder="Telefon " value="{{user.tel}}" class="validate">
                                     <label for="TelefonInput">Telefon</label>
                                 </div>
-                                <div class="input-field col s6">
+                                <div class="input-field col s6" ng-show="user.role == 'ZAWODNIK'">
                                     <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}}" class="validate">
                                     <label for="parenInput">Telefon rodzica</label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
                             <div class="row">
                                 <div class="input-field col s6">
                                     <input id='wagaInput' type="text" name="weight" placeholder="Waga " value="{{user.weight}}" class="validate">

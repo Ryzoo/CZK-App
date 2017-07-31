@@ -1,4 +1,4 @@
-<div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK'])"></div>
+<div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK','STAFF'])"></div>
 
 <div class="section">
     <div ng-show='showContent' class="row">
@@ -30,7 +30,7 @@
                                     </td>
                                     <td style=" padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
                                         <div class="input-field col " style="text-align: center; padding: 0 5px; margin: 0">
-                                            <select class='selectPosition' id="selectPosition-{{us.tmmid}}-0" style="text-align: center; margin: 0">
+                                            <select id="selectPosition-{{us.tmmid}}-0" class='selectPosition' style="text-align: center; margin: 0">
                                                 <option style="text-align: center;" ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
                                                 <label>Materialize Select</label>
                                             </select>
@@ -75,7 +75,7 @@
                                         </td>
                                         <td style=" padding: 0px" ng-show="user.role != 'ZAWODNIK' ">
                                             <div class="input-field col " style="text-align: center; padding: 0 5px; margin: 0">
-                                                <select class='selectPosition' id="selectPosition-{{us.tmmid}}-{{posit.id}}" style="text-align: center; margin: 0">
+                                                <select id="selectPosition-{{us.tmmid}}-{{posit.id}}" class='selectPosition' style="text-align: center; margin: 0">
                                                     <option style="text-align: center;" ng-repeat="pos in positions" value="{{pos.id}}" ng-selected="{{pos.id == us.id_position}}">{{pos.name}}</option>
                                                 </select>
                                             </div>
