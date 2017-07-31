@@ -190,6 +190,10 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->statsMenager->getStats($this->postData);
+        }else if( $this->request === "getTeamStats" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->statsMenager->getTeamStats($this->postData);
         }else if( $this->request === "addScore" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )

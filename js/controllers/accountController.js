@@ -48,6 +48,7 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
                         $rootScope.user.mainLeg = msg.data.post.mainLeg;
                         $rootScope.user.mainPosition = msg.data.post.mainPosition;
                         $rootScope.user.address = msg.data.post.address;
+                        $rootScope.user.bodyType = msg.data.post.bodyType;
                         if (msg.data.url.length > 2)
                             $rootScope.user.imgPath = msg.data.url;
                     });

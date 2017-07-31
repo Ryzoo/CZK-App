@@ -110,6 +110,7 @@ class Auth{
             if( isset( $post["lastname"] ) ) $dataUsers["lastname"] = trim($post["lastname"]);
             if( isset( $post["birthdate"] ) ) $dataUsers["birthdate"] = trim($post["birthdate"]);
             if( isset( $post["mainPosition"] ) ) $dataUsers["main_position"] = trim($post["mainPosition"]);
+            if( isset( $post["bodyType"] ) ) $dataUsers["body_type"] = trim($post["bodyType"]);
             if( isset( $post["mainLeg"] ) ) $dataUsers["main_leg"] = trim($post["mainLeg"]);
             if( isset( $post["tel"] ) ) $dataUsers["tel"] = trim($post["tel"]);
             if( isset( $post["parentTel"] ) ) $dataUsers["parent_tel"] = trim($post["parentTel"]);

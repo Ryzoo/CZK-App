@@ -67,7 +67,7 @@
                         <div class="form-group ">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <select>
+                                    <select name='mainPosition'>
                                         <option value="" disabled selected>Preferowana pozycja</option>
                                         <option value="bramka" ng-selected="user.mainPosition == 'bramka'" >Bramka</option>
                                         <option value="obrona" ng-selected="user.mainPosition == 'obrona'">Obrona</option>
@@ -77,13 +77,35 @@
                                     <label>Preferowana pozycja</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <select>
+                                    <select name='mainLeg'>
                                         <option value="" disabled selected>Noga wiodąca</option>
                                         <option value="prawa" ng-selected="user.mainLeg == 'prawa'" >Prawa</option>
                                         <option value="lewa" ng-selected="user.mainLeg == 'lewa'">Lewa</option>
                                         <option value="obunozny" ng-selected="user.mainLeg == 'obunozny'">Obunożny</option>
                                     </select>
                                     <label>Noga wiodąca</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <h5>Wybierz budowę ciała która najlepiej Cię opisuje z listy poniżej </h5>
+                                <div class="row">
+                                    <div class="col s4">Ekto opis</div>
+                                    <div class="col s4">Mezo opis</div>
+                                    <div class="col s4">Endo opis</div>
+                                </div>
+                            </div>
+                            <div class="row" style='margin-top: 20px;'>
+                                <div class="input-field col s10 offset-s1">
+                                    <select name='bodyType'>
+                                        <option value="" disabled selected>Budowa ciała</option>
+                                        <option value="Ektomorfik" ng-selected="user.bodyType == 'Ektomorfik'" >Ektomorfik</option>
+                                        <option value="Mezomorfik" ng-selected="user.bodyType == 'Mezomorfik'">Mezomorfik</option>
+                                        <option value="Endomorfik" ng-selected="user.bodyType == 'Endomorfik'">Endomorfik</option>
+                                    </select>
+                                    <label>Budowa ciała</label>
                                 </div>
                             </div>
                         </div>

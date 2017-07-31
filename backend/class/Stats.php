@@ -37,6 +37,27 @@ class Stats{
         return array( "error"=>$error ,"success"=>$success,"data"=>$allPotential );
     }
 
+    function getTeamStats($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        if( isset($post["usid"]) && isset($post["tmid"]) ){
+            $usid = $post["usid"];
+            $tmid = $post["tmid"];
+            $allPotential = ($this->db->getConnection())->fetchRowMany('SELECT * FROM potential');
+            for($i=0;$i<count($allPotential);$i++){
+                $allPotential[$i]['tests'] = ($this->db->getConnection())->fetchRowMany('SELECT id, name, best, worst FROM potential_test WHERE id_potential='.$allPotential[$i]['id']);
+                for($j=0;$j<count($allPotential[$i]['tests']);$j++){
+                    $allPotential[$i]['tests'][$j]['user'] = array();
+                    for($x=0;$x<count($usid);$x++){
+                        array_push( $allPotential[$i]['tests'][$j]['user'], ['id'=>$usid[$x], 'score'=>($this->db->getConnection())->fetchRowMany('SELECT id, data, wynik FROM potential_score WHERE id_test='.$allPotential[$i]['tests'][$j]['id'].' AND id_team='.$tmid.' AND id_user='.$usid[$x])] );
+                    }
+                }
+            }
+        }
+        return array( "error"=>$error ,"success"=>$success,"data"=>$allPotential );
+    }
+
     function getScoreFromTestId($post){
         $toReturn = null;
         $success = true;

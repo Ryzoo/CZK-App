@@ -15,7 +15,8 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         weight: "",
         mainLeg: "",
         mainPosition: "",
-        address: ""
+        address: "",
+        bodyType: ""
     }
     $scope.contentLoaded = false;
     $rootScope.newNotify = [];
@@ -61,6 +62,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                 $rootScope.user.weight = data.data.weight;
                 $rootScope.user.mainLeg = data.data.main_leg;
                 $rootScope.user.mainPosition = data.data.main_position;
+                $rootScope.user.bodyType = data.data.body_type;
                 $rootScope.user.address = data.data.address;
                 var dataToSend = { token: Cookies.get('tq') };
                 var urlToPost = 'backend/getTeams';
