@@ -1,26 +1,33 @@
-app.controller('myStatsController', function($scope, auth, $rootScope, notify, statistic) {
+app.controller('usersStatisticController', function($scope, auth, $rootScope, notify, statistic) {
     $rootScope.showContent = false;
     $scope.showPreLoad = true;
     $rootScope.actualStats = [];
     $scope.acutalSelectedGroup = 0;
     $scope.acutalSelectedGroupTest = []
     $scope.dataViewAsTable = true;
+    $scope.acutalSelectedUserId = '';
+    $scope.showTestAndType = false;
 
-    $scope.initMyStats = function() {
-        statistic.getStats($rootScope.user.id, function() {
+    $scope.initUsersStats = function() {
+        getAllPlayers();
+    }
+
+    $('#selectUserToStat').on('change', function() {
+        $scope.showTestAndType = false;
+        $scope.acutalSelectedUserId = $(this).val();
+        statistic.getStats($scope.acutalSelectedUserId, function() {
+            $rootScope.showContent = true;
             $('#selectPotential').html('');
             $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
             for (var i = 0; i < $rootScope.actualStats.length; i++) {
                 $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
             }
             $('select').material_select();
-            $rootScope.showContent = true;
+            $scope.showTestAndType = true;
         });
-    }
-
-
-    $(document).on('click', '.optionsToShow', function() {
-        $scope.initChart();
+        $scope.$apply(function() {
+            $scope.acutalSelectedGroupTest = [];
+        });
     });
 
     $('#selectPotential').on('change', function() {
@@ -28,14 +35,10 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
         $scope.$apply(function() {
             $scope.acutalSelectedGroup = $("#selectPotential").val();
             $scope.acutalSelectedGroupTest = $rootScope.actualStats[$scope.acutalSelectedGroup].tests;
-        })
+        });
         $('.collapsible').collapsible();
         $scope.initChart();
-        setTimeout(function() {
-            initPercentChart();
-            initSummaryChart();
-        }, 50);
-
+        initPercentChart();
     });
 
     $('#selectDataType').on('change', function() {
@@ -43,48 +46,17 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
         $scope.initChart();
     });
 
-    function initPercentChart() {
-        if ($scope.acutalSelectedGroupTest)
-            for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
-                if ($scope.acutalSelectedGroupTest[i].id != undefined) {
-                    var data = [];
-                    data.push('wynik');
-                    data.push($scope.acutalSelectedGroupTest[i].percentLastScore);
-                    var chart = c3.generate({
-                        bindto: '#chart-percent-' + $scope.acutalSelectedGroupTest[i].id,
-                        data: {
-                            columns: [
-                                data
-                            ],
-                            type: 'gauge',
-                        },
-                        gauge: {},
-                        color: {
-                            pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
-                            threshold: {
-                                values: [30, 60, 90, 100]
-                            }
-                        },
-                        size: {
-                            height: 40
-                        }
-                    });
-                }
-            }
-    }
+    $(document).on('click', '.optionsToShow', function() {
+        $scope.initChart();
+    });
 
-    function initSummaryChart() {
-        if ($scope.acutalSelectedGroupTest) {
+    function initPercentChart() {
+        for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
             var data = [];
             data.push('wynik');
-            var testsCount = $scope.acutalSelectedGroupTest.length - 1;
-            var percentSummary = 0;
-            if ($scope.acutalSelectedGroupTest[testsCount].actual != 0)
-                var percentSummary = $scope.acutalSelectedGroupTest[testsCount].actual / $scope.acutalSelectedGroupTest[testsCount].max;
-            percentSummary = parseFloat(percentSummary) * 100;
-            data.push(percentSummary);
+            data.push($scope.acutalSelectedGroupTest[i].percentLastScore);
             var chart = c3.generate({
-                bindto: "#summary-chart-",
+                bindto: '#chart-percent-' + $scope.acutalSelectedGroupTest[i].id,
                 data: {
                     columns: [
                         data
@@ -99,14 +71,14 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                     }
                 },
                 size: {
-                    height: 180
+                    height: 40
                 }
             });
         }
     }
 
     $scope.initChart = function() {
-        if (!$scope.dataViewAsTable && $scope.acutalSelectedGroupTest) {
+        if (!$scope.dataViewAsTable) {
             setTimeout(function() {
                 for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
                     var data = [];
@@ -133,7 +105,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                                     type: 'timeseries',
                                     localtime: false,
                                     tick: {
-                                        format: '%Y/%m/%d'
+                                        format: '%Y/%m/%d %H:%M:%S'
                                     }
                                 }
                             },
@@ -147,5 +119,49 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                 }
             }, 50);
         }
+    }
+
+    function getAllPlayers() {
+        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
+        var urlToPost = 'backend/getAllPlayers';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                if (msg.success) {
+                    $scope.users = msg.data;
+                    for (key in msg.data) {
+                        if (msg.data[key].roleName != 'ZAWODNIK') {
+                            $('#selectUserToStat').append('<option value="' + msg.data[key].usid + '">' + msg.data[key].firstname + ' ' + msg.data[key].lastname + '</option>');
+                        }
+                    }
+                    $rootScope.showContent = true;
+                    Materialize.updateTextFields();
+                    $('select').material_select();
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: '5',
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety nie udało się pobrać danych',
+                    image: '',
+                    sticky: true,
+                    time: '5',
+                    class_name: 'my-sticky-class'
+                });
+            },
+        });
     }
 });

@@ -52,11 +52,13 @@ app.config(function($routeProvider) {
             templateUrl: "templates/myRaports.html",
             controller: "myRaportsController"
         })
-
-
-    .otherwise({
-        templateUrl: "templates/badPerm.html"
-    });
+        .when("/usersStatistic", {
+            templateUrl: "templates/usersStatistic.html",
+            controller: "usersStatisticController"
+        })
+        .otherwise({
+            templateUrl: "templates/badPerm.html"
+        });
 
 
 });
