@@ -41,7 +41,20 @@ var Script = function() {
         $(window).on('resize', responsiveView);
     });
 
+    $('.main-sidebar a').on('click', function() {
+        if ($(window).width() <= 728)
+            toggleSidebar();
+    })
+    $('.sub-menu ul li a').on('click', function() {
+        if ($(window).width() <= 728)
+            toggleSidebar();
+    })
+
     $('.fa-bars').click(function() {
+        toggleSidebar();
+    });
+
+    function toggleSidebar() {
         if ($('#sidebar > ul').is(":visible") === true) {
             $('#main-content').css({
                 'margin-left': '0px'
@@ -61,7 +74,7 @@ var Script = function() {
             });
             $("#container").removeClass("sidebar-closed");
         }
-    });
+    }
 
     // custom scrollbar
     $("#sidebar").niceScroll({ styler: "fb", cursorcolor: "#4ECDC4", cursorwidth: '3', cursorborderradius: '10px', background: '#404040', spacebarenabled: false, cursorborder: '' });

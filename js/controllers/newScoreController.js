@@ -116,7 +116,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                 if (msg.success) {
                     $scope.users = msg.data;
                     for (key in msg.data) {
-                        if (msg.data[key].roleName != 'ZAWODNIK') {
+                        if (msg.data[key].roleName == 'ZAWODNIK') {
                             $('#userSelect').append('<option value="' + key + '">' + msg.data[key].firstname + ' ' + msg.data[key].lastname + '</option>');
 
                         }

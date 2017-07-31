@@ -178,8 +178,15 @@
     .dcjq-icon {
         top: 10px;
     }
+    ul.sidebar-menu li a {
+        padding: 3px 0 !important;
+        text-align: center !important;
+        height: auto !important;
+    }
     ul.sidebar-menu li ul.sub li a {
-        padding: 0;
+        text-align: center !important;
+        padding: 3px 0 !important;
+        height: auto !important;
     }
     /*---*/
     .img-responsive {

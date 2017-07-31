@@ -39,6 +39,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
         $('.collapsible').collapsible();
         $scope.initChart();
         initPercentChart();
+        initSummaryChart();
     });
 
     $('#selectDataType').on('change', function() {
@@ -51,12 +52,47 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
     });
 
     function initPercentChart() {
-        for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
+        if ($scope.acutalSelectedGroupTest)
+            for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
+                if ($scope.acutalSelectedGroupTest[i].id != undefined) {
+                    var data = [];
+                    data.push('wynik');
+                    data.push($scope.acutalSelectedGroupTest[i].percentLastScore);
+                    var chart = c3.generate({
+                        bindto: '#chart-percent-' + $scope.acutalSelectedGroupTest[i].id,
+                        data: {
+                            columns: [
+                                data
+                            ],
+                            type: 'gauge',
+                        },
+                        gauge: {},
+                        color: {
+                            pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
+                            threshold: {
+                                values: [30, 60, 90, 100]
+                            }
+                        },
+                        size: {
+                            height: 40
+                        }
+                    });
+                }
+            }
+    }
+
+    function initSummaryChart() {
+        if ($scope.acutalSelectedGroupTest) {
             var data = [];
             data.push('wynik');
-            data.push($scope.acutalSelectedGroupTest[i].percentLastScore);
+            var testsCount = $scope.acutalSelectedGroupTest.length - 1;
+            var percentSummary = 0;
+            if ($scope.acutalSelectedGroupTest[testsCount].actual != 0)
+                var percentSummary = $scope.acutalSelectedGroupTest[testsCount].actual / $scope.acutalSelectedGroupTest[testsCount].max;
+            percentSummary = parseFloat(percentSummary) * 100;
+            data.push(percentSummary);
             var chart = c3.generate({
-                bindto: '#chart-percent-' + $scope.acutalSelectedGroupTest[i].id,
+                bindto: "#summary-chart-",
                 data: {
                     columns: [
                         data
@@ -71,14 +107,14 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                     }
                 },
                 size: {
-                    height: 40
+                    height: 180
                 }
             });
         }
     }
 
     $scope.initChart = function() {
-        if (!$scope.dataViewAsTable) {
+        if (!$scope.dataViewAsTable && $scope.acutalSelectedGroupTest) {
             setTimeout(function() {
                 for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
                     var data = [];
@@ -133,7 +169,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                 if (msg.success) {
                     $scope.users = msg.data;
                     for (key in msg.data) {
-                        if (msg.data[key].roleName != 'ZAWODNIK') {
+                        if (msg.data[key].roleName == 'ZAWODNIK') {
                             $('#selectUserToStat').append('<option value="' + msg.data[key].usid + '">' + msg.data[key].firstname + ' ' + msg.data[key].lastname + '</option>');
                         }
                     }
