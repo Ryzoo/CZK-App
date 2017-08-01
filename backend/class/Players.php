@@ -24,7 +24,17 @@ class Players{
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND id_team = '.$tmid);
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) AND id_team = '.$tmid);
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function getAllMaster(){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM users, user_data, roles WHERE users.id_role = roles.id AND  users.id = user_data.user_id AND users.id_role = 2');
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
@@ -33,15 +43,22 @@ class Players{
         $toReturn = null;
         $success = true;
         $error = "";
-        if( isset($post["lname"]) && isset($post["fname"]) && isset($post["mail"]) && isset($post["tmid"]) && isset($post["isPersonel"]) )
+        if(isset($post["isAdmin"])){
+            $isAdminAc = true;
+        }else $isAdminAc = false;
+
+        if(isset($post["isPersonel"]) && $post["isPersonel"] == 'true'){
+            $isPersonel = true;
+        }else $isPersonel = false;
+
+        if( isset($post["lname"]) && isset($post["fname"]) && isset($post["mail"]) )
         {
             $lname = $post["lname"];
             $fname = $post["fname"];
             $mail = $post["mail"];
-            $tmid = $post["tmid"];
+            if(isset($post["tmid"])) $tmid = $post["tmid"];
             $token = $post["token"];
-            $isPersonel = $post["isPersonel"];
-            $role = ($isPersonel == "true" ? 4 : 3);
+            $role = ($isAdminAc ? 2 : ($isPersonel ? 4 : 3));
             $idUser = ($this->auth)->getUserId($token);
             $token = $post["token"];
             $isAdmin = !(($this->auth)->checkPerm($token,"ZAWODNIK"));
@@ -74,16 +91,18 @@ class Players{
                         ];
                         $user_data = ($this->db->getConnection())->insert('user_data', $data);
                         if( isset($user_data) && $user_data >= 0 ){
-                            $data = [
-                                'id_user'   => $newPersonId,
-                                'id_team'  => $tmid
-                            ];
-                            $teamMembersId = ($this->db->getConnection())->insert('team_members', $data);
-                            if( !isset($user_data) || $user_data == null ){
-                                $error = "Nie udało się przypisać osoby do teamu";
-                                $success = false;
+                            if( isset($tmid) ){
+                                $data = [
+                                    'id_user'   => $newPersonId,
+                                    'id_team'  => $tmid
+                                ];
+                                $teamMembersId = ($this->db->getConnection())->insert('team_members', $data);
+                                if( !isset($user_data) || $user_data == null ){
+                                    $error = "Nie udało się przypisać osoby do teamu";
+                                    $success = false;
+                                }
+                                $toReturn = $isPersonel;
                             }
-                            $toReturn = $isPersonel;
                             try{
                                 $message = "Witaj ".$fname." ".$lname."\r\nTwoje konto zostało właśnie utworzone \r\nMożesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
                                 mail($mail, 'Utworzono Twoje konto', $message);

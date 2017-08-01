@@ -27,18 +27,21 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    for (var i = 0; i < msg.data.length; i++) {
-                        $scope.$apply(function() {
-                            $scope.posts.push(msg.data[i]);
-                            $scope.posts[i].maxComment = 1;
-                        });
+                    if (msg.data) {
+                        for (var i = 0; i < msg.data.length; i++) {
+                            $scope.$apply(function() {
+                                $scope.posts.push(msg.data[i]);
+                                $scope.posts[i].maxComment = 1;
+                            });
+                        }
+                        if (msg.data[0] != null && msg.data[0].psid != null) $scope.lastId = msg.data[0].psid;
+
                     }
                     setTimeout(function() {
                         $scope.$apply(function() {
                             $scope.showContent = true;
                         });
                     }, 500);
-                    if (msg.data[0] != null && msg.data[0].psid != null) $scope.lastId = msg.data[0].psid;
 
                 } else {
                     console.log(msg);

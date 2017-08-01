@@ -14,7 +14,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             async: false,
             success: function(msg) {
                 if (msg.success) {
-                    $scope.positions = msg.data;
+                    $scope.positions = msg.data ? msg.data : [];
                     for (var i = 0; i < $scope.positions.length; i++) {
                         $scope.positions[i].users = [];
                     }
@@ -59,13 +59,14 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             data: dataToSend,
             async: true,
             success: function(msg) {
-                if (msg.success && msg.data) {
-                    var changeProgress = 100 / msg.data.length;
-                    for (var i = 0; i < msg.data.length; i++) {
-                        $scope.$apply(function() {
-                            $scope.positions[msg.data[i].id_position].users.push(msg.data[i]);
-                        });
-                        $('select').material_select();
+                if (msg.success) {
+                    if (msg.data) {
+                        for (var i = 0; i < msg.data.length; i++) {
+                            $scope.$apply(function() {
+                                $scope.positions[msg.data[i].id_position].users.push(msg.data[i]);
+                            });
+                            $('select').material_select();
+                        }
                     }
                 } else {
                     console.log(msg.error);
@@ -117,6 +118,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         var teamMembersId = ($(this).attr('id').split("-"))[1];
         var positionId = ($(this).attr('id').split("-"))[2];
         var changedNumber = $(this).val();
+        console.log($(this));
         for (var i = 0; i < $scope.positions[positionId].users.length; i++) {
             if ($scope.positions[positionId].users[i].tmmid == teamMembersId) {
                 $scope.positions[positionId].users[i].id_position = changedNumber;

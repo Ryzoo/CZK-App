@@ -15,19 +15,22 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
             data: dataToSend,
             async: true,
             success: function(msg) {
-                if (msg.success && msg.data) {
+                if (msg.success) {
                     var allPersonsId = [];
                     var matchPersonsId = [];
                     var fullPersonId = [];
-                    for (var i = 0; i < msg.data.length; i++) {
-                        allPersonsId.push({ usid: msg.data[i].usid, userName: msg.data[i].firstname + ' ' + msg.data[i].lastname });
-                        fullPersonId.push(msg.data[i].usid);
-                        if (msg.data[i].posname != 'Lawka') {
-                            matchPersonsId.push(msg.data[i].usid);
+
+                    if (msg.data) {
+                        for (var i = 0; i < msg.data.length; i++) {
+                            allPersonsId.push({ usid: msg.data[i].usid, userName: msg.data[i].firstname + ' ' + msg.data[i].lastname });
+                            fullPersonId.push(msg.data[i].usid);
+                            if (msg.data[i].posname != 'Lawka') {
+                                matchPersonsId.push(msg.data[i].usid);
+                            }
                         }
                     }
                     fullTeamScore = statistic.getTeamForm(fullPersonId);
-                    matchTeamScore = statistic.getTeamForm(matchPersonsId);
+                    matchTeamScore = statistic.getTeamForm(matchPersonsId, true);
 
                     initChartMin();
 
@@ -40,6 +43,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                         }
                         $('select').material_select();
                     });
+
                 } else {
                     console.log(msg.error);
                     $.gritter.add({

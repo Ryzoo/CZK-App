@@ -25,14 +25,15 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                 if (msg.success) {
                     $('#prBar').attr('aria-valuenow', 100);
                     $('#prBar').css('width', '100%');
+                    $scope.$apply(function() {
+                        $scope.players = msg.data ? msg.data : [];
+                    });
                     setTimeout(function() {
                         $scope.$apply(function() {
                             $scope.showContent = true;
-                            $scope.players = msg.data;
                         });
                     }, 500);
                 } else {
-                    console.log(msg);
                     $.gritter.add({
                         title: 'Bład',
                         text: 'Brak osób do wyświetlenia',

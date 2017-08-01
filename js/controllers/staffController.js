@@ -15,7 +15,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $scope.staffMembers = msg.data;
+                    $scope.staffMembers = msg.data ? msg.data : [];
                     $('#prBar').attr('aria-valuenow', 100);
                     $('#prBar').css('width', '100%');
                     setTimeout(function() {
@@ -152,14 +152,16 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $scope.personelMembers = msg.data;
-                    $('#prBar').attr('aria-valuenow', 50);
-                    $('#prBar').css('width', '50%');
-                    $('#addStaffMembersSelect').html("");
-                    for (var i = 0; i < msg.data.length; i++) {
-                        $('#addStaffMembersSelect').append("<option value='" + msg.data[i].usid + "'>" + msg.data[i].firstname + " " + msg.data[i].lastname + " [ " + msg.data[i].rlname + " ] </option>");
+                    if (msg.data) {
+                        $scope.personelMembers = msg.data;
+                        $('#prBar').attr('aria-valuenow', 50);
+                        $('#prBar').css('width', '50%');
+                        $('#addStaffMembersSelect').html("");
+                        for (var i = 0; i < msg.data.length; i++) {
+                            $('#addStaffMembersSelect').append("<option value='" + msg.data[i].usid + "'>" + msg.data[i].firstname + " " + msg.data[i].lastname + " [ " + msg.data[i].rlname + " ] </option>");
+                        }
+                        $('select').material_select();
                     }
-                    $('select').material_select();
                 } else {
                     console.log(msg);
                     $.gritter.add({

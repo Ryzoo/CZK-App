@@ -1,43 +1,26 @@
 <div ng-init="setPerm(['KOORD'])"></div>
-<div class="section" ng-init="getAllPlayers()">
+<div class="section" ng-init="initTeams()">
     <div class='row' ng-show='showContent'>
         <div class="col s12 m6">
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title" ng-click="openCard('contentAddPersonShow')" style="cursor:pointer;">
-                            Dodaj nową osobę do drużyny
+                            Dodaj nową drużynę
                             <p ng-hide='personShow' style='font-size: 12px; text-align:right; float: right;'>Rozwiń <i class="fa fa-chevron-down" aria-hidden="true"></i></p>
                             <p ng-show='personShow' style='font-size: 12px; text-align:right; float: right;'>Zwiń <i class="fa fa-chevron-up" aria-hidden="true"></i></p>
                         </div>
                         <div class="row" style='padding:20px; display: none;' id='contentAddPersonShow' ng-show='personShow'>
-                            <p style="padding:20px; padding-top:0px; margin: 0;"><strong>Możesz dodać zawodnika lub osoby związane z personelem </br> Dodanie spowoduje stworzenie konta użytkownika na podanym adresie email oraz wygenerowanie i wysłanie na niego hasła </strong></p>
                             <form>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="input-field col s6">
-                                            <input id="addedFirstname" type="text" name="firstname" placeholder="Imię" class="validate">
-                                            <label for="addedFirstname">Imię</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input id='addedLastname' type="text" name="lastname" placeholder="Nazwisko" class="validate">
-                                            <label for="addedLastname">Nazwisko</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
                                         <div class="input-field col s12">
-                                            <input id='addedEmail' type="email" name="lastname" placeholder="Adres email" class="validate">
-                                            <label for="addedEmail">Adres email</label>
+                                            <input id="teamName" type="text" name="teamName" placeholder="Nazwa drużyny" class="validate">
+                                            <label for="teamName">Nazwa drużyny</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="checkbox" id="addedIsPersonel" />
-                                    <label for="addedIsPersonel">Dodaj jako personel ( w przeciwnym razie zostanie dodany jako zawodnik )</label>
-                                </div>
-                                <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addPerson()">Dodaj</button>
+                                <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addTeam()">Dodaj</button>
                             </form>
                         </div>
                     </div>
@@ -47,24 +30,20 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
-                            Lista osób w drużynie
+                            Lista drużyn
                         </div>
                         <div class="row">
-                            <table class="table highlight" ng-init="getTeam()">
+                            <table class="table highlight">
                                 <thead>
                                     <tr>
-                                        <th style="text-align:center;">Imię</th>
-                                        <th style="text-align:center;">Nazwisko</th>
-                                        <th style="text-align:center;">Rola</th>
+                                        <th style="text-align:center;">Nazwa</th>
                                         <th style="text-align:center;">Usuń</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="player in players">
-                                        <td style='cursor:pointer; text-align:center; padding: 2px 0' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.firstname}}</td>
-                                        <td style='cursor:pointer;  text-align:center; padding: 2px 0' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.lastname}}</td>
-                                        <td style='cursor:pointer; text-align:center; padding: 2px 0' ng-click="showThisPlayer( player.usid )">{{player.roleName}}</td>
-                                        <td ng-click="deleteUser(player.usid)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <tr ng-repeat="team in teams">
+                                        <td style='cursor:pointer; text-align:center; padding: 2px 0' ng-click="showThisTeam( team.id )" style='padding: 5px;'>{{team.name}}</td>
+                                        <td ng-click="deleteTeam(team.id)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-times" aria-hidden="true"></i></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -78,9 +57,9 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
-                        Podgląd zawodnika
+                        Lista trenerów drużyny
                     </div>
-                    <p style='margin-top: 20px;'>Wybierz zawodnika z listy, aby wyświetlić jego dane</p>
+                    <p style='margin-top: 20px;'>Wybierz drużynę z listy, aby wyświetlić jej trenerów</p>
                 </div>
                 <div ng-show='showPreLoad' style="position:relative; margin-top:15%; margin-bottom: 20px; margin: auto">
                     <div class="preloader-wrapper big active">
@@ -98,101 +77,31 @@
                     </div>
                 </div>
                 <div class="card-tabs" ng-show="showPlayerNow">
-                    <ul class="tabs tabs-fixed-width" ng-init="prof=1;">
-                        <li class="tab"><a class="active" href="" ng-click='prof=1; rapo=0'>Profil</a></li>
-                        <li class="tab"><a href="" ng-click='prof=0; rapo=1'>Raporty</a></li>
-                    </ul>
-                </div>
-                <div class="card-content grey lighten-4" ng-show="showPlayerNow">
-                    <div ng-show="prof">
-                        <div class="row">
-                            <div ng-show="showPlayerNow" style="padding:20px; padding-bottom:0">
-                                <div style="display: flex; justify-content: space-around;">
-                                    <div><img src="{{actualSelectedUserData.user_img_path}}" style="border-radius: 50% 50%;" width="60" height="60"></div>
-                                    <div>
-                                        <strong>{{actualSelectedUserData.firstname}} {{actualSelectedUserData.lastname}}</strong>
-                                        </br>
-                                        {{actualSelectedUserData.birthdate}}
-                                        </br>
-                                        {{actualSelectedUserData.name}}
-                                    </div>
-                                </div>
-                                <div style="display: flex; justify-content: flex-start; flex-direction: column; text-align: left; padding:20px 10px;">
-                                    <div>
-                                        <strong>Ostatnie logowanie:</strong> {{actualSelectedUserData.last_login_date}}
-                                    </div>
-                                    <div>
-                                        <strong>Adres zamieszkania:</strong> {{actualSelectedUserData.address}}
-                                    </div>
-                                    <div>
-                                        <strong>Adres email:</strong> {{actualSelectedUserData.email}}
-                                    </div>
-                                    <div>
-                                        <strong>Telefon:</strong> {{actualSelectedUserData.tel}}
-                                    </div>
-                                    <div>
-                                        <strong>Główna noga:</strong> {{actualSelectedUserData.main_leg}}
-                                    </div>
-                                    <div>
-                                        <strong>Preferowana pozycja:</strong> {{actualSelectedUserData.main_position}}
-                                    </div>
-                                    <div>
-                                        <strong>Budowa ciała:</strong> {{actualSelectedUserData.body_type}}
-                                    </div>
-                                    <div>
-                                        <strong>Telefon rodzica:</strong> {{actualSelectedUserData.parent_tel}}
-                                    </div>
-                                    <div>
-                                        <strong>Wzrost:</strong> {{actualSelectedUserData.height}}
-                                    </div>
-                                    <div>
-                                        <strong>Waga:</strong> {{actualSelectedUserData.weight}}
-                                    </div>
-                                </div>
-                            </div>
+                    <form>
+                        <div class="input-field col s10 offset-s1">
+                            <select id='mastersSelect'>
+                                <option value="" disabled selected>Wybierz trenera</option>
+                            </select>
+                            <label>Wybierz trenera</label>
                         </div>
-                    </div>
-                    <div ng-show="rapo">
-                        <div class="row">
-                            <div class="form-group col s12">
-                                <form id="raportForm" enctype="multipart/form-data">
-                                    <input hidden type="text" name='token' value='{{user.token}}'>
-                                    <input hidden type="text" name='usid' value='{{actualSelectedUserData.id}}'>
-                                    <input hidden type="text" name='tmid' value='{{user.tmid}}'>
-                                    <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>Wczytaj plik</span>
-                                            <input type="file" name="raportFile" id="raportFile">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" name="raportFile" type="text" placeholder="Dodaj nowy raport">
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input id='raportName' type="text" name="name" placeholder="Nazwa raportu" class="validate">
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <button type="button" class="waves-effect waves-light btn" ng-click="addRaport()">Prześlij raport</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <ul class="collection col s12">
-                                <div class="col s6" style='padding: 5px 5px;' ng-repeat="raport in actualSelectedUserRaports">
-                                    <li class="collection-item" style="position:relative">
-                                        {{raport.name}}<br/>
-                                        <a href="{{raport.file_path}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
-                                        <div style="position: absolute; top: 5px; right: 15px; color: black; font-size: 20px; cursor: pointer">
-                                            <i class="fa fa-times" aria-hidden="true" ng-click="deleteRaport(raport.id)"></i>
-                                        </div>
-                                    </li>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
+                        <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addTeamMaster()">Dodaj do drużyny</button>
+                    </form>
+                    <table class="table highlight">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Imię</th>
+                                <th style="text-align:center;">Nazwisko</th>
+                                <th style="text-align:center;">Usuń</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="master in teamMasters">
+                                <td style='cursor:pointer; text-align:center; padding: 2px 0' style='padding: 5px;'>{{master.firstname}}</td>
+                                <td style='cursor:pointer; text-align:center; padding: 2px 0' style='padding: 5px;'>{{master.lastname}}</td>
+                                <td ng-click="deleteMaster(master.usid)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-times" aria-hidden="true"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

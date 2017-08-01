@@ -82,6 +82,30 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->teamMenager->changeCollection($this->postData);
+        }else if( $this->request === "getAllTeams" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->getAllTeams();
+        }else if( $this->request === "getAllMastersFromTeam" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) && isset($this->postData['tmid']) )
+                $this->dataToReturn = $this->teamMenager->getAllMastersFromTeam($this->postData['tmid']);
+        }else if( $this->request === "deleteTeam" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->deleteTeam($this->postData);
+        }else if( $this->request === "addTeam" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->addTeam($this->postData);
+        }else if( $this->request === "deleteMasterFromTeam" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->deleteMasterFromTeam($this->postData);
+        }else if( $this->request === "addMasterToTeam" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->addMasterToTeam($this->postData);
         }else if( $this->request === "getTeamStaff" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) && isset($this->postData['tmid']) )
@@ -138,6 +162,10 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->playersMenager->addPerson($this->postData);
+        }else if( $this->request === "getAllMaster" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->playersMenager->getAllMaster();
         }else if( $this->request === "getAllUserData" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )

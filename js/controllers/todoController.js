@@ -134,7 +134,6 @@ app.controller('todoController', function($scope, auth, $rootScope) {
         });
     }
 
-
     function getMyTodo() {
         var dataToSend = { token: Cookies.get('tq') };
         var urlToPost = 'backend/getTodo';

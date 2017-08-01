@@ -25,8 +25,10 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $scope.allEvents = msg.data;
-                    initCalendar();
+                    $scope.$apply(function() {
+                        $scope.allEvents = msg.data;
+                        initCalendar();
+                    });
                 } else {
                     console.log(msg);
                     $.gritter.add({

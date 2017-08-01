@@ -43,7 +43,7 @@ app.service('statistic', function($http, $rootScope, request) {
                                     var best = parseFloat(reqData.data[i].tests[j].best);
                                     var distance = Math.abs(best - worst);
                                     if (best > worst) {
-                                        if (reqData.data[i].tests[j].scores.length > 2) {
+                                        if (reqData.data[i].tests[j].scores.length >= 2) {
                                             var lastScore = ((parseFloat(reqData.data[i].tests[j].scores[reqData.data[i].tests[j].scores.length - 2].wynik) - worst) +
                                                 (parseFloat(reqData.data[i].tests[j].scores[reqData.data[i].tests[j].scores.length - 1].wynik) - worst)) / 2.0;
                                         } else {
@@ -60,11 +60,12 @@ app.service('statistic', function($http, $rootScope, request) {
                                         score.wynik = reqData.data[i].tests[j].percentLastScore;
                                         podsumowanie.scores.push(score);
                                     } else {
-                                        if (reqData.data[i].tests[j].scores.length > 2) {
+                                        if (reqData.data[i].tests[j].scores.length >= 2) {
                                             var lastScore = ((parseFloat(reqData.data[i].tests[j].scores[reqData.data[i].tests[j].scores.length - 2].wynik) - best) +
                                                 (parseFloat(reqData.data[i].tests[j].scores[reqData.data[i].tests[j].scores.length - 1].wynik) - best)) / 2.0;
                                         } else {
                                             var lastScore = parseFloat(reqData.data[i].tests[j].scores[reqData.data[i].tests[j].scores.length - 1].wynik) - best;
+
                                         }
                                         if (lastScore > 0) {
                                             var percentScore = parseFloat(((lastScore / distance) * 100) > 100 ? 100 : ((lastScore / distance) * 100));
@@ -131,15 +132,20 @@ app.service('statistic', function($http, $rootScope, request) {
         return (returnedData[returnedData.length - 1].summaryScore / returnedData[returnedData.length - 1].maxSummaryScore) * 100;
     }
 
-    this.getTeamForm = function(usersId = []) {
+    this.getTeamForm = function(usersId = [], isMatchTeamForm = false) {
         var maxScore = 0;
         var teamScore = 0;
         for (var index = 0; index < usersId.length; index++) {
             var returnedData = this.getStats(usersId[index], function() {}, false);
             teamScore += returnedData[returnedData.length - 1].summaryScore;
-            maxScore = returnedData[returnedData.length - 1].maxSummaryScore;
+            if (isMatchTeamForm)
+                maxScore = returnedData[returnedData.length - 1].maxSummaryScore;
+            else
+                maxScore += returnedData[returnedData.length - 1].maxSummaryScore;
+
         }
-        maxScore *= 11;
+        if (isMatchTeamForm)
+            maxScore *= 11;
         return teamScore > 0 ? ((teamScore / maxScore) * 100) : 0;
     }
 
@@ -151,13 +157,13 @@ app.service('statistic', function($http, $rootScope, request) {
         var toReturn = [];
         var tests = [];
         for (var i = 0; i < usIds.length; i++) {
-            var returned = this.getStats(usIds[i], functionAfter, false);
+            var returned = this.getStats(usIds[i], function() {}, false);
             for (var x = 0; x < returned.length - 1; x++) {
                 if (!tests[x]) tests.push({ name: returned[x].name, users: [] });
                 tests[x].users.push({ name: usersId[i].userName, score: returned[x].tests[returned[x].tests.length - 1].actual });
             }
         }
-
+        functionAfter();
         $rootScope.actualStats = tests;
         return tests;
     }
@@ -183,9 +189,7 @@ app.service('notify', function($http, $rootScope, request) {
             toAll: notifyObj.toAll,
             url: notifyObj.url
         };
-        request.sync('POST', urlToPost, dataToSend, function(e) {
-            console.log(e);
-        }, function(jqXHR, textStatus) {
+        request.sync('POST', urlToPost, dataToSend, function(e) {}, function(jqXHR, textStatus) {
             console.log("Bład podczas komunikacji z serverem: " + textStatus);
         }, true);
 
@@ -205,7 +209,6 @@ app.service('notify', function($http, $rootScope, request) {
                         if (reqData.data) {
                             $rootScope.newNotify = reqData.data;
                             $rootScope.notifyCount = reqData.data.length;
-                            console.log($rootScope.newNotify);
                         } else {
                             $rootScope.notifyCount = 0;
                         }

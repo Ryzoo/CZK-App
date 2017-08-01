@@ -2,12 +2,14 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.nowEvents = [];
     $scope.nextEvents = [];
     $scope.lastPost = [];
+    $scope.showContent = false;
 
     $scope.getAllEvents = function() {
-        $rootScope.showContent = false;
-        $scope.getNextEvents();
-        $scope.getNowStartEvents();
-        $scope.getLastPost();
+        if ($rootScope.user.tmid && $rootScope.user.tmid != "") {
+            $scope.getNextEvents();
+            $scope.getNowStartEvents();
+            $scope.getLastPost();
+        } else {}
 
     }
 
@@ -21,9 +23,11 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $scope.$apply(function() {
-                        $scope.nextEvents = msg.data;
-                    });
+                    if (msg.data) {
+                        $scope.$apply(function() {
+                            $scope.nextEvents = msg.data;
+                        });
+                    }
                 } else {
                     console.log(msg);
                     $(document).ready(function() {
@@ -64,9 +68,11 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $scope.$apply(function() {
-                        $scope.nowEvents = msg.data;
-                    });
+                    if (msg.data) {
+                        $scope.$apply(function() {
+                            $scope.nowEvents = msg.data;
+                        });
+                    }
 
                 } else {
                     console.log(msg);
@@ -108,14 +114,17 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    $scope.$apply(function() {
-                        $scope.lastPost = msg.data;
-                        setTimeout(function() {
-                            $scope.$apply(function() {
-                                $scope.showContent = true;
-                            });
-                        }, 500);
-                    });
+                    if (msg.data) {
+                        $scope.$apply(function() {
+                            $scope.lastPost = msg.data;
+
+                        });
+                    }
+                    setTimeout(function() {
+                        $scope.$apply(function() {
+                            $scope.showContent = true;
+                        });
+                    }, 500);
                 } else {
                     console.log(msg);
                     $(document).ready(function() {

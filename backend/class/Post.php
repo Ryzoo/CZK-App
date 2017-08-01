@@ -37,12 +37,6 @@ class Post{
                 $toReturn[$i]['comments'] = ($this->db->getConnection())->fetchRowMany('SELECT comments.id as cmid, users.id as usid, content, date_add, firstname, lastname, user_img_path FROM comments, users, user_data WHERE user_data.user_id =users.id AND comments.id_user = users.id AND id_post = '.$id_post.' ORDER BY comments.id DESC ');
             }
         }
-
-        if( is_null($toReturn) ){
-            $success = false;
-            $error = "blad zapytania";
-        }
-
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
@@ -81,11 +75,6 @@ class Post{
         }else{
             $error = "Brak potrzebnych danych";
             $success = false;
-        }
-
-        if( is_null($toReturn) ){
-            $success = false;
-            $error = "blad zapytania";
         }
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
@@ -164,8 +153,8 @@ class Post{
             }else{
                 $cm = ($this->db->getConnection())->fetchRow('SELECT posts.id_user as psid FROM posts, users, user_data WHERE user_data.user_id =users.id AND posts.id_user = users.id AND posts.id = '.$psid);
                 if( $cm['psid'] == $idUser || $isAdmin){
-                    $toReturn = ($this->db->getConnection())->delete('posts', ['id' => $psid]);
                     $toReturn = ($this->db->getConnection())->delete('comments', ['id_post' => $psid]);
+                    $toReturn = ($this->db->getConnection())->delete('posts', ['id' => $psid]);
                 }
             }
         }else{

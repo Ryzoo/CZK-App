@@ -25,8 +25,6 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $rootScope.notifyCount = 0;
     $scope.showAllNewsNotify = false;
 
-
-
     $scope.showNotifications = function(isMainClik = true) {
         if (isMainClik) {
             if ($scope.showAllNewsNotify == false) {
@@ -49,7 +47,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                 $rootScope.user.email = data.data.email;
                 $rootScope.user.token = Cookies.get('tq');
                 $rootScope.user.role = data.data.name;
-                $rootScope.user.id = data.data.id;
+                $rootScope.user.id = data.data.user_id;
                 $rootScope.user.firstname = data.data.firstname;
                 $rootScope.user.lastname = data.data.lastname;
                 $rootScope.user.birthdate = data.data.birthdate;
@@ -73,20 +71,31 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                     async: false,
                     success: function(msg) {
                         if (msg.success) {
-                            $('#teamSelect').html('');
-                            $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
-                            for (var i = 0; i < msg.data.length; i++) {
-                                $('#teamSelect').append("<option value='" + msg.data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + msg.data[i].name + "</option>");
+                            if (msg.data) {
+                                $('#teamSelect').html('');
+                                $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
+                                for (var i = 0; i < msg.data.length; i++) {
+                                    $('#teamSelect').append("<option value='" + msg.data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + msg.data[i].name + "</option>");
+                                }
+                                if (msg.data[0] != null && msg.data[0].tmid != null) $rootScope.user.tmid = msg.data[0].tmid;
+                                setInterval(function() {
+                                    notify.getNew();
+                                }, 2000);
+                            } else {
+                                $.gritter.add({
+                                    title: 'Powiadomienie',
+                                    text: "Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny",
+                                    image: '',
+                                    sticky: true,
+                                    time: '5',
+                                    class_name: 'my-sticky-class'
+                                });
                             }
-                            if (msg.data[0] != null && msg.data[0].tmid != null) $rootScope.user.tmid = msg.data[0].tmid;
                             setTimeout(function() {
                                 $('#showRun').show('fade');
                             }, 200);
                             setTimeout(function() {
                                 $('#loadingContent').hide('fade', 'slow');
-                            }, 2000);
-                            setInterval(function() {
-                                notify.getNew();
                             }, 2000);
                             $('select').material_select();
                         } else {
