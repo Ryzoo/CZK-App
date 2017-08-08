@@ -154,4 +154,20 @@ class Auth{
         }else return false;
     }
 
+    function checkIsLoged($token){
+        $error = "";
+        $success = true;
+        $data = array();
+
+        $result = ($this->db->getConnection())->fetchRow('SELECT id FROM users WHERE token = :tq', ['tq' => $token]);
+        if( !is_null($result) ){
+            $data = $result;
+        }else{
+            $error = "Uzytkownik o podanym tokenie nie istnieje";
+            $success = false;
+        }
+        
+        return array( "error"=>$error,"success"=>$success,"data"=>$data );
+    }
+
 }

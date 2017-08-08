@@ -11,7 +11,6 @@ app.service('request', function($http, $rootScope) {
     }
 });
 
-
 app.service('statistic', function($http, $rootScope, request) {
 
     this.getStats = function(userId, functionSuccess, async = true) {
@@ -290,8 +289,21 @@ app.service('auth', function($http, $rootScope, request) {
 
     this.checkIsLogged = function() {
         var token = Cookies.get('tq');
-        if (token != null && token.length > 5) return true;
-        else return false;
+        if (token != null && token.length > 5) {
+            var dataToSend = { token: token };
+            var urlToPost = "backend/checkIsLoged";
+            request.sync('POST', urlToPost, dataToSend,
+                function(reqData) {
+                    if (reqData.success) toReturn = true;
+                    else toReturn = false;
+                },
+                function(jqXHR, textStatus) {
+                    console.log("Bład podczas komunikacji z serverem: " + textStatus);
+                    toReturn = false;
+                });
+        } else toReturn = false;
+
+        return toReturn;
     }
 
     this.getUserData = function() {

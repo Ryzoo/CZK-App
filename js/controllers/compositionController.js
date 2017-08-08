@@ -20,7 +20,6 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                     }
                     $('select').material_select();
                 } else {
-                    console.log(msg.error);
                     $(document).ready(function() {
                         var unique_id = $.gritter.add({
                             title: 'Bład',

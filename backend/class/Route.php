@@ -46,6 +46,10 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->authorize->updateUserData($this->postData);
+        }else if( $this->request === "checkIsLoged" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->authorize->checkIsLoged($this->postData['token']);
         }else if( $this->request === "getPost" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )

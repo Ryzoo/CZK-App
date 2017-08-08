@@ -152,7 +152,6 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                     $.gritter.add({
                         title: 'Bład',
                         text: 'Brak todo do wyświetlenia',
-                        image: '',
                         sticky: true,
                         time: 5,
                         class_name: 'my-sticky-class'
@@ -164,7 +163,6 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                 $.gritter.add({
                     title: 'Bład',
                     text: 'Niestety nie udało się pobrać Twoich todo',
-                    image: '',
                     sticky: true,
                     time: 5,
                     class_name: 'my-sticky-class'

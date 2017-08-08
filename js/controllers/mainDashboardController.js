@@ -9,8 +9,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
             $scope.getNextEvents();
             $scope.getNowStartEvents();
             $scope.getLastPost();
-        } else {}
-
+        }
     }
 
     $scope.getNextEvents = function() {

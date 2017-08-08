@@ -37,7 +37,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     }
 
     $scope.mainInit = function() {
-        $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD"];
+        $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD", "STAFF"];
         if (!auth.checkIsLogged()) {
             auth.logout();
             return;
@@ -125,7 +125,6 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
             } else {
                 document.location = "login";
                 return;
-                console.log(data.error);
             }
         }
     };
