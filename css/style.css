@@ -35,9 +35,15 @@ header nav {
     border-bottom-color: #03a9f4 !important;
 }
 
+.dropdown-content li {
+    min-height: 0px !important;
+}
+
 .sidebar-menu .select-dropdown li span {
     font-size: 14px !important;
     text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .select-dropdown {
@@ -296,6 +302,10 @@ ul.top-menu>li>.logout:hover {
 
 /*sidebar navigation*/
 
+#sidebar .select-wrapper input.select-dropdown {
+    height: 30px !important;
+}
+
 #sidebar {
     margin-top: 60px;
     width: 210px;
@@ -307,7 +317,7 @@ ul.top-menu>li>.logout:hover {
 #sidebar h5 {
     color: #f2f2f2;
     font-weight: 700;
-    font-size: 1.4rem !important;
+    font-size: 1.2rem !important;
 }
 
 #sidebar .sub-menu>.sub li a {
@@ -436,7 +446,7 @@ ul.sidebar-menu>li a {
     color: #aeb2b7;
     text-decoration: none;
     display: block;
-    padding: 12px 0 12px 10px;
+    padding: 5px 0 5px 10px;
     font-size: 12px;
     outline: none;
     -webkit-transition: all 0.3s ease;
@@ -2805,4 +2815,16 @@ input[type="color"]::-webkit-color-swatch {
 .notif a:hover {
     transition: background-color 0.2s;
     background: #c9cdd7;
+}
+
+@media print {
+    .printIt {
+        display: block;
+    }
+    .noPrint {
+        display: none;
+    }
+    .collapsible-body {
+        display: block !important;
+    }
 }

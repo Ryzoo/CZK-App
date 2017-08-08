@@ -13,11 +13,11 @@
 </head>
 
 <body ng-controller="accountController">
-    <div id='loadingContent'>
+    <div id='loadingContent' class="noPrint">
         <p>Wczytywanie...</br><span id='showRun'>Już za chwilę przeniesiemy Cię na główną stronę</span></p>
     </div>
     <div id='mainContent'>
-        <header>
+        <header class="noPrint">
             <nav style="background: #263238;">
                 <div class="nav-wrapper">
                     <div class="sidebar-toggle-box">
@@ -25,6 +25,8 @@
                     </div>
                     <a href="#!/" class="brand-logo"><b>CZK-App</b></a>
                     <ul class="right">
+
+                        <li><a href='' id='printButton' class='waves-effect waves-light'><i class="fa fa-print" aria-hidden="true"></i></a></li>
                         <li ng-show='user.tmid != ""'><a href="#!/calendar" class='waves-effect waves-light'><i class="fa fa-calendar" aria-hidden="true"></i></a></li>
                         <li ng-show='user.tmid != ""'><a ng-click='showNotifications()' href="" class='waves-effect waves-light'><i class="fa fa-bell-o" aria-hidden="true"></i><span class="new badge" ng-show="notifyCount > 0">{{notifyCount}}</span></a></li>
                     </ul>
@@ -32,7 +34,7 @@
             </nav>
         </header>
 
-        <div ng-show="showAllNewsNotify" class="showAllNewsNotify">
+        <div ng-show="showAllNewsNotify" class="showAllNewsNotify noPrint">
             <div class="notifyContenerTitle" ng-click='showNotifications()'>
                 <p ng-show="notifyCount > 0">Masz {{notifyCount}} nieprzeczytanych powiadomień</p>
                 <p ng-show="notifyCount <= 0">Nie masz żadnych nowych powiadomień</p>
@@ -44,7 +46,7 @@
             </div>
         </div>
 
-        <aside>
+        <aside class="noPrint">
             <div id="sidebar" class="nav-collapse">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">

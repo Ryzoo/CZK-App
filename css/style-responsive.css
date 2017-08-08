@@ -33,12 +33,12 @@
         line-height: 35px;
     }
     #sidebar>ul>li {
-        margin: 0 10px 5px 10px;
+        margin: 0 !important;
     }
     #sidebar>ul>li>a {
         height: 35px;
-        line-height: 35px;
-        padding: 0 10px;
+        line-height: 10px;
+        padding: 0;
         text-align: left;
     }
     #sidebar>ul>li>a i {
@@ -118,6 +118,9 @@
     .fc-view {
         top: 0px !important;
     }
+    ul.sidebar-menu>li {
+        margin: 0 !important;
+    }
     .fc-button .fc-button-inner {
         margin: 0px !important;
         padding: 2px !important;
@@ -179,13 +182,11 @@
         top: 10px;
     }
     ul.sidebar-menu li a {
-        padding: 3px 0 !important;
         text-align: center !important;
         height: auto !important;
     }
     ul.sidebar-menu li ul.sub li a {
         text-align: center !important;
-        padding: 3px 0 !important;
         height: auto !important;
     }
     /*---*/

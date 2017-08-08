@@ -129,6 +129,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         }
     };
 
+
+    $(document).on('click', '#printButton', function() {
+        window.print();
+    });
+
     $(document).on('change', '#teamSelect', function() {
         $rootScope.user.tmid = $("#teamSelect").val();
         $route.reload();
