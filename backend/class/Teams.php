@@ -48,7 +48,34 @@ class Teams{
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, team_members.id as tmmid, firstname, lastname, nr_on_tshirt, id_position, positions.name as posname, is_master FROM teams, team_members, users, user_data, positions, roles WHERE positions.id = team_members.id_position AND teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id AND users.id_role = 3 AND team_members.id_team = '.$id.' GROUP BY usid' );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, team_members.id as tmmid, firstname, lastname, nr_on_tshirt, pos_x, pos_y FROM teams, team_members, users, user_data, positions, roles WHERE positions.id = team_members.id_position AND teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id AND users.id_role = 3 AND team_members.id_team = '.$id.' GROUP BY usid' );
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function savePositionOnField($post){
+        $toReturn = null;
+        $success = true;
+        $error = "";
+        $condsUsers = [];
+        $dataUsers = [];
+
+        $token = $post["token"];
+        $isAdmin = !(($this->auth)->checkPerm($token,"ZAWODNIK"));
+        if( !$isAdmin ){
+            $error = "Uzytkownik o danym tokenie nieodnaleziony lub nie ma uprawnień";
+            $success = false;
+        }else{
+             if( isset($post['usid']) && isset($post['pos_x']) && isset($post['pos_y']) ){
+                $condsUsers['id'] = $post['usid'];
+                $dataUsers['pos_x'] = $post['pos_x'];
+                $dataUsers['pos_y'] = $post['pos_y'];
+                $result = ($this->db->getConnection())->update('team_members', $condsUsers, $dataUsers);
+            }else{
+                $error = 'Brak danych';
+                $success = false;
+            }
+        }
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
@@ -196,9 +223,9 @@ class Teams{
             $tmid = $post["tmid"];
             $mid = $post["mid"];
             $token = $post["token"];
-            $idUser = ($this->auth)->getUserId($token);
-            if( !$idUser ){
-                $error = "Uzytkownik o danym tokenie nieodnaleziony";
+            $isAdmin = !(($this->auth)->checkPerm($token,"ZAWODNIK"));
+            if( !$isAdmin ){
+                $error = "Uzytkownik o danym tokenie nieodnaleziony lub nie ma uprawnień";
                 $success = false;
             }else{
                 $data = [

@@ -74,6 +74,10 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )
                 $this->dataToReturn = $this->teamMenager->getTeamsByToken($this->postData['token']);
+        }else if( $this->request === "savePositionOnField" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->teamMenager->savePositionOnField($this->postData);
         }else if( $this->request === "getUserFromTeam" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['tmid']) )

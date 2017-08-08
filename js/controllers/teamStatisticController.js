@@ -24,7 +24,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                         for (var i = 0; i < msg.data.length; i++) {
                             allPersonsId.push({ usid: msg.data[i].usid, userName: msg.data[i].firstname + ' ' + msg.data[i].lastname });
                             fullPersonId.push(msg.data[i].usid);
-                            if (msg.data[i].posname != 'Lawka') {
+                            if (msg.data[i].pos_x >= 0 && msg.data[i].pos_y >= 0) {
                                 matchPersonsId.push(msg.data[i].usid);
                             }
                         }
