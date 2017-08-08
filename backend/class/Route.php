@@ -114,6 +114,10 @@ class Route{
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) && isset($this->postData['tmid']) )
                 $this->dataToReturn = $this->staffMenager->getFullPersonel($this->postData['tmid']);
+        }else if( $this->request === "getKoords" ){
+            if(DEBUG) header('Content-Type: application/json');
+            if( isset($this->postData['token']) )
+                $this->dataToReturn = $this->staffMenager->getKoords();
         }else if( $this->request === "addStaff" ){
             if(DEBUG) header('Content-Type: application/json');
             if( isset($this->postData['token']) )

@@ -47,7 +47,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
                         image: '',
                         sticky: true,
-                        time_alive: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -59,7 +59,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                     text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
                     image: '',
                     sticky: true,
-                    time_alive: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -86,7 +86,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Błąd podczas dodawania',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -98,7 +98,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                     text: 'Błąd podczas dodawania',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -130,7 +130,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Błąd podczas dodawania',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -142,7 +142,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                     text: 'Błąd podczas dodawania',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -172,7 +172,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Udało się usunąc drużynę wraz z zawartością',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllTeams();
@@ -184,7 +184,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Błąd podczas usuwania drużyny',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -196,7 +196,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                     text: 'Błąd podczas dodawania',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -210,7 +210,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                 text: 'Wpisz dłuższą nazwę drużyny',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -229,7 +229,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Dodano nową drużynę, możesz przydzielić teraz trenerów',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllTeams();
@@ -240,7 +240,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -254,7 +254,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -276,7 +276,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Udało się usunąc trenera z danej drużyny',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     $scope.showThisTeam($scope.actualSelectedTeamId);
@@ -295,7 +295,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Błąd podczas usuwania trenera z drużyny',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -307,7 +307,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                     text: 'Błąd podczas dodawania',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -321,7 +321,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                 text: 'Wybierz trenera do dodania',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -340,7 +340,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Dodano trenera do drużyny',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     $scope.showThisTeam($scope.actualSelectedTeamId);
@@ -358,7 +358,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -372,7 +372,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });

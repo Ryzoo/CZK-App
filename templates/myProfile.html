@@ -11,15 +11,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="row">
-                                    <img id="imgPrev" style="width:150px; height:150px;" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
+                                    <img id="imgPrev" style="width:150px; height:150px; border-radius: 50%" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
                                 </div>
                                 <div class="file-field input-field">
                                     <div class="btn">
                                         <span>Dodaj</span>
-                                        <input type="file">
+                                        <input type="file" name="userImgFile" id="userImgFile">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" name="userImgFile" id="userImgFile" type="text" placeholder="Zmień zdjęcie">
+                                        <input class="file-path validate" type="text" placeholder="Zmień zdjęcie">
                                     </div>
                                 </div>
                             </div>
@@ -28,12 +28,25 @@
                         <div class="form-group ">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input disabled value="{{user.email}}" id="disabled" type="text" class="validate">
+                                    <input disabled value="{{user.email}}" id="disabled" name='userEmail' type="text" class="validate">
                                     <label for="disabled">Twój adres email</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input disabled value="{{user.addAccountDate}}" id="disabled" type="text" class="validate">
                                     <label for="disabled">Jesteś z nami od</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='passwordInput' type="password" name="password" placeholder="Nowe hasło" class="validate">
+                                    <label for="passwordInput">Nowe hasło</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='rePasswordInput' type="password" name="rePassword" placeholder="Powtórz hasło" class="validate">
+                                    <label for="rePasswordInput">Powtórz hasło</label>
                                 </div>
                             </div>
                         </div>

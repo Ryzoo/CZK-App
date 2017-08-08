@@ -27,7 +27,7 @@ app.controller('masterMenagerController', function($scope, auth, $rootScope, not
                         text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
                         image: '',
                         sticky: true,
-                        time_alive: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -39,7 +39,7 @@ app.controller('masterMenagerController', function($scope, auth, $rootScope, not
                     text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
                     image: '',
                     sticky: true,
-                    time_alive: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },

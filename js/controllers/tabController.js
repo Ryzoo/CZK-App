@@ -51,7 +51,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                             text: 'Brak postów do wyświetlenia',
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     });
@@ -65,7 +65,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Niestety nie udało się pobrać postów',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -82,7 +82,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                 text: 'Wiadomosc musi być dłuższa niż 5 znaków oraz krótsza niż 500',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -102,7 +102,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Twój post został pomyślnie dodany',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     notify.addNew(new notify.Notification($rootScope.user.firstname + " " + $rootScope.user.lastname + " dodał post", null, "#!/tab", true));
@@ -113,7 +113,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Niestety coś poszło źle',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -125,7 +125,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                     text: 'Niestety coś poszło źle',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -140,7 +140,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                 text: 'Komentarz musi zawierać od 5 do 500 znaków',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -162,7 +162,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Twój komentarz został pomyślnie dodany',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 } else {
@@ -172,7 +172,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Niestety coś poszło źle',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -184,7 +184,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                     text: 'Niestety coś poszło źle',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -210,7 +210,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Post został usunięty pomyślnie',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 } else {
@@ -220,7 +220,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Niestety coś poszło źle',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -232,7 +232,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                     text: 'Niestety coś poszło źle',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -257,7 +257,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Komentarz został usunięty pomyślnie',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 } else {
@@ -267,7 +267,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         text: 'Niestety coś poszło źle',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
 
                     });
@@ -280,7 +280,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                     text: 'Niestety coś poszło źle',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
 
                 });

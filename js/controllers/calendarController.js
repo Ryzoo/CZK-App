@@ -36,7 +36,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                         text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
                         image: '',
                         sticky: true,
-                        time_alive: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -48,7 +48,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                     text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
                     image: '',
                     sticky: true,
-                    time_alive: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -79,7 +79,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Dodano wydarzenie pomyślnie',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                         notify.addNew(new notify.Notification("Dodano wydarzenie: '" + title1 + "'", null, "#!/calendar", true));
@@ -90,7 +90,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Niestety nie udało się dodać wydarzenia',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -102,7 +102,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                         text: 'Niestety nie udało się dodać wydarzenia',
                         image: '',
                         sticky: true,
-                        time_alive: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 },
@@ -127,7 +127,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Wydarzenie edytowane pomyślnie',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     } else {
@@ -137,7 +137,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Niestety edycja nie powiodła się',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -149,7 +149,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                         text: 'Niestety edycja nie powiodła się',
                         image: '',
                         sticky: true,
-                        time_alive: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 },
@@ -176,7 +176,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Wydarzenie usunięte pomyślnie',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     } else {
@@ -186,7 +186,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Niestety nie udało się usunąć wydarzenia',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -198,7 +198,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                         text: 'Niestety nie udało się usunąć wydarzenia',
                         image: '',
                         sticky: true,
-                        time_alive: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 },
@@ -257,7 +257,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                                 text: 'Wydarzenie edytowane pomyślnie',
                                 image: '',
                                 sticky: true,
-                                time_alive: '5',
+                                time: 3,
                                 class_name: 'my-sticky-class'
                             });
                         } else {
@@ -267,7 +267,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                                 text: 'Niestety edycja nie powiodła się',
                                 image: '',
                                 sticky: true,
-                                time_alive: '5',
+                                time: 3,
                                 class_name: 'my-sticky-class'
                             });
                         }
@@ -279,7 +279,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Niestety edycja nie powiodła się',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     },
@@ -301,7 +301,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                                 text: 'Wydarzenie edytowane pomyślnie',
                                 image: '',
                                 sticky: true,
-                                time_alive: '5',
+                                time: 3,
                                 class_name: 'my-sticky-class'
                             });
                         } else {
@@ -311,7 +311,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                                 text: 'Niestety edycja nie powiodła się',
                                 image: '',
                                 sticky: true,
-                                time_alive: '5',
+                                time: 3,
                                 class_name: 'my-sticky-class'
                             });
                         }
@@ -323,7 +323,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
                             text: 'Niestety edycja nie powiodła się',
                             image: '',
                             sticky: true,
-                            time_alive: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     },

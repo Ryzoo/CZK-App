@@ -36,7 +36,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                             text: 'Nie można pobrać wydarzeń',
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     });
@@ -50,7 +50,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                         text: 'Niestety nie udało się pobrać wydarzeń',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -82,7 +82,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                             text: 'Nie można pobrać wydarzeń',
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     });
@@ -96,7 +96,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                         text: 'Niestety nie udało się pobrać wydarzeń',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -133,7 +133,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                             text: 'Nie można pobrać ostatniego postu',
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     });
@@ -147,7 +147,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                         text: 'Niestety nie udało się pobrać ostatniego postu',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });

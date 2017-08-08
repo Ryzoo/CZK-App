@@ -36,7 +36,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -48,7 +48,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -72,7 +72,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                         text: 'Pomyślnie usunięto kategorie',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllCategoryWitchTest();
@@ -83,7 +83,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -95,7 +95,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -117,7 +117,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                         text: 'Pomyślnie usunięto test',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllCategoryWitchTest();
@@ -128,7 +128,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -140,7 +140,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -155,7 +155,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                 text: 'Wpisz dłuższą nazwę kategorii',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -174,7 +174,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                         text: "Pomyślnie dodano nową kategorie",
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllCategoryWitchTest();
@@ -186,7 +186,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -198,7 +198,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -215,7 +215,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                 text: 'Pola najlepszego i najgorszego wyniku muszą być liczbą',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -226,7 +226,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                 text: 'Wpisz poprawnie nazwe testu. Minimum 3 znaki',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -237,7 +237,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                 text: 'Coś poszło nie tak. Wybierz ponownie kategorie z tabeli',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             $scope.selectedCategoryId = -1;
@@ -258,7 +258,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                         text: "Pomyślnie dodano nowy test do kategorii",
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllCategoryWitchTest();
@@ -269,7 +269,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -281,7 +281,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -315,7 +315,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                 text: 'Najwiekszy możliwy wynik musi być liczbą',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -331,7 +331,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                 text: 'Najgorszy możliwy wynik musi być liczbą',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -355,7 +355,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                         text: "Pomyślnie edytowano test",
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllCategoryWitchTest();
@@ -366,7 +366,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -378,7 +378,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },

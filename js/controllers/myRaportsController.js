@@ -27,7 +27,7 @@ app.controller('myRaportsController', function($scope, auth, $rootScope, notify,
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -41,7 +41,7 @@ app.controller('myRaportsController', function($scope, auth, $rootScope, notify,
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });

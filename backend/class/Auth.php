@@ -75,37 +75,58 @@ class Auth{
         $dataUsers =[];
         $file_name = "";
 
-        if( isset($_FILES["userImgFile"]) ){
-            $ext = pathinfo($_FILES["userImgFile"]["name"],PATHINFO_EXTENSION);
-            $target_dir = __DIR__ . "/../../";
-            $file_name = 'img/users/' . trim($post['birthdate']) . trim($post['lastname']) . "." . $ext;
-            $target_file = $target_dir . $file_name;
-            if($_FILES["userImgFile"]["size"] >= 25){
-                if ($_FILES["userImgFile"]["size"] <= 2500000){
-                    if (($ext == "jpg" || $ext == "png" || $ext == "jpeg")){
-                        if(!move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file)){
-                            $success = false;
-                            $error = "Nie udało się skopiowac: " . $_FILES["userImgFile"]['name'];
-                        }else{
-                            if( isset( $file_name ) && $file_name != "" ) $dataUsers["user_img_path"] = $file_name;
-                        }
-                    }else{
-                        $success = false;
-                        $error = "Błędne rozszerzenie pliku";
-                    }
-                }else{
-                    $success = false;
-                    $error = "Zbyt duży plik";
-                }
-            }
-        }
+        
         
         
         if( isset($post["token"]) ){
             $userId = $this->getUserId($post["token"]);
+
             if(!$userId){
                 return array( "error"=>"Blad z uwierzytelnieniem" ,"success"=>false,"data"=>null );
-            }else $condsUsers['user_id'] = $userId;
+            }
+            // update password
+            $condsUsers['id'] = $userId;
+            if(isset($post["password"])&&isset($post["rePassword"])){
+                $pass = trim($post["password"]);
+                $rePass = trim($post["rePassword"]);
+                if(strlen($pass) != 0){
+                    if($pass == $rePass && strlen($pass) >= 5 ){
+                        $newPassword = md5($pass);
+                        $dataUsers = [];
+                        $dataUsers["password"] = $newPassword;
+                        ($this->db->getConnection())->update('users', $condsUsers, $dataUsers);
+                    }else{
+                        return array( "error"=>"Podane hasła różnią się lub są krótsze niż 5 znkaów" ,"success"=>false,"data"=>null );
+                    }
+                }
+            }
+            $condsUsers = [];
+            $condsUsers['user_id'] = $userId;
+            $dataUsers = [];
+
+            //img change
+            if( isset($_FILES["userImgFile"]) ){
+                $ext = pathinfo($_FILES["userImgFile"]["name"],PATHINFO_EXTENSION);
+                $target_dir = __DIR__ . "/../../";
+                $file_name = 'img/users/' . trim($post['userEmail']) . trim($post['lastname']) . "." . $ext;
+                $target_file = $target_dir . $file_name;
+                if($_FILES["userImgFile"]["size"] >= 25){
+                    if ($_FILES["userImgFile"]["size"] <= 2500000){
+                        if (($ext == "jpg" || $ext == "png" || $ext == "jpeg")){
+                            if(!move_uploaded_file($_FILES["userImgFile"]["tmp_name"], $target_file)){
+                                return array( "error"=>"Nie udało się skopiowac: " . $_FILES["userImgFile"]['name'] ,"success"=>false,"data"=>null );
+                            }else{
+                                if( isset( $file_name ) && $file_name != "" ) $dataUsers["user_img_path"] = $file_name;
+                            }
+                        }else{
+                            return array( "error"=>"Błędne rozszerzenie zdjęcia" ,"success"=>false,"data"=>null );
+                        }
+                    }else{
+                        return array( "error"=>"Zbyt duże zdjęcie" ,"success"=>false,"data"=>null );
+                    }
+                }else $file_name = '';
+            }
+
             if( isset( $post["firstname"] ) ) $dataUsers["firstname"] = trim($post["firstname"]);
             if( isset( $post["lastname"] ) ) $dataUsers["lastname"] = trim($post["lastname"]);
             if( isset( $post["birthdate"] ) ) $dataUsers["birthdate"] = trim($post["birthdate"]);
@@ -117,13 +138,12 @@ class Auth{
             if( isset( $post["weight"] ) ) $dataUsers["weight"] = trim($post["weight"]);
             if( isset( $post["height"] ) ) $dataUsers["height"] = trim($post["height"]);
             if( isset( $post["address"] ) ) $dataUsers["address"] = trim($post["address"]);
-            
         }else{
-            $success = false;
-            $error = "Brak danych";
+            return array( "error"=>"Brak danych" ,"success"=>false,"data"=>null );
         }
 
         $result = ($this->db->getConnection())->update('user_data', $condsUsers, $dataUsers);
+
         return array( "error"=>$error ,"success"=>$success, "data"=>array("url"=>$file_name, "post"=>$post) );
     }
 

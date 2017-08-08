@@ -128,8 +128,12 @@
             this._custom_timer = 0;
 
             // A custom fade time set
+
             if (time_alive) {
                 this._custom_timer = time_alive;
+                setTimeout(function() {
+                    Gritter.removeSpecific(number, {}, null, true);
+                }, time_alive * 1000);
             }
 
             var image_str = (image != '') ? '<img src="' + image + '" class="gritter-image" />' : '',
@@ -181,6 +185,8 @@
             $(item).find('.gritter-close').click(function() {
                 Gritter.removeSpecific(number, {}, null, true);
             });
+
+
 
             return number;
 

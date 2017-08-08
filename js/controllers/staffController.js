@@ -2,10 +2,12 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
     $scope.lastId = 0;
     $scope.staffMembers = [];
     $scope.personelMembers = [];
+    $scope.koordsInSite = [];
 
     $scope.getStaffMembers = function() {
         $rootScope.showContent = false;
         getAllPersonel();
+        getKoords();
         var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
         var urlToPost = 'backend/getTeamStaff';
         $.ajax({
@@ -30,7 +32,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                         text: 'Brak osób do wyświetlenia',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -42,7 +44,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -67,7 +69,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                         text: 'Personel dodany pomyślnie',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     notify.addNew(new notify.Notification("Dodano nowy personel: " + addName, null, "#!/staff", true));
@@ -78,7 +80,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                         text: 'Błąd podczas dodawania',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -90,7 +92,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                     text: 'Błąd podczas dodawania',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -113,7 +115,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                         text: 'Personel usunięty pomyślnie',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 } else {
@@ -123,7 +125,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                         text: 'Błąd podczas usuwania',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -135,7 +137,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                     text: 'Błąd podczas usuwania',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -169,7 +171,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                         text: 'Brak osób do wyświetlenia',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -181,7 +183,36 @@ app.controller('staffController', function($scope, auth, $rootScope, notify) {
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
+                    class_name: 'my-sticky-class'
+                });
+            },
+        });
+    }
+
+    function getKoords() {
+        var dataToSend = { token: Cookies.get('tq') };
+        var urlToPost = 'backend/getKoords';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: dataToSend,
+            async: true,
+            success: function(msg) {
+                if (msg.success) {
+                    $scope.$apply(function() {
+                        $scope.koordsInSite = msg.data ? msg.data : [];
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("Blad podczas laczenia z serverem: " + textStatus);
+                $.gritter.add({
+                    title: 'Bład',
+                    text: 'Niestety nie udało się pobrać danych',
+                    image: '',
+                    sticky: true,
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },

@@ -41,7 +41,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -53,7 +53,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -85,7 +85,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -97,7 +97,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -130,7 +130,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -142,7 +142,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -180,7 +180,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             text: 'Pomyślnie dodano nowy wynik testu',
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                         getUserScore();
@@ -193,7 +193,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                                 text: msg.error,
                                 image: '',
                                 sticky: true,
-                                time: '5',
+                                time: 3,
                                 class_name: 'my-sticky-class'
                             });
                     }
@@ -205,7 +205,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 },
@@ -216,7 +216,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                 text: 'Wpisz najpierw wynik. Musi być on liczbą. ',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
         }
@@ -237,7 +237,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                         text: 'Pomyślnie usunięto wynik testu',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     $scope.$apply(function() {
@@ -255,7 +255,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -267,7 +267,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -311,7 +311,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                         text: 'Pomyślnie usunięto kategorie',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllCategoryWitchTest();
@@ -322,7 +322,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -334,7 +334,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -349,7 +349,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                 text: 'Wpisz dłuższą nazwę kategorii',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -368,7 +368,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                         text: "Pomyślnie dodano nową kategorie",
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     getAllCategoryWitchTest();
@@ -380,7 +380,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -392,7 +392,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },

@@ -87,7 +87,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                                     text: "Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny",
                                     image: '',
                                     sticky: true,
-                                    time: '5',
+                                    time: 3,
                                     class_name: 'my-sticky-class'
                                 });
                             }
@@ -105,7 +105,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                                     text: msg.error,
                                     image: '',
                                     sticky: true,
-                                    time: '5',
+                                    time: 3,
                                     class_name: 'my-sticky-class'
                                 });
                         }
@@ -116,7 +116,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                             text: "Blad podczas laczenia z serverem: " + textStatus,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     },

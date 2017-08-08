@@ -49,16 +49,15 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
                         $rootScope.user.mainPosition = msg.data.post.mainPosition;
                         $rootScope.user.address = msg.data.post.address;
                         $rootScope.user.bodyType = msg.data.post.bodyType;
-                        if (msg.data.url.length > 2)
+                        if (msg.data.url.length > 5)
                             $rootScope.user.imgPath = msg.data.url;
                     });
 
                     $.gritter.add({
                         title: 'Aktualizacja danych',
                         text: 'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',
-                        image: '',
                         sticky: true,
-                        time: '',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 } else {
@@ -66,9 +65,8 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
                         $.gritter.add({
                             title: 'Błąd',
                             text: msg.error,
-                            image: '',
                             sticky: true,
-                            time: '',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -77,9 +75,8 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
                 $.gritter.add({
                     title: 'Błąd',
                     text: 'Bład z połączeniem : ' + textStatus,
-                    image: '',
                     sticky: true,
-                    time: '',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -89,7 +86,7 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
         });
     }
 
-    $("#userImgFile").on("change", function(event) {
+    $(document).on("change", "#userImgFile", function(event) {
         var tmppath = URL.createObjectURL(event.target.files[0]);
         $("#imgPrev").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));
     });

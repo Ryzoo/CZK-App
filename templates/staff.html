@@ -23,6 +23,40 @@
                 </div>
             </div>
         </div>
+
+        <div class="col s12 col m6 col l4" ng-repeat="staff in koordsInSite">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Koordynator strony
+                        <div style="position: absolute; top: 5px; right: 20px; color: white; font-size: 20px; cursor: pointer" ng-show="user.role != 'ZAWODNIK'">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="deleteStaff(staff.stid)"></i>
+                        </div>
+                    </div>
+                    <div id='st-{{staff.stid}}' class="row">
+                        <div class="col-md-5">
+                            <img src="{{staff.user_img_path}}" style='margin-top:20px;' class="circle responsive-img" width="60" height="60" alt="{{staff.firstname}}-{{staff.lastname}}"></img>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class='titleIn'>{{staff.firstname}} {{staff.lastname}}</div>
+                            </div>
+                            </br>
+                            <div class="row">
+                                <div class="col s12"><strong>nr telefonu</strong></div>
+                                <div class="col s12">{{staff.tel}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12"><strong>adres email</strong></div>
+                                <div class="col s12">{{staff.email}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col s12 col m6 col l4" ng-repeat="staff in staffMembers">
             <div class="card">
                 <div class="card-content">
@@ -43,7 +77,7 @@
                             </br>
                             <div class="row">
                                 <div class="col s12"><strong>nr telefonu</strong></div>
-                                <div class="col s12">325 364 356</div>
+                                <div class="col s12">{{staff.tel}}</div>
                             </div>
                             <div class="row">
                                 <div class="col s12"><strong>adres email</strong></div>

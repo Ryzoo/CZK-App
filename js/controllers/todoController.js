@@ -15,7 +15,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                 text: 'Wpisz dłuższy tekst',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 5,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -27,7 +27,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                 text: 'Wpisz mniej tekstu',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 5,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -47,7 +47,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                         text: 'Twoje zadanie zostało dodane',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 5,
                         class_name: 'my-sticky-class'
                     });
                     $('#todoText').val('');
@@ -60,7 +60,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                         text: 'Nie udało się dodać zadania',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 5,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -72,7 +72,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                     text: 'Niestety nie udało się pobrać Twoich todo',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 5,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -94,7 +94,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                         text: 'Twoje zadanie pomyślnie zakończone',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 5,
                         class_name: 'my-sticky-class'
                     });
                     var last = $scope.todoList;
@@ -115,7 +115,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                         text: 'Brak todo do wyświetlenia',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 5,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -127,7 +127,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                     text: 'Niestety nie udało się pobrać Twoich todo',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 5,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -154,7 +154,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                         text: 'Brak todo do wyświetlenia',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 5,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -166,7 +166,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
                     text: 'Niestety nie udało się pobrać Twoich todo',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 5,
                     class_name: 'my-sticky-class'
                 });
             },

@@ -39,7 +39,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Brak osób do wyświetlenia',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -52,7 +52,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -83,7 +83,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -97,7 +97,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -120,7 +120,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Osoba usunięta wraz z powiązaniami',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     $scope.getAllPlayers();
@@ -131,7 +131,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -145,7 +145,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -164,7 +164,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                 text: 'Popraw wpisany adres email',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -175,7 +175,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                 text: 'Imię lub nazwisko jest zbyt krótkie',
                 image: '',
                 sticky: true,
-                time: '5',
+                time: 3,
                 class_name: 'my-sticky-class'
             });
             return;
@@ -194,7 +194,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Osoba została dodana. Na jej adres email zostało wysłane hasło.',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     $('#addedFirstname').val('');
@@ -208,7 +208,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -222,7 +222,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -257,7 +257,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     }
@@ -271,7 +271,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                         text: 'Niestety nie udało się pobrać danych',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -367,7 +367,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                             text: msg.error,
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                 }
@@ -379,7 +379,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                     text: 'Niestety nie udało się pobrać danych',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },

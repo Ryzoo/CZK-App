@@ -29,19 +29,22 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                             }
                         }
                     }
+
                     fullTeamScore = statistic.getTeamForm(fullPersonId);
                     matchTeamScore = statistic.getTeamForm(matchPersonsId, true);
 
-                    initChartMin();
-
                     statistic.getTeamStats(allPersonsId, function() {
-                        $rootScope.showContent = true;
+                        $rootScope.$apply(function() {
+                            $rootScope.showContent = true;
+                        });
                         $('#selectPotential').html('');
                         $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
                         for (var i = 0; i < $rootScope.actualStats.length - 1; i++) {
                             $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
                         }
                         $('select').material_select();
+
+                        initChartMin();
                     });
 
                 } else {
@@ -51,7 +54,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                         text: 'Niestety coś poszło źle lub brak wyników',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -63,7 +66,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     text: 'Niestety coś poszło źle',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -107,7 +110,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
             data = [];
             data.push('wynik');
             data.push(matchTeamScore);
-            var chart = c3.generate({
+            var chart1 = c3.generate({
                 bindto: "#actualTeamForm",
                 data: {
                     columns: [
@@ -126,7 +129,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     height: 90
                 }
             });
-        }, 300);
+        }, 50);
     }
 
     $scope.initChart = function() {
@@ -166,7 +169,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
 
                 }
             }
-        }, 300);
+        }, 50);
     }
 
 });

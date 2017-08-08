@@ -27,7 +27,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                             text: 'Niestety coś poszło źle',
                             image: '',
                             sticky: true,
-                            time: '5',
+                            time: 3,
                             class_name: 'my-sticky-class'
                         });
                     });
@@ -41,7 +41,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         text: 'Niestety coś poszło źle',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 });
@@ -75,7 +75,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         text: 'Niestety coś poszło źle lub brak wyników',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -92,7 +92,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                     text: 'Niestety coś poszło źle',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
@@ -148,7 +148,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         text: 'Zmiana zapisana',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                     $('select').material_select();
@@ -171,7 +171,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         text: 'Niestety coś poszło źle',
                         image: '',
                         sticky: true,
-                        time: '5',
+                        time: 3,
                         class_name: 'my-sticky-class'
                     });
                 }
@@ -183,7 +183,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                     text: 'Niestety coś poszło źle',
                     image: '',
                     sticky: true,
-                    time: '5',
+                    time: 3,
                     class_name: 'my-sticky-class'
                 });
             },
