@@ -131,7 +131,6 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             async: true,
             success: function(msg) {
                 if (msg.success) {
-                    console.log(usid, +" " + pos_x + " " + pos_y + " ");
                     $.gritter.add({
                         title: 'Zapis',
                         text: 'Pozycja zmieniona',
@@ -174,7 +173,8 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             return;
         }
         var usid = $(this).attr('id').split('-')[1];
-        evt.originalEvent.dataTransfer.setData("usid", usid);
+
+        $rootScope.movedData = usid;
     });
 
     $(document).on('dragover', '#canvas', function(evt) {
@@ -184,7 +184,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     $(document).on('drop', '#canvas', function(evt) {
         evt.preventDefault();
 
-        if ($rootScope.user.role == 'ZAWODNIK') {
+        if ($rootScope.user.role == 'ZAWODNIK' || !$rootScope.movedData) {
             return;
         }
         var mousePosOnCanvas = getMousePos(evt);
@@ -193,7 +193,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             x: (mousePosOnCanvas.x / actualWidth) * 100,
             y: (mousePosOnCanvas.y / actualWidth) * 100,
         };
-        var usid = evt.originalEvent.dataTransfer.getData("usid");
+        var usid = $rootScope.movedData;
 
         for (var i = 0; i < $scope.notOnField.length; i++) {
             if ($scope.notOnField[i].usid == usid) {
@@ -291,13 +291,10 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         for (var i = $scope.users.length - 1; i >= 0; i--) {
             $scope.users[i].isSelected = false;
         }
-        updateTime = 200;
         actualKey = -1;
     }
 
-
-
-    var updateTime = 200;
+    var updateTime = 50;
     var actualPosMouse = { x: 0, y: 0 };
     var canvas = document.getElementById("canvas");
     var ctx = document.getElementById('canvas').getContext('2d');
@@ -327,6 +324,9 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             ctx.beginPath();
             ctx.arc(pos.x, pos.y, actualCircleSize, 0, 2 * Math.PI, false);
             ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            if (pos.y <= (actualWidth * 0.78) * 0.15 && pos.x >= (actualWidth / 2.0) - actualWidth * 0.05 && pos.x <= (actualWidth / 2.0) + actualWidth * 0.05) {
+                ctx.fillStyle = 'rgba(215, 40, 40, 0.9)';
+            }
             ctx.fill();
             if ($scope.users[i].isSelected) {
                 ctx.lineWidth = 2;
@@ -351,7 +351,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             matchPersonsId.push($scope.users[i].usid);
         }
         var fullTeamScore = statistic.getTeamForm(matchPersonsId, true);
-        console.log(fullTeamScore);
+
         data.push(fullTeamScore);
         var chart = c3.generate({
             bindto: "#teamStat",
