@@ -177,17 +177,27 @@
     <script src="/core/js/libraries/calendar-conf-events.js"></script>
     <script src="/core/js/libraries/common-scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
-    <script src="/core/js/services.js"></script>
-    <script src="/core/js/controllers/mainController.js"></script>
     <script>
+        function GetXmlHttpObject() {
+            var objXMLHttp = null;
+            if (window.XMLHttpRequest) {
+                objXMLHttp = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                objXMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return objXMLHttp;
+        }
         var JavaScript = {
             load: function(src) {
-                var script = document.createElement('script');
-                script.setAttribute('src', src);
-                document.getElementsByTagName('body')[0].appendChild(script);
-                $.getScript(src);
+                var xhrObj = GetXmlHttpObject();
+                // open and send a synchronous request
+                xhrObj.open('GET', src, false);
+                xhrObj.send('');
+                // add the returned content to a newly created script tag
+                var se = document.createElement('script');
+                se.type = "text/javascript";
+                se.text = xhrObj.responseText;
+                document.getElementsByTagName('body')[0].appendChild(se);
             }
         };
         var urlToPost = 'backend/getPageJs';
@@ -198,9 +208,14 @@
             async: false,
             success: function(msg) {
                 if (msg.success) {
+                    JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js");
+                    JavaScript.load("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js");
+                    JavaScript.load("/core/js/services.js");
+                    JavaScript.load("/core/js/controllers/mainController.js");
                     for (var x = 0; x < msg.data.length; x++) {
                         JavaScript.load(msg.data[x]);
                     }
+                    JavaScript.load("/core/js/route.js");
                 } else {
                     if (msg.error)
                         $.gritter.add({
@@ -225,7 +240,7 @@
             }
         });
     </script>
-    <script src="/core/js/route.js"></script>
+
 
 </body>
 

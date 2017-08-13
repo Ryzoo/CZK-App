@@ -1,6 +1,5 @@
 app.controller('accountController', function($scope, auth, $rootScope, request, notify) {
 
-
     $scope.initAccount = function() {
         if (!auth.checkIsLogged()) {
             auth.logout();

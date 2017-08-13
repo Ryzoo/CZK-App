@@ -11,7 +11,7 @@ class Database{
 
     function __construct(){
         $json = new JSON();
-        $settings = $json->decodeFile(__DIR__. '\..\..\mainConf.json' );
+        $settings = $json->decodeFile(__DIR__. '/../../mainConf.json' );
         $pdo = new PDOConnector(
             $settings->database->host,          // server
             $settings->database->user,          // user
