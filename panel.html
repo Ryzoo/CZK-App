@@ -9,6 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wirtualne Centrum Piłkarskie</title>
     <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="/css/c3.min.css">
+    <link rel="stylesheet" type="text/css" href="/js/libraries/gritter/css/jquery.gritter.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style-responsive.css" rel="stylesheet">
+    <link href="/js/libraries/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="/css/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
 
 </head>
 
@@ -145,64 +154,79 @@
             </section>
         </section>
     </div>
+
+
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/js/libraries/jquery-ui.js"></script>
+    <scirpt src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></scirpt>
+    <script src="/js/libraries/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/js/libraries/jquery.scrollTo.min.js"></script>
+    <script src="/js/libraries/jquery.nicescroll.js"></script>
+    <script src="/js/libraries/jquery.sparkline.js"></script>
+    <script src="/js/libraries/jquery.datetimepicker.full.js"></script>
+    <script src="/js/libraries/chart-master/Chart.js"></script>
+    <script src="/js/libraries/d3.min.js"></script>
+    <script src="/js/libraries/c3.min.js"></script>
+    <script src="/js/libraries/gritter/js/jquery.gritter.js"></script>
+    <script src="/js/libraries/gritter-conf.js"></script>
+    <script src="/js/libraries/js.cookie.js"></script>
+    <script src="/js/libraries/sparkline-chart.js"></script>
+    <script src="/js/libraries/zabuto_calendar.js"></script>
+    <script src="/js/libraries/fullcalendar/fullcalendar.min.js"></script>
+    <script src="/js/libraries/moments.js"></script>
+    <script src="/js/libraries/calendar-conf-events.js"></script>
+    <script src="/js/libraries/common-scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
+    <script src="/js/services.js"></script>
+    <script src="/js/controllers/mainController.js"></script>
+    <script>
+        var JavaScript = {
+            load: function(src) {
+                var script = document.createElement('script');
+                script.setAttribute('src', src);
+                document.getElementsByTagName('body')[0].appendChild(script);
+                $.getScript(src);
+            }
+        };
+        var urlToPost = 'backend/getPageJs';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: [],
+            async: false,
+            success: function(msg) {
+                if (msg.success) {
+                    for (var x = 0; x < msg.data.length; x++) {
+                        JavaScript.load(msg.data[x]);
+                    }
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: 3,
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: 'Bład',
+                    text: "Blad podczas laczenia z serverem: " + textStatus,
+                    image: '',
+                    sticky: true,
+                    time: 3,
+                    class_name: 'my-sticky-class'
+                });
+            }
+        });
+    </script>
+    <script src="/js/route.js"></script>
+
 </body>
 
 </html>
-
-
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/js/libraries/jquery-ui.js"></script>
-
-<scirpt src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></scirpt>
-<script src="/js/libraries/jquery.dcjqaccordion.2.7.js"></script>
-<script src="/js/libraries/jquery.scrollTo.min.js"></script>
-<script src="/js/libraries/jquery.nicescroll.js"></script>
-<script src="/js/libraries/jquery.sparkline.js"></script>
-<script src="/js/libraries/jquery.datetimepicker.full.js"></script>
-
-<script src="/js/libraries/chart-master/Chart.js"></script>
-<script src="/js/libraries/d3.min.js"></script>
-<script src="/js/libraries/c3.min.js"></script>
-<script src="/js/libraries/gritter/js/jquery.gritter.js"></script>
-<script src="/js/libraries/gritter-conf.js"></script>
-<script src="/js/libraries/js.cookie.js"></script>
-<script src="/js/libraries/sparkline-chart.js"></script>
-<script src="/js/libraries/zabuto_calendar.js"></script>
-<script src="/js/libraries/fullcalendar/fullcalendar.min.js"></script>
-<script src="/js/libraries/moments.js"></script>
-<script src="/js/libraries/calendar-conf-events.js"></script>
-<script src="/js/libraries/common-scripts.js"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
-<script src="/js/route.js"></script>
-<script src="/js/services.js"></script>
-<script src="/js/controllers/mainController.js"></script>
-<script src="/js/controllers/loginController.js"></script>
-<script src="/js/controllers/accountController.js"></script>
-<script src="/js/controllers/mainDashboardController.js"></script>
-<script src="/js/controllers/tabController.js"></script>
-<script src="/js/controllers/compositionController.js"></script>
-<script src="/js/controllers/staffController.js"></script>
-<script src="/js/controllers/calendarController.js"></script>
-<script src="/js/controllers/todoController.js"></script>
-<script src="/js/controllers/showPlayersController.js"></script>
-<script src="/js/controllers/myStatsController.js"></script>
-<script src="/js/controllers/testMenagerController.js"></script>
-<script src="/js/controllers/newScoreController.js"></script>
-<script src="/js/controllers/myRaportsController.js"></script>
-<script src="/js/controllers/usersStatisticController.js"></script>
-<script src="/js/controllers/teamStatisticController.js"></script>
-<script src="/js/controllers/masterMenagerController.js"></script>
-<script src="/js/controllers/teamsMenagerController.js"></script>
-
-<link rel="stylesheet" type="text/css" href="/css/zabuto_calendar.css">
-<link rel="stylesheet" type="text/css" href="/css/c3.min.css">
-<link rel="stylesheet" type="text/css" href="/js/libraries/gritter/css/jquery.gritter.css" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<link href="/css/style-responsive.css" rel="stylesheet">
-<link href="/js/libraries/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-<link href="/css/jquery.datetimepicker.min.css" rel="stylesheet" />

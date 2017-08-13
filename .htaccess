@@ -11,6 +11,6 @@ RewriteCond %{REQUEST_URI} !\.woff2$
 RewriteCond %{REQUEST_URI} !img/(.*)\.
 RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{3,4}
 RewriteRule !^((backend/?([a-zA-Z]+)?)|(panel/?([a-zA-Z]+)?))$ login.html
-RewriteRule ^backend/?([a-zA-Z]+)?$ backend/index.php
+RewriteRule ^backend/?([a-zA-Z]+)?$ core/index.php
 RewriteRule ^(panel)$ $1.html
 RewriteRule ((.*)\.html)!(?:login\.html)!(?:panel\.html) login.html

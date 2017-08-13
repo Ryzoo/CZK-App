@@ -1,0 +1,113 @@
+<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK','STAFF'])"></div>
+<div class="section" ng-init="getAllEvents();">
+    <div ng-show='showContent' class="row">
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        WYDARZENIA
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="col s12">
+                                <div class="today-date"></div>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="col s12">
+                                <div class="titleIn">Aktualne</div>
+                                <ul class="collection">
+                                    <li class="collection-item" ng-repeat="now in nowEvents">{{now.title}}</br>Zakończy się: {{now.end}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="col s12">
+                                <div class="titleIn">Najbliższe</div>
+                                <ul class="collection">
+                                    <li class="collection-item" ng-repeat="next in nextEvents | limitTo: 3 ">{{next.title}}</br>Rozpocznie się: {{next.end}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a href="#!/calendar">Przejdź do kalendarza ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        OSTATNIA AKTYWNOŚĆ
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="col s12 centered" style="padding-top:15px;">
+                                <a href="#!/myProfile"><img src="{{lastPost[0].user_img_path}}" class="circle" width="60" height="60"></a>
+                            </p>
+                            <div class="titleIn"><strong>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</strong></div>
+                            <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
+                                {{lastPost[0].content}}
+                            </div>
+                            <div style='font-size: 10px; padding-top: 10px;'><strong>{{lastPost[0].date_add}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top:15px;">
+                        <a href="#!/tab">Przejdź do tablicy ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-content" ng-controller="todoController" ng-init='initToDo();'>
+                    <div class="card-title">
+                        ZADANIA
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="titleIn">Dodaj nowe</div>
+                                <div class="col s12" id='todoAdd'>
+                                    <input type="color" id="todoColor" value="#f44336">
+                                    <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia"></input>
+                                    <button id='todoButton' ng-click="addTodo();"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <div class="titleIn">Aktualne</div>
+                                <ul class="collection todoTable">
+                                    <li class="collection-item" ng-repeat="tod in todoList |orderBy: '-date_add' | limitTo: 10">
+                                        <div class='todoColorMain ' style='background:{{tod.color}};'></div>
+                                        {{tod.title}}
+                                        <button ng-click="endTodo(tod.id)">
+                                            <i class="fa fa-check fa-4x" aria-hidden="true"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

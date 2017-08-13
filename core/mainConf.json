@@ -1,0 +1,383 @@
+{
+    "database": {
+        "host": "mysql15.mydevil.net",
+        "user": "m1080_admin",
+        "password": "aiUrpOmuTM2G8YwWSepr",
+        "dbName": "m1080_czk"
+    },
+    "modules": [{
+            "name": "Todo",
+            "backendRoute": [{
+                    "url": "getTodo"
+                },
+                {
+                    "url": "endTodo",
+                    "parameters": ["tid"]
+                },
+                {
+                    "url": "addTodo",
+                    "parameters": ["usid", "title", "color"]
+                }
+            ],
+            "jsControllers": ["todoController"]
+        },
+        {
+            "name": "Teams",
+            "backendRoute": [{
+                    "url": "getTeams",
+                    "parameters": ["token"]
+                },
+                {
+                    "url": "savePositionOnField",
+                    "parameters": ["token", "pos_x", "pos_y", "usid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "getUserFromTeam",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "changeCollection",
+                    "parameters": ["tmid", "val", "type"]
+                },
+                {
+                    "url": "getAllTeams"
+                },
+                {
+                    "url": "getAllMastersFromTeam",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "deleteTeam",
+                    "parameters": ["token", "id"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "addTeam",
+                    "parameters": ["name"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "deleteMasterFromTeam",
+                    "parameters": ["mid", "tmid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "addMasterToTeam",
+                    "parameters": ["mid", "tmid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                }
+            ],
+            "jsControllers": ["teamsMenagerController", "masterMenagerController", "compositionController"],
+            "frontendRoute": [{
+                "url": "teamsMenager",
+                "templateSrc": "teamsMenager.html",
+                "controllerName": "teamsMenagerController"
+            }, {
+                "url": "masterMenager",
+                "templateSrc": "masterMenager.html",
+                "controllerName": "masterMenagerController"
+            }, {
+                "url": "teamComposition",
+                "templateSrc": "actualTeamComposition.html",
+                "controllerName": "compositionController"
+            }]
+        },
+        {
+            "name": "Players",
+            "backendRoute": [{
+                    "url": "getAllPlayers",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "addPerson",
+                    "parameters": ["isAdmin", "isPersonel", "lname", "fname", "mail", "tmid", "token"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "getAllMaster"
+                },
+                {
+                    "url": "getAllUserData",
+                    "parameters": ["usid"]
+                },
+                {
+                    "url": "deleteUser",
+                    "parameters": ["usid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                }
+            ],
+            "jsControllers": ["showPlayersController"],
+            "frontendRoute": [{
+                "url": "showPlayers",
+                "templateSrc": "showPlayers.html",
+                "controllerName": "showPlayersController"
+            }]
+        },
+        {
+            "name": "Raports",
+            "backendRoute": [{
+                    "url": "addRaport",
+                    "parameters": ["usid", "tmid", "name"]
+                },
+                {
+                    "url": "getRaport",
+                    "parameters": ["tmid", "usid"]
+                },
+                {
+                    "url": "deleteRaport",
+                    "parameters": ["id"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                }
+            ],
+            "jsControllers": ["myRaportsController"],
+            "frontendRoute": [{
+                "url": "myRaports",
+                "templateSrc": "myRaports.html",
+                "controllerName": "myRaportsController"
+            }]
+        },
+        {
+            "name": "Stats",
+            "backendRoute": [{
+                    "url": "getStats",
+                    "parameters": ["usid", "tmid"]
+                },
+                {
+                    "url": "getTeamStats",
+                    "parameters": ["tmid", "usid"]
+                },
+                {
+                    "url": "addScore",
+                    "parameters": ["usid", "tmid", "tsid", "score"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "deleteScore",
+                    "parameters": ["tsid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "getCategoryWitchTest"
+                },
+                {
+                    "url": "addCategoryTest",
+                    "parameters": ["name"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "deleteCategoryTest",
+                    "parameters": ["id"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "addTestToCategory",
+                    "parameters": ["name", "caid", "best", "worst"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "changeTest",
+                    "parameters": ["id", "value", "changeType"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "deleteTestFromCat",
+                    "parameters": ["id"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "getScoreFromTestId",
+                    "parameters": ["usid", "tmid", "tsid"]
+                }
+            ],
+            "jsControllers": ["myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController"],
+            "frontendRoute": [{
+                    "url": "myStats",
+                    "templateSrc": "myStats.html",
+                    "controllerName": "myStatsController"
+                },
+                {
+                    "url": "usersStatistic",
+                    "templateSrc": "usersStatistic.html",
+                    "controllerName": "usersStatisticController"
+                },
+                {
+                    "url": "teamStatistic",
+                    "templateSrc": "teamStatistic.html",
+                    "controllerName": "teamStatisticController"
+                },
+                {
+                    "url": "testMenager",
+                    "templateSrc": "testMenager.html",
+                    "controllerName": "testMenagerController"
+                },
+                {
+                    "url": "newScore",
+                    "templateSrc": "newScore.html",
+                    "controllerName": "newScoreController"
+                }
+            ]
+        },
+        {
+            "name": "Staff",
+            "backendRoute": [{
+                    "url": "getTeamStaff",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "getFullPersonel",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "getKoords"
+                },
+                {
+                    "url": "addStaff",
+                    "parameters": ["usid", "name", "tmid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "deleteStaff",
+                    "parameters": ["stid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                }
+            ],
+            "jsControllers": ["staffController"],
+            "frontendRoute": [{
+                "url": "staff",
+                "templateSrc": "staff.html",
+                "controllerName": "staffController"
+            }]
+        },
+        {
+            "name": "Post",
+            "backendRoute": [{
+                    "url": "getPost",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "addPost",
+                    "parameters": ["tmid", "msg", "token"]
+                },
+                {
+                    "url": "addComment",
+                    "parameters": ["post_id", "msg", "token"]
+                },
+                {
+                    "url": "deleteComment",
+                    "parameters": ["cmid", "token"]
+                },
+                {
+                    "url": "deletePost",
+                    "parameters": ["psid", "token"]
+                },
+                {
+                    "url": "getLastPost",
+                    "parameters": ["tmid"]
+                }
+            ],
+            "jsControllers": ["tabController"],
+            "frontendRoute": [{
+                "url": "tab",
+                "templateSrc": "tab.html",
+                "controllerName": "tabController"
+            }]
+        },
+        {
+            "name": "Notify",
+            "backendRoute": [{
+                    "url": "addNotify",
+                    "parameters": ["title", "tmid", "token", "to", "toAll", "url"]
+                },
+                {
+                    "url": "getNewNotify",
+                    "parameters": ["tmid", "usid"]
+                },
+                {
+                    "url": "getAllNotify",
+                    "parameters": ["tmid", "usid"]
+                },
+                {
+                    "url": "setNewNotifyOff",
+                    "parameters": ["tmid", "usid", "ntid"]
+                }
+            ]
+        },
+        {
+            "name": "News",
+            "backendRoute": [{
+                    "url": "getNews",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "deleteNews",
+                    "parameters": ["id"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "addNews",
+                    "parameters": ["title", "start", "end", "tmid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "editNews",
+                    "parameters": ["id", "title", "ntid"],
+                    "auth": ["KOORD", "TRENER", "STAFF"]
+                },
+                {
+                    "url": "getNowEvents",
+                    "parameters": ["tmid"]
+                },
+                {
+                    "url": "getNextEvents",
+                    "parameters": ["tmid"]
+                }
+            ],
+            "jsControllers": ["calendarController"],
+            "frontendRoute": [{
+                "url": "calendar",
+                "templateSrc": "calendar.html",
+                "controllerName": "calendarController"
+            }]
+        }, {
+            "name": "Dashboard",
+            "backendRoute": [],
+            "jsControllers": ["mainDashboardController"],
+            "frontendRoute": [{
+                "url": "/",
+                "templateSrc": "mainDashboard.html",
+                "controllerName": "mainDashboardController"
+            }]
+        }
+    ],
+    "coreModules": [{
+        "name": "Auth",
+        "backendRoute": [{
+                "url": "login",
+                "parameters": ["email", "pass"]
+            },
+            {
+                "url": "getUserData",
+                "parameters": ["token"]
+            },
+            {
+                "url": "updateUserData",
+                "parameters": ["token"]
+            },
+            {
+                "url": "checkIsLoged",
+                "parameters": ["token"]
+            }
+        ],
+        "jsControllers": ["accountController"],
+        "frontendRoute": [{
+            "url": "myProfile",
+            "templateSrc": "myProfile.html",
+            "controllerName": "accountController"
+        }, {
+            "url": "badPerm",
+            "templateSrc": "badPerm.html",
+            "controllerName": ""
+        }]
+    }]
+}

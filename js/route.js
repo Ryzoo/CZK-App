@@ -1,76 +1,47 @@
-var app = angular.module("CZKApp", ["ngRoute"]);
-
 app.config(function($routeProvider) {
-    $routeProvider
-        .when("/", {
-            templateUrl: "/templates/mainDashboard.html",
-            controller: "mainDashboardController"
-        })
-        .when("/templatkazprzyciskiem", {
-            templateUrl: "templates/templatkazprzyciskiem.html"
-        })
-        .when("/badPerm", {
-            templateUrl: "templates/badPerm.html"
-        })
-        .when("/myProfile", {
-            templateUrl: "templates/myProfile.html",
-            controller: "accountController"
-        })
-        .when("/tab", {
-            templateUrl: "templates/tab.html",
-            controller: "tabController"
-        })
-        .when("/teamComposition", {
-            templateUrl: "templates/actualTeamComposition.html",
-            controller: "compositionController"
-        })
-        .when("/staff", {
-            templateUrl: "templates/staff.html",
-            controller: "staffController"
-        })
-        .when("/calendar", {
-            templateUrl: "templates/calendar.html",
-            controller: "calendarController"
-        })
-        .when("/showPlayers", {
-            templateUrl: "templates/showPlayers.html",
-            controller: "showPlayersController"
-        })
-        .when("/myStats", {
-            templateUrl: "templates/myStats.html",
-            controller: "myStatsController"
-        })
-        .when("/testMenager", {
-            templateUrl: "templates/testMenager.html",
-            controller: "testMenagerController"
-        })
-        .when("/newScore", {
-            templateUrl: "templates/newScore.html",
-            controller: "newScoreController"
-        })
-        .when("/myRaports", {
-            templateUrl: "templates/myRaports.html",
-            controller: "myRaportsController"
-        })
-        .when("/usersStatistic", {
-            templateUrl: "templates/usersStatistic.html",
-            controller: "usersStatisticController"
-        })
-        .when("/teamStatistic", {
-            templateUrl: "templates/teamStatistic.html",
-            controller: "teamStatisticController"
-        })
-        .when("/masterMenager", {
-            templateUrl: "templates/masterMenager.html",
-            controller: "masterMenagerController"
-        })
-        .when("/teamsMenager", {
-            templateUrl: "templates/teamsMenager.html",
-            controller: "teamsMenagerController"
-        })
-        .otherwise({
-            templateUrl: "templates/badPerm.html"
-        });
+    var urlToPost = "backend/getModulesFrontRoutes";
+    $.ajax({
+        url: urlToPost,
+        type: "POST",
+        data: [],
+        async: true,
+        success: function(msg) {
+            if (msg.success) {
+                for (var x = 0; x < msg.data.length; x++) {
+                    if (msg.data[x].url == 'badPerm') {
+                        $routeProvider.otherwise({
+                            templateUrl: msg.data[x].templateSrc
+                        });
+                    } else {
+                        $routeProvider.when((msg.data[x].url == "/" ? "/" : "/" + msg.data[x].url), {
+                            templateUrl: msg.data[x].templateSrc,
+                            controller: msg.data[x].controllerName
+                        });
+                    }
 
+                }
+            } else {
+                if (msg.error)
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: msg.error,
+                        image: '',
+                        sticky: true,
+                        time: 3,
+                        class_name: 'my-sticky-class'
+                    });
+            }
+        },
+        error: function(jqXHR, textStatus) {
+            $.gritter.add({
+                title: 'Bład',
+                text: "Blad podczas laczenia z serverem: " + textStatus,
+                image: '',
+                sticky: true,
+                time: 3,
+                class_name: 'my-sticky-class'
+            });
+        }
+    });
 
 });

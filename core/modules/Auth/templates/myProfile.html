@@ -1,0 +1,209 @@
+<div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK','STAFF'])"></div>
+<div class="section row">
+    <div class="col m8 offset-m2">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-title">Twoje aktualne dane </div>
+                <div style="box-sizing:border-box; padding: 20px;">
+                    <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
+                        <input type="hidden" name="token" value="{{user.token}}">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="row">
+                                    <img id="imgPrev" style="width:150px; height:150px; border-radius: 50%" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
+                                </div>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Dodaj</span>
+                                        <input type="file" name="userImgFile" id="userImgFile">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Zmień zdjęcie">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input disabled value="{{user.email}}" id="disabled" name='userEmail' type="text" class="validate">
+                                    <label for="disabled">Twój adres email</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input disabled value="{{user.addAccountDate}}" id="disabled" type="text" class="validate">
+                                    <label for="disabled">Jesteś z nami od</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='passwordInput' type="password" name="password" placeholder="Nowe hasło" class="validate">
+                                    <label for="passwordInput">Nowe hasło</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='rePasswordInput' type="password" name="rePassword" placeholder="Powtórz hasło" class="validate">
+                                    <label for="rePasswordInput">Powtórz hasło</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='imieInput' type="text" name="firstname" placeholder="Imię" value="{{user.firstname}}" class="validate">
+                                    <label for="imieInput">Imię</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='nazwiskoInput' type="text" name="lastname" placeholder="Nazwisko" value="{{user.lastname}}" class="validate">
+                                    <label for="nazwiskoInput">Nazwisko</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='dataInput' type="text" name="birthdate" placeholder="Data urodzenia " value="{{user.birthdate}}" class="validate">
+                                    <label for="dataInput">Data urodzenia w formacie: yyyy:mm:dd</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='adresInput' type="text" name="address" placeholder="Adres " value="{{user.address}}" class="validate">
+                                    <label for="adresInput">Adres</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group " ng-show="user.role == 'ZAWODNIK'">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <select name='mainPosition'>
+                                        <option value="" disabled selected>Preferowana pozycja</option>
+                                        <option value="bramka" ng-selected="user.mainPosition == 'bramka'" >Bramka</option>
+                                        <option value="obrona" ng-selected="user.mainPosition == 'obrona'">Obrona</option>
+                                        <option value="pomoc" ng-selected="user.mainPosition == 'pomoc'">Pomoc</option>
+                                        <option value="atak" ng-selected="user.mainPosition == 'atak'">Atak</option>
+                                    </select>
+                                    <label>Preferowana pozycja</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <select name='mainLeg'>
+                                        <option value="" disabled selected>Noga wiodąca</option>
+                                        <option value="prawa" ng-selected="user.mainLeg == 'prawa'" >Prawa</option>
+                                        <option value="lewa" ng-selected="user.mainLeg == 'lewa'">Lewa</option>
+                                        <option value="obunozny" ng-selected="user.mainLeg == 'obunozny'">Obunożny</option>
+                                    </select>
+                                    <label>Noga wiodąca</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
+                            <div class="row">
+                                <h5>Wybierz budowę ciała która najlepiej Cię opisuje z listy poniżej </h5>
+                                <div class="row">
+                                    <div class="col s12 m4">
+                                        <h5>Ektomorfik</h5>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Cechy fizyczne</p>
+                                        <ul style='list-style: square'>
+                                            <li>Chudy</li>
+                                            <li>Delikatna budowa</li>
+                                            <li>Słabo umięśniony</li>
+                                        </ul>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Wpływ na sport</p>
+                                        <ul style='list-style: square'>
+                                            <li>Problemy z budowaniem mięśni</li>
+                                            <li>Łatwość odchudzania</li>
+                                            <li>Problemy w dyscyplinach wymagających siły</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <h5>Mezomorfik</h5>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Cechy fizyczne</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Muskularna budowa</li>
+                                            <li>Wyprostowana postawa</li>
+                                            <li>Postura zamknięta w prostokąt</li>
+                                        </ul>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Wpływ na sport</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Łatwość budowania mięśni</li>
+                                            <li>Łatwość odchudzania</li>
+                                            <li>Urodzony sportowiec</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col s12 m4">
+                                        <h5>Endomorfik</h5>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Cechy fizyczne</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Tendencja do otłuszczenia</li>
+                                            <li>Słabo rozwinięta muskulatura</li>
+                                            <li>Postura zamknięta w okrąg</li>
+                                        </ul>
+                                        <p style='text-transform: uppercase; font-weight:700;text-align:center;'>Wpływ na sport</p>
+                                        <ul style=' list-style: square'>
+                                            <li>Przeciętna zdolność budowania masy mięśniowej</li>
+                                            <li>Duże odkładanie się tłuszczu</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style='margin-top: 20px;'>
+                                <div class="input-field col s10 offset-s1">
+                                    <select name='bodyType'>
+                                        <option value="" disabled selected>Budowa ciała</option>
+                                        <option value="Ektomorfik" ng-selected="user.bodyType == 'Ektomorfik'" >Ektomorfik</option>
+                                        <option value="Mezomorfik" ng-selected="user.bodyType == 'Mezomorfik'">Mezomorfik</option>
+                                        <option value="Endomorfik" ng-selected="user.bodyType == 'Endomorfik'">Endomorfik</option>
+                                    </select>
+                                    <label>Budowa ciała</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='TelefonInput' type="text" name="tel" placeholder="Telefon " value="{{user.tel}}" class="validate">
+                                    <label for="TelefonInput">Telefon</label>
+                                </div>
+                                <div class="input-field col s6" ng-show="user.role == 'ZAWODNIK'">
+                                    <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}}" class="validate">
+                                    <label for="parenInput">Telefon rodzica</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='wagaInput' type="text" name="weight" placeholder="Waga " value="{{user.weight}}" class="validate">
+                                    <label for="wagaInput">Waga</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='wzrostInput' type="text" name="height" placeholder="Wzrost " value="{{user.height}}" class="validate">
+                                    <label for="wzrostInput">Wzrost</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate()">Zmień dane</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

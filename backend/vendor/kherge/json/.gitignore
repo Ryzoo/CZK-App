@@ -1,5 +1,0 @@
-# Exclude Composer version tracking file.
-/composer.lock
-
-# Exclude Composer managed dependencies.
-/vendor/

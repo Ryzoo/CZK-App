@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, auth, $rootScope, $route, notify) {
+app.controller('mainController', function($scope, auth, $rootScope, $route, notify, $route) {
     $rootScope.user = {
         email: "",
         token: "",
@@ -96,6 +96,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                             }, 200);
                             setTimeout(function() {
                                 $('#loadingContent').hide('fade', 'slow');
+                                $route.reload();
                             }, 2000);
                             $('select').material_select();
                         } else {
@@ -128,6 +129,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
             }
         }
     };
+
 
 
     $(document).on('click', '#printButton', function() {

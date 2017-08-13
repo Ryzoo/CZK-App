@@ -1,3 +1,5 @@
+var app = angular.module("CZKApp", ["ngRoute"]);
+
 app.service('request', function($http, $rootScope) {
     this.sync = function(sendType, urlToPost, dataToSend, fsuccess, ffailed, asyncIs = false) {
         return $.ajax({
@@ -311,7 +313,7 @@ app.service('auth', function($http, $rootScope, request) {
         var toReturn = false;
         if (tq != null && tq.length > 5) {
             var dataToSend = { token: tq };
-            var urlToPost = "backend/userData";
+            var urlToPost = "backend/getUserData";
             request.sync('POST', urlToPost, dataToSend,
                 function(reqData) {
                     toReturn = reqData;

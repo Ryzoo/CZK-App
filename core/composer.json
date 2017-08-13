@@ -1,0 +1,12 @@
+{
+    "require": {
+        "simplon/mysql": "*",
+        "kherge/json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\": "../modules/",
+            "Core\\": "modules/"
+        }
+    }
+}
