@@ -116,6 +116,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
             async: true,
             success: function(msg) {
                 if (msg.success) {
+                    $scope.teamMasters = [];
                     if (msg.data) {
                         $scope.$apply(function() {
                             $scope.teamMasters = msg.data;

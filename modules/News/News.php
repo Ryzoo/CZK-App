@@ -82,7 +82,9 @@ class News{
         $error = "";
 
         $condsUsers['id'] = $data['id'];
-        $dataUsers['title'] = $data['title'];
+        if(isset($data['title'])) $dataUsers['title'] = $data['title'];
+        if(isset($data['start'])) $dataUsers['start'] = $data['start'];
+        if(isset($data['end'])) $dataUsers['end'] = $data['end'];
         $toReturn = ($this->db->getConnection())->update('events', $condsUsers, $dataUsers);
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );

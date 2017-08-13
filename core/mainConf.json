@@ -321,7 +321,7 @@
                 },
                 {
                     "url": "editNews",
-                    "parameters": ["id", "title", "ntid"],
+                    "parameters": ["id"],
                     "auth": ["KOORD", "TRENER", "STAFF"]
                 },
                 {

@@ -151,6 +151,8 @@ class Teams{
         $toReturn = null;
         $success = true;
         $error = "";
+        $tmid = $data["tmid"];
+        $mid = $data["mid"];
         $data = [
             'id_user' => $data["mid"],
             'id_team' => $data["tmid"],

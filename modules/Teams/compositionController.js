@@ -300,7 +300,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     var ctx = document.getElementById('canvas').getContext('2d');
 
     var backgorund = new Image();
-    backgorund.src = './img/canvas/background.jpg';
+    backgorund.src = './files/img/canvas/background.jpg';
 
     function update() {
         var actualWidth = $('#canvas_container').width();
