@@ -28,16 +28,15 @@
     </div>
     <div id='mainContent'>
         <header class="noPrint">
-            <nav style="background: #263238;">
+            <nav style="background: #06101c;">
                 <div class="nav-wrapper">
                     <div class="sidebar-toggle-box">
                         <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
                     </div>
-                    <a href="#!/" class="brand-logo"><b>CZK-App</b></a>
                     <ul class="right">
-                        <li><a href='' id='printButton' class='waves-effect waves-light'><i class="fa fa-print" aria-hidden="true"></i></a></li>
-                        <li ng-show='user.tmid != ""'><a href="#!/calendar" class='waves-effect waves-light'><i class="fa fa-calendar" aria-hidden="true"></i></a></li>
-                        <li ng-show='user.tmid != ""'><a ng-click='showNotifications()' href="" class='waves-effect waves-light'><i class="fa fa-bell-o" aria-hidden="true"></i><span class="new badge" ng-show="notifyCount > 0">{{notifyCount}}</span></a></li>
+                        <li><a href='' id='printButton' class='waves-effect waves-light'><i class="fa-color fa fa-print" aria-hidden="true"></i></a></li>
+                        <li ng-show='user.tmid != ""'><a href="#!/calendar" class='waves-effect waves-light'><i class="fa-color fa fa-calendar" aria-hidden="true"></i></a></li>
+                        <li ng-show='user.tmid != ""'><a ng-click='showNotifications()' href="" class='waves-effect waves-light'><i class="fa-color fa fa-bell-o" aria-hidden="true"></i><span class="new badge" ng-show="notifyCount > 0">{{notifyCount}}</span></a></li>
                     </ul>
                 </div>
             </nav>
@@ -145,8 +144,15 @@
                             <span>Wyloguj się</span>
                         </a>
                     </li>
+                    <p class="brand-logo centered">
+                      <a href="//lukam2010.pl/" target="_blank">
+                          <img src="/files/img/club_logo.png">
+                      </a>
+                    </p>
                 </ul>
             </div>
+
+
         </aside>
 
         <section id="main-content" ng-init="mainInit()">
