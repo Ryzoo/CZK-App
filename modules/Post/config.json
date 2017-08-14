@@ -30,5 +30,18 @@
         "url": "tab",
         "templateSrc": "tab.html",
         "controllerName": "tabController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Szatnia",
+        "anchorPointIcon": "fa fa-users fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "anchorWeight": 8,
+        "content": {
+            "link": {
+                "label": "Tablica",
+                "url": "#!/tab"
+            }
+        }
     }]
 }

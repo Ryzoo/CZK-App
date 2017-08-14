@@ -19,5 +19,18 @@
         "url": "myRaports",
         "templateSrc": "myRaports.html",
         "controllerName": "myRaportsController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Mój profil",
+        "anchorPointIcon": "fa fa-user fa-fw",
+        "anchorWeight": 5,
+        "content": {
+            "link": {
+                "label": "Raporty",
+                "url": "#!/myRaports",
+                "additional": "ng-show=\"user.role == 'ZAWODNIK' && user.tmid != ''\""
+            }
+        }
     }]
 }

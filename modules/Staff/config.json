@@ -27,5 +27,18 @@
         "url": "staff",
         "templateSrc": "staff.html",
         "controllerName": "staffController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Szatnia",
+        "anchorWeight": 8,
+        "anchorPointIcon": "fa fa-users fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "content": {
+            "link": {
+                "label": "Sztab",
+                "url": "#!/staff"
+            }
+        }
     }]
 }

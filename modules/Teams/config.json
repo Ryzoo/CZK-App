@@ -47,16 +47,62 @@
     ],
     "jsControllers": ["teamsMenagerController", "masterMenagerController", "compositionController"],
     "frontendRoute": [{
-        "url": "teamsMenager",
-        "templateSrc": "teamsMenager.html",
-        "controllerName": "teamsMenagerController"
-    }, {
-        "url": "masterMenager",
-        "templateSrc": "masterMenager.html",
-        "controllerName": "masterMenagerController"
-    }, {
-        "url": "teamComposition",
-        "templateSrc": "actualTeamComposition.html",
-        "controllerName": "compositionController"
-    }]
+            "url": "teamsMenager",
+            "templateSrc": "teamsMenager.html",
+            "controllerName": "teamsMenagerController"
+        },
+        {
+            "url": "masterMenager",
+            "templateSrc": "masterMenager.html",
+            "controllerName": "masterMenagerController"
+        },
+        {
+            "url": "teamComposition",
+            "templateSrc": "actualTeamComposition.html",
+            "controllerName": "compositionController"
+        }
+    ],
+    "anchor": [{
+            "destination": "leftMenu",
+            "content": {
+                "weight": 1,
+                "html": "<li class='row teamSelect'><div class='input-field col s12'><select id='teamSelect' class='white-text'><option value='' disabled selected>Wybierz drużynę</option></select><label class='centered'>Wybierz drużynę</label></div></li>"
+            }
+        },
+        {
+            "destination": "leftMenu",
+            "content": {
+                "link": {
+                    "label": "Menadżer Drużyn",
+                    "url": "#!/teamsMenager",
+                    "icon": "fa fa-address-card-o fa-fw",
+                    "additional": "ng-show=\"user.role == 'KOORD'\""
+                }
+            }
+        },
+        {
+            "destination": "leftMenu",
+            "content": {
+                "link": {
+                    "label": "Menadżer Trenerów",
+                    "url": "#!/masterMenager",
+                    "icon": "fa fa-user-secret fa-fw",
+                    "additional": "ng-show=\"user.role == 'KOORD'\""
+                }
+            }
+        },
+        {
+            "destination": "leftMenu",
+            "anchorPoint": "Szatnia",
+            "anchorWeight": 8,
+            "anchorPointIcon": "fa fa-users fa-fw",
+            "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Skład meczowy",
+                    "url": "#!/teamComposition"
+                }
+            }
+        }
+    ]
 }
