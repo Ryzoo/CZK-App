@@ -3869,8 +3869,8 @@ fieldset[disabled] .btn-primary.focus {
 
 .btn-success:hover {
     color: #fff;
-    background-color: #68dff0;
-    border-color: #68dff0;
+    background-color: rgb(103, 223, 240);
+    border-color: rgb(103, 223, 240);
 }
 
 .btn-success:active,

@@ -16,7 +16,7 @@ Premium: http://www.gridgum.com
 
 body {
     color: rgb(42, 45, 77);
-    background: #f2f2f2;
+    background: #152439;
     font-family: 'Montserrat', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
@@ -26,7 +26,6 @@ body {
 header nav {
     position: fixed !important;
     z-index: 999;
-    border-bottom: 1.5px solid #03a9f4;
 }
 
 .sidebar-menu .select-dropdown {
@@ -96,7 +95,7 @@ a:focus {
 /* Bootstrap Modifications */
 
 .modal-header {
-    background: #68dff0;
+    background: rgb(103, 223, 240);
 }
 
 .modal-title {
@@ -145,7 +144,7 @@ a:focus {
 
 .btn-theme {
     color: #fff;
-    background-color: #68dff0;
+    background-color: rgb(103, 223, 240);
     border-color: #48bcb4;
 }
 
@@ -296,7 +295,7 @@ ul.top-menu>li>.logout {
 }
 
 ul.top-menu>li>.logout:hover {
-    background: #68dff0;
+    background: rgb(103, 223, 240);
 }
 
 
@@ -311,7 +310,7 @@ ul.top-menu>li>.logout:hover {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: #263238;
+    background: #06101c;
 }
 
 #sidebar h5 {
@@ -418,7 +417,7 @@ ul.sidebar-menu li ul.sub li a:hover {
 }
 
 ul.sidebar-menu li ul.sub li.active a {
-    color: #68dff0;
+    color: rgb(103, 223, 240);
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -515,7 +514,7 @@ ul.sidebar-menu li a.active i {
 
 .black-bg {
     background: #263238;
-    border-bottom: 1px solid #68dff0;
+    border-bottom: 1px solid rgb(103, 223, 240);
 }
 
 .wrapper {
@@ -554,7 +553,7 @@ a.logo:focus {
 }
 
 a.logo span {
-    color: #68dff0;
+    color: rgb(103, 223, 240);
 }
 
 
@@ -607,13 +606,13 @@ ul.top-menu>li>a {
 
 ul.top-menu>li>a:hover,
 ul.top-menu>li>a:focus {
-    border: 1px solid #68dff0 !important;
+    border: 1px solid rgb(103, 223, 240) !important;
     background-color: transparent !important;
-    border-color: #68dff0 !important;
+    border-color: rgb(103, 223, 240) !important;
     text-decoration: none;
     border-radius: 4px;
     -webkit-border-radius: 4px;
-    color: #68dff0 !important;
+    color: rgb(103, 223, 240) !important;
 }
 
 .notify-row .badge {
@@ -986,7 +985,7 @@ ul.top-menu>li>a:focus {
 }
 
 .ds a {
-    color: #68dff0;
+    color: rgb(103, 223, 240);
 }
 
 
@@ -1083,7 +1082,7 @@ ul.top-menu>li>a:focus {
     position: absolute;
     bottom: 0;
     background: #ff865c;
-    color: #68dff0;
+    color: rgb(103, 223, 240);
     width: 100%;
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -1233,7 +1232,7 @@ PANELS CONFIGURATIONS
 
 .green-panel {
     text-align: center;
-    background: #68dff0;
+    background: rgb(103, 223, 240);
 }
 
 .green-panel .green-header {
@@ -1797,7 +1796,7 @@ PANELS CONFIGURATIONS
 }
 
 .profile-01 {
-    background: #68dff0;
+    background: rgb(103, 223, 240);
     height: 50px;
 }
 
@@ -1852,7 +1851,7 @@ PANELS CONFIGURATIONS
 }
 
 .pr2-social a:hover {
-    color: #68dff0;
+    color: rgb(103, 223, 240);
 }
 
 .pr2-social i {
@@ -1921,7 +1920,7 @@ PANELS CONFIGURATIONS
 
 .panel.terques-chart .chart-tittle .value a:hover,
 .panel.terques-chart .chart-tittle .value a.active {
-    color: #68dff0;
+    color: rgb(103, 223, 240);
     font-size: 12px;
 }
 
@@ -1983,7 +1982,7 @@ PANELS CONFIGURATIONS
     display: block;
     position: relative;
     overflow: hidden;
-    background-color: #68dff0;
+    background-color: rgb(103, 223, 240);
     -webkit-transition: background-color 0.4s;
     -moz-transition: background-color 0.4s;
     -o-transition: background-color 0.4s;
@@ -2003,7 +2002,7 @@ PANELS CONFIGURATIONS
 }
 
 .project:hover .photo-wrapper {
-    background-color: #68dff0;
+    background-color: rgb(103, 223, 240);
     background-repeat: no-repeat;
     background-position: center;
     top: 0;
@@ -2268,7 +2267,7 @@ label {
     margin: 0;
     padding: 25px 20px;
     text-align: center;
-    background: #68dff0;
+    background: rgb(103, 223, 240);
     border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
     color: #fff;
