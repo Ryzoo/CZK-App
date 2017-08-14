@@ -6,5 +6,16 @@
         "url": "/",
         "templateSrc": "mainDashboard.html",
         "controllerName": "mainDashboardController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "content": {
+            "link": {
+                "label": "Strona główna",
+                "url": "#!/",
+                "icon": "fa fa-home fa-fw"
+            },
+            "weight": 2
+        }
     }]
 }

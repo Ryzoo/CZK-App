@@ -15,6 +15,7 @@ class Route{
     private $modulesJs = [];
     private $modulesCss = [];
     private $auth;
+    private $leftMenu = [];
 
     function __construct( $allPost ){
         $this->postData = $allPost;
@@ -56,6 +57,44 @@ class Route{
                     array_push($this->modulesCss,$css[$x]);
                 }
             }
+            if( isset($moduleJson->anchor) ){
+                $anchor = $moduleJson->anchor;
+                for ($x=0; $x < count($anchor); $x++) { 
+                    if(isset($anchor[$x]->destination)&&isset($anchor[$x]->content)){
+                        if( isset($anchor[$x]->anchorPoint)){
+                            $point = $anchor[$x]->anchorPoint;
+                            $key = -1;
+                            for ($g=0; $g < count($this->{$anchor[$x]->destination}); $g++) { 
+                                if( !is_object($this->{$anchor[$x]->destination}[$g]) && isset($this->{$anchor[$x]->destination}[$g]['dropdown']) && strcmp($this->{$anchor[$x]->destination}[$g]["dropdown"],$point) === 0 ){
+                                    $key = $g;
+                                    break;
+                                }
+                            }
+                            if( $key == -1){
+                                $arrayPoint = [
+                                    "dropdown" => $point,
+                                    "list" => [],
+                                    "icon" => '',
+                                    "anchorAdditional" => '',
+                                    "weight" => 999
+                                ];
+                                if( isset($anchor[$x]->anchorPointIcon) )
+                                    $arrayPoint["icon"] = $anchor[$x]->anchorPointIcon;
+                                if( isset($anchor[$x]->anchorAdditional) )
+                                    $arrayPoint["anchorAdditional"] = $anchor[$x]->anchorAdditional;
+                                if( isset($anchor[$x]->anchorWeight) )
+                                    $arrayPoint["weight"] = $anchor[$x]->anchorWeight;
+                                array_push($this->{$anchor[$x]->destination},$arrayPoint);
+                                $key = count($this->{$anchor[$x]->destination})-1;
+                            }
+                            array_push($this->{$anchor[$x]->destination}[$key]["list"],$anchor[$x]->content);
+                        }else{
+                            if( !isset($anchor[$x]->content->weight) ) $anchor[$x]->content->weight = 999;
+                            array_push($this->{$anchor[$x]->destination},$anchor[$x]->content);
+                        }
+                    }   
+                }
+            }
             $moduleJson->name = "Modules\\".$moduleJson->name;
             array_push($this->modules,$moduleJson);
         }
@@ -91,6 +130,45 @@ class Route{
                     array_push($this->modulesCss,$css[$x]);
                 }
             }
+            if( isset($moduleJson->anchor) ){
+                $anchor = $moduleJson->anchor;
+                for ($x=0; $x < count($anchor); $x++) { 
+                    if(isset($anchor[$x]->destination)&&isset($anchor[$x]->content)){
+                        if( isset($anchor[$x]->anchorPoint)){
+                            $point = $anchor[$x]->anchorPoint;
+                            $key = -1;
+                            for ($g=0; $g < count($this->{$anchor[$x]->destination}); $g++) { 
+                                if( !is_object($this->{$anchor[$x]->destination}[$g]) && isset($this->{$anchor[$x]->destination}[$g]['dropdown']) && strcmp($this->{$anchor[$x]->destination}[$g]["dropdown"],$point) === 0 ){
+                                    $key = $g;
+                                    break;
+                                }
+                            }
+                            if( $key == -1){
+                                $arrayPoint = [
+                                    "dropdown" => $point,
+                                    "list" => [],
+                                    "icon" => '',
+                                    "anchorAdditional" => '',
+                                    "weight" => 999
+                                ];
+                                if( isset($anchor[$x]->anchorPointIcon) )
+                                    $arrayPoint["icon"] = $anchor[$x]->anchorPointIcon;
+                                if( isset($anchor[$x]->anchorAdditional) )
+                                    $arrayPoint["anchorAdditional"] = $anchor[$x]->anchorAdditional;
+                                if( isset($anchor[$x]->anchorWeight) )
+                                    $arrayPoint["weight"] = $anchor[$x]->anchorWeight;
+                                    
+                                array_push($this->{$anchor[$x]->destination},$arrayPoint);
+                                $key = count($this->{$anchor[$x]->destination})-1;
+                            }
+                            array_push($this->{$anchor[$x]->destination}[$key]["list"],$anchor[$x]->content);
+                        }else{
+                            if( !isset($anchor[$x]->content->weight) ) $anchor[$x]->content->weight = 999;
+                            array_push($this->{$anchor[$x]->destination},$anchor[$x]->content);
+                        }
+                    }   
+                }
+            }
             $moduleJson->name = "Core\\".$moduleJson->name;
             array_push($this->modules,$moduleJson);
         }
@@ -111,6 +189,8 @@ class Route{
             $this->dataToReturn = $this->getModulesFrontRoutes();
         }else if( $this->request === "getPageCss" ){
             $this->dataToReturn = $this->getModulesCss();
+        }else if( $this->request === "getLeftMenu" ){
+            $this->dataToReturn = $this->getLeftMenu();
         }else{
             for ($i=0; $i < count($this->modules); $i++) {
                 if( isset($this->modules[$i]->backendRoute) )
@@ -172,6 +252,49 @@ class Route{
         $success = true;
         $toReturn = $this->modulesCss;
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+    
+    function getLeftMenu(){
+        $error = '';
+        $success = true;
+        $toReturn = $this->array_sort($this->leftMenu);
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function array_sort($array)
+    {
+        $new_array = array();
+
+        foreach ($array as $k => $v) {
+            $weight = 999;
+            if( is_object($v) ){
+                $weight = $v->weight;
+            }else{
+                $weight = $v["weight"];
+            }
+            $keyToPast = count($new_array);
+            for ($i=0; $i < count($new_array)-1; $i++) { 
+                $weightIn = 999;
+                $weightNext = 999;
+                if( is_object($new_array[$i]) ){
+                    $weightIn = ($new_array[$i])->weight;
+                }else{
+                    $weightIn = ($new_array[$i])["weight"];
+                }
+                if( is_object($new_array[$i+1]) ){
+                    $weightNext = ($new_array[$i+1])->weight;
+                }else{
+                    $weightNext = ($new_array[$i+1])["weight"];
+                }
+                if( $weightNext <= $weight ) continue;
+                if( $weightIn < $weight ) $keyToPast = $i+1;
+                else $keyToPast = $i;
+                break;
+            }
+            array_splice( $new_array, $keyToPast, 0, array($v) );
+        }
+
+        return $new_array;
     }
 
     function returnData(){

@@ -77,5 +77,64 @@
             "templateSrc": "newScore.html",
             "controllerName": "newScoreController"
         }
+    ],
+    "anchor": [{
+            "destination": "leftMenu",
+            "anchorPoint": "Mój profil",
+            "anchorWeight": 5,
+            "anchorPointIcon": "fa fa-user fa-fw",
+            "content": {
+                "link": {
+                    "label": "Statystyki",
+                    "url": "#!/myStats",
+                    "additional": "ng-show=\"user.role == 'ZAWODNIK' && user.tmid != ''\""
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer testów",
+            "anchorPointIcon": "fa fa-cubes fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Zarządzaj testami",
+                    "url": "#!/testMenager"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer testów",
+            "anchorPointIcon": "fa fa-cubes fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Zarządzaj wynikami",
+                    "url": "#!/newScore"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer statystyk",
+            "anchorPointIcon": "fa fa-bar-chart fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Statystyki zawodników",
+                    "url": "#!/usersStatistic"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer statystyk",
+            "anchorPointIcon": "fa fa-bar-chart fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Statystyki drużynowe",
+                    "url": "#!/teamStatistic"
+                }
+            }
+        }
+
     ]
 }

@@ -26,5 +26,22 @@
         "url": "badPerm",
         "templateSrc": "badPerm.html",
         "controllerName": ""
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Mój profil",
+        "anchorPointIcon": "fa fa-user fa-fw",
+        "anchorWeight": 5,
+        "content": {
+            "link": {
+                "label": "Moje dane",
+                "url": "#!/myProfile"
+            }
+        }
+    }, {
+        "destination": "leftMenu",
+        "content": {
+            "html": "<li class='main-sidebar'><a class='waves-effect waves-light' href='' ng-click='logout()'><i class='fa fa-sign-out fa-fw' aria-hidden='true'></i><span>Wyloguj się</span></a></li>"
+        }
     }]
 }

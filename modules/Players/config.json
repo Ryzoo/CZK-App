@@ -27,5 +27,16 @@
         "url": "showPlayers",
         "templateSrc": "showPlayers.html",
         "controllerName": "showPlayersController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "content": {
+            "link": {
+                "label": "Menadżer zawodników",
+                "url": "#!/showPlayers",
+                "icon": "fa fa-address-book-o fa-fw",
+                "additional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\""
+            }
+        }
     }]
 }

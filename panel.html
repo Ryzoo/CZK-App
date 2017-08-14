@@ -18,8 +18,6 @@
     <link href="/core/js/libraries/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
     <link href="/core/css/jquery.datetimepicker.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-
-
 </head>
 
 <body ng-controller="accountController">
@@ -63,88 +61,7 @@
                         <a href="#!/myProfile"><img id='mainProfileImg' src="" class="circle" width="60" height="60"></a>
                     </p>
                     <h5 class="centered">{{user.firstname}} {{user.lastname}}</h5>
-                    <li class='row teamSelect'>
-                        <div class="input-field col s12">
-                            <select id='teamSelect' class="white-text">
-                                <option value="" disabled selected>Wybierz drużynę</option>
-                            </select>
-                            <label class="centered">Wybierz drużynę</label>
-                        </div>
-                    </li>
 
-                    <li class="main-sidebar">
-                        <a class="" href="#!/">
-                            <i class="fa fa-home fa-fw"></i>
-                            <span>Strona główna</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu" ng-show='user.tmid != ""'>
-                        <a href="javascript:;">
-                            <i class="fa fa-users fa-fw"></i>
-                            <span>Szatnia</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="#!/tab">Tablica</a></li>
-                            <li><a href="#!/teamComposition">Skład meczowy</a></li>
-                            <li><a href="#!/staff">Sztab</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-user fa-fw"></i>
-                            <span>Mój profil</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="#!/myProfile">Moje dane</a></li>
-                            <li ng-show="user.role == 'ZAWODNIK' && user.tmid != ''"><a href="#!/myStats">Moje statystyki</a></li>
-                            <li ng-show="user.role == 'ZAWODNIK' && user.tmid != ''"><a href="#!/myRaports">Moje raporty</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu" ng-show="user.role != 'ZAWODNIK' && user.tmid != ''">
-                        <a href="javascript:;">
-                            <i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
-                            <span>Menadżer testów</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="#!/testMenager">Zarządzaj testami</a></li>
-                            <li><a href="#!/newScore">Zarządzaj wynikami</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu" ng-show="user.role != 'ZAWODNIK' && user.tmid != ''">
-                        <a href="javascript:;">
-                            <i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i>
-                            <span>Menadżer statystyk</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="#!/usersStatistic">Statystyki zawodników</a></li>
-                            <li><a href="#!/teamStatistic">Statystyki drużynowe</a></li>
-                        </ul>
-                    </li>
-                    <li class="main-sidebar" ng-show="user.role != 'ZAWODNIK' && user.tmid != ''">
-                        <a class="waves-effect waves-light" href="#!/showPlayers">
-                            <i class="fa fa-address-book-o fa-fw" aria-hidden="true"></i>
-                            <span>Menadżer zawodników</span>
-                        </a>
-                    </li>
-                    <li class="main-sidebar" ng-show="user.role == 'KOORD'">
-                        <a class="waves-effect waves-light" href="#!/masterMenager">
-                            <i class="fa fa-user-secret fa-fw" aria-hidden="true"></i>
-                            <span>Menadżer trenerów</span>
-                        </a>
-                    </li>
-                    <li class="main-sidebar" ng-show="user.role == 'KOORD' ">
-                        <a class="waves-effect waves-light" href="#!/teamsMenager">
-                            <i class="fa fa-address-card-o fa-fw" aria-hidden="true"></i>
-                            <span>Menadżer drużyn</span>
-                        </a>
-                    </li>
-
-                    <li class="main-sidebar">
-                        <a class="waves-effect waves-light" href="" ng-click="logout()">
-                            <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
-                            <span>Wyloguj się</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </aside>
@@ -198,7 +115,6 @@
                 document.getElementsByTagName('body')[0].appendChild(se);
             },
             loadCss: function(src) {
-                console.log('load: ' + src);
                 var xhrObj = GetXmlHttpObject();
                 xhrObj.open('GET', src, false);
                 xhrObj.send('');
@@ -209,7 +125,6 @@
                 } else {
                     se.appendChild(document.createTextNode(xhrObj.responseText));
                 }
-                console.log('loaded: ' + xhrObj.responseText);
                 document.getElementsByTagName('body')[0].appendChild(se);
             }
         };
@@ -262,6 +177,63 @@
                 if (msg.success) {
                     for (var x = 0; x < msg.data.length; x++) {
                         JavaScript.loadCss(msg.data[x]);
+                    }
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: 3,
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: 'Bład',
+                    text: "Blad podczas laczenia z serverem: " + textStatus,
+                    image: '',
+                    sticky: true,
+                    time: 3,
+                    class_name: 'my-sticky-class'
+                });
+            }
+        });
+        var urlToPost = 'backend/getLeftMenu';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: [],
+            async: false,
+            success: function(msg) {
+                if (msg.success) {
+                    for (var i = 0; i < msg.data.length; i++) {
+                        var toAppend = "";
+                        var additional = '';
+                        var icon = '';
+                        if (msg.data[i].html) {
+                            toAppend = msg.data[i].html;
+                        } else if (msg.data[i].dropdown) {
+                            if (msg.data[i].anchorAdditional) additional = msg.data[i].anchorAdditional;
+                            if (msg.data[i].icon) icon = "<i class='" + msg.data[i].icon + "' aria-hidden='true'></i>";
+                            toAppend = "<li class='main-sidebar' " + additional + "> <a href=''>" + icon + "<span>" + msg.data[i].dropdown + "</span>" +
+                                "</a> <ul class='sub' >"
+                            for (var x = 0; x < msg.data[i].list.length; x++) {
+                                additional = "";
+                                if (msg.data[i].list[x].link.additional) additional = msg.data[i].list[x].link.additional;
+                                var add = "<li " + additional + "> <a href='" + msg.data[i].list[x].link.url + "'> " + msg.data[i].list[x].link.label + " </a> </li>";
+                                toAppend += add;
+                            }
+                            toAppend += "</ul></li>";
+                        } else if (msg.data[i].link) {
+                            if (msg.data[i].link.additional) additional = msg.data[i].link.additional;
+                            if (msg.data[i].link.icon) icon = "<i class='" + msg.data[i].link.icon + "' aria-hidden='true'></i>";
+                            toAppend = "<li class='main-sidebar' " + additional + "> <a class='waves-effect waves-light' href='" + msg.data[i].link.url +
+                                "'> " + icon + "<span>" + msg.data[i].link.label + "</span> </a> </li>";
+                        }
+                        $("#nav-accordion").append(toAppend);
                     }
                 } else {
                     if (msg.error)
