@@ -15,12 +15,16 @@ Premium: http://www.gridgum.com
 /* BASIC THEME CONFIGURATION */
 
 body {
-    color: rgb(42, 45, 77);
-    background: #152439;
+    color: #fff;
+    background: rgb(13, 25, 39);
     font-family: 'Montserrat', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
     font-size: 13px;
+}
+
+a {
+  color: #67dff0 !important;
 }
 
 header nav {
@@ -28,10 +32,35 @@ header nav {
     z-index: 999;
 }
 
+.fa-color {
+  color: #fff;
+}
+
+.fa-color:hover {
+  color: #67dff0;
+}
+
+.brand-logo {
+  height: 260px;
+  position: relative;
+}
+
+.brand-logo img {
+  max-height: 25px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.collection.none-border {
+  border: none;
+}
+
 .sidebar-menu .select-dropdown {
     font-size: 14px !important;
     text-align: center;
-    border-bottom-color: #03a9f4 !important;
+    border-bottom-color: #67dff0 !important;
 }
 
 .dropdown-content li {
@@ -43,6 +72,10 @@ header nav {
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.sidebar-menu a {
+  color: #fff !important;
 }
 
 .select-dropdown {
@@ -301,6 +334,10 @@ ul.top-menu>li>.logout:hover {
 
 /*sidebar navigation*/
 
+.input-field .select-wrapper {
+    margin-bottom: 25px;
+}
+
 #sidebar .select-wrapper input.select-dropdown {
     height: 30px !important;
 }
@@ -389,7 +426,7 @@ ul.sidebar-menu li ul.sub {
 }
 
 ul.sidebar-menu li ul.sub li {
-    background: #263238;
+    background: #13202f;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -458,7 +495,7 @@ ul.sidebar-menu>li a {
 ul.sidebar-menu li a.active,
 ul.sidebar-menu li a:hover,
 ul.sidebar-menu li a:focus {
-    background: #37474f;
+    background: rgb(19, 32, 47);
     color: #fff;
     display: block;
     -webkit-transition: all 0.3s ease;
@@ -466,6 +503,7 @@ ul.sidebar-menu li a:focus {
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    border-left: solid 1px rgb(103, 223, 240);
 }
 
 #sidebar .sub-menu>.sub li a.active {
@@ -842,7 +880,7 @@ ul.top-menu>li>a:focus {
 .today-date {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 25px;
+    font-size: 35px;
     font-weight: 700;
     font-family: 'Roboto';
 }
@@ -851,6 +889,8 @@ ul.top-menu>li>a:focus {
     font-weight: 550;
     font-size: 25px;
     font-family: 'Roboto';
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .rectangle {
@@ -1298,26 +1338,44 @@ PANELS CONFIGURATIONS
 .card {
     margin: 0 5px !important;
     margin-bottom: 15px !important;
+    background-color: rgba(6, 16, 28, 0.40) !important;
+    min-height: 315px;
+    display: flex;
 }
 
 .card .card-title {
-    background: #546e7a !important;
+    background: #06101c !important;
     text-align: center;
     width: 100% !important;
-    color: white !important;
+    color: #fff !important;
     padding: 10px;
     margin: 0 !important;
-    font-size: 18px !important;
+    font-size: 10px !important;
+    text-align: right;
+    flex: 1;
 }
 
 .card .card-content {
     padding-left: 0 !important;
     padding-right: 0 !important;
     padding-top: 0 !important;
+    flex: 1;
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card {
     text-align: center;
+}
+
+.card .row {
+    flex: 100%;
+}
+
+.flex-class {
+  align-self: flex-end;
+  flex: 1;
 }
 
 .stock .stock-chart {
@@ -2608,7 +2666,7 @@ label {
     width: 100vw;
     height: 100vh;
     z-index: 2000;
-    background: #263238;
+    background: #06101c;
 }
 
 #loadingContent p,
@@ -2639,17 +2697,20 @@ label {
     width: 100%;
     height: 30px;
     box-sizing: border-box;
-    border: 2px solid #607D8B;
-    background: #eceff1;
+    background: #0a1522;
     padding: 5px 5px 5px 10px;
-    border-left: none;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
 }
 
 #todoColor {
     border-radius: 5px 0 0 5px;
     height: 30px;
     box-sizing: border-box;
-    border: 2px solid #607D8B;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    border-left: solid 1px #fff;
+    border-right: none;
 }
 
 input[type="color"] {
@@ -2676,16 +2737,26 @@ input[type="color"]::-webkit-color-swatch {
 
 #todoButton {
     width: auto;
-    color: white;
+    color: #757575;
     height: 30px;
-    background: #607D8B;
+    background: #0a1522;
     box-sizing: border-box;
-    border-color: #607D8B;
-    border: none;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    border-right: solid 1px #fff;
+    border-left: none;
     font-size: 20px;
     border-radius: 0 5px 5px 0;
     padding: 0 10px;
     margin-bottom: 10px;
+}
+
+#todoButton .fa-plus {
+    -webkit-transition: color 0.1s;
+}
+
+#todoButton .fa-plus:hover {
+    color: #fff;
 }
 
 .todoColorMain {
@@ -2721,6 +2792,10 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: 0 5px 5px 0;
 }
 
+.collection .collection-item {
+  border: none !important;
+}
+
 .collection-item button {
     width: 100%;
     height: 100%;
@@ -2743,7 +2818,11 @@ input[type="color"]::-webkit-color-swatch {
 .collection-item button:active,
 .collection-item button:focus {
     outline: none !important;
-    background: white !important;
+    background: transparent !important;
+}
+
+.collection .collection-item {
+  background-color: transparent !important;
 }
 
 .showAllNewsNotify {
