@@ -1,5 +1,6 @@
 app.controller('todoController', function($scope, auth, $rootScope) {
     $scope.todoList;
+    var basicColor = '#f44336';
 
     $scope.initToDo = function() {
         getMyTodo();
@@ -7,7 +8,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
 
     $scope.addTodo = function() {
         var titlea = $('#todoText').val();
-        var colora = $('#todoColor').val();
+        var colora = $('#todoColor') ? $('#todoColor').val() : basicColor;
 
         if (titlea.length <= 3) {
             $.gritter.add({
@@ -21,7 +22,7 @@ app.controller('todoController', function($scope, auth, $rootScope) {
             return;
         }
 
-        if (titlea.length > 250) {
+        if (titlea.length > 100) {
             $.gritter.add({
                 title: 'Walidacja',
                 text: 'Wpisz mniej tekstu',

@@ -4,6 +4,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.lastPost = [];
     $scope.showContent = false;
 
+
     $scope.getAllEvents = function() {
         if ($rootScope.user.tmid && $rootScope.user.tmid != "") {
             $scope.getNextEvents();
@@ -150,6 +151,12 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
             },
         });
     }
+
+    function colorpickerTest() {
+        var colorInput;
+        colorInput = $('<input type="color" value="!" />')[0];
+        return colorInput.type === 'color' && colorInput.value !== '!';
+    };
 
     var day = new Date().getDate();
     var month = new Date().getMonth() + 1;
