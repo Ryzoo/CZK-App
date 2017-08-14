@@ -1,0 +1,30 @@
+{
+    "name": "Auth",
+    "backendRoute": [{
+            "url": "login",
+            "parameters": ["email", "pass"]
+        },
+        {
+            "url": "getUserData",
+            "parameters": ["token"]
+        },
+        {
+            "url": "updateUserData",
+            "parameters": ["token"]
+        },
+        {
+            "url": "checkIsLoged",
+            "parameters": ["token"]
+        }
+    ],
+    "jsControllers": ["accountController"],
+    "frontendRoute": [{
+        "url": "myProfile",
+        "templateSrc": "myProfile.html",
+        "controllerName": "accountController"
+    }, {
+        "url": "badPerm",
+        "templateSrc": "badPerm.html",
+        "controllerName": ""
+    }]
+}

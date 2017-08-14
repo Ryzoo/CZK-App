@@ -1,0 +1,10 @@
+{
+    "name": "Dashboard",
+    "backendRoute": [],
+    "jsControllers": ["mainDashboardController"],
+    "frontendRoute": [{
+        "url": "/",
+        "templateSrc": "mainDashboard.html",
+        "controllerName": "mainDashboardController"
+    }]
+}

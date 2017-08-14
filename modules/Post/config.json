@@ -1,0 +1,34 @@
+{
+    "name": "Post",
+    "backendRoute": [{
+            "url": "getPost",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "addPost",
+            "parameters": ["tmid", "msg", "token"]
+        },
+        {
+            "url": "addComment",
+            "parameters": ["post_id", "msg", "token"]
+        },
+        {
+            "url": "deleteComment",
+            "parameters": ["cmid", "token"]
+        },
+        {
+            "url": "deletePost",
+            "parameters": ["psid", "token"]
+        },
+        {
+            "url": "getLastPost",
+            "parameters": ["tmid"]
+        }
+    ],
+    "jsControllers": ["tabController"],
+    "frontendRoute": [{
+        "url": "tab",
+        "templateSrc": "tab.html",
+        "controllerName": "tabController"
+    }]
+}

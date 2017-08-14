@@ -190,13 +190,26 @@
         var JavaScript = {
             load: function(src) {
                 var xhrObj = GetXmlHttpObject();
-                // open and send a synchronous request
                 xhrObj.open('GET', src, false);
                 xhrObj.send('');
-                // add the returned content to a newly created script tag
                 var se = document.createElement('script');
                 se.type = "text/javascript";
                 se.text = xhrObj.responseText;
+                document.getElementsByTagName('body')[0].appendChild(se);
+            },
+            loadCss: function(src) {
+                console.log('load: ' + src);
+                var xhrObj = GetXmlHttpObject();
+                xhrObj.open('GET', src, false);
+                xhrObj.send('');
+                var se = document.createElement('style');
+                se.type = 'text/css';
+                if (se.styleSheet) {
+                    se.styleSheet.cssText = xhrObj.responseText;
+                } else {
+                    se.appendChild(document.createTextNode(xhrObj.responseText));
+                }
+                console.log('loaded: ' + xhrObj.responseText);
                 document.getElementsByTagName('body')[0].appendChild(se);
             }
         };
@@ -216,6 +229,40 @@
                         JavaScript.load(msg.data[x]);
                     }
                     JavaScript.load("/core/js/route.js");
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: 3,
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: 'Bład',
+                    text: "Blad podczas laczenia z serverem: " + textStatus,
+                    image: '',
+                    sticky: true,
+                    time: 3,
+                    class_name: 'my-sticky-class'
+                });
+            }
+        });
+        var urlToPost = 'backend/getPageCss';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: [],
+            async: false,
+            success: function(msg) {
+                if (msg.success) {
+                    for (var x = 0; x < msg.data.length; x++) {
+                        JavaScript.loadCss(msg.data[x]);
+                    }
                 } else {
                     if (msg.error)
                         $.gritter.add({

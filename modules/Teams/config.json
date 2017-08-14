@@ -1,0 +1,62 @@
+{
+    "name": "Teams",
+    "backendRoute": [{
+            "url": "getTeams",
+            "parameters": ["token"]
+        },
+        {
+            "url": "savePositionOnField",
+            "parameters": ["token", "pos_x", "pos_y", "usid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getUserFromTeam",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "changeCollection",
+            "parameters": ["tmid", "val", "type"]
+        },
+        {
+            "url": "getAllTeams"
+        },
+        {
+            "url": "getAllMastersFromTeam",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "deleteTeam",
+            "parameters": ["token", "id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "addTeam",
+            "parameters": ["name"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "deleteMasterFromTeam",
+            "parameters": ["mid", "tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "addMasterToTeam",
+            "parameters": ["mid", "tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }
+    ],
+    "jsControllers": ["teamsMenagerController", "masterMenagerController", "compositionController"],
+    "frontendRoute": [{
+        "url": "teamsMenager",
+        "templateSrc": "teamsMenager.html",
+        "controllerName": "teamsMenagerController"
+    }, {
+        "url": "masterMenager",
+        "templateSrc": "masterMenager.html",
+        "controllerName": "masterMenagerController"
+    }, {
+        "url": "teamComposition",
+        "templateSrc": "actualTeamComposition.html",
+        "controllerName": "compositionController"
+    }]
+}

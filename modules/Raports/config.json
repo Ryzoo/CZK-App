@@ -1,0 +1,23 @@
+{
+    "name": "Raports",
+    "backendRoute": [{
+            "url": "addRaport",
+            "parameters": ["usid", "tmid", "name"]
+        },
+        {
+            "url": "getRaport",
+            "parameters": ["tmid", "usid"]
+        },
+        {
+            "url": "deleteRaport",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }
+    ],
+    "jsControllers": ["myRaportsController"],
+    "frontendRoute": [{
+        "url": "myRaports",
+        "templateSrc": "myRaports.html",
+        "controllerName": "myRaportsController"
+    }]
+}

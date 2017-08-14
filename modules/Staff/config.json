@@ -1,0 +1,31 @@
+{
+    "name": "Staff",
+    "backendRoute": [{
+            "url": "getTeamStaff",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "getFullPersonel",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "getKoords"
+        },
+        {
+            "url": "addStaff",
+            "parameters": ["usid", "name", "tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "deleteStaff",
+            "parameters": ["stid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }
+    ],
+    "jsControllers": ["staffController"],
+    "frontendRoute": [{
+        "url": "staff",
+        "templateSrc": "staff.html",
+        "controllerName": "staffController"
+    }]
+}

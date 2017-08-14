@@ -17,6 +17,7 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         ),
         'S' => 
         array (
+            'System\\' => 7,
             'Simplon\\Mysql\\' => 14,
             'Seld\\JsonLint\\' => 14,
         ),
@@ -43,6 +44,10 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Test\\' => 
         array (
             0 => __DIR__ . '/..' . '/simplon/mysql/test',
+        ),
+        'System\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/system',
         ),
         'Simplon\\Mysql\\' => 
         array (
@@ -176,6 +181,9 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Simplon\\Mysql\\QueryBuilder\\DeleteQueryBuilder' => __DIR__ . '/..' . '/simplon/mysql/src/QueryBuilder/DeleteQueryBuilder.php',
         'Simplon\\Mysql\\QueryBuilder\\ReadQueryBuilder' => __DIR__ . '/..' . '/simplon/mysql/src/QueryBuilder/ReadQueryBuilder.php',
         'Simplon\\Mysql\\QueryBuilder\\UpdateQueryBuilder' => __DIR__ . '/..' . '/simplon/mysql/src/QueryBuilder/UpdateQueryBuilder.php',
+        'System\\BasicModule' => __DIR__ . '/../..' . '/system/BasicModule.php',
+        'System\\BasicModuleInterface' => __DIR__ . '/../..' . '/system/BasicModuleInterface.php',
+        'System\\Route' => __DIR__ . '/../..' . '/system/Route.php',
         'Test\\Crud\\NameModel' => __DIR__ . '/..' . '/simplon/mysql/test/Crud/NameModel.php',
         'Test\\Crud\\NamesStore' => __DIR__ . '/..' . '/simplon/mysql/test/Crud/NamesStore.php',
     );

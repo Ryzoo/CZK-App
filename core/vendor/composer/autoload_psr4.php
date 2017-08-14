@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Test\\' => array($vendorDir . '/simplon/mysql/test'),
+    'System\\' => array($baseDir . '/system'),
     'Simplon\\Mysql\\' => array($vendorDir . '/simplon/mysql/src'),
     'Seld\\JsonLint\\' => array($vendorDir . '/seld/jsonlint/src/Seld/JsonLint'),
     'Modules\\' => array($baseDir . '/../modules'),

@@ -1,0 +1,20 @@
+{
+    "name": "Notify",
+    "backendRoute": [{
+            "url": "addNotify",
+            "parameters": ["title", "tmid", "token", "to", "toAll", "url"]
+        },
+        {
+            "url": "getNewNotify",
+            "parameters": ["tmid", "usid"]
+        },
+        {
+            "url": "getAllNotify",
+            "parameters": ["tmid", "usid"]
+        },
+        {
+            "url": "setNewNotifyOff",
+            "parameters": ["tmid", "usid", "ntid"]
+        }
+    ]
+}

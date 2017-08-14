@@ -107,6 +107,9 @@ return array(
     'Simplon\\Mysql\\QueryBuilder\\DeleteQueryBuilder' => $vendorDir . '/simplon/mysql/src/QueryBuilder/DeleteQueryBuilder.php',
     'Simplon\\Mysql\\QueryBuilder\\ReadQueryBuilder' => $vendorDir . '/simplon/mysql/src/QueryBuilder/ReadQueryBuilder.php',
     'Simplon\\Mysql\\QueryBuilder\\UpdateQueryBuilder' => $vendorDir . '/simplon/mysql/src/QueryBuilder/UpdateQueryBuilder.php',
+    'System\\BasicModule' => $baseDir . '/system/BasicModule.php',
+    'System\\BasicModuleInterface' => $baseDir . '/system/BasicModuleInterface.php',
+    'System\\Route' => $baseDir . '/system/Route.php',
     'Test\\Crud\\NameModel' => $vendorDir . '/simplon/mysql/test/Crud/NameModel.php',
     'Test\\Crud\\NamesStore' => $vendorDir . '/simplon/mysql/test/Crud/NamesStore.php',
 );

@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "Modules\\": "../modules/",
-            "Core\\": "modules/"
+            "Core\\": "modules/",
+            "System\\": "system/"
         }
     }
 }

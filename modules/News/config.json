@@ -1,0 +1,37 @@
+{
+    "name": "News",
+    "backendRoute": [{
+            "url": "getNews",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "deleteNews",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "addNews",
+            "parameters": ["title", "start", "end", "tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "editNews",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getNowEvents",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "getNextEvents",
+            "parameters": ["tmid"]
+        }
+    ],
+    "jsControllers": ["calendarController"],
+    "frontendRoute": [{
+        "url": "calendar",
+        "templateSrc": "calendar.html",
+        "controllerName": "calendarController"
+    }]
+}

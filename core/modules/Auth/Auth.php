@@ -1,10 +1,8 @@
 <?php
 namespace Core;
 
-use Core\Database;
-
-class Auth{
-    private $db;
+class Auth {
+    public $db;
 
     function __construct(){
         $this->db = new Database();

@@ -1,15 +1,12 @@
 <?php
 namespace Modules;
-use Core\Database;
-use Core\Auth;
+use System\BasicModule;
 
-class Teams{
-    private $db;
-    private $auth;
+class Teams extends BasicModule {
+    function install(){
+    }
 
-    function __construct(){
-        $this->db = new Database();
-        $this->auth = new Auth();
+    function uninstall(){
     }
 
     function getTeams( $data ){
@@ -168,4 +165,5 @@ class Teams{
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
+    
 }

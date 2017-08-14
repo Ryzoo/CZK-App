@@ -1,0 +1,19 @@
+{
+    "name": "Todo",
+    "backendRoute": [{
+            "url": "getTodo"
+        },
+        {
+            "url": "endTodo",
+            "parameters": ["tid"]
+        },
+        {
+            "url": "addTodo",
+            "parameters": ["usid", "title", "color"]
+        }
+    ],
+    "jsControllers": ["todoController"],
+    "css": ["style"],
+    "js": ["script"],
+    "frontendRoute": []
+}

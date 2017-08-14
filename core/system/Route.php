@@ -1,4 +1,5 @@
 <?php
+namespace System;
 
 use \KHerGe\JSON\JSON;
 use Core\Auth;
@@ -11,6 +12,8 @@ class Route{
     private $modules = [];
     private $controllerList = [];
     private $frontRouteList = [];
+    private $modulesJs = [];
+    private $modulesCss = [];
     private $auth;
 
     function __construct( $allPost ){
@@ -20,46 +23,76 @@ class Route{
 
         // load modules
         $json = new JSON();
-        $modulesList = $json->decodeFile(__DIR__. '/mainConf.json' );
+        $modulesList = $json->decodeFile(__DIR__. '/../mainConf.json' );
 
-        // load core modules
-        for ($i=0; $i < count($modulesList->coreModules); $i++) {
-            if( isset($modulesList->coreModules[$i]->frontendRoute) ){
-                $frontRoute = $modulesList->coreModules[$i]->frontendRoute;
+        for ($z=0; $z < count($modulesList->installedModules) ; $z++) { 
+            $moduleJson = $json->decodeFile(__DIR__. '/../../modules/'.$modulesList->installedModules[$z].'/config.json' );
+            // load user modules
+            if( isset($moduleJson->frontendRoute) ){
+                $frontRoute = $moduleJson->frontendRoute;
                 for ($x=0; $x < count($frontRoute); $x++) { 
-                    $frontRoute[$x]->templateSrc = "core/modules/".$modulesList->coreModules[$i]->name."/templates/" . $frontRoute[$x]->templateSrc;
+                    $frontRoute[$x]->templateSrc = "modules/".$moduleJson->name."/assets/templates/" . $frontRoute[$x]->templateSrc;
                     array_push($this->frontRouteList,$frontRoute[$x]);
                 }
             }
-            if( isset($modulesList->coreModules[$i]->jsControllers) ){
-                $controllers = $modulesList->coreModules[$i]->jsControllers;
-                for ($x=0; $x < count($controllers); $x++) {
-                    $controllers[$x] = "core/modules/".$modulesList->coreModules[$i]->name."/" . $controllers[$x].".js";
+            if( isset($moduleJson->jsControllers) ){
+                $controllers = $moduleJson->jsControllers;
+                for ($x=0; $x < count($controllers); $x++) { 
+                    $controllers[$x] = "modules/".$moduleJson->name."/assets/controllers/" . $controllers[$x].".js";
                     array_push($this->controllerList,$controllers[$x]);
                 }
             }
-            $modulesList->coreModules[$i]->name = "Core\\".$modulesList->coreModules[$i]->name;
-            array_push($this->modules,$modulesList->coreModules[$i]);
+            if( isset($moduleJson->js) ){
+                $js = $moduleJson->js;
+                for ($x=0; $x < count($js); $x++) { 
+                    $js[$x] = "modules/".$moduleJson->name."/assets/js/" . $js[$x].".js";
+                    array_push($this->modulesJs,$js[$x]);
+                }
+            }
+            if( isset($moduleJson->css) ){
+                $css = $moduleJson->css;
+                for ($x=0; $x < count($css); $x++) { 
+                    $css[$x] = "modules/".$moduleJson->name."/assets/css/" . $css[$x].".css";
+                    array_push($this->modulesCss,$css[$x]);
+                }
+            }
+            $moduleJson->name = "Modules\\".$moduleJson->name;
+            array_push($this->modules,$moduleJson);
         }
 
-        // load user modules
-        for ($i=0; $i < count($modulesList->modules); $i++) {
-            if( isset($modulesList->modules[$i]->frontendRoute) ){
-                $frontRoute = $modulesList->modules[$i]->frontendRoute;
+        for ($z=0; $z < count($modulesList->coreModules) ; $z++) { 
+            $moduleJson = $json->decodeFile(__DIR__. '/../modules/'.$modulesList->coreModules[$z].'/config.json' );
+            // load core modules
+            if( isset($moduleJson->frontendRoute) ){
+                $frontRoute = $moduleJson->frontendRoute;
                 for ($x=0; $x < count($frontRoute); $x++) { 
-                    $frontRoute[$x]->templateSrc = "modules/".$modulesList->modules[$i]->name."/templates/" . $frontRoute[$x]->templateSrc;
+                    $frontRoute[$x]->templateSrc = "core/modules/".$moduleJson->name."/assets/templates/" . $frontRoute[$x]->templateSrc;
                     array_push($this->frontRouteList,$frontRoute[$x]);
                 }
             }
-            if( isset($modulesList->modules[$i]->jsControllers) ){
-                $controllers = $modulesList->modules[$i]->jsControllers;
+            if( isset($moduleJson->jsControllers) ){
+                $controllers = $moduleJson->jsControllers;
                 for ($x=0; $x < count($controllers); $x++) { 
-                    $controllers[$x] = "modules/".$modulesList->modules[$i]->name."/" . $controllers[$x].".js";
+                    $controllers[$x] = "core/modules/".$moduleJson->name."/assets/controllers/" . $controllers[$x].".js";
                     array_push($this->controllerList,$controllers[$x]);
                 }
             }
-            $modulesList->modules[$i]->name = "Modules\\".$modulesList->modules[$i]->name;
-            array_push($this->modules,$modulesList->modules[$i]);
+            if( isset($moduleJson->js) ){
+                $js = $moduleJson->js;
+                for ($x=0; $x < count($js); $x++) { 
+                    $js[$x] = "core/modules/".$moduleJson->name."/assets/js/" . $js[$x].".js";
+                    array_push($this->modulesJs,$js[$x]);
+                }
+            }
+            if( isset($moduleJson->css) ){
+                $css = $moduleJson->css;
+                for ($x=0; $x < count($css); $x++) { 
+                    $css[$x] = "core/modules/".$moduleJson->name."/assets/css/" . $css[$x].".css";
+                    array_push($this->modulesCss,$css[$x]);
+                }
+            }
+            $moduleJson->name = "Core\\".$moduleJson->name;
+            array_push($this->modules,$moduleJson);
         }
 
         $this->checkRequest();
@@ -76,8 +109,11 @@ class Route{
             $this->dataToReturn = $this->getModulesJs();
         }else if( $this->request === "getModulesFrontRoutes" ){
             $this->dataToReturn = $this->getModulesFrontRoutes();
+        }else if( $this->request === "getPageCss" ){
+            $this->dataToReturn = $this->getModulesCss();
         }else{
-            for ($i=0; $i < count($this->modules); $i++) { 
+            for ($i=0; $i < count($this->modules); $i++) {
+                if( isset($this->modules[$i]->backendRoute) )
                 for ($j=0; $j < count($this->modules[$i]->backendRoute); $j++) { 
                     if($this->modules[$i]->backendRoute[$j]->url === $this->request){
                         //check if these url exist in this module if yes then do:
@@ -127,7 +163,14 @@ class Route{
     function getModulesJs(){
         $error = '';
         $success = true;
-        $toReturn = $this->controllerList;
+        $toReturn = array_merge($this->controllerList,$this->modulesJs);
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function getModulesCss(){
+        $error = '';
+        $success = true;
+        $toReturn = $this->modulesCss;
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 

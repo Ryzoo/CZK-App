@@ -1,0 +1,31 @@
+{
+    "name": "Players",
+    "backendRoute": [{
+            "url": "getAllPlayers",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "addPerson",
+            "parameters": ["isAdmin", "isPersonel", "lname", "fname", "mail", "tmid", "token"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getAllMaster"
+        },
+        {
+            "url": "getAllUserData",
+            "parameters": ["usid"]
+        },
+        {
+            "url": "deleteUser",
+            "parameters": ["usid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }
+    ],
+    "jsControllers": ["showPlayersController"],
+    "frontendRoute": [{
+        "url": "showPlayers",
+        "templateSrc": "showPlayers.html",
+        "controllerName": "showPlayersController"
+    }]
+}
