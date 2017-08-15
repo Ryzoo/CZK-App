@@ -1,13 +1,13 @@
 <?php
 namespace Modules;
 
-use Core\Database;
+use System\BasicModule;
 
-class Raports{
-    private $db;
+class Raports extends BasicModule {
+    function install(){
+    }
 
-    function __construct(){
-        $this->db = new Database();
+    function uninstall(){
     }
 
     function addRaport( $data ){

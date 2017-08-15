@@ -1,0 +1,21 @@
+{
+    "name": "Todo",
+    "description": "Dodaje obsługę zadań osobistych",
+    "version": "1.0",
+    "backendRoute": [{
+            "url": "getTodo"
+        },
+        {
+            "url": "endTodo",
+            "parameters": ["tid"]
+        },
+        {
+            "url": "addTodo",
+            "parameters": ["usid", "title", "color"]
+        }
+    ],
+    "jsControllers": ["todoController"],
+    "css": ["style"],
+    "js": ["script"],
+    "frontendRoute": []
+}
