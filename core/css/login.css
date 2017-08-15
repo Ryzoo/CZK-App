@@ -12,9 +12,17 @@ body {
     background-position: center;
 }
 
-.height-100 {
+@media screen and (min-width: 0px) {
+  .height-resp {
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 412px) {
+  .height-resp {
     height: 100%;
     overflow: hidden;
+  }
 }
 
 .start-panel {
