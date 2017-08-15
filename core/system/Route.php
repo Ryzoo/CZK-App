@@ -4,6 +4,7 @@ namespace System;
 use \KHerGe\JSON\JSON;
 use Core\Auth;
 use Core\Database;
+use Core\Settings;
 
 class Route{
     private $request;
@@ -17,12 +18,13 @@ class Route{
     private $modulesCss = [];
     private $auth;
     private $leftMenu = [];
+    private $settings;
 
     function __construct( $allPost ){
         $this->postData = $allPost;
         $this->request = str_replace("/backend/","",$_SERVER['REQUEST_URI']);
         $this->auth = new Auth();
-
+        $this->settings = new Settings();
         // load modules
         $json = new JSON();
         $modulesList = $json->decodeFile(__DIR__. '/../mainConf.json' );
@@ -186,6 +188,13 @@ class Route{
             }
             $moduleJson->name = "Core\\".$moduleJson->name;
             array_push($this->modules,$moduleJson);
+        }
+
+        //add actual theme files
+        $actualThemes = $this->settings->currentThemes();
+        if(isset($actualThemes)&&strlen($actualThemes)>2){
+            $actualThemes = "core/themes/".$actualThemes."/style.css";
+            array_push($this->modulesJs,$actualThemes);
         }
 
         $this->checkRequest();

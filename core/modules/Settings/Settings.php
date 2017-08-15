@@ -121,13 +121,47 @@ class Settings extends BasicModule{
         return $dbConfig->database;
     }
 
-    function installedModules(){
+    public function getAvailableThemes(){
+        $this->returnedData['data'] = $this->availableThemes();
+        return $this->returnedData;
+    }
+
+    public function getCurrentThemes(){
+        $this->returnedData['data'] = $this->currentThemes();
+        return $this->returnedData;
+    }
+
+    public function installedModules(){
         $json = new JSON();
         $modulesConfig = $json->decodeFile(__DIR__. '/../../mainConf.json' );
         return $modulesConfig->installedModules; 
     }
 
-    function addModule($data){
+    public function setCurrentTheme($data){
+        $name = $data['name'];
+        $allThemes = $this->availableThemes();
+        $isAvailable = false;
+        for ($i=0; $i < count($allThemes) ; $i++) { 
+            if( $allThemes[$i] === $name){
+                $isAvailable = true;
+                break;
+            }
+        }
+
+        if($isAvailable && file_exists(__DIR__. '/../../themes/'.$name.'/style.css')){
+            $json = new JSON();
+            $themesConf = $json->decodeFile(__DIR__. '/../../themes/config.json' );
+            $themesConf->current = $name;
+            $json->encodeFile($themesConf, __DIR__. '/../../themes/config.json');
+        }else{
+            $this->returnedData['error'] = "Niestety nieodnaleziono odpowiedniego szablonu wyglądu";
+            $this->returnedData['success'] = false;
+        }
+
+        return $this->returnedData;
+    }
+
+    public function addModule($data){
         if( isset($_FILES["moduleFile"]) ){
             $ext = pathinfo($_FILES["moduleFile"]["name"],PATHINFO_EXTENSION);
             if($ext !== "zip"){
@@ -155,6 +189,20 @@ class Settings extends BasicModule{
             $this->returnedData['success'] = false;
         }
         return $this->returnedData;
+    }
+
+    public function availableThemes(){
+        $json = new JSON();
+        $themesConf = $json->decodeFile(__DIR__. '/../../themes/config.json' );
+        if(!isset($themesConf->availableThemes)) $themesConf->availableThemes = [];
+        return $themesConf->availableThemes; 
+    }
+
+    public function currentThemes(){
+        $json = new JSON();
+        $themesConf = $json->decodeFile(__DIR__. '/../../themes/config.json' );
+        if(!isset($themesConf->current)) $themesConf->current = "";
+        return $themesConf->current; 
     }
 
     function install(){}

@@ -17,6 +17,16 @@
     }, {
         "url": "addModule",
         "auth": ["KOORD"]
+    }, {
+        "url": "setCurrentTheme",
+        "parameters": ["name"],
+        "auth": ["KOORD"]
+    }, {
+        "url": "getAvailableThemes",
+        "auth": ["KOORD"]
+    }, {
+        "url": "getCurrentThemes",
+        "auth": ["KOORD"]
     }],
     "css": ["style"],
     "jsControllers": ["settingsController"],
@@ -39,6 +49,18 @@
             "link": {
                 "label": "Moduły",
                 "url": "#!/modules"
+            }
+        }
+    }, {
+        "destination": "leftMenu",
+        "anchorPoint": "Zarządzanie panelem",
+        "anchorPointIcon": "fa fa-cog fa-fw",
+        "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
+        "anchorWeight": 1000,
+        "content": {
+            "link": {
+                "label": "Wygląd",
+                "url": "#!/mainSettings"
             }
         }
     }]

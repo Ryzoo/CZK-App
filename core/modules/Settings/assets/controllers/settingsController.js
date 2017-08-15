@@ -2,10 +2,16 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     $scope.showContent = false;
     $scope.installedModules = [];
     $scope.notInstalledModules = [];
+    $scope.actualTheme = "";
+    $scope.allThemes = [];
 
     $scope.initSettings = function() {
         getInstalledModules();
         getAvilableModules();
+    }
+
+    $scope.initThemes = function() {
+        getActualThemes();
     }
 
     $scope.installModule = function(moduleName) {
@@ -33,6 +39,29 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         }, "Moduł dodany pomyślnie", true);
     }
 
+    function getActualThemes() {
+        request.backend('getCurrentThemes', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.actualTheme = data;
+            });
+            request.backend('getAvailableThemes', {}, function(data) {
+                $scope.$apply(function() {
+                    $scope.allThemes = data;
+                    $scope.showContent = true;
+                    $('#selectThemes').html('');
+                    $('#selectThemes').append("<option value='' disabled >Szablony</option>");
+                    for (var i = 0; i < $scope.allThemes.length; i++) {
+                        if ($scope.allThemes == $scope.actualTheme)
+                            $('#selectThemes').append("<option value='" + $scope.allThemes[i] + "' selected>" + $scope.allThemes[i] + "</option>");
+                        else
+                            $('#selectThemes').append("<option value='" + $scope.allThemes[i] + "'>" + $scope.allThemes[i] + "</option>");
+                    }
+                    $('select').material_select();
+                });
+            });
+        });
+    }
+
     function getInstalledModules() {
         request.backend('getInstalledModules', {}, function(data) {
             $scope.$apply(function() {
@@ -49,4 +78,8 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
             });
         });
     }
+
+    $(document).on("change", "#selectThemes", function() {
+        request.backend('setCurrentTheme', { name: $(this).val() }, null, "Pomyślnie zmieniono szablon. Odśwież stronę, aby zobaczyć zmiany. (ctrl+f5)");
+    });
 });
