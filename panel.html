@@ -129,7 +129,7 @@
                 document.getElementsByTagName('body')[0].appendChild(se);
             }
         };
-        var urlToPost = 'backend/getPageJs';
+        var urlToPost = 'backend/getServices';
         $.ajax({
             url: urlToPost,
             type: "POST",
@@ -140,10 +140,45 @@
                     JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js");
                     JavaScript.load("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js");
                     JavaScript.load("/core/js/services.js");
-                    JavaScript.load("/core/js/controllers/mainController.js");
                     for (var x = 0; x < msg.data.length; x++) {
                         JavaScript.load(msg.data[x]);
                     }
+
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: 3,
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: 'Bład',
+                    text: "Blad podczas laczenia z serverem: " + textStatus,
+                    image: '',
+                    sticky: true,
+                    time: 3,
+                    class_name: 'my-sticky-class'
+                });
+            }
+        });
+        var urlToPost = 'backend/getPageJs';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: [],
+            async: false,
+            success: function(msg) {
+                if (msg.success) {
+                    for (var x = 0; x < msg.data.length; x++) {
+                        JavaScript.load(msg.data[x]);
+                    }
+                    JavaScript.load("/core/js/controllers/mainController.js");
                     JavaScript.load("/core/js/route.js");
                 } else {
                     if (msg.error)

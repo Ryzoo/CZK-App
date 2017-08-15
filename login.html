@@ -15,12 +15,81 @@
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="/core/js/libraries/js.cookie.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
-    <script src="/core/js/services.js"></script>
-    <script src="/core/js/controllers/loginController.js"></script>
-    <script src="/core/js/route.js"></script>
-
+    <script>
+        function GetXmlHttpObject() {
+            var objXMLHttp = null;
+            if (window.XMLHttpRequest) {
+                objXMLHttp = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                objXMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return objXMLHttp;
+        }
+        var JavaScript = {
+            load: function(src) {
+                var xhrObj = GetXmlHttpObject();
+                xhrObj.open('GET', src, false);
+                xhrObj.send('');
+                var se = document.createElement('script');
+                se.type = "text/javascript";
+                se.text = xhrObj.responseText;
+                document.getElementsByTagName('head')[0].appendChild(se);
+            },
+            loadCss: function(src) {
+                var xhrObj = GetXmlHttpObject();
+                xhrObj.open('GET', src, false);
+                xhrObj.send('');
+                var se = document.createElement('style');
+                se.type = 'text/css';
+                if (se.styleSheet) {
+                    se.styleSheet.cssText = xhrObj.responseText;
+                } else {
+                    se.appendChild(document.createTextNode(xhrObj.responseText));
+                }
+                document.getElementsByTagName('head')[0].appendChild(se);
+            }
+        };
+        var urlToPost = 'backend/getServices';
+        $.ajax({
+            url: urlToPost,
+            type: "POST",
+            data: [],
+            async: false,
+            success: function(msg) {
+                if (msg.success) {
+                    JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js");
+                    JavaScript.load("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js");
+                    JavaScript.load("/core/js/services.js");
+                    for (var x = 0; x < msg.data.length; x++) {
+                        JavaScript.load(msg.data[x]);
+                    }
+                    JavaScript.load("/core/js/controllers/loginController.js");
+                    JavaScript.load("/core/js/controllers/mainController.js");
+                    JavaScript.load("/core/js/route.js");
+                } else {
+                    if (msg.error)
+                        $.gritter.add({
+                            title: 'Bład',
+                            text: msg.error,
+                            image: '',
+                            sticky: true,
+                            time: 3,
+                            class_name: 'my-sticky-class'
+                        });
+                }
+            },
+            error: function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: 'Bład',
+                    text: "Blad podczas laczenia z serverem: " + textStatus,
+                    image: '',
+                    sticky: true,
+                    time: 3,
+                    class_name: 'my-sticky-class'
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>

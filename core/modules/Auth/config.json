@@ -18,6 +18,7 @@
         }
     ],
     "jsControllers": ["accountController"],
+    "appServicesFile": ["services"],
     "frontendRoute": [{
         "url": "myProfile",
         "templateSrc": "myProfile.html",

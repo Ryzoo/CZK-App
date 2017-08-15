@@ -12,6 +12,7 @@ class Route{
     private $modules = [];
     private $controllerList = [];
     private $frontRouteList = [];
+    private $services = [];
     private $modulesJs = [];
     private $modulesCss = [];
     private $auth;
@@ -95,6 +96,13 @@ class Route{
                     }   
                 }
             }
+            if( isset($moduleJson->appServicesFile) ){
+                $jsServices = $moduleJson->appServicesFile;
+                for ($x=0; $x < count($jsServices); $x++) { 
+                    $jsServices[$x] = "modules/".$moduleJson->name."/assets/services/" . $jsServices[$x].".js";
+                    array_push($this->services,$jsServices[$x]);
+                }
+            }
             $moduleJson->name = "Modules\\".$moduleJson->name;
             array_push($this->modules,$moduleJson);
         }
@@ -169,6 +177,13 @@ class Route{
                     }   
                 }
             }
+            if( isset($moduleJson->appServicesFile) ){
+                $jsServices = $moduleJson->appServicesFile;
+                for ($x=0; $x < count($jsServices); $x++) { 
+                    $jsServices[$x] = "core/modules/".$moduleJson->name."/assets/services/" . $jsServices[$x].".js";
+                    array_push($this->services,$jsServices[$x]);
+                }
+            }
             $moduleJson->name = "Core\\".$moduleJson->name;
             array_push($this->modules,$moduleJson);
         }
@@ -191,6 +206,8 @@ class Route{
             $this->dataToReturn = $this->getModulesCss();
         }else if( $this->request === "getLeftMenu" ){
             $this->dataToReturn = $this->getLeftMenu();
+        }else if( $this->request === "getServices" ){
+            $this->dataToReturn = $this->getServices();
         }else{
             for ($i=0; $i < count($this->modules); $i++) {
                 if( isset($this->modules[$i]->backendRoute) )
@@ -244,6 +261,13 @@ class Route{
         $error = '';
         $success = true;
         $toReturn = array_merge($this->controllerList,$this->modulesJs);
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function getServices(){
+        $error = '';
+        $success = true;
+        $toReturn = $this->services;
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
