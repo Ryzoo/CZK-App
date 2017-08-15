@@ -1,12 +1,15 @@
 {
     "require": {
         "simplon/mysql": "*",
-        "kherge/json": "*"
+        "kherge/json": "*",
+        "alchemy/zippy": "*",
+        "composer/composer": "*"
     },
     "autoload": {
         "psr-4": {
             "Modules\\": "../modules/",
-            "Core\\": "modules/"
+            "Core\\": "modules/",
+            "System\\": "system/"
         }
     }
 }

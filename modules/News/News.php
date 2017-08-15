@@ -1,15 +1,13 @@
 <?php
 namespace Modules;
-use Core\Database;
-use Core\Auth;
 
-class News{
-    private $db;
-    private $auth;
+use System\BasicModule;
 
-    function __construct(){
-        $this->db = new Database();
-        $this->auth = new Auth();
+class News extends BasicModule {
+    function install(){
+    }
+
+    function uninstall(){
     }
 
     function getNews( $data ){

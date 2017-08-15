@@ -1,8 +1,12 @@
 <?php
 namespace Modules;
 
-class Dashboard{
-    function __construct(){
+use System\BasicModule;
 
+class Dashboard extends BasicModule {
+    function install(){
+    }
+
+    function uninstall(){
     }
 }

@@ -1,17 +1,14 @@
 <?php
 namespace Modules;
 
-use Core\Database;
-use Core\Auth;
+use System\BasicModule;
 
-class Todo{
+class Todo extends BasicModule {
 
-    private $db;
-    private $auth;
+    function install(){
+    }
 
-    function __construct(){
-        $this->db = new Database();
-        $this->auth = new Auth();
+    function uninstall(){
     }
 
     function getTodo( $data ){
@@ -58,5 +55,7 @@ class Todo{
         
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
+
+    
 
 }
