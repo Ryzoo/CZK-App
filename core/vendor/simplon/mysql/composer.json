@@ -19,7 +19,8 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.1",
+    "simplon/helper": "^1.0",
     "ext-pdo": "*"
   },
   "autoload": {

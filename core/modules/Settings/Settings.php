@@ -3,6 +3,7 @@ namespace Core;
 
 use \KHerGe\JSON\JSON;
 use System\BasicModule;
+use Alchemy\Zippy\Zippy;
 
 class Settings extends BasicModule{
 
@@ -96,7 +97,13 @@ class Settings extends BasicModule{
 
             if( isset($modulesConfig->description) ) $description = $modulesConfig->description;
             if( isset($modulesConfig->version) ) $version = $modulesConfig->version;
-            $isIcon = file_exists(__DIR__. '/../../../modules/'.$modules[$i].'/icon.jpg');
+            if(file_exists(__DIR__. '/../../../modules/'.$modules[$i].'/icon.jpg')){
+                $isIcon = "./modules/".$modules[$i].'/icon.jpg';
+            }else if(file_exists(__DIR__. '/../../../modules/'.$modules[$i].'/icon.png')){
+                $isIcon = "./modules/".$modules[$i].'/icon.png';
+            }else{
+                $isIcon = './files/img/defaultModule.png';
+            }
 
             array_push($toReturn,[
                 "name" => $modules[$i],
@@ -118,6 +125,36 @@ class Settings extends BasicModule{
         $json = new JSON();
         $modulesConfig = $json->decodeFile(__DIR__. '/../../mainConf.json' );
         return $modulesConfig->installedModules; 
+    }
+
+    function addModule($data){
+        if( isset($_FILES["moduleFile"]) ){
+            $ext = pathinfo($_FILES["moduleFile"]["name"],PATHINFO_EXTENSION);
+            if($ext !== "zip"){
+                $this->returnedData['error'] = "Błędne rozszerzenie pliku. Dodaj plik zip";
+                $this->returnedData['success'] = false;
+            }
+            $target_file = __DIR__ . "/../../../files/zippedModule.zip";
+            if(file_exists($target_file))unlink($target_file);
+            if(move_uploaded_file($_FILES["moduleFile"]["tmp_name"], $target_file)){
+                $zippy = Zippy::load();
+                $archive = $zippy->open($target_file);
+                if (isset($archive)) {
+                    $archive->extract(__DIR__ . "/../../../modules/");
+                    system('php '.__DIR__ .'/../../../core/vendor/composer/composer/bin/composer dumpautoload -o');
+                } else {
+                    $this->returnedData['error'] = "Niewłaściwy plik zip. Nie można otworzyć danego pliku";
+                    $this->returnedData['success'] = false;
+                }
+            }else{
+                $this->returnedData['error'] = "Niestety nie udało się przenieść pliku w miejsce docelowe";
+                $this->returnedData['success'] = false;
+            }
+        }else{
+            $this->returnedData['error'] = "Brak pliku zip";
+            $this->returnedData['success'] = false;
+        }
+        return $this->returnedData;
     }
 
     function install(){}

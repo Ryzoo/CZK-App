@@ -88,7 +88,7 @@ class Auth {
         //img change
         if( isset($_FILES["userImgFile"]) ){
             $ext = pathinfo($_FILES["userImgFile"]["name"],PATHINFO_EXTENSION);
-            $target_dir = __DIR__ . "/../../";
+            $target_dir = __DIR__ . "/../../../";
             $file_name = 'files/img/users/' . trim($data['firstname']) . trim($data['lastname']) . "." . $ext;
             $target_file = $target_dir . $file_name;
             if($_FILES["userImgFile"]["size"] >= 25){

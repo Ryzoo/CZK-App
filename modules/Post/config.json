@@ -1,5 +1,7 @@
 {
     "name": "Post",
+    "description": "Możliwość dodawania postów i komentarzy",
+    "version": "1.0",
     "backendRoute": [{
             "url": "getPost",
             "parameters": ["tmid"]

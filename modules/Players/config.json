@@ -1,5 +1,7 @@
 {
     "name": "Players",
+    "description": "Panel zarządzania zawodnikami oraz personelem",
+    "version": "1.0",
     "backendRoute": [{
             "url": "getAllPlayers",
             "parameters": ["tmid"]

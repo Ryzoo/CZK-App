@@ -1,7 +1,9 @@
 {
     "require": {
         "simplon/mysql": "*",
-        "kherge/json": "*"
+        "kherge/json": "*",
+        "alchemy/zippy": "*",
+        "composer/composer": "*"
     },
     "autoload": {
         "psr-4": {

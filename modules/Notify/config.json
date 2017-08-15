@@ -1,5 +1,7 @@
 {
     "name": "Notify",
+    "description": "System powiadomień",
+    "version": "1.0",
     "backendRoute": [{
             "url": "addNotify",
             "parameters": ["title", "tmid", "token", "to", "toAll", "url"]

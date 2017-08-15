@@ -14,7 +14,11 @@
     }, {
         "url": "getInstalledModules",
         "auth": ["KOORD"]
+    }, {
+        "url": "addModule",
+        "auth": ["KOORD"]
     }],
+    "css": ["style"],
     "jsControllers": ["settingsController"],
     "frontendRoute": [{
         "url": "mainSettings",

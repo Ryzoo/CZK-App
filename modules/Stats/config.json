@@ -1,5 +1,7 @@
 {
     "name": "Stats",
+    "description": "Dodaje panele testów dla zawodników oraz generuje statystyki",
+    "version": "1.0",
     "backendRoute": [{
             "url": "getStats",
             "parameters": ["usid", "tmid"]

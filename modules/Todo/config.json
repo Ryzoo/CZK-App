@@ -1,5 +1,7 @@
 {
     "name": "Todo",
+    "description": "Dodaje obsługę zadań osobistych",
+    "version": "1.0",
     "backendRoute": [{
             "url": "getTodo"
         },

@@ -1,5 +1,7 @@
 {
     "name": "Raports",
+    "description": "Możliwość przypisywania raportów - plików do zawodników",
+    "version": "1.0",
     "backendRoute": [{
             "url": "addRaport",
             "parameters": ["usid", "tmid", "name"]

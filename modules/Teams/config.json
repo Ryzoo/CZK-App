@@ -1,5 +1,7 @@
 {
     "name": "Teams",
+    "description": "Dzieli dane przypisując osobne dla każdego zespołu",
+    "version": "1.0",
     "backendRoute": [{
             "url": "getTeams",
             "parameters": ["token"]

@@ -11,6 +11,108 @@ app.service('request', function($http, $rootScope) {
             error: ffailed,
         });
     }
+    this.backend = function(routeName, data = {}, successFunction = null, successMessage = "", isForm = false) {
+        var urlToPost = 'backend/' + routeName;
+        if (isForm) {
+            $.ajax({
+                url: urlToPost,
+                type: "POST",
+                data: data,
+                async: true,
+                success: function(msg) {
+                    if (msg.success) {
+                        if (successFunction) {
+                            successFunction(msg.data ? msg.data : []);
+                        }
+                        if (successMessage.length > 2) {
+                            $.gritter.add({
+                                title: 'Sukces',
+                                text: successMessage,
+                                image: '',
+                                sticky: true,
+                                time: 3,
+                                class_name: 'my-sticky-class'
+                            });
+                        }
+                    } else {
+                        console.log(msg);
+                        if (msg.error) {
+                            $.gritter.add({
+                                title: 'Bład',
+                                text: msg.error,
+                                image: '',
+                                sticky: true,
+                                time: 3,
+                                class_name: 'my-sticky-class'
+                            });
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus) {
+                    console.log("Blad podczas laczenia z serverem: " + textStatus);
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się połączyć z serverem',
+                        image: '',
+                        sticky: true,
+                        time: 3,
+                        class_name: 'my-sticky-class'
+                    });
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        } else {
+            var dataToSend = Object.assign({ token: Cookies.get('tq') }, data);
+            $.ajax({
+                url: urlToPost,
+                type: "POST",
+                data: dataToSend,
+                async: true,
+                success: function(msg) {
+                    if (msg.success) {
+                        if (successFunction) {
+                            successFunction(msg.data ? msg.data : []);
+                        }
+                        if (successMessage.length > 2) {
+                            $.gritter.add({
+                                title: 'Sukces',
+                                text: successMessage,
+                                image: '',
+                                sticky: true,
+                                time: 3,
+                                class_name: 'my-sticky-class'
+                            });
+                        }
+                    } else {
+                        console.log(msg);
+                        if (msg.error) {
+                            $.gritter.add({
+                                title: 'Bład',
+                                text: msg.error,
+                                image: '',
+                                sticky: true,
+                                time: 3,
+                                class_name: 'my-sticky-class'
+                            });
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus) {
+                    console.log("Blad podczas laczenia z serverem: " + textStatus);
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: 'Niestety nie udało się połączyć z serverem',
+                        image: '',
+                        sticky: true,
+                        time: 3,
+                        class_name: 'my-sticky-class'
+                    });
+                }
+            });
+        }
+    }
 });
 
 app.service('statistic', function($http, $rootScope, request) {
@@ -177,6 +279,16 @@ app.service('notify', function($http, $rootScope, request) {
         this.to = _to;
         this.toAll = _toAll;
         this.url = _url
+    }
+
+    this.localNotify = function(type, message) {
+        $.gritter.add({
+            title: type,
+            text: message,
+            sticky: true,
+            time: 3,
+            class_name: 'my-sticky-class'
+        });
     }
 
     this.addNew = function(notifyObj) {

@@ -10,12 +10,10 @@
                     </div>
                     <div class="row">
                         <ul class="collection none-border">
-                            <li class="collection-item avatar" ng-repeat="module in installedModules">
-                                <img ng-show='module.icon' src="./modules/{{module.name}}/icon.jpg" alt="module icon" style='position:absolute;width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
-                                <img ng-hide='module.icon' src="./files/img/defaultModule.png" alt="module icon" style='position:absolute;width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
-                                <span class="title">{{module.name}} - {{module.version}}</span>
+                            <li class="collection-item avatar moduleCollection" ng-repeat="module in installedModules">
+                                <img src="{{module.icon}}" alt="module icon"><span class="title">{{module.name}} - {{module.version}}</span>
                                 <p style='padding: 5px 15px;'>{{module.description}}</p>
-                                <a href="" class="secondary-content" style='position:absolute;width: 10px;height: 10px; transform:translateY(-50%); top: 40%; right:10px' ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a href="" class="secondary-content" ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -29,13 +27,33 @@
                         Do zainstalowania
                     </div>
                     <div class="row">
+                        <form id="addModuleForm" enctype="multipart/form-data">
+                            <input type="hidden" name="token" value="{{user.token}}">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Plik zip z modułem</span>
+                                    <input type="file" name="moduleFile" id="moduleFile" accept=".zip">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Dodaj nowy moduł">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button type="button" class="waves-effect waves-light btn" ng-click="addModule()">Dodaj moduł</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
                         <ul class="collection none-border">
-                            <li class="collection-item avatar" ng-repeat="module in notInstalledModules">
-                                <img ng-show='module.icon' src="./modules/{{module.name}}/icon.jpg" alt="module icon" style='position:absolute; width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
-                                <img ng-hide='module.icon' src="./files/img/defaultModule.png" alt="module icon" style='position:absolute;width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
+                            <li class="collection-item avatar moduleCollection" ng-repeat="module in notInstalledModules">
+                                <img src="{{module.icon}}" alt="module icon">
                                 <span class="title">{{module.name}} - {{module.version}}</span>
-                                <p style='padding: 5px 15px;'>{{module.description}}</p>
-                                <a href="" class="secondary-content" style='position:absolute;width: 10px;height: 10px; transform:translateY(-50%); top: 40%; right:10px' ng-click="installModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                <p>{{module.description}}</p>
+                                <a href="" class="secondary-content" ng-click="installModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             </li>
                         </ul>
                     </div>
