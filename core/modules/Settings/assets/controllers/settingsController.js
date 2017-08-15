@@ -51,7 +51,7 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
                     $('#selectThemes').html('');
                     $('#selectThemes').append("<option value='' disabled >Szablony</option>");
                     for (var i = 0; i < $scope.allThemes.length; i++) {
-                        if ($scope.allThemes == $scope.actualTheme)
+                        if ($scope.allThemes[i] == $scope.actualTheme)
                             $('#selectThemes').append("<option value='" + $scope.allThemes[i] + "' selected>" + $scope.allThemes[i] + "</option>");
                         else
                             $('#selectThemes').append("<option value='" + $scope.allThemes[i] + "'>" + $scope.allThemes[i] + "</option>");

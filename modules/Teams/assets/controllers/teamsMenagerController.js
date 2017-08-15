@@ -1,4 +1,4 @@
-app.controller('teamsMenagerController', function($scope, auth, $rootScope, notify) {
+app.controller('teamsMenagerController', function($scope, auth, $rootScope, notify, request) {
     $scope.showContent = false;
     $scope.teams = [];
     $scope.teamMasters = [];
@@ -206,61 +206,13 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
     $scope.addTeam = function() {
         var name = $('#teamName').val();
         if (name.length < 3) {
-            $.gritter.add({
-                title: 'Bład',
-                text: 'Wpisz dłuższą nazwę drużyny',
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
+            notify.localNotify('Walidacja', "Wpisz dłuższą nazwę");
             return;
         }
-        var dataToSend = { token: Cookies.get('tq'), name: name };
-        var urlToPost = 'backend/addTeam';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Dodano nową drużynę, możesz przydzielić teraz trenerów',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllTeams();
-                } else {
-                    if (msg.error) {
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                    }
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                });
-            },
-        });
+        var weight = Number.isInteger($('#teamWeight').val()) ? $('#teamWeight').val() : 999;
+        request.backend('addTeam', { name: name, weight: weight }, function(data) {
+            getAllTeams();
+        }, "Dodano nową drużynę, możesz przydzielić teraz trenerów");
     }
     $scope.deleteMaster = function(id) {
         var dataToSend = { token: Cookies.get('tq'), mid: id, tmid: $scope.actualSelectedTeamId };
@@ -380,5 +332,17 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
             },
         });
     }
+
+    $(document).on("change", ".changeWeight", function() {
+        var idTeam = $(this).attr('id').split("-")[1];
+        var weight = parseInt($(this).val());
+        if (Number.isInteger(weight) && weight <= 999 && weight >= 0) {
+            request.backend('changeWeightTeam', { tmid: idTeam, weight: weight }, function(data) {
+                getAllTeams();
+            }, "Zmieniono pozycję pomyślnie");
+        } else {
+            notify.localNotify('Walidacja', "Wpisz liczbę całkowitą z przedzialu 0 - 999");
+        }
+    });
 
 });

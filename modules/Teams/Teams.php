@@ -9,6 +9,15 @@ class Teams extends BasicModule {
     function uninstall(){
     }
 
+    function changeWeightTeam($data){
+        $tmid = $data['tmid'];
+        $weight = $data['weight'];
+        $condsUsers = ["id"=>$tmid];
+        $dataUsers = ["weight"=>$weight];
+        ($this->db->getConnection())->update('teams', $condsUsers, $dataUsers);
+        return $this->returnedData;
+    }
+
     function getTeams( $data ){
         $token = $data['token'];
         $toReturn = null;
@@ -18,9 +27,9 @@ class Teams extends BasicModule {
         $isKoord = (($this->auth)->checkPerm($token,"KOORD"));
         if( $usid ){
             if($isKoord){
-                $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT teams.id as tmid, name FROM teams');
+                $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT teams.id as tmid, name, weight FROM teams ORDER BY weight');
             }else{
-                $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT teams.id as tmid, name FROM teams, team_members WHERE teams.id = team_members.id_team AND team_members.id_user = '.$usid);
+                $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT teams.id as tmid, name, weight FROM teams, team_members WHERE teams.id = team_members.id_team AND team_members.id_user = '.$usid.' ORDER BY weight');
             }
         }
         else{
@@ -79,7 +88,7 @@ class Teams extends BasicModule {
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT * FROM teams' );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT * FROM teams ORDER BY weight' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
@@ -89,7 +98,8 @@ class Teams extends BasicModule {
         $success = true;
         $error = "";
         $data = [
-            'name' => $data["name"]
+            'name' => $data["name"],
+            'weight' => $data["weight"]
         ];
 
         $toReturn = ($this->db->getConnection())->insert('teams', $data);
