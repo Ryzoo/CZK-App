@@ -41,7 +41,7 @@
     }],
     "anchor": [{
         "destination": "leftMenu",
-        "anchorPoint": "Zarządzanie panelem",
+        "anchorPoint": "Ustawienia",
         "anchorPointIcon": "fa fa-cog fa-fw",
         "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
         "anchorWeight": 1000,
@@ -53,7 +53,7 @@
         }
     }, {
         "destination": "leftMenu",
-        "anchorPoint": "Zarządzanie panelem",
+        "anchorPoint": "Ustawienia",
         "anchorPointIcon": "fa fa-cog fa-fw",
         "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
         "anchorWeight": 1000,

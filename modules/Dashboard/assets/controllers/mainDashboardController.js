@@ -3,6 +3,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.nextEvents = [];
     $scope.lastPost = [];
     $scope.showContent = false;
+    $scope.isLoadedPost = false;
 
 
     $scope.getAllEvents = function() {
@@ -117,6 +118,8 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                     if (msg.data) {
                         $scope.$apply(function() {
                             $scope.lastPost = msg.data;
+                            if (msg.data.length > 0)
+                                $scope.isLoadedPost = true;
                         });
                     }
                 } else {
