@@ -1,0 +1,23 @@
+{
+    "name": "Dashboard",
+    "description": "Panel główny wyśiwetlający podstawowe dane z aplikacji",
+    "version": "1.0",
+    "backendRoute": [],
+    "jsControllers": ["mainDashboardController"],
+    "frontendRoute": [{
+        "url": "/",
+        "templateSrc": "mainDashboard.html",
+        "controllerName": "mainDashboardController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "content": {
+            "link": {
+                "label": "Strona główna",
+                "url": "#!/",
+                "icon": "fa fa-home fa-fw"
+            },
+            "weight": 2
+        }
+    }]
+}

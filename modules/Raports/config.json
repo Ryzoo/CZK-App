@@ -1,0 +1,38 @@
+{
+    "name": "Raports",
+    "description": "Możliwość przypisywania raportów - plików do zawodników",
+    "version": "1.0",
+    "backendRoute": [{
+            "url": "addRaport",
+            "parameters": ["usid", "tmid", "name"]
+        },
+        {
+            "url": "getRaport",
+            "parameters": ["tmid", "usid"]
+        },
+        {
+            "url": "deleteRaport",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }
+    ],
+    "jsControllers": ["myRaportsController"],
+    "frontendRoute": [{
+        "url": "myRaports",
+        "templateSrc": "myRaports.html",
+        "controllerName": "myRaportsController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Mój profil",
+        "anchorPointIcon": "fa fa-user fa-fw",
+        "anchorWeight": 5,
+        "content": {
+            "link": {
+                "label": "Raporty",
+                "url": "#!/myRaports",
+                "additional": "ng-show=\"user.role == 'ZAWODNIK' && user.tmid != ''\""
+            }
+        }
+    }]
+}

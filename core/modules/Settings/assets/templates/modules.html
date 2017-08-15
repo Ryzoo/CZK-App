@@ -1,0 +1,80 @@
+<div ng-init="setPerm(['KOORD'])"></div>
+
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init="initSettings()">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Zainstalowane
+                    </div>
+                    <div class="row">
+                        <ul class="collection none-border">
+                            <li class="collection-item avatar moduleCollection" ng-repeat="module in installedModules">
+                                <img src="{{module.icon}}" alt="module icon"><span class="title">{{module.name}} - {{module.version}}</span>
+                                <p style='padding: 5px 15px;'>{{module.description}}</p>
+                                <a href="" class="secondary-content" ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Do zainstalowania
+                    </div>
+                    <div class="row">
+                        <form id="addModuleForm" enctype="multipart/form-data">
+                            <input type="hidden" name="token" value="{{user.token}}">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Plik zip z modułem</span>
+                                    <input type="file" name="moduleFile" id="moduleFile" accept=".zip">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Dodaj nowy moduł">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button type="button" class="waves-effect waves-light btn" ng-click="addModule()">Dodaj moduł</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <ul class="collection none-border">
+                            <li class="collection-item avatar moduleCollection" ng-repeat="module in notInstalledModules">
+                                <img src="{{module.icon}}" alt="module icon">
+                                <span class="title">{{module.name}} - {{module.version}}</span>
+                                <p>{{module.description}}</p>
+                                <a href="" class="secondary-content" ng-click="installModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

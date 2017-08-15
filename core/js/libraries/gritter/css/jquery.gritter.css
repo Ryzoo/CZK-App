@@ -51,12 +51,12 @@
     padding: 15px;
     font-size: 11px;
     font-family: verdana;
-    background: rgb(40, 50, 60);
+    background: rgb(30, 51, 76);
     border-radius: 3px;
 }
 
 .hover .gritter-item {
-    background: rgb(50, 60, 70);
+    background: rgb(19, 32, 47);
 }
 
 .gritter-item p {

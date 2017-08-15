@@ -1,16 +1,13 @@
 <?php
 namespace Modules;
 
-use Core\Database;
-use Core\Auth;
+use System\BasicModule;
 
-class Notify{
-    private $db;
-    private $auth;
+class Notify extends BasicModule {
+    function install(){
+    }
 
-    function __construct(){
-        $this->db = new Database();
-        $this->auth = new Auth();
+    function uninstall(){
     }
 
     function addNotify($data){
