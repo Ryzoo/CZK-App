@@ -1,0 +1,49 @@
+{
+    "name": "Post",
+    "description": "Możliwość dodawania postów i komentarzy",
+    "version": "1.0",
+    "backendRoute": [{
+            "url": "getPost",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "addPost",
+            "parameters": ["tmid", "msg", "token"]
+        },
+        {
+            "url": "addComment",
+            "parameters": ["post_id", "msg", "token"]
+        },
+        {
+            "url": "deleteComment",
+            "parameters": ["cmid", "token"]
+        },
+        {
+            "url": "deletePost",
+            "parameters": ["psid", "token"]
+        },
+        {
+            "url": "getLastPost",
+            "parameters": ["tmid"]
+        }
+    ],
+    "jsControllers": ["tabController"],
+    "frontendRoute": [{
+        "url": "tab",
+        "templateSrc": "tab.html",
+        "controllerName": "tabController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Szatnia",
+        "anchorPointIcon": "fa fa-users fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "anchorWeight": 8,
+        "content": {
+            "link": {
+                "label": "Tablica",
+                "url": "#!/tab"
+            }
+        }
+    }]
+}

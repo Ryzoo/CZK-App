@@ -1,16 +1,13 @@
 <?php
 namespace Modules;
 
-use Core\Database;
-use Core\Auth;
+use System\BasicModule;
 
-class Post{
-    private $db;
-    private $auth;
+class Post extends BasicModule {
+     function install(){
+    }
 
-    function __construct(){
-        $this->db = new Database();
-        $this->auth = new Auth();
+    function uninstall(){
     }
 
     function getPost($data){

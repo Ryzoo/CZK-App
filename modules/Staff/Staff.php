@@ -1,15 +1,13 @@
 <?php
 namespace Modules;
-use Core\Database;
-use Core\Auth;
 
-class Staff{
-    private $db;
-    private $auth;
+use System\BasicModule;
 
-    function __construct(){
-        $this->db = new Database();
-        $this->auth = new Auth();
+class Staff extends BasicModule {
+    function install(){
+    }
+
+    function uninstall(){
     }
 
     function getTeamStaff( $data ){

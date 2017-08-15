@@ -1,0 +1,143 @@
+{
+    "name": "Stats",
+    "description": "Dodaje panele testów dla zawodników oraz generuje statystyki",
+    "version": "1.0",
+    "appServicesFile": ["services"],
+    "backendRoute": [{
+            "url": "getStats",
+            "parameters": ["usid", "tmid"]
+        },
+        {
+            "url": "getTeamStats",
+            "parameters": ["tmid", "usid"]
+        },
+        {
+            "url": "addScore",
+            "parameters": ["usid", "tmid", "tsid", "score"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "deleteScore",
+            "parameters": ["tsid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getCategoryWitchTest"
+        },
+        {
+            "url": "addCategoryTest",
+            "parameters": ["name"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "deleteCategoryTest",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "addTestToCategory",
+            "parameters": ["name", "caid", "best", "worst"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "changeTest",
+            "parameters": ["id", "value", "changeType"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "deleteTestFromCat",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getScoreFromTestId",
+            "parameters": ["usid", "tmid", "tsid"]
+        }
+    ],
+    "jsControllers": ["myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController"],
+    "frontendRoute": [{
+            "url": "myStats",
+            "templateSrc": "myStats.html",
+            "controllerName": "myStatsController"
+        },
+        {
+            "url": "usersStatistic",
+            "templateSrc": "usersStatistic.html",
+            "controllerName": "usersStatisticController"
+        },
+        {
+            "url": "teamStatistic",
+            "templateSrc": "teamStatistic.html",
+            "controllerName": "teamStatisticController"
+        },
+        {
+            "url": "testMenager",
+            "templateSrc": "testMenager.html",
+            "controllerName": "testMenagerController"
+        },
+        {
+            "url": "newScore",
+            "templateSrc": "newScore.html",
+            "controllerName": "newScoreController"
+        }
+    ],
+    "anchor": [{
+            "destination": "leftMenu",
+            "anchorPoint": "Mój profil",
+            "anchorWeight": 5,
+            "anchorPointIcon": "fa fa-user fa-fw",
+            "content": {
+                "link": {
+                    "label": "Statystyki",
+                    "url": "#!/myStats",
+                    "additional": "ng-show=\"user.role == 'ZAWODNIK' && user.tmid != ''\""
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer testów",
+            "anchorPointIcon": "fa fa-cubes fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Zarządzaj testami",
+                    "url": "#!/testMenager"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer testów",
+            "anchorPointIcon": "fa fa-cubes fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Zarządzaj wynikami",
+                    "url": "#!/newScore"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer statystyk",
+            "anchorPointIcon": "fa fa-bar-chart fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Statystyki zawodników",
+                    "url": "#!/usersStatistic"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Menadżer statystyk",
+            "anchorPointIcon": "fa fa-bar-chart fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Statystyki drużynowe",
+                    "url": "#!/teamStatistic"
+                }
+            }
+        }
+
+    ]
+}

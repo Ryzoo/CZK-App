@@ -1,0 +1,44 @@
+{
+    "name": "Players",
+    "description": "Panel zarządzania zawodnikami oraz personelem",
+    "version": "1.0",
+    "backendRoute": [{
+            "url": "getAllPlayers",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "addPerson",
+            "parameters": ["isAdmin", "isPersonel", "lname", "fname", "mail", "tmid", "token"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getAllMaster"
+        },
+        {
+            "url": "getAllUserData",
+            "parameters": ["usid"]
+        },
+        {
+            "url": "deleteUser",
+            "parameters": ["usid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }
+    ],
+    "jsControllers": ["showPlayersController"],
+    "frontendRoute": [{
+        "url": "showPlayers",
+        "templateSrc": "showPlayers.html",
+        "controllerName": "showPlayersController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "content": {
+            "link": {
+                "label": "Menadżer zawodników",
+                "url": "#!/showPlayers",
+                "icon": "fa fa-address-book-o fa-fw",
+                "additional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\""
+            }
+        }
+    }]
+}
