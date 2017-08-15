@@ -1,0 +1,105 @@
+<div ng-init="setPerm(['KOORD'])"></div>
+
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init="initThemes()">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Podstawowa grafika na stronie
+                    </div>
+                    <div class="row">
+                        <div class="titleIn">Ustaw podstawową grafikę na stronie</div>
+                        <div class="logoLoginPage">
+                            <div class="row">
+                                <img src="./files/img/club_logo.png" alt="login page logo" id='prevLogo' class='col s6 offset-s3 m4 offset-m4'>
+                            </div>
+                            <div class="row">
+                                <form id="addLogoForm" enctype="multipart/form-data">
+                                    <input type="hidden" name="token" value="{{user.token}}">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>Nowe logo</span>
+                                            <input type="file" name="logoFile" id="logoFile" accept=".png">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" placeholder="Logo panelu logowania">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="backgroundLoginPage">
+                            <div class="row">
+                                <img src="./files/img/background.jpg" alt="login page background" id='prevBack' class='col s6 offset-s3 m4 offset-m4'>
+                            </div>
+                            <div class="row">
+                                <form id="addBackgroundForm" enctype="multipart/form-data">
+                                    <input type="hidden" name="token" value="{{user.token}}">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>Nowe tło</span>
+                                            <input type="file" name="backFile" id="backFile" accept=".jpg">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" placeholder="Tło panelu logowania">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="pageIcon">
+                            <div class="row">
+                                <img src="./files/img/favicon.ico" alt="panel icon" id='prevIconPage' class='col s2 offset-s5'>
+                            </div>
+                            <div class="row">
+                                <form id="addIconForm" enctype="multipart/form-data">
+                                    <input type="hidden" name="token" value="{{user.token}}">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>Nowa ikona</span>
+                                            <input type="file" name="icoFile" id="icoFile" accept=".ico">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" placeholder="Ikona strony">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Wygląd panelu głównego
+                    </div>
+                    <div class="row">
+                        <div class="titleIn">Wybierz szablon wyglądu z poniższych</div>
+                        <select id='selectThemes'>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,6 +14,10 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         getActualThemes();
     }
 
+    $scope.initMainSettings = function() {
+        getMainSettings();
+    }
+
     $scope.installModule = function(moduleName) {
         request.backend('installModule', { name: moduleName }, function(data) {
             getInstalledModules();
@@ -79,7 +83,78 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         });
     }
 
+    function getMainSettings() {
+        request.backend('getMainPageSettings', {}, function(data) {
+            $rootScope.$apply(function() {
+                $rootScope.mainSettings = data;
+                $(document).ready(function() {
+                    Materialize.updateTextFields();
+                });
+            });
+            $scope.showContent = true;
+        });
+    }
+
     $(document).on("change", "#selectThemes", function() {
         request.backend('setCurrentTheme', { name: $(this).val() }, null, "Pomyślnie zmieniono szablon. Odśwież stronę, aby zobaczyć zmiany. (ctrl+f5)");
     });
+
+    $(document).on("change", "#logoFile", function() {
+        if ($('#logoFile').get(0).files.length === 0) {
+            notify.localNotify('Walidacja', "Dodaj poprawnie plik loga");
+            return;
+        }
+        var data = new FormData($('#addLogoForm')[0]);
+        request.backend('changePageLogo', data, function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#prevLogo').attr('src', e.target.result);
+            }
+            reader.readAsDataURL($('#logoFile').get(0).files[0]);
+        }, "Logo zmienione pomyślnie", true);
+    });
+
+    $(document).on("change", "#backFile", function() {
+        if ($('#backFile').get(0).files.length === 0) {
+            notify.localNotify('Walidacja', "Dodaj poprawnie plik tła");
+            return;
+        }
+        var data = new FormData($('#addBackgroundForm')[0]);
+        request.backend('changePageBackground', data, function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#prevBack').attr('src', e.target.result);
+            }
+            reader.readAsDataURL($('#backFile').get(0).files[0]);
+        }, "Tło strony logowania zmienione pomyślnie", true);
+    });
+
+    $(document).on("change", "#icoFile", function() {
+        if ($('#icoFile').get(0).files.length === 0) {
+            notify.localNotify('Walidacja', "Dodaj poprawnie plik tła");
+            return;
+        }
+        var data = new FormData($('#addIconForm')[0]);
+        request.backend('changePageIcon', data, function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#prevIconPage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL($('#icoFile').get(0).files[0]);
+        }, "Ikona strony zmieniona pomyślnie", true);
+    });
+
+    $(document).on("change", "#appName", function() {
+        if ($('#appName').val().length < 3) {
+            notify.localNotify('Walidacja', "Wpisz dłuższą nazwę aplikacji");
+            return;
+        }
+        request.backend('changeAppMainSettings', { appName: $('#appName').val() }, function() {
+            getMainSettings();
+        }, "Pomyślnie zapisano");
+    });
+
+
+
+
 });

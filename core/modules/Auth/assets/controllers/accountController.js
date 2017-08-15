@@ -1,11 +1,11 @@
 app.controller('accountController', function($scope, auth, $rootScope, request, notify) {
+    $scope.logout = auth.logout;
 
     $scope.initAccount = function() {
         if (!auth.checkIsLogged()) {
             auth.logout();
             return;
         }
-
         $('#mainProfileImg').attr("src", $rootScope.user.imgPath);
     };
 
@@ -22,8 +22,6 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
     $scope.setPerm = function(perm) {
         $rootScope.viewPerm = perm;
     }
-
-    $scope.logout = auth.logout;
 
     $scope.updateUserDate = function() {
 

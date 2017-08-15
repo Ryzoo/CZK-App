@@ -19,3 +19,8 @@
     top: 40%;
     right: 10px
 }
+
+.logoLoginPage img,
+.backgroundLoginPage img {
+    height: auto;
+}

@@ -1,20 +1,27 @@
 <div ng-init="setPerm(['KOORD'])"></div>
 
 <div class="section">
-    <div ng-show='showContent' class="row" ng-init="initThemes()">
-        <div class="col s12 m6">
+    <div ng-show='showContent' class="row" ng-init="initMainSettings()">
+        <div class="col s8 offset-s2">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
-                        Wygląd panelu
+                        Ustawienia strony
                     </div>
                     <div class="row">
-                        <select id='selectThemes'>
-                        </select>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s8 offset-s2">
+                                    <input value="{{mainSettings.appName}}" id="appName" type="text" class="validate">
+                                    <label for="appName">Nazwa aplikacji</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
         <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>

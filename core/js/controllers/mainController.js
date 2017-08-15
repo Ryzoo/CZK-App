@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, auth, $rootScope, $route, notify, $route) {
+app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request) {
     $rootScope.user = {
         email: "",
         token: "",
@@ -23,6 +23,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $rootScope.allNotify = [];
     $rootScope.lastNotifyId = 0;
     $rootScope.notifyCount = 0;
+    $rootScope.mainSettings = [];
     $scope.showAllNewsNotify = false;
 
     $scope.showNotifications = function(isMainClik = true) {
@@ -64,6 +65,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                 $rootScope.user.address = data.data.address;
                 var dataToSend = { token: Cookies.get('tq') };
                 var urlToPost = 'backend/getTeams';
+                request.backend('getMainPageSettings', {}, function(data) {
+                    $rootScope.$apply(function() {
+                        $rootScope.mainSettings = data;
+                    });
+                });
                 $.ajax({
                     url: urlToPost,
                     type: "POST",

@@ -27,19 +27,50 @@
     }, {
         "url": "getCurrentThemes",
         "auth": ["KOORD"]
+    }, {
+        "url": "changePageLogo",
+        "auth": ["KOORD"]
+    }, {
+        "url": "changePageBackground",
+        "auth": ["KOORD"]
+    }, {
+        "url": "changePageIcon",
+        "auth": ["KOORD"]
+    }, {
+        "url": "getMainPageSettings",
+        "auth": ["KOORD"]
+    }, {
+        "url": "changeAppMainSettings",
+        "auth": ["KOORD"]
     }],
     "css": ["style"],
     "jsControllers": ["settingsController"],
     "frontendRoute": [{
-        "url": "mainSettings",
-        "templateSrc": "mainSettings.html",
+        "url": "themesAndViews",
+        "templateSrc": "themesAndViews.html",
         "controllerName": "settingsController"
     }, {
         "url": "modules",
         "templateSrc": "modules.html",
         "controllerName": "settingsController"
+    }, {
+        "url": "mainSettings",
+        "templateSrc": "mainSettings.html",
+        "controllerName": "settingsController"
     }],
     "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Ustawienia",
+        "anchorPointIcon": "fa fa-cog fa-fw",
+        "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
+        "anchorWeight": 1000,
+        "content": {
+            "link": {
+                "label": "Główne",
+                "url": "#!/mainSettings"
+            }
+        }
+    }, {
         "destination": "leftMenu",
         "anchorPoint": "Ustawienia",
         "anchorPointIcon": "fa fa-cog fa-fw",
@@ -60,7 +91,7 @@
         "content": {
             "link": {
                 "label": "Wygląd",
-                "url": "#!/mainSettings"
+                "url": "#!/themesAndViews"
             }
         }
     }]

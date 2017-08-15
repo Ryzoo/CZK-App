@@ -205,6 +205,67 @@ class Settings extends BasicModule{
         return $themesConf->current; 
     }
 
+    public function changePageLogo($data){
+        if( isset($_FILES["logoFile"]) ){
+            $target_file = __DIR__ . "/../../../files/img/club_logo.png";
+            if(file_exists($target_file))unlink($target_file);
+            if(!move_uploaded_file($_FILES["logoFile"]["tmp_name"], $target_file)){
+                $this->returnedData['error'] = "Niestety nie udało się przenieść pliku w miejsce docelowe";
+                $this->returnedData['success'] = false;
+            }
+        }else{
+            $this->returnedData['error'] = "Brak pliku";
+            $this->returnedData['success'] = false;
+        }
+        return $this->returnedData;
+    }
+
+    public function changePageBackground($data){
+        if( isset($_FILES["backFile"]) ){
+            $target_file = __DIR__ . "/../../../files/img/background.jpg";
+            if(file_exists($target_file))unlink($target_file);
+            if(!move_uploaded_file($_FILES["backFile"]["tmp_name"], $target_file)){
+                $this->returnedData['error'] = "Niestety nie udało się przenieść pliku w miejsce docelowe";
+                $this->returnedData['success'] = false;
+            }
+        }else{
+            $this->returnedData['error'] = "Brak pliku";
+            $this->returnedData['success'] = false;
+        }
+        return $this->returnedData;
+    }
+
+    public function changePageIcon($data){
+        if( isset($_FILES["icoFile"]) ){
+            $target_file = __DIR__ . "/../../../files/img/favicon.ico";
+            if(file_exists($target_file))unlink($target_file);
+            if(!move_uploaded_file($_FILES["icoFile"]["tmp_name"], $target_file)){
+                $this->returnedData['error'] = "Niestety nie udało się przenieść pliku w miejsce docelowe";
+                $this->returnedData['success'] = false;
+            }
+        }else{
+            $this->returnedData['error'] = "Brak pliku";
+            $this->returnedData['success'] = false;
+        }
+        return $this->returnedData;
+    }
+
+    public function getMainPageSettings($data){
+        $json = new JSON();
+        $siteConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');
+        $this->returnedData['data'] = $siteConfig->mainSettings;
+        return $this->returnedData;
+    }
+
+    public function changeAppMainSettings($data){
+        $json = new JSON();
+        $siteConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');
+        if( isset($data['appName']) ) $siteConfig->mainSettings->appName = $data['appName'];
+        unlink(__DIR__. '/../../mainConf.json');
+        $json->encodeFile($siteConfig, __DIR__. '/../../mainConf.json');
+        return $this->returnedData;
+    }
+
     function install(){}
     function uninstall(){}
 }
