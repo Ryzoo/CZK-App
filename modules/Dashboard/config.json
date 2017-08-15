@@ -1,5 +1,7 @@
 {
     "name": "Dashboard",
+    "description": "Panel główny wyśiwetlający podstawowe dane z aplikacji",
+    "version": "1.0",
     "backendRoute": [],
     "jsControllers": ["mainDashboardController"],
     "frontendRoute": [{

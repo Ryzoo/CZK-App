@@ -271,6 +271,7 @@ app.service('auth', function($http, $rootScope, request) {
         var urlToPost = "backend/login";
         var toReturn;
         request.sync('POST', urlToPost, dataToSend, function(reqData) {
+            console.log(reqData);
             if (reqData.success) {
                 Cookies.remove('tq');
                 Cookies.set('tq', reqData.token, { expires: 1 });

@@ -1,0 +1,62 @@
+<div ng-init="setPerm(['KOORD'])"></div>
+
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init="initSettings()">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Zainstalowane
+                    </div>
+                    <div class="row">
+                        <ul class="collection none-border">
+                            <li class="collection-item avatar" ng-repeat="module in installedModules">
+                                <img ng-show='module.icon' src="./modules/{{module.name}}/icon.jpg" alt="module icon" style='position:absolute;width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
+                                <img ng-hide='module.icon' src="./files/img/defaultModule.png" alt="module icon" style='position:absolute;width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
+                                <span class="title">{{module.name}} - {{module.version}}</span>
+                                <p style='padding: 5px 15px;'>{{module.description}}</p>
+                                <a href="" class="secondary-content" style='position:absolute;width: 10px;height: 10px; transform:translateY(-50%); top: 40%; right:10px' ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Do zainstalowania
+                    </div>
+                    <div class="row">
+                        <ul class="collection none-border">
+                            <li class="collection-item avatar" ng-repeat="module in notInstalledModules">
+                                <img ng-show='module.icon' src="./modules/{{module.name}}/icon.jpg" alt="module icon" style='position:absolute; width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
+                                <img ng-hide='module.icon' src="./files/img/defaultModule.png" alt="module icon" style='position:absolute;width: 50px;height: 50px; transform:translateY(-50%); top: 50%; left:10px'>
+                                <span class="title">{{module.name}} - {{module.version}}</span>
+                                <p style='padding: 5px 15px;'>{{module.description}}</p>
+                                <a href="" class="secondary-content" style='position:absolute;width: 10px;height: 10px; transform:translateY(-50%); top: 40%; right:10px' ng-click="installModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

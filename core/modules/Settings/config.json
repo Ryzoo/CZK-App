@@ -1,0 +1,41 @@
+{
+    "name": "Settings",
+    "backendRoute": [{
+        "url": "uninstallModule",
+        "parameters": ["name"],
+        "auth": ["KOORD"]
+    }, {
+        "url": "installModule",
+        "parameters": ["name"],
+        "auth": ["KOORD"]
+    }, {
+        "url": "getAvailableModules",
+        "auth": ["KOORD"]
+    }, {
+        "url": "getInstalledModules",
+        "auth": ["KOORD"]
+    }],
+    "jsControllers": ["settingsController"],
+    "frontendRoute": [{
+        "url": "mainSettings",
+        "templateSrc": "mainSettings.html",
+        "controllerName": "settingsController"
+    }, {
+        "url": "modules",
+        "templateSrc": "modules.html",
+        "controllerName": "settingsController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Zarządzanie panelem",
+        "anchorPointIcon": "fa fa-cog fa-fw",
+        "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
+        "anchorWeight": 1000,
+        "content": {
+            "link": {
+                "label": "Moduły",
+                "url": "#!/modules"
+            }
+        }
+    }]
+}

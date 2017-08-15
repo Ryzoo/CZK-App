@@ -8,17 +8,23 @@ class BasicModule implements BasicModuleInterface
 {
     public $db;
     public $auth;
+    public $returnedData;
 
     function __construct(){
         $this->db = new Database();
         $this->auth = new Auth();
+        $this->returnedData = [
+            "error"=>"",
+            "success"=>true,
+            "data"=>[] 
+        ];
     }
 
     public function install(){
-        die();
+        return true;
     }
 
     public function uninstall(){
-        
+        return true;
     }
 }

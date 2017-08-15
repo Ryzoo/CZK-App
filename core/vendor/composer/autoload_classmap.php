@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Core\\Auth' => $baseDir . '/modules/Auth/Auth.php',
     'Core\\Database' => $baseDir . '/modules/Database/Database.php',
+    'Core\\Settings' => $baseDir . '/modules/Settings/Settings.php',
     'JsonSchema\\Constraints\\CollectionConstraint' => $vendorDir . '/justinrainbow/json-schema/src/JsonSchema/Constraints/CollectionConstraint.php',
     'JsonSchema\\Constraints\\Constraint' => $vendorDir . '/justinrainbow/json-schema/src/JsonSchema/Constraints/Constraint.php',
     'JsonSchema\\Constraints\\ConstraintInterface' => $vendorDir . '/justinrainbow/json-schema/src/JsonSchema/Constraints/ConstraintInterface.php',

@@ -82,6 +82,7 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
     public static $classMap = array (
         'Core\\Auth' => __DIR__ . '/../..' . '/modules/Auth/Auth.php',
         'Core\\Database' => __DIR__ . '/../..' . '/modules/Database/Database.php',
+        'Core\\Settings' => __DIR__ . '/../..' . '/modules/Settings/Settings.php',
         'JsonSchema\\Constraints\\CollectionConstraint' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Constraints/CollectionConstraint.php',
         'JsonSchema\\Constraints\\Constraint' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Constraints/Constraint.php',
         'JsonSchema\\Constraints\\ConstraintInterface' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Constraints/ConstraintInterface.php',
