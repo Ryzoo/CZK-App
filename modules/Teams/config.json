@@ -33,7 +33,7 @@
         },
         {
             "url": "addTeam",
-            "parameters": ["name"],
+            "parameters": ["name", "weight"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {
@@ -44,6 +44,11 @@
         {
             "url": "addMasterToTeam",
             "parameters": ["mid", "tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "changeWeightTeam",
+            "parameters": ["weight", "tmid"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         }
     ],
