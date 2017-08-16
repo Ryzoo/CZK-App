@@ -2127,7 +2127,6 @@ label {
 }
 
 .form-horizontal.style-form .form-group {
-    border-bottom: 1px solid #eff2f7;
     padding-bottom: 15px;
     margin-bottom: 15px;
 }
@@ -2825,7 +2824,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .collection-item button:hover {
-    color: #7cb342;
+    color: #4CAF50;
     -webkit-transition: color 0.1s;
 }
 
@@ -2911,4 +2910,12 @@ input[type="color"]::-webkit-color-swatch {
     .collapsible-body {
         display: block !important;
     }
+}
+
+.input-field label {
+  color: #9e9e9e !important;
+}
+
+.validate {
+  color: #fff !important;
 }
