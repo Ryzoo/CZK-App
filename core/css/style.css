@@ -928,6 +928,9 @@ ul.top-menu>li>a:focus {
     margin-bottom: 0 !important;
 }
 
+.card-content {
+    padding: 10px 24px !important;
+}
 
 /*----*/
 
@@ -2931,4 +2934,8 @@ input[type="color"]::-webkit-color-swatch {
 
 .btn:hover {
   background-color: #67dff0 !important;
+}
+
+.tabs {
+  background-color: #0a1522!important;
 }
