@@ -471,7 +471,7 @@ ul.sidebar-menu li ul.sub li a {
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     color: #aeb2b7;
-    margin-left: 30px;
+    padding-left: 30px;
 }
 
 ul.sidebar-menu li ul.sub li a:hover {
