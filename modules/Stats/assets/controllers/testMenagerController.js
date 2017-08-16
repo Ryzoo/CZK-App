@@ -298,7 +298,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
         $('.category-item').each(function() {
             $(this).css('background', '');
         });
-        $('#category-' + $scope.selectedCategoryId).css('background', '#cccccc');
+        $('#category-' + $scope.selectedCategoryId).css('background', '#13202f');
         for (var i = 0; i < $scope.categories.length; i++) {
             if ($scope.categories[i].id == $scope.selectedCategoryId) {
                 $scope.tests = $scope.categories[i].tests;
