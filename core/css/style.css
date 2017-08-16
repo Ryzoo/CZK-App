@@ -341,7 +341,7 @@ hr {
 }
 
 ul.top-menu>li>.logout {
-    color: #f2f2f2;
+    color: #67dff0;
     font-size: 12px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -376,7 +376,7 @@ ul.top-menu>li>.logout:hover {
 }
 
 #sidebar h5 {
-    color: #f2f2f2;
+    color: #fff;
     font-weight: 700;
     font-size: 1.2rem !important;
 }
@@ -1025,7 +1025,7 @@ ul.top-menu>li>a:focus {
 }
 
 .ds .desc:hover {
-    background: #f2f2f2;
+    background: #67dff0;
 }
 
 .ds .thumb {
@@ -1085,7 +1085,7 @@ ul.top-menu>li>a:focus {
 .box0 p {
     text-align: center;
     font-size: 12px;
-    color: #f2f2f2;
+    color: #67dff0;
 }
 
 .box0:hover p {
@@ -1275,7 +1275,7 @@ PANELS CONFIGURATIONS
 }
 
 .darkblue-panel {
-    color: #f2f2f2;
+    color: #67dff0;
 }
 
 .darkblue-panel h5 {
@@ -1427,7 +1427,7 @@ PANELS CONFIGURATIONS
 .stock .summary {
     color: #2f2f2f;
     display: block;
-    background: #f2f2f2;
+    background: #67dff0;
     padding: 10px;
     text-align: center;
 }
@@ -1536,7 +1536,7 @@ PANELS CONFIGURATIONS
 }
 
 .weather-3 .info {
-    background: #f2f2f2;
+    background: #67dff0;
 }
 
 .weather-3 .info i {
@@ -2037,7 +2037,7 @@ PANELS CONFIGURATIONS
 
 .fc-state-default,
 .fc-state-default .fc-button-inner {
-    background: #f2f2f2;
+    background: #67dff0;
 }
 
 .fc-state-active .fc-button-inner {
@@ -2390,7 +2390,7 @@ label {
 
 .lock-screen .modal-content {
     position: relative;
-    background-color: #f2f2f2;
+    background-color: #67dff0;
     background-clip: padding-box;
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, .2);
@@ -2490,7 +2490,7 @@ label {
 }
 
 .chart-info .decrease {
-    background: #f2f2f2;
+    background: #67dff0;
     width: 10px;
     height: 10px;
 }
@@ -2921,8 +2921,8 @@ input[type="color"]::-webkit-color-swatch {
   color: #fff !important;
 }
 
-.table.highlight>tbody>tr:hover {
-  background-color: #13202f !important;
+table.highlight>tbody>tr:hover {
+  background-color: #67dff0 !important;
 }
 
 .btn {
