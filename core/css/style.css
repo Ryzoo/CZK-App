@@ -2919,3 +2919,15 @@ input[type="color"]::-webkit-color-swatch {
 .validate {
   color: #fff !important;
 }
+
+.table.highlight>tbody>tr:hover {
+  background-color: #13202f !important;
+}
+
+.btn {
+  background-color: #499da9 !important;
+}
+
+.btn:hover {
+  background-color: #67dff0 !important;
+}
