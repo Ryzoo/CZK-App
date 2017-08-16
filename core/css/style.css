@@ -2926,6 +2926,7 @@ input[type="color"]::-webkit-color-swatch {
 
 .btn {
   background-color: #499da9 !important;
+  letter-spacing: 2.5px !important;
 }
 
 .btn:hover {
