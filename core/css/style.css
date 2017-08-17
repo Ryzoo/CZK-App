@@ -2937,3 +2937,32 @@ table.highlight>tbody>tr:hover {
 .tabs {
   background-color: #0a1522!important;
 }
+
+text tspan {
+  fill: #fff !important;
+}
+
+.collapsible-header {
+  background-color: #06101c !important;
+  border-bottom: none !important;
+}
+
+.collapsible-body {
+  background-color: #13202f !important;
+  border-bottom: none !important;
+}
+
+.collapsible {
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+}
+
+.c3-chart-arcs .c3-chart-arcs-background {
+  fill: rgba(103, 223, 240, 0.14) !important;
+}
+
+text {
+  color: #fff !important;
+}
