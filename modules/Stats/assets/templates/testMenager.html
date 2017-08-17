@@ -32,9 +32,9 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="category in categories" id='category-{{category.id}}' class='category-item'>
-                                        <td style='cursor:pointer; text-align:center; padding: 2px 0' ng-click='selectCategory(category.id)' style='padding: 5px;'>{{category.name}}</td>
-                                        <td style='cursor:pointer;  text-align:center; padding: 2px 0' ng-click='selectCategory(category.id)' style='padding: 5px;'>{{category.testCount}}</td>
-                                        <td ng-click="deleteCategory(category.id)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'>
+                                        <td style='cursor:pointer; text-align:center; padding: 10px 0 !important;' ng-click='selectCategory(category.id)' style='padding: 5px;'>{{category.name}}</td>
+                                        <td style='cursor:pointer;  text-align:center; padding: 10px 0 !important;' ng-click='selectCategory(category.id)' style='padding: 5px;'>{{category.testCount}}</td>
+                                        <td ng-click="deleteCategory(category.id)" style='padding: 10px 0 !important; color:red; cursor:pointer;  text-align:center;'>
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </td>
                                     </tr>
@@ -88,8 +88,8 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="test in tests" class='test-item'>
-                                        <td style='text-align:center; padding: 2px 0'>{{test.name}}</td>
-                                        <td style='text-align:center; padding: 2px 0'>
+                                        <td style='text-align:center; padding: 10px 0 !important'>{{test.name}}</td>
+                                        <td style='text-align:center; padding: 10px 0 !important'>
                                             <input style="text-align: center; margin: 0; width: 50px; height: 25px;" class='changeBest' id="changeBest-{{test.id}}" type="text" value="{{test.best}}" required>
                                         </td>
                                         <td style='text-align:center; padding: 2px 0'>

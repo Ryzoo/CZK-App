@@ -61,10 +61,10 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="player in players">
-                                        <td style='cursor:pointer; text-align:center; padding: 2px 0' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.firstname}}</td>
-                                        <td style='cursor:pointer;  text-align:center; padding: 2px 0' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.lastname}}</td>
-                                        <td style='cursor:pointer; text-align:center; padding: 2px 0' ng-click="showThisPlayer( player.usid )">{{player.roleName}}</td>
-                                        <td ng-click="deleteUser(player.usid)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-times" aria-hidden="true"></i></td>
+                                        <td style='cursor:pointer; text-align:center; padding: 10px 0 !important;' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.firstname}}</td>
+                                        <td style='cursor:pointer;  text-align:center; padding: 10px 0 !important;' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.lastname}}</td>
+                                        <td style='cursor:pointer; text-align:center; padding: 10px 0 !important;' ng-click="showThisPlayer( player.usid )">{{player.roleName}}</td>
+                                        <td ng-click="deleteUser(player.usid)" style='padding: 10px 0 !important; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-times" aria-hidden="true"></i></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -103,7 +103,7 @@
                         <li class="tab"><a href="" ng-click='prof=0; rapo=1'>Raporty</a></li>
                     </ul>
                 </div>
-                <div class="card-content grey lighten-4" ng-show="showPlayerNow">
+                <div class="card-content" ng-show="showPlayerNow">
                     <div ng-show="prof">
                         <div class="row">
                             <div ng-show="showPlayerNow" style="padding:20px; padding-bottom:0">
