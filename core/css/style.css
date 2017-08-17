@@ -3010,3 +3010,15 @@ text {
   font-size: 10px;
   color: #9e9e9e;
 }
+
+.body-image {
+  min-height: 340px;
+  position: relative;
+}
+
+.body-image img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
