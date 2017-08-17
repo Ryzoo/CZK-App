@@ -80,7 +80,7 @@
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Menadżer Drużyn",
+                    "label": "Menadżer drużyn",
                     "url": "#!/teamsMenager",
                     "icon": "fa fa-address-card-o fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""
@@ -91,7 +91,7 @@
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Menadżer Trenerów",
+                    "label": "Menadżer trenerów",
                     "url": "#!/masterMenager",
                     "icon": "fa fa-user-secret fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""
