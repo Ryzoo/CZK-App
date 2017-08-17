@@ -2993,3 +2993,20 @@ text {
     border-color: #1a2b40 #dddddd #1a2b40 !important;
     color: #d1d1d1 !important;
   }
+
+.notif a {
+    background: #0d1927 !important;
+}
+
+.notfi a:hover {
+    background: #0a1522 !important;
+}
+
+.fa-times {
+  color: #ff0000 !important;
+}
+
+.descript li{
+  font-size: 10px;
+  color: #9e9e9e;
+}
