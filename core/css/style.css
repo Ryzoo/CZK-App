@@ -2966,3 +2966,30 @@ text tspan {
 text {
   color: #fff !important;
 }
+
+.fc-widget-header{
+  color: #d1d1d1 !important;
+  border: 1px solid #1a2b40 !important;
+  background-image: linear-gradient(to bottom, #1a2b40, #1a2b40) !important;
+}
+
+.fc-widget-content {
+  color: #d1d1d1 !important;
+  border: 1px solid #1a2b40 !important;;
+}
+
+.fc-state-highlight {
+  background: #1a2b40 !important;
+}
+
+.fc-event-skin {
+    border-color: #499da9 !important;
+    background-color: #499da9 !important;
+}
+
+.fc-state-active, .fc-state-active .fc-button-inner {
+    background: #1a2b40 !important;
+    border-bottom: 1px solid #1a2b40 !important;
+    border-color: #1a2b40 #dddddd #1a2b40 !important;
+    color: #d1d1d1 !important;
+  }
