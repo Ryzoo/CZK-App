@@ -12,8 +12,7 @@
         "url": "getAvailableModules",
         "auth": ["KOORD"]
     }, {
-        "url": "getInstalledModules",
-        "auth": ["KOORD"]
+        "url": "getInstalledModules"
     }, {
         "url": "addModule",
         "auth": ["KOORD"]
@@ -25,8 +24,7 @@
         "url": "getAvailableThemes",
         "auth": ["KOORD"]
     }, {
-        "url": "getCurrentThemes",
-        "auth": ["KOORD"]
+        "url": "getCurrentThemes"
     }, {
         "url": "changePageLogo",
         "auth": ["KOORD"]
@@ -37,8 +35,7 @@
         "url": "changePageIcon",
         "auth": ["KOORD"]
     }, {
-        "url": "getMainPageSettings",
-        "auth": ["KOORD"]
+        "url": "getMainPageSettings"
     }, {
         "url": "changeAppMainSettings",
         "auth": ["KOORD"]
