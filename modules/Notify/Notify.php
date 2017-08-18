@@ -83,16 +83,13 @@ class Notify extends BasicModule {
         $tmid = $data['tmid'];
         $ntid = $data['ntid'];
         $condsUsers = [];
-        $dataUsers = [
-            'is_new'=>0
-        ];
         for($i=0;$i<count($ntid);$i++){
             $condsUsers = [ 
                 'id_notification' => $ntid[$i],
                 'id_user'=> $usid,
                 'id_team'=> $tmid
             ];
-            array_push($toReturn,($this->db->getConnection())->update('user_notifications', $condsUsers, $dataUsers)) ;
+            array_push($toReturn,($this->db->getConnection())->delete('user_notifications', $condsUsers)) ;
         }
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );

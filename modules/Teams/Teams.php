@@ -41,7 +41,6 @@ class Teams extends BasicModule {
     }
 
     function getUserFromTeam( $data ){
-
         $id = $data['tmid'];
         $toReturn = null;
         $success = true;

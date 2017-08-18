@@ -1,0 +1,19 @@
+.freqTable th,
+.freqTable td,
+.freqInputGroup input {
+    text-align: center;
+}
+
+.freqTable td {
+    padding: 3px;
+}
+
+.freqTable tbody tr {
+    background-color: rgb(42, 47, 55) !important;
+    transition: background-color .2s;
+}
+
+.freqTable tbody tr:hover {
+    background-color: rgb(52, 57, 65) !important;
+    transition: background-color .2s;
+}

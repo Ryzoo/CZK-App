@@ -8,6 +8,7 @@ use Alchemy\Zippy\Zippy;
 class Settings extends BasicModule{
 
     public function installModule( $data ){
+        system('php '.__DIR__ .'/../../vendor/composer/composer/bin/composer dumpautoload -o');
         $json = new JSON();
         $modulesConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');
         $modulesConfig->installedModules;
@@ -16,14 +17,10 @@ class Settings extends BasicModule{
             $name = "Modules\\".$data['name'];
             $module = new $name();
             if( method_exists($module,"install") ){
-                if(!$module->install()){
-                    array_push($modulesConfig->installedModules,$data['name']);
-                    unlink(__DIR__. '/../../mainConf.json');
-                    $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
-                }else{
-                    $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie może zostać prawidłowo odinstalowany";
-                    $this->returnedData["success"] = false;
-                }
+                $module->install();
+                array_push($modulesConfig->installedModules,$data['name']);
+                unlink(__DIR__. '/../../mainConf.json');
+                $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
             }else{
                 $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie jest prawidłowym modułem";
                 $this->returnedData["success"] = false;
@@ -47,14 +44,10 @@ class Settings extends BasicModule{
             $name = "Modules\\".$data['name'];
             $module = new $name();
             if( method_exists($module,"uninstall") ){
-                if(!$module->uninstall()){
-                    unset($modulesConfig->installedModules[$index]);
-                    unlink(__DIR__. '/../../mainConf.json');
-                    $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
-                }else{
-                    $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie może zostać prawidłowo odinstalowany";
-                    $this->returnedData["success"] = false;
-                }
+                $module->uninstall();
+                unset($modulesConfig->installedModules[$index]);
+                unlink(__DIR__. '/../../mainConf.json');
+                $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
             }else{
                 $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie jest prawidłowym modułem";
                 $this->returnedData["success"] = false;
@@ -175,7 +168,7 @@ class Settings extends BasicModule{
                 $archive = $zippy->open($target_file);
                 if (isset($archive)) {
                     $archive->extract(__DIR__ . "/../../../modules/");
-                    system('php '.__DIR__ .'/../../../core/vendor/composer/composer/bin/composer dumpautoload -o');
+                    system('php '.__DIR__ .'/../../vendor/composer/composer/bin/composer dumpautoload -o');
                 } else {
                     $this->returnedData['error'] = "Niewłaściwy plik zip. Nie można otworzyć danego pliku";
                     $this->returnedData['success'] = false;

@@ -602,6 +602,7 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'KHerGe\\JSON\\JSON' => __DIR__ . '/..' . '/kherge/json/src/KHerGe/JSON/JSON.php',
         'KHerGe\\JSON\\JSONInterface' => __DIR__ . '/..' . '/kherge/json/src/KHerGe/JSON/JSONInterface.php',
         'Modules\\Dashboard' => __DIR__ . '/../..' . '/../modules/Dashboard/Dashboard.php',
+        'Modules\\Frequency' => __DIR__ . '/../..' . '/../modules/Frequency/Frequency.php',
         'Modules\\News' => __DIR__ . '/../..' . '/../modules/News/News.php',
         'Modules\\Notify' => __DIR__ . '/../..' . '/../modules/Notify/Notify.php',
         'Modules\\Players' => __DIR__ . '/../..' . '/../modules/Players/Players.php',

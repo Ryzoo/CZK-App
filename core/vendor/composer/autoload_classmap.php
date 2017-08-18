@@ -426,6 +426,7 @@ return array(
     'KHerGe\\JSON\\JSON' => $vendorDir . '/kherge/json/src/KHerGe/JSON/JSON.php',
     'KHerGe\\JSON\\JSONInterface' => $vendorDir . '/kherge/json/src/KHerGe/JSON/JSONInterface.php',
     'Modules\\Dashboard' => $baseDir . '/../modules/Dashboard/Dashboard.php',
+    'Modules\\Frequency' => $baseDir . '/../modules/Frequency/Frequency.php',
     'Modules\\News' => $baseDir . '/../modules/News/News.php',
     'Modules\\Notify' => $baseDir . '/../modules/Notify/Notify.php',
     'Modules\\Players' => $baseDir . '/../modules/Players/Players.php',

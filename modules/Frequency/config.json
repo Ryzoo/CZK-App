@@ -1,0 +1,38 @@
+{
+    "name": "Frequency",
+    "description": "Dziennik obecności zawodników",
+    "version": "1.0",
+    "backendRoute": [{
+            "url": "getFrequency",
+            "parameters": ["tmid", "year", "month", "day"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "setOnTraining",
+            "parameters": ["tmid", "usid", "year", "month", "day"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "setOffTraining",
+            "parameters": ["tmid", "usid", "year", "month", "day"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }
+    ],
+    "jsControllers": ["teamFreqController"],
+    "frontendRoute": [{
+        "url": "teamFreq",
+        "templateSrc": "teamFreq.html",
+        "controllerName": "teamFreqController"
+    }],
+    "css": ["style"],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "content": {
+            "link": {
+                "label": "Frekwencja zawodników",
+                "url": "#!/teamFreq",
+                "icon": "fa fa-list-alt fa-fw"
+            }
+        }
+    }]
+}
