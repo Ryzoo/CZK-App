@@ -13,6 +13,7 @@ class Auth {
         $success = true;
         $email =$data['email'];
         $password =$data['pass'];
+        $token='';
 
         $result = ($this->db->getConnection())->fetchColumn('SELECT password FROM users WHERE email = :email', ['email' => $email]);
         if( !is_null($result) ){
