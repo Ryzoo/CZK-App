@@ -1,0 +1,106 @@
+#todoAdd {
+    display: flex;
+    justify-content: center;
+}
+
+#todoText {
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    background: #0a1522;
+    padding: 5px 5px 5px 10px;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    border-left: solid 1px #fff;
+    border-radius: 5px 0 0 5px;
+}
+
+#todoButton {
+    width: auto;
+    color: #9e9e9e;
+    height: 30px;
+    background: #0a1522;
+    box-sizing: border-box;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    border-right: solid 1px #fff;
+    border-left: none;
+    font-size: 20px;
+    border-radius: 0 5px 5px 0;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+#todoButton .fa-plus {
+    -webkit-transition: color 0.1s;
+}
+
+#todoButton .fa-plus:hover {
+    color: #fff;
+}
+
+.todoColorMain {
+    width: 100%;
+    height: 3px;
+    border-radius: 5px 0 0 5px;
+}
+
+.todoMain {
+    float: left;
+    padding: 5px;
+    width: 80%;
+    box-sizing: border-box;
+    border: 2px solid;
+    border-right: none;
+    height: 100%;
+}
+
+.todoTable {
+    border-collapse: inherit;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    margin-bottom: 10px;
+}
+
+.endTodo {
+    width: auto;
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+    border: 2px solid;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+}
+
+.todoColorPicker {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+}
+
+.todoColorRed,
+.todoColorGreen,
+.todoColorOrange {
+    width: 30%;
+    height: 15px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.todoColorRed:hover,
+.todoColorGreen:hover,
+.todoColorOrange:hover {
+    border-color: #67dff0;
+}
+
+.todoColorRed {
+    background: rgb(255, 0, 0);
+}
+
+.todoColorGreen {
+    background: rgb(96, 176, 68);
+}
+
+.todoColorOrange {
+    background: rgb(246, 198, 0);
+}
