@@ -13,16 +13,16 @@ body {
 }
 
 @media screen and (min-width: 0px) {
-  .height-resp {
-    overflow: hidden;
-  }
+    .height-resp {
+        overflow: hidden;
+    }
 }
 
 @media screen and (min-width: 412px) {
-  .height-resp {
-    height: 100%;
-    overflow: hidden;
-  }
+    .height-resp {
+        height: 100%;
+        overflow: hidden;
+    }
 }
 
 .start-panel {
@@ -31,7 +31,7 @@ body {
 
 .error p {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 400;
     text-align: center;
     color: #f44336;
 }

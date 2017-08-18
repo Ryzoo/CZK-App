@@ -1,4 +1,4 @@
-var app = angular.module("CZKApp", ["ngRoute"]);
+var app = angular.module("CMCApp", ["ngRoute"]);
 
 app.service('request', function($http, $rootScope) {
     this.sync = function(sendType, urlToPost, dataToSend, fsuccess, ffailed, asyncIs = false) {
