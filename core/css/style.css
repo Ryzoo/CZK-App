@@ -897,28 +897,12 @@ ul.top-menu>li>a:focus {
     top: -10px;
 }
 
-
-/*--caledar on main site*/
-
-.today-date {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 35px;
-    font-weight: 700;
-    font-family: 'Roboto';
-}
-
 .titleIn {
     font-weight: 550;
     font-size: 25px;
     font-family: 'Roboto';
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.rectangle {
-    height: 5px;
-    background: #000;
 }
 
 .card .row {
@@ -928,9 +912,6 @@ ul.top-menu>li>a:focus {
 .card-content {
     padding: 10px 24px !important;
 }
-
-
-/*----*/
 
 .notify-arrow {
     border-style: solid;
@@ -1740,19 +1721,6 @@ PANELS CONFIGURATIONS
     font-size: 12px;
 }
 
-
-/* Calendar Configuration */
-
-#calendar {
-    color: white;
-    padding: 0px !important;
-}
-
-.calendar-month-header {
-    background: #43b1a9;
-}
-
-
 /* TODO PANEL */
 
 .steps {
@@ -2017,33 +1985,6 @@ PANELS CONFIGURATIONS
     margin-bottom: 15px;
     box-shadow: 0px 3px 2px #aab2bd;
 }
-
-
-/* Calendar Events - Calendar.html*/
-
-.external-event {
-    cursor: move;
-    display: inline-block !important;
-    margin-bottom: 7px !important;
-    margin-right: 7px !important;
-    padding: 10px;
-}
-
-.drop-after {
-    padding-top: 15px;
-    margin-top: 15px;
-    border-top: 1px solid #ccc;
-}
-
-.fc-state-default,
-.fc-state-default .fc-button-inner {
-    background: #67dff0;
-}
-
-.fc-state-active .fc-button-inner {
-    background: #FFFFFF;
-}
-
 
 /* Gallery Configuration */
 
@@ -2573,64 +2514,6 @@ label {
 .flot-chart .pie,
 .flot-chart .bars {
     height: 300px;
-}
-
-
-/*todolist*/
-
-#sortable {
-    list-style-type: none;
-    margin: 0 0 20px 0;
-    padding: 0;
-    width: 100%;
-}
-
-#sortable li {
-    padding-left: 3em;
-    font-size: 12px;
-}
-
-#sortable li i {
-    position: absolute;
-    left: 6px;
-    padding: 4px 10px 0 10px;
-    cursor: pointer;
-}
-
-#sortable li input[type=checkbox] {
-    margin-top: 0;
-}
-
-.ui-sortable>li {
-    padding: 15px 0 15px 35px !important;
-    position: relative;
-    background: #f5f6f8;
-    margin-bottom: 2px;
-    border-bottom: none !important;
-}
-
-.ui-sortable li.list-primary {
-    border-left: 3px solid #41CAC0;
-}
-
-.ui-sortable li.list-success {
-    border-left: 3px solid #78CD51;
-}
-
-.ui-sortable li.list-danger {
-    border-left: 3px solid #FF6C60;
-}
-
-.ui-sortable li.list-warning {
-    border-left: 3px solid #F1C500;
-}
-
-.ui-sortable li.list-info {
-    border-left: 3px solid #58C9F3;
-}
-
-.ui-sortable li.list-inverse {
-    border-left: 3px solid #BEC3C7;
 }
 
 

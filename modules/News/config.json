@@ -31,6 +31,7 @@
         }
     ],
     "jsControllers": ["calendarController"],
+    "css": ["style"],
     "frontendRoute": [{
         "url": "calendar",
         "templateSrc": "calendar.html",

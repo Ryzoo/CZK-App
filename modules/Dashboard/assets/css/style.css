@@ -1,0 +1,12 @@
+.today-date {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 35px;
+    font-weight: 700;
+    font-family: 'Roboto';
+}
+
+.rectangle {
+    height: 5px;
+    background: #000;
+}
