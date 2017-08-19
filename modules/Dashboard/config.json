@@ -9,6 +9,7 @@
         "templateSrc": "mainDashboard.html",
         "controllerName": "mainDashboardController"
     }],
+    "css": ["style"],
     "anchor": [{
         "destination": "leftMenu",
         "content": {

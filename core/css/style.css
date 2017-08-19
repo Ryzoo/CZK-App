@@ -898,15 +898,7 @@ ul.top-menu>li>a:focus {
 }
 
 
-/*--caledar on main site*/
-
-.today-date {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 35px;
-    font-weight: 700;
-    font-family: 'Roboto';
-}
+/*--calendar on main site*/
 
 .titleIn {
     font-weight: 550;
@@ -914,11 +906,6 @@ ul.top-menu>li>a:focus {
     font-family: 'Roboto';
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.rectangle {
-    height: 5px;
-    background: #000;
 }
 
 .card .row {
@@ -2573,64 +2560,6 @@ label {
 .flot-chart .pie,
 .flot-chart .bars {
     height: 300px;
-}
-
-
-/*todolist*/
-
-#sortable {
-    list-style-type: none;
-    margin: 0 0 20px 0;
-    padding: 0;
-    width: 100%;
-}
-
-#sortable li {
-    padding-left: 3em;
-    font-size: 12px;
-}
-
-#sortable li i {
-    position: absolute;
-    left: 6px;
-    padding: 4px 10px 0 10px;
-    cursor: pointer;
-}
-
-#sortable li input[type=checkbox] {
-    margin-top: 0;
-}
-
-.ui-sortable>li {
-    padding: 15px 0 15px 35px !important;
-    position: relative;
-    background: #f5f6f8;
-    margin-bottom: 2px;
-    border-bottom: none !important;
-}
-
-.ui-sortable li.list-primary {
-    border-left: 3px solid #41CAC0;
-}
-
-.ui-sortable li.list-success {
-    border-left: 3px solid #78CD51;
-}
-
-.ui-sortable li.list-danger {
-    border-left: 3px solid #FF6C60;
-}
-
-.ui-sortable li.list-warning {
-    border-left: 3px solid #F1C500;
-}
-
-.ui-sortable li.list-info {
-    border-left: 3px solid #58C9F3;
-}
-
-.ui-sortable li.list-inverse {
-    border-left: 3px solid #BEC3C7;
 }
 
 
