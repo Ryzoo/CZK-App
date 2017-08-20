@@ -194,7 +194,7 @@ class Route{
         $actualThemes = $this->settings->currentThemes();
         if(isset($actualThemes)&&strlen($actualThemes)>2){
             $actualThemes = "core/themes/".$actualThemes."/style.css";
-            array_push($this->modulesJs,$actualThemes);
+            array_push($this->modulesCss,$actualThemes);
         }
 
         $this->checkRequest();
