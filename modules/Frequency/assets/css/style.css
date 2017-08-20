@@ -5,15 +5,15 @@
 }
 
 .freqTable td {
-    padding: 3px;
+    padding: 10px 3px;
 }
 
 .freqTable tbody tr {
-    background-color: rgb(42, 47, 55) !important;
+    background-color: rgb(10, 21, 34) !important;
     transition: background-color .2s;
 }
 
 .freqTable tbody tr:hover {
-    background-color: rgb(52, 57, 65) !important;
+    background-color: rgb(19, 32, 47) !important;
     transition: background-color .2s;
 }

@@ -2806,3 +2806,11 @@ text {
     left: 50%;
     transform: translateX(-50%);
 }
+
+input[type=checkbox]:checked+.lever:after {
+    background-color: #67dff0 !important;
+}
+
+input[type=checkbox]:checked+.lever {
+    background-color: rgb(73, 157, 169) !important;
+  }
