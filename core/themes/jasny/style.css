@@ -92,11 +92,11 @@ ul.sidebar-menu li ul.sub li {
 }
 
 .dropdown-content li:hover {
-  background-color: #333;
+  background-color: #fff;
 }
 
 .dropdown-content {
-  background-color: #212121;
+  background-color: #eaeaea;
 }
 
 .dropdown-content li.active {
@@ -105,6 +105,10 @@ ul.sidebar-menu li ul.sub li {
 
 .dropdown-content li.selected {
     background-color: #00cecc;
+}
+
+.dropdown-content li>span {
+    color: #4e4e4e;
 }
 
 

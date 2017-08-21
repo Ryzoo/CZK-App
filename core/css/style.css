@@ -48,10 +48,6 @@ header nav {
     min-height: 0px !important;
 }
 
-.dropdown-content li>span {
-    color: #fff !important;
-}
-
 .disabled:hover {
     background-color: transparent !important;
 }

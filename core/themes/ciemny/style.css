@@ -86,6 +86,10 @@ ul.sidebar-menu li ul.sub li {
     background-color: #06101c;
 }
 
+.dropdown-content li>span {
+    color: #fff;
+}
+
 
 
 /* --- TOPBAR --- */
