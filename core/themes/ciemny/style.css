@@ -1,3 +1,221 @@
+/* --- MAIN --- */
 body {
-    background: rgb(13, 25, 39);
+  background: rgb(13, 25, 39);
+  color: #fff;
+}
+
+a {
+  color: #499da9;
+}
+
+a:hover {
+  color: #67dff0;
+}
+
+#loadingContent {
+  background: #06101c;
+}
+
+.btn {
+  background-color: #499da9;
+}
+
+.btn:hover {
+  background-color: #67dff0;
+}
+
+table.highlight>tbody>tr:hover {
+  background-color: #67dff0;
+}
+
+.collapsible-body {
+  background-color: #13202f;
+}
+
+.collapsible-header {
+    background-color: #06101c;
+}
+
+.c3-chart-arcs .c3-chart-arcs-background {
+    fill: rgba(103, 223, 240, 0.14);
+}
+
+.c3 text {
+    fill: #fff;
+}
+
+text tspan {
+    fill: #fff;
+}
+
+
+
+/* --- SIDEBAR --- */
+#sidebar {
+  background: #06101c;
+}
+
+ul.sidebar-menu li a.active,
+ul.sidebar-menu li a:hover,
+ul.sidebar-menu li a:focus {
+  background: rgb(19, 32, 47);
+  border-left: solid 1px rgb(103, 223, 240);
+}
+
+ul.sidebar-menu li ul.sub li {
+  background: #13202f;
+}
+
+.sidebar-menu .select-dropdown {
+  border-bottom-color: #67dff0 !important;
+}
+
+.dropdown-content li:hover {
+  background-color: #67dff0;
+}
+
+.dropdown-content {
+  background-color: #13202f;
+}
+
+.dropdown-content li.active {
+    background-color: #06101c;
+}
+
+.dropdown-content li.selected {
+    background-color: #06101c;
+}
+
+
+
+/* --- TOPBAR --- */
+.topbar {
+  background: #06101c;
+}
+
+nav ul a:hover {
+  color: #03a9f4;
+}
+
+.fa-color {
+  color: #fff;
+}
+
+.fa-color:hover {
+  color: #67dff0;
+}
+
+.notifyContenerTitle {
+  background: #13202f;
+}
+
+
+
+/* --- HOME PANEL --- */
+.card {
+  background-color: rgba(6, 16, 28, 0.40);
+}
+
+.card-title {
+  background: #06101c;
+  color: #fff;
+}
+
+.events-text-color {
+  color: #9e9e9e;
+}
+
+#todoText {
+  background: #0a1522;
+}
+
+#todoButton {
+  background: #0a1522;
+  color: #9e9e9e;
+}
+
+#todoButton .fa-plus:hover {
+  color: #fff;
+}
+
+
+
+/* --- MY PROFILE PANEL --- */
+.validate {
+  color: #fff;
+}
+
+
+
+/* --- FREQUENCY PANEL --- */
+.freqTable tbody tr {
+  background-color: rgb(10, 21, 34);
+  transition: background-color .2s;
+}
+
+.freqTable tbody tr:hover {
+  background-color: rgb(19, 32, 47);
+  transition: background-color .2s;
+}
+
+input[type=checkbox]:checked+.lever:after {
+  background-color: #67dff0;
+}
+
+input[type=checkbox]:checked+.lever {
+  background-color: rgb(73, 157, 169);
+}
+
+
+
+/* --- CALENDAR --- */
+#calendar {
+  color: #fff;
+}
+
+.calendar-month-header {
+  background: #43b1a9;
+}
+
+.drop-after {
+  border-top: 1px solid #ccc;
+}
+
+.fc-state-default,
+.fc-state-default .fc-button-inner {
+  background: transparent;
+}
+
+.fc-button-inner:hover {
+  background: #1a2b40;
+}
+
+.fc-state-active .fc-button-inner {
+  background: #fff;
+}
+
+.fc-state-active,
+.fc-state-active .fc-button-inner {
+  background: #1a2b40;
+  color: #d1d1d1;
+}
+
+.fc-widget-header {
+    color: #d1d1d1;
+    border: 1px solid #1a2b40;
+    background: #1a2b40;
+}
+
+.fc-state-highlight {
+    background: #1a2b40;
+}
+
+.fc-widget-content {
+    color: #d1d1d1;
+    border: 1px solid #1a2b40;
+}
+
+.fc-event-skin {
+    border-color: #499da9;
+    background-color: #499da9;
 }

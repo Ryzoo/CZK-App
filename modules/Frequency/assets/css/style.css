@@ -7,13 +7,3 @@
 .freqTable td {
     padding: 10px 3px;
 }
-
-.freqTable tbody tr {
-    background-color: rgb(10, 21, 34) !important;
-    transition: background-color .2s;
-}
-
-.freqTable tbody tr:hover {
-    background-color: rgb(19, 32, 47) !important;
-    transition: background-color .2s;
-}
