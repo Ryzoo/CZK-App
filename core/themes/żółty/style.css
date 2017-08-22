@@ -1,0 +1,271 @@
+/* --- MAIN --- */
+body {
+  background: #31343d;
+  color: #fff;
+}
+
+a {
+  color: #f7aa00;
+}
+
+a:hover {
+  color: #ffcd60;
+}
+
+.secondary-content {
+  color: #f7aa00;
+}
+
+#loadingContent {
+  background: #23262d;
+}
+
+.btn {
+  background-color: #f7aa00;
+}
+
+.btn:hover {
+  background-color: #ffcd60;
+}
+
+table.highlight>tbody>tr:hover {
+  background-color: #f7aa00;
+}
+
+.tab a.active {
+  background-color: #fff !important;
+  color: #f7aa00 !important;
+}
+
+.tabs .tab a {
+  background-color: #fff !important;
+  color: #f7aa00 !important;
+}
+
+.tabs .tab a:hover {
+  color: #ffcd60 !important;
+}
+
+.gritter-item {
+  background: #0488d2 !important;
+}
+
+.collapsible-body {
+  background-color: #3a3f45;
+}
+
+.collapsible-header {
+  background-color: #23262d;
+}
+
+.c3-chart-arcs .c3-chart-arcs-background {
+  fill: #23262d;
+}
+
+.c3 text {
+  fill: #fff;
+}
+
+text tspan {
+  fill: #fff;
+}
+
+.c3 path {
+  stroke: #fff;
+}
+
+
+/* --- SIDEBAR --- */
+#sidebar {
+  background: #23262d;
+}
+
+ul.sidebar-menu li a.active,
+ul.sidebar-menu li a:hover,
+ul.sidebar-menu li a:focus {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: solid 1px #ffcd60;
+}
+
+ul.sidebar-menu li ul.sub li {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-menu .select-dropdown {
+  border-bottom-color: #f7aa00 !important;
+}
+
+.dropdown-content li:hover {
+  background-color: #f7aa00;
+}
+
+.dropdown-content {
+  background-color: #31343d;
+}
+
+.dropdown-content li.active {
+    background-color: #31343d;
+}
+
+.dropdown-content li.selected {
+    background-color: #f7aa00;
+}
+
+.dropdown-content li>span {
+    color: #fff;
+}
+
+.input-field label {
+    color: #63666f;
+}
+
+
+
+/* --- TOPBAR --- */
+.topbar {
+  background: #f7aa00;
+}
+
+nav ul a:hover {
+  color: #ffcd60;
+}
+
+.fa-color {
+  color: #fff;
+}
+
+.fa-color:hover {
+  color: #ffcd60;
+}
+
+.notifyContenerTitle {
+  background: #0488d2;
+}
+
+
+
+/* --- HOME PANEL --- */
+.card {
+  background: #3a3f45;
+}
+
+.card-title {
+  background: #3a3f45;
+  color: #fff;
+}
+
+.events-text-color {
+  color: #63666f;
+}
+
+#todoText {
+  background: #3a3f45;
+}
+
+#todoButton {
+  background: #3a3f45;
+  color: #63666f;
+}
+
+#todoButton .fa-plus:hover {
+  color: #ffcd60;
+}
+
+
+
+/* --- MY PROFILE PANEL --- */
+.validate {
+    color: #fff;
+}
+
+input[type=text]:not(.browser-default):disabled {
+  color: rgba(255, 255, 255, 0.26);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #ffcd60;
+  box-shadow: 0 1px 0 0 #ffcd60;
+}
+
+
+
+/* --- MY REPORTS --- */
+.reports-bg {
+  background: #fff;
+}
+
+
+
+/* --- FREQUENCY PANEL --- */
+.freqTable tbody tr {
+    background-color: #3a3f45;
+    transition: background-color .2s;
+}
+
+.freqTable tbody tr:hover {
+    background-color: #31343d;
+    transition: background-color .2s;
+}
+
+input[type=checkbox]:checked+.lever:after {
+  background-color: #ffcd60 !important;
+}
+
+input[type=checkbox]:checked+.lever {
+  background-color: #f7aa00 !important;
+}
+
+
+
+/* --- CALENDAR --- */
+#calendar {
+  color: #4e4e4e;
+}
+
+.fc-state-default,
+.fc-state-default .fc-button-inner {
+  background: transparent;
+}
+
+.fc-button-inner:hover {
+  background: #31343d;
+}
+
+.fc-state-active .fc-button-inner {
+  background: #fff;
+}
+
+.fc-state-active,
+.fc-state-active .fc-button-inner {
+  background: #31343d;
+  color: #4e4e4e;
+}
+
+.fc-widget-header {
+    color: #4e4e4e;
+    border: 1px solid #31343d;
+    background: #31343d;
+}
+
+.fc-state-highlight {
+    background: #31343d;
+}
+
+.fc-widget-content {
+    color: #4e4e4e;
+    border: 1px solid #31343d;
+}
+
+.fc-event-skin {
+    border-color: #ffcd60;
+    background-color: #ffcd60;
+}
+
+
+
+/* --- SHOW PLAYERS PANEL --- */
+[type="checkbox"]:checked+label:before {
+  border-right: 2px solid #ffcd60;
+  border-bottom: 2px solid #ffcd60;
+}
