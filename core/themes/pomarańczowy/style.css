@@ -47,7 +47,7 @@ table.highlight>tbody>tr:hover {
 }
 
 .gritter-item {
-  background: #0488d2 !important;
+  background: #f7aa00 !important;
 }
 
 .collapsible-body {
@@ -139,7 +139,7 @@ nav ul a:hover {
 }
 
 .notifyContenerTitle {
-  background: #0488d2;
+  background: #23262d;
 }
 
 
@@ -220,12 +220,13 @@ input[type=checkbox]:checked+.lever {
 
 /* --- CALENDAR --- */
 #calendar {
-  color: #4e4e4e;
+  color: #fff;
 }
 
 .fc-state-default,
 .fc-state-default .fc-button-inner {
   background: transparent;
+  color: #fff;
 }
 
 .fc-button-inner:hover {
@@ -238,28 +239,33 @@ input[type=checkbox]:checked+.lever {
 
 .fc-state-active,
 .fc-state-active .fc-button-inner {
-  background: #31343d;
-  color: #4e4e4e;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .fc-widget-header {
-    color: #4e4e4e;
-    border: 1px solid #31343d;
-    background: #31343d;
+  color: #fff;
+  border: 1px solid #606569;
+  background: #606569;
 }
 
 .fc-state-highlight {
-    background: #31343d;
+  background: #606569;
 }
 
 .fc-widget-content {
-    color: #4e4e4e;
-    border: 1px solid #31343d;
+  color: #fff;
+  border: 1px solid #606569;
 }
 
 .fc-event-skin {
-    border-color: #ffcd60;
-    background-color: #ffcd60;
+  border-color: #f7aa00;
+  background-color: #f7aa00;
+  color: #23262d;
+}
+
+.fc-button-inner {
+  color: #fff;
 }
 
 
