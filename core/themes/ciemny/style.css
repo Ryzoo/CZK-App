@@ -90,6 +90,10 @@ ul.sidebar-menu li ul.sub li {
     color: #fff;
 }
 
+.input-field label {
+    color: #9e9e9e;
+}
+
 
 
 /* --- TOPBAR --- */
@@ -154,6 +158,11 @@ input[type=text]:not(.browser-default):disabled {
   border-bottom: 1px solid rgba(255, 255, 255, 0.26);
 }
 
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
+}
+
 
 
 /* --- MY REPORTS --- */
@@ -175,11 +184,11 @@ input[type=text]:not(.browser-default):disabled {
 }
 
 input[type=checkbox]:checked+.lever:after {
-  background-color: #67dff0;
+  background-color: #67dff0 !important;
 }
 
 input[type=checkbox]:checked+.lever {
-  background-color: rgb(73, 157, 169);
+  background-color: rgb(73, 157, 169) !important;
 }
 
 
@@ -234,4 +243,12 @@ input[type=checkbox]:checked+.lever {
 .fc-event-skin {
     border-color: #499da9;
     background-color: #499da9;
+}
+
+
+
+/* --- SHOW PLAYERS PANEL --- */
+[type="checkbox"]:checked+label:before {
+  border-right: 2px solid #26a69a;
+  border-bottom: 2px solid #26a69a;
 }
