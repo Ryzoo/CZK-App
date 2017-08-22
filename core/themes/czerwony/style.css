@@ -25,7 +25,7 @@ a:hover {
 }
 
 table.highlight>tbody>tr:hover {
-  background-color: #ec1800;
+  background-color: #eaeaea;
 }
 
 .tab a.active {
@@ -100,11 +100,11 @@ ul.sidebar-menu li ul.sub li {
 }
 
 .dropdown-content li.active {
-    background-color: #ec1800;
+    background-color: #eaeaea;
 }
 
 .dropdown-content li.selected {
-    background-color: #ec1800;
+    background-color: #fff;
 }
 
 .dropdown-content li>span {
