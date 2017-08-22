@@ -149,6 +149,18 @@ nav ul a:hover {
   color: #fff;
 }
 
+input[type=text]:not(.browser-default):disabled {
+  color: rgba(255, 255, 255, 0.26);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+
+
+/* --- MY REPORTS --- */
+.reports-bg {
+  background: #0a1522;
+}
+
 
 
 /* --- FREQUENCY PANEL --- */

@@ -170,6 +170,18 @@ nav ul a:hover {
     color: #4e4e4e;
 }
 
+input[type=text]:not(.browser-default):disabled {
+  color: rgba(0, 0, 0, 0.26);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+
+
+/* --- MY REPORTS --- */
+.reports-bg {
+  background: #fff;
+}
+
 
 
 /* --- FREQUENCY PANEL --- */
