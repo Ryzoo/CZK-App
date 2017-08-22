@@ -7,19 +7,17 @@
     width: 100%;
     height: 30px;
     box-sizing: border-box;
-    background: #0a1522;
     padding: 5px 5px 5px 10px;
     border-top: solid 1px #fff;
     border-bottom: solid 1px #fff;
     border-left: solid 1px #fff;
     border-radius: 5px 0 0 5px;
+    border-width: 2px;
 }
 
 #todoButton {
     width: auto;
-    color: #9e9e9e;
     height: 30px;
-    background: #0a1522;
     box-sizing: border-box;
     border-top: solid 1px #fff;
     border-bottom: solid 1px #fff;
@@ -29,14 +27,11 @@
     border-radius: 0 5px 5px 0;
     padding: 0 10px;
     margin-bottom: 10px;
+    border-width: 2px;
 }
 
 #todoButton .fa-plus {
     -webkit-transition: color 0.1s;
-}
-
-#todoButton .fa-plus:hover {
-    color: #fff;
 }
 
 .todoColorMain {

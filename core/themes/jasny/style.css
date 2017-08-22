@@ -1,3 +1,250 @@
+/* --- MAIN --- */
 body {
-    background: red;
+  background: #eaeaea;
+  color: #4e4e4e;
+}
+
+a {
+  color: #00abaa;
+}
+
+a:hover {
+  color: #00cecc;
+}
+
+#loadingContent {
+  background: #212121;
+}
+
+.btn {
+  background-color: #00abaa;
+}
+
+.btn:hover {
+  background-color: #00cecc;
+}
+
+table.highlight>tbody>tr:hover {
+  background-color: #00cecc;
+}
+
+.tab a.active {
+  background-color: #fff !important;
+  color: #00abaa !important;
+}
+
+.tabs .tab a {
+  background-color: #fff !important;
+  color: #00abaa !important;
+}
+
+.tabs .tab a:hover {
+  color: #00cecc !important;
+}
+
+.gritter-item {
+  background: #212121 !important;
+}
+
+.collapsible-body {
+  background-color: #fff;
+}
+
+.collapsible-header {
+  background-color: #eaeaea;
+}
+
+.c3-chart-arcs .c3-chart-arcs-background {
+  fill: #eaeaea;
+}
+
+.c3 text {
+  fill: #4e4e4e;
+}
+
+text tspan {
+  fill: #4e4e4e;
+}
+
+.c3 path {
+  stroke: #4e4e4e;
+}
+
+
+/* --- SIDEBAR --- */
+#sidebar {
+  background: #333;
+}
+
+ul.sidebar-menu li a.active,
+ul.sidebar-menu li a:hover,
+ul.sidebar-menu li a:focus {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: solid 1px #00cecc;
+}
+
+ul.sidebar-menu li ul.sub li {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-menu .select-dropdown {
+  border-bottom-color: #00cecc !important;
+}
+
+.dropdown-content li:hover {
+  background-color: #fff;
+}
+
+.dropdown-content {
+  background-color: #eaeaea;
+}
+
+.dropdown-content li.active {
+    background-color: #00cecc;
+}
+
+.dropdown-content li.selected {
+    background-color: #00cecc;
+}
+
+.dropdown-content li>span {
+    color: #4e4e4e;
+}
+
+
+
+/* --- TOPBAR --- */
+.topbar {
+  background: #333;
+}
+
+nav ul a:hover {
+  color: #00cecc;
+}
+
+.fa-color {
+  color: #fff;
+}
+
+.fa-color:hover {
+  color: #00cecc;
+}
+
+.notifyContenerTitle {
+  background: #212121;
+}
+
+
+
+/* --- HOME PANEL --- */
+.card {
+  background: #fff;
+}
+
+.card-title {
+  background: #eaeaea;
+  color: #94919a;
+}
+
+.events-text-color {
+  color: #7f7f7f;
+}
+
+#todoText {
+  background: #fff;
+}
+
+#todoButton {
+  background: #fff;
+  color: #7f7f7f;
+}
+
+#todoButton .fa-plus:hover {
+  color: #00cecc;
+}
+
+
+
+/* --- MY PROFILE PANEL --- */
+.validate {
+    color: #4e4e4e;
+}
+
+input[type=text]:not(.browser-default):disabled {
+  color: rgba(0, 0, 0, 0.26);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+
+
+/* --- MY REPORTS --- */
+.reports-bg {
+  background: #fff;
+}
+
+
+
+/* --- FREQUENCY PANEL --- */
+.freqTable tbody tr {
+    background-color: #fff;
+    transition: background-color .2s;
+}
+
+.freqTable tbody tr:hover {
+    background-color: #eaeaea;
+    transition: background-color .2s;
+}
+
+input[type=checkbox]:checked+.lever:after {
+  background-color: #00cecc;
+}
+
+input[type=checkbox]:checked+.lever {
+  background-color: #00abaa;
+}
+
+
+
+/* --- CALENDAR --- */
+#calendar {
+  color: #4e4e4e;
+}
+
+.fc-state-default,
+.fc-state-default .fc-button-inner {
+  background: transparent;
+}
+
+.fc-button-inner:hover {
+  background: #eaeaea;
+}
+
+.fc-state-active .fc-button-inner {
+  background: #fff;
+}
+
+.fc-state-active,
+.fc-state-active .fc-button-inner {
+  background: #eaeaea;
+  color: #4e4e4e;
+}
+
+.fc-widget-header {
+    color: #4e4e4e;
+    border: 1px solid #eaeaea;
+    background: #eaeaea;
+}
+
+.fc-state-highlight {
+    background: #eaeaea;
+}
+
+.fc-widget-content {
+    color: #4e4e4e;
+    border: 1px solid #eaeaea;
+}
+
+.fc-event-skin {
+    border-color: #00cecc;
+    background-color: #00cecc;
 }

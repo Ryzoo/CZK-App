@@ -1,10 +1,5 @@
 #calendar {
-    color: white;
     padding: 0px !important;
-}
-
-.calendar-month-header {
-    background: #43b1a9;
 }
 
 .external-event {
@@ -18,18 +13,4 @@
 .drop-after {
     padding-top: 15px;
     margin-top: 15px;
-    border-top: 1px solid #ccc;
-}
-
-.fc-state-default,
-.fc-state-default .fc-button-inner {
-    background: transparent;
-}
-
-.fc-button-inner:hover {
-    background: #1a2b40;
-}
-
-.fc-state-active .fc-button-inner {
-    background: #fff;
 }
