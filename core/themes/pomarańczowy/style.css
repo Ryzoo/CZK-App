@@ -1,86 +1,91 @@
 /* --- MAIN --- */
 body {
-  background: #eaeaea;
-  color: #4e4e4e;
+  background: #31343d;
+  color: #fff;
 }
 
 a {
-  color: #00abaa;
+  color: #f7aa00;
 }
 
 a:hover {
-  color: #00cecc;
+  color: #ffcd60;
+}
+
+.secondary-content {
+  color: #f7aa00;
 }
 
 #loadingContent {
-  background: #212121;
+  background: #23262d;
 }
 
 .btn {
-  background-color: #00abaa;
+  background-color: #f7aa00;
 }
 
 .btn:hover {
-  background-color: #00cecc;
+  background-color: #ffcd60;
 }
 
 table.highlight>tbody>tr:hover {
-  background-color: #00cecc;
+  background-color: #f7aa00;
 }
 
 .tab a.active {
   background-color: #fff !important;
-  color: #00abaa !important;
+  color: #f7aa00 !important;
 }
 
 .tabs .tab a {
   background-color: #fff !important;
-  color: #00abaa !important;
+  color: #f7aa00 !important;
 }
 
 .tabs .tab a:hover {
-  color: #00cecc !important;
+  color: #ffcd60 !important;
 }
 
 .gritter-item {
-  background: #212121 !important;
+  background: #f7aa00 !important;
+  color: #3a3f45;
 }
 
 .collapsible-body {
-  background-color: #fff;
+  background-color: #3a3f45;
 }
 
 .collapsible-header {
-  background-color: #eaeaea;
+  background-color: #23262d;
 }
 
 .c3-chart-arcs .c3-chart-arcs-background {
-  fill: #eaeaea;
+  fill: #23262d;
 }
 
 .c3 text {
-  fill: #4e4e4e;
+  fill: #fff;
 }
 
 text tspan {
-  fill: #4e4e4e;
+  fill: #fff;
 }
 
 .c3 path {
-  stroke: #4e4e4e;
+  stroke: #fff;
 }
 
 
 /* --- SIDEBAR --- */
 #sidebar {
-  background: #333;
+  background: #23262d;
 }
 
 ul.sidebar-menu li a.active,
 ul.sidebar-menu li a:hover,
 ul.sidebar-menu li a:focus {
   background: rgba(0, 0, 0, 0.2);
-  border-left: solid 1px #00cecc;
+  border-left: solid 1px #ffcd60;
 }
 
 ul.sidebar-menu li ul.sub li {
@@ -88,42 +93,42 @@ ul.sidebar-menu li ul.sub li {
 }
 
 .sidebar-menu .select-dropdown {
-  border-bottom-color: #00cecc !important;
+  border-bottom-color: #f7aa00 !important;
 }
 
 .dropdown-content li:hover {
-  background-color: #fff;
+  background-color: #f7aa00;
 }
 
 .dropdown-content {
-  background-color: #eaeaea;
+  background-color: #31343d;
 }
 
 .dropdown-content li.active {
-    background-color: #00cecc;
+    background-color: #31343d;
 }
 
 .dropdown-content li.selected {
-    background-color: #00cecc;
+    background-color: #f7aa00;
 }
 
 .dropdown-content li>span {
-    color: #4e4e4e;
+    color: #fff;
 }
 
 .input-field label {
-    color: #9e9e9e;
+    color: #63666f;
 }
 
 
 
 /* --- TOPBAR --- */
 .topbar {
-  background: #333;
+  background: #f7aa00;
 }
 
 nav ul a:hover {
-  color: #00cecc;
+  color: #ffcd60;
 }
 
 .fa-color {
@@ -131,57 +136,57 @@ nav ul a:hover {
 }
 
 .fa-color:hover {
-  color: #00cecc;
+  color: #ffcd60;
 }
 
 .notifyContenerTitle {
-  background: #212121;
+  background: #23262d;
 }
 
 
 
 /* --- HOME PANEL --- */
 .card {
-  background: #fff;
+  background: #3a3f45;
 }
 
 .card-title {
-  background: #eaeaea;
-  color: #94919a;
+  background: #3a3f45;
+  color: #fff;
 }
 
 .events-text-color {
-  color: #7f7f7f;
+  color: #63666f;
 }
 
 #todoText {
-  background: #fff;
+  background: #3a3f45;
 }
 
 #todoButton {
-  background: #fff;
-  color: #7f7f7f;
+  background: #3a3f45;
+  color: #63666f;
 }
 
 #todoButton .fa-plus:hover {
-  color: #00cecc;
+  color: #ffcd60;
 }
 
 
 
 /* --- MY PROFILE PANEL --- */
 .validate {
-    color: #4e4e4e;
+    color: #fff;
 }
 
 input[type=text]:not(.browser-default):disabled {
-  color: rgba(0, 0, 0, 0.26);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  color: rgba(255, 255, 255, 0.26);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.26);
 }
 
 input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #00cecc;
-  box-shadow: 0 1px 0 0 #00cecc;
+  border-bottom: 1px solid #ffcd60;
+  box-shadow: 0 1px 0 0 #ffcd60;
 }
 
 
@@ -195,37 +200,38 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 /* --- FREQUENCY PANEL --- */
 .freqTable tbody tr {
-    background-color: #fff;
+    background-color: #3a3f45;
     transition: background-color .2s;
 }
 
 .freqTable tbody tr:hover {
-    background-color: #eaeaea;
+    background-color: #31343d;
     transition: background-color .2s;
 }
 
 input[type=checkbox]:checked+.lever:after {
-  background-color: #00cecc !important;
+  background-color: #ffcd60 !important;
 }
 
 input[type=checkbox]:checked+.lever {
-  background-color: #00abaa !important;
+  background-color: #f7aa00 !important;
 }
 
 
 
 /* --- CALENDAR --- */
 #calendar {
-  color: #4e4e4e;
+  color: #fff;
 }
 
 .fc-state-default,
 .fc-state-default .fc-button-inner {
   background: transparent;
+  color: #fff;
 }
 
 .fc-button-inner:hover {
-  background: #eaeaea;
+  background: #31343d;
 }
 
 .fc-state-active .fc-button-inner {
@@ -234,34 +240,39 @@ input[type=checkbox]:checked+.lever {
 
 .fc-state-active,
 .fc-state-active .fc-button-inner {
-  background: #eaeaea;
-  color: #4e4e4e;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .fc-widget-header {
-    color: #4e4e4e;
-    border: 1px solid #eaeaea;
-    background: #eaeaea;
+  color: #fff;
+  border: 1px solid #606569;
+  background: #606569;
 }
 
 .fc-state-highlight {
-    background: #eaeaea;
+  background: #606569;
 }
 
 .fc-widget-content {
-    color: #4e4e4e;
-    border: 1px solid #eaeaea;
+  color: #fff;
+  border: 1px solid #606569;
 }
 
 .fc-event-skin {
-    border-color: #00cecc;
-    background-color: #00cecc;
+  border-color: #f7aa00;
+  background-color: #f7aa00;
+  color: #23262d;
+}
+
+.fc-button-inner {
+  color: #fff;
 }
 
 
 
 /* --- SHOW PLAYERS PANEL --- */
 [type="checkbox"]:checked+label:before {
-  border-right: 2px solid #00cecc;
-  border-bottom: 2px solid #00cecc;
+  border-right: 2px solid #ffcd60;
+  border-bottom: 2px solid #ffcd60;
 }
