@@ -1761,6 +1761,9 @@ PANELS CONFIGURATIONS
 
 /* PROFILE PANELS */
 
+.input-field label {
+  margin: 3px 0;
+}
 
 /* Profile 01*/
 
