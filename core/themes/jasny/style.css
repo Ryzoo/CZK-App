@@ -70,6 +70,11 @@ text tspan {
   stroke: #4e4e4e;
 }
 
+.secondary-content {
+  color: #26a69a;
+}
+
+
 
 /* --- SIDEBAR --- */
 #sidebar {

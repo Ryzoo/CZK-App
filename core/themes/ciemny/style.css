@@ -33,21 +33,24 @@ table.highlight>tbody>tr:hover {
 }
 
 .collapsible-header {
-    background-color: #06101c;
+  background-color: #06101c;
 }
 
 .c3-chart-arcs .c3-chart-arcs-background {
-    fill: rgba(103, 223, 240, 0.14);
+  fill: rgba(103, 223, 240, 0.14);
 }
 
 .c3 text {
-    fill: #fff;
+  fill: #fff;
 }
 
 text tspan {
-    fill: #fff;
+  fill: #fff;
 }
 
+.secondary-content {
+  color: #26a69a;
+}
 
 
 /* --- SIDEBAR --- */
