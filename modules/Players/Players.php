@@ -81,8 +81,13 @@ class Players extends BasicModule{
                     $toReturn = $isPersonel;
                 }
                 try{
-                    $message = "Witaj ".$fname." ".$lname."\r\nTwoje konto zostało właśnie utworzone \r\nMożesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
-                    mail($mail, 'Utworzono Twoje konto', $message);
+                    $headers = 'MIME-Version: 1.0' . "\r\n" .
+                    'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+                    'From: ClubManagementCenter@gmail.com' . "\r\n" .
+                    'Reply-To: ClubManagementCenter@gmail.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+                    $message = "Witaj <strong>".$fname." ".$lname."</strong>.<br/>Twoje konto zostało właśnie utworzone. <br/>Możesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
+                    mail($mail, 'Utworzono Twoje konto', $message, $headers);
                 }catch(Exception $e){
                     $toReturn = 'Nie udało się wysłać meila z hasłem';
                 }

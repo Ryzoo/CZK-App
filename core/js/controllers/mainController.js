@@ -102,9 +102,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                             }, 200);
                             setTimeout(function() {
                                 $('#loadingContent').hide('fade', 'slow');
+                                document.location.href = "/panel#!/";
                                 $route.reload();
                             }, 2000);
                             $('select').material_select();
+
                         } else {
                             if (msg.error)
                                 $.gritter.add({
@@ -144,6 +146,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
 
     $(document).on('change', '#teamSelect', function() {
         $rootScope.user.tmid = $("#teamSelect").val();
+        document.location.href = "/panel#!/";
         $route.reload();
     });
 });

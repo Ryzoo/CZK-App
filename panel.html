@@ -9,15 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/files/img/favicon.ico">
     <title ng-show="mainSettings.length > 0">{{mainSettings.appName}}</title>
-    <link href="/core/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/core/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="/core/css/c3.min.css">
-    <link rel="stylesheet" type="text/css" href="/core/js/libraries/gritter/css/jquery.gritter.css" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="/core/css/style-responsive.css" rel="stylesheet">
-    <link href="/core/js/libraries/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-    <link href="/core/css/jquery.datetimepicker.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
 </head>
 
 <body ng-controller="accountController">
@@ -73,28 +66,8 @@
         </section>
     </div>
 
-
+    <link href="/core/css/style.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="/core/js/libraries/jquery-ui.js"></script>
-    <scirpt src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></scirpt>
-    <script src="/core/js/libraries/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/core/js/libraries/jquery.scrollTo.min.js"></script>
-    <script src="/core/js/libraries/jquery.nicescroll.js"></script>
-    <script src="/core/js/libraries/jquery.sparkline.js"></script>
-    <script src="/core/js/libraries/jquery.datetimepicker.full.js"></script>
-    <script src="/core/js/libraries/chart-master/Chart.js"></script>
-    <script src="/core/js/libraries/d3.min.js"></script>
-    <script src="/core/js/libraries/c3.min.js"></script>
-    <script src="/core/js/libraries/gritter/js/jquery.gritter.js"></script>
-    <script src="/core/js/libraries/gritter-conf.js"></script>
-    <script src="/core/js/libraries/js.cookie.js"></script>
-    <script src="/core/js/libraries/sparkline-chart.js"></script>
-    <script src="/core/js/libraries/zabuto_calendar.js"></script>
-    <script src="/core/js/libraries/fullcalendar/fullcalendar.min.js"></script>
-    <script src="/core/js/libraries/moments.js"></script>
-    <script src="/core/js/libraries/calendar-conf-events.js"></script>
-    <script src="/core/js/libraries/common-scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
     <script>
         function GetXmlHttpObject() {
             var objXMLHttp = null;
@@ -129,80 +102,6 @@
                 document.getElementsByTagName('body')[0].appendChild(se);
             }
         };
-        var urlToPost = 'backend/getServices';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: [],
-            async: false,
-            success: function(msg) {
-                if (msg.success) {
-                    JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js");
-                    JavaScript.load("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js");
-                    JavaScript.load("/core/js/services.js");
-                    for (var x = 0; x < msg.data.length; x++) {
-                        JavaScript.load(msg.data[x]);
-                    }
-
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                $.gritter.add({
-                    title: 'Bład',
-                    text: "Blad podczas laczenia z serverem: " + textStatus,
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            }
-        });
-        var urlToPost = 'backend/getPageJs';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: [],
-            async: false,
-            success: function(msg) {
-                if (msg.success) {
-                    for (var x = 0; x < msg.data.length; x++) {
-                        JavaScript.load(msg.data[x]);
-                    }
-                    JavaScript.load("/core/js/controllers/mainController.js");
-                    JavaScript.load("/core/js/route.js");
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                $.gritter.add({
-                    title: 'Bład',
-                    text: "Blad podczas laczenia z serverem: " + textStatus,
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            }
-        });
         var urlToPost = 'backend/getPageCss';
         $.ajax({
             url: urlToPost,
@@ -237,66 +136,182 @@
                 });
             }
         });
-        var urlToPost = 'backend/getLeftMenu';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: [],
-            async: false,
-            success: function(msg) {
-                if (msg.success) {
-                    for (var i = 0; i < msg.data.length; i++) {
-                        var toAppend = "";
-                        var additional = '';
-                        var icon = '';
-                        if (msg.data[i].html) {
-                            toAppend = msg.data[i].html;
-                        } else if (msg.data[i].dropdown) {
-                            if (msg.data[i].anchorAdditional) additional = msg.data[i].anchorAdditional;
-                            if (msg.data[i].icon) icon = "<i class='" + msg.data[i].icon + "' aria-hidden='true'></i>";
-                            toAppend = "<li class='main-sidebar' " + additional + "> <a href=''>" + icon + "<span>" + msg.data[i].dropdown + "</span>" +
-                                "</a> <ul class='sub' >"
-                            for (var x = 0; x < msg.data[i].list.length; x++) {
-                                additional = "";
-                                if (msg.data[i].list[x].link.additional) additional = msg.data[i].list[x].link.additional;
-                                var add = "<li " + additional + "> <a href='" + msg.data[i].list[x].link.url + "'> " + msg.data[i].list[x].link.label + " </a> </li>";
-                                toAppend += add;
-                            }
-                            toAppend += "</ul></li>";
-                        } else if (msg.data[i].link) {
-                            if (msg.data[i].link.additional) additional = msg.data[i].link.additional;
-                            if (msg.data[i].link.icon) icon = "<i class='" + msg.data[i].link.icon + "' aria-hidden='true'></i>";
-                            toAppend = "<li class='main-sidebar' " + additional + "> <a class='waves-effect waves-light' href='" + msg.data[i].link.url +
-                                "'> " + icon + "<span>" + msg.data[i].link.label + "</span> </a> </li>";
-                        }
-                        $("#nav-accordion").append(toAppend);
-                    }
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                $.gritter.add({
-                    title: 'Bład',
-                    text: "Blad podczas laczenia z serverem: " + textStatus,
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            }
-        });
     </script>
 
 
 </body>
 
 </html>
+
+
+<script src="/core/js/libraries/jquery-ui.js"></script>
+<scirpt src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></scirpt>
+<script src="/core/js/libraries/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/core/js/libraries/jquery.scrollTo.min.js"></script>
+<script src="/core/js/libraries/jquery.nicescroll.js"></script>
+<script src="/core/js/libraries/jquery.sparkline.js"></script>
+<script src="/core/js/libraries/jquery.datetimepicker.full.js"></script>
+<script src="/core/js/libraries/chart-master/Chart.js"></script>
+<script src="/core/js/libraries/d3.min.js"></script>
+<script src="/core/js/libraries/c3.min.js"></script>
+<script src="/core/js/libraries/gritter/js/jquery.gritter.js"></script>
+<script src="/core/js/libraries/gritter-conf.js"></script>
+<script src="/core/js/libraries/js.cookie.js"></script>
+<script src="/core/js/libraries/sparkline-chart.js"></script>
+<script src="/core/js/libraries/zabuto_calendar.js"></script>
+<script src="/core/js/libraries/fullcalendar/fullcalendar.min.js"></script>
+<script src="/core/js/libraries/moments.js"></script>
+<script src="/core/js/libraries/calendar-conf-events.js"></script>
+<script src="/core/js/libraries/common-scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+<script>
+    var urlToPost = 'backend/getServices';
+    $.ajax({
+        url: urlToPost,
+        type: "POST",
+        data: [],
+        async: false,
+        success: function(msg) {
+            if (msg.success) {
+                JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js");
+                JavaScript.load("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js");
+                JavaScript.load("/core/js/services.js");
+                for (var x = 0; x < msg.data.length; x++) {
+                    JavaScript.load(msg.data[x]);
+                }
+
+            } else {
+                if (msg.error)
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: msg.error,
+                        image: '',
+                        sticky: true,
+                        time: 3,
+                        class_name: 'my-sticky-class'
+                    });
+            }
+        },
+        error: function(jqXHR, textStatus) {
+            $.gritter.add({
+                title: 'Bład',
+                text: "Blad podczas laczenia z serverem: " + textStatus,
+                image: '',
+                sticky: true,
+                time: 3,
+                class_name: 'my-sticky-class'
+            });
+        }
+    });
+    var urlToPost = 'backend/getPageJs';
+    $.ajax({
+        url: urlToPost,
+        type: "POST",
+        data: [],
+        async: false,
+        success: function(msg) {
+            if (msg.success) {
+                for (var x = 0; x < msg.data.length; x++) {
+                    JavaScript.load(msg.data[x]);
+                }
+                JavaScript.load("/core/js/controllers/mainController.js");
+                JavaScript.load("/core/js/route.js");
+            } else {
+                if (msg.error)
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: msg.error,
+                        image: '',
+                        sticky: true,
+                        time: 3,
+                        class_name: 'my-sticky-class'
+                    });
+            }
+        },
+        error: function(jqXHR, textStatus) {
+            $.gritter.add({
+                title: 'Bład',
+                text: "Blad podczas laczenia z serverem: " + textStatus,
+                image: '',
+                sticky: true,
+                time: 3,
+                class_name: 'my-sticky-class'
+            });
+        }
+    });
+
+    var urlToPost = 'backend/getLeftMenu';
+    $.ajax({
+        url: urlToPost,
+        type: "POST",
+        data: [],
+        async: false,
+        success: function(msg) {
+            if (msg.success) {
+                for (var i = 0; i < msg.data.length; i++) {
+                    var toAppend = "";
+                    var additional = '';
+                    var icon = '';
+                    if (msg.data[i].html) {
+                        toAppend = msg.data[i].html;
+                    } else if (msg.data[i].dropdown) {
+                        if (msg.data[i].anchorAdditional) additional = msg.data[i].anchorAdditional;
+                        if (msg.data[i].icon) icon = "<i class='" + msg.data[i].icon + "' aria-hidden='true'></i>";
+                        toAppend = "<li class='main-sidebar' " + additional + "> <a href=''>" + icon + "<span>" + msg.data[i].dropdown + "</span>" +
+                            "</a> <ul class='sub' >"
+                        for (var x = 0; x < msg.data[i].list.length; x++) {
+                            additional = "";
+                            if (msg.data[i].list[x].link.additional) additional = msg.data[i].list[x].link.additional;
+                            var add = "<li " + additional + "> <a href='" + msg.data[i].list[x].link.url + "'> " + msg.data[i].list[x].link.label + " </a> </li>";
+                            toAppend += add;
+                        }
+                        toAppend += "</ul></li>";
+                    } else if (msg.data[i].link) {
+                        if (msg.data[i].link.additional) additional = msg.data[i].link.additional;
+                        if (msg.data[i].link.icon) {
+                            icon = "<i class='" + msg.data[i].link.icon + "' aria-hidden='true'></i>";
+
+                            if (msg.data[i].link.url == "#!/") {
+                                toAppend = "<li class='main-sidebar' " + additional + "> <a class='waves-effect waves-light active' href='" + msg.data[i].link.url +
+                                    "'> " + icon + "<span>" + msg.data[i].link.label + "</span> </a> </li>";
+                            } else {
+                                toAppend = "<li class='main-sidebar' " + additional + "> <a class='waves-effect waves-light' href='" + msg.data[i].link.url +
+                                    "'> " + icon + "<span>" + msg.data[i].link.label + "</span> </a> </li>";
+                            }
+
+                        }
+                    }
+                    $("#nav-accordion").append(toAppend);
+                }
+            } else {
+                if (msg.error)
+                    $.gritter.add({
+                        title: 'Bład',
+                        text: msg.error,
+                        image: '',
+                        sticky: true,
+                        time: 3,
+                        class_name: 'my-sticky-class'
+                    });
+            }
+        },
+        error: function(jqXHR, textStatus) {
+            $.gritter.add({
+                title: 'Bład',
+                text: "Blad podczas laczenia z serverem: " + textStatus,
+                image: '',
+                sticky: true,
+                time: 3,
+                class_name: 'my-sticky-class'
+            });
+        }
+    });
+</script>
+
+<link rel="stylesheet" type="text/css" href="/core/css/zabuto_calendar.css">
+<link rel="stylesheet" type="text/css" href="/core/css/c3.min.css">
+<link rel="stylesheet" type="text/css" href="/core/js/libraries/gritter/css/jquery.gritter.css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/core/css/style-responsive.css" rel="stylesheet">
+<link href="/core/js/libraries/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+<link href="/core/css/jquery.datetimepicker.min.css" rel="stylesheet" />

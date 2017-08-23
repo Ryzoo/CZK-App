@@ -26,12 +26,12 @@
     "css": ["style"],
     "anchor": [{
         "destination": "leftMenu",
-        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": {
             "link": {
                 "label": "Frekwencja zawodników",
                 "url": "#!/teamFreq",
-                "icon": "fa fa-list-alt fa-fw"
+                "icon": "fa fa-list-alt fa-fw",
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
             }
         }
     }]

@@ -191,10 +191,10 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                 if (msg.success) {
                     $.gritter.add({
                         title: 'Sukces',
-                        text: 'Osoba została dodana. Na jej adres email zostało wysłane hasło.',
+                        text: 'Osoba została dodana. Na jej adres email zostało wysłane hasło. Wiadomość może trafić do folderu spam',
                         image: '',
                         sticky: true,
-                        time: 3,
+                        time: 5,
                         class_name: 'my-sticky-class'
                     });
                     $('#addedFirstname').val('');
