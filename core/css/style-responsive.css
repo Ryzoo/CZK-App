@@ -20,9 +20,10 @@
     /*sidebar*/
     #sidebar {
         height: auto;
-        overflow: hidden;
+        max-height: 100vh;
+        overflow: scroll !important;
         width: 100%;
-        z-index: 1001;
+        z-index: 888;
     }
     /* body container */
     #main-content {
@@ -197,7 +198,7 @@
 
 @media(max-width: 601px) {
     #sidebar {
-        margin-top: 50px;
+        padding-top: 50px;
     }
     .section,
     .wrapper {

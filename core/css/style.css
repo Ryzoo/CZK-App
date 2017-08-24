@@ -39,6 +39,14 @@ header nav {
     transform: translateX(-50%);
 }
 
+#mainContent{
+    min-height: 100vh;
+}
+
+#nav-accordion{
+    margin: 0 !important;
+}
+
 .sidebar-menu .select-dropdown {
     font-size: 14px !important;
     text-align: center;
@@ -327,7 +335,7 @@ ul.top-menu>li>.logout:hover {
 }
 
 #sidebar {
-    margin-top: 60px;
+    padding-top: 60px;
     width: 210px;
     height: 100%;
     position: fixed;
