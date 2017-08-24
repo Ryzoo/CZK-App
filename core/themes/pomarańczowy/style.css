@@ -12,10 +12,6 @@ a:hover {
   color: #ffcd60;
 }
 
-.secondary-content {
-  color: #f7aa00;
-}
-
 #loadingContent {
   background: #23262d;
 }
@@ -73,6 +69,11 @@ text tspan {
 .c3 path {
   stroke: #fff;
 }
+
+.secondary-content {
+  color: #f7aa00;
+}
+
 
 
 /* --- SIDEBAR --- */

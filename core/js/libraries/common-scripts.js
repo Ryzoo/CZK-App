@@ -81,6 +81,8 @@ var Script = function() {
 
     $("html").niceScroll({ styler: "fb", cursorcolor: "#4ECDC4", cursorwidth: '6', cursorborderradius: '10px', background: '#404040', spacebarenabled: false, cursorborder: '', zindex: '1000' });
 
+    $(".nicescroll-rails div").css("background","rgb(128, 128, 128)");
+
     // widget tools
 
     jQuery('.panel .tools .fa-chevron-down').click(function() {
