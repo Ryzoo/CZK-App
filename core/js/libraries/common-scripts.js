@@ -2,13 +2,12 @@
 $(function() {
     $('#nav-accordion').dcAccordion({
         eventType: 'click',
-        autoClose: true,
+        autoClose: false,
         saveState: true,
         disableLink: true,
         speed: 'slow',
         showCount: false,
-        autoExpand: true,
-        //        cookie: 'dcjq-accordion-1',
+        autoExpand: false,
         classExpand: 'dcjq-current-parent'
     });
 });
@@ -18,10 +17,6 @@ var Script = function() {
 
     //    sidebar dropdown menu auto scrolling
 
-
-
-
-
     //    sidebar toggle
 
     $(function() {
@@ -30,22 +25,45 @@ var Script = function() {
             if (wSize <= 768) {
                 $('#container').addClass('sidebar-close');
                 $('#sidebar > ul').hide();
+                $('#main-content').css({
+                    'margin-left': '0px'
+                });
+                $('#sidebar').css({
+                    'margin-left': '-210px'
+                });
             }
 
             if (wSize > 768) {
                 $('#container').removeClass('sidebar-close');
                 $('#sidebar > ul').show();
+                $('#main-content').css({
+                    'margin-left': '210px'
+                });
+                $('#sidebar > ul').show();
+                $('#sidebar').css({
+                    'margin-left': '0'
+                });
+            }
+        }
+        function responseResize() {
+            var wSize = $(window).width();
+            if (wSize > 768) {
+                $('#container').removeClass('sidebar-close');
+                $('#sidebar > ul').show();
+                $('#main-content').css({
+                    'margin-left': '210px'
+                });
+                $('#sidebar > ul').show();
+                $('#sidebar').css({
+                    'margin-left': '0'
+                });
             }
         }
         $(window).on('load', responsiveView);
-        $(window).on('resize', responsiveView);
+        $(window).on('resize', responseResize);
     });
 
-    $('.main-sidebar a').on('click', function() {
-        if ($(window).width() <= 728)
-            toggleSidebar();
-    })
-    $('.sub-menu ul li a').on('click', function() {
+    $('#sidebar a').on('click', function() {
         if ($(window).width() <= 728)
             toggleSidebar();
     })
