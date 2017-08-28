@@ -1,6 +1,6 @@
 <?php
-namespace Modules;
-use System\BasicModule;
+namespace Modules\Teams;
+use Core\System\BasicModule;
 
 class Teams extends BasicModule {
     function install(){

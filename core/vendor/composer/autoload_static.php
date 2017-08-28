@@ -20,7 +20,6 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         ),
         'S' => 
         array (
-            'System\\' => 7,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\Finder\\' => 25,
@@ -72,10 +71,6 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Test\\' => 
         array (
             0 => __DIR__ . '/..' . '/simplon/mysql/test',
-        ),
-        'System\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/system',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -508,9 +503,12 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Composer\\Util\\Svn' => __DIR__ . '/..' . '/composer/composer/src/Composer/Util/Svn.php',
         'Composer\\Util\\TlsHelper' => __DIR__ . '/..' . '/composer/composer/src/Composer/Util/TlsHelper.php',
         'Composer\\XdebugHandler' => __DIR__ . '/..' . '/composer/composer/src/Composer/XdebugHandler.php',
-        'Core\\Auth' => __DIR__ . '/../..' . '/modules/Auth/Auth.php',
-        'Core\\Database' => __DIR__ . '/../..' . '/modules/Database/Database.php',
-        'Core\\Settings' => __DIR__ . '/../..' . '/modules/Settings/Settings.php',
+        'Core\\Auth\\Auth' => __DIR__ . '/../..' . '/modules/Auth/Auth.php',
+        'Core\\Database\\Database' => __DIR__ . '/../..' . '/modules/Database/Database.php',
+        'Core\\Settings\\Settings' => __DIR__ . '/../..' . '/modules/Settings/Settings.php',
+        'Core\\System\\BasicModule' => __DIR__ . '/../..' . '/modules/System/BasicModule.php',
+        'Core\\System\\BasicModuleInterface' => __DIR__ . '/../..' . '/modules/System/BasicModuleInterface.php',
+        'Core\\System\\Route' => __DIR__ . '/../..' . '/modules/System/Route.php',
         'Doctrine\\Common\\Collections\\AbstractLazyCollection' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/AbstractLazyCollection.php',
         'Doctrine\\Common\\Collections\\ArrayCollection' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php',
         'Doctrine\\Common\\Collections\\Collection' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/Collection.php',
@@ -601,17 +599,17 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'KHerGe\\JSON\\Exception\\ValidationException' => __DIR__ . '/..' . '/kherge/json/src/KHerGe/JSON/Exception/ValidationException.php',
         'KHerGe\\JSON\\JSON' => __DIR__ . '/..' . '/kherge/json/src/KHerGe/JSON/JSON.php',
         'KHerGe\\JSON\\JSONInterface' => __DIR__ . '/..' . '/kherge/json/src/KHerGe/JSON/JSONInterface.php',
-        'Modules\\Dashboard' => __DIR__ . '/../..' . '/../modules/Dashboard/Dashboard.php',
-        'Modules\\Frequency' => __DIR__ . '/../..' . '/../modules/Frequency/Frequency.php',
-        'Modules\\News' => __DIR__ . '/../..' . '/../modules/News/News.php',
-        'Modules\\Notify' => __DIR__ . '/../..' . '/../modules/Notify/Notify.php',
-        'Modules\\Players' => __DIR__ . '/../..' . '/../modules/Players/Players.php',
-        'Modules\\Post' => __DIR__ . '/../..' . '/../modules/Post/Post.php',
-        'Modules\\Raports' => __DIR__ . '/../..' . '/../modules/Raports/Raports.php',
-        'Modules\\Staff' => __DIR__ . '/../..' . '/../modules/Staff/Staff.php',
-        'Modules\\Stats' => __DIR__ . '/../..' . '/../modules/Stats/Stats.php',
-        'Modules\\Teams' => __DIR__ . '/../..' . '/../modules/Teams/Teams.php',
-        'Modules\\Todo' => __DIR__ . '/../..' . '/../modules/Todo/Todo.php',
+        'Modules\\Dashboard\\Dashboard' => __DIR__ . '/../..' . '/../modules/Dashboard/Dashboard.php',
+        'Modules\\Frequency\\Frequency' => __DIR__ . '/../..' . '/../modules/Frequency/Frequency.php',
+        'Modules\\News\\News' => __DIR__ . '/../..' . '/../modules/News/News.php',
+        'Modules\\Notify\\Notify' => __DIR__ . '/../..' . '/../modules/Notify/Notify.php',
+        'Modules\\Players\\Players' => __DIR__ . '/../..' . '/../modules/Players/Players.php',
+        'Modules\\Post\\Post' => __DIR__ . '/../..' . '/../modules/Post/Post.php',
+        'Modules\\Raports\\Raports' => __DIR__ . '/../..' . '/../modules/Raports/Raports.php',
+        'Modules\\Staff\\Staff' => __DIR__ . '/../..' . '/../modules/Staff/Staff.php',
+        'Modules\\Stats\\Stats' => __DIR__ . '/../..' . '/../modules/Stats/Stats.php',
+        'Modules\\Teams\\Teams' => __DIR__ . '/../..' . '/../modules/Teams/Teams.php',
+        'Modules\\Todo\\Todo' => __DIR__ . '/../..' . '/../modules/Todo/Todo.php',
         'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
         'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
         'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
@@ -789,9 +787,6 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Symfony\\Component\\Process\\ProcessBuilder' => __DIR__ . '/..' . '/symfony/process/ProcessBuilder.php',
         'Symfony\\Component\\Process\\ProcessUtils' => __DIR__ . '/..' . '/symfony/process/ProcessUtils.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
-        'System\\BasicModule' => __DIR__ . '/../..' . '/system/BasicModule.php',
-        'System\\BasicModuleInterface' => __DIR__ . '/../..' . '/system/BasicModuleInterface.php',
-        'System\\Route' => __DIR__ . '/../..' . '/system/Route.php',
         'Test\\Crud\\NameModel' => __DIR__ . '/..' . '/simplon/mysql/test/Crud/NameModel.php',
         'Test\\Crud\\NamesStore' => __DIR__ . '/..' . '/simplon/mysql/test/Crud/NamesStore.php',
     );

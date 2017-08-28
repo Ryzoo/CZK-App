@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Players;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Players extends BasicModule{
    function install(){

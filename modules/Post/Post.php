@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Post;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Post extends BasicModule {
      function install(){

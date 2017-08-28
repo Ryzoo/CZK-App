@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Dashboard;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Dashboard extends BasicModule {
     function install(){

@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Stats;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Stats extends BasicModule {
      function install(){

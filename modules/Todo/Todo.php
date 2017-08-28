@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Todo;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Todo extends BasicModule {
 

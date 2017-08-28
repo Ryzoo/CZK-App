@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Test\\' => array($vendorDir . '/simplon/mysql/test'),
-    'System\\' => array($baseDir . '/system'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),

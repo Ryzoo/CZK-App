@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Raports;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Raports extends BasicModule {
     function install(){

@@ -1,5 +1,5 @@
 <?php
-namespace System;
+namespace Core\System;
 
 interface BasicModuleInterface
 {

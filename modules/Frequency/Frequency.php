@@ -1,8 +1,8 @@
 <?php
-namespace Modules;
+namespace Modules\Frequency;
 
-use System\BasicModule;
-use Modules\Teams;
+use Core\System\BasicModule;
+use Modules\Teams\Teams;
 
 class Frequency extends BasicModule {
 

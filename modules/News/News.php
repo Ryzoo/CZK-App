@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\News;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class News extends BasicModule {
     function install(){

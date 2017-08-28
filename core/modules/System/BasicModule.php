@@ -1,8 +1,8 @@
 <?php
-namespace System;
-use Core\Database;
-use Core\Auth;
-use System\BasicModuleInterface;
+namespace Core\System;
+use Core\Database\Database;
+use Core\Auth\Auth;
+use Core\System\BasicModuleInterface;
 
 class BasicModule implements BasicModuleInterface
 {

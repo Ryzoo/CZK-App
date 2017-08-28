@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Staff;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Staff extends BasicModule {
     function install(){

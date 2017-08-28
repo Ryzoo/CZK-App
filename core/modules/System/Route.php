@@ -1,10 +1,10 @@
 <?php
-namespace System;
+namespace Core\System;
 
 use \KHerGe\JSON\JSON;
-use Core\Auth;
-use Core\Database;
-use Core\Settings;
+use Core\Auth\Auth;
+use Core\Database\Database;
+use Core\Settings\Settings;
 
 class Route{
     private $request;
@@ -27,10 +27,10 @@ class Route{
         $this->settings = new Settings();
         // load modules
         $json = new JSON();
-        $modulesList = $json->decodeFile(__DIR__. '/../mainConf.json' );
+        $modulesList = $json->decodeFile(__DIR__. '/../../mainConf.json' );
 
         for ($z=0; $z < count($modulesList->installedModules) ; $z++) { 
-            $moduleJson = $json->decodeFile(__DIR__. '/../../modules/'.$modulesList->installedModules[$z].'/config.json' );
+            $moduleJson = $json->decodeFile(__DIR__. '/../../../modules/'.$modulesList->installedModules[$z].'/config.json' );
             // load user modules
             if( isset($moduleJson->frontendRoute) ){
                 $frontRoute = $moduleJson->frontendRoute;
@@ -105,12 +105,12 @@ class Route{
                     array_push($this->services,$jsServices[$x]);
                 }
             }
-            $moduleJson->name = "Modules\\".$moduleJson->name;
+            $moduleJson->name = "Modules\\".$moduleJson->name."\\".$moduleJson->name;
             array_push($this->modules,$moduleJson);
         }
 
         for ($z=0; $z < count($modulesList->coreModules) ; $z++) { 
-            $moduleJson = $json->decodeFile(__DIR__. '/../modules/'.$modulesList->coreModules[$z].'/config.json' );
+            $moduleJson = $json->decodeFile(__DIR__. '/../'.$modulesList->coreModules[$z].'/config.json' );
             // load core modules
             if( isset($moduleJson->frontendRoute) ){
                 $frontRoute = $moduleJson->frontendRoute;
@@ -186,7 +186,7 @@ class Route{
                     array_push($this->services,$jsServices[$x]);
                 }
             }
-            $moduleJson->name = "Core\\".$moduleJson->name;
+            $moduleJson->name = "Core\\".$moduleJson->name."\\".$moduleJson->name;
             array_push($this->modules,$moduleJson);
         }
 

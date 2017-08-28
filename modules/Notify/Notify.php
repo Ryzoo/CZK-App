@@ -1,7 +1,7 @@
 <?php
-namespace Modules;
+namespace Modules\Notify;
 
-use System\BasicModule;
+use Core\System\BasicModule;
 
 class Notify extends BasicModule {
     function install(){

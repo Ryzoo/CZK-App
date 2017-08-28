@@ -1,9 +1,9 @@
 <?php
-namespace Core;
+namespace Core\Database;
 
 use \Simplon\Mysql\PDOConnector;
 use \Simplon\Mysql\Mysql;
-use Core\Settings;
+use Core\Settings\Settings;
 
 class Database{
 

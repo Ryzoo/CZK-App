@@ -1,5 +1,7 @@
 <?php
-namespace Core;
+namespace Core\Auth;
+
+use Core\Database\Database;
 
 class Auth {
     public $db;

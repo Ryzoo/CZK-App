@@ -1,8 +1,8 @@
 <?php
-namespace Core;
+namespace Core\Settings;
 
 use \KHerGe\JSON\JSON;
-use System\BasicModule;
+use Core\System\BasicModule;
 use Alchemy\Zippy\Zippy;
 
 class Settings extends BasicModule{
@@ -14,7 +14,7 @@ class Settings extends BasicModule{
         $modulesConfig->installedModules;
         $index = array_search($data['name'],$modulesConfig->installedModules);
         if($index === FALSE){
-            $name = "Modules\\".$data['name'];
+            $name = "Modules\\".$data['name']."\\".$data['name'];
             $module = new $name();
             if( method_exists($module,"install") ){
                 $module->install();
@@ -41,7 +41,7 @@ class Settings extends BasicModule{
             $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie jest zainstalowany";
             $this->returnedData["success"] = false;
         }else{
-            $name = "Modules\\".$data['name'];
+            $name = "Modules\\".$data['name']."\\".$data['name'];
             $module = new $name();
             if( method_exists($module,"uninstall") ){
                 $module->uninstall();

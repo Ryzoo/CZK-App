@@ -6,7 +6,7 @@ if(!DEBUG){
     error_reporting(E_ERROR);
 }
 require "vendor/autoload.php";
-use System\Route;
+use Core\System\Route;
 
 $routeSystem = new Route( $_POST );
 echo $routeSystem->returnData();
