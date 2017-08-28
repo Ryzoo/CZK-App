@@ -75,8 +75,8 @@ class Teams extends BasicModule {
         $success = true;
         $error = "";
 
-        $condsUsers['id'] = $data['tmmid'];
-        $dataUsers[$data['type']] = $data['val'];
+        $condsUsers['id'] = $data['tmid'];
+        $dataUsers['nr_on_tshirt'] = $data['val'];
         $result = ($this->db->getConnection())->update('team_members', $condsUsers, $dataUsers);    
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );

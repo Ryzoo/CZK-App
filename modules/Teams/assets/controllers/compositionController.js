@@ -77,7 +77,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     })
 
     function saveComposition(typeOfChange, tmid, value, usid) {
-        var dataToSend = { token: Cookies.get('tq'), tmmid: tmid, val: value, type: typeOfChange };
+        var dataToSend = { token: Cookies.get('tq'), tmid: tmid, val: value, type: typeOfChange };
         var urlToPost = 'backend/changeCollection';
         $.ajax({
             url: urlToPost,
