@@ -637,8 +637,8 @@
     };
 
     var dateHelper = null,
-        globalLocaleDefault = 'en',
-        globalLocale = 'en';
+        globalLocaleDefault = 'pl',
+        globalLocale = 'pl';
 
     var dateFormatterOptionsDefault = {
         meridiem: ['AM', 'PM']
