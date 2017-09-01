@@ -91,7 +91,9 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
                     Materialize.updateTextFields();
                 });
             });
-            $scope.showContent = true;
+            $scope.$apply(function() {
+                $scope.showContent = true;
+            });
         });
     }
 
