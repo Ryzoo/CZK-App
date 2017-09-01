@@ -1,4 +1,4 @@
-app.controller('newScoreController', function($scope, auth, $rootScope, notify) {
+app.controller('newScoreController', function($scope, auth, $rootScope, notify, request) {
     $rootScope.showContent = false;
     $scope.categories = [];
     $scope.isSelectedCategory = false;
@@ -18,45 +18,15 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
     }
 
     function getAllCategoryWitchTest() {
-        var dataToSend = { token: Cookies.get('tq') };
-        var urlToPost = 'backend/getCategoryWitchTest';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.showContent = true;
-                    $scope.categories = msg.data;
-                    for (key in $scope.categories) {
-                        $('#catSelect').append('<option value="' + key + '">' + $scope.categories[key].name + '</option>');
-                    }
-                    Materialize.updateTextFields();
-                    $('select').material_select();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
+        request.backend('getCategoryWitchTest', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.categories = data;
+                for (key in $scope.categories) {
+                    $('#catSelect').append('<option value="' + key + '">' + $scope.categories[key].name + '</option>');
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+                Materialize.updateTextFields();
+                $('select').material_select();
+            });
         });
     }
 
@@ -68,84 +38,26 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
 
     function getUserScore() {
         $scope.scores = [];
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid, tsid: selectedTestId, usid: selectedUserId };
-        var urlToPost = 'backend/getScoreFromTestId';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.scores = msg.data
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+        request.backend('getScoreFromTestId', {tmid: $rootScope.user.tmid, tsid: selectedTestId, usid: selectedUserId}, function(data) {
+            $scope.$apply(function() {
+                $scope.scores = data
+            });
         });
     }
 
     function getAllPlayers() {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
-        var urlToPost = 'backend/getAllPlayers';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.users = msg.data;
-                    for (key in msg.data) {
-                        if (msg.data[key].roleName == 'ZAWODNIK') {
-                            $('#userSelect').append('<option value="' + key + '">' + msg.data[key].firstname + ' ' + msg.data[key].lastname + '</option>');
-
-                        }
+        request.backend('getAllPlayers', {tmid: $rootScope.user.tmid}, function(data) {
+            $scope.$apply(function() {
+                $scope.users = data;
+                for (key in data) {
+                    if (data[key].roleName == 'ZAWODNIK') {
+                        $('#userSelect').append('<option value="' + key + '">' + data[key].firstname + ' ' + data[key].lastname + '</option>');
                     }
-                    Materialize.updateTextFields();
-                    $('select').material_select();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+                Materialize.updateTextFields();
+                $('select').material_select();
+                $scope.showContent = true;
+            });
         });
     }
 
@@ -166,112 +78,27 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
     $scope.addScore = function() {
         if ($.isNumeric($('#scoreInput').val().replace(',', '.'))) {
             var score = parseFloat($('#scoreInput').val().replace(',', '.'));
-            var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid, usid: selectedUserId, tsid: selectedTestId, score: score };
-            var urlToPost = 'backend/addScore';
-            $.ajax({
-                url: urlToPost,
-                type: "POST",
-                data: dataToSend,
-                async: true,
-                success: function(msg) {
-                    if (msg.success) {
-                        $.gritter.add({
-                            title: 'Sukces',
-                            text: 'Pomyślnie dodano nowy wynik testu',
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                        getUserScore();
-                        $('#scoreInput').val('');
-                        notify.addNew(new notify.Notification("Otrzymałeś nowy wynik z kategorii : " + $scope.categories[selectedCategoryKey].name + " -- " + $scope.categories[selectedCategoryKey].tests[selectedTestKey].name, [selectedUserId], "#!/myStats"));
-                    } else {
-                        if (msg.error)
-                            $.gritter.add({
-                                title: 'Bład',
-                                text: msg.error,
-                                image: '',
-                                sticky: true,
-                                time: 3,
-                                class_name: 'my-sticky-class'
-                            });
-                    }
-                },
-                error: function(jqXHR, textStatus) {
-                    console.log("Blad podczas laczenia z serverem: " + textStatus);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                },
-            });
+            request.backend('addScore', {tmid: $rootScope.user.tmid, usid: selectedUserId, tsid: selectedTestId, score: score}, function(data) {
+                getUserScore();
+                $('#scoreInput').val('');
+                notify.addNew(new notify.Notification("Otrzymałeś nowy wynik z kategorii : " + $scope.categories[selectedCategoryKey].name + " -- " + $scope.categories[selectedCategoryKey].tests[selectedTestKey].name, [selectedUserId], "#!/myStats"));
+            },'Pomyślnie dodano nowy wynik testu');
         } else {
-            $.gritter.add({
-                title: 'Walidacja',
-                text: 'Wpisz najpierw wynik. Musi być on liczbą. ',
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
+            notify.localNotify('Walidacja','Wpisz najpierw wynik. Musi być on liczbą.');
         }
     }
 
     $scope.deleteScore = function(id) {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid, tsid: id };
-        var urlToPost = 'backend/deleteScore';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Pomyślnie usunięto wynik testu',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    $scope.$apply(function() {
-                        for (key in $scope.scores) {
-                            if ($scope.scores[key].id == id) {
-                                $scope.scores.splice(key, 1);
-                                return;
-                            }
-                        }
-                    });
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
+        request.backend('deleteScore', {tmid: $rootScope.user.tmid, tsid: id}, function(data) {
+            $scope.$apply(function() {
+                for (key in $scope.scores) {
+                    if ($scope.scores[key].id == id) {
+                        $scope.scores.splice(key, 1);
+                        return;
+                    }
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+            });
+        },'Pomyślnie usunięto wynik testu');
     }
 
     $(document).on('change', '#catSelect', function() {
@@ -297,48 +124,9 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
     $scope.deleteUserScore = function(id) {
         $scope.showTest = false;
         $scope.selectedCategoryId = -1;
-        var dataToSend = { token: Cookies.get('tq'), id: id };
-        var urlToPost = 'backend/deleteCategoryTest';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Pomyślnie usunięto kategorie',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllCategoryWitchTest();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+        request.backend('deleteCategoryTest', {id: id}, function(data) {
+            getAllCategoryWitchTest();
+        },'Pomyślnie usunięto kategorie');
     }
 
     $scope.addUserScore = function() {
@@ -354,49 +142,10 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify) 
             });
             return;
         }
-        var dataToSend = { token: Cookies.get('tq'), name: categoryName };
-        var urlToPost = 'backend/addCategoryTest';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: "Pomyślnie dodano nową kategorie",
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllCategoryWitchTest();
 
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+        request.backend('addCategoryTest', {name: categoryName}, function(data) {
+            getAllCategoryWitchTest();
+        }, "Pomyślnie dodano nową kategorie");
     }
 
     $scope.selectCategory = function(id) {

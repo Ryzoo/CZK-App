@@ -1,4 +1,4 @@
-app.controller('testMenagerController', function($scope, auth, $rootScope, notify) {
+app.controller('testMenagerController', function($scope, auth, $rootScope, notify, request) {
     $rootScope.showContent = false;
     $scope.categories = [];
     $scope.tests = [];
@@ -10,141 +10,36 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     }
 
     function getAllCategoryWitchTest() {
-        var dataToSend = { token: Cookies.get('tq') };
-        var urlToPost = 'backend/getCategoryWitchTest';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.$apply(function() {
-                        $scope.showContent = true;
-                        $scope.categories = msg.data;
-                        for (var i = 0; i < $scope.categories.length; i++) {
-                            $scope.categories[i].testCount = $scope.categories[i].tests ? $scope.categories[i].tests.length : 0;
-                        }
-                        if ($scope.selectedCategoryId && $scope.selectedCategoryId != -1) {
-                            getActualTest();
-                        }
-                    });
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
+        request.backend('getCategoryWitchTest', {  }, function(data) {
+            $scope.$apply(function() {
+                $scope.showContent = true;
+                $scope.categories = data;
+                for (var i = 0; i < $scope.categories.length; i++) {
+                    $scope.categories[i].testCount = $scope.categories[i].tests ? $scope.categories[i].tests.length : 0;
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+                if ($scope.selectedCategoryId && $scope.selectedCategoryId != -1) {
+                    getActualTest();
+                }
+            });
         });
     }
 
     $scope.deleteCategory = function(id) {
         $scope.showTest = false;
         $scope.selectedCategoryId = -1;
-        var dataToSend = { token: Cookies.get('tq'), id: id };
-        var urlToPost = 'backend/deleteCategoryTest';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Pomyślnie usunięto kategorie',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllCategoryWitchTest();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+        request.backend('deleteCategoryTest', {  }, function(data) {
+            $scope.$apply(function() {
+                getAllCategoryWitchTest();
+            });
+        },'Pomyślnie usunięto kategorie');
     }
 
     $scope.deleteTest = function(id) {
-        var dataToSend = { token: Cookies.get('tq'), id: id };
-        var urlToPost = 'backend/deleteTestFromCat';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Pomyślnie usunięto test',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllCategoryWitchTest();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+        request.backend('deleteTestFromCat', {id: id}, function(data) {
+            $scope.$apply(function() {
+                getAllCategoryWitchTest();
+            });
+        },'Pomyślnie usunięto test');
     }
 
     $scope.addCategory = function() {
@@ -160,49 +55,12 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
             });
             return;
         }
-        var dataToSend = { token: Cookies.get('tq'), name: categoryName };
-        var urlToPost = 'backend/addCategoryTest';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: "Pomyślnie dodano nową kategorie",
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllCategoryWitchTest();
 
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+        request.backend('addCategoryTest', {name: categoryName}, function(data) {
+            $scope.$apply(function() {
+                getAllCategoryWitchTest();
+            });
+        },'Pomyślnie dodano nową kategorie');
     }
 
     $scope.addTest = function() {
@@ -244,48 +102,13 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
             $scope.showTest = false;
             return;
         }
-        var dataToSend = { token: Cookies.get('tq'), best: best, worst: worst, caid: $scope.selectedCategoryId, name: name };
-        var urlToPost = 'backend/addTestToCategory';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: "Pomyślnie dodano nowy test do kategorii",
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllCategoryWitchTest();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+
+        request.backend('addTestToCategory', {best: best, worst: worst, caid: $scope.selectedCategoryId, name: name}, function(data) {
+            $scope.$apply(function() {
+                getAllCategoryWitchTest();
+            });
+        },'Pomyślnie dodano nowy test do kategorii');
+
     }
 
     $scope.selectCategory = function(id) {
@@ -310,14 +133,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     $(document).on('change', '.changeBest', function() {
         var newBest = $(this).val();
         if (!$.isNumeric(newBest)) {
-            $.gritter.add({
-                title: 'Walidacja',
-                text: 'Najwiekszy możliwy wynik musi być liczbą',
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
+            notify.localNotify('Walidacja','Najwiekszy możliwy wynik musi być liczbą');
             return;
         }
         var id = ($(this).attr('id').split("-"))[1];
@@ -326,14 +142,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     $(document).on('change', '.changeWorst', function() {
         var newWorst = $(this).val();
         if (!$.isNumeric(newWorst)) {
-            $.gritter.add({
-                title: 'Walidacja',
-                text: 'Najgorszy możliwy wynik musi być liczbą',
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
+            notify.localNotify('Walidacja','Najgorszy możliwy wynik musi być liczbą');
             return;
         }
         var id = ($(this).attr('id').split("-"))[1];
@@ -341,48 +150,13 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     });
 
     function changeTest(id, value, changeType) {
-        var dataToSend = { token: Cookies.get('tq'), id: id, value: value, changeType: changeType };
-        var urlToPost = 'backend/changeTest';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: "Pomyślnie edytowano test",
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllCategoryWitchTest();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+
+        request.backend('changeTest', {id: id, value: value, changeType: changeType}, function(data) {
+            $scope.$apply(function() {
+                getAllCategoryWitchTest();
+            });
+        },'Pomyślnie edytowano test');
+     
     }
 
 });

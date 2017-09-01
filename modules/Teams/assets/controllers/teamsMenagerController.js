@@ -21,132 +21,34 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
     }
 
     function getAllMaster() {
-        var dataToSend = { token: Cookies.get('tq') };
-        var urlToPost = 'backend/getAllMaster';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    if (msg.data) {
-                        $scope.masters = msg.data;
-                        for (var i = 0; i < msg.data.length; i++) {
-                            $('#mastersSelect').append("<option value='" + msg.data[i].usid + "'>" + msg.data[i].firstname + " " + msg.data[i].lastname + "</option>");
-                        }
-                        $('select').material_select();
-                    }
-                    $scope.$apply(function() {
-                        $scope.showContent = true;
-                    });
-                } else {
-                    console.log(msg);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
+        request.backend('getAllMaster', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.showContent = true;
+                $scope.masters = data;
+                for (var i = 0; i < data.length; i++) {
+                    $('#mastersSelect').append("<option value='" + data[i].usid + "'>" + data[i].firstname + " " + data[i].lastname + "</option>");
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+                $('select').material_select();
+            });
         });
     }
 
     function getAllTeams() {
-        var dataToSend = { token: Cookies.get('tq') };
-        var urlToPost = 'backend/getAllTeams';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.$apply(function() {
-                        $scope.teams = msg.data ? msg.data : [];
-                    });
-                } else {
-                    console.log(msg);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Błąd podczas dodawania',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Błąd podczas dodawania',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+        request.backend('getAllTeams', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.teams = data;
+            });
         });
     }
 
     function getAllMastersFromTeam(id, functionSuccess) {
         $scope.actualSelectedTeamId = id;
-        var dataToSend = { token: Cookies.get('tq'), tmid: id };
-        var urlToPost = 'backend/getAllMastersFromTeam';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.teamMasters = [];
-                    if (msg.data) {
-                        $scope.$apply(function() {
-                            $scope.teamMasters = msg.data;
-                        });
-                    }
-                    functionSuccess();
-
-                } else {
-                    console.log(msg);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Błąd podczas dodawania',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Błąd podczas dodawania',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+        request.backend('getAllMastersFromTeam', {tmid: id}, function(data) {
+            $scope.teamMasters = [];
+            $scope.$apply(function() {
+                $scope.teamMasters = data;
+            });
+            functionSuccess();
         });
     }
 
@@ -154,55 +56,22 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
         $scope.showPreLoad = true;
         $scope.showPlayerNow = false;
         getAllMastersFromTeam(id, function() {
-            $scope.showPlayerNow = true;
-            $scope.showPreLoad = false;
+            $scope.$apply(function() {
+                $scope.showPreLoad = false;
+                $scope.showPlayerNow = true;
+            });
         });
     }
+
     $scope.deleteTeam = function(id) {
-        var dataToSend = { token: Cookies.get('tq'), id: id };
-        var urlToPost = 'backend/deleteTeam';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Usuwanie',
-                        text: 'Udało się usunąc drużynę wraz z zawartością',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    getAllTeams();
-                    $scope.showPlayerNow = false;
-                } else {
-                    console.log(msg);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Błąd podczas usuwania drużyny',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Błąd podczas dodawania',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+        request.backend('deleteTeam', {id: id}, function() {
+            getAllTeams();
+            $scope.$apply(function() {
+                $scope.showPlayerNow = false;
+            });
+        },'Udało się usunąc drużynę wraz z zawartością');
     }
+
     $scope.addTeam = function() {
         var name = $('#teamName').val();
         if (name.length < 3) {
@@ -214,58 +83,20 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
             getAllTeams();
         }, "Dodano nową drużynę, możesz przydzielić teraz trenerów");
     }
-    $scope.deleteMaster = function(id) {
-        var dataToSend = { token: Cookies.get('tq'), mid: id, tmid: $scope.actualSelectedTeamId };
-        var urlToPost = 'backend/deleteMasterFromTeam';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Usuwanie',
-                        text: 'Udało się usunąc trenera z danej drużyny',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    $scope.showThisTeam($scope.actualSelectedTeamId);
-                    var actualTeamName = '';
-                    for (var index = 0; index < $scope.teams.length; index++) {
-                        if ($scope.teams[index].id == $scope.actualSelectedTeamId) {
-                            actualTeamName = $scope.teams[index].name
-                        }
-                    }
-                    notify.addNew(new notify.Notification("Zostałeś usunięty z drużyny: " + actualTeamName, [mid], ""));
 
-                } else {
-                    console.log(msg);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Błąd podczas usuwania trenera z drużyny',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
+    $scope.deleteMaster = function(id) {
+        request.backend('deleteMasterFromTeam', { mid: id, tmid: $scope.actualSelectedTeamId }, function(data) {
+            $scope.showThisTeam($scope.actualSelectedTeamId);
+            var actualTeamName = '';
+            for (var index = 0; index < $scope.teams.length; index++) {
+                if ($scope.teams[index].id == $scope.actualSelectedTeamId) {
+                    actualTeamName = $scope.teams[index].name
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Błąd podczas dodawania',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-        });
+            }
+            notify.addNew(new notify.Notification("Zostałeś usunięty z drużyny: " + actualTeamName, [id], ""));
+        }, 'Udało się usunąc trenera z danej drużyny');
     }
+
     $scope.addTeamMaster = function() {
         var mid = $('#mastersSelect').val();
         if (!mid || mid < 0) {
@@ -279,58 +110,18 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
             });
             return;
         }
-        var dataToSend = { token: Cookies.get('tq'), mid: mid, tmid: $scope.actualSelectedTeamId };
-        var urlToPost = 'backend/addMasterToTeam';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Dodano trenera do drużyny',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    $scope.showThisTeam($scope.actualSelectedTeamId);
-                    var actualTeamName = '';
-                    for (var index = 0; index < $scope.teams.length; index++) {
-                        if ($scope.teams[index].id == $scope.actualSelectedTeamId) {
-                            actualTeamName = $scope.teams[index].name
-                        }
-                    }
-                    notify.addNew(new notify.Notification("Przypisano Cię do nowej drużyny: " + actualTeamName, [mid], ""));
-                } else {
-                    if (msg.error) {
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                    }
+
+        request.backend('addMasterToTeam', { mid: mid, tmid: $scope.actualSelectedTeamId }, function(data) {
+            $scope.showThisTeam($scope.actualSelectedTeamId);
+            var actualTeamName = '';
+            for (var index = 0; index < $scope.teams.length; index++) {
+                if ($scope.teams[index].id == $scope.actualSelectedTeamId) {
+                    actualTeamName = $scope.teams[index].name
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                });
-            },
-        });
+            }
+            notify.addNew(new notify.Notification("Przypisano Cię do nowej drużyny: " + actualTeamName, [mid], ""));
+        }, 'Dodano trenera do drużyny');
+
     }
 
     $(document).on("change", ".changeWeight", function() {

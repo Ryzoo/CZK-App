@@ -1,4 +1,4 @@
-app.controller('masterMenagerController', function($scope, auth, $rootScope, notify) {
+app.controller('masterMenagerController', function($scope, auth, $rootScope, notify, request) {
     $scope.showContent = false;
     $scope.masters = [];
 
@@ -7,91 +7,20 @@ app.controller('masterMenagerController', function($scope, auth, $rootScope, not
     }
 
     function getAllMaster() {
-        var dataToSend = { token: Cookies.get('tq') };
-        var urlToPost = 'backend/getAllMaster';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.masters = msg.data ? msg.data : null;
-                    $scope.$apply(function() {
-                        $scope.showContent = true;
-                    });
-                } else {
-                    console.log(msg);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać wydarzeń do kalendarza',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+        request.backend('getAllMaster', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.masters = data;
+                $scope.showContent = true;
+            });
         });
     }
 
     $scope.deleteUser = function(usidN) {
-        var dataToSend = { token: Cookies.get('tq'), usid: usidN };
-        var urlToPost = 'backend/deleteUser';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Osoba usunięta wraz z powiązaniami',
-                        image: '',
-                        sticky: true,
-                        time: '5',
-                        class_name: 'my-sticky-class'
-                    });
-                    $scope.getAllMasters();
-                } else {
-                    if (msg.error) {
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    }
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
-                        image: '',
-                        sticky: true,
-                        time: '5',
-                        class_name: 'my-sticky-class'
-                    });
-                });
-            },
-        });
+        request.backend('deleteUser', {usid: usidN}, function() {
+            $scope.$apply(function() {
+                $scope.getAllMasters();
+            });
+        },'Osoba usunięta wraz z powiązaniami');
     }
 
     $scope.addPerson = function() {
@@ -121,54 +50,14 @@ app.controller('masterMenagerController', function($scope, auth, $rootScope, not
             });
             return;
         }
-        var dataToSend = { token: Cookies.get('tq'), fname: firstname, lname: lastname, mail: email, isAdmin: true, tmid: -1, isPersonel: false };
-        var urlToPost = 'backend/addPerson';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Sukces',
-                        text: 'Osoba została dodana. Na jej adres email zostało wysłane hasło.',
-                        image: '',
-                        sticky: true,
-                        time: '5',
-                        class_name: 'my-sticky-class'
-                    });
-                    $('#addedFirstname').val('');
-                    $('#addedLastname').val('');
-                    $('#addedEmail').val('');
-                    $scope.getAllMasters();
-                } else {
-                    if (msg.error) {
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: '5',
-                            class_name: 'my-sticky-class'
-                        });
-                    }
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać danych',
-                        image: '',
-                        sticky: true,
-                        time: '5',
-                        class_name: 'my-sticky-class'
-                    });
-                });
-            },
-        });
+        request.backend('addPerson', {fname: firstname, lname: lastname, mail: email, isAdmin: true, tmid: -1, isPersonel: false},function() {
+            $('#addedFirstname').val('');
+            $('#addedLastname').val('');
+            $('#addedEmail').val('');
+            $scope.$apply(function() {
+                $scope.getAllMasters();
+            });
+        },'Osoba została dodana. Na jej adres email zostało wysłane hasło.');
     }
 
 });
