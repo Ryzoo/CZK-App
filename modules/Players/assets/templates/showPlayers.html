@@ -117,38 +117,50 @@
                                         {{actualSelectedUserData.name}}
                                     </div>
                                 </div>
-                                <div style="display: flex; justify-content: flex-start; flex-direction: column; text-align: left; padding:20px 10px;">
-                                    <div>
-                                        <strong>Ostatnie logowanie:</strong> {{actualSelectedUserData.last_login_date}}
-                                    </div>
-                                    <div>
-                                        <strong>Adres zamieszkania:</strong> {{actualSelectedUserData.address}}
-                                    </div>
-                                    <div>
-                                        <strong>Adres email:</strong> {{actualSelectedUserData.email}}
-                                    </div>
-                                    <div>
-                                        <strong>Telefon:</strong> {{actualSelectedUserData.tel}}
-                                    </div>
-                                    <div>
-                                        <strong>Główna noga:</strong> {{actualSelectedUserData.main_leg}}
-                                    </div>
-                                    <div>
-                                        <strong>Preferowana pozycja:</strong> {{actualSelectedUserData.main_position}}
-                                    </div>
-                                    <div>
-                                        <strong>Budowa ciała:</strong> {{actualSelectedUserData.body_type}}
-                                    </div>
-                                    <div>
-                                        <strong>Telefon rodzica:</strong> {{actualSelectedUserData.parent_tel}}
-                                    </div>
-                                    <div>
-                                        <strong>Wzrost:</strong> {{actualSelectedUserData.height}}
-                                    </div>
-                                    <div>
-                                        <strong>Waga:</strong> {{actualSelectedUserData.weight}}
-                                    </div>
-                                </div>
+                                <table class="table highlight centered">
+                                    <tbody>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Ostatnie logowanie:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.last_login_date}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Adres zamieszkania:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.address}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Adres email:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.email}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Telefon:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.tel}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Główna noga:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.main_leg}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Preferowana pozycja:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.main_position}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Budowa ciała:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.body_type}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Telefon rodzica:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.parent_tel}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Wzrost:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.height}}</td>
+                                        </tr>
+                                        <tr class='row'>
+                                            <td style="padding: 5px 0;"><strong>Waga:</strong></td>
+                                            <td style="padding: 5px 0;">{{actualSelectedUserData.weight}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

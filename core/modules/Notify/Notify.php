@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Notify;
+namespace Core\Notify;
 
 use Core\System\BasicModule;
 
