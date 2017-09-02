@@ -9,6 +9,9 @@ class Stats extends BasicModule {
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential` (`id` int(11) NOT NULL,`name` varchar(255) COLLATE utf8_polish_ci NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential_score` (`id` int(11) NOT NULL, `id_test` int(11) NOT NULL,`id_user` int(11) NOT NULL, `id_team` int(11) NOT NULL, `wynik` float NOT NULL,`data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential_test` (`id` int(11) NOT NULL,`id_potential` int(11) NOT NULL, `name` varchar(255) COLLATE utf8_polish_ci NOT NULL,`best` float NOT NULL, `worst` float NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
+        $result = ($this->db->getConnection())->executeSql('ALTER TABLE `potential` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
+        $result = ($this->db->getConnection())->executeSql('ALTER TABLE `potential_score` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
+        $result = ($this->db->getConnection())->executeSql('ALTER TABLE `potential_test` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
     }
 
     function uninstall(){

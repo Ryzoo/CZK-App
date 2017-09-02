@@ -18,7 +18,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
 
     $scope.getLastPost = function() {
         $rootScope.showContent = false;
-        var dataToSend = { token: Cookies.get('tq'), last: $scope.lastId, tmid: $rootScope.user.tmid };
+        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
         var urlToPost = 'backend/getPost';
         $.ajax({
             url: urlToPost,
@@ -28,6 +28,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
             success: function(msg) {
                 if (msg.success) {
                     if (msg.data) {
+                        scope.posts=[];
                         for (var i = 0; i < msg.data.length; i++) {
                             $scope.$apply(function() {
                                 $scope.posts.push(msg.data[i]);
@@ -37,11 +38,9 @@ app.controller('tabController', function($scope, auth, $rootScope, notify) {
                         if (msg.data[0] != null && msg.data[0].psid != null) $scope.lastId = msg.data[0].psid;
 
                     }
-                    setTimeout(function() {
-                        $scope.$apply(function() {
-                            $scope.showContent = true;
-                        });
-                    }, 500);
+                    $scope.$apply(function() {
+                        $scope.showContent = true;
+                    });
 
                 } else {
                     console.log(msg);

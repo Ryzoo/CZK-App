@@ -79,6 +79,8 @@ class Frequency extends BasicModule {
 
     function install(){
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `freq` (`id` int(11) NOT NULL,`usid` int(11) NOT NULL,`tmid` int(11) NOT NULL,`date` date NOT NULL) DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;');
+        $result = ($this->db->getConnection())->executeSql('ALTER TABLE `freq` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
+        
     }
 
     function uninstall(){

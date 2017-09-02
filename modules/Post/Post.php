@@ -8,6 +8,9 @@ class Post extends BasicModule {
     function install(){
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `comments` (`id` int(11) NOT NULL,`id_post` int(11) NOT NULL,`id_user` int(11) NOT NULL, `content` text NOT NULL,`date_add` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `posts` (`id` int(11) NOT NULL,`id_user` int(11) NOT NULL, `id_team` int(11) NOT NULL,`content` text NOT NULL, `date_add` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
+        $result = ($this->db->getConnection())->executeSql('ALTER TABLE `comments` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
+        $result = ($this->db->getConnection())->executeSql('ALTER TABLE `posts` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
+        
     }
 
     function uninstall(){
@@ -16,14 +19,11 @@ class Post extends BasicModule {
     }
 
     function getPost($data){
-        $toReturn = null;
         $success = true;
         $error = "";
-        $last = 0;
-        $all = '100';
         $tmid = $data["tmid"];
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT posts.id as psid, content, date_add, users.id as usid, firstname, lastname, user_img_path, token FROM users, user_data, posts WHERE posts.id_user = users.id AND user_data.user_id = users.id AND posts.id_team = '.$tmid.' AND posts.id > '.$last.' ORDER BY posts.id DESC ');
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT posts.id as psid, content, date_add, users.id as usid, firstname, lastname, user_img_path, token FROM users, user_data, posts WHERE posts.id_user = users.id AND user_data.user_id = users.id AND posts.id_team = '.$tmid.' ORDER BY posts.id DESC ');
 
         for($i=0;$i<count($toReturn);$i++){
             $id_post = $toReturn[$i]['psid'];
