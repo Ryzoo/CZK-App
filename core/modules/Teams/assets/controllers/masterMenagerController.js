@@ -29,25 +29,11 @@ app.controller('masterMenagerController', function($scope, auth, $rootScope, not
         var email = $('#addedEmail').val();
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!re.test(email)) {
-            $.gritter.add({
-                title: 'Bład',
-                text: 'Popraw wpisany adres email',
-                image: '',
-                sticky: true,
-                time: '5',
-                class_name: 'my-sticky-class'
-            });
+            notify.localNotify('Bład','Popraw wpisany adres email');
             return;
         }
         if (firstname.length < 3 || lastname.length < 3) {
-            $.gritter.add({
-                title: 'Bład',
-                text: 'Imię lub nazwisko jest zbyt krótkie',
-                image: '',
-                sticky: true,
-                time: '5',
-                class_name: 'my-sticky-class'
-            });
+            notify.localNotify('Bład','Imię lub nazwisko jest zbyt krótkie');
             return;
         }
         request.backend('addPerson', {fname: firstname, lname: lastname, mail: email, isAdmin: true, tmid: -1, isPersonel: false},function() {

@@ -1,4 +1,19 @@
 var app = angular.module("CMCApp", ["ngRoute"]);
+var locaNotifyFun = function(type, message) {
+    $.extend($.gritter.options, { 
+        position: 'bottom-right', 
+    });
+
+    $.gritter.add({
+        title: type,
+        text: message,
+        sticky: true,
+        fade: true,
+        time: 3,
+        class_name: 'my-sticky-class'
+    });
+    
+}
 
 app.service('request', function($http, $rootScope) {
     this.sync = function(sendType, urlToPost, dataToSend, fsuccess, ffailed, asyncIs = false) {
@@ -24,40 +39,19 @@ app.service('request', function($http, $rootScope) {
                         if (successFunction) {
                             successFunction(msg.data ? msg.data : []);
                         }
-                        if (successMessage.length > 2) {
-                            $.gritter.add({
-                                title: 'Sukces',
-                                text: successMessage,
-                                image: '',
-                                sticky: true,
-                                time: 3,
-                                class_name: 'my-sticky-class'
-                            });
+                        if (successMessage.length >= 2) {
+                            locaNotifyFun('Sukces',successMessage);
                         }
                     } else {
                         console.log(msg);
                         if (msg.error) {
-                            $.gritter.add({
-                                title: 'Bład',
-                                text: msg.error,
-                                image: '',
-                                sticky: true,
-                                time: 3,
-                                class_name: 'my-sticky-class'
-                            });
+                            locaNotifyFun('Bład',msg.error);
                         }
                     }
                 },
                 error: function(jqXHR, textStatus) {
                     console.log("Blad podczas laczenia z serverem: " + textStatus);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się połączyć z serverem',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
+                    locaNotifyFun('Bład','Niestety nie udało się połączyć z serverem');
                 },
                 cache: false,
                 contentType: false,
@@ -76,39 +70,18 @@ app.service('request', function($http, $rootScope) {
                             successFunction(msg.data ? msg.data : []);
                         }
                         if (successMessage.length > 2) {
-                            $.gritter.add({
-                                title: 'Sukces',
-                                text: successMessage,
-                                image: '',
-                                sticky: true,
-                                time: 3,
-                                class_name: 'my-sticky-class'
-                            });
+                            locaNotifyFun('Sukces',successMessage);
                         }
                     } else {
                         console.log(msg);
                         if (msg.error) {
-                            $.gritter.add({
-                                title: 'Bład',
-                                text: msg.error,
-                                image: '',
-                                sticky: true,
-                                time: 3,
-                                class_name: 'my-sticky-class'
-                            });
+                            locaNotifyFun('Bład',msg.error);
                         }
                     }
                 },
                 error: function(jqXHR, textStatus) {
                     console.log("Blad podczas laczenia z serverem: " + textStatus);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się połączyć z serverem',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
+                    locaNotifyFun('Bład','Niestety nie udało się połączyć z serverem');
                 }
             });
         }

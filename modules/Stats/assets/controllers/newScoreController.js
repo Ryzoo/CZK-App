@@ -101,13 +101,18 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
         },'Pomyślnie usunięto wynik testu');
     }
 
+    $(document).off('change', '#catSelect');
     $(document).on('change', '#catSelect', function() {
-        $scope.isSelectedCategory = true;
-        selectedCategoryId = $scope.categories[$(this).val()].id;
-        selectedCategoryKey = $(this).val();
-        getTest();
+        if($scope.categories.length != 0){
+            $scope.isSelectedCategory = true;
+            selectedCategoryKey = $(this).val();
+            console.log($scope.categories);
+            selectedCategoryId = $scope.categories[selectedCategoryKey].id;
+            getTest();
+        }
     });
 
+    $(document).off('change', '#testSelect');
     $(document).on('change', '#testSelect', function() {
         $scope.isSelectedTest = true;
         selectedTestId = $scope.categories[selectedCategoryKey].tests[$(this).val()].id;
@@ -115,6 +120,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
         checkChange();
     });
 
+    $(document).off('change', '#userSelect');
     $(document).on('change', '#userSelect', function() {
         $scope.isSelectedUser = true;
         selectedUserId = $scope.users[$(this).val()].usid;

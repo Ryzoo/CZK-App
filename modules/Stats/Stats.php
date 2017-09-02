@@ -167,7 +167,7 @@ class Stats extends BasicModule {
         $dataUsers[($changeType=='best')?'best':'worst'] = trim($value);
         $result = ($this->db->getConnection())->update('potential_test', $condsUsers, $dataUsers);
             
-        return array( "error"=>$error ,"success"=>$success, "data"=>array("url"=>$file_name, "post"=>$post) );
+        return array( "error"=>$error ,"success"=>$success, "data"=>$result );
     }
 
     function deleteTestFromCat($data){

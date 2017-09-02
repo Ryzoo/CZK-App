@@ -1,65 +1,29 @@
 app.controller('compositionController', function($scope, auth, $rootScope, request, notify, statistic) {
     $scope.users = [];
     $scope.notOnField = [];
-    $rootScope.showContent = false;
+    $scope.showContent = false;
 
     $scope.getTeam = function() {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
-        var urlToPost = 'backend/getUserFromTeam';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    if (msg.data) {
-                        $scope.$apply(function() {
-                            for (var index = 0; index < msg.data.length; index++) {
-                                msg.data[index].isSelected = false;
-                                if (msg.data[index].pos_x < 0 || msg.data[index].pos_y < 0) {
-                                    $scope.notOnField.push(msg.data[index]);
-                                } else {
-                                    $scope.users.push(msg.data[index]);
-                                }
-                            }
-                        });
+        request.backend('getUserFromTeam', {tmid: $rootScope.user.tmid}, function(data) {
+            $scope.$apply(function() {
+                for (var index = 0; index < data.length; index++) {
+                    data[index].isSelected = false;
+                    if (data[index].pos_x < 0 || data[index].pos_y < 0) {
+                        $scope.notOnField.push(data[index]);
+                    } else {
+                        $scope.users.push(data[index]);
                     }
-                    initCanvas();
-                    setTimeout(function() {
-                        teamFormChartInit();
-                    }, 1000);
-                } else {
-                    console.log(msg.error);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety coś poszło źle lub brak wyników',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
                 }
-                setTimeout(function() {
-                    $scope.$apply(function() {
-                        $scope.showContent = true;
-                    });
-                }, 500);
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety coś poszło źle',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+            });
+            initCanvas();
+            setTimeout(function() {
+                teamFormChartInit();
+            }, 1000);
         });
+        
     }
 
+    $(document).off("change", ".changeNumber");
     $(document).on("change", ".changeNumber", function() {
         var teamMembersId = ($(this).attr('id').split("-"))[1];
         var positionId = ($(this).attr('id').split("-"))[2];
@@ -77,97 +41,20 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     })
 
     function saveComposition(typeOfChange, tmid, value, usid) {
-        var dataToSend = { token: Cookies.get('tq'), tmid: tmid, val: value, type: typeOfChange };
-        var urlToPost = 'backend/changeCollection';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Zapis',
-                        text: 'Zmiana zapisana',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                    notify.addNew(new notify.Notification("Twój numer na boisku został zmieniony na: " + value, [usid], "#!/teamComposition"));
-                } else {
-                    console.log(msg.error);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety coś poszło źle',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety coś poszło źle',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+        request.backend('changeCollection', { tmid: tmid, val: value, type: typeOfChange }, function(data) {
+            notify.addNew(new notify.Notification("Twój numer na boisku został zmieniony na: " + value, [usid], "#!/teamComposition"));
         });
     }
 
     function savePositionOnField(usid, pos_x, pos_y, sendAlert = true) {
-        var dataToSend = { token: Cookies.get('tq'), usid: usid, pos_x: parseInt(pos_x), pos_y: parseInt(pos_y) };
-        var urlToPost = 'backend/savePositionOnField';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $.gritter.add({
-                        title: 'Zapis',
-                        text: 'Pozycja zmieniona',
-                        image: '',
-                        sticky: true,
-                        time: 1,
-                        class_name: 'my-sticky-class'
-                    });
-                    if (sendAlert) {
-                        notify.addNew(new notify.Notification("Twoja pozycja na boisku została zmieniona", [usid], "#!/teamComposition"));
-                    }
-                } else {
-                    console.log(msg.error);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety coś poszło źle',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety coś poszło źle',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+        request.backend('savePositionOnField', {  usid: usid, pos_x: parseInt(pos_x), pos_y: parseInt(pos_y)  }, function(data) {
+            if (sendAlert) {
+                notify.addNew(new notify.Notification("Twoja pozycja na boisku została zmieniona", [usid], "#!/teamComposition"));
+            }
         });
     }
 
+    $(document).off('dragstart', '.dragedUser');
     $(document).on('dragstart', '.dragedUser', function(evt) {
         if ($rootScope.user.role == 'ZAWODNIK') {
             return;
@@ -177,10 +64,12 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         $rootScope.movedData = usid;
     });
 
+    $(document).off('dragover', '#canvas');
     $(document).on('dragover', '#canvas', function(evt) {
         evt.preventDefault()
     });
 
+    $(document).off('drop', '#canvas');
     $(document).on('drop', '#canvas', function(evt) {
         evt.preventDefault();
 
@@ -216,6 +105,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
 
     var actualKey = -1;
 
+    $(document).off('mousedown touchstart', '#canvas');
     $(document).on('mousedown touchstart', '#canvas', function(evt) {
         evt.preventDefault();
         if ($rootScope.user.role == 'ZAWODNIK') {
@@ -235,6 +125,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         }
     });
 
+    $(document).off('mouseup touchend', '#canvas');
     $(document).on('mouseup touchend', '#canvas', function(evt) {
         evt.preventDefault();
         if ($rootScope.user.role == 'ZAWODNIK') {
@@ -257,6 +148,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         resetSelect();
     });
 
+    $(document).off('mouseup touchend', '#notOnFieldCard');
     $(document).on('mouseup touchend', '#notOnFieldCard', function(evt) {
         evt.preventDefault();
         if ($rootScope.user.role == 'ZAWODNIK') {
@@ -277,11 +169,13 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         resetSelect();
     });
 
+    $(document).off('mouseup touchend', 'window');
     $(document).on('mouseup touchend', 'window', function(evt) {
         evt.preventDefault();
         resetSelect();
     });
 
+    $(document).off('mousemove touchmove', 'window');
     $(document).on('mousemove touchmove', 'window', function(event) {
         event.preventDefault();
     });
@@ -375,7 +269,11 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     }
 
     function initCanvas() {
-        setInterval(update, updateTime);
+        if($scope.lastCanvasInterval){
+            window.clearInterval($scope.lastCanvasInterval);
+        }
+        $scope.lastCanvasInterval = setInterval(update, updateTime);
+        $scope.showContent = true;
     }
 
     function getMousePos(evt) {
@@ -386,6 +284,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         };
     }
 
+    $(document).off('mousemove', '#canvas');
     $(document).on('mousemove', '#canvas', function(evt) {
         actualPosMouse = getMousePos(evt);
     });

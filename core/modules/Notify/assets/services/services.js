@@ -1,3 +1,4 @@
+
 app.service('notify', function($http, $rootScope, request) {
     this.Notification = function(_title, _to, _url = '', _toAll = false) {
         this.title = _title;
@@ -6,21 +7,7 @@ app.service('notify', function($http, $rootScope, request) {
         this.url = _url
     }
 
-    this.localNotify = function(type, message) {
-        $.extend($.gritter.options, { 
-            position: 'bottom-right', 
-        });
-
-        $.gritter.add({
-            title: type,
-            text: message,
-            sticky: true,
-            fade: true,
-            time: 3,
-            class_name: 'my-sticky-class'
-        });
-        
-    }
+    this.localNotify = locaNotifyFun;
 
     this.addNew = function(notifyObj) {
         var urlToPost = "backend/addNotify";

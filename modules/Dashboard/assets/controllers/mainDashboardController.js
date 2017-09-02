@@ -2,7 +2,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.nowEvents = [];
     $scope.nextEvents = [];
     $scope.lastPost = [];
-    $scope.showContent = false;
+    $scope.showContent = true;
     $scope.isLoadedPost = false;
 
 
@@ -11,149 +11,32 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
             $scope.getNextEvents();
             $scope.getNowStartEvents();
             $scope.getLastPost();
-        } else {
-            $scope.showContent = true;
         }
     }
 
     $scope.getNextEvents = function() {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
-        var urlToPost = 'backend/getNextEvents';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    if (msg.data) {
-                        $scope.$apply(function() {
-                            $scope.nextEvents = msg.data;
-                        });
-                    }
-                } else {
-                    console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Nie można pobrać wydarzeń',
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać wydarzeń',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                });
-            },
+        request.backend('getNextEvents', {tmid: $rootScope.user.tmid}, function(data) {
+            $scope.$apply(function() {
+                $scope.nextEvents = data;
+            });
         });
     }
 
     $scope.getNowStartEvents = function() {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
-        var urlToPost = 'backend/getNowEvents';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    if (msg.data) {
-                        $scope.$apply(function() {
-                            $scope.nowEvents = msg.data;
-                        });
-                    }
-
-                } else {
-                    console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Nie można pobrać wydarzeń',
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać wydarzeń',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                });
-            },
+        request.backend('getNowEvents', {tmid: $rootScope.user.tmid}, function(data) {
+            $scope.$apply(function() {
+                $scope.nowEvents = data;
+            });
         });
     }
 
     $scope.getLastPost = function() {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
-        var urlToPost = 'backend/getLastPost';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    if (msg.data) {
-                        $scope.$apply(function() {
-                            $scope.lastPost = msg.data;
-                            if (msg.data.length > 0)
-                                $scope.isLoadedPost = true;
-                        });
-                    }
-                } else {
-                    console.log(msg);
-                    $(document).ready(function() {
-                        var unique_id = $.gritter.add({
-                            title: 'Bład',
-                            text: 'Nie można pobrać ostatniego postu',
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                    });
-                }
-                $scope.$apply(function() {
-                    $scope.showContent = true;
-                });
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $(document).ready(function() {
-                    var unique_id = $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety nie udało się pobrać ostatniego postu',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                });
-            },
+        request.backend('getLastPost', {tmid: $rootScope.user.tmid}, function(data) {
+            $scope.$apply(function() {
+                $scope.lastPost = data;
+                if (data.length > 0)
+                    $scope.isLoadedPost = true;
+            });
         });
     }
 

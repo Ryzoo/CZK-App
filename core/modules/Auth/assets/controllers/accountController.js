@@ -31,9 +31,9 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
                 auth.getUserData();
             });
         },'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',true);
-  
     }
 
+    $(document).off("change", "#userImgFile");
     $(document).on("change", "#userImgFile", function(event) {
         var tmppath = URL.createObjectURL(event.target.files[0]);
         $("#imgPrev").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));

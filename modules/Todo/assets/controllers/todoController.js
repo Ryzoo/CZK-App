@@ -21,7 +21,7 @@ app.controller('todoController', function($scope, auth, $rootScope, request, not
             notify.localNotify('Walidacja', "Wpisz mniej tekstu");
             return;
         }
-        
+
         var dataToSend = { usid: $rootScope.user.id, title: titlea, color: colora };
         request.backend('addTodo', dataToSend, function() {
             $('#todoText').val('');
@@ -62,8 +62,4 @@ app.controller('todoController', function($scope, auth, $rootScope, request, not
         $("#todoText").css("border-color", $scope.selectedColor);
         $("#todoButton").css("border-color", $scope.selectedColor);
     }
-
-    $(document).on("click", "", function() {
-
-    });
 });

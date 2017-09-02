@@ -1,4 +1,4 @@
-app.controller('teamStatisticController', function($scope, auth, $rootScope, notify, statistic) {
+app.controller('teamStatisticController', function($scope, auth, $rootScope, notify, statistic,request) {
     $rootScope.showContent = false;
     $rootScope.actualStats = [];
     $scope.acutalSelectedGroup = 0;
@@ -7,74 +7,37 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
     var matchTeamScore = 0;
 
     $scope.initTeamStats = function() {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
-        var urlToPost = 'backend/getUserFromTeam';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    var allPersonsId = [];
-                    var matchPersonsId = [];
-                    var fullPersonId = [];
-
-                    if (msg.data) {
-                        for (var i = 0; i < msg.data.length; i++) {
-                            allPersonsId.push({ usid: msg.data[i].usid, userName: msg.data[i].firstname + ' ' + msg.data[i].lastname });
-                            fullPersonId.push(msg.data[i].usid);
-                            if (msg.data[i].pos_x >= 0 && msg.data[i].pos_y >= 0) {
-                                matchPersonsId.push(msg.data[i].usid);
-                            }
-                        }
-                    }
-
-                    fullTeamScore = statistic.getTeamForm(fullPersonId);
-                    matchTeamScore = statistic.getTeamForm(matchPersonsId, true);
-
-                    statistic.getTeamStats(allPersonsId, function() {
-                        $rootScope.$apply(function() {
-                            $rootScope.showContent = true;
-                        });
-                        $('#selectPotential').html('');
-                        $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
-                        for (var i = 0; i < $rootScope.actualStats.length - 1; i++) {
-                            $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
-                        }
-                        $('select').material_select();
-
-                        initChartMin();
-                    });
-
-                } else {
-                    console.log(msg.error);
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: 'Niestety coś poszło źle lub brak wyników',
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
+        request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid}, function(data) {
+            var allPersonsId = [];
+            var matchPersonsId = [];
+            var fullPersonId = [];
+            for (var i = 0; i < data.length; i++) {
+                allPersonsId.push({ usid: data[i].usid, userName: data[i].firstname + ' ' + data[i].lastname });
+                fullPersonId.push(data[i].usid);
+                if (data[i].pos_x >= 0 && data[i].pos_y >= 0) {
+                    matchPersonsId.push(data[i].usid);
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                console.log("Blad podczas laczenia z serverem: " + textStatus);
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety coś poszło źle',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
+            }
+            fullTeamScore = statistic.getTeamForm(fullPersonId);
+            matchTeamScore = statistic.getTeamForm(matchPersonsId, true);
+            statistic.getTeamStats(allPersonsId, function() {
+                $rootScope.$apply(function() {
+                    $rootScope.showContent = true;
                 });
-            },
-        });
+                $('#selectPotential').html('');
+                $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
+                for (var i = 0; i < $rootScope.actualStats.length; i++) {
+                    $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
+                }
+                $('select').material_select();
 
+                initChartMin();
+            });
+        });
     }
 
-    $('#selectPotential').on('change', function() {
+    $(document).off('change', '#selectPotential');
+    $(document).on('change','#selectPotential', function() {
         $scope.$apply(function() {
             $scope.acutalSelectedGroup = $("#selectPotential").val();
             $scope.acutalSelectedGroupTest = $rootScope.actualStats[$scope.acutalSelectedGroup];

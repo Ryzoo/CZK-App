@@ -115,10 +115,12 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         });
     }
 
+    $(document).off("change", "#selectThemes");
     $(document).on("change", "#selectThemes", function() {
         request.backend('setCurrentTheme', { name: $(this).val() }, null, "Pomyślnie zmieniono szablon. Odśwież stronę, aby zobaczyć zmiany. (ctrl+f5)");
     });
 
+    $(document).off("change", "#logoFile");
     $(document).on("change", "#logoFile", function() {
         if ($('#logoFile').get(0).files.length === 0) {
             notify.localNotify('Walidacja', "Dodaj poprawnie plik loga");
@@ -134,10 +136,12 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         }, "Logo zmienione pomyślnie", true);
     });
 
+    $(document).off("change", "#moduleFile");
     $(document).on("change", "#moduleFile", function() {
         $scope.addModule();
     });
 
+    $(document).off("change", "#backFile");
     $(document).on("change", "#backFile", function() {
         if ($('#backFile').get(0).files.length === 0) {
             notify.localNotify('Walidacja', "Dodaj poprawnie plik tła");
@@ -153,6 +157,7 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         }, "Tło strony logowania zmienione pomyślnie", true);
     });
 
+    $(document).off("change", "#icoFile");
     $(document).on("change", "#icoFile", function() {
         if ($('#icoFile').get(0).files.length === 0) {
             notify.localNotify('Walidacja', "Dodaj poprawnie plik tła");
@@ -168,6 +173,7 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         }, "Ikona strony zmieniona pomyślnie", true);
     });
 
+    $(document).off("change", "#appName");
     $(document).on("change", "#appName", function() {
         if ($('#appName').val().length < 3) {
             notify.localNotify('Walidacja', "Wpisz dłuższą nazwę aplikacji");
@@ -177,8 +183,4 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
             getMainSettings();
         }, "Pomyślnie zapisano");
     });
-
-
-
-
 });

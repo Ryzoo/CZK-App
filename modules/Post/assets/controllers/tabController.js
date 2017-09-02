@@ -18,7 +18,6 @@ app.controller('tabController', function($scope, auth, $rootScope, notify,reques
     }
 
     $scope.getLastPost = function() {
-
         request.backend('getPost', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.showContent = true;
@@ -27,12 +26,11 @@ app.controller('tabController', function($scope, auth, $rootScope, notify,reques
             for (var i = 0; i < data.length; i++) {
                 $scope.$apply(function() {
                     $scope.posts.push(data[i]);
-                    $scope.posts[i].maxComment = 1;
+                    $scope.posts[i].maxComment = 2;
                 });
             }
             if (data[0] != null && data[0].psid != null) $scope.lastId = data[0].psid;
         });
-
     }
 
     $scope.addPost = function() {
@@ -62,19 +60,15 @@ app.controller('tabController', function($scope, auth, $rootScope, notify,reques
     }
 
     $scope.deletePost = function(id) {
-
         request.backend('deletePost', {psid: id }, function(data) {
             $scope.getLastPost();
         },'Post został usunięty pomyślnie');
-
     }
 
     $scope.deleteComment = function(id) {
-
         request.backend('deleteComment', {cmid: id }, function(data) {
             $scope.getLastPost();
         },'Komentarz został usunięty pomyślnie');
-
     }
 
 });

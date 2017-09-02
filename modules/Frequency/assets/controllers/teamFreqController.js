@@ -27,6 +27,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         });
     }
 
+    $(document).off("change", "#yearDate");
     $(document).on("change", "#yearDate", function() {
         var count = parseInt($("#yearDate").val());
         if (count < 2017 || count > currentTime.getFullYear()) {
@@ -40,6 +41,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
     });
 
+    $(document).off("change", "#monthDate");
     $(document).on("change", "#monthDate", function() {
         var count = parseInt($("#monthDate").val());
         if (count < 1 || count > 12) {
@@ -53,6 +55,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
     });
 
+    $(document).off("change", "#dayDate");
     $(document).on("change", "#dayDate", function() {
         var count = parseInt($("#dayDate").val());
         if (count < 1 || count > $("#dayDate").attr("max")) {
@@ -64,6 +67,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
     });
 
+    $(document).off("change", ".onTrainingChecbox");
     $(document).on("change", ".onTrainingChecbox", function() {
         var usid = $(this).attr('id').split("-")[1];
         var year = $("#yearDate").val();

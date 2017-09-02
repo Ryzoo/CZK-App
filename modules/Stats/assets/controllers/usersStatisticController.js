@@ -1,4 +1,4 @@
-app.controller('usersStatisticController', function($scope, auth, $rootScope, notify, statistic) {
+app.controller('usersStatisticController', function($scope, auth, $rootScope, notify, statistic, request) {
     $rootScope.showContent = false;
     $scope.showPreLoad = true;
     $rootScope.actualStats = [];
@@ -12,7 +12,8 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
         getAllPlayers();
     }
 
-    $('#selectUserToStat').on('change', function() {
+    $(document).off('change', '#selectUserToStat');
+    $(document).on('change','#selectUserToStat', function() {
         $scope.showTestAndType = false;
         $scope.acutalSelectedUserId = $(this).val();
 
@@ -34,10 +35,10 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
             setTimeout(changePotential, 100);
         });
 
-
     });
 
-    $('#selectPotential').on('change', function() {
+    $(document).off('change', '#selectPotential');
+    $(document).on('change','#selectPotential', function() {
         changePotential();
     });
 
@@ -55,12 +56,13 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
             initMainSummary();
     }
 
-
-    $('#selectDataType').on('change', function() {
+    $(document).off('change', '#selectDataType');
+    $(document).on('change','#selectDataType', function() {
         $scope.dataViewAsTable = ($('#selectDataType').val() == 'tabele');
         $scope.initChart();
     });
 
+    $(document).off('click', '.optionsToShow');
     $(document).on('click', '.optionsToShow', function() {
         $scope.initChart();
     });
@@ -234,46 +236,16 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
     }
 
     function getAllPlayers() {
-        var dataToSend = { token: Cookies.get('tq'), tmid: $rootScope.user.tmid };
-        var urlToPost = 'backend/getAllPlayers';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.users = msg.data;
-                    for (key in msg.data) {
-                        if (msg.data[key].roleName == 'ZAWODNIK') {
-                            $('#selectUserToStat').append('<option value="' + msg.data[key].usid + '">' + msg.data[key].firstname + ' ' + msg.data[key].lastname + '</option>');
-                        }
-                    }
-                    $rootScope.showContent = true;
-                    Materialize.updateTextFields();
-                    $('select').material_select();
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
+        request.backend('getAllPlayers', { tmid: $rootScope.user.tmid}, function(data) {
+            $scope.users = data;
+            for (key in data) {
+                if (data[key].roleName == 'ZAWODNIK') {
+                    $('#selectUserToStat').append('<option value="' + data[key].usid + '">' + data[key].firstname + ' ' + data[key].lastname + '</option>');
                 }
-            },
-            error: function(jqXHR, textStatus) {
-                $.gritter.add({
-                    title: 'Bład',
-                    text: 'Niestety nie udało się pobrać danych',
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
+            }
+            $rootScope.showContent = true;
+            Materialize.updateTextFields();
+            $('select').material_select();
         });
     }
 });

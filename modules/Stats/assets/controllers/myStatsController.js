@@ -1,4 +1,4 @@
-app.controller('myStatsController', function($scope, auth, $rootScope, notify, statistic) {
+app.controller('myStatsController', function($scope, auth, $rootScope, notify, statistic,request) {
     $rootScope.showContent = false;
     $scope.showPreLoad = true;
     $rootScope.actualStats = [];
@@ -18,12 +18,13 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
         });
     }
 
-
+    $(document).off('click', '.optionsToShow');
     $(document).on('click', '.optionsToShow', function() {
         $scope.initChart();
     });
 
-    $('#selectPotential').on('change', function() {
+    $(document).off('change', '#selectPotential');
+    $(document).on('change','#selectPotential', function() {
         $scope.showPreLoad = false;
         $scope.$apply(function() {
             $scope.acutalSelectedGroup = $("#selectPotential").val();
@@ -38,7 +39,8 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
 
     });
 
-    $('#selectDataType').on('change', function() {
+    $(document).off('change', '#selectDataType');
+    $(document).on('change',"#selectDataType", function() {
         $scope.dataViewAsTable = ($('#selectDataType').val() == 'tabele');
         $scope.initChart();
     });

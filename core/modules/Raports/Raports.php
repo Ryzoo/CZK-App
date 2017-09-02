@@ -20,7 +20,7 @@ class Raports extends BasicModule {
         $filePath = null;
 
         $ext = pathinfo($_FILES["raportFile"]["name"],PATHINFO_EXTENSION);
-        $target_dir = __DIR__ . "/../../";
+        $target_dir = __DIR__ . "/../../../";
         $file_name = 'files/users/' . $data["usid"].$data["tmid"].str_replace(' ','_',$data["name"] ). "." . $ext;
         $target_file = $target_dir . $file_name;
         if(!move_uploaded_file($_FILES["raportFile"]["tmp_name"], $target_file)){

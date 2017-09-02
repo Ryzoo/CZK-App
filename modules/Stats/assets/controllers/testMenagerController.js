@@ -27,7 +27,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     $scope.deleteCategory = function(id) {
         $scope.showTest = false;
         $scope.selectedCategoryId = -1;
-        request.backend('deleteCategoryTest', {  }, function(data) {
+        request.backend('deleteCategoryTest', {id: id}, function(data) {
             $scope.$apply(function() {
                 getAllCategoryWitchTest();
             });
@@ -130,6 +130,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
         }
     }
 
+    $(document).off('change', '.changeBest');
     $(document).on('change', '.changeBest', function() {
         var newBest = $(this).val();
         if (!$.isNumeric(newBest)) {
@@ -139,6 +140,8 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
         var id = ($(this).attr('id').split("-"))[1];
         changeTest(id, newBest, 'best');
     });
+
+    $(document).off('change', '.changeWorst');
     $(document).on('change', '.changeWorst', function() {
         var newWorst = $(this).val();
         if (!$.isNumeric(newWorst)) {

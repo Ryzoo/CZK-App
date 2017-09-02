@@ -78,7 +78,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
             notify.localNotify('Walidacja', "Wpisz dłuższą nazwę");
             return;
         }
-        var weight = Number.isInteger($('#teamWeight').val()) ? $('#teamWeight').val() : 999;
+        var weight = Number.isInteger(parseInt($('#teamWeight').val())) ? parseInt($('#teamWeight').val()) : 999;
         request.backend('addTeam', { name: name, weight: weight }, function(data) {
             getAllTeams();
         }, "Dodano nową drużynę, możesz przydzielić teraz trenerów");
@@ -100,14 +100,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
     $scope.addTeamMaster = function() {
         var mid = $('#mastersSelect').val();
         if (!mid || mid < 0) {
-            $.gritter.add({
-                title: 'Bład',
-                text: 'Wybierz trenera do dodania',
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
+            notify.localNotify('Bład', 'Wybierz trenera do dodania');
             return;
         }
 
@@ -124,6 +117,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
 
     }
 
+    $(document).off("change", ".changeWeight");
     $(document).on("change", ".changeWeight", function() {
         var idTeam = $(this).attr('id').split("-")[1];
         var weight = parseInt($(this).val());
