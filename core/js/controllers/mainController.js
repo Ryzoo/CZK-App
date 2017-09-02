@@ -30,8 +30,10 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         if (isMainClik) {
             if ($scope.showAllNewsNotify == false) {
                 $scope.showAllNewsNotify = true;
+            } else{
+                $scope.showAllNewsNotify = false;
                 notify.setNewOff();
-            } else $scope.showAllNewsNotify = false;
+            }
         } else {
             $scope.showAllNewsNotify = false;
         }

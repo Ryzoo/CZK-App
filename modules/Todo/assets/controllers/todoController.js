@@ -17,10 +17,11 @@ app.controller('todoController', function($scope, auth, $rootScope, request, not
             return;
         }
 
-        if (titlea.length > 100) {
+        if (titlea.length > 50) {
             notify.localNotify('Walidacja', "Wpisz mniej tekstu");
             return;
         }
+        
         var dataToSend = { usid: $rootScope.user.id, title: titlea, color: colora };
         request.backend('addTodo', dataToSend, function() {
             $('#todoText').val('');

@@ -429,7 +429,7 @@ ul.sidebar-menu li ul.sub li:last-child {
 
 ul.sidebar-menu li ul.sub li a {
     font-size: 12px;
-    padding: 10px 0;
+    padding: 5px 0;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -2637,7 +2637,7 @@ label {
 .notif a {
     transition: background-color 0.2s;
     background: white;
-    padding: 20px 10px;
+    padding: 10px;
     width: 100%;
     display: block;
 }
@@ -2687,13 +2687,7 @@ label {
     border-bottom:none !important;
 }
 
-.notif a {
-    background: #0d1927 !important;
-}
 
-.notfi a:hover {
-    background: #0a1522 !important;
-}
 
 .fa-times {
     color: #ff0000 !important;

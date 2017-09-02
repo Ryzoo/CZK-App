@@ -43,7 +43,8 @@ table.highlight>tbody>tr:hover {
 }
 
 .gritter-item {
-  background: #a51100 !important;
+  background: #2a2a2a !important;
+  border-top: 4px solid #a51100;
 }
 
 .collapsible-body {
@@ -135,11 +136,23 @@ nav ul a:hover {
 }
 
 .fa-color:hover {
-  color: #ec1800;
+  color: #2a2a2a;
 }
 
 .notifyContenerTitle {
-  background: #a51100;
+  background: #2a2a2a;
+}
+
+.notif a {
+  background: #FFFFFF !important;
+}
+
+.notfi a:hover {
+  background: #C4C4C4 !important;
+}
+
+.topbar span.badge.new{
+  background-color: #2a2a2a;
 }
 
 

@@ -7,13 +7,19 @@ app.service('notify', function($http, $rootScope, request) {
     }
 
     this.localNotify = function(type, message) {
+        $.extend($.gritter.options, { 
+            position: 'bottom-right', 
+        });
+
         $.gritter.add({
             title: type,
             text: message,
             sticky: true,
+            fade: true,
             time: 3,
             class_name: 'my-sticky-class'
         });
+        
     }
 
     this.addNew = function(notifyObj) {
@@ -40,6 +46,7 @@ app.service('notify', function($http, $rootScope, request) {
             usid: $rootScope.user.id,
             tmid: $rootScope.user.tmid
         };
+        local = this.localNotify ;
         request.sync('POST', urlToPost, dataToSend,
             function(reqData) {
                 if (reqData.success) {
@@ -47,8 +54,15 @@ app.service('notify', function($http, $rootScope, request) {
                         if (reqData.data) {
                             $rootScope.newNotify = reqData.data;
                             $rootScope.notifyCount = reqData.data.length;
+                            
                         } else {
                             $rootScope.notifyCount = 0;
+                        }
+                        for(var i=0;i<$rootScope.notifyCount;i++){
+                            if( reqData.data[i].id > $rootScope.lastNotifyId){
+                                local('Otrzymano powiadomienie',reqData.data[i].title);
+                                $rootScope.lastNotifyId = reqData.data[i].id;
+                            }
                         }
                     });
                 }

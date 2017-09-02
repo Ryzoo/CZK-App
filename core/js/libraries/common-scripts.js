@@ -7,7 +7,7 @@ $(function() {
         disableLink: true,
         speed: 'slow',
         showCount: false,
-        autoExpand: true,
+        autoExpand: false,
         classExpand: 'dcjq-current-parent'
     });
 });
@@ -47,15 +47,14 @@ var Script = function() {
         }
         function responseResize() {
             var wSize = $(window).width();
-            if (wSize > 768) {
-                $('#container').removeClass('sidebar-close');
-                $('#sidebar > ul').show();
+            if (wSize <= 728 && wSize >= 720) {
+                $('#container').addClass('sidebar-close');
+                $('#sidebar > ul').hide();
                 $('#main-content').css({
-                    'margin-left': '210px'
+                    'margin-left': '0px'
                 });
-                $('#sidebar > ul').show();
                 $('#sidebar').css({
-                    'margin-left': '0'
+                    'margin-left': '-210px'
                 });
             }
         }
@@ -63,10 +62,34 @@ var Script = function() {
         $(window).on('resize', responseResize);
     });
 
-    $('#sidebar a').on('click', function() {
-        if ($(window).width() <= 728)
-            toggleSidebar();
+    $(document).on('click','ul.sidebar-menu .dcjq-parent-li ul.sub li a', function() {
+        if ($(window).width() <= 728){
+            $('#container').addClass('sidebar-close');
+            $('#sidebar > ul').hide();
+            $('#main-content').css({
+                'margin-left': '0px'
+            });
+            $('#sidebar').css({
+                'margin-left': '-210px'
+            });
+        }
     })
+
+    $(document).on('click','ul.sidebar-menu li .waves-effect', function() {
+        if ($(window).width() <= 728){
+            $('#container').addClass('sidebar-close');
+            $('#sidebar > ul').hide();
+            $('#main-content').css({
+                'margin-left': '0px'
+            });
+            $('#sidebar').css({
+                'margin-left': '-210px'
+            });
+        }
+    })
+
+
+    
 
     $('.fa-bars').click(function() {
         toggleSidebar();
