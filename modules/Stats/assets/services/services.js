@@ -12,6 +12,7 @@ app.service('statistic', function($http, $rootScope, request) {
             function(reqData) {
                 if (reqData.success) {
                     $rootScope.$apply(function() {
+                        if(!reqData.data) reqData.data = [];
                         toReturn = $rootScope.actualStats = reqData.data;
                         zestawienie = [];
                         zestawienie.name = 'Zestawienie';
@@ -100,7 +101,6 @@ app.service('statistic', function($http, $rootScope, request) {
                         zestawienie.tests.push(testIn);
                         reqData.data.push(zestawienie);
                         functionSuccess();
-
                     });
 
                 } else {
@@ -123,12 +123,13 @@ app.service('statistic', function($http, $rootScope, request) {
         var teamScore = 0;
         for (var index = 0; index < usersId.length; index++) {
             var returnedData = this.getStats(usersId[index], function() {}, false);
-            teamScore += returnedData[returnedData.length - 1].summaryScore;
-            if (isMatchTeamForm)
-                maxScore = returnedData[returnedData.length - 1].maxSummaryScore;
-            else
-                maxScore += returnedData[returnedData.length - 1].maxSummaryScore;
-
+            if(returnedData){
+                teamScore += returnedData[returnedData.length - 1].summaryScore;
+                if (isMatchTeamForm)
+                    maxScore = returnedData[returnedData.length - 1].maxSummaryScore;
+                else
+                    maxScore += returnedData[returnedData.length - 1].maxSummaryScore;
+            }
         }
         if (isMatchTeamForm)
             maxScore *= 11;
@@ -144,13 +145,15 @@ app.service('statistic', function($http, $rootScope, request) {
         var tests = [];
         for (var i = 0; i < usIds.length; i++) {
             var returned = this.getStats(usIds[i], function() {}, false);
-            for (var x = 0; x < returned.length - 1; x++) {
-                if (!tests[x]) tests.push({ name: returned[x].name, users: [] });
-                tests[x].users.push({ name: usersId[i].userName, score: returned[x].tests[returned[x].tests.length - 1].actual });
+            if(returned){
+                for (var x = 0; x < returned.length - 1; x++) {
+                    if (!tests[x]) tests.push({ name: returned[x].name, users: [] });
+                    tests[x].users.push({ name: usersId[i].userName, score: returned[x].tests[returned[x].tests.length - 1].actual });
+                }
             }
         }
-        functionAfter();
         $rootScope.actualStats = tests;
+        functionAfter();
         return tests;
     }
 

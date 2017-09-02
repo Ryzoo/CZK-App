@@ -4,10 +4,15 @@ namespace Modules\Post;
 use Core\System\BasicModule;
 
 class Post extends BasicModule {
-     function install(){
+    
+    function install(){
+        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `comments` (`id` int(11) NOT NULL,`id_post` int(11) NOT NULL,`id_user` int(11) NOT NULL, `content` text NOT NULL,`date_add` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
+        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `posts` (`id` int(11) NOT NULL,`id_user` int(11) NOT NULL, `id_team` int(11) NOT NULL,`content` text NOT NULL, `date_add` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
     }
 
     function uninstall(){
+        $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS comments');
+        $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS posts');
     }
 
     function getPost($data){

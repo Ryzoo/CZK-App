@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Raports;
+namespace Core\Raports;
 
 use Core\System\BasicModule;
 

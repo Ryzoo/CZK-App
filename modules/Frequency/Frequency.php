@@ -2,7 +2,7 @@
 namespace Modules\Frequency;
 
 use Core\System\BasicModule;
-use Modules\Teams\Teams;
+use Core\Teams\Teams;
 
 class Frequency extends BasicModule {
 

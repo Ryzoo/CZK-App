@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Players;
+namespace Core\Players;
 
 use Core\System\BasicModule;
 

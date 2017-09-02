@@ -2,64 +2,81 @@
 
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="initSettings()">
-        <div class="col s12 m6">
+        <div class="col s12 m5 lg4">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
-                        Zainstalowane
-                    </div>
-                    <div class="row">
-                        <ul class="collection none-border">
-                            <li class="collection-item avatar moduleCollection" ng-repeat="module in installedModules">
-                                <img src="{{module.icon}}" alt="module icon"><span class="title">{{module.name}} - {{module.version}}</span>
-                                <p style='padding: 5px 15px;'>{{module.description}}</p>
-                                <a href="" class="secondary-content" ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Do zainstalowania
+                        Opcje
                     </div>
                     <div class="row">
                         <form id="addModuleForm" enctype="multipart/form-data">
                             <input type="hidden" name="token" value="{{user.token}}">
                             <div class="file-field input-field">
                                 <div class="btn">
-                                    <span>Plik zip z modułem</span>
+                                    <span>Wgraj nowy</span>
                                     <input type="file" name="moduleFile" id="moduleFile" accept=".zip">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Dodaj nowy moduł">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <button type="button" class="waves-effect waves-light btn" ng-click="addModule()">Dodaj moduł</button>
-                                    </div>
+                                    <input class="file-path validate" type="text" placeholder="Moduł - zip">
                                 </div>
                             </div>
                         </form>
                     </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m7 lg8">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Moduły
+                    </div>
                     <div class="row">
-                        <ul class="collection none-border">
-                            <li class="collection-item avatar moduleCollection" ng-repeat="module in notInstalledModules">
-                                <img src="{{module.icon}}" alt="module icon">
-                                <span class="title">{{module.name}} - {{module.version}}</span>
-                                <p>{{module.description}}</p>
-                                <a href="" class="secondary-content" ng-click="installModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                            </li>
-                        </ul>
+                        <div class="card-tabs" >
+                            <ul class="tabs tabs-fixed-width" ng-init="installed=1;">
+                                <li class="tab"><a class="active" href="" ng-click='installed=1; toInstall=0;toUpdate=0'>Włączone</a></li>
+                                <li class="tab"><a href="" ng-click='installed=0; toInstall=1;toUpdate=0'>Wyłączone</a></li>
+                                <li class="tab"><a href="" ng-click='installed=0; toInstall=0;toUpdate=1'>Aktualizacje</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-content">
+                            <div ng-show="installed">
+                                <div class="row">
+                                    <ul class="collection none-border">
+                                        <li class="collection-item avatar moduleCollection" ng-repeat="module in installedModules">
+                                            <img src="{{module.icon}}" alt="module icon"><span class="title">{{module.name}} - {{module.version}}</span>
+                                            <p style='padding: 5px 15px;'>{{module.description}}</p>
+                                            <p style='padding: 5px 15px;' ng-show="module.require.length > 0">Wymaga: <b>{{module.require}}</b></p>
+                                            <a href="" class="secondary-content" ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div ng-show="toInstall">
+                                <div class="row">
+                                    <ul class="collection none-border">
+                                        <li class="collection-item avatar moduleCollection" ng-repeat="module in notInstalledModules">
+                                            <img src="{{module.icon}}" alt="module icon">
+                                            <span class="title">{{module.name}} - {{module.version}}</span>
+                                            <p>{{module.description}}</p>
+                                            <p ng-show="module.require.length > 0">Wymaga: <b>{{module.require}}</b></p>
+                                            <a href="" class="secondary-content" ng-click="installModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div ng-show="toUpdate">
+                                <div class="row">
+                                            
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
     <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
         <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>

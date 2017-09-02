@@ -4,10 +4,17 @@ namespace Modules\Stats;
 use Core\System\BasicModule;
 
 class Stats extends BasicModule {
-     function install(){
+    
+    function install(){
+        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential` (`id` int(11) NOT NULL,`name` varchar(255) COLLATE utf8_polish_ci NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
+        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential_score` (`id` int(11) NOT NULL, `id_test` int(11) NOT NULL,`id_user` int(11) NOT NULL, `id_team` int(11) NOT NULL, `wynik` float NOT NULL,`data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
+        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential_test` (`id` int(11) NOT NULL,`id_potential` int(11) NOT NULL, `name` varchar(255) COLLATE utf8_polish_ci NOT NULL,`best` float NOT NULL, `worst` float NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
     }
 
     function uninstall(){
+        $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS potential');
+        $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS potential_score');
+        $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS potential_test');
     }
 
     function getStats($data){

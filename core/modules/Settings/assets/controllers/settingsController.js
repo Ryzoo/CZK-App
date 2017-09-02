@@ -43,6 +43,10 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         }, "Moduł dodany pomyślnie", true);
     }
 
+    $scope.checkAppUpdate =function(){
+        notify.localNotify("Update","Posiadasz aktualną wersję aplikacji");
+    }
+
     function getActualThemes() {
         request.backend('getCurrentThemes', {}, function(data) {
             $scope.$apply(function() {
@@ -69,6 +73,13 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     function getInstalledModules() {
         request.backend('getInstalledModules', {}, function(data) {
             $scope.$apply(function() {
+                for(var i=0;i<data.length;i++){
+                    var req = "";
+                    for(var j=0;j<data[i].require.length;j++){
+                        req += " "+data[i].require[j];
+                    }
+                    data[i].require = req;
+                }
                 $scope.installedModules = data;
             });
         });
@@ -77,6 +88,13 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     function getAvilableModules() {
         request.backend('getAvailableModules', {}, function(data) {
             $scope.$apply(function() {
+                for(var i=0;i<data.length;i++){
+                    var req = "";
+                    for(var j=0;j<data[i].require.length;j++){
+                        req += " "+data[i].require[j];
+                    }
+                    data[i].require = req;
+                }
                 $scope.notInstalledModules = data;
                 $scope.showContent = true;
             });
@@ -114,6 +132,10 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
             }
             reader.readAsDataURL($('#logoFile').get(0).files[0]);
         }, "Logo zmienione pomyślnie", true);
+    });
+
+    $(document).on("change", "#moduleFile", function() {
+        $scope.addModule();
     });
 
     $(document).on("change", "#backFile", function() {

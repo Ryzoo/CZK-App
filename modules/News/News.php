@@ -4,10 +4,13 @@ namespace Modules\News;
 use Core\System\BasicModule;
 
 class News extends BasicModule {
+    
     function install(){
+        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `events` ( `id_team` int(11) NOT NULL,`title` text NOT NULL, `start` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,`end` datetime NOT NULL,`url` varchar(255) NOT NULL DEFAULT "",`id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
     }
 
     function uninstall(){
+        $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS events');
     }
 
     function getNews( $data ){

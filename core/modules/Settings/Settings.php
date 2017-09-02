@@ -16,15 +16,31 @@ class Settings extends BasicModule{
         if($index === FALSE){
             $name = "Modules\\".$data['name']."\\".$data['name'];
             $module = new $name();
-            if( method_exists($module,"install") ){
-                $module->install();
-                array_push($modulesConfig->installedModules,$data['name']);
-                unlink(__DIR__. '/../../mainConf.json');
-                $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
+            $moduleInfo = ($this->getModulesInfo([ $data['name'] ]))[0];
+            $requireAll = true;
+
+            for ($i=0; $i < count($moduleInfo['require']); $i++) { 
+                if( !$this->isInstalledModules($moduleInfo['require'][$i]) ){
+                    $requireAll = false;
+                    break;
+                }
+            }
+
+            if($requireAll){
+                if( method_exists($module,"install") ){
+                    $module->install();
+                    array_push($modulesConfig->installedModules,$data['name']);
+                    unlink(__DIR__. '/../../mainConf.json');
+                    $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
+                }else{
+                    $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie jest prawidłowym modułem";
+                    $this->returnedData["success"] = false;
+                }
             }else{
-                $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie jest prawidłowym modułem";
+                $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." wymaga do działania moduł: ".$moduleInfo['require'][$i];
                 $this->returnedData["success"] = false;
             }
+            
         }else{
             $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." jest już zainstalowany";
             $this->returnedData["success"] = false;
@@ -43,11 +59,23 @@ class Settings extends BasicModule{
         }else{
             $name = "Modules\\".$data['name']."\\".$data['name'];
             $module = new $name();
+            $requiredBy = $this->isRequiredByModule($data['name']);
+
             if( method_exists($module,"uninstall") ){
-                $module->uninstall();
-                unset($modulesConfig->installedModules[$index]);
-                unlink(__DIR__. '/../../mainConf.json');
-                $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
+                if(strlen($requiredBy)==0){
+                    $module->uninstall();
+                    $installed = $modulesConfig->installedModules;
+                    $modulesConfig->installedModules = [];
+                    for ($i=0; $i < count($installed); $i++) {
+                        if( $installed[$i] != $data['name'])
+                        array_push( $modulesConfig->installedModules, $installed[$i] );
+                    }
+                    unlink(__DIR__. '/../../mainConf.json');
+                    $json->encodeFile($modulesConfig, __DIR__. '/../../mainConf.json');
+                }else{
+                    $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." jest wymagany przez moduł: ".$requiredBy;
+                    $this->returnedData["success"] = false;
+                }
             }else{
                 $this->returnedData["error"] = "Moduł o nazwie ".$data['name']." nie jest prawidłowym modułem";
                 $this->returnedData["success"] = false;
@@ -56,10 +84,28 @@ class Settings extends BasicModule{
         return $this->returnedData;
     }
 
+    public function isRequiredByModule($name){
+        $installedModules = ($this->getInstalledModules()["data"]);
+        for ($i=0; $i < count($installedModules); $i++) { 
+            for ($j=0; $j < count($installedModules[$i]['require']); $j++) { 
+                if( $installedModules[$i]['require'][$j] == $name ) return $installedModules[$i]['name'];
+            }
+        }
+        return '';
+    }
+
     public function getInstalledModules(){
         $installed = $this->installedModules();
         $this->returnedData['data'] = $this->getModulesInfo($installed);
         return $this->returnedData;
+    }
+
+    public function isInstalledModules($name){
+        $installedModules = $this->installedModules();
+        for ($i=0; $i < count($installedModules); $i++) { 
+            if( $installedModules[$i] == $name ) return true;
+        }
+        return false;
     }
 
     public function getAvailableModules(){
@@ -87,9 +133,12 @@ class Settings extends BasicModule{
             $modulesConfig = $json->decodeFile(__DIR__. '/../../../modules/'.$modules[$i].'/config.json' );
             $description = 'Brak opisu';
             $version = '0.0';
+            $require = [];
 
             if( isset($modulesConfig->description) ) $description = $modulesConfig->description;
             if( isset($modulesConfig->version) ) $version = $modulesConfig->version;
+            if( isset($modulesConfig->require) ) $require = $modulesConfig->require;
+
             if(file_exists(__DIR__. '/../../../modules/'.$modules[$i].'/icon.jpg')){
                 $isIcon = "./modules/".$modules[$i].'/icon.jpg';
             }else if(file_exists(__DIR__. '/../../../modules/'.$modules[$i].'/icon.png')){
@@ -102,6 +151,7 @@ class Settings extends BasicModule{
                 "name" => $modules[$i],
                 "description" => $description,
                 "version" => $version,
+                "require" => $require,
                 "icon" => $isIcon,
             ]);
         }

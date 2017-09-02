@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Staff;
+namespace Core\Staff;
 
 use Core\System\BasicModule;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Teams;
+namespace Core\Teams;
 use Core\System\BasicModule;
 
 class Teams extends BasicModule {
