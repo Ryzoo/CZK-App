@@ -1,5 +1,6 @@
 app.controller('accountController', function($scope, auth, $rootScope, request, notify) {
     $scope.logout = auth.logout;
+    
 
     $scope.initAccount = function() {
         if (!auth.checkIsLogged()) {
@@ -23,64 +24,14 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
         $rootScope.viewPerm = perm;
     }
 
-    $scope.updateUserDate = function() {
-
-        var dataToSend = new FormData($("#userUpdateDataForm")[0]);
-        var urlToPost = 'backend/updateUserData';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: dataToSend,
-            async: true,
-            success: function(msg) {
-                if (msg.success) {
-                    $scope.$apply(function() {
-                        $rootScope.user.firstname = msg.data.post.firstname;
-                        $rootScope.user.lastname = msg.data.post.lastname;
-                        $rootScope.user.birthdate = msg.data.post.birthdate;
-                        $rootScope.user.height = msg.data.post.height;
-                        $rootScope.user.tel = msg.data.post.tel;
-                        $rootScope.user.parentTel = msg.data.post.parentTel;
-                        $rootScope.user.weight = msg.data.post.weight;
-                        $rootScope.user.mainLeg = msg.data.post.mainLeg;
-                        $rootScope.user.mainPosition = msg.data.post.mainPosition;
-                        $rootScope.user.address = msg.data.post.address;
-                        $rootScope.user.bodyType = msg.data.post.bodyType;
-                        if (msg.data.url.length > 5)
-                            $rootScope.user.imgPath = msg.data.url;
-                    });
-
-                    $.gritter.add({
-                        title: 'Aktualizacja danych',
-                        text: 'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Błąd',
-                            text: msg.error,
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                $.gritter.add({
-                    title: 'Błąd',
-                    text: 'Bład z połączeniem : ' + textStatus,
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            },
-            cache: false,
-            contentType: false,
-            processData: false
-        });
+    $scope.updateUserDate = function(isPass=false) {
+        var id = isPass ? "#userUpdateDataFormPassImg" : "#userUpdateDataForm";
+        request.backend('updateUserData', new FormData($(id)[0]), function(data) {
+            $rootScope.$apply(function() {
+                auth.getUserData();
+            });
+        },'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',true);
+  
     }
 
     $(document).on("change", "#userImgFile", function(event) {

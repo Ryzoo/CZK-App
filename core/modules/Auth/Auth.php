@@ -48,7 +48,7 @@ class Auth {
         if( is_null($result) ){
             $error = "Uzytkownik o podanym tokenie nie istnieje";
             $success = false;
-        }
+        }        
         
         return array( "error"=>$error,"success"=>$success,"data"=>$result );
     }

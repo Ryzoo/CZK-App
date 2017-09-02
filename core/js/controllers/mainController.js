@@ -1,4 +1,12 @@
 app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request) {
+    $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD", "STAFF"];
+    $scope.contentLoaded = false;
+    $rootScope.newNotify = [];
+    $rootScope.allNotify = [];
+    $rootScope.lastNotifyId = 0;
+    $rootScope.notifyCount = 0;
+    $rootScope.mainSettings = [];
+    $scope.showAllNewsNotify = false;
     $rootScope.user = {
         email: "",
         token: "",
@@ -18,14 +26,6 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         address: "",
         bodyType: ""
     }
-    $scope.contentLoaded = false;
-    $rootScope.newNotify = [];
-    $rootScope.allNotify = [];
-    $rootScope.lastNotifyId = 0;
-    $rootScope.notifyCount = 0;
-    $rootScope.mainSettings = [];
-    $scope.showAllNewsNotify = false;
-
     $scope.showNotifications = function(isMainClik = true) {
         if (isMainClik) {
             if ($scope.showAllNewsNotify == false) {
@@ -40,97 +40,42 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     }
 
     $scope.mainInit = function() {
-        $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD", "STAFF"];
+        
         if (!auth.checkIsLogged()) {
             auth.logout();
             return;
         } else {
             var data = auth.getUserData();
             if (data.success) {
-                $rootScope.user.email = data.data.email;
-                $rootScope.user.token = Cookies.get('tq');
-                $rootScope.user.role = data.data.name;
-                $rootScope.user.id = data.data.user_id;
-                $rootScope.user.firstname = data.data.firstname;
-                $rootScope.user.lastname = data.data.lastname;
-                $rootScope.user.birthdate = data.data.birthdate;
-                $rootScope.user.imgPath = data.data.user_img_path;
-                $rootScope.user.addAccountDate = data.data.create_account_date;
-                $rootScope.user.addAccountDate = data.data.create_account_date;
-                $rootScope.user.height = data.data.height;
-                $rootScope.user.tel = data.data.tel;
-                $rootScope.user.parentTel = data.data.parent_tel;
-                $rootScope.user.weight = data.data.weight;
-                $rootScope.user.mainLeg = data.data.main_leg;
-                $rootScope.user.mainPosition = data.data.main_position;
-                $rootScope.user.bodyType = data.data.body_type;
-                $rootScope.user.address = data.data.address;
-                var dataToSend = { token: Cookies.get('tq') };
-                var urlToPost = 'backend/getTeams';
                 request.backend('getMainPageSettings', {}, function(data) {
                     $rootScope.$apply(function() {
                         $rootScope.mainSettings = data;
                     });
                 });
-                $.ajax({
-                    url: urlToPost,
-                    type: "POST",
-                    data: dataToSend,
-                    async: false,
-                    success: function(msg) {
-                        if (msg.success) {
-                            if (msg.data) {
-                                $('#teamSelect').html('');
-                                $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
-                                for (var i = 0; i < msg.data.length; i++) {
-                                    $('#teamSelect').append("<option value='" + msg.data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + msg.data[i].name + "</option>");
-                                }
-                                if (msg.data[0] != null && msg.data[0].tmid != null) $rootScope.user.tmid = msg.data[0].tmid;
-                                setInterval(function() {
-                                    notify.getNew();
-                                }, 2000);
-                            } else {
-                                $.gritter.add({
-                                    title: 'Powiadomienie',
-                                    text: "Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny",
-                                    image: '',
-                                    sticky: true,
-                                    time: 3,
-                                    class_name: 'my-sticky-class'
-                                });
-                            }
-                            setTimeout(function() {
-                                $('#showRun').show('fade');
-                            }, 200);
-                            setTimeout(function() {
-                                $('#loadingContent').hide('fade', 'slow');
-                                document.location.href = "/panel#!/";
-                                $route.reload();
-                            }, 2000);
-                            $('select').material_select();
 
-                        } else {
-                            if (msg.error)
-                                $.gritter.add({
-                                    title: 'Bład',
-                                    text: msg.error,
-                                    image: '',
-                                    sticky: true,
-                                    time: 3,
-                                    class_name: 'my-sticky-class'
-                                });
+                request.backend('getTeams', {}, function(data) {
+                    if(data.length == 0){
+                        notify.localNotify('Uwaga',"Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny");
+                    }else{
+                        $('#teamSelect').html('');
+                        $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
+                        for (var i = 0; i < data.length; i++) {
+                            $('#teamSelect').append("<option value='" + data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + data[i].name + "</option>");
                         }
-                    },
-                    error: function(jqXHR, textStatus) {
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: "Blad podczas laczenia z serverem: " + textStatus,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                    },
+                        if (data[0] != null && data[0].tmid != null) $rootScope.user.tmid = data[0].tmid;
+                        setInterval(function() {
+                            notify.getNew();
+                        }, 2000);
+                    }
+                    setTimeout(function() {
+                        $('#showRun').show('fade');
+                    }, 200);
+                    setTimeout(function() {
+                        $('#loadingContent').hide('fade', 'slow');
+                        document.location.href = "/panel#!/";
+                        $route.reload();
+                    }, 2000);
+                    $('select').material_select();
                 });
 
             } else {
@@ -139,8 +84,6 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
             }
         }
     };
-
-
 
     $(document).on('click', '#printButton', function() {
         window.print();

@@ -1,11 +1,11 @@
 <div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK','STAFF'])"></div>
 <div class="section row">
-    <div class="col s12 lg8 offset-lg2">
+    <div class="col s12 m4 lg3">
         <div class="card">
             <div class="card-content">
-                <div class="card-title">Twoje aktualne dane </div>
+                <div class="card-title">Główne dane</div>
                 <div style="box-sizing:border-box; padding: 20px;">
-                    <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
+                    <form class="form-horizontal style-form" id="userUpdateDataFormPassImg" enctype="multipart/form-data">
                         <input type="hidden" name="token" value="{{user.token}}">
 
                         <div class="form-group">
@@ -26,43 +26,46 @@
                         </div>
 
                         <div class="form-group ">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input disabled value="{{user.email}}" id="disabled" name='userEmail' type="text" class="validate">
-                                    <label for="disabled">Twój adres email</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input disabled value="{{user.addAccountDate}}" id="disabled" type="text" class="validate">
-                                    <label for="disabled">Jesteś z nami od</label>
+                                <div class="row">
+                                    <div class="input-field col m12 l6">
+                                        <input id='imieInput' type="text" name="firstname" placeholder="Imię" value="{{user.firstname}}" class="validate">
+                                        <label for="imieInput">Imię</label>
+                                    </div>
+                                    <div class="input-field col m12 l6">
+                                        <input id='nazwiskoInput' type="text" name="lastname" placeholder="Nazwisko" value="{{user.lastname}}" class="validate">
+                                        <label for="nazwiskoInput">Nazwisko</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
                         <div class="form-group ">
                             <div class="row">
-                                <div class="input-field col s6">
+                                <div class="input-field col m12  l6">
                                     <input id='passwordInput' type="password" name="password" placeholder="Nowe hasło" class="validate">
                                     <label for="passwordInput">Nowe hasło</label>
                                 </div>
-                                <div class="input-field col s6">
+                                <div class="input-field col m12 l6">
                                     <input id='rePasswordInput' type="password" name="rePassword" placeholder="Powtórz hasło" class="validate">
                                     <label for="rePasswordInput">Powtórz hasło</label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group ">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id='imieInput' type="text" name="firstname" placeholder="Imię" value="{{user.firstname}}" class="validate">
-                                    <label for="imieInput">Imię</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id='nazwiskoInput' type="text" name="lastname" placeholder="Nazwisko" value="{{user.lastname}}" class="validate">
-                                    <label for="nazwiskoInput">Nazwisko</label>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate(true)">Zapisz</button>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m8 lg9">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-title">Dane dodatkowe</div>
+                <div style="box-sizing:border-box; padding: 20px;">
+                    <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
+                        <input type="hidden" name="token" value="{{user.token}}">
 
                         <div class="form-group ">
                             <div class="row">
@@ -73,6 +76,32 @@
                                 <div class="input-field col s6">
                                     <input id='adresInput' type="text" name="address" placeholder="Adres " value="{{user.address}}" class="validate">
                                     <label for="adresInput">Adres</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='wagaInput' type="text" name="weight" placeholder="Waga " value="{{user.weight}}" class="validate">
+                                    <label for="wagaInput">Waga</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id='wzrostInput' type="text" name="height" placeholder="Wzrost " value="{{user.height}}" class="validate">
+                                    <label for="wzrostInput">Wzrost</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id='TelefonInput' type="text" name="tel" placeholder="Telefon " value="{{user.tel}}" class="validate">
+                                    <label for="TelefonInput">Telefon</label>
+                                </div>
+                                <div class="input-field col s6" ng-show="user.role == 'ZAWODNIK'">
+                                    <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}}" class="validate">
+                                    <label for="parenInput">Telefon rodzica</label>
                                 </div>
                             </div>
                         </div>
@@ -102,8 +131,18 @@
                         </div>
 
                         <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
+                                <div class="row" style='margin-top: 20px;'>
+                                        <div class="input-field col s10 offset-s1">
+                                            <select name='bodyType'>
+                                                <option value="" disabled selected>Budowa ciała</option>
+                                                <option value="Ektomorfik" ng-selected="user.bodyType == 'Ektomorfik'" >Ektomorfik</option>
+                                                <option value="Mezomorfik" ng-selected="user.bodyType == 'Mezomorfik'">Mezomorfik</option>
+                                                <option value="Endomorfik" ng-selected="user.bodyType == 'Endomorfik'">Endomorfik</option>
+                                            </select>
+                                            <label>Wybierz budowę ciała która najlepiej do Ciebie pasuje</label>
+                                        </div>
+                                    </div>
                             <div class="row">
-                                <label>Wybierz budowę ciała która najlepiej Cię opisuje z listy poniżej </label>
                                 <div class="row">
                                     <div class="col s12 m4">
                                         <h5>Ektomorfik</h5>
@@ -160,44 +199,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style='margin-top: 20px;'>
-                                <div class="input-field col s10 offset-s1">
-                                    <select name='bodyType'>
-                                        <option value="" disabled selected>Budowa ciała</option>
-                                        <option value="Ektomorfik" ng-selected="user.bodyType == 'Ektomorfik'" >Ektomorfik</option>
-                                        <option value="Mezomorfik" ng-selected="user.bodyType == 'Mezomorfik'">Mezomorfik</option>
-                                        <option value="Endomorfik" ng-selected="user.bodyType == 'Endomorfik'">Endomorfik</option>
-                                    </select>
-                                    <label>Budowa ciała</label>
-                                </div>
-                            </div>
                         </div>
-
-                        <div class="form-group ">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id='TelefonInput' type="text" name="tel" placeholder="Telefon " value="{{user.tel}}" class="validate">
-                                    <label for="TelefonInput">Telefon</label>
-                                </div>
-                                <div class="input-field col s6" ng-show="user.role == 'ZAWODNIK'">
-                                    <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}}" class="validate">
-                                    <label for="parenInput">Telefon rodzica</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id='wagaInput' type="text" name="weight" placeholder="Waga " value="{{user.weight}}" class="validate">
-                                    <label for="wagaInput">Waga</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id='wzrostInput' type="text" name="height" placeholder="Wzrost " value="{{user.height}}" class="validate">
-                                    <label for="wzrostInput">Wzrost</label>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="form-group">
                             <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate()">Zmień dane</button>
                         </div>

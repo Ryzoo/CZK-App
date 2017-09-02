@@ -52,6 +52,24 @@ app.service('auth', function($http, $rootScope, request) {
             request.sync('POST', urlToPost, dataToSend,
                 function(reqData) {
                     toReturn = reqData;
+                    $rootScope.user.email = reqData.data.email;
+                    $rootScope.user.token = Cookies.get('tq');
+                    $rootScope.user.role = reqData.data.name;
+                    $rootScope.user.id = reqData.data.user_id;
+                    $rootScope.user.firstname = reqData.data.firstname;
+                    $rootScope.user.lastname = reqData.data.lastname;
+                    $rootScope.user.birthdate = reqData.data.birthdate;
+                    $rootScope.user.imgPath = reqData.data.user_img_path;
+                    $rootScope.user.addAccountDate = reqData.data.create_account_date;
+                    $rootScope.user.addAccountDate = reqData.data.create_account_date;
+                    $rootScope.user.height = reqData.data.height;
+                    $rootScope.user.tel = reqData.data.tel;
+                    $rootScope.user.parentTel = reqData.data.parent_tel;
+                    $rootScope.user.weight = reqData.data.weight;
+                    $rootScope.user.mainLeg = reqData.data.main_leg;
+                    $rootScope.user.mainPosition = reqData.data.main_position;
+                    $rootScope.user.bodyType = reqData.data.body_type;
+                    $rootScope.user.address = reqData.data.address;
                 },
                 function(jqXHR, textStatus) {
                     console.log("Bład podczas komunikacji z serverem: " + textStatus);
