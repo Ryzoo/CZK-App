@@ -109,7 +109,7 @@ class Settings extends BasicModule{
     }
 
     public function getAvailableModules(){
-        $directoriesContent = scandir("../modules/",1);
+        $directoriesContent = scandir(__DIR__."/../../../modules/",1);
         $installed = $this->installedModules();
         $this->returnedData["data"] = [];
         for ($i=0; $i < count($directoriesContent)-2; $i++) { 
