@@ -29,7 +29,7 @@ class Notify extends BasicModule {
         $notId = ($this->db->getConnection())->insert('notifications', $data);
         if( $notId != null ){
             if( $toAll === true || $toAll === 'true'){
-                $userids = ($this->db->getConnection())->fetchRowMany('SELECT id FROM team_members WHERE id_team='.$tmid.' GROUP BY id_user');
+                $userids = ($this->db->getConnection())->fetchRowMany('SELECT id_user FROM team_members WHERE id_team='.$tmid.' GROUP BY id_user');
                 $to = [];
                 for($i=0;$i<count($userids);$i++){
                     //if( $userids[$i] != $usid)
