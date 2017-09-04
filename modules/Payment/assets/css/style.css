@@ -1,0 +1,21 @@
+.paymentClickIcon{
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%);
+}
+
+.paymentClickIcon i:hover{
+    color: #ee6e73;
+}
+
+#clickEndPayment{
+    right: 30px;
+}
+
+#clickDeletePayment{
+    right: 0px;
+}
+
+.paymentSection .collapsible-body{
+    padding: 10px 0 !important;
+}

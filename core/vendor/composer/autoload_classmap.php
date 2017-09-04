@@ -437,6 +437,7 @@ return array(
     'Modules\\FieldComposition\\FieldComposition' => $baseDir . '/../modules/FieldComposition/FieldComposition.php',
     'Modules\\Frequency\\Frequency' => $baseDir . '/../modules/Frequency/Frequency.php',
     'Modules\\News\\News' => $baseDir . '/../modules/News/News.php',
+    'Modules\\Payment\\Payment' => $baseDir . '/../modules/Payment/Payment.php',
     'Modules\\Post\\Post' => $baseDir . '/../modules/Post/Post.php',
     'Modules\\Stats\\Stats' => $baseDir . '/../modules/Stats/Stats.php',
     'Modules\\Todo\\Todo' => $baseDir . '/../modules/Todo/Todo.php',

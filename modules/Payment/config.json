@@ -1,0 +1,62 @@
+{
+    "name": "Payment",
+    "description": "Obsługa płatności dla zawodników",
+    "version": "1.0",
+    "require": [],
+    "backendRoute": [
+        {
+            "url": "addPaymentToUser",
+            "parameters": ["tmid","userIds","amount","name"],
+            "auth": ["KOORD", "TRENER"]
+        },{
+            "url": "getUserPaymentHistory",
+            "parameters": ["tmid","usids"]
+        },{
+            "url": "deletePayment",
+            "parameters": ["pmid"],
+            "auth": ["KOORD", "TRENER"]
+        },{
+            "url": "endPayment",
+            "parameters": ["pmid"],
+            "auth": ["KOORD", "TRENER"]
+        }
+    ],
+    "jsControllers": ["paymentController","clientPaymentController"],
+    "css": ["style"],
+    "frontendRoute": [{
+            "url": "payment",
+            "templateSrc": "payment.html",
+            "controllerName": "paymentController"
+        },
+        {
+            "url": "clientPayment",
+            "templateSrc": "clientPayment.html",
+            "controllerName": "clientPaymentController"
+        }
+    ],
+    "anchor": [{
+            "destination": "leftMenu",
+            "content": {
+                "link": {
+                    "label": "Menadżer płatności",
+                    "url": "#!/payment",
+                    "icon": "fa fa-shopping-cart fa-fw",
+                    "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' && user.role != 'STAFF'\""
+                },
+                "weight": 15
+            }
+        },
+        {
+            "destination": "leftMenu",
+            "content": {
+                "link": {
+                    "label": "Twoje płatności",
+                    "url": "#!/clientPayment",
+                    "icon": "fa fa-shopping-cart fa-fw",
+                    "additional": "ng-show=\"user.tmid != '' && user.role == 'ZAWODNIK'\""
+                },
+                "weight": 15
+            }
+        }
+    ]
+}

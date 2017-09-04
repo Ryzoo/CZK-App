@@ -81,6 +81,22 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
         var weight = Number.isInteger(parseInt($('#teamWeight').val())) ? parseInt($('#teamWeight').val()) : 999;
         request.backend('addTeam', { name: name, weight: weight }, function(data) {
             getAllTeams();
+            request.backend('getTeams', {}, function(data) {
+                if(data.length == 0){
+                    notify.localNotify('Uwaga',"Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny");
+                }else{
+                    $('#teamSelect').html('');
+                    $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $('#teamSelect').append("<option value='" + data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + data[i].name + "</option>");
+                    }
+                    if (data[0] != null && data[0].tmid != null) $rootScope.user.tmid = data[0].tmid;
+                    setInterval(function() {
+                        notify.getNew();
+                    }, 2000);
+                }
+                $('select').material_select();
+            });
         }, "Dodano nową drużynę, możesz przydzielić teraz trenerów");
     }
 

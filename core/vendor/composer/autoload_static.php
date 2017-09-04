@@ -608,6 +608,7 @@ class ComposerStaticInite57f52ab30cfd8e4170d5ddf72289b24
         'Modules\\FieldComposition\\FieldComposition' => __DIR__ . '/../..' . '/../modules/FieldComposition/FieldComposition.php',
         'Modules\\Frequency\\Frequency' => __DIR__ . '/../..' . '/../modules/Frequency/Frequency.php',
         'Modules\\News\\News' => __DIR__ . '/../..' . '/../modules/News/News.php',
+        'Modules\\Payment\\Payment' => __DIR__ . '/../..' . '/../modules/Payment/Payment.php',
         'Modules\\Post\\Post' => __DIR__ . '/../..' . '/../modules/Post/Post.php',
         'Modules\\Stats\\Stats' => __DIR__ . '/../..' . '/../modules/Stats/Stats.php',
         'Modules\\Todo\\Todo' => __DIR__ . '/../..' . '/../modules/Todo/Todo.php',

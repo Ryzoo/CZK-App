@@ -1,0 +1,177 @@
+<div ng-init="setPerm(['KOORD','TRENER'])"></div>
+<div class="section paymentSection" ng-init="initPayment()">
+    <div ng-show='showContent' class="row">
+        <div class="col m12 l4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Wybór zawodnika</div>
+                    <div class="row">
+                        <table class="table highlight centered" >
+                            <thead>
+                                <tr>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>
+                                        <div class="form-group">
+                                            <input type="checkbox" id="selectAllUser" />
+                                            <label for="selectAllUser">Wszyscy</label>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="us in allUsers">
+                                    <td style="padding: 5px 0;">{{us.firstname}}</td>
+                                    <td style="padding: 5px 0;">{{us.lastname}}</td>
+                                    <td style="padding: 5px 0;">
+                                        <div class="form-group">
+                                            <input type="checkbox" class='userSelectInput' id="userSelect-{{us.usid}}" />
+                                            <label for="userSelect-{{us.usid}}">-</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col m12 l8">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Zarządzanie</div>
+                    <div class="row">
+                        <div class="card-tabs" >
+                            <ul class="tabs tabs-fixed-width" ng-init="payAdd=1;">
+                                <li class="tab"><a class="active" href="" ng-click='payAdd=1; payHistory=0'>Dodaj płatność</a></li>
+                                <li class="tab"><a href="" ng-click='payAdd=0; payHistory=1; getUsersHistory()'>Historia płatności</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-content">
+                            <div ng-show="payAdd">
+                                <div class="form-group">
+                                    <div class="row" style='margin-top: 40px; margin-bottom: 40px;'>
+                                        <div class="input-field col s12 m6">
+                                            <input id='payName' type="text" name="payName" placeholder="Nazwa płatności" class="validate">
+                                            <label for="payAmount">Nazwa płatności:</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id='payAmount' type="text" name="amount" placeholder="Kwota w PLN (0,00zł)" class="validate">
+                                            <label for="payAmount">Kwota płatności dla zaznaczonych zawodników:</label>
+                                        </div>
+                                        <button type="button" class="waves-effect waves-light btn" ng-click="sendPayment()">Wyślij płatność</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="payHistory">
+                                <div class="row" ng-hide="loadHistory">
+                                    <ul class="collapsible popout" data-collapsible="accordion">
+                                        <li ng-repeat="userHistory in selectedUserHistory">
+                                            <div class="collapsible-header">{{userHistory.firstname}} {{userHistory.lastname}}</div>
+                                            <div class="collapsible-body">
+                                                <span>
+                                                    <ul class="collapsible popout" data-collapsible="accordion">
+                                                        <li ng-repeat="data in userHistory.data">
+                                                            <div class="collapsible-header" style="position:relative;">
+                                                                {{data.name}} - <b>{{data.statusName}}</b>
+                                                                <span class='paymentClickIcon' id='clickDeletePayment'  >
+                                                                    <i ng-click="deletePayment(data.id)" class="fa fa-trash" aria-hidden="true"></i>
+                                                                </span>
+                                                                <span class='paymentClickIcon' id='clickEndPayment'  >
+                                                                    <i ng-click="endPayment(data.id)" class="fa fa-check" aria-hidden="true"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="collapsible-body" >
+                                                                <span>
+                                                                    <table class="table highlight centered" >
+                                                                        <tbody>
+                                                                            <tr class="row">
+                                                                                <td style="padding: 5px 0;"><b>Tytuł płatności</b></td>
+                                                                                <td style="padding: 5px 0;">{{data.name}}</td>
+                                                                            </tr>
+                                                                            <tr class="row">
+                                                                                <td style="padding: 5px 0;"><b>Kwota</b></td>
+                                                                                <td style="padding: 5px 0;">{{data.amount}}</td>
+                                                                            </tr>
+                                                                            <tr class="row">
+                                                                                <td style="padding: 5px 0;"><b>Status</b></td>
+                                                                                <td style="padding: 5px 0;">{{data.statusName}}</td>
+                                                                            </tr>
+                                                                            <tr class="row">
+                                                                                <td style="padding: 5px 0;"><b>Zlecający</b></td>
+                                                                                <td style="padding: 5px 0;">{{data.adminFirstname}} {{data.adminLastname}}</td>
+                                                                            </tr>
+                                                                            <tr class="row">
+                                                                                <td style="padding: 5px 0;"><b>Data dodania</b></td>
+                                                                                <td style="padding: 5px 0;">{{data.date_add}}</td>
+                                                                            </tr>
+                                                                            <tr class="row">
+                                                                                <td style="padding: 5px 0;"><b>Ostatni zmiana statusu</b></td>
+                                                                                <td style="padding: 5px 0;">{{data.date_change}}</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="row" ng-show='loadHistory'>
+                                    <div class="preloader-wrapper big active" style="margin-top: 50px" >
+                                        <div class="spinner-layer spinner-blue">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="toUpdate">
+                                <div class="row">
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+            $('ul.tabs').tabs();
+            $('.collapsible').collapsible();
+        }, 500);
+    });
+</script>
