@@ -83,14 +83,18 @@ class Payment extends BasicModule {
 
     function paymentNotification($data){
       file_put_contents('test.txt', file_get_contents('php://input'));
-      
-      $order = $data['order'];
-      $status = $order['status'];
-      $pmid = $order['extOrderId'];
+      $data = json_decode($data);
+      $order = $data->order;
+      $status = $order->status;
+      $pmid = $order->extOrderId;
       
       $conds['id'] = $pmid;
       $dataC['id_status'] = 3;
       $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
+      
+    
+    
+    
     }
 
     function getPaySignature($data){
