@@ -17,7 +17,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify,re
                 $scope.ip = data;
             });
         });
-        $scope.host = window.location.hostname;
+        $scope.host = window.location.protocol + "//" + window.location.hostname;
         request.backend('getUserPaymentHistory', {tmid: $rootScope.user.tmid, usids: [$rootScope.user.id] }, function(data) {
             $scope.$apply(function() {
                 $scope.selectedUserHistory = data[0] ? data[0] : [];
@@ -61,8 +61,8 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify,re
         sigData["buyer.firstName"] = $rootScope.user.firstname;
         sigData["buyer.lastName"] = $rootScope.user.lastname;
         sigData["buyer.language"] = "pl";
-        sigData["notifyUrl"] = window.location.hostname+'/backend/paymentNotification';
-        sigData["continueUrl"] = window.location.hostname;
+        sigData["notifyUrl"] = $scope.host+'/backend/paymentNotification';
+        sigData["continueUrl"] = $scope.host;
         request.backend('getPaySignature', {sigData: sigData, posId: '302273', merchantKey: '2325ca703e6467f115fee9ee85d0b829'}, function(data) {
             $scope.$apply(function() {
                $scope.signature = data;
