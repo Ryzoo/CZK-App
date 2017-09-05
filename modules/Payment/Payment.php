@@ -82,12 +82,11 @@ class Payment extends BasicModule {
     }
 
     function paymentNotification($data){
-      $data = json_decode($data);
-      file_put_contents('test.json', json_encode($data));
+      file_put_contents('test.txt', file_get_contents('php://input'));
+      $data = json_decode(file_get_contents('php://input'));
       $order = $data->order;
       $status = $order->status;
       $pmid = $order->extOrderId;
-      
       $conds['id'] = $pmid;
       $dataC['id_status'] = 3;
       $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
