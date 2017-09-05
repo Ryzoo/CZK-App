@@ -19,3 +19,7 @@
 .paymentSection .collapsible-body{
     padding: 10px 0 !important;
 }
+
+.userOnePayRow{
+    cursor: pointer;
+}

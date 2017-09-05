@@ -65,6 +65,14 @@ class Payment extends BasicModule {
       return $this->returnedData;
     }
 
+    function payWithPayu($data){
+      $pmid = $data['pmid'];
+      $conds['id'] = $pmid;
+      $dataC['id_status'] = 2;
+      $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
+      return $this->returnedData;
+    }
+
     function endPayment($data){
       $pmid = $data['pmid'];
       $conds['id'] = $pmid;
@@ -72,5 +80,52 @@ class Payment extends BasicModule {
       $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
       return $this->returnedData;
     }
+
+    function paymentNotification($data){
+      file_put_contents('test.txt', file_get_contents('php://input'));
+      
+      $order = $data['order'];
+      $status = $order['status'];
+      $pmid = $order['extOrderId'];
+      
+      $conds['id'] = $pmid;
+      $dataC['id_status'] = 3;
+      $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
+    }
+
+    function getPaySignature($data){
+      ksort($data['sigData']);
+      
+      $signatureKey = ''; 
+      foreach ($data['sigData'] as $key => $val) {
+        $signatureKey .= str_replace("products.","products[0].",$key) . "=" . urlencode($val) . "&";
+      }
+      $signatureKey.=$data['merchantKey'];
+      $this->returnedData['data'] ="sender=" . $data['posId'];
+      $this->returnedData['data'] .=";algorithm=SHA-256;";
+      $this->returnedData['data'] .= "signature=" . hash('sha256', $signatureKey);
+      return $this->returnedData;
+    }
+
+    function getClientIp($data) {
+      $ipaddress = '';
+      if (getenv('HTTP_CLIENT_IP'))
+          $ipaddress = getenv('HTTP_CLIENT_IP');
+      else if(getenv('HTTP_X_FORWARDED_FOR'))
+          $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+      else if(getenv('HTTP_X_FORWARDED'))
+          $ipaddress = getenv('HTTP_X_FORWARDED');
+      else if(getenv('HTTP_FORWARDED_FOR'))
+          $ipaddress = getenv('HTTP_FORWARDED_FOR');
+      else if(getenv('HTTP_FORWARDED'))
+         $ipaddress = getenv('HTTP_FORWARDED');
+      else if(getenv('REMOTE_ADDR'))
+          $ipaddress = getenv('REMOTE_ADDR');
+      else
+          $ipaddress = 'UNKNOWN';
+
+      $this->returnedData['data'] = $ipaddress;
+      return $this->returnedData;
+  }
 
 }

@@ -19,9 +19,20 @@
             "url": "endPayment",
             "parameters": ["pmid"],
             "auth": ["KOORD", "TRENER"]
+        },{
+            "url": "getPaySignature",
+            "parameters": ["sigData","posId"]
+        },{
+            "url": "getClientIp"
+        },{
+            "url": "paymentNotification"
+        },{
+            "url": "payWithPayu",
+            "parameters": ["pmid"]
         }
+        
     ],
-    "jsControllers": ["paymentController","clientPaymentController"],
+    "jsControllers": ["paymentController"],
     "css": ["style"],
     "frontendRoute": [{
             "url": "payment",
@@ -31,7 +42,7 @@
         {
             "url": "clientPayment",
             "templateSrc": "clientPayment.html",
-            "controllerName": "clientPaymentController"
+            "controllerName": "paymentController"
         }
     ],
     "anchor": [{
@@ -50,7 +61,7 @@
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Twoje płatności",
+                    "label": "Moje płatności",
                     "url": "#!/clientPayment",
                     "icon": "fa fa-shopping-cart fa-fw",
                     "additional": "ng-show=\"user.tmid != '' && user.role == 'ZAWODNIK'\""
