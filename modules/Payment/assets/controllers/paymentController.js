@@ -6,9 +6,12 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify,re
     $scope.showPay = false;
     $scope.ip = 0;
     $scope.signature = 0;
+    $scope.merchantPosId = '';
+    $scope.merchantKey = '';
 
     $scope.initPayment = function(){
         getUserFromTeam();
+        getSettings();
     }
 
     $scope.initPaymentClient = function(){
@@ -22,6 +25,16 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify,re
             $scope.$apply(function() {
                 $scope.selectedUserHistory = data[0] ? data[0] : [];
                 $scope.showContent = true;
+            });
+        });
+        getSettings();
+    }
+
+    function getSettings(){
+        request.backend('getPaymentOptions', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.merchantPosId = data.merchantPosId;
+                $scope.merchantKey = data.merchantKey;
             });
         });
     }
@@ -48,7 +61,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify,re
     $scope.getSignatureVerify =function(){
         var sigData = new Object();
         sigData["customerIp"] = $scope.ip;
-        sigData["merchantPosId"] =  '302273';
+        sigData["merchantPosId"] = $scope.merchantPosId;
         sigData["extOrderId"] =  $scope.selectedPayment.id;
         sigData["description"] =  $scope.selectedPayment.name;
         sigData["totalAmount"] = $scope.selectedPayment.amount*100;
@@ -63,7 +76,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify,re
         sigData["buyer.language"] = "pl";
         sigData["notifyUrl"] = $scope.host+'/backend/paymentNotification';
         sigData["continueUrl"] = $scope.host;
-        request.backend('getPaySignature', {sigData: sigData, posId: '302273', merchantKey: '2325ca703e6467f115fee9ee85d0b829'}, function(data) {
+        request.backend('getPaySignature', {sigData: sigData, posId: $scope.merchantPosId , merchantKey: $scope.merchantKey}, function(data) {
             $scope.$apply(function() {
                $scope.signature = data;
             });
@@ -158,5 +171,13 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify,re
     $(document).on("click",".collapsible",function(){
         $('.collapsible').collapsible();
     });
+
+    $(document).on("change",".payOption",function(){
+        request.backend('editOptions', {posId: $("#posId").val(), merKey:$("#merKey").val() }, function(data) {
+            getSettings();
+        },"Pomyslnie zmieniono dane payu");
+    });
+
+    
 
 });

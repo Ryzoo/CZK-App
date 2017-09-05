@@ -63,7 +63,7 @@
                         <div class="row" ng-show="selectedPayment.statusName == 'Do zapłaty'" >
                             <form method="POST" target='_blank' action="https://secure.snd.payu.com/api/v2_1/orders">
                                 <input type="hidden" name="customerIp" value="{{ip}}">
-                                <input type="hidden" name="merchantPosId" value="302273">
+                                <input type="hidden" name="merchantPosId" value="{{merchantPosId}}">
                                 <input type="hidden" name="extOrderId" value="{{selectedPayment.id}}">
                                 <input type="hidden" name="description" value="{{selectedPayment.name}}">
                                 <input type="hidden" name="totalAmount" value="{{selectedPayment.amount*100}}">

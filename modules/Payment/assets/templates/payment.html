@@ -4,8 +4,22 @@
         <div class="col m12 l4">
             <div class="card">
                 <div class="card-content">
-                    <div class="card-title">Wybór zawodnika</div>
+                    <div class="card-title">Ludzie i płatności</div>
                     <div class="row">
+                        <div class="titleIn">Dane z panelu payu</div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col m12 l6">
+                                    <input id='posId' type="text" class='payOption' name="firstname" placeholder="Id punktu płatności (pos_id)" value="{{merchantPosId}}" class="validate">
+                                    <label for="posId">Id punktu płatności</label>
+                                </div>
+                                <div class="input-field col m12 l6">
+                                    <input id='merKey' type="text" class='payOption' name="lastname" placeholder="Drugi klucz (MD5)" value="{{merchantKey}}" class="validate">
+                                    <label for="merKey">Drugi klucz</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="titleIn">Wybór osób do płatności</div>
                         <table class="table highlight centered" >
                             <thead>
                                 <tr>

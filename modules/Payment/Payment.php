@@ -2,12 +2,13 @@
 namespace Modules\Payment;
 
 use Core\System\BasicModule;
+use \KHerGe\JSON\JSON;
 
 class Payment extends BasicModule {
 
     function install(){
       ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `payment_status` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
-      ($this->db->getConnection())->executeSql('INSERT INTO payment_status (`name`) VALUES ("Do zapłaty"), ("Oczekiwanie na potwierdzenie"), ("Zakończono"), ("Nie zapłacono"), ("Błąd płatności")');
+      ($this->db->getConnection())->executeSql('INSERT INTO payment_status (`name`) VALUES ("Do zapłaty"), ("Oczekiwanie na potwierdzenie"), ("Zakończono"), ("Nie zapłacono"), ("Potrzebna kontrola")');
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `payment_list` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `amount` INT NOT NULL , `id_user` INT NOT NULL , `id_status` INT NOT NULL , `id_team` INT NOT NULL , `id_admin` INT NOT NULL , `date_change` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `date_add` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
@@ -69,7 +70,7 @@ class Payment extends BasicModule {
       $pmid = $data['pmid'];
       $conds['id'] = $pmid;
       $dataC['id_status'] = 2;
-      $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
+      $this->returnedData["data"] = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
       return $this->returnedData;
     }
 
@@ -81,16 +82,44 @@ class Payment extends BasicModule {
       return $this->returnedData;
     }
 
+    function getPaymentOptions(){
+      $json = new JSON();
+      $modulesConfig = $json->decodeFile(__DIR__. '/config.json');
+      
+      $this->returnedData["data"] = [
+        "merchantPosId"=>$modulesConfig->merchantPosId,
+        "merchantKey"=>$modulesConfig->merchantKey
+      ];
+
+      return $this->returnedData;
+    }
+
+    function editOptions($data){
+      $merchantPosId = $data["posId"];
+      $merchantKey = $data["merKey"];
+      $json = new JSON();
+      $modulesConfig = $json->decodeFile(__DIR__. '/config.json');
+      $modulesConfig->merchantPosId = $merchantPosId;
+      $modulesConfig->merchantKey = $merchantKey;
+      unlink(__DIR__. '/config.json');
+      $json->encodeFile($modulesConfig, __DIR__. '/config.json');
+      return $this->returnedData;
+    }
+
     function paymentNotification($data){
-      file_put_contents('test.txt', file_get_contents('php://input'));
       $data = json_decode(file_get_contents('php://input'));
       $order = $data->order;
       $status = $order->status;
       $pmid = $order->extOrderId;
       $conds['id'] = $pmid;
-      $dataC['id_status'] = 3;
-      $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
       
+      if( $status == "COMPLETED" ) $dataC['id_status'] = 3;
+      if( $status == "CANCELED" ) $dataC['id_status'] = 4;
+      if( $status == "PENDING" ) $dataC['id_status'] = 2;
+      if( $status == "WAITING_FOR_CONFIRMATION" ) $dataC['id_status'] = 5;
+      if( $status == "REJECTED" ) $dataC['id_status'] = 5;
+
+      $toReturn = ($this->db->getConnection())->update('payment_list', $conds, $dataC);
     }
 
     function getPaySignature($data){
