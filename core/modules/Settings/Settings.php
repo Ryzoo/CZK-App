@@ -185,8 +185,9 @@ class Settings extends BasicModule{
         $modulesConfig = $json->decodeFile(__DIR__. '/../../mainConf.json' );
         $core = $modulesConfig->coreModules;
         $otherModules = scandir(__DIR__."/../../../modules/",1);
-        for ($i=0; $i < count($core) ; $i++) { 
-            array_push($otherModules,$core[$i]);
+        for ($i=0; $i < count($otherModules) ; $i++) {
+            if($otherModules != "." && $otherModules != ".." )
+                array_push($core,$otherModules[$i]);
         }
         return $otherModules; 
     }
@@ -326,25 +327,48 @@ class Settings extends BasicModule{
         return $this->returnedData;
     }
 
-    public function getModuleUpdate($data){
-        $this->returnedData['data'] = [];
-        array_push($this->returnedData['data'],$data['modules']);
-        array_push($this->returnedData['data'],$data['ownerData']);
-        return $this->returnedData;
+    public function getModuleVersion($moduleName){
+        //todo
+    }
+
+    public function getOwnerModules($ownerData){
+        //todo
     }
 
     public function checkCoreUpdate(){
+        //todo
+    }
 
+    public function getModuleUpdate($data){
+        $modulesList = $data['modules'];
+        $ownerData = $data['ownerData'];
+
+        $ownerModules = $this->getOwnerModules($ownerData);
+        $toUpdate = [];
+
+        for ($i=0; $i < count($modulesList); $i++) { 
+            for ($x=0; $x < count($ownerModules); $x++) { 
+                if($modulesList[$i] === $ownerModules[$x]){
+                    array_push($toUpdate,[
+                        "name"=>$modulesList[$i],
+                        "ver"=>$this->getModuleVersion($modulesList[$i])
+                    ]);
+                    break;
+                }
+            }
+        }
+
+        $this->returnedData['data'] = $toUpdate;
+        return $this->returnedData;
     }
 
     public function checkModuleUpdate(){
         $url = 'http://server.com/path';
         $allModules = $this->getAllModules();
         $data = array('modules' => $allModules, 'ownerData' => $this->getOwnerData());
-        $this->returnedData['data'] = $this->postRequest('http://app.cmcadmin.usermd.net/backend/getModuleUpdate');
+        $this->returnedData['data'] = $this->postRequest('http://app.cmcadmin.usermd.net/backend/getModuleUpdate',$data);
         return $this->returnedData;
     }
-
 
     public function postRequest($url,$data=array()){
         $options = array(
