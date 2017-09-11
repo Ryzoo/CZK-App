@@ -364,7 +364,7 @@ class Settings extends BasicModule{
 
         for ($i=0; $i < count($modulesList); $i++) {
             $moduleVersion = ($this->getModuleHostVersion($modulesList[$i]["name"]));
-            if( (float)($modulesList[$i]["ver"]) != (float)$moduleVersion ){
+            if( (float)($modulesList[$i]["ver"]) == (float)$moduleVersion ){
                 array_push($toUpdate,[
                     "name"=>$modulesList[$i]["name"],
                     "ver"=>$moduleVersion
