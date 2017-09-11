@@ -1,5 +1,5 @@
-app.controller('myRaportsController', function($scope, auth, $rootScope, notify, statistic,request) {
-    $rootScope.showContent = false;
+app.controller('myRaportsController', function($scope, auth, $rootScope, notify, request) {
+    $scope.showContent = false;
     $scope.raportsList = [];
 
     $scope.initRaports = function() {
@@ -7,10 +7,10 @@ app.controller('myRaportsController', function($scope, auth, $rootScope, notify,
     }
 
     function getUserRaports($userId) {
-        request.backend('getRaport', {usid: $userId, tmid: $rootScope.user.tmid }, function(data) {
+        request.backend('getRaport', { usid: $userId, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.raportsList = data;
-                $rootScope.showContent = true;
+                $scope.showContent = true;
             });
         });
     }
