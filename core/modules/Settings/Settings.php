@@ -182,14 +182,13 @@ class Settings extends BasicModule{
 
     public function getAllModules(){
         $json = new JSON();
-        $modulesConfig = $json->decodeFile(__DIR__. '/../../mainConf.json' );
-        $core = $modulesConfig->coreModules;
         $otherModules = scandir(__DIR__."/../../../modules/",1);
+        $toreturn = [];
         for ($i=0; $i < count($otherModules) ; $i++) {
-            if($otherModules != "." && $otherModules != ".." )
-                array_push($core,$otherModules[$i]);
+            if($otherModules[$i] != "." && $otherModules[$i] != ".." )
+                array_push($toreturn,["name"=>$otherModules[$i],'ver'=>$this->getModuleVersion($otherModules[$i])]);
         }
-        return $otherModules; 
+        return $toreturn; 
     }
 
     public function setCurrentTheme($data){
@@ -338,9 +337,11 @@ class Settings extends BasicModule{
 
     public function getModuleHostVersion($moduleName){
         $json = new JSON();
-        $moduleConf = $json->decodeFile(__DIR__. '/../../../baseApp/modules/'.$moduleName.'/config.json');
-        if(isset($moduleConf)){
-            return $moduleConf->version;
+        if(file_exists(__DIR__. '/../../../baseApp/modules/'.$moduleName.'/config.json')){
+            $moduleConf = $json->decodeFile(__DIR__. '/../../../baseApp/modules/'.$moduleName.'/config.json');
+            if(isset($moduleConf)){
+                return $moduleConf->version;
+            }
         }
         return -1;
     }
@@ -356,24 +357,25 @@ class Settings extends BasicModule{
     public function getModuleUpdate($data){
         $modulesList = $data['modules'];
         $ownerData = $data['ownerData'];
-
         $ownerModules = $this->getOwnerModules($ownerData);
         $toUpdate = [];
 
-        for ($i=0; $i < count($modulesList); $i++) { 
-            for ($x=0; $x < count($ownerModules); $x++) { 
+        for ($i=0; $i < count($modulesList); $i++) {
+            if( (float)($modulesList[$i]["ver"]) == (float)($this->getModuleHostVersion($modulesList[$i]["name"])) ){
+                array_push($toUpdate,[
+                    "name"=>$modulesList[$i]["name"],
+                    "ver"=>$this->getModuleHostVersion($modulesList[$i]["name"])
+                ]);
+            }
+           // for ($x=0; $x < count($ownerModules); $x++) {     
                 //if($modulesList[$i] === $ownerModules[$x]){
-                    array_push($toUpdate,[
-                        "name"=>$modulesList[$i],
-                        "ver"=>$this->getModuleHostVersion($modulesList[$i])
-                    ]);
+                    
                   //  break;
                // }
-            }
+         //  }
         }
 
-        $this->returnedData['data'] = $toUpdate;
-        return $this->returnedData;
+        return $toUpdate;
     }
 
     public function checkModuleUpdate(){
@@ -393,7 +395,7 @@ class Settings extends BasicModule{
             )
         );
         $context  = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
+        $result = json_decode(file_get_contents($url, false, $context));
         return $result;
     }
 

@@ -2,6 +2,7 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     $scope.showContent = false;
     $scope.installedModules = [];
     $scope.notInstalledModules = [];
+    $scope.toUpdateModule = [];
     $scope.actualTheme = "";
     $scope.allThemes = [];
 
@@ -48,9 +49,10 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     }
 
     $scope.checkUpdateModule = function() {
-        console.log('start');
         request.backend('checkModuleUpdate', {}, function(data) {
-            console.log(data);
+            $scope.$apply(function() {
+                $scope.toUpdateModule = data;
+            });
         });
     }
 

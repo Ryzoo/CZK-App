@@ -68,7 +68,14 @@
                             </div>
                             <div ng-show="toUpdate">
                                 <div class="row">
-
+                                    <div class="titleIn">Pamiętaj! Aktualizacja może usunąć wszystkie dane powiązane z modułem</div>
+                                    <ul class="collection none-border">
+                                        <li class="collection-item avatar moduleCollection" ng-repeat="module in toUpdateModule">
+                                            <img src="{{module.icon}}" alt="module icon">
+                                            <span class="title">{{module.name}} - {{module.version}}</span>
+                                            <a href="" class="secondary-content" ng-click="updateModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
