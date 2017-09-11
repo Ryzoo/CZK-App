@@ -361,15 +361,14 @@ class Settings extends BasicModule{
         $toUpdate = [];
 
         for ($i=0; $i < count($modulesList); $i++) {
-            if( (float)($modulesList[$i]["ver"]) == (float)($this->getModuleHostVersion($modulesList[$i]["name"])) ){
+            if( (float)($modulesList[$i]->ver) == (float)($this->getModuleHostVersion($modulesList[$i]->name)) ){
                 array_push($toUpdate,[
-                    "name"=>$modulesList[$i]["name"],
-                    "ver"=>$this->getModuleHostVersion($modulesList[$i]["name"])
+                    "name"=>$modulesList[$i]->name,
+                    "ver"=>$this->getModuleHostVersion($modulesList[$i]->name)
                 ]);
             }
            // for ($x=0; $x < count($ownerModules); $x++) {     
                 //if($modulesList[$i] === $ownerModules[$x]){
-                    
                   //  break;
                // }
          //  }
