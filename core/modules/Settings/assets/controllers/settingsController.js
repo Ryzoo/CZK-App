@@ -56,6 +56,12 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         });
     }
 
+    $scope.updateModule = function(moduleName) {
+        request.backend('installUpdateToModule', { moduleName: moduleName }, function(data) {
+
+        }, "Moduł zaktualizowany pomyślnie. Odświerz stronę, aby zobaczyć zmiany.");
+    }
+
     function getActualThemes() {
         request.backend('getCurrentThemes', {}, function(data) {
             $scope.$apply(function() {

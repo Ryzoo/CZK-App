@@ -45,6 +45,12 @@
     }, {
         "url": "checkModuleUpdate",
         "auth": ["KOORD"]
+    }, {
+        "url": "installUpdateToModule",
+        "parameters": ["moduleName"],
+        "auth": ["KOORD"]
+    }, {
+        "url": "getZippedModule"
     }],
     "css": ["style"],
     "jsControllers": ["settingsController"],

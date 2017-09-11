@@ -356,6 +356,10 @@ class Settings extends BasicModule{
         //todo
     }
 
+    public function getZippedModule(){
+        
+    }
+
     public function getModuleUpdate($data){
         $modulesList = $data['modules'];
         $ownerData = $data['ownerData'];
@@ -378,6 +382,14 @@ class Settings extends BasicModule{
         }
 
         return $toUpdate;
+    }
+
+    public function installUpdateToModule($data){
+        $moduleName = $data['moduleName'];
+        $url = "http://".urlencode("panel-klienta.centrumklubu.pl")."/backend/getZippedModule";
+        $data = array('moduleName' => $moduleName, 'ownerData' => $this->getOwnerData());
+        
+        $moduleZip = $this->postRequest($url,$data);
     }
 
     public function checkModuleUpdate(){
