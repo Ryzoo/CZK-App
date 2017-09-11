@@ -186,7 +186,7 @@ class Settings extends BasicModule{
         $toreturn = [];
         for ($i=0; $i < count($otherModules) ; $i++) {
             if($otherModules[$i] != "." && $otherModules[$i] != ".." )
-                array_push($toreturn,["name"=>$otherModules[$i],'ver'=>$this->getModuleVersion($otherModules[$i])]);
+                array_push($toreturn,["name"=>$otherModules[$i],"ver"=>$this->getModuleVersion($otherModules[$i])]);
         }
         return $toreturn; 
     }
@@ -328,9 +328,11 @@ class Settings extends BasicModule{
 
     public function getModuleVersion($moduleName){
         $json = new JSON();
-        $moduleConf = $json->decodeFile(__DIR__. '/../../../modules/'.$moduleName.'/config.json');
-        if(isset($moduleConf)){
-            return $moduleConf->version;
+        if(file_exists(__DIR__. '/../../../modules/'.$moduleName.'/config.json')){
+            $moduleConf = $json->decodeFile(__DIR__. '/../../../modules/'.$moduleName.'/config.json');
+            if(isset($moduleConf)){
+                return $moduleConf->version;
+            }
         }
         return -1;
     }
@@ -361,10 +363,11 @@ class Settings extends BasicModule{
         $toUpdate = [];
 
         for ($i=0; $i < count($modulesList); $i++) {
-            if( (float)($modulesList[$i]->ver) == (float)($this->getModuleHostVersion($modulesList[$i]->name)) ){
+            $moduleVersion = ($this->getModuleHostVersion($modulesList[$i]["name"]));
+            if( (float)($modulesList[$i]["ver"]) != (float)$moduleVersion ){
                 array_push($toUpdate,[
-                    "name"=>$modulesList[$i]->name,
-                    "ver"=>$this->getModuleHostVersion($modulesList[$i]->name)
+                    "name"=>$modulesList[$i]["name"],
+                    "ver"=>$moduleVersion
                 ]);
             }
            // for ($x=0; $x < count($ownerModules); $x++) {     
