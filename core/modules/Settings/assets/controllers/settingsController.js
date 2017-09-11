@@ -43,8 +43,15 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
         }, "Moduł dodany pomyślnie", true);
     }
 
-    $scope.checkAppUpdate =function(){
-        notify.localNotify("Update","Posiadasz aktualną wersję aplikacji");
+    $scope.checkAppUpdate = function() {
+        notify.localNotify("Update", "Posiadasz aktualną wersję aplikacji");
+    }
+
+    $scope.checkUpdateModule = function() {
+        console.log('start');
+        request.backend('checkModuleUpdate', {}, function(data) {
+            console.log(data);
+        });
     }
 
     function getActualThemes() {
@@ -73,10 +80,10 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     function getInstalledModules() {
         request.backend('getInstalledModules', {}, function(data) {
             $scope.$apply(function() {
-                for(var i=0;i<data.length;i++){
+                for (var i = 0; i < data.length; i++) {
                     var req = "";
-                    for(var j=0;j<data[i].require.length;j++){
-                        req += " "+data[i].require[j];
+                    for (var j = 0; j < data[i].require.length; j++) {
+                        req += " " + data[i].require[j];
                     }
                     data[i].require = req;
                 }
@@ -88,10 +95,10 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     function getAvilableModules() {
         request.backend('getAvailableModules', {}, function(data) {
             $scope.$apply(function() {
-                for(var i=0;i<data.length;i++){
+                for (var i = 0; i < data.length; i++) {
                     var req = "";
-                    for(var j=0;j<data[i].require.length;j++){
-                        req += " "+data[i].require[j];
+                    for (var j = 0; j < data[i].require.length; j++) {
+                        req += " " + data[i].require[j];
                     }
                     data[i].require = req;
                 }

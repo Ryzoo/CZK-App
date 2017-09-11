@@ -22,7 +22,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -33,11 +33,11 @@
                         Moduły
                     </div>
                     <div class="row">
-                        <div class="card-tabs" >
+                        <div class="card-tabs">
                             <ul class="tabs tabs-fixed-width" ng-init="installed=1;">
                                 <li class="tab"><a class="active" href="" ng-click='installed=1; toInstall=0;toUpdate=0'>Włączone</a></li>
                                 <li class="tab"><a href="" ng-click='installed=0; toInstall=1;toUpdate=0'>Wyłączone</a></li>
-                                <li class="tab"><a href="" ng-click='installed=0; toInstall=0;toUpdate=1'>Aktualizacje</a></li>
+                                <li class="tab"><a href="" ng-click='installed=0; toInstall=0;toUpdate=1; checkUpdateModule();'>Aktualizacje</a></li>
                             </ul>
                         </div>
                         <div class="card-content">
@@ -68,7 +68,7 @@
                             </div>
                             <div ng-show="toUpdate">
                                 <div class="row">
-                                            
+
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
         <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>

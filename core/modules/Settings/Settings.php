@@ -180,6 +180,17 @@ class Settings extends BasicModule{
         return $modulesConfig->installedModules; 
     }
 
+    public function getAllModules(){
+        $json = new JSON();
+        $modulesConfig = $json->decodeFile(__DIR__. '/../../mainConf.json' );
+        $core = $modulesConfig->coreModules;
+        $otherModules = scandir(__DIR__."/../../../modules/",1);
+        for ($i=0; $i < count($core) ; $i++) { 
+            array_push($otherModules,$core[$i]);
+        }
+        return $otherModules; 
+    }
+
     public function setCurrentTheme($data){
         $name = $data['name'];
         $allThemes = $this->availableThemes();
@@ -300,6 +311,12 @@ class Settings extends BasicModule{
         return $this->returnedData;
     }
 
+    public function getOwnerData(){
+        $json = new JSON();
+        $siteConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');
+        return $siteConfig->ownerData;
+    }
+
     public function changeAppMainSettings($data){
         $json = new JSON();
         $siteConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');
@@ -307,6 +324,39 @@ class Settings extends BasicModule{
         unlink(__DIR__. '/../../mainConf.json');
         $json->encodeFile($siteConfig, __DIR__. '/../../mainConf.json');
         return $this->returnedData;
+    }
+
+    public function getModuleUpdate($data){
+        $this->returnedData['data'] = [];
+        array_push($this->returnedData['data'],$data['modules']);
+        array_push($this->returnedData['data'],$data['ownerData']);
+        return $this->returnedData;
+    }
+
+    public function checkCoreUpdate(){
+
+    }
+
+    public function checkModuleUpdate(){
+        $url = 'http://server.com/path';
+        $allModules = $this->getAllModules();
+        $data = array('modules' => $allModules, 'ownerData' => $this->getOwnerData());
+        $this->returnedData['data'] = $this->postRequest('http://app.cmcadmin.usermd.net/backend/getModuleUpdate');
+        return $this->returnedData;
+    }
+
+
+    public function postRequest($url,$data=array()){
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data)
+            )
+        );
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        return $result;
     }
 
     function install(){}

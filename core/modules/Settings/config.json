@@ -39,6 +39,12 @@
     }, {
         "url": "changeAppMainSettings",
         "auth": ["KOORD"]
+    }, {
+        "url": "getModuleUpdate",
+        "parameters": ["modules", "ownerData"]
+    }, {
+        "url": "checkModuleUpdate",
+        "auth": ["KOORD"]
     }],
     "css": ["style"],
     "jsControllers": ["settingsController"],
