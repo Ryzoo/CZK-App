@@ -328,7 +328,21 @@ class Settings extends BasicModule{
     }
 
     public function getModuleVersion($moduleName){
-        //todo
+        $json = new JSON();
+        $moduleConf = $json->decodeFile(__DIR__. '/../../../modules/'.$moduleName.'/config.json');
+        if(isset($moduleConf)){
+            return $moduleConf->version;
+        }
+        return -1;
+    }
+
+    public function getModuleHostVersion($moduleName){
+        $json = new JSON();
+        $moduleConf = $json->decodeFile(__DIR__. '/../../../baseApp/modules/'.$moduleName.'/config.json');
+        if(isset($moduleConf)){
+            return $moduleConf->version;
+        }
+        return -1;
     }
 
     public function getOwnerModules($ownerData){
@@ -348,13 +362,13 @@ class Settings extends BasicModule{
 
         for ($i=0; $i < count($modulesList); $i++) { 
             for ($x=0; $x < count($ownerModules); $x++) { 
-                if($modulesList[$i] === $ownerModules[$x]){
+                //if($modulesList[$i] === $ownerModules[$x]){
                     array_push($toUpdate,[
                         "name"=>$modulesList[$i],
-                        "ver"=>$this->getModuleVersion($modulesList[$i])
+                        "ver"=>$this->getModuleHostVersion($modulesList[$i])
                     ]);
-                    break;
-                }
+                  //  break;
+               // }
             }
         }
 
@@ -366,7 +380,7 @@ class Settings extends BasicModule{
         $url = 'http://server.com/path';
         $allModules = $this->getAllModules();
         $data = array('modules' => $allModules, 'ownerData' => $this->getOwnerData());
-        $this->returnedData['data'] = $this->postRequest('http://app.cmcadmin.usermd.net/backend/getModuleUpdate',$data);
+        $this->returnedData['data'] = $this->postRequest('//panel-klienta.centrumklubu.pl/backend/getModuleUpdate',$data);
         return $this->returnedData;
     }
 
