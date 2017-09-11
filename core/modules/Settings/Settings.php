@@ -377,10 +377,10 @@ class Settings extends BasicModule{
     }
 
     public function checkModuleUpdate(){
-        $url = 'http://server.com/path';
+        $url = "//panel-klienta.centrumklubu.pl/backend/getModuleUpdate";
         $allModules = $this->getAllModules();
         $data = array('modules' => $allModules, 'ownerData' => $this->getOwnerData());
-        $this->returnedData['data'] = $this->postRequest('//panel-klienta.centrumklubu.pl/backend/getModuleUpdate',$data);
+        $this->returnedData['data'] = $this->postRequest($url,$data);
         return $this->returnedData;
     }
 
