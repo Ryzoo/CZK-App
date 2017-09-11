@@ -1,8 +1,8 @@
 <?php
-namespace Modules\FieldComposition;
+namespace Modules\MathComposition;
 use Core\System\BasicModule;
 
-class FieldComposition extends BasicModule {
+class MathComposition extends BasicModule {
     function install(){
     }
 

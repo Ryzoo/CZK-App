@@ -1,0 +1,26 @@
+{
+    "name": "MathComposition",
+    "description": "Dodaje możliwość graficznego ułożenia zawodników na boisku oraz podglądu formy dla danego zestawienia",
+    "require": ["Stats"],
+    "version": "1.0",
+    "backendRoute": [],
+    "jsControllers": ["compositionController"],
+    "frontendRoute": [{
+        "url": "teamComposition",
+        "templateSrc": "actualTeamComposition.html",
+        "controllerName": "compositionController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Szatnia",
+        "anchorWeight": 8,
+        "anchorPointIcon": "fa fa-users fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "content": {
+            "link": {
+                "label": "Skład meczowy",
+                "url": "#!/teamComposition"
+            }
+        }
+    }]
+}

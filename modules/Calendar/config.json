@@ -1,5 +1,5 @@
 {
-    "name": "News",
+    "name": "Calendar",
     "description": "Dodaje kalendarz oraz możliwość dodawania wydarzeń",
     "version": "1.0",
     "backendRoute": [{

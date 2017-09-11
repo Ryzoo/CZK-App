@@ -86,7 +86,7 @@
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Menadżer trenerów",
+                    "label": "Menadżer personelu",
                     "url": "#!/masterMenager",
                     "icon": "fa fa-user-secret fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""

@@ -1,9 +1,9 @@
 <?php
-namespace Modules\Post;
+namespace Modules\Table;
 
 use Core\System\BasicModule;
 
-class Post extends BasicModule {
+class Table extends BasicModule {
     
     function install(){
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `comments` (`id` int(11) NOT NULL,`id_post` int(11) NOT NULL,`id_user` int(11) NOT NULL, `content` text NOT NULL,`date_add` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');

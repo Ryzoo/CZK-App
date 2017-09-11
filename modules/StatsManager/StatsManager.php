@@ -1,9 +1,9 @@
 <?php
-namespace Modules\Stats;
+namespace Modules\StatsManager;
 
 use Core\System\BasicModule;
 
-class Stats extends BasicModule {
+class StatsManager extends BasicModule {
     
     function install(){
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential` (`id` int(11) NOT NULL,`name` varchar(255) COLLATE utf8_polish_ci NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
