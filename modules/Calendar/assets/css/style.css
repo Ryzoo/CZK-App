@@ -14,3 +14,62 @@
     padding-top: 15px;
     margin-top: 15px;
 }
+
+#addEventForm>.form-group {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.colorPickerCalendar {
+    width: 100%;
+    overflow: hidden;
+    padding: 5px;
+    padding-bottom: 15px;
+}
+
+.colorPickerCalendar label {
+    width: 100%;
+    float: left;
+}
+
+.colorRed {
+    background: #ff0000;
+}
+
+.colorOrange {
+    background: #f6c000;
+}
+
+.colorGreen {
+    background: #60b244;
+}
+
+.colorBlue {
+    background: #0099ff;
+}
+
+.colorRed,
+.colorOrange,
+.colorGreen,
+.colorBlue {
+    height: 15px;
+    width: 25%;
+    transition: border .2s;
+    float: left;
+}
+
+.colorRed:hover,
+.colorOrange:hover,
+.colorGreen:hover,
+.colorBlue:hover {
+    cursor: pointer;
+    border: 1px solid black;
+    transition: border .2s;
+}
+
+.borderSelectedColor {
+    margin: 5px;
+    margin-bottom: 5px !important;
+    border: 2px solid #0099ff;
+    border-radius: 5px;
+}

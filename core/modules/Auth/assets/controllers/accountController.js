@@ -1,6 +1,6 @@
 app.controller('accountController', function($scope, auth, $rootScope, request, notify) {
     $scope.logout = auth.logout;
-    
+
 
     $scope.initAccount = function() {
         if (!auth.checkIsLogged()) {
@@ -24,13 +24,13 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
         $rootScope.viewPerm = perm;
     }
 
-    $scope.updateUserDate = function(isPass=false) {
+    $scope.updateUserDate = function(isPass = false) {
         var id = isPass ? "#userUpdateDataFormPassImg" : "#userUpdateDataForm";
         request.backend('updateUserData', new FormData($(id)[0]), function(data) {
             $rootScope.$apply(function() {
                 auth.getUserData();
             });
-        },'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.',true);
+        }, 'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.( ctrl+f5 )', true);
     }
 
     $(document).off("change", "#userImgFile");

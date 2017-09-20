@@ -10,25 +10,50 @@ class Players extends BasicModule{
     function uninstall(){
     }
 
+    function addPlayerToTeam( $data ){
+        $tmid = $data['tmid'];
+        $usid = $data['usid'];
+
+        $data = [
+            'id_user'  => $usid,
+            'id_team'  => $tmid
+        ];
+
+        $teamMembersId = ($this->db->getConnection())->insert('team_members', $data);
+
+        return $this->returnedData;
+    }
+
     function getAllPlayers( $data ){
         $tmid = $data['tmid'];
-        $toReturn = null;
-        $success = true;
-        $error = "";
+        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) AND id_team = '.$tmid);
+        return $this->returnedData;
+    }
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) AND id_team = '.$tmid);
-
-        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    function getAllPlayersFromApp( $data ){
+        $tmid = $data['tmid'];
+        $teamUser = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) AND id_team = '.$tmid);
+        $allUser = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname FROM users, user_data, roles WHERE users.id_role = roles.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4)');
+        $this->returnedData["data"] = [];
+        for($i=0;$i<count($allUser);$i++){
+            $isIn = false;
+            for($j=0;$j<count($teamUser);$j++){
+                if( $allUser[$i]["usid"] === $teamUser[$j]["usid"] ){
+                    $isIn = true;
+                    break;
+                }
+            }
+            if(!$isIn){
+                array_push($this->returnedData["data"],$allUser[$i]);
+            }
+        }
+        
+        return $this->returnedData;
     }
 
     function getAllMaster(){
-        $toReturn = null;
-        $success = true;
-        $error = "";
-
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM users, user_data, roles WHERE users.id_role = roles.id AND  users.id = user_data.user_id AND users.id_role = 2');
-
-        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM users, user_data, roles WHERE users.id_role = roles.id AND  users.id = user_data.user_id AND users.id_role = 2');
+        return $this->returnedData;
     }
 
     function addPerson( $post ){

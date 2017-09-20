@@ -50,10 +50,9 @@ class Raports extends BasicModule {
         $toReturn = null;
         $success = true;
         $error = "";
-        $tmid = $data["tmid"];
         $usid = $data["usid"];
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT id,name,file_path FROM raports WHERE id_user='.$usid.' AND id_team='.$tmid);
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT id,name,file_path,date_add FROM raports WHERE id_user='.$usid.' ORDER BY date_add DESC');
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }

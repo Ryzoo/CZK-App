@@ -27,6 +27,7 @@
             "parameters": ["tmid"]
         }
     ],
+    "css": ["style"],
     "jsControllers": ["tabController"],
     "frontendRoute": [{
         "url": "tab",

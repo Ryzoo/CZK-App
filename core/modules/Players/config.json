@@ -15,6 +15,15 @@
             "url": "getAllMaster"
         },
         {
+            "url": "getAllPlayersFromApp",
+            "parameters": ["tmid"]
+        },
+        {
+            "url": "addPlayerToTeam",
+            "parameters": ["tmid","usid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
             "url": "getAllUserData",
             "parameters": ["usid"]
         },
@@ -34,7 +43,7 @@
         "destination": "leftMenu",
         "content": {
             "link": {
-                "label": "Menadżer zawodników",
+                "label": "Zawodnicy",
                 "url": "#!/showPlayers",
                 "icon": "fa fa-address-book-o fa-fw",
                 "additional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\""

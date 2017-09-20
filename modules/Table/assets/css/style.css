@@ -1,0 +1,19 @@
+#newPostInput {
+    width: 70%;
+    float: left;
+    margin-top: 15px;
+}
+
+.postInputButton {
+    position: absolute;
+    width: 25%;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.postNew {
+    margin: 10px;
+    margin-bottom: 50px;
+    position: relative;
+}

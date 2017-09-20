@@ -6,7 +6,7 @@ use Core\System\BasicModule;
 class Calendar extends BasicModule {
     
     function install(){
-        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `events` ( `id_team` int(11) NOT NULL,`title` text NOT NULL, `start` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,`end` datetime NOT NULL,`url` varchar(255) NOT NULL DEFAULT "",`id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
+        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `events` ( `id` int(11) NOT NULL,`id_team` int(11) NOT NULL,`title` text NOT NULL, `start` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,`end` datetime NOT NULL, `color` varchar(30) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
         $result = ($this->db->getConnection())->executeSql('ALTER TABLE `events` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
         
     }
@@ -21,8 +21,10 @@ class Calendar extends BasicModule {
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT * FROM events WHERE id_team = '.$tmid);
-
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT id, DATE_FORMAT(start, "%Y-%m-%dT%TZ") as start, DATE_FORMAT(end, "%Y-%m-%dT%TZ") as end, title, color FROM events WHERE id_team = '.$tmid);
+        for($i=0;$i<count($toReturn);$i++){
+            $toReturn[$i]["allDay"] = false;
+        }
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
@@ -67,12 +69,14 @@ class Calendar extends BasicModule {
         $start = $data["start"];
         $end = $data["end"];
         $tmid = $data["tmid"];
+        $color = $data["color"];
 
         $data = [
             'id_team'   => $tmid,
             'title' => $title,
             'start' => $start,
             'end' => $end,
+            'color' => $color
         ];
         $toReturn = ($this->db->getConnection())->insert('events', $data);
 

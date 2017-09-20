@@ -1,25 +1,12 @@
-<div ng-init="setPerm(['ZAWODNIK','TRENER'])"></div>
-<div class="section">
-    <div ng-show='showContent' class="row" ng-init="initRaports();">
-        <div class="col s12 m8 offset-m2">
+<div ng-init="setPerm(['KOORD','TRENER'])"></div>
+<div class="section paymentSection" ng-init="initPaymentCyclic()">
+    <div ng-show='showContent' class="row">
+        <div class="col s12 l8 offset-l2">
             <div class="card">
                 <div class="card-content">
-                    <div class="card-title">
-                        RAPORTY
-                    </div>
+                    <div class="card-title">Płatności cykliczne</div>
                     <div class="row">
-                        <table>
-                            <thead>
-                                <th class="center-align">Data dodania</th>
-                                <th class="center-align">Nazwa</th>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="raport in raportsList">
-                                    <td class="center-align">{{raport.date_add}}</td>
-                                    <td class="center-align"><a href="{{raport.file_path}}" download><i class="fa fa-download" aria-hidden="true"></i>{{raport.name}}</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+
                     </div>
                 </div>
             </div>
@@ -48,6 +35,8 @@
         setTimeout(function() {
             Materialize.updateTextFields();
             $('select').material_select();
+            $('ul.tabs').tabs();
+            $('.collapsible').collapsible();
         }, 500);
     });
 </script>

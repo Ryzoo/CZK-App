@@ -1,7 +1,7 @@
 {
     "name": "MathComposition",
     "description": "Dodaje możliwość graficznego ułożenia zawodników na boisku oraz podglądu formy dla danego zestawienia",
-    "require": ["Stats"],
+    "require": ["StatsManager"],
     "version": "1.0",
     "backendRoute": [],
     "jsControllers": ["compositionController"],

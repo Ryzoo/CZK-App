@@ -5,15 +5,15 @@
     "appServicesFile": ["services"],
     "backendRoute": [{
             "url": "getStats",
-            "parameters": ["usid", "tmid"]
+            "parameters": ["usid"]
         },
         {
             "url": "getTeamStats",
-            "parameters": ["tmid", "usid"]
+            "parameters": ["usid"]
         },
         {
             "url": "addScore",
-            "parameters": ["usid", "tmid", "tsid", "score"],
+            "parameters": ["usid", "tsid", "score"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {
@@ -51,7 +51,7 @@
         },
         {
             "url": "getScoreFromTestId",
-            "parameters": ["usid", "tmid", "tsid"]
+            "parameters": ["usid", "tsid"]
         }
     ],
     "jsControllers": ["myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController"],
@@ -95,29 +95,29 @@
             }
         }, {
             "destination": "leftMenu",
-            "anchorPoint": "Menadżer testów",
+            "anchorPoint": "Testy / statystyki",
             "anchorPointIcon": "fa fa-cubes fa-fw",
             "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
             "content": {
                 "link": {
-                    "label": "Zarządzaj testami",
+                    "label": "Edytuj testy",
                     "url": "#!/testMenager"
                 }
             }
         }, {
             "destination": "leftMenu",
-            "anchorPoint": "Menadżer testów",
+            "anchorPoint": "Testy / statystyki",
             "anchorPointIcon": "fa fa-cubes fa-fw",
             "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
             "content": {
                 "link": {
-                    "label": "Zarządzaj wynikami",
+                    "label": "Edytuj wyniki",
                     "url": "#!/newScore"
                 }
             }
         }, {
             "destination": "leftMenu",
-            "anchorPoint": "Menadżer statystyk",
+            "anchorPoint": "Testy / statystyki",
             "anchorPointIcon": "fa fa-bar-chart fa-fw",
             "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
             "content": {
@@ -128,7 +128,7 @@
             }
         }, {
             "destination": "leftMenu",
-            "anchorPoint": "Menadżer statystyk",
+            "anchorPoint": "Testy / statystyki",
             "anchorPointIcon": "fa fa-bar-chart fa-fw",
             "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
             "content": {

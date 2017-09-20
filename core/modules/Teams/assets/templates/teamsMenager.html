@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title" ng-click="openCard('contentAddPersonShow')" style="cursor:pointer;">
-                            Dodaj nową drużynę
+                            Dodaj nową sekcję
                             <p ng-hide='personShow' style='font-size: 12px; text-align:right; float: right;'>Rozwiń <i class="fa fa-chevron-down" aria-hidden="true"></i></p>
                             <p ng-show='personShow' style='font-size: 12px; text-align:right; float: right;'>Zwiń <i class="fa fa-chevron-up" aria-hidden="true"></i></p>
                         </div>
@@ -16,11 +16,11 @@
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <input id="teamName" type="text" name="teamName" placeholder="Nazwa drużyny" class="validate">
-                                            <label for="teamName">Nazwa drużyny</label>
+                                            <label for="teamName">Nazwa sekcji</label>
                                         </div>
                                         <div class="input-field col s6">
                                             <input id="teamWeight" type="text" name="teamWeight" placeholder="Waga pozycji w menu" class="validate">
-                                            <label for="teamWeight">Waga pozycji w menu</label>
+                                            <label for="teamWeight">Pozycja w menu</label>
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
-                            Lista drużyn
+                            Lista sekcji
                         </div>
                         <div class="row">
                             <table class="table highlight">
@@ -65,9 +65,9 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
-                        Lista trenerów drużyny
+                        Lista trenerów wybranej sekcji
                     </div>
-                    <p style='margin-top: 20px;'>Wybierz drużynę z listy, aby wyświetlić jej trenerów</p>
+                    <p style='margin-top: 20px;'>Wybierz sekcję z listy, aby wyświetlić jej trenerów</p>
                 </div>
                 <div ng-show='showPreLoad' style="position:relative; margin-top:15%; margin-bottom: 20px; margin: auto">
                     <div class="preloader-wrapper big active">
@@ -92,7 +92,7 @@
                             </select>
                             <label>Wybierz trenera</label>
                         </div>
-                        <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addTeamMaster()">Dodaj do drużyny</button>
+                        <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addTeamMaster()">Dodaj do tej sekcji</button>
                     </form>
                     <table class="table highlight">
                         <thead>

@@ -13,19 +13,19 @@
                         <div class="form-group ">
                             <div class="row">
                                 <div class="row">
-                                    <div class="input-field col s4 ">
+                                    <div class="input-field col s12 m4 ">
                                         <select id='selectUserToStat'>
                                             <option value="" disabled selected>Zawodnik</option>
                                         </select>
                                         <label>Wybierz zawodnika</label>
                                     </div>
-                                    <div class="input-field col s4 " ng-show="showTestAndType">
+                                    <div class="input-field col s12 m4  " ng-show="showTestAndType">
                                         <select id='selectPotential'>
                                             <option value="" disabled selected>Grupy testowe</option>
                                         </select>
                                         <label>Wybierz grupę testową</label>
                                     </div>
-                                    <div class="input-field col s4 " ng-show="showTestAndType">
+                                    <div class="input-field col s12 m4  " ng-show="showTestAndType">
                                         <select id='selectDataType'>
                                             <option value="" disabled >Sposób wyświetlania</option>
                                             <option value="tabele" selected>Tabela</option>
@@ -37,21 +37,21 @@
                                 <div ng-hide='showPreLoad' class="col s12" style='margin-top:20px;'>
                                     <div class="row">
                                         <ul class="collapsible" data-collapsible="accordion">
+                                            <li>
+                                                <div style='position: relative' class="collapsible-header">
+                                                    <h5>Aktualna forma zawodnika</h5>
+                                                </div>
+                                                <div class="collapsible-body">
+                                                    <div id="main-summary-chart"></div>
+                                                </div>
+                                            </li>
                                             <li ng-repeat="test in acutalSelectedGroupTest " ng-init='initChart()'>
                                                 <div style='position: relative' class="collapsible-header optionsToShow" ng-class="{active: test.name === 'Podsumowanie',active: test.name === 'Zestawienie'}">{{test.name}}
                                                     <div style='width: 50px; float:right;' id='chart-percent-{{test.id}}'></div>
                                                 </div>
                                                 <div class="collapsible-body">
                                                     <div class="row">
-                                                        <div ng-show="test.name === 'Podsumowanie'">
-                                                            <div id="summary-chart-{{test.id}}"></div>
-                                                        </div>
-                                                        <div ng-show="test.name === 'Zestawienie'">
-                                                            <h5>Aktualna forma zawodnika</h5>
-                                                            <div id="main-summary-chart-{{test.id}}"></div>
-                                                            <h5>Forma zawodnika w poszczególnych grupach testów</h5>
-                                                            <div id="main-summary-chart-all-{{test.id}}"></div>
-                                                        </div>
+
                                                         <div ng-hide="test.name === 'Podsumowanie' || test.name === 'Zestawienie'">
                                                             <table ng-show='dataViewAsTable' class='highlight responsive-table centered'>
                                                                 <thead>

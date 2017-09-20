@@ -1,4 +1,4 @@
-app.controller('teamStatisticController', function($scope, auth, $rootScope, notify, statistic,request) {
+app.controller('teamStatisticController', function($scope, auth, $rootScope, notify, statistic, request) {
     $rootScope.showContent = false;
     $rootScope.actualStats = [];
     $scope.acutalSelectedGroup = 0;
@@ -7,7 +7,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
     var matchTeamScore = 0;
 
     $scope.initTeamStats = function() {
-        request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid }, function(data) {
             var allPersonsId = [];
             var matchPersonsId = [];
             var fullPersonId = [];
@@ -37,9 +37,10 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
     }
 
     $(document).off('change', '#selectPotential');
-    $(document).on('change','#selectPotential', function() {
+    $(document).on('change', '#selectPotential', function() {
         $scope.$apply(function() {
             $scope.acutalSelectedGroup = $("#selectPotential").val();
+            console.log($rootScope.actualStats);
             $scope.acutalSelectedGroupTest = $rootScope.actualStats[$scope.acutalSelectedGroup];
         });
         $('.collapsible').collapsible();

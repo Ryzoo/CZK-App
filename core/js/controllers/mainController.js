@@ -3,7 +3,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $scope.contentLoaded = false;
     $rootScope.newNotify = [];
     $rootScope.allNotify = [];
-    $rootScope.lastNotifyId = 0;
+    $rootScope.lastNotId = 0;
     $rootScope.notifyCount = 0;
     $rootScope.mainSettings = [];
     $scope.showAllNewsNotify = false;
@@ -26,21 +26,22 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         address: "",
         bodyType: ""
     }
+
     $scope.showNotifications = function(isMainClik = true) {
         if (isMainClik) {
             if ($scope.showAllNewsNotify == false) {
                 $scope.showAllNewsNotify = true;
-            } else{
+            } else {
                 $scope.showAllNewsNotify = false;
-                notify.setNewOff();
             }
+            notify.setNewOff();
         } else {
             $scope.showAllNewsNotify = false;
         }
     }
 
     $scope.mainInit = function() {
-        
+
         if (!auth.checkIsLogged()) {
             auth.logout();
             return;
@@ -54,11 +55,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                 });
 
                 request.backend('getTeams', {}, function(data) {
-                    if(data.length == 0){
-                        notify.localNotify('Uwaga',"Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny");
-                    }else{
+                    if (data.length == 0) {
+                        notify.localNotify('Uwaga', "Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do sekcji");
+                    } else {
                         $('#teamSelect').html('');
-                        $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
+                        $('#teamSelect').append("<option value='' disabled> Wybierz sekcję </option>");
                         for (var i = 0; i < data.length; i++) {
                             $('#teamSelect').append("<option value='" + data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + data[i].name + "</option>");
                         }

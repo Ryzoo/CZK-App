@@ -58,7 +58,7 @@ class Notify extends BasicModule {
 
         $usid = $data['usid'];
         $tmid = $data['tmid'];
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id, notifications.title, notifications.url FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid.' AND user_notifications.is_new = 1 GROUP BY user_notifications.id');
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id as id, notifications.title, notifications.url, user_notifications.is_new,notifications.date_add  FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid.' GROUP BY user_notifications.id ORDER BY notifications.date_add DESC LIMIT 5');
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
@@ -70,7 +70,7 @@ class Notify extends BasicModule {
 
         $usid = $data['usid'];
         $tmid = $data['tmid'];
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id, notifications.title, notifications.url FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid);
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT notifications.id, notifications.title, notifications.url,notifications.date_add FROM user_notifications, notifications WHERE notifications.id = user_notifications.id_notification AND user_notifications.id_team = '.$tmid.' AND user_notifications.id_user = '.$usid.' GROUP BY user_notifications.id ORDER BY notifications.date_add DESC LIMIT 50' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
@@ -90,7 +90,10 @@ class Notify extends BasicModule {
                 'id_user'=> $usid,
                 'id_team'=> $tmid
             ];
-            array_push($toReturn,($this->db->getConnection())->delete('user_notifications', $condsUsers)) ;
+            $dataUsers = [ 
+                'is_new' => 2
+            ];
+            array_push($toReturn,($this->db->getConnection())->update('user_notifications', $condsUsers, $dataUsers)) ;
         }
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );

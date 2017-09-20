@@ -300,7 +300,7 @@ class Route{
 
         foreach ($array as $k => $v) {
             $weight = 999;
-            if( is_object($v) ){
+            if( is_object($v) && isset($v->weight)){
                 $weight = $v->weight;
             }else{
                 $weight = $v["weight"];
@@ -309,12 +309,12 @@ class Route{
             for ($i=0; $i < count($new_array)-1; $i++) { 
                 $weightIn = 999;
                 $weightNext = 999;
-                if( is_object($new_array[$i]) ){
+                if( isset(($new_array[$i])->weight) ){
                     $weightIn = ($new_array[$i])->weight;
                 }else{
                     $weightIn = ($new_array[$i])["weight"];
                 }
-                if( is_object($new_array[$i+1]) ){
+                if( isset(($new_array[$i+1])->weight) ){
                     $weightNext = ($new_array[$i+1])->weight;
                 }else{
                     $weightNext = ($new_array[$i+1])["weight"];

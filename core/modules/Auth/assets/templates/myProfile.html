@@ -70,8 +70,8 @@
                         <div class="form-group ">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input id='dataInput' type="text" name="birthdate" placeholder="Data urodzenia " value="{{user.birthdate}}" class="validate">
-                                    <label for="dataInput">Data urodzenia w formacie: yyyy:mm:dd</label>
+                                    <input id='dataInput' type="text" class='datetimepicker' name="birthdate" placeholder="Data urodzenia " value="{{user.birthdate}}" class="validate">
+                                    <label for="dataInput">Data urodzenia</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id='adresInput' type="text" name="address" placeholder="Adres " value="{{user.address}}" class="validate">
@@ -100,7 +100,7 @@
                                     <label for="TelefonInput">Telefon</label>
                                 </div>
                                 <div class="input-field col s6" ng-show="user.role == 'ZAWODNIK'">
-                                    <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parent_tel}}" class="validate">
+                                    <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parentTel}}" class="validate">
                                     <label for="parenInput">Telefon rodzica</label>
                                 </div>
                             </div>
@@ -131,17 +131,17 @@
                         </div>
 
                         <div class="form-group" ng-show="user.role == 'ZAWODNIK'">
-                                <div class="row" style='margin-top: 20px;'>
-                                        <div class="input-field col s10 offset-s1">
-                                            <select name='bodyType'>
+                            <div class="row" style='margin-top: 20px;'>
+                                <div class="input-field col s10 offset-s1">
+                                    <select name='bodyType'>
                                                 <option value="" disabled selected>Budowa ciała</option>
                                                 <option value="Ektomorfik" ng-selected="user.bodyType == 'Ektomorfik'" >Ektomorfik</option>
                                                 <option value="Mezomorfik" ng-selected="user.bodyType == 'Mezomorfik'">Mezomorfik</option>
                                                 <option value="Endomorfik" ng-selected="user.bodyType == 'Endomorfik'">Endomorfik</option>
                                             </select>
-                                            <label>Wybierz budowę ciała która najlepiej do Ciebie pasuje</label>
-                                        </div>
-                                    </div>
+                                    <label>Wybierz budowę ciała która najlepiej do Ciebie pasuje</label>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="row">
                                     <div class="col s12 m4">
@@ -200,7 +200,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate()">Zmień dane</button>
                         </div>
@@ -213,6 +213,11 @@
 
 <script>
     $(document).ready(function() {
+        $('.datetimepicker').datetimepicker({
+            format: 'Y:m:d',
+            lang: 'pl',
+            timepicker: false,
+        });
         setTimeout(function() {
             Materialize.updateTextFields();
             $('select').material_select();

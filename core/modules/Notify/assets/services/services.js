@@ -1,4 +1,3 @@
-
 app.service('notify', function($http, $rootScope, request) {
     this.Notification = function(_title, _to, _url = '', _toAll = false) {
         this.title = _title;
@@ -31,23 +30,37 @@ app.service('notify', function($http, $rootScope, request) {
         var dataToSend = {
             token: $rootScope.user.token,
             usid: $rootScope.user.id,
-            tmid: $rootScope.user.tmid
+            tmid: $rootScope.user.tmid,
         };
-        local = this.localNotify ;
+        local = this.localNotify;
         request.sync('POST', urlToPost, dataToSend,
             function(reqData) {
                 if (reqData.success) {
                     $rootScope.$apply(function() {
                         if (reqData.data) {
-                            $rootScope.newNotify = reqData.data;
-                            $rootScope.notifyCount = reqData.data.length;
-                            
+                            if( reqData.data[0] ){
+                                
+                                if( reqData.data[0].id === $rootScope.lastNotId) return;
+                                
+                                $rootScope.newNotify = reqData.data;
+                                $rootScope.notifyCount = reqData.data.length;
+                                $rootScope.lastNotId = reqData.data[0].id;
+                                
+                                var count = 0;
+                                for (var i = 0; i < $rootScope.notifyCount; i++) {
+                                    if (reqData.data[i].is_new === "1") {
+                                        count++;
+                                    }
+                                }
+                                $rootScope.notifyCount = count;
+                            }
+                                
                         } else {
                             $rootScope.notifyCount = 0;
                         }
-                        for(var i=0;i<$rootScope.notifyCount;i++){
-                            if( reqData.data[i].id > $rootScope.lastNotifyId){
-                                local('Otrzymano powiadomienie',reqData.data[i].title);
+                        for (var i = 0; i < $rootScope.notifyCount; i++) {
+                            if (reqData.data[i].id > $rootScope.lastNotifyId) {
+                                local('Otrzymano powiadomienie', reqData.data[i].title);
                                 $rootScope.lastNotifyId = reqData.data[i].id;
                             }
                         }

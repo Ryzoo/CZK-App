@@ -1,7 +1,1 @@
-{
-    "installedModules": ["Todo", "StatsManager", "Table", "Calendar", "Frequency", "MathComposition", "Dashboard", "Payment"],
-    "coreModules": ["Auth", "Database", "Settings", "Notify", "Staff", "Teams", "Players", "Raports"],
-    "database": { "host": "mysql18.mydevil.net", "user": "m1006_cmc_admin", "password": "15FNKgq18blCNFtN6RYR", "dbName": "m1006_cmc_app" },
-    "mainSettings": { "appName": "Club Management Center", "appVersion": "1.0.0" },
-    "ownerData": { "id": "", "verificationToken": "" }
-}
+{ "installedModules": ["Todo", "Table", "MathComposition", "Frequency", "Calendar", "StatsManager", "Payment", "Dashboard"], "coreModules": ["Auth", "Database", "Settings", "Notify", "Staff", "Teams", "Players", "Raports"], "database": { "host": "mysql18.mydevil.net", "user": "m1006_cmc_admin", "password": "15FNKgq18blCNFtN6RYR", "dbName": "m1006_cmc_app" }, "mainSettings": { "appName": "Club Management Center", "appVersion": "1.0.0" }, "ownerData": { "id": "", "verificationToken": "" } }

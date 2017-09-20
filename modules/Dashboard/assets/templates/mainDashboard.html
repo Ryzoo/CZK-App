@@ -13,19 +13,19 @@
                                 <div class="today-date"></div>
                             </div>
                         </div>
-                        <div class="col s12">
+                        <div class="col s12" ng-show='nowEvents.length > 0'>
                             <div class="col s12">
                                 <div class="titleIn">Aktualne</div>
                                 <ul class="collection">
-                                    <li class="collection-item" ng-repeat="now in nowEvents">{{now.title}}</br>Zakończy się: {{now.end}}</li>
+                                    <li class="collection-item" ng-repeat="now in nowEvents">{{now.title}}</br>Do zakończenia: <b class='prettydate'>{{now.end}}</b></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col s12">
+                        <div class="col s12" ng-show='nextEvents.length > 0'>
                             <div class="col s12">
                                 <div class="titleIn events-text-color">Najbliższe</div>
                                 <ul class="collection">
-                                    <li class="collection-item events-text-color" ng-repeat="next in nextEvents | limitTo: 3 ">{{next.title}}</br>Rozpocznie się: {{next.end}}</li>
+                                    <li class="collection-item events-text-color" ng-repeat="next in nextEvents | limitTo: 3 ">{{next.title}}</br>Rozpocznie się: <b class='prettydate'>{{next.end}}</b></li>
                                 </ul>
                             </div>
                         </div>
@@ -37,25 +37,49 @@
             </div>
         </div>
         <div class="col s12 m4">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        OSTATNIA AKTYWNOŚĆ
-                    </div>
-                    <div class="row">
-                        <div class="col s12" ng-show='isLoadedPost'>
-                            <p class="col s12 centered" style="padding-top:15px;">
-                                <a href="#!/myProfile"><img src="{{lastPost[0].user_img_path}}" class="circle" width="60" height="60"></a>
-                            </p>
-                            <div class="titleIn"><strong>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</strong></div>
-                            <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
-                                {{lastPost[0].content}}
+            <div class="col s12" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            PODSUMOWANIE PŁATNOŚCI
+                        </div>
+                        <div class="row">
+                            <div class="col s12" ng-controller='paymentController'>
+                                <div class="row" ng-init='getPaymentSummary()'>
+                                    <h5>Podsumowanie płatności w tym miesiącu</h5>
+                                    <div class="paymentPrice">Wystawione <b>{{paymentSummary.all}}</b> zł w tym: </div>
+                                    <div class="paymentPrice">Zakończone: <b>{{paymentSummary.completed}}</b> zł</div>
+                                    <div class="paymentPrice">Oczekujące: <b>{{paymentSummary.waiting}}</b> zł</div>
+                                </div>
                             </div>
-                            <div style='font-size: 10px; padding-top: 10px;'><strong>{{lastPost[0].date_add}}</strong></div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="#!/payment">Przejdź do płatności ></a>
                         </div>
                     </div>
-                    <div class="row" style="padding-top: 15px;">
-                        <a href="#!/tab">Przejdź do tablicy ></a>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            OSTATNIA AKTYWNOŚĆ
+                        </div>
+                        <div class="row">
+                            <div class="col s12" ng-show='isLoadedPost'>
+                                <p class="col s12 centered" style="padding-top:15px;">
+                                    <img src="{{lastPost[0].user_img_path}}" class="circle" width="60" height="60">
+                                </p>
+                                <div class="titleIn"><b>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</b></div>
+                                <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
+                                    {{lastPost[0].content}}
+                                </div>
+                                <div style='font-size: 10px; padding-top: 10px;'><b class='prettydate'>{{lastPost[0].date_add}}</b></div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="#!/tab">Przejdź do tablicy ></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,7 +88,7 @@
             <div class="card">
                 <div class="card-content" ng-controller="todoController" ng-init='initToDo();'>
                     <div class="card-title">
-                        ZADANIA
+                        MOJE ZADANIA
                     </div>
                     <div class="card-block">
                         <div class="row">

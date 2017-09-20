@@ -10,3 +10,11 @@
     height: 5px;
     background: #000;
 }
+
+.paymentPrice {
+    color: rgb(16, 29, 37)
+}
+
+.paymentPrice b {
+    color: rgb(255, 75, 30);
+}

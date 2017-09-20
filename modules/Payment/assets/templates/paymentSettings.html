@@ -1,0 +1,62 @@
+<div ng-init="setPerm(['KOORD','TRENER'])"></div>
+<div class="section paymentSection" ng-init="initPaymentSettings()">
+    <div ng-show='showContent' class="row">
+        <div class="col s12 l8 offset-l2">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Ustawienia</div>
+                    <div class="row">
+                        <div class="titleIn">Płatności online z PayU</div>
+                        <div class="row" style='padding: 10px'>
+                            <p>Pamiętaj ! Płatności za pośrednictwem Payu umozliwią ludzią płątność z tej aplikacji przez swoje konta bankowe online.<br/> Jeżeli ta opcja będzie wyłączona lub nie skonfigurowana prawidłowo, płatności online nię będą działać.
+                                <br/> Możesz jednak zawsze korzystać z modułu, jednak statusy płatności musisz zmieniać ręcznie, a środki przekazywać we własnym zakresie ( ręcznie ). </p>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="turnOffOnPayu" />
+                            <label for="turnOffOnPayu"> Czy aktywować płatności online prze Payu ? </label>
+                        </div>
+                        <div class="form-group " ng-show="isPayuEnabled">
+                            <div class="row">
+                                <div class="input-field col m12 l6">
+                                    <input id='posId' type="text" class='payOption' placeholder="Id punktu płatności (pos_id)" value="{{merchantPosId}}" class="validate">
+                                    <label for="posId">Id punktu płatności</label>
+                                </div>
+                                <div class="input-field col m12 l6">
+                                    <input id='merKey' type="text" class='payOption' placeholder="Drugi klucz (MD5)" value="{{merchantKey}}" class="validate">
+                                    <label for="merKey">Drugi klucz</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+            $('ul.tabs').tabs();
+            $('.collapsible').collapsible();
+        }, 500);
+    });
+</script>

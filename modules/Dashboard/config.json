@@ -2,7 +2,7 @@
     "name": "Dashboard",
     "description": "Panel główny wyśiwetlający podstawowe dane z aplikacji",
     "version": "1.0",
-    "require": ["Todo","News","Post"],
+    "require": ["Todo", "Calendar", "Table", "Payment"],
     "backendRoute": [],
     "jsControllers": ["mainDashboardController"],
     "frontendRoute": [{

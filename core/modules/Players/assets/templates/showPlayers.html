@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title" ng-click="openCard('contentAddPersonShow')" style="cursor:pointer;">
-                            Dodaj nową osobę do drużyny
+                            Dodaj nowe konto
                             <p ng-hide='personShow' style='font-size: 12px; text-align:right; float: right;'>Rozwiń <i class="fa fa-chevron-down" aria-hidden="true"></i></p>
                             <p ng-show='personShow' style='font-size: 12px; text-align:right; float: right;'>Zwiń <i class="fa fa-chevron-up" aria-hidden="true"></i></p>
                         </div>
@@ -39,6 +39,23 @@
                                 </div>
                                 <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addPerson()">Dodaj</button>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title" ng-click="openCardFt('contentAddFromAppPersonShow')" style="cursor:pointer;">
+                            Zwerbuj zawodnika posiadającego konto w aplikacji
+                            <p ng-hide='personAddShow' style='font-size: 12px; text-align:right; float: right;'>Rozwiń <i class="fa fa-chevron-down" aria-hidden="true"></i></p>
+                            <p ng-show='personAddShow' style='font-size: 12px; text-align:right; float: right;'>Zwiń <i class="fa fa-chevron-up" aria-hidden="true"></i></p>
+                        </div>
+                        <div class="row" style='padding:20px; display: none;' id='contentAddFromAppPersonShow' ng-show='personAddShow'>
+                            <p style="padding:20px; padding-top:0px; margin: 0;"><strong>Zwerbuj już istniejącego w aplikacji użytkownika do tej sekcji</strong></p>
+                            <select id='selectPersonFromApp'>
+                            </select>
+                            <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addPersonFromApp()">Zapisz do tej sekcji</button>
                         </div>
                     </div>
                 </div>
@@ -121,7 +138,7 @@
                                     <tbody>
                                         <tr class='row'>
                                             <td style="padding: 5px 0;"><strong>Ostatnie logowanie:</strong></td>
-                                            <td style="padding: 5px 0;">{{actualSelectedUserData.last_login_date}}</td>
+                                            <td style="padding: 5px 0;" ><span class='prettydate'>{{actualSelectedUserData.last_login_date}}</span></td>
                                         </tr>
                                         <tr class='row'>
                                             <td style="padding: 5px 0;"><strong>Adres zamieszkania:</strong></td>
@@ -192,17 +209,18 @@
                                     </div>
                                 </form>
                             </div>
-                            <ul class="collection col s12">
-                                <div class="col s6" style='padding: 5px 5px;' ng-repeat="raport in actualSelectedUserRaports">
-                                    <li class="collection-item" style="position:relative">
-                                        {{raport.name}}<br/>
-                                        <a href="{{raport.file_path}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
-                                        <div style="position: absolute; top: 5px; right: 15px; color: black; font-size: 20px; cursor: pointer">
-                                            <i class="fa fa-times" aria-hidden="true" ng-click="deleteRaport(raport.id)"></i>
-                                        </div>
-                                    </li>
-                                </div>
-                            </ul>
+                            <table>
+                                <thead>
+                                    <th class="center-align">Data dodania</th>
+                                    <th class="center-align">Nazwa</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="raport in actualSelectedUserRaports">
+                                        <td class="center-align prettydate">{{raport.date_add}}</td>
+                                        <td class="center-align"><a href="{{raport.file_path}}" download><i class="fa fa-download" aria-hidden="true"></i>{{raport.name}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

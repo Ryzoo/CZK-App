@@ -45,6 +45,16 @@ class Payment extends BasicModule {
       return $this->returnedData;
     }
 
+    function getPaymentSummary($data){
+      $tmid = $data['tmid'];
+      $completed = ($this->db->getConnection())->fetchRow('SELECT sum( amount ) as sum FROM payment_list WHERE MONTH(date_add) = MONTH(CURRENT_DATE()) AND id_status = 3');
+      $waiting = ($this->db->getConnection())->fetchRow('SELECT sum( amount ) as sum FROM payment_list WHERE MONTH(date_add) = MONTH(CURRENT_DATE()) AND (id_status = 1 OR id_status = 2)');
+      $this->returnedData["data"]["completed"] = isset($completed["sum"]) ? $completed["sum"] : 0;
+      $this->returnedData["data"]["waiting"] = isset($waiting["sum"]) ? $waiting["sum"] : 0;
+      $this->returnedData["data"]["all"] = (float) $this->returnedData["data"]["completed"] + (float) $this->returnedData["data"]["waiting"];
+      return $this->returnedData;
+    }
+
     function getUserPaymentHistory($data){
       $tmid = $data['tmid'];
       $usids = $data['usids'];
@@ -88,7 +98,8 @@ class Payment extends BasicModule {
       
       $this->returnedData["data"] = [
         "merchantPosId"=>$modulesConfig->merchantPosId,
-        "merchantKey"=>$modulesConfig->merchantKey
+        "merchantKey"=>$modulesConfig->merchantKey,
+        "availablePaymentPayu"=>$modulesConfig->availablePaymentPayu
       ];
 
       return $this->returnedData;
@@ -103,6 +114,17 @@ class Payment extends BasicModule {
       $modulesConfig->merchantKey = $merchantKey;
       unlink(__DIR__. '/config.json');
       $json->encodeFile($modulesConfig, __DIR__. '/config.json');
+      return $this->returnedData;
+    }
+
+    function turnOffOnPayuPay($data){
+      $payStatus = $data["payStatus"];
+      $json = new JSON();
+      $modulesConfig = $json->decodeFile(__DIR__. '/config.json');
+      $modulesConfig->availablePaymentPayu = $payStatus;
+      unlink(__DIR__. '/config.json');
+      $json->encodeFile($modulesConfig, __DIR__. '/config.json');
+      $this->returnedData["data"] = $payStatus;
       return $this->returnedData;
     }
 

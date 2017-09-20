@@ -1,17 +1,19 @@
 app.controller('calendarController', function($scope, auth, $rootScope, request, notify) {
-
     $scope.actualEdit = '';
     $scope.allEvents = '';
+    $scope.selectedColor = '#0099ff';
+
     $scope.initAllEv = function() {
         $rootScope.showContent = false;
         $scope.getAllEvents();
     }
 
     $scope.getAllEvents = function() {
-        request.backend('getNews', { tmid: $rootScope.user.tmid  }, function(data) {
+        request.backend('getNews', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.allEvents = data;
                 $scope.showContent = true;
+                console.log(data);
                 initCalendar();
             });
         });
@@ -22,14 +24,14 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
         var start1 = $("#addStartNews").val();
         var end1 = $("#addEndNews").val();
         if (title1.length > 1 && start1.length > 1 && end1.length > 1) {
-            request.backend('addNews', { tmid: $rootScope.user.tmid, title: title1, start: start1, end: end1  }, function(data) {
+            request.backend('addNews', { tmid: $rootScope.user.tmid, title: title1, start: start1, end: end1, color: $scope.selectedColor }, function(data) {
                 $scope.getAllEvents();
                 $('.editEvent').hide();
                 $("#addTitleNews").val('');
                 $("#addStartNews").val('');
                 $("#addEndNews").val('');
                 notify.addNew(new notify.Notification("Dodano wydarzenie: '" + title1 + "'", null, "#!/calendar", true));
-            },'Dodano wydarzenie pomyślnie');
+            }, 'Dodano wydarzenie pomyślnie');
         }
     };
 
@@ -37,7 +39,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
         if ($scope.actualEdit != '' && $("#editTitle").val().length > 2) {
             request.backend('editNews', { id: $scope.actualEdit.id, title: $("#editTitle").val() }, function(data) {
                 $scope.getAllEvents();
-            },'Wydarzenie edytowane pomyślnie');
+            }, 'Wydarzenie edytowane pomyślnie');
         }
         $('.editEvent').hide();
         $scope.actualEdit = '';
@@ -45,13 +47,18 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
 
     $scope.deleteEvent = function() {
         if ($scope.actualEdit != '') {
-            request.backend('deleteNews', {tmid: $scope.actualEdit.id_team, id: $scope.actualEdit.id }, function(data) {
+            request.backend('deleteNews', { tmid: $scope.actualEdit.id_team, id: $scope.actualEdit.id }, function(data) {
                 $scope.getAllEvents();
-            },'Wydarzenie usunięte pomyślnie');
+            }, 'Wydarzenie usunięte pomyślnie');
         }
         $('.editEvent').hide();
         $scope.actualEdit = '';
     };
+
+    $scope.selectColor = function(color) {
+        $('.borderSelectedColor').css("border-color", color);
+        $scope.selectedColor = color;
+    }
 
     function initCalendar() {
         /* initialize the calendar----------------------------*/
@@ -69,6 +76,7 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
             },
             editable: ($rootScope.user.role == 'TRENER' || $rootScope.user.role == 'KOORD'),
             droppable: true,
+            displayEventTime: true,
             drop: function(date, allDay) {
                 var originalEventObject = $(this).data('eventObject');
                 var copiedEventObject = $.extend({}, originalEventObject);
@@ -89,14 +97,15 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
             eventDrop: function(event) {
                 request.backend('editNews', { id: event.id, start: moment(event.start).format('YYYY-MM-DD HH:mm:ss'), end: moment(event.end).format('YYYY-MM-DD HH:mm:ss') }, function(data) {
                     $scope.getAllEvents();
-                },'Wydarzenie edytowane pomyślnie');
+                }, 'Wydarzenie edytowane pomyślnie');
             },
             eventResize: function(event, delta, revertFunc) {
                 request.backend('editNews', { id: event.id, start: moment(event.start).format('YYYY-MM-DD HH:mm:ss'), end: moment(event.end).format('YYYY-MM-DD HH:mm:ss') }, function(data) {
                     $scope.getAllEvents();
-                },'Wydarzenie edytowane pomyślnie');
+                }, 'Wydarzenie edytowane pomyślnie');
             },
-            events: $scope.allEvents
+            events: $scope.allEvents,
+            timeFormat: 'H(:mm)'
         });
     };
 

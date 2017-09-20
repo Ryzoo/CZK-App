@@ -16,13 +16,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="colorPickerCalendar">
+                                <label for="addTitleNews">Kolor wydarzenia</label>
+                                <div class="colorBlue" ng-click="selectColor('#0099ff');"></div>
+                                <div class="colorRed" ng-click="selectColor('#ff0000');"></div>
+                                <div class="colorOrange" ng-click="selectColor('#f6c000');"></div>
+                                <div class="colorGreen" ng-click="selectColor('#60b244');"></div>
+                            </div>
+                            <div class="form-group borderSelectedColor">
                                 <div class="row">
-                                    <div class="input-field col s6">
+                                    <div class="input-field col s12">
                                         <input id='addStartNews' type="text" class="datetimepicker" name="title" placeholder="Początek" required class="validate">
                                         <label for="addStartNews">Początek</label>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <div class="input-field col s12">
                                         <input id='addEndNews' type="text" class="datetimepicker" name="title" placeholder="Koniec" required class="validate">
                                         <label for="addEndNews">Koniec</label>
                                     </div>
@@ -40,16 +47,14 @@
                             <form class="form-horizontal style-form" id="userUpdateDataForm">
                                 <input type="hidden" value='{{actualEdit.id}}'>
                                 <div class="form-group">
-                                    <div class="input-field col s6">
+                                    <div class="input-field col s12">
                                         <input id='editTitle' type="text" name="title" placeholder="Tytuł" value='{{actualEdit.title}}' required class="validate">
                                         <label for="editTitle">Tytuł</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="button " class="waves-effect waves-light btn" ng-click="editEvent();">Zapisz</button>
-                                </div>
-                                <div class="form-group">
                                     <button type="button " class="waves-effect waves-light btn" ng-click="deleteEvent();">Usuń</button>
+                                    <button type="button " class="waves-effect waves-light btn" ng-click="editEvent();">Zapisz</button>
                                 </div>
                             </form>
                         </div>

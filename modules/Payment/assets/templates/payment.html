@@ -6,21 +6,8 @@
                 <div class="card-content">
                     <div class="card-title">Ludzie i płatności</div>
                     <div class="row">
-                        <div class="titleIn">Dane z panelu payu</div>
-                        <div class="form-group ">
-                            <div class="row">
-                                <div class="input-field col m12 l6">
-                                    <input id='posId' type="text" class='payOption' name="firstname" placeholder="Id punktu płatności (pos_id)" value="{{merchantPosId}}" class="validate">
-                                    <label for="posId">Id punktu płatności</label>
-                                </div>
-                                <div class="input-field col m12 l6">
-                                    <input id='merKey' type="text" class='payOption' name="lastname" placeholder="Drugi klucz (MD5)" value="{{merchantKey}}" class="validate">
-                                    <label for="merKey">Drugi klucz</label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="titleIn">Wybór osób do płatności</div>
-                        <table class="table highlight centered" >
+                        <table class="table highlight centered">
                             <thead>
                                 <tr>
                                     <th>Imię</th>
@@ -55,7 +42,7 @@
                 <div class="card-content">
                     <div class="card-title">Zarządzanie</div>
                     <div class="row">
-                        <div class="card-tabs" >
+                        <div class="card-tabs">
                             <ul class="tabs tabs-fixed-width" ng-init="payAdd=1;">
                                 <li class="tab"><a class="active" href="" ng-click='payAdd=1; payHistory=0'>Dodaj płatność</a></li>
                                 <li class="tab"><a href="" ng-click='payAdd=0; payHistory=1; getUsersHistory()'>Edycja płatności</a></li>
@@ -91,12 +78,12 @@
                                                                 <span class='paymentClickIcon' id='clickDeletePayment'  >
                                                                     <i ng-click="deletePayment(data.id)" class="fa fa-trash" aria-hidden="true"></i>
                                                                 </span>
-                                                                <span class='paymentClickIcon' id='clickEndPayment'  >
+                                                <span class='paymentClickIcon' id='clickEndPayment'>
                                                                     <i ng-click="endPayment(data.id)" class="fa fa-check" aria-hidden="true"></i>
                                                                 </span>
-                                                            </div>
-                                                            <div class="collapsible-body" >
-                                                                <span>
+                                            </div>
+                                            <div class="collapsible-body">
+                                                <span>
                                                                     <table class="table highlight centered" >
                                                                         <tbody>
                                                                             <tr class="row">
@@ -126,34 +113,33 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </span>
                                             </div>
                                         </li>
                                     </ul>
+                                    </span>
                                 </div>
-                                <div class="row" ng-show='loadHistory'>
-                                    <div class="preloader-wrapper big active" style="margin-top: 50px" >
-                                        <div class="spinner-layer spinner-blue">
-                                            <div class="circle-clipper left">
-                                                <div class="circle"></div>
-                                            </div>
-                                            <div class="gap-patch">
-                                                <div class="circle"></div>
-                                            </div>
-                                            <div class="circle-clipper right">
-                                                <div class="circle"></div>
-                                            </div>
+                                </li>
+                                </ul>
+                            </div>
+                            <div class="row" ng-show='loadHistory'>
+                                <div class="preloader-wrapper big active" style="margin-top: 50px">
+                                    <div class="spinner-layer spinner-blue">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div ng-show="toUpdate">
-                                <div class="row">
-                                
-                                </div>
+                        </div>
+                        <div ng-show="toUpdate">
+                            <div class="row">
+
                             </div>
                         </div>
                     </div>
@@ -161,22 +147,23 @@
             </div>
         </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
-        <div class="preloader-wrapper big active" style="margin-left: 45%">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
+</div>
+<div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+    <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+    <div class="preloader-wrapper big active" style="margin-left: 45%">
+        <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>

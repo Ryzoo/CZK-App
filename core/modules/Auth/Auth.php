@@ -23,7 +23,10 @@ class Auth {
             if( $result === $password ){
                 $token = md5(uniqid($email, true));
                 $conds = [ 'email' => $email, ];
-                $data = [ 'token' => $token, ];
+                $data = [ 
+                    'token' => $token,
+                    "last_login_date" => date("Y-m-d H:i:s")
+                ];
                 if(!(($this->db->getConnection())->update('users', $conds, $data))){
                     $error = "Problem z tokenem";
                     $success = false;
@@ -36,6 +39,7 @@ class Auth {
             $error = "Błędny adres email";
             $success = false;
         }
+
         return array( "error"=>$error,"success"=>$success,"token"=>$token );
     }
 

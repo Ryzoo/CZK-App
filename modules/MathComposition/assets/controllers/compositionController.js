@@ -2,9 +2,10 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     $scope.users = [];
     $scope.notOnField = [];
     $scope.showContent = false;
+    $scope.selectedOnFieldId = -1;
 
     $scope.getTeam = function() {
-        request.backend('getUserFromTeam', {tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 for (var index = 0; index < data.length; index++) {
                     data[index].isSelected = false;
@@ -20,7 +21,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                 teamFormChartInit();
             }, 1000);
         });
-        
+
     }
 
     $(document).off("change", ".changeNumber");
@@ -47,7 +48,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     }
 
     function savePositionOnField(usid, pos_x, pos_y, sendAlert = true) {
-        request.backend('savePositionOnField', {  usid: usid, pos_x: parseInt(pos_x), pos_y: parseInt(pos_y)  }, function(data) {
+        request.backend('savePositionOnField', { usid: usid, pos_x: parseInt(pos_x), pos_y: parseInt(pos_y) }, function(data) {
             if (sendAlert) {
                 notify.addNew(new notify.Notification("Twoja pozycja na boisku została zmieniona", [usid], "#!/teamComposition"));
             }
@@ -112,8 +113,9 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             return;
         }
         var actualWidth = $('#canvas_container').width();
-        var actualCircleSize = parseInt(actualWidth * 0.04);
+        var actualCircleSize = parseInt(actualWidth * 0.06);
         var mousePos = getMousePos(evt);
+
 
         for (var i = $scope.users.length - 1; i >= 0; i--) {
             if (checkDistance(($scope.users[i].pos_x / 100) * actualWidth, ($scope.users[i].pos_y / 100) * actualWidth, mousePos.x, mousePos.y) <= actualCircleSize) {
@@ -194,14 +196,17 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     var ctx = document.getElementById('canvas').getContext('2d');
 
     var backgorund = new Image();
-    backgorund.src = './files/img/canvas/background.jpg';
+    backgorund.src = './files/img/canvas/background.png';
+
+    var tshirt = new Image();
+    tshirt.src = './files/img/canvas/tshirt.png';
 
     function update() {
         var actualWidth = $('#canvas_container').width();
         canvas.width = actualWidth;
         canvas.height = actualWidth * 0.78;
         var actualCircleSize = parseInt(actualWidth * 0.04);
-        var actualFontSize = parseInt(actualWidth * 0.04);
+        var actualFontSize = parseInt(actualWidth * 0.03);
 
         ctx.drawImage(backgorund, 0, 0, backgorund.width, backgorund.height, 10, 10, actualWidth - 20, (actualWidth * 0.78) - 10);
 
@@ -215,25 +220,19 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                     y: ($scope.users[i].pos_y / 100) * actualWidth
                 }
             }
-            ctx.beginPath();
-            ctx.arc(pos.x, pos.y, actualCircleSize, 0, 2 * Math.PI, false);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-            if (pos.y <= (actualWidth * 0.78) * 0.15 && pos.x >= (actualWidth / 2.0) - actualWidth * 0.05 && pos.x <= (actualWidth / 2.0) + actualWidth * 0.05) {
-                ctx.fillStyle = 'rgba(215, 40, 40, 0.9)';
-            }
-            ctx.fill();
-            if ($scope.users[i].isSelected) {
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = '#3399ff';
-                ctx.stroke();
-            }
-            ctx.fillStyle = '#3399ff';
+
+            var tshirtWidth = actualWidth / 9.0;
+            var tshirtHeight = tshirtWidth * 1.4;
+
+            ctx.drawImage(tshirt, 0, 0, tshirt.width, tshirt.height, pos.x - tshirtWidth / 2, pos.y - tshirtHeight * 0.2, tshirtWidth, tshirtHeight);
+
+            ctx.fillStyle = '#ffffff';
             ctx.textAlign = "center";
             ctx.font = actualFontSize + "px Arial";
-            ctx.fillText($scope.users[i].nr_on_tshirt, pos.x, (parseInt(pos.y) + parseInt(actualFontSize / 2.6)));
+            ctx.fillText($scope.users[i].nr_on_tshirt, pos.x, parseInt(pos.y) + actualFontSize);
             ctx.fillStyle = '#ffffff';
             ctx.font = actualFontSize + "px Arial";
-            ctx.fillText($scope.users[i].firstname + ' ' + $scope.users[i].lastname, pos.x, (parseInt(pos.y) - actualCircleSize - 10));
+            ctx.fillText($scope.users[i].firstname[0] + '. ' + $scope.users[i].lastname, pos.x, (parseInt(pos.y) + actualCircleSize + actualFontSize * 3));
         }
     }
 
@@ -269,7 +268,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     }
 
     function initCanvas() {
-        if($scope.lastCanvasInterval){
+        if ($scope.lastCanvasInterval) {
             window.clearInterval($scope.lastCanvasInterval);
         }
         $scope.lastCanvasInterval = setInterval(update, updateTime);

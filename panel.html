@@ -37,12 +37,16 @@
         <div ng-show="showAllNewsNotify" class="showAllNewsNotify noPrint">
             <div class="notifyContenerTitle" ng-click='showNotifications()'>
                 <p ng-show="notifyCount > 0">Masz: {{notifyCount}} nowych powiadomień</p>
-                <p ng-show="notifyCount <= 0">Nie masz żadnych nowych powiadomień</p>
+                <p ng-show="notifyCount <= 0">Nie masz nowych powiadomień</p>
             </div>
             <div class="notifyContener">
-                <div class="notif" ng-repeat="notify in newNotify |orderBy: '-id'" ng-click='showNotifications(false)'>
-                    <a href="{{notify.url}}">{{notify.title}}</a>
+                <div class="notif" style='padding: 10px;' ng-repeat="notify in newNotify |orderBy: '-id'" ng-click='showNotifications(false)'>
+                    <a style='margin: 0; padding:0;text-align: left;'href="{{notify.url}}">{{notify.title}}</a>
+                    <p style='margin: 0; text-align: left;' class='prettydate' >{{notify.date_add}}</p>
                 </div>
+            </div>
+            <div class="notifyContenerTitle" ng-show="newNotify.length >= 5">
+                <a style='font-weight: 400; line-height:2' href="#!/allNotify" ng-click='showNotifications(false)'>Pokaż wszystkie</a>
             </div>
         </div>
 
@@ -249,6 +253,11 @@
         async: false,
         success: function(msg) {
             if (msg.success) {
+                if (msg.data && msg.data.length > 0) {
+                    msg.data.sort(function(a, b) {
+                        return a.weight - b.weight;
+                    });
+                }
                 for (var i = 0; i < msg.data.length; i++) {
                     var toAppend = "";
                     var additional = '';
@@ -307,6 +316,17 @@
             });
         }
     });
+
+    $(document).ready(function(){
+        setTimeout(function(){
+            $(document).find(".prettydate").prettydate();
+        },500);
+        
+        setInterval(function(){
+            $(document).find(".prettydate").prettydate();
+        },1500);
+    });
+
 </script>
 
 <link rel="stylesheet" type="text/css" href="/core/css/zabuto_calendar.css">

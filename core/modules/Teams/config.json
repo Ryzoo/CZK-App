@@ -1,6 +1,6 @@
 {
     "name": "Teams",
-    "description": "Dzieli dane przypisując osobne dla każdego zespołu",
+    "description": "Dzieli dane przypisując osobne dla poszczególnych sekcji",
     "version": "1.0",
     "backendRoute": [{
             "url": "getTeams",
@@ -68,14 +68,14 @@
             "destination": "leftMenu",
             "content": {
                 "weight": 1,
-                "html": "<li class='row teamSelect'><div class='input-field col s12'><select id='teamSelect' class='white-text'><option value='' disabled selected>Wybierz drużynę</option></select><label class='centered'>Wybierz drużynę</label></div></li>"
+                "html": "<li class='row teamSelect'><div class='input-field col s12'><select id='teamSelect' class='white-text'><option value='' disabled selected>Wybierz sekcję</option></select><label class='centered'>Wybierz sekcję</label></div></li>"
             }
         },
         {
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Menadżer drużyn",
+                    "label": "Sekcje",
                     "url": "#!/teamsMenager",
                     "icon": "fa fa-address-card-o fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""
@@ -86,7 +86,7 @@
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Menadżer personelu",
+                    "label": "Trenerzy",
                     "url": "#!/masterMenager",
                     "icon": "fa fa-user-secret fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""

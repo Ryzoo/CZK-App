@@ -8,7 +8,7 @@
         },
         {
             "url": "getRaport",
-            "parameters": ["tmid", "usid"]
+            "parameters": ["usid"]
         },
         {
             "url": "deleteRaport",

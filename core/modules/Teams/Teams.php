@@ -126,7 +126,6 @@ class Teams extends BasicModule {
         $toReturn = ($this->db->getConnection())->delete('user_notifications', ['id_team' => $id]);
         $toReturn = ($this->db->getConnection())->delete('staff', ['id_team' => $id]);
         $toReturn = ($this->db->getConnection())->delete('raports', ['id_team' => $id]);
-        $toReturn = ($this->db->getConnection())->delete('potential_score', ['id_team' => $id]);
         $toReturn = ($this->db->getConnection())->delete('events', ['id_team' => $id]);
 
         $cm = ($this->db->getConnection())->fetchRowMany('SELECT posts.id as psid FROM posts WHERE posts.id_team = '.$id);
@@ -135,17 +134,10 @@ class Teams extends BasicModule {
         }
 
         $toReturn = ($this->db->getConnection())->delete('posts', ['id_team' => $id]);
-
-        $userIds = ($this->db->getConnection())->fetchRowMany('SELECT id_user FROM team_members WHERE id_team = '.$id);
-        for ($i=0; $i <count($userIds) ; $i++) { 
-            ($this->db->getConnection())->delete('user_data', ['user_id' => $userIds[$i]]);
-            ($this->db->getConnection())->delete('team_members', ['id_user' => $userIds[$i]]);
-            ($this->db->getConnection())->delete('users', ['id' => $userIds[$i]]);
-        }
-
+        $toReturn = ($this->db->getConnection())->delete('team_members', ['id_team' => $id]);
         $toReturn = ($this->db->getConnection())->delete('teams', ['id' => $id]);
 
-        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+        return array( "error"=>$error, "success"=>$success, "data"=>$toReturn );
     }
 
     function deleteMasterFromTeam($data){
