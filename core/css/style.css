@@ -341,7 +341,7 @@ ul.top-menu>li>.logout:hover {
     width: 210px;
     height: 100%;
     position: fixed;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #sidebar h5 {
