@@ -2550,7 +2550,9 @@ label {
     font-family: 'Roboto';
     color: #e8e8e8;
     font-weight: 800;
-    font-size: 4em;
+    font-size: 3.5em;
+    width: 100%;
+    text-align: center;
 }
 
 #loadingContent p span {
