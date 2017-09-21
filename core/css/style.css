@@ -45,6 +45,8 @@ header nav {
 
 #nav-accordion {
     margin: 0 !important;
+    display: table;
+    width: 100%;
 }
 
 .sidebar-menu .select-dropdown {
@@ -339,6 +341,7 @@ ul.top-menu>li>.logout:hover {
     width: 210px;
     height: 100%;
     position: fixed;
+    overflow: scroll;
 }
 
 #sidebar h5 {
