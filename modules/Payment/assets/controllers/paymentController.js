@@ -10,6 +10,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     $scope.merchantPosId = '';
     $scope.merchantKey = '';
     $scope.paymentSummary = [];
+    $scope.allCyclPayments = [];
 
     $scope.initPaymentSettings = function() {
         getSettings();
@@ -20,9 +21,63 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
         getSettings();
     }
 
+    $scope.initPaymentCyclic = function() {
+        request.backend('getAllCyclePayment', { tmid: $rootScope.user.tmid }, function(data) {
+            $scope.$apply(function() {
+                $scope.allCyclPayments = data;
+                $scope.showContent = true;
+            });
+        });
+    }
+
+    $scope.deleteCyclePay = function(id) {
+        request.backend('deleteCyclePayment', { id: id }, function(data) {
+            $scope.initPaymentCyclic();
+        }, "Płatność została usunięta");
+    }
+
+    $scope.addCyclePay = function() {
+        var title = $("#cyclikPayTitle").val();
+        var startDate = $("#dataInput").val();
+        var amount = parseFloat($("#payValue").val().replace(",","."));
+
+        if( !startDate || startDate.length <= 0 ){
+            notify.localNotify("Walidacja","Wproawdź datę pierwszej płatności");
+            return;
+        }
+
+        if(title.length <= 3){
+            notify.localNotify("Walidacja","Wpisz dłuższy tytuł płatności");
+            return;
+        }
+
+        if(amount.length == 0 || amount == 0 || amount <= 0.00 ){
+            notify.localNotify("Walidacja","Wprowadź poprawnie kwotę płatności");
+            return;
+        }
+
+        if( $scope.payDay != 0 ){
+            var interval = $scope.payDay;
+            var intervalName = "dzień";
+        }else if( $scope.payWeek != 0 ){
+            var interval = $scope.payWeek;
+            var intervalName = "tydzień";
+        }else if( $scope.payMonth != 0 ){
+            var interval = $scope.payMonth;
+            var intervalName = "miesiąc";
+        }else{
+            notify.localNotify("Walidacja","Podaj poprawny odstęp czasowy");
+            return;
+        }
+
+        request.backend('addCyclePayment', { tmid: $rootScope.user.tmid, title: title, startDate: startDate, interval: interval, intervalName: intervalName, amount: amount }, function(data) {
+            $scope.initPaymentCyclic();
+        }, "Płatność została dodana");
+    }
+
     $scope.getPaymentSummary = function() {
-        if( $rootScope.user.tmid == '' || $rootScope.user.role == 'ZAWODNIK' ) return;
-        
+        if ($rootScope.user.tmid == '' || $rootScope.user.role == 'ZAWODNIK') return;
+
         request.backend('getPaymentSummary', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 console.log(data);
@@ -47,9 +102,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
         getSettings();
     }
 
-    $scope.initPaymentCyclic = function() {
-        $scope.showContent = true;
-    }
+
 
     function getSettings() {
         request.backend('getPaymentOptions', {}, function(data) {

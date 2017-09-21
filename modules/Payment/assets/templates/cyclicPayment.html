@@ -1,12 +1,79 @@
 <div ng-init="setPerm(['KOORD','TRENER'])"></div>
 <div class="section paymentSection" ng-init="initPaymentCyclic()">
     <div ng-show='showContent' class="row">
-        <div class="col s12 l8 offset-l2">
+        <div class="col s12 l10 offset-l1">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Płatności cykliczne</div>
                     <div class="row">
-
+                        <div class="row" style='padding: 10px'>
+                            <h5>Ustaw płatności które będą pojawiały się co określony czas na kontach zawodników</h5>
+                            <p styl='font-size:14px; color: #808080'>Pamiętaj! Wszystkie płatności dla poszczególnych zawodników możesz przeglądać w zakładce<br/> Płatności - > Proste płatności. Tam możesz ręcznie zakończyć płatność lub usunuąć ją całkowicie.</p>
+                        </div>
+                        <div class="form-group col s12">
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <input id='dataInput' type="text" class='datetimepicker' placeholder="Data pierwszego wystawienia" class="validate">
+                                    <label for="dataInput">Data pierwszego wystawienia</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <input id='cyclikPayTitle' type="text" placeholder="Tytuł płatności" class="validate">
+                                    <label for="cyclikPayTitle">Tytuł płatności</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col s12">
+                            <div class="row" ng-init=" payDay=0; payWeek=0; payMonth=0; " >
+                                <div class="input-field col s12 m4">
+                                    <input id='payForDay' ng-disabled="payMonth != '0' || payWeek !='0'" ng-model="payDay" type="number" placeholder="Co ile dni ?" class="validate" min="0" max="30">
+                                    <label for="payForDay">Co ile dni ?</label>
+                                </div>
+                                <div class="input-field col s12 m4">
+                                    <input id='payForWeek' ng-disabled="payDay != '0' || payMonth !='0' " ng-model="payWeek" type="number" placeholder="Co ile tygodni ?" class="validate"  min="0" max="30">
+                                    <label for="payForWeek">Co ile tygodni ?</label>
+                                </div>
+                                <div class="input-field col s12 m4">
+                                    <input id='payForMonth' ng-disabled="payWeek != '0' || payDay !='0'" ng-model="payMonth" type="number" placeholder="Co ile miesięcy ?" class="validate"  min="0" max="30">
+                                    <label for="payForMonth">Co ile miesięcy ?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col s12">
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <input id='payValue' type="text" placeholder="Kwota płatności ( 0.00zł )" class="validate" value="0.00">
+                                    <label for="payValue">Kwota płatności format</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <button class="waves-effect waves-light btn" ng-click='addCyclePay()'>Dodaj płatność cykliczną</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style='padding: 10px'>
+                            <h5>Lista płatności cyklicznych dla zespołu</h5>
+                        </div>
+                        <table class="table highlight centered">
+                            <thead>
+                                <tr>
+                                    <th>Data pierwszej płatności</th>
+                                    <th>Okres czasowy</th>
+                                    <th>Tytuł</th>
+                                    <th>Kwota</th>
+                                    <th>Usuń</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pay in allCyclPayments">
+                                    <td><b>{{pay.date_start}}</b></td>
+                                    <td>{{pay.intervalTime}} {{pay.intervalName}}</td>
+                                    <td>{{pay.title}}</td>
+                                    <td><b>{{pay.amount}} zł</b></td>
+                                    <td>
+                                        <i class="fa fa-times" aria-hidden="true" ng-click='deleteCyclePay(pay.id)' style="cursor:pointer;"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -37,6 +104,11 @@
             $('select').material_select();
             $('ul.tabs').tabs();
             $('.collapsible').collapsible();
+            $('.datetimepicker').datetimepicker({
+                format: 'Y/m/d',
+                lang: 'pl',
+                timepicker: false,
+            });
         }, 500);
     });
 </script>

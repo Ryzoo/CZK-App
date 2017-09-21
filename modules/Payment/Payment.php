@@ -3,18 +3,24 @@ namespace Modules\Payment;
 
 use Core\System\BasicModule;
 use \KHerGe\JSON\JSON;
+use Core\Teams\Teams;
 
 class Payment extends BasicModule {
+    private $teamsMenager;
 
     function install(){
       ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `payment_status` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
       ($this->db->getConnection())->executeSql('INSERT INTO payment_status (`name`) VALUES ("Do zapłaty"), ("Oczekiwanie na potwierdzenie"), ("Zakończono"), ("Nie zapłacono"), ("Potrzebna kontrola")');
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `payment_list` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `amount` INT NOT NULL , `id_user` INT NOT NULL , `id_status` INT NOT NULL , `id_team` INT NOT NULL , `id_admin` INT NOT NULL , `date_change` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `date_add` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `cyclePayments` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_team` INT NOT NULL, `date_start` DATE NOT NULL , `intervalTime` INT NOT NULL , `intervalName` VARCHAR(50) NOT NULL , `title` VARCHAR(200) NOT NULL , `amount` FLOAT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `cycleUserPayments` ( `id` INT NOT NULL AUTO_INCREMENT , `id_user` INT NOT NULL , `id_cycle_pay` INT NOT NULL , `is_added_today` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
     function uninstall(){
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS payment_status');
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS payment_list');
+      ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS cyclePayments');
+      ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS cycleUserPayments');
     }
 
     function addPaymentToUser($data){
@@ -47,6 +53,7 @@ class Payment extends BasicModule {
 
     function getPaymentSummary($data){
       $tmid = $data['tmid'];
+      $this->addPaymentCycleToUser($tmid,$data['token']);
       $completed = ($this->db->getConnection())->fetchRow('SELECT sum( amount ) as sum FROM payment_list WHERE MONTH(date_add) = MONTH(CURRENT_DATE()) AND id_status = 3');
       $waiting = ($this->db->getConnection())->fetchRow('SELECT sum( amount ) as sum FROM payment_list WHERE MONTH(date_add) = MONTH(CURRENT_DATE()) AND (id_status = 1 OR id_status = 2)');
       $this->returnedData["data"]["completed"] = isset($completed["sum"]) ? $completed["sum"] : 0;
@@ -57,8 +64,8 @@ class Payment extends BasicModule {
 
     function getUserPaymentHistory($data){
       $tmid = $data['tmid'];
+      $this->addPaymentCycleToUser($tmid,$data['token']);
       $usids = $data['usids'];
-
       $this->returnedData["data"] = [];
 
       for($i=0;$i<count($usids);$i++){
@@ -177,6 +184,104 @@ class Payment extends BasicModule {
 
       $this->returnedData['data'] = $ipaddress;
       return $this->returnedData;
-  }
+    }
+
+    function getAllCyclePayment($data){
+      $tmid = $data["tmid"];
+      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany('SELECT * FROM cyclePayments WHERE id_team='.$tmid);
+      return $this->returnedData;
+    }
+
+    function deleteCyclePayment($data){
+      $id = $data["id"];
+      $this->returnedData['data'] = ($this->db->getConnection())->delete('cyclePayments', ['id' => $id]);
+      $this->returnedData['data'] = ($this->db->getConnection())->delete('cycleUserPayments', ['id_cycle_pay' => $id]);
+      return $this->returnedData;
+    }
+
+    function addCyclePayment($data){
+      $tmid = $data["tmid"];
+      $title = $data["title"];
+      $startDate = $data["startDate"];
+      $interval = $data["interval"];
+      $intervalName = $data["intervalName"];
+      $amount = $data["amount"];
+      $token = $data['token'];
+
+      $data = [
+        'id_team'   => $tmid,
+        'title'   => $title,
+        'date_start' => $startDate,
+        'intervalTime'  => $interval,
+        'intervalName'  => $intervalName,
+        'amount'  => round($amount,2),
+      ];
+      $this->returnedData['data'] = ($this->db->getConnection())->insert('cyclePayments', $data);
+      $this->addPaymentCycleToUser($tmid,$token);
+      return $this->returnedData;
+    }
+
+    function addPaymentCycleToUser($tmid,$token){
+      $allCyclePayments = ($this->db->getConnection())->fetchRowMany('SELECT id as id FROM cyclePayments WHERE id_team='.$tmid);
+      for($i=0;$i<count($allCyclePayments);$i++){
+        $this->addPaymentCycleUpdateToUser($allCyclePayments[$i]["id"],$tmid);
+      }
+      $allUserCycelPay = ($this->db->getConnection())->fetchRowMany('SELECT cycleUserPayments.id as id, intervalTime, intervalName, date_start, id_user,is_added_today,title,amount  FROM cycleUserPayments, cyclePayments WHERE cycleUserPayments.id_cycle_pay = cyclePayments.id GROUP BY cycleUserPayments.id_user');
+      for($i=0;$i<count($allUserCycelPay);$i++){
+        
+        $pid = $allUserCycelPay[$i]["id"];
+        $interval = $allUserCycelPay[$i]["intervalTime"];
+        $intervalName = $allUserCycelPay[$i]["intervalName"];
+        $dateStart = date('Y-m-d',strtotime($allUserCycelPay[$i]["date_start"]));
+        $dateNow = date('Y-m-d');
+
+        $id_user = $allUserCycelPay[$i]["id_user"];
+        $is_added_today = $allUserCycelPay[$i]["is_added_today"];
+        $title = $allUserCycelPay[$i]["title"];
+        $amount = $allUserCycelPay[$i]["amount"];
+        
+        while( strtotime($dateStart) <= strtotime($dateNow)){
+          if( $dateNow === $dateStart && !$is_added_today ){
+            $this->addPaymentToUser([
+              "token" => $token,
+              "userIds" => [$id_user],
+              "tmid" => $tmid,
+              "amount" => $amount,
+              "name" => $title,
+            ]);
+            ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>1]);
+          }else if( $dateNow !== $dateStart && $is_added_today){
+            ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>0]);
+          }
+
+          if( $intervalName === "dzień"){
+            $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' days'));
+          }else if($intervalName === "tydzień"){
+            $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' weeks'));
+          }else{
+            $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' months'));
+          }
+          
+        }
+      }
+    }
+
+    function addPaymentCycleUpdateToUser($pid,$tmid){
+      $this->teamsMenager = new Teams();
+      $allTeamUser = $this->teamsMenager->getUserFromTeam(["tmid"=>$tmid]);
+      for($i=0;$i<count($allTeamUser["data"]);$i++){
+        $usid = $allTeamUser["data"][$i]["usid"];
+        $payment = ($this->db->getConnection())->fetchRowMany('SELECT id FROM cycleUserPayments WHERE id_user='.$usid.' AND id_cycle_pay='.$pid);
+        
+        if( !isset($payment) ){
+          $data = [
+            'id_user'   => $usid,
+            'id_cycle_pay'   => $pid,
+            'is_added_today' => 0
+          ];
+          ($this->db->getConnection())->insert('cycleUserPayments', $data);
+        }
+      }
+    }
 
 }

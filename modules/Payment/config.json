@@ -3,7 +3,25 @@
     "description": "Obs\u0142uga p\u0142atno\u015bci dla zawodnik\u00f3w",
     "version": "1.0",
     "require": [],
-    "backendRoute": [{ "url": "addPaymentToUser", "parameters": ["tmid", "userIds", "amount", "name"], "auth": ["KOORD", "TRENER"] }, { "url": "turnOffOnPayuPay", "parameters": ["payStatus"], "auth": ["KOORD", "TRENER"] }, { "url": "getPaymentSummary", "parameters": ["tmid"], "auth": ["KOORD", "TRENER"] }, { "url": "getUserPaymentHistory", "parameters": ["tmid", "usids"] }, { "url": "deletePayment", "parameters": ["pmid"], "auth": ["KOORD", "TRENER"] }, { "url": "endPayment", "parameters": ["pmid"], "auth": ["KOORD", "TRENER"] }, { "url": "editOptions", "parameters": ["posId", "merKey"], "auth": ["KOORD", "TRENER"] }, { "url": "getPaySignature", "parameters": ["sigData", "posId"] }, { "url": "getClientIp" }, { "url": "paymentNotification" }, { "url": "payWithPayu", "parameters": ["pmid"] }, { "url": "getPaymentOptions" }],
+    "backendRoute": [{
+            "url": "addPaymentToUser",
+            "parameters": ["tmid", "userIds", "amount", "name"],
+            "auth": ["KOORD", "TRENER"]
+        }, {
+            "url": "getAllCyclePayment",
+            "parameters": ["tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "deleteCyclePayment",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER"]
+        },{
+            "url": "addCyclePayment",
+            "parameters": ["token","tmid","title","startDate","interval","intervalName","amount"],
+            "auth": ["KOORD", "TRENER"]
+        },
+        { "url": "turnOffOnPayuPay", "parameters": ["payStatus"], "auth": ["KOORD", "TRENER"] }, { "url": "getPaymentSummary", "parameters": ["tmid"], "auth": ["KOORD", "TRENER"] }, { "url": "getUserPaymentHistory", "parameters": ["tmid", "usids"] }, { "url": "deletePayment", "parameters": ["pmid"], "auth": ["KOORD", "TRENER"] }, { "url": "endPayment", "parameters": ["pmid"], "auth": ["KOORD", "TRENER"] }, { "url": "editOptions", "parameters": ["posId", "merKey"], "auth": ["KOORD", "TRENER"] }, { "url": "getPaySignature", "parameters": ["sigData", "posId"] }, { "url": "getClientIp" }, { "url": "paymentNotification" }, { "url": "payWithPayu", "parameters": ["pmid"] }, { "url": "getPaymentOptions" }
+    ],
     "jsControllers": ["paymentController"],
     "css": ["style"],
     "frontendRoute": [

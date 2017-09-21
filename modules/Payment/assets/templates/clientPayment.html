@@ -6,7 +6,7 @@
                 <div class="card-content">
                     <div class="card-title">Historia płatności</div>
                     <div class="row">
-                        <table class="table highlight centered" >
+                        <table class="table highlight centered">
                             <thead>
                                 <tr>
                                     <th>Nazwa</th>
@@ -15,10 +15,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="payment in selectedUserHistory.data" class='userOnePayRow' >
-                                   <td ng-click='showPayment($index)'>{{payment.name}}</td>
-                                   <td ng-click='showPayment($index)'>{{payment.amount}} zł</td>
-                                   <td ng-click='showPayment($index)'><b>{{payment.statusName}}</b></td>
+                                <tr ng-repeat="payment in selectedUserHistory.data" class='userOnePayRow'>
+                                    <td ng-click='showPayment($index)'>{{payment.name}}</td>
+                                    <td ng-click='showPayment($index)'>{{payment.amount}} zł</td>
+                                    <td ng-click='showPayment($index)'><b>{{payment.statusName}}</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -27,67 +27,67 @@
             </div>
         </div>
         <div class="col s12 m12 l6">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-title">Płatność online</div>
-                        <div class="row" ng-show="showPay">
-                            <table class="table highlight centered" >
-                                    <tbody>
-                                        <tr class="row">
-                                            <td style="padding: 5px 0;"><b>Tytuł płatności</b></td>
-                                            <td style="padding: 5px 0;">{{selectedPayment.name}}</td>
-                                        </tr>
-                                        <tr class="row">
-                                            <td style="padding: 5px 0;"><b>Kwota</b></td>
-                                            <td style="padding: 5px 0;">{{selectedPayment.amount}} zł</td>
-                                        </tr>
-                                        <tr class="row">
-                                            <td style="padding: 5px 0;"><b>Status</b></td>
-                                            <td style="padding: 5px 0;"><b>{{selectedPayment.statusName}}</b></td>
-                                        </tr>
-                                        <tr class="row">
-                                            <td style="padding: 5px 0;"><b>Zlecający</b></td>
-                                            <td style="padding: 5px 0;">{{selectedPayment.adminFirstname}} {{selectedPayment.adminLastname}}</td>
-                                        </tr>
-                                        <tr class="row">
-                                            <td style="padding: 5px 0;"><b>Data dodania</b></td>
-                                            <td style="padding: 5px 0;">{{selectedPayment.date_add}}</td>
-                                        </tr>
-                                        <tr class="row">
-                                            <td style="padding: 5px 0;"><b>Ostatni zmiana statusu</b></td>
-                                            <td style="padding: 5px 0;">{{selectedPayment.date_change}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                        </div>
-                        <div class="row" ng-show="selectedPayment.statusName == 'Do zapłaty'" >
-                            <form method="POST" target='_blank' action="https://secure.snd.payu.com/api/v2_1/orders">
-                                <input type="hidden" name="customerIp" value="{{ip}}">
-                                <input type="hidden" name="merchantPosId" value="{{merchantPosId}}">
-                                <input type="hidden" name="extOrderId" value="{{selectedPayment.id}}">
-                                <input type="hidden" name="description" value="{{selectedPayment.name}}">
-                                <input type="hidden" name="totalAmount" value="{{selectedPayment.amount*100}}">
-                                <input type="hidden" name="currencyCode" value="PLN">
-                                <input type="hidden" name="products[0].name" value="{{selectedPayment.name}}">
-                                <input type="hidden" name="products[0].unitPrice" value="{{selectedPayment.amount*100}}">
-                                <input type="hidden" name="products[0].quantity" value="1">
-                                <input type="hidden" name="products[0].virtual" value="true">
-                                <input type="hidden" name="buyer.email" value="{{user.email}}">
-                                <input type="hidden" name="buyer.firstName" value="{{user.firstname}}">
-                                <input type="hidden" name="buyer.lastName" value="{{user.lastname}}">
-                                <input type="hidden" name="buyer.language" value="pl">
-                                <input type="hidden" name="notifyUrl" value="{{host}}/backend/paymentNotification">
-                                <input type="hidden" name="continueUrl" value="{{host}}">
-                                <input type="hidden" name="OpenPayu-Signature" type="hidden" value="{{signature}}">
-                                <div class="form-group" ng-show='isPayuEnabled' >
-                                    <button target='_blank' type="button " class="waves-effect waves-light btn" ng-click="payWithPayu()">Płacę z PayU</button>
-                                </div>
-                            </form>
-                            
-                        </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Płatność online</div>
+                    <div class="row" ng-show="showPay">
+                        <table class="table highlight centered">
+                            <tbody>
+                                <tr class="row">
+                                    <td style="padding: 5px 0;"><b>Tytuł płatności</b></td>
+                                    <td style="padding: 5px 0;">{{selectedPayment.name}}</td>
+                                </tr>
+                                <tr class="row">
+                                    <td style="padding: 5px 0;"><b>Kwota</b></td>
+                                    <td style="padding: 5px 0;">{{selectedPayment.amount}} zł</td>
+                                </tr>
+                                <tr class="row">
+                                    <td style="padding: 5px 0;"><b>Status</b></td>
+                                    <td style="padding: 5px 0;"><b>{{selectedPayment.statusName}}</b></td>
+                                </tr>
+                                <tr class="row">
+                                    <td style="padding: 5px 0;"><b>Zlecający</b></td>
+                                    <td style="padding: 5px 0;">{{selectedPayment.adminFirstname}} {{selectedPayment.adminLastname}}</td>
+                                </tr>
+                                <tr class="row">
+                                    <td style="padding: 5px 0;"><b>Data dodania</b></td>
+                                    <td style="padding: 5px 0;">{{selectedPayment.date_add}}</td>
+                                </tr>
+                                <tr class="row">
+                                    <td style="padding: 5px 0;"><b>Ostatni zmiana statusu</b></td>
+                                    <td style="padding: 5px 0;">{{selectedPayment.date_change}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row" ng-show="selectedPayment.statusName == 'Do zapłaty'">
+                        <form method="POST" target='_blank' action="https://secure.snd.payu.com/api/v2_1/orders">
+                            <input type="hidden" name="customerIp" value="{{ip}}">
+                            <input type="hidden" name="merchantPosId" value="{{merchantPosId}}">
+                            <input type="hidden" name="extOrderId" value="{{selectedPayment.id}}">
+                            <input type="hidden" name="description" value="{{selectedPayment.name}}">
+                            <input type="hidden" name="totalAmount" value="{{selectedPayment.amount*100}}">
+                            <input type="hidden" name="currencyCode" value="PLN">
+                            <input type="hidden" name="products[0].name" value="{{selectedPayment.name}}">
+                            <input type="hidden" name="products[0].unitPrice" value="{{selectedPayment.amount*100}}">
+                            <input type="hidden" name="products[0].quantity" value="1">
+                            <input type="hidden" name="products[0].virtual" value="true">
+                            <input type="hidden" name="buyer.email" value="{{user.email}}">
+                            <input type="hidden" name="buyer.firstName" value="{{user.firstname}}">
+                            <input type="hidden" name="buyer.lastName" value="{{user.lastname}}">
+                            <input type="hidden" name="buyer.language" value="pl">
+                            <input type="hidden" name="notifyUrl" value="{{host}}/backend/paymentNotification">
+                            <input type="hidden" name="continueUrl" value="{{host}}">
+                            <input type="hidden" name="OpenPayu-Signature" type="hidden" value="{{signature}}">
+                            <div class="form-group" ng-show='isPayuEnabled'>
+                                <button target='_blank' type="button " class="waves-effect waves-light btn" ng-click="payWithPayu()">Płacę z PayU</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
         <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
