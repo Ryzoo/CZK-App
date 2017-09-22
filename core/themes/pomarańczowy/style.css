@@ -286,8 +286,17 @@ input[type=checkbox]:checked+.lever {
 }
 
 .fc-event-skin {
-    color: #2a2a2a;
+  color: #fff;
 }
+
+.fc-event-time {
+  letter-spacing: 2px;
+}
+
+.fc-grid .fc-event-time {
+  font-weight: normal !important;
+}
+
 
 
 /* --- SHOW PLAYERS PANEL --- */
