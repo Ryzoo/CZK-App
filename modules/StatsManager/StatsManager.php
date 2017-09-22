@@ -42,7 +42,9 @@ class StatsManager extends BasicModule {
                     for ($k=0; $k < $scoresCount; $k++) { 
                         $actualPkt += $allPotential[$i]['tests'][$j]['scores'][$k]["wynik"];
                     }
-
+                    if( $minPkt < $maxPkt )$actualPkt -= $minPkt;
+                    else $actualPkt -= $maxPkt;
+                    if($actualPkt < 0 ) $actualPkt=0;
                     $testSummary = round($best > $worst ? $actualPkt / abs($maxPkt - $minPkt) * 100 : (1.0 - $actualPkt / abs($maxPkt - $minPkt))*100);
                 }
                 $allPotential[$i]['tests'][$j]['summary'] = $testSummary;
