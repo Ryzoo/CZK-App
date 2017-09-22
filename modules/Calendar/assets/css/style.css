@@ -32,36 +32,36 @@
     float: left;
 }
 
-.colorRed {
-    background: #ff0000;
+.colorPink {
+    background: #de5c8a;
 }
 
-.colorOrange {
-    background: #f6c000;
+.colorPurple {
+    background: #8754a3;
 }
 
-.colorGreen {
-    background: #60b244;
+.colorRoyal {
+    background: #5579b7;
 }
 
-.colorBlue {
-    background: #0099ff;
+.colorTurquoise {
+    background: #17ae9f;
 }
 
-.colorRed,
-.colorOrange,
-.colorGreen,
-.colorBlue {
+.colorPink,
+.colorPurple,
+.colorRoyal,
+.colorTurquoise {
     height: 15px;
     width: 25%;
     transition: border .2s;
     float: left;
 }
 
-.colorRed:hover,
-.colorOrange:hover,
-.colorGreen:hover,
-.colorBlue:hover {
+.colorPink:hover,
+.colorPurple:hover,
+.colorRoyal:hover,
+.colorTurquoise:hover {
     cursor: pointer;
     border: 1px solid black;
     transition: border .2s;
