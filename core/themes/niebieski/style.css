@@ -172,13 +172,11 @@ span.badge.new {
 
 #todoText {
   background: #fff;
-  border-color: #7f7f7f !important;
 }
 
 #todoButton {
   background: #fff;
   color: #7f7f7f;
-  border-color: #7f7f7f !important;
 }
 
 #todoButton .fa-plus:hover {
