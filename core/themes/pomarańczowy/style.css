@@ -24,6 +24,10 @@ a:hover {
   background-color: #ffcd60;
 }
 
+.btn:focus {
+  background-color: #f7aa00;
+}
+
 table.highlight>tbody>tr:hover {
   background-color: #f7aa00;
 }
@@ -56,6 +60,10 @@ table.highlight>tbody>tr:hover {
 
 .c3-chart-arcs .c3-chart-arcs-background {
   fill: #23262d;
+}
+
+.c3-chart-arc .c3-gauge-value {
+    fill: #777;
 }
 
 .c3 text {
@@ -136,7 +144,7 @@ nav ul a:hover {
 }
 
 .fa-color:hover {
-  color: #ffcd60;
+  color: #23262d;
 }
 
 .notifyContenerTitle {
@@ -277,10 +285,20 @@ input[type=checkbox]:checked+.lever {
   color: #fff;
 }
 
+.fc-event-skin {
+    color: #2a2a2a;
+}
 
 
 /* --- SHOW PLAYERS PANEL --- */
 [type="checkbox"]:checked+label:before {
   border-right: 2px solid #ffcd60;
   border-bottom: 2px solid #ffcd60;
+}
+
+
+
+/* --- PAYMENTS IN DASHBOARD --- */
+.paymentPrice {
+    color: rgb(16, 29, 37);
 }

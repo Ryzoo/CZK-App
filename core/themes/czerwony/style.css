@@ -291,10 +291,21 @@ input[type=checkbox]:checked+.lever {
     background-color: #ec1800;
 }
 
+.fc-event-skin {
+    color: #2a2a2a;
+}
+
 
 
 /* --- SHOW PLAYERS PANEL --- */
 [type="checkbox"]:checked+label:before {
   border-right: 2px solid #ec1800;
   border-bottom: 2px solid #ec1800;
+}
+
+
+
+/* --- PAYMENTS IN DASHBOARD --- */
+.paymentPrice {
+    color: rgb(16, 29, 37);
 }
