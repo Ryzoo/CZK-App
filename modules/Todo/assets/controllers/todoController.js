@@ -1,6 +1,6 @@
 app.controller('todoController', function($scope, auth, $rootScope, request, notify) {
     $scope.todoList;
-    $scope.selectedColor = '#ff0000';
+    $scope.selectedColor = '#de5c8a';
     $scope.selectedKey = 1;
 
     $scope.initToDo = function() {
@@ -44,9 +44,8 @@ app.controller('todoController', function($scope, auth, $rootScope, request, not
         }, "Twoje zadanie pomyślnie zakończone");
     }
 
-    $scope.selectColor = function(key, value) {
+    $scope.selectColor = function(value) {
         $scope.selectedColor = value;
-        $scope.selectedKey = key;
         setInputColor();
     }
 
