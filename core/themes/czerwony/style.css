@@ -64,7 +64,7 @@ table.highlight>tbody>tr:hover {
 }
 
 .c3-chart-arc .c3-gauge-value {
-    fill: #777;
+    fill: #777 !important;
 }
 
 .c3 text {
