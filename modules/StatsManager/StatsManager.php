@@ -20,9 +20,7 @@ class StatsManager extends BasicModule {
         $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS potential_test');
     }
 
-    function getStats($data){
-        $usid = $data["usid"];
-
+    function getUserStat($usid){
         $allPotential = ($this->db->getConnection())->fetchRowMany('SELECT * FROM potential');
         for($i=0;$i<count($allPotential);$i++){
             $allPotential[$i]['tests'] = ($this->db->getConnection())->fetchRowMany('SELECT id, name, best, worst FROM potential_test WHERE id_potential='.$allPotential[$i]['id']);
@@ -83,10 +81,36 @@ class StatsManager extends BasicModule {
             $summaryForm = round( ( $actualPkt / $maxPkt )*100);
         }
 
-        $this->returnedData["data"] = [
+        return [
             "potential"=>$allPotential,
             "form"=>$summaryForm
         ];
+    }
+
+    function getStats($data){
+        $usid = $data["usid"];
+
+        if( count($usid) > 1 || is_array($usid) ){
+            $this->returnedData["data"] = [];
+            $userData = [];
+            $teamScore = 0;
+            for($i=0;$i<count($usid);$i++){
+                $thisUser = $this->getUserStat($usid[$i]);
+                array_push($userData,[
+                    "usid" => $usid[$i],
+                    "data" => $thisUser,
+                    "userName" => $this->auth->getUserName($usid[$i])
+                ]);
+                $teamScore += $thisUser["form"];
+            }
+            $this->returnedData["data"] = [
+                "users" => $userData ,
+                "teamForm" => $teamScore
+            ];
+        }else{
+            $this->returnedData["data"] = $this->getUserStat($usid);
+        }
+
         return $this->returnedData;
     }
 
@@ -108,6 +132,8 @@ class StatsManager extends BasicModule {
         }
         return array( "error"=>$error ,"success"=>$success,"data"=>$allPotential );
     }
+
+
 
     function getScoreFromTestId($data){
         $usid = $data["usid"];

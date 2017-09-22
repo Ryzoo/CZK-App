@@ -26,14 +26,14 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
             });
             $('#selectPotential').html('');
             $('#selectPotential').append("<option value='' disabled>Grupy testowe</option>");
-            for (var i = 0; i < $rootScope.actualStats.length; i++) {
-
-                if ($rootScope.actualStats.length - 1 == i) {
-                    $('#selectPotential').append("<option value='" + i + "'selected>" + $rootScope.actualStats[i].name + "</option>");
-                } else {
-                    $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
+            if ($rootScope.actualStats) {
+                for (var i = 0; i < $rootScope.actualStats.length; i++) {
+                    if ($rootScope.actualStats.length - 1 == i) {
+                        $('#selectPotential').append("<option value='" + i + "'selected>" + $rootScope.actualStats[i].name + "</option>");
+                    } else {
+                        $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
+                    }
                 }
-
             }
             $('select').material_select();
             $scope.showTestAndType = true;
@@ -121,12 +121,13 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                     }
                 },
                 size: {
-                    height: 180
+                    width: 200,
+                    height: 100,
                 }
             });
         }
     }
-+
+
     $scope.initChart = function() {
         if (!$scope.dataViewAsTable && $scope.acutalSelectedGroupTest) {
             setTimeout(function() {

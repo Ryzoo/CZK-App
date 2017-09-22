@@ -1,0 +1,101 @@
+<div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init='initTimetable()'>
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="timetable">
+                        <div class='timetableElement'>
+                            <div class="timetableHead">
+                                Poniedziałek
+                            </div>
+                            <div class="timetableEvent" style='background-color: #0087ff'>
+                                <p>Trenig bramkarzy</p>
+                                <b>18:30</b>
+                            </div>
+                            <div class="timetableEvent" style='background-color: #0087ff'>
+                                <p>Trenig bramkarzy</p>
+                                <b>18:30</b>
+                            </div>
+                        </div>
+                        <div class='timetableElement'>
+                            <div class="timetableHead">
+                                Wtorek
+                            </div>
+                            <div class="timetableEvent" style='background-color: #0087ff'>
+                                <p>Trenig bramkarzy</p>
+                                <b>18:30</b>
+                            </div>
+                        </div>
+                        <div class='timetableElement'>
+                            <div class="timetableHead">
+                                Środa
+                            </div>
+                            <div class="timetableEvent" style='background-color: #0087ff'>
+                                <p>Trenig bramkarzy</p>
+                                <b>18:30</b>
+                            </div>
+                        </div>
+                        <div class='timetableElement'>
+                            <div class="timetableHead">
+                                Czwartek
+                            </div>
+                            <div class="timetableEvent" style='background-color: #0087ff'>
+                                <p>Trenig bramkarzy</p>
+                                <b>18:30</b>
+                            </div>
+                        </div>
+                        <div class='timetableElement'>
+                            <div class="timetableHead">
+                                Piątek
+                            </div>
+                            <div class="timetableEvent" style='background-color: #0087ff'>
+                                <p>Trenig bramkarzy</p>
+                                <b>18:30</b>
+                            </div>
+                        </div>
+                        <div class='timetableElement'>
+                            <div class="timetableHead">
+                                Sobota
+                            </div>
+                            <div class="timetableEvent" style='background-color: #0087ff'>
+                                <p>Trenig bramkarzy</p>
+                                <b>18:30</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+    <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+    <div class="preloader-wrapper big active" style="margin-left: 45%">
+        <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+            $('ul.tabs').tabs();
+            $('.collapsible').collapsible();
+        }, 500);
+    });
+</script>

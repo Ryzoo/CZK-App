@@ -1,0 +1,27 @@
+{
+    "name": "Timetable",
+    "description": "Grafik zajęć",
+    "version": "1.0",
+    "require": [],
+    "backendRoute": [],
+    "jsControllers": ["timetableController"],
+    "css": ["style"],
+    "frontendRoute": [
+        { "url": "timetable", "templateSrc": "timetable.html", "controllerName": "timetableController" }
+    ],
+    "anchor": [{ "destination": "leftMenu", "anchorPoint": "P\u0142atno\u015bci w klubie", "anchorPointIcon": "fa fa-shopping-cart fa-fw", "content": { "link": { "label": "Proste płatności", "url": "#!\/payment", "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' && user.role != 'STAFF'\"" } } }, { "destination": "leftMenu", "anchorPoint": "P\u0142atno\u015bci w klubie", "anchorPointIcon": "fa fa-shopping-cart fa-fw", "content": { "link": { "label": "Moje p\u0142atno\u015bci", "url": "#!\/clientPayment", "additional": "ng-show=\"user.tmid != '' && user.role == 'ZAWODNIK'\"" } } },
+        {
+            "destination": "leftMenu",
+            "anchorPoint": "Grafik",
+            "anchorPointIcon": "fa fa-calendar-times-o fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Treningi / zajęcia",
+                    "url": "#!\/timetable",
+                    "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' && user.role != 'STAFF'\""
+                }
+            }
+        }
+    ]
+}

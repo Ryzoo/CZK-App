@@ -132,6 +132,11 @@ class Auth {
         return array( "error"=>$error ,"success"=>$success, "data"=>array("url"=>$file_name, "post"=>$data) );
     }
 
+    function getUserName($usid){
+        $data = $result = ($this->db->getConnection())->fetchRow('SELECT user_data.firstname, user_data.lastname FROM users, roles, user_data WHERE user_data.user_id = users.id AND users.id_role = roles.id AND users.id = :id', ['id' => $usid]);
+        return $data['firstname']. " ".$data['lastname'];
+    }
+
     function checkPerm($token, $perm){
         $result = ($this->db->getConnection())->fetchRow('SELECT roles.name as role FROM users, roles WHERE users.id_role = roles.id AND token = :tq', ['tq' => $token]);
         if( !is_null($result)){

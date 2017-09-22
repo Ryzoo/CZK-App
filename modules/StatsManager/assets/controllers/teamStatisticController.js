@@ -20,17 +20,21 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
             }
             fullTeamScore = statistic.getTeamForm(fullPersonId);
             matchTeamScore = statistic.getTeamForm(matchPersonsId, true);
-            statistic.getTeamStats(allPersonsId, function() {
-                $rootScope.$apply(function() {
-                    $rootScope.showContent = true;
-                });
-                $('#selectPotential').html('');
-                $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
-                for (var i = 0; i < $rootScope.actualStats.length; i++) {
-                    $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
-                }
-                $('select').material_select();
+            statistic.getTeamStats(fullPersonId, function() {
+                if ($rootScope.actualStats.length > 1) {
+                    $('#selectPotential').html('');
+                    $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
+                    if ($rootScope.actualStats[0].data.potential) {
+                        for (var i = 0; i < $rootScope.actualStats[0].data.potential.length; i++) {
+                            $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[0].data.potential[i].name + "</option>");
+                        }
+                        $('select').material_select();
 
+                    }
+                    $rootScope.$apply(function() {
+                        $rootScope.showContent = true;
+                    });
+                }
                 initChartMin();
             });
         });
@@ -40,8 +44,6 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
     $(document).on('change', '#selectPotential', function() {
         $scope.$apply(function() {
             $scope.acutalSelectedGroup = $("#selectPotential").val();
-            console.log($rootScope.actualStats);
-            $scope.acutalSelectedGroupTest = $rootScope.actualStats[$scope.acutalSelectedGroup];
         });
         $('.collapsible').collapsible();
         $scope.initChart();
@@ -98,15 +100,17 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
 
     $scope.initChart = function() {
         setTimeout(function() {
-            if ($scope.acutalSelectedGroupTest) {
+            if ($scope.acutalSelectedGroup) {
                 var data = [];
                 var label = [];
-                data.push('Procentowe wyniki');
-                if ($scope.acutalSelectedGroupTest.users != null) {
-                    for (var j = 0; j < $scope.acutalSelectedGroupTest.users.length; j++) {
-                        data.push($scope.acutalSelectedGroupTest.users[j].score);
-                        label.push($scope.acutalSelectedGroupTest.users[j].name);
+                data.push('Wyniki');
+                if ($rootScope.actualStats) {
+
+                    for (var j = 0; j < $rootScope.actualStats.length; j++) {
+                        data.push($rootScope.actualStats[j].data.potential[$scope.acutalSelectedGroup].summary);
+                        label.push($rootScope.actualStats[j].userName);
                     }
+
                     var chart = c3.generate({
                         bindto: '#chart-main',
                         data: {

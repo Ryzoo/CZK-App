@@ -1,4 +1,4 @@
-app.controller('myStatsController', function($scope, auth, $rootScope, notify, statistic,request) {
+app.controller('myStatsController', function($scope, auth, $rootScope, notify, statistic, request) {
     $rootScope.showContent = false;
     $scope.showPreLoad = true;
     $rootScope.actualStats = [];
@@ -7,13 +7,22 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
     $scope.dataViewAsTable = true;
 
     $scope.initMyStats = function() {
-        statistic.getStats($rootScope.user.id, function() {
+        request.backend('getStats', { usid: $rootScope.user.id }, function(data) {
+            $scope.$apply(function() {
+                $scope.showContent = true;
+                $rootScope.actualStats = data.potential;
+                $scope.userForm = data.form
+            });
             $('#selectPotential').html('');
             $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
-            for (var i = 0; i < $rootScope.actualStats.length; i++) {
-                $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
+            console.log($rootScope.actualStats);
+            if ($rootScope.actualStats) {
+                for (var i = 0; i < $rootScope.actualStats.length; i++) {
+                    $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
+                }
             }
             $('select').material_select();
+            $scope.showTestAndType = true;
             $rootScope.showContent = true;
         });
     }
@@ -24,7 +33,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
     });
 
     $(document).off('change', '#selectPotential');
-    $(document).on('change','#selectPotential', function() {
+    $(document).on('change', '#selectPotential', function() {
         $scope.showPreLoad = false;
         $scope.$apply(function() {
             $scope.acutalSelectedGroup = $("#selectPotential").val();
@@ -40,7 +49,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
     });
 
     $(document).off('change', '#selectDataType');
-    $(document).on('change',"#selectDataType", function() {
+    $(document).on('change', "#selectDataType", function() {
         $scope.dataViewAsTable = ($('#selectDataType').val() == 'tabele');
         $scope.initChart();
     });
@@ -51,7 +60,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                 if ($scope.acutalSelectedGroupTest[i].id != undefined) {
                     var data = [];
                     data.push('wynik');
-                    data.push($scope.acutalSelectedGroupTest[i].percentLastScore);
+                    data.push($scope.acutalSelectedGroupTest[i].summary);
                     var chart = c3.generate({
                         bindto: '#chart-percent-' + $scope.acutalSelectedGroupTest[i].id,
                         data: {
