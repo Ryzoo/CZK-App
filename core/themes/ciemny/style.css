@@ -136,6 +136,14 @@ nav ul a:hover {
   background: #0a1522 !important;
 }
 
+.topbar span.badge.new {
+  background-color: #67dff0;
+}
+
+.topbar span.badge {
+  color: #06101c;
+}
+
 
 
 /* --- HOME PANEL --- */
@@ -154,11 +162,13 @@ nav ul a:hover {
 
 #todoText {
   background: #0a1522;
+  border-color: #9e9e9e !important;
 }
 
 #todoButton {
   background: #0a1522;
   color: #9e9e9e;
+  border-color: #9e9e9e !important;
 }
 
 #todoButton .fa-plus:hover {
@@ -289,11 +299,4 @@ input[type=checkbox]:checked+.lever {
 /* --- PAYMENTS IN DASHBOARD --- */
 .paymentPrice {
     color: #9e9e9e;
-}
-
-
-
-/* --- PAYMENTS IN DASHBOARD --- */
-.paymentPrice {
-    color: rgb(16, 29, 37);
 }

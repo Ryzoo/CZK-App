@@ -151,6 +151,9 @@ nav ul a:hover {
   background: #23262d;
 }
 
+span.badge.new {
+  background-color: #23262d;
+}
 
 
 /* --- HOME PANEL --- */
@@ -169,11 +172,13 @@ nav ul a:hover {
 
 #todoText {
   background: #3a3f45;
+  border-color: #63666f !important;
 }
 
 #todoButton {
   background: #3a3f45;
   color: #63666f;
+  border-color: #63666f !important;
 }
 
 #todoButton .fa-plus:hover {
@@ -309,5 +314,5 @@ input[type=checkbox]:checked+.lever {
 
 /* --- PAYMENTS IN DASHBOARD --- */
 .paymentPrice {
-    color: rgb(16, 29, 37);
+    color: #63666f;
 }

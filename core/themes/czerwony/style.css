@@ -181,15 +181,17 @@ nav ul a:hover {
 
 #todoText {
   background: #fff;
+  border-color: #7f7f7f !important;
 }
 
 #todoButton {
   background: #fff;
   color: #7f7f7f;
+  border-color: #7f7f7f !important;
 }
 
 #todoButton .fa-plus:hover {
-  color: #ec1800;
+  color: #a51100;
 }
 
 
