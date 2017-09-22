@@ -24,6 +24,10 @@ a:hover {
   background-color: #ec1800;
 }
 
+.btn:focus {
+  background-color: #a51100;
+}
+
 table.highlight>tbody>tr:hover {
   background-color: #eaeaea;
 }
