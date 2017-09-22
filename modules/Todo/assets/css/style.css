@@ -73,31 +73,29 @@
     padding-bottom: 5px;
 }
 
-.todoColorRed,
-.todoColorGreen,
-.todoColorOrange {
+.todoColorPink,
+.todoColorPurple,
+.todoColorRoyal,
+.todoColorTurquoise {
     width: 30%;
     height: 15px;
     cursor: pointer;
-    border: 1px solid black;
 }
 
-.todoColorRed:hover,
-.todoColorGreen:hover,
-.todoColorOrange:hover {
-    border-color: #67dff0;
+.todoColorPink {
+    background: #de5c8a;
 }
 
-.todoColorRed {
-    background: rgb(255, 0, 0);
+.todoColorPurple {
+    background: #8754a3;
 }
 
-.todoColorGreen {
-    background: rgb(96, 176, 68);
+.todoColorRoyal {
+    background: #5579b7;
 }
 
-.todoColorOrange {
-    background: rgb(246, 198, 0);
+.todoColorTurquoise {
+    background: #17ae9f;
 }
 
 #sortable {
