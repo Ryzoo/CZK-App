@@ -3,7 +3,10 @@
     "description": "Grafik zajęć",
     "version": "1.0",
     "require": [],
-    "backendRoute": [],
+    "backendRoute": [{
+        "url": "getTimetableEvent",
+        "parameters": ["tmid"]
+    }],
     "jsControllers": ["timetableController"],
     "css": ["style"],
     "frontendRoute": [

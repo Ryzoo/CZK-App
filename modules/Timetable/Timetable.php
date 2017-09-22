@@ -13,4 +13,21 @@ class Timetable extends BasicModule {
     function uninstall(){
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS timetable');
     }
+
+    function getTimetableEvent($data){
+      $tmid = $data["tmid"];
+      $allEvent = ($this->db->getConnection())->fetchRowMany("SELECT `id`, `id_team`, `title`, `day_name`, `time`, `color` FROM `timetable` WHERE id_team=".$tmid);
+      $this->returnedData["data"] = [
+        "Poniedziałek"=>[],
+        "Wtorek"=>[],
+        "Środa"=>[],
+        "Czwartek"=>[],
+        "Piątek"=>[],
+        "Sobota"=>[],
+      ];
+      for ($i=0; $i < count($allEvent) ; $i++) { 
+          array_push( $this->returnedData["data"][ $allEvent[$i]["day_name"] ], $allEvent[$i]);
+      }
+      return $this->returnedData;
+    }
 }

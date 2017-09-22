@@ -39,34 +39,34 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     $scope.addCyclePay = function() {
         var title = $("#cyclikPayTitle").val();
         var startDate = $("#dataInput").val();
-        var amount = parseFloat($("#payValue").val().replace(",","."));
+        var amount = parseFloat($("#payValue").val().replace(",", "."));
 
-        if( !startDate || startDate.length <= 0 ){
-            notify.localNotify("Walidacja","Wproawdź datę pierwszej płatności");
+        if (!startDate || startDate.length <= 0) {
+            notify.localNotify("Walidacja", "Wproawdź datę pierwszej płatności");
             return;
         }
 
-        if(title.length <= 3){
-            notify.localNotify("Walidacja","Wpisz dłuższy tytuł płatności");
+        if (title.length <= 3) {
+            notify.localNotify("Walidacja", "Wpisz dłuższy tytuł płatności");
             return;
         }
 
-        if(amount.length == 0 || amount == 0 || amount <= 0.00 ){
-            notify.localNotify("Walidacja","Wprowadź poprawnie kwotę płatności");
+        if (amount.length == 0 || amount == 0 || amount <= 0.00) {
+            notify.localNotify("Walidacja", "Wprowadź poprawnie kwotę płatności");
             return;
         }
 
-        if( $scope.payDay != 0 ){
+        if ($scope.payDay != 0) {
             var interval = $scope.payDay;
             var intervalName = "dzień";
-        }else if( $scope.payWeek != 0 ){
+        } else if ($scope.payWeek != 0) {
             var interval = $scope.payWeek;
             var intervalName = "tydzień";
-        }else if( $scope.payMonth != 0 ){
+        } else if ($scope.payMonth != 0) {
             var interval = $scope.payMonth;
             var intervalName = "miesiąc";
-        }else{
-            notify.localNotify("Walidacja","Podaj poprawny odstęp czasowy");
+        } else {
+            notify.localNotify("Walidacja", "Podaj poprawny odstęp czasowy");
             return;
         }
 
@@ -102,16 +102,21 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
         getSettings();
     }
 
-
-
     function getSettings() {
         request.backend('getPaymentOptions', {}, function(data) {
             $scope.$apply(function() {
                 $scope.merchantPosId = data.merchantPosId;
                 $scope.merchantKey = data.merchantKey;
-                $scope.isPayuEnabled = data.availablePaymentPayu;
+                $scope.isPayuEnabled = data.availablePaymentPayu == "false" ? false : true;
                 if ($scope.isPayuEnabled) $('#turnOffOnPayu').prop('checked', true);
+                else $('#turnOffOnPayu').prop('checked', false);
                 $scope.showContent = true;
+                setTimeout(function() {
+                    Materialize.updateTextFields();
+                    $('select').material_select();
+                    $('ul.tabs').tabs();
+                    $('.collapsible').collapsible();
+                }, 500);
             });
         });
     }
