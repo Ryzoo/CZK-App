@@ -1,0 +1,116 @@
+<div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<div class="section">
+    <div ng-show='showContent' class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Ustawienia planu zajęć
+                    </div>
+                    <div class="row" ng-init="iniTimetableSettings()">
+                        <form name="timetableForm" class="form-horizontal style-form borderSelectedColor" id="addTimetableForm" style='border-color: {{selectedColor}}'>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <input id='addTitleNews' type="text" placeholder="Tytuł" required class="validate">
+                                        <label for="addTitleNews">Tytuł</label>
+                                    </div>
+                                    <div class="col s12 m6 colorPickerCalendar">
+                                        <label for="addTitleNews">Wyświetlany kolor</label>
+                                        <div class="colorPink" ng-click="selectColor('#de5c8a');"></div>
+                                        <div class="colorPurple" ng-click="selectColor('#8754a3');"></div>
+                                        <div class="colorRoyal" ng-click="selectColor('#5579b7');"></div>
+                                        <div class="colorTurquoise" ng-click="selectColor('#17ae9f');"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <select id='dayName' name='bodyType'>
+                                            <option value="" disabled >Dzień tygodnia</option>
+                                            <option value="Poniedziałek"selected >Poniedziałek</option>
+                                            <option value="Wtorek" >Wtorek</option>
+                                            <option value="Środa" >Środa</option>
+                                            <option value="Czwartek" >Czwartek</option>
+                                            <option value="Piątek" >Piątek</option>
+                                            <option value="Sobota" >Sobota</option>
+                                            <option value="Niedziela" >Niedziela</option>
+                                        </select>
+                                        <label>Wybierz dzień tygodnia dla zajęć</label>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <input id='timeEVENT' type="text" class="datetimepicker" placeholder="Godzina" required class="validate">
+                                        <label for="timeEVENT">Godzina</label>
+                                    </div>
+                                    <div class="form-group col s12 m4">
+                                        <button type="button " class="waves-effect waves-light btn" ng-click="addTimetableEvent();">Dodaj</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <table class="table highlight centered">
+                            <thead>
+                                <tr>
+                                    <th>Tytuł</th>
+                                    <th>Dzień</th>
+                                    <th>Godzina</th>
+                                    <th>Kolor</th>
+                                    <th>Usuń</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat='event in events'>
+                                    <td>{{event.title}}</td>
+                                    <td>{{event.day_name}}</td>
+                                    <td>{{event.time}}</td>
+                                    <td style="background:{{event.color}}"></td>
+                                    <td>
+                                        <i class="fa fa-times" aria-hidden="true" ng-click='deleteTimetableEvent(event.id)' style="cursor:pointer;"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+    <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+    <div class="preloader-wrapper big active" style="margin-left: 45%">
+        <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.datetimepicker').datetimepicker({
+                format: 'H:i',
+                lang: 'pl',
+                timepicker: true,
+                datepicker: false,
+            });
+            Materialize.updateTextFields();
+            $('select').material_select();
+            $('ul.tabs').tabs();
+            $('.collapsible').collapsible();
+        }, 500);
+    });
+</script>

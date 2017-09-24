@@ -1,61 +1,79 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
 <div class="section">
     <div ng-show='showContent' class="row">
-        <div class="col s12">
-            <div class="row">
-                <div class="timetable" ng-init='initTimetable()'>
-                    <div class='timetableElement' ng-show='events["Poniedziałek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Poniedziałek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Poniedziałek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
+        <div class="col s12 ">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Plan zajęć
                     </div>
-                    <div class='timetableElement' ng-show='events["Wtorek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Wtorek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Wtorek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Środa"].length >= 1 '>
-                        <div class="timetableHead">
-                            Środa
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Środa"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Czwartek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Czwartek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Czwartek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Piątek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Piątek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Piątek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Sobota"].length >= 1 '>
-                        <div class="timetableHead">
-                            Sobota
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Sobota"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
+                    <div class="row">
+                        <div class="timetable" ng-init='initTimetable()'>
+                            <table class="table highlight centered">
+                                <tr>
+                                    <th>Poniedziałek</th>
+                                    <td>
+                                        <div class="timetableEvent" ng-repeat='event in events["Poniedziałek"]' style='background-color: {{event.color}}'>
+                                            <p>{{event.title}}</p>
+                                            <b>{{event.time}}</b>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Wtorek</th>
+                                    <td>
+                                        <div class="timetableEvent" ng-repeat='event in events["Wtorek"]' style='background-color: {{event.color}}'>
+                                            <p>{{event.title}}</p>
+                                            <b>{{event.time}}</b>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Środa</th>
+                                    <td>
+                                        <div class="timetableEvent" ng-repeat='event in events["Środa"]' style='background-color: {{event.color}}'>
+                                            <p>{{event.title}}</p>
+                                            <b>{{event.time}}</b>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Czwartek</th>
+                                    <td>
+                                        <div class="timetableEvent" ng-repeat='event in events["Czwartek"]' style='background-color: {{event.color}}'>
+                                            <p>{{event.title}}</p>
+                                            <b>{{event.time}}</b>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Piątek</th>
+                                    <td>
+                                        <div class="timetableEvent" ng-repeat='event in events["Piątek"]' style='background-color: {{event.color}}'>
+                                            <p>{{event.title}}</p>
+                                            <b>{{event.time}}</b>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sobota</th>
+                                    <td>
+                                        <div class="timetableEvent" ng-repeat='event in events["Sobota"]' style='background-color: {{event.color}}'>
+                                            <p>{{event.title}}</p>
+                                            <b>{{event.time}}</b>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Niedziela</th>
+                                    <td>
+                                        <div class="timetableEvent" ng-repeat='event in events["Niedziela"]' style='background-color: {{event.color}}'>
+                                            <p>{{event.title}}</p>
+                                            <b>{{event.time}}</b>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

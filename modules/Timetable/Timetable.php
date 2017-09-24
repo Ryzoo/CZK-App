@@ -7,7 +7,7 @@ use \KHerGe\JSON\JSON;
 class Timetable extends BasicModule {
 
     function install(){
-      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `timetable` ( `id` INT NOT NULL AUTO_INCREMENT , `id_team` INT NOT NULL , `title` VARCHAR(255) NOT NULL , `day_name` VARCHAR(30) NOT NULL , `time` VARCHAR(5) NOT NULL,`color` VARCHAR(20) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `timetable` ( `id` INT NOT NULL AUTO_INCREMENT , `id_team` INT NOT NULL , `title` VARCHAR(255) NOT NULL , `day_name` VARCHAR(30) NOT NULL , `time` VARCHAR(5) NOT NULL,`color` VARCHAR(20) NOT NULL DEFAULT '#0087ff' , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
     function uninstall(){
@@ -28,6 +28,34 @@ class Timetable extends BasicModule {
       for ($i=0; $i < count($allEvent) ; $i++) { 
           array_push( $this->returnedData["data"][ $allEvent[$i]["day_name"] ], $allEvent[$i]);
       }
+      return $this->returnedData;
+    }
+
+    function getTimetableEventFull($data){
+      $tmid = $data["tmid"];
+      $this->returnedData["data"]= ($this->db->getConnection())->fetchRowMany("SELECT `id`, `id_team`, `title`, `day_name`, `time`, `color` FROM `timetable` WHERE id_team=".$tmid);
+      return $this->returnedData;
+    }
+
+    function addTimetableEvent($data){
+      $title = $data['title'];
+      $tmid = $data['tmid'];
+      $day = $data['day'];
+      $time = $data['time'];
+      $color = $data['color'];
+      $this->returnedData["data"] = ($this->db->getConnection())->insert("timetable",[
+        "title"=>$title,
+        "id_team"=>$tmid,
+        "day_name"=>$day,
+        "time"=>$time,
+        "color"=>$color,
+      ]);
+      return $this->returnedData;
+    }
+
+    function deleteTimetableEvent($data){
+      $id = $data['id'];
+      $this->returnedData["data"] = ($this->db->getConnection())->delete("timetable",["id"=>$id]);
       return $this->returnedData;
     }
 }
