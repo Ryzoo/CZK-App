@@ -1,124 +1,108 @@
 <div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK','STAFF'])"></div>
 <div class="section" ng-init="getAllEvents();">
     <div ng-show='showContent' class="row">
-        <div class="col s12">
+        <div class="col s12 m4">
             <div class="row">
-                <div class="timetable" ng-controller='timetableController' ng-init='initTimetable()'>
-                    <div class='timetableElement' ng-show='events["Poniedziałek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Poniedziałek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Poniedziałek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Wtorek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Wtorek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Wtorek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Środa"].length >= 1 '>
-                        <div class="timetableHead">
-                            Środa
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Środa"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Czwartek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Czwartek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Czwartek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Piątek"].length >= 1 '>
-                        <div class="timetableHead">
-                            Piątek
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Piątek"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                    <div class='timetableElement' ng-show='events["Sobota"].length >= 1 '>
-                        <div class="timetableHead">
-                            Sobota
-                        </div>
-                        <div class="timetableEvent" ng-repeat='event in events["Sobota"]' style='background-color: #0087ff'>
-                            <p>{{event.title}}</p>
-                            <b>{{event.time}}</b>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        WYDARZENIA
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="col s12">
-                                <div class="today-date"></div>
-                            </div>
-                        </div>
-                        <div class="col s12" ng-show='nowEvents.length > 0'>
-                            <div class="col s12">
-                                <div class="titleIn">Aktualne</div>
-                                <ul class="collection">
-                                    <li class="collection-item" ng-repeat="now in nowEvents">{{now.title}}</br>Do zakończenia: <b class='prettydate'>{{now.end}}</b></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col s12" ng-show='nextEvents.length > 0'>
-                            <div class="col s12">
-                                <div class="titleIn events-text-color">Najbliższe</div>
-                                <ul class="collection">
-                                    <li class="collection-item events-text-color" ng-repeat="next in nextEvents | limitTo: 3 ">{{next.title}}</br>Rozpocznie się: <b class='prettydate'>{{next.end}}</b></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <a href="#!/calendar">Przejdź do kalendarza></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="row" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
-                            PODSUMOWANIE PŁATNOŚCI
+                            WYDARZENIA
                         </div>
                         <div class="row">
-                            <div class="col s12" ng-controller='paymentController'>
-                                <div class="row" ng-init='getPaymentSummary()'>
-                                    <h5>Podsumowanie płatności w tym miesiącu</h5>
-                                    <div class="paymentPrice">Wystawione <b>{{paymentSummary.all}}</b> zł w tym: </div>
-                                    <div class="paymentPrice">Zakończone: <b>{{paymentSummary.completed}}</b> zł</div>
-                                    <div class="paymentPrice">Oczekujące: <b>{{paymentSummary.waiting}}</b> zł</div>
+                            <div class="col s12">
+                                <div class="col s12">
+                                    <div class="today-date"></div>
+                                </div>
+                            </div>
+                            <div class="col s12" ng-show='nowEvents.length > 0'>
+                                <div class="col s12">
+                                    <div class="titleIn">Aktualne</div>
+                                    <ul class="collection eventTableDashboard">
+                                        <li class="collection-item" ng-repeat="now in nowEvents" style="border-color:{{now.color}}; border-bottom:1px solid;">{{now.title}}</br>-Do zakończenia: <b class='prettydate'>{{now.end}}</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col s12" ng-show='nextEvents.length > 0'>
+                                <div class="col s12">
+                                    <div class="titleIn events-text-color">Najbliższe</div>
+                                    <ul class="collection eventTableDashboard">
+                                        <li class="collection-item events-text-color" ng-repeat="next in nextEvents | limitTo: 3 " style="border-color:{{now.color}}; border-bottom:1px solid;">{{next.title}}</br>Rozpocznie się: <b class='prettydate'>{{next.end}}</b></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 15px;">
-                            <a href="#!/payment">Przejdź do płatności ></a>
+                        <div class="row">
+                            <a href="#!/calendar">Przejdź do kalendarza></a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            JUTRZEJSZE ZAJĘCIA
+                        </div>
+                        <div class="timetable" style='padding:0' ng-controller='timetableController' ng-init='initTimetable()'>
+                            <div class='timetableElement fullWidth' ng-show="todayInt == 0">
+
+                                <div class="timetableEvent" ng-repeat='event in events["Poniedziałek"]' style='background-color: #0087ff'>
+                                    <p>{{event.title}}</p>
+                                    <b>{{event.time}}</b>
+                                </div>
+                            </div>
+                            <div class='timetableElement fullWidth' ng-show="todayInt == 1">
+
+                                <div class="timetableEvent" ng-repeat='event in events["Wtorek"]' style='background-color: #0087ff'>
+                                    <p>{{event.title}}</p>
+                                    <b>{{event.time}}</b>
+                                </div>
+                            </div>
+                            <div class='timetableElement fullWidth' ng-show="todayInt == 2">
+
+                                <div class="timetableEvent" ng-repeat='event in events["Środa"]' style='background-color: #0087ff'>
+                                    <p>{{event.title}}</p>
+                                    <b>{{event.time}}</b>
+                                </div>
+                            </div>
+                            <div class='timetableElement fullWidth' ng-show="todayInt == 3">
+
+                                <div class="timetableEvent" ng-repeat='event in events["Czwartek"]' style='background-color: #0087ff'>
+                                    <p>{{event.title}}</p>
+                                    <b>{{event.time}}</b>
+                                </div>
+                            </div>
+                            <div class='timetableElement fullWidth' ng-show="todayInt == 4">
+
+                                <div class="timetableEvent" ng-repeat='event in events["Piątek"]' style='background-color: #0087ff'>
+                                    <p>{{event.title}}</p>
+                                    <b>{{event.time}}</b>
+                                </div>
+                            </div>
+                            <div class='timetableElement fullWidth' ng-show="todayInt == 5">
+
+                                <div class="timetableEvent" ng-repeat='event in events["Sobota"]' style='background-color: #0087ff'>
+                                    <p>{{event.title}}</p>
+                                    <b>{{event.time}}</b>
+                                </div>
+                            </div>
+                            <div class='timetableElement fullWidth' ng-show="todayInt == 6">
+
+                                <div class="timetableEvent" ng-repeat='event in events["Niedziela"]' style='background-color: #0087ff'>
+                                    <p>{{event.title}}</p>
+                                    <b>{{event.time}}</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a href="#!/calendar">Przejdź do planu zajęć</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col s12 m4">
             <div class="row">
                 <div class="card">
                     <div class="card-content">
@@ -143,6 +127,27 @@
                     </div>
                 </div>
             </div>
+            <div class="row" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            PODSUMOWANIE PŁATNOŚCI
+                        </div>
+                        <div class="row">
+                            <div class="col s12" ng-controller='paymentController'>
+                                <div class="row" ng-init='getPaymentSummary()'>
+                                    <div class="paymentPrice">Wystawione <b>{{paymentSummary.all}}</b> zł w tym: </div>
+                                    <div class="paymentPrice">Zakończone: <b>{{paymentSummary.completed}}</b> zł</div>
+                                    <div class="paymentPrice">Oczekujące: <b>{{paymentSummary.waiting}}</b> zł</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="#!/payment">Przejdź do płatności ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col s12 m4">
             <div class="card">
@@ -153,7 +158,6 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="col s12">
-                                <div class="titleIn">Dodaj nowe</div>
                                 <div class="row">
                                     <div class="todoColorPicker">
                                         <div class="todoColorPink" ng-click="selectColor('#de5c8a');"></div>
@@ -162,13 +166,12 @@
                                         <div class="todoColorTurquoise" ng-click="selectColor('#17ae9f');"></div>
                                     </div>
                                 </div>
-                                <div class="col s12" id='todoAdd'>
-                                    <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia"></input>
+                                <form class="col s12" id='todoAdd'>
+                                    <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia" onsubmit="addTodo()"></input>
                                     <button ng-click="addTodo()" id='todoButton'><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                </div>
+                                </form>
                             </div>
                             <div class="col s12">
-                                <div class="titleIn">Aktualne</div>
                                 <ul class="collection todoTable">
                                     <li class="collection-item" ng-repeat="tod in todoList |orderBy: '-date_add' | limitTo: 10">
                                         <div class='todoColorMain ' style='background:{{tod.color}};'></div>

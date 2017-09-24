@@ -4,6 +4,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.lastPost = [];
     $scope.showContent = true;
     $scope.isLoadedPost = false;
+    $scope.todayInt = (new Date()).getDay();
 
 
     $scope.getAllEvents = function() {
@@ -15,7 +16,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     }
 
     $scope.getNextEvents = function() {
-        request.backend('getNextEvents', {tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getNextEvents', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.nextEvents = data;
             });
@@ -23,7 +24,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     }
 
     $scope.getNowStartEvents = function() {
-        request.backend('getNowEvents', {tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getNowEvents', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.nowEvents = data;
             });
@@ -31,7 +32,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     }
 
     $scope.getLastPost = function() {
-        request.backend('getLastPost', {tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getLastPost', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.lastPost = data;
                 if (data.length > 0)

@@ -18,3 +18,13 @@
 .paymentPrice b {
     color: rgb(255, 75, 30);
 }
+
+.eventTableDashboard li {
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    padding: 0px;
+}
+
+.fullWidth {
+    width: 100% !important;
+}

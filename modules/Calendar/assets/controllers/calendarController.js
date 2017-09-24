@@ -13,7 +13,6 @@ app.controller('calendarController', function($scope, auth, $rootScope, request,
             $scope.$apply(function() {
                 $scope.allEvents = data;
                 $scope.showContent = true;
-                console.log(data);
                 initCalendar();
             });
         });

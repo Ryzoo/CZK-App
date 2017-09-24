@@ -57,6 +57,13 @@
     margin-bottom: 10px;
 }
 
+.todoTable li {
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    padding: 0px;
+    margin-bottom: 5px;
+}
+
 .endTodo {
     width: auto;
     float: left;
