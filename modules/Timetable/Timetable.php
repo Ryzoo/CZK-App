@@ -16,7 +16,7 @@ class Timetable extends BasicModule {
 
     function getTimetableEvent($data){
       $tmid = $data["tmid"];
-      $allEvent = ($this->db->getConnection())->fetchRowMany("SELECT `id`, `id_team`, `title`, `day_name`, `time`, `color` FROM `timetable` WHERE id_team=".$tmid);
+      $allEvent = ($this->db->getConnection())->fetchRowMany("SELECT `id`, `id_team`, `title`, `day_name`, `time`, `color` FROM `timetable` WHERE id_team=".$tmid." ORDER BY time");
       $this->returnedData["data"] = [
         "Poniedziałek"=>[],
         "Wtorek"=>[],
@@ -33,7 +33,7 @@ class Timetable extends BasicModule {
 
     function getTimetableEventFull($data){
       $tmid = $data["tmid"];
-      $this->returnedData["data"]= ($this->db->getConnection())->fetchRowMany("SELECT `id`, `id_team`, `title`, `day_name`, `time`, `color` FROM `timetable` WHERE id_team=".$tmid);
+      $this->returnedData["data"]= ($this->db->getConnection())->fetchRowMany("SELECT `id`, `id_team`, `title`, `day_name`, `time`, `color` FROM `timetable` WHERE id_team=".$tmid." ORDER BY time");
       return $this->returnedData;
     }
 
