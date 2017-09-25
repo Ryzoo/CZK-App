@@ -102,7 +102,7 @@ class Players extends BasicModule{
         $tmid = $post["tmid"];
         $token = $post["token"];
         $role = ($isAdminAc ? 2 : ($isPersonel ? 4 : 3));
-        $newPassword = explode("@",$mail)[0];
+        $newPassword = md5( $lname . random_int(1, 100) . $token );
 
         $toReturn = ($this->db->getConnection())->fetchRowMany("SELECT id FROM users WHERE email = '".$mail."'");
         if( $toReturn != null ){
