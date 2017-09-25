@@ -37,8 +37,9 @@ app.controller('timetableController', function($scope, auth, $rootScope, notify,
         var title = $('#addTitleNews').val();
         var day = $('#dayName').val();
         var time = $('#timeEVENT').val();
+        var timeEnd = $('#timeEventEnd').val();
 
-        if (!day || !time || !title) {
+        if (!day || !time || !title || !timeEnd) {
             notify.localNotify("Walidacja", "Wpisz wszystkie dane");
             return;
         }
@@ -49,12 +50,13 @@ app.controller('timetableController', function($scope, auth, $rootScope, notify,
         }
         var regexp = /([01][0-9]|[02][0-3]):[0-5][0-9]/;
         var correct = (time.search(regexp) >= 0) ? true : false;
-        if (!correct) {
+        var correctEnd = (timeEnd.search(regexp) >= 0) ? true : false;
+        if (!correct || !correctEnd) {
             notify.localNotify("Walidacja", "Błędny format czasu (hh:mm)");
             return;
         }
 
-        request.backend('addTimetableEvent', { title: title, day: day, time: time, color: $scope.selectedColor, tmid: $rootScope.user.tmid }, function(data) {
+        request.backend('addTimetableEvent', { title: title, day: day, time: time, color: $scope.selectedColor, tmid: $rootScope.user.tmid, timeEnd: timeEnd }, function(data) {
             $scope.iniTimetableSettings();
         }, "Dodano pomyślnie");
     }

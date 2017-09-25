@@ -16,7 +16,7 @@ class Staff extends BasicModule {
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT staff.id as stid, staff.name as stname, firstname, lastname, email, tel, user_img_path FROM staff, users, user_data WHERE staff.id_user = users.id AND user_data.user_id = users.id AND staff.id_team = '.$tmid );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT staff.id as stid, staff.name as stname, firstname, lastname, email, tel, user_img_path FROM staff, users, user_data WHERE staff.id_user = users.id AND user_data.user_id = users.id AND staff.id_team = '.$tmid.' ORDER BY user_data.lastname' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
@@ -37,7 +37,7 @@ class Staff extends BasicModule {
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as rlname FROM users, user_data, roles, team_members WHERE user_data.user_id = users.id AND users.id_role = roles.id AND team_members.id_user = users.id AND ( ( roles.id != 3 AND team_members.id_team = '.$tmid.') OR ( roles.id = 1 ) )' );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as rlname FROM users, user_data, roles, team_members WHERE user_data.user_id = users.id AND users.id_role = roles.id AND team_members.id_user = users.id AND ( ( roles.id != 3 AND team_members.id_team = '.$tmid.') OR ( roles.id = 1 ) ) ORDER BY user_data.lastname' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }

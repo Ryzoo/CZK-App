@@ -26,7 +26,19 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s12 m6">
+                                        <input id='timeEVENT' type="text" class="datetimepicker" placeholder="Godzina startu" required class="validate">
+                                        <label for="timeEVENT">Godzina startu</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <input id='timeEventEnd' type="text" class="datetimepicker" placeholder="Godzina zakończenia" required class="validate">
+                                        <label for="timeEventEnd">Godzina zakończenia</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
                                         <select id='dayName' name='bodyType'>
                                             <option value="" disabled >Dzień tygodnia</option>
                                             <option value="Poniedziałek"selected >Poniedziałek</option>
@@ -39,11 +51,8 @@
                                         </select>
                                         <label>Wybierz dzień tygodnia dla zajęć</label>
                                     </div>
-                                    <div class="input-field col s12 m4">
-                                        <input id='timeEVENT' type="text" class="datetimepicker" placeholder="Godzina" required class="validate">
-                                        <label for="timeEVENT">Godzina</label>
-                                    </div>
-                                    <div class="form-group col s12 m4">
+
+                                    <div class="form-group col s12 m6">
                                         <button type="button " class="waves-effect waves-light btn" ng-click="addTimetableEvent();">Dodaj</button>
                                     </div>
                                 </div>
@@ -55,7 +64,8 @@
                                 <tr>
                                     <th>Tytuł</th>
                                     <th>Dzień</th>
-                                    <th>Godzina</th>
+                                    <th>Start</th>
+                                    <th>Koniec</th>
                                     <th>Kolor</th>
                                     <th>Usuń</th>
                                 </tr>
@@ -65,6 +75,7 @@
                                     <td>{{event.title}}</td>
                                     <td>{{event.day_name}}</td>
                                     <td>{{event.time}}</td>
+                                    <td>{{event.timeEnd}}</td>
                                     <td style="background:{{event.color}}"></td>
                                     <td>
                                         <i class="fa fa-times" aria-hidden="true" ng-click='deleteTimetableEvent(event.id)' style="cursor:pointer;"></i>

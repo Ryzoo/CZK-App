@@ -26,14 +26,14 @@ class Players extends BasicModule{
 
     function getAllPlayers( $data ){
         $tmid = $data['tmid'];
-        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) AND id_team = '.$tmid);
+        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) AND id_team = '.$tmid.' GROUP BY usid ORDER BY user_data.lastname');
         return $this->returnedData;
     }
 
     function getAllPlayersFromApp( $data ){
         $tmid = $data['tmid'];
         $teamUser = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid FROM team_members, users, user_data, roles WHERE users.id_role = roles.id AND team_members.id_user = users.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) AND id_team = '.$tmid);
-        $allUser = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname FROM users, user_data, roles WHERE users.id_role = roles.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4)');
+        $allUser = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname FROM users, user_data, roles WHERE users.id_role = roles.id AND users.id = user_data.user_id AND ( users.id_role = 3 OR users.id_role = 4) GROUP BY usid ORDER BY user_data.lastname');
         $this->returnedData["data"] = [];
         for($i=0;$i<count($allUser);$i++){
             $isIn = false;
@@ -52,7 +52,7 @@ class Players extends BasicModule{
     }
 
     function getAllMaster(){
-        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM users, user_data, roles WHERE users.id_role = roles.id AND  users.id = user_data.user_id AND users.id_role = 2');
+        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname, roles.name as roleName FROM users, user_data, roles WHERE users.id_role = roles.id AND  users.id = user_data.user_id AND users.id_role = 2 GROUP BY usid ORDER BY user_data.lastname');
         return $this->returnedData;
     }
 

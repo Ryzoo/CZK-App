@@ -6,6 +6,40 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
+                        Dodaj nowe konto ( personel )
+                    </div>
+                    <div class="row" id='contentAddPersonShow'>
+                        <form>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="addedFirstname" type="text" name="firstname" placeholder="Imię" class="validate">
+                                        <label for="addedFirstname">Imię</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id='addedLastname' type="text" name="lastname" placeholder="Nazwisko" class="validate">
+                                        <label for="addedLastname">Nazwisko</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id='addedEmail' type="email" name="email" placeholder="Adres email" class="validate">
+                                        <label for="addedEmail">Adres email</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="addPerson()">Dodaj</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 col m6 col l4 noPrint" ng-show="user.role == 'TRENER' || user.role == 'KOORD' ">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
                         Dodaj personel
                     </div>
                     <div class="row" style="padding: 20px; ">
@@ -28,10 +62,10 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
-                        Koordynator strony
+                        Trener Koordynator
                     </div>
                     <div id='st-{{staff.stid}}' class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-5" style='min-height:60px'>
                             <img src="{{staff.user_img_path}}" style='margin-top:20px;' class="circle" width="60" height="60" alt="{{staff.firstname}}-{{staff.lastname}}"></img>
                         </div>
                         <div class="col-md-7">
@@ -64,7 +98,7 @@
                         </div>
                     </div>
                     <div id='st-{{staff.stid}}' class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-5" style='min-height:60px'>
                             <img src="{{staff.user_img_path}}" style='margin-top:20px;' class="circle" width="60" height="60" alt="{{staff.firstname}}-{{staff.lastname}}"></img>
                         </div>
                         <div class="col-md-7">

@@ -48,49 +48,49 @@
 
                                 <div class="timetableEvent" ng-repeat='event in events["Poniedziałek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
-                                    <b>{{event.time}}</b>
+                                    <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 1">
 
                                 <div class="timetableEvent" ng-repeat='event in events["Wtorek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
-                                    <b>{{event.time}}</b>
+                                    <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 2">
 
                                 <div class="timetableEvent" ng-repeat='event in events["Środa"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
-                                    <b>{{event.time}}</b>
+                                    <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 3">
 
                                 <div class="timetableEvent" ng-repeat='event in events["Czwartek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
-                                    <b>{{event.time}}</b>
+                                    <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 4">
 
                                 <div class="timetableEvent" ng-repeat='event in events["Piątek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
-                                    <b>{{event.time}}</b>
+                                    <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 5">
 
                                 <div class="timetableEvent" ng-repeat='event in events["Sobota"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
-                                    <b>{{event.time}}</b>
+                                    <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 6">
 
                                 <div class="timetableEvent" ng-repeat='event in events["Niedziela"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
-                                    <b>{{event.time}}</b>
+                                    <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                         </div>

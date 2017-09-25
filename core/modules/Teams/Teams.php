@@ -46,7 +46,7 @@ class Teams extends BasicModule {
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, team_members.id as tmmid, firstname, lastname, nr_on_tshirt, pos_x, pos_y FROM teams, team_members, users, user_data, positions, roles WHERE positions.id = team_members.id_position AND teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id AND users.id_role = 3 AND team_members.id_team = '.$id.' GROUP BY usid' );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, team_members.id as tmmid, firstname, lastname, nr_on_tshirt, pos_x, pos_y FROM teams, team_members, users, user_data, positions, roles WHERE positions.id = team_members.id_position AND teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id = user_data.user_id AND users.id_role = 3 AND team_members.id_team = '.$id.' GROUP BY usid ORDER BY user_data.lastname' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
@@ -112,7 +112,7 @@ class Teams extends BasicModule {
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname FROM `team_members`, users, user_data WHERE users.id = user_data.user_id AND users.id = team_members.id_user AND users.id_role = 2 AND team_members.id_team = '.$tmid );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as usid, firstname, lastname FROM `team_members`, users, user_data WHERE users.id = user_data.user_id AND users.id = team_members.id_user AND users.id_role = 2 AND team_members.id_team = '.$tmid.' GROUP BY usid ORDER BY user_data.lastname' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }

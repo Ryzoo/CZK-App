@@ -15,7 +15,7 @@
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
         "url": "addTimetableEvent",
-        "parameters": ["tmid", "title", "day", "time", "color"],
+        "parameters": ["tmid", "title", "day", "time", "timeEnd", "color"],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }],
     "jsControllers": ["timetableController"],

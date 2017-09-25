@@ -1,4 +1,4 @@
-app.controller('showPlayersController', function($scope, auth, $rootScope, notify,request) {
+app.controller('showPlayersController', function($scope, auth, $rootScope, notify, request) {
     $scope.players;
     $scope.actualSelectedUserData;
     $scope.actualSelectedUserStats;
@@ -18,27 +18,27 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
         $scope.personAddShow = !$scope.personAddShow;
     }
 
-    $scope.addPersonFromApp = function(){
+    $scope.addPersonFromApp = function() {
         var selected = $('#selectPersonFromApp').val();
-        if( selected && selected != null && selected != ""){
-            request.backend('addPlayerToTeam', {tmid: $rootScope.user.tmid, usid: $scope.teamPlayer[selected].usid }, function(data) {
+        if (selected && selected != null && selected != "") {
+            request.backend('addPlayerToTeam', { tmid: $rootScope.user.tmid, usid: $scope.teamPlayer[selected].usid }, function(data) {
                 $scope.getAllPlayers();
                 notify.addNew(new notify.Notification("Zostałeś przypisany do nowej sekcji: ", [$scope.teamPlayer[selected].usid]));
-            },"Zawodnik dodany pomyslnie do tej sekcji");
-        } else{
-            notify.localNotify("Walidacja","Wybierz najpierw zawodnika z listy dostępnych");
+            }, "Zawodnik dodany pomyslnie do tej sekcji");
+        } else {
+            notify.localNotify("Walidacja", "Wybierz najpierw zawodnika z listy dostępnych");
         }
     }
 
     $scope.getAllPlayers = function() {
         $rootScope.showContent = false;
-        request.backend('getAllPlayers', {tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getAllPlayers', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.players = data;
                 $scope.showContent = true;
             });
         });
-        request.backend('getAllPlayersFromApp', {tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getAllPlayersFromApp', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.teamPlayer = data;
                 $('#selectPersonFromApp').html('');
@@ -53,7 +53,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
 
     $scope.showThisPlayer = function(usidN) {
         $scope.showPreLoad = true;
-        request.backend('getAllUserData', {usid: usidN}, function(data) {
+        request.backend('getAllUserData', { usid: usidN }, function(data) {
             $scope.$apply(function() {
                 $scope.actualSelectedUserData = data;
                 $scope.actualSelectedUserData.id = usidN;
@@ -63,9 +63,9 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     }
 
     $scope.deleteUser = function(usidN) {
-        request.backend('deleteUser', {usid: usidN}, function() {
+        request.backend('deleteUser', { usid: usidN }, function() {
             $scope.getAllPlayers();
-        },'Osoba usunięta wraz z powiązaniami');
+        }, 'Osoba usunięta wraz z powiązaniami');
     }
 
     $scope.addPerson = function() {
@@ -74,23 +74,23 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
         var email = $('#addedEmail').val();
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!re.test(email)) {
-            notify.localNotify('Bład','Popraw wpisany adres email');
+            notify.localNotify('Bład', 'Popraw wpisany adres email');
             return;
         }
         if (firstname.length < 3 || lastname.length < 3) {
-            notify.localNotify('Bład','Imię lub nazwisko jest zbyt krótkie');
+            notify.localNotify('Bład', 'Imię lub nazwisko jest zbyt krótkie');
             return;
         }
-        request.backend('addPerson', { tmid: $rootScope.user.tmid, fname: firstname, lname: lastname, mail: email, isPersonel: ($("#addedIsPersonel").is(':checked')), isAdmin: 'false'}, function() {
+        request.backend('addPerson', { tmid: $rootScope.user.tmid, fname: firstname, lname: lastname, mail: email, isPersonel: false, isAdmin: 'false' }, function() {
             $('#addedFirstname').val('');
             $('#addedLastname').val('');
             $('#addedEmail').val('');
             $scope.getAllPlayers();
-        },'Osoba została dodana. Na jej adres email zostało wysłane hasło. Wiadomość może trafić do folderu spam');
+        }, 'Osoba została dodana. Na jej adres email zostało wysłane hasło. Wiadomość może trafić do folderu spam');
     }
 
     function getUserRaports($userId) {
-        request.backend('getRaport', { usid: $userId, tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getRaport', { usid: $userId, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.actualSelectedUserRaports = data;
                 $scope.showPlayerNow = true;
@@ -100,23 +100,23 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     }
 
 
-    
+
 
     $scope.addRaport = function() {
         $name = $("#raportName").val();
         if ($name.length <= 3) {
-            notify.localNotify('Walidacja','Wpisz nazwę raportu');
+            notify.localNotify('Walidacja', 'Wpisz nazwę raportu');
             return;
         }
         request.backend('addRaport', new FormData($("#raportForm")[0]), function(data) {
             notify.addNew(new notify.Notification("Uzyskałeś raport: " + $name, [$scope.actualSelectedUserData.id], "#!/myRaports"));
             getUserRaports($scope.actualSelectedUserData.id);
-        },'Twoj plik został przesłany pomyślnie.',true);
+        }, 'Twoj plik został przesłany pomyślnie.', true);
     };
 
     $scope.deleteRaport = function(rpid) {
-        request.backend('deleteRaport', {id: rpid}, function() {
+        request.backend('deleteRaport', { id: rpid }, function() {
             getUserRaports($scope.actualSelectedUserData.id);
-        },'Plik zostal usuniety');
+        }, 'Plik zostal usuniety');
     }
 });

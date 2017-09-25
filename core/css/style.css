@@ -1320,6 +1320,11 @@ PANELS CONFIGURATIONS
 
 /*STOCK CARD Panel*/
 
+.table-scroll {
+    max-height: 800px;
+    overflow-y: scroll;
+}
+
 .card {
     margin: 0 5px !important;
     margin-bottom: 15px !important;
@@ -1327,6 +1332,7 @@ PANELS CONFIGURATIONS
 }
 
 .card:hover {
+    z-index: 1000;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     transform: translateY(-5px);
