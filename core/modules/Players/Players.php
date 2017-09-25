@@ -59,12 +59,12 @@ class Players extends BasicModule{
     function recreatePassword( $data ){
         $usid = $data["usid"];
         $token = $data["token"];
-        $newPassword = md5( $lname . random_int(1, 100) . $token );
 
         $user = ($this->db->getConnection())->fetchRow("SELECT users.id, users.email, user_data.firstname, user_data.lastname FROM users, user_data WHERE user_data.user_id = users.id AND users.id = ".$usid);
         $fname = $user['firstname'];
         $lname = $user['lastname'];
         $mail = $user['email'];
+        $newPassword = explode("@",$mail)[0];
 
         ($this->db->getConnection())->update('users', ["id"=>$usid], ["password"=>md5($newPassword)] );
 
@@ -85,6 +85,7 @@ class Players extends BasicModule{
             $this->returnedData["error"]  = 'Nie udało się wysłać meila z hasłem';
             $this->returnedData["success"]  = false;
         }
+        $this->returnedData["data"] = "Adres email: " . $mail;
         return $this->returnedData;
     }
 
@@ -101,7 +102,7 @@ class Players extends BasicModule{
         $tmid = $post["tmid"];
         $token = $post["token"];
         $role = ($isAdminAc ? 2 : ($isPersonel ? 4 : 3));
-        $newPassword = md5( $lname . random_int(1, 100) . $token );
+        $newPassword = explode("@",$mail)[0];
 
         $toReturn = ($this->db->getConnection())->fetchRowMany("SELECT id FROM users WHERE email = '".$mail."'");
         if( $toReturn != null ){
