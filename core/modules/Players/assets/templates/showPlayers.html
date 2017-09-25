@@ -77,9 +77,7 @@
                                         <td style='cursor:pointer; text-align:center; padding: 10px 0 !important;' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.firstname}}</td>
                                         <td style='cursor:pointer;  text-align:center; padding: 10px 0 !important;' ng-click="showThisPlayer( player.usid )" style='padding: 5px;'>{{player.lastname}}</td>
                                         <td style='cursor:pointer; text-align:center; padding: 10px 0 !important;' ng-click="showThisPlayer( player.usid )">{{player.roleName}}</td>
-                                        <td style='cursor:pointer; text-align:center; padding: 10px 0 !important;'>
-                                            <button class="waves-effect waves-light btn" ng-click="resendPassword( player.usid )"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                        </td>
+                                        <td ng-click="resendPassword(player.usid)" style='padding: 10px 0 !important; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-paper-plane" ng-click="resendPassword( player.usid )" aria-hidden="true"></i></td>
                                         <td ng-click="deleteUser(player.usid)" style='padding: 10px 0 !important; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-times" aria-hidden="true"></i></td>
                                     </tr>
                                 </tbody>
