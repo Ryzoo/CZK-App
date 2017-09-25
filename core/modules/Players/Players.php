@@ -61,7 +61,7 @@ class Players extends BasicModule{
         $token = $data["token"];
         $newPassword = md5( $lname . random_int(1, 100) . $token );
 
-        $user = ($this->db->getConnection())->fetchRow("SELECT id, firstname, lastname FROM users, user_data WHERE user_data.user_id = users.id AND users.id = ".$usid);
+        $user = ($this->db->getConnection())->fetchRow("SELECT users.id, users.firstname, users.lastname FROM users, user_data WHERE user_data.user_id = users.id AND users.id = ".$usid);
         $fname = $user['firstname'];
         $lname = $user['lastname'];
 
