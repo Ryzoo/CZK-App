@@ -71,12 +71,13 @@ class Players extends BasicModule{
         try{
             $headers = 'MIME-Version: 1.0' . "\r\n" .
             'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
-            'From: cmc.app.office@gmail.com' . "\r\n" .
-            "CC: susan@example.com" . "\r\n" .
+            'From: Club Management Center < cmc.app@centrumklubu.pl >' . "\r\n" .
+            "CC: cmc.app@centrumklubu.pl" . "\r\n" .
+            "X-Sender: Club Management Center < cmc.app@centrumklubu.pl >" . "\r\n" .
             "MIME-Version: 1.0" . "\r\n";
-            'Reply-To: cmc.app.office@gmail.com' . "\r\n" .
+            'Reply-To: cmc.app@centrumklubu.pl' . "\r\n" .
             "X-Priority: 1" . "\r\n" .
-            "Return-Path: cmc.app.office@gmail.com" . "\r\n" .
+            "Return-Path: cmc.app@centrumklubu.pl" . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
             $message = "Witaj <strong>".$fname." ".$lname."</strong>.<br/>Twoje hasło zostało właśnie zmienione. <br/>Możesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
             $success = mail($mail, 'Utworzenie nowego hasła', $message, $headers);
@@ -145,12 +146,13 @@ class Players extends BasicModule{
                 try{
                     $headers = 'MIME-Version: 1.0' . "\r\n" .
                     'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
-                    'From: cmc.app.office@gmail.com' . "\r\n" .
-                    "CC: susan@example.com" . "\r\n" .
+                    'From: Club Management Center < cmc.app@centrumklubu.pl >' . "\r\n" .
+                    "CC: cmc.app@centrumklubu.pl" . "\r\n" .
+                    "X-Sender: Club Management Center < cmc.app@centrumklubu.pl >" . "\r\n" .
                     "MIME-Version: 1.0" . "\r\n";
-                    'Reply-To: cmc.app.office@gmail.com' . "\r\n" .
+                    'Reply-To: cmc.app@centrumklubu.pl' . "\r\n" .
                     "X-Priority: 1" . "\r\n" .
-                    "Return-Path: cmc.app.office@gmail.com" . "\r\n" .
+                    "Return-Path: cmc.app@centrumklubu.pl" . "\r\n" .
                     'X-Mailer: PHP/' . phpversion();
                     $message = "Witaj <strong>".$fname." ".$lname."</strong>.<br/>Twoje konto zostało właśnie utworzone. <br/>Możesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
                     mail($mail, 'Utworzono Twoje konto', $message, $headers);
