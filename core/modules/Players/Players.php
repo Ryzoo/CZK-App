@@ -75,7 +75,7 @@ class Players extends BasicModule{
             'Reply-To: ClubManagementCenter@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
             $message = "Witaj <strong>".$fname." ".$lname."</strong>.<br/>Twoje hasło zostało właśnie zmienione. <br/>Możesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
-            $success = mail($mail, 'Utworzono Twoje konto', $message, $headers);
+            $success = mail($mail, 'Utworzenie nowego hasła', $message, $headers);
             if (!$success) {
                 $errorMessage = error_get_last()['message'];
                 $this->returnedData["error"]  = $errorMessage;
