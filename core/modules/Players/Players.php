@@ -66,7 +66,7 @@ class Players extends BasicModule{
         $lname = $user['lastname'];
         $mail = $user['email'];
 
-        ($this->db->getConnection())->update('users', ["id"=>$usid], ["password"=>$newPassword]);
+        ($this->db->getConnection())->update('users', ["id"=>$usid], ["password"=>md5($newPassword)] );
 
         try{
             $headers = 'MIME-Version: 1.0' . "\r\n" .
