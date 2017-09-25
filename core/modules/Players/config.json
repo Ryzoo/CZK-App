@@ -20,7 +20,7 @@
         },
         {
             "url": "addPlayerToTeam",
-            "parameters": ["tmid","usid"],
+            "parameters": ["tmid", "usid"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {
@@ -30,6 +30,11 @@
         {
             "url": "deleteUser",
             "parameters": ["usid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "recreatePassword",
+            "parameters": ["usid", "token"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         }
     ],

@@ -222,14 +222,14 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             }
 
             var tshirtWidth = actualWidth / 9.0;
-            var tshirtHeight = tshirtWidth * 1.4;
+            var tshirtHeight = tshirtWidth * 1.2;
 
             ctx.drawImage(tshirt, 0, 0, tshirt.width, tshirt.height, pos.x - tshirtWidth / 2, pos.y - tshirtHeight * 0.2, tshirtWidth, tshirtHeight);
 
             ctx.fillStyle = '#ffffff';
             ctx.textAlign = "center";
             ctx.font = actualFontSize + "px Arial";
-            ctx.fillText($scope.users[i].nr_on_tshirt, pos.x, parseInt(pos.y) + actualFontSize);
+            ctx.fillText($scope.users[i].nr_on_tshirt, pos.x, parseInt(pos.y) + actualFontSize * 1.5);
             ctx.fillStyle = '#ffffff';
             ctx.font = actualFontSize + "px Arial";
             ctx.fillText($scope.users[i].firstname[0] + '. ' + $scope.users[i].lastname, pos.x, (parseInt(pos.y) + actualCircleSize + actualFontSize * 3));

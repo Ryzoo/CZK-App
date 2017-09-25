@@ -56,6 +56,37 @@ class Players extends BasicModule{
         return $this->returnedData;
     }
 
+    function recreatePassword( $data ){
+        $usid = $data["usid"];
+        $token = $data["token"];
+        $newPassword = md5( $lname . random_int(1, 100) . $token );
+
+        $user = ($this->db->getConnection())->fetchRow("SELECT id, firstname, lastname FROM users, user_data WHERE user_data.user_id = users.id AND id = ".$usid);
+        $fname = $user['firstname'];
+        $lname = $user['lastname'];
+
+        ($this->db->getConnection())->update('users', ["id"=>$usid], ["password"=>$newPassword]);
+
+        try{
+            $headers = 'MIME-Version: 1.0' . "\r\n" .
+            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'From: ClubManagementCenter@gmail.com' . "\r\n" .
+            'Reply-To: ClubManagementCenter@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+            $message = "Witaj <strong>".$fname." ".$lname."</strong>.<br/>Twoje hasło zostało właśnie zmienione. <br/>Możesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
+            $success = mail($mail, 'Utworzono Twoje konto', $message, $headers);
+            if (!$success) {
+                $errorMessage = error_get_last()['message'];
+                $this->returnedData["error"]  = $errorMessage;
+                $this->returnedData["success"]  = false;
+            }
+        }catch(Exception $e){
+            $this->returnedData["error"]  = 'Nie udało się wysłać meila z hasłem';
+            $this->returnedData["success"]  = false;
+        }
+        return $this->returnedData;
+    }
+
     function addPerson( $post ){
         $toReturn = null;
         $success = true;

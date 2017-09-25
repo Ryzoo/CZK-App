@@ -89,6 +89,10 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
         }, 'Osoba została dodana. Na jej adres email zostało wysłane hasło. Wiadomość może trafić do folderu spam');
     }
 
+    $scope.resendPassword = function(id) {
+        request.backend('recreatePassword', { usid: id }, function() {}, 'Pomyślnie zmieniono hasło i wysłano meila z hasłem');
+    }
+
     function getUserRaports($userId) {
         request.backend('getRaport', { usid: $userId, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
