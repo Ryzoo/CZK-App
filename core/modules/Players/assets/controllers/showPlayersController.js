@@ -90,7 +90,7 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     }
 
     $scope.resendPassword = function(id) {
-        request.backend('recreatePassword', { usid: id }, function() {}, 'Pomyślnie zmieniono hasło i wysłano meila z hasłem');
+        request.backend('recreatePassword', { usid: id }, function() {}, 'Pomyślnie zmieniono hasło i wysłano maila z hasłem');
     }
 
     function getUserRaports($userId) {
@@ -102,9 +102,6 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
             });
         });
     }
-
-
-
 
     $scope.addRaport = function() {
         $name = $("#raportName").val();
