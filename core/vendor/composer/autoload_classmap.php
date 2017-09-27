@@ -442,6 +442,7 @@ return array(
     'Modules\\Table\\Table' => $baseDir . '/../modules/Table/Table.php',
     'Modules\\Timetable\\Timetable' => $baseDir . '/../modules/Timetable/Timetable.php',
     'Modules\\Todo\\Todo' => $baseDir . '/../modules/Todo/Todo.php',
+    'Modules\\TrainingConspectus\\TrainingConspectus' => $baseDir . '/../modules/TrainingConspectus/TrainingConspectus.php',
     'Psr\\Log\\AbstractLogger' => $vendorDir . '/psr/log/Psr/Log/AbstractLogger.php',
     'Psr\\Log\\InvalidArgumentException' => $vendorDir . '/psr/log/Psr/Log/InvalidArgumentException.php',
     'Psr\\Log\\LogLevel' => $vendorDir . '/psr/log/Psr/Log/LogLevel.php',

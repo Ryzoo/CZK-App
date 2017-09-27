@@ -1,0 +1,26 @@
+{
+    "name": "TrainingConspectus",
+    "description": "Kreator konspektów treningowych",
+    "version": "1.0",
+    "require": [],
+    "backendRoute": [
+        { "url": "addPaymentToUser", "parameters": ["tmid", "userIds", "amount", "name"], "auth": ["KOORD", "TRENER"] }
+    ],
+    "jsControllers": ["TrainingConspectusController", "conspectusCreatorController"],
+    "css": ["style"],
+    "frontendRoute": [
+        { "url": "conspectusCreate", "templateSrc": "conspectusCreate.html", "controllerName": "TrainingConspectusController" }
+    ],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Konspekty treningowe",
+        "anchorPointIcon": "fa fa-address-card-o fa-fw",
+        "content": {
+            "link": {
+                "label": "Kreator",
+                "url": "#!\/conspectusCreate",
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
+            }
+        }
+    }]
+}

@@ -14,7 +14,37 @@
 </head>
 
 <body ng-controller="accountController">
-
+    <div id='canvasPlayer'>
+        <div id="playerContent">
+            <div id="playerData">
+                <p>Podgląd animacji</p>
+                <i id='exitPlayer' class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+            </div>
+            <div id="canvasPlayerContainer"></div>
+            <div id="playeControllerPanel">
+                <div id='animTimeBack'>
+                    <div id='animTime'></div>
+                </div>
+                <div id="playerSteringTools">
+                    <div class='animCotrollerButton' id="playAnim">
+                        <i class="fa fa-play-circle fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class='animCotrollerButton' id="backwardAnim">
+                        <i class="fa fa-backward " aria-hidden="true"></i>
+                    </div>
+                    <div class='animCotrollerButton' id="pauseAnim">
+                        <i class="fa fa-pause-circle fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class='animCotrollerButton' id="forwardAnim">
+                        <i class="fa fa-forward " aria-hidden="true"></i>
+                    </div>
+                    <div class='animCotrollerButton' id="stopAnim">
+                        <i class="fa fa-stop-circle fa-2x" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id='loadingContent' class="noPrint">
         <p>Wczytywanie...<br/><span id='showRun'>Już za chwilę przeniesiemy Cię na główną stronę</span></p>
     </div>
@@ -41,8 +71,8 @@
             </div>
             <div class="notifyContener">
                 <div class="notif" style='padding: 10px;' ng-repeat="notify in newNotify |orderBy: '-id'" ng-click='showNotifications(false)'>
-                    <a style='margin: 0; padding:0;text-align: left;'href="{{notify.url}}">{{notify.title}}</a>
-                    <p style='margin: 0; text-align: left;' class='prettydate' >{{notify.date_add}}</p>
+                    <a style='margin: 0; padding:0;text-align: left;' href="{{notify.url}}">{{notify.title}}</a>
+                    <p style='margin: 0; text-align: left;' class='prettydate'>{{notify.date_add}}</p>
                 </div>
             </div>
             <div class="notifyContenerTitle" ng-show="newNotify.length >= 5">
@@ -169,6 +199,7 @@
 <script src="/core/js/libraries/calendar-conf-events.js"></script>
 <script src="/core/js/libraries/common-scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+<script src="https://cdn.rawgit.com/konvajs/konva/1.6.8/konva.min.js"></script>
 <script>
     var urlToPost = 'backend/getServices';
     $.ajax({
@@ -317,16 +348,15 @@
         }
     });
 
-    $(document).ready(function(){
-        setTimeout(function(){
+    $(document).ready(function() {
+        setTimeout(function() {
             $(document).find(".prettydate").prettydate();
-        },500);
-        
-        setInterval(function(){
-            $(document).find(".prettydate").prettydate();
-        },1500);
-    });
+        }, 500);
 
+        setInterval(function() {
+            $(document).find(".prettydate").prettydate();
+        }, 1500);
+    });
 </script>
 
 <link rel="stylesheet" type="text/css" href="/core/css/zabuto_calendar.css">

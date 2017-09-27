@@ -1,0 +1,228 @@
+.itemsList {
+    border: 1px solid black;
+}
+
+.categoriesList {
+    width: 52px;
+}
+
+#canvasContainer {
+    max-width: 800px;
+    float: left;
+    width: calc( 100% - 100px);
+}
+
+.categories,
+.categoryItems {
+    margin: 10px;
+    line-height: 3.7;
+    color: #d9d9d9;
+    background: #1a1a1a;
+    margin-right: 0;
+    width: 40px;
+    height: 40px;
+    float: left;
+    border: 1px solid #434343;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all .2s;
+}
+
+.categoryItems {
+    margin: 5px;
+    margin-bottom: 0;
+}
+
+.categories:hover,
+.categoryItems:hover {
+    border-color: #6d6d6d;
+    transition: all .2s;
+    color: #dd4213;
+}
+
+#itemBox {
+    background: #242e33;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+}
+
+#soccerFieldBox {
+    width: 100%;
+}
+
+#soccerFieldBox tr {
+    display: flex;
+    margin: 20px;
+}
+
+#canvasBck {
+    background: #242e33;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+
+#leftBlockItem {
+    width: 50px;
+    float: left;
+}
+
+.soccerField {
+    width: 100px;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: all .1s;
+}
+
+.soccerField:hover {
+    transform: scale(1, 1.1);
+    transition: all .1s;
+}
+
+.categories {
+    position: relative;
+}
+
+.categoryItems img,
+.soccerField img,
+.categories img {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#timeline {
+    width: 50px;
+    float: left;
+}
+
+.timeElement,
+#addFrame {
+    width: 50px;
+    line-height: 1.8;
+    background: rgb(42, 42, 42);
+    text-align: center;
+    color: white;
+    border: 1px solid rgb(42, 42, 42);
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+.timeElement:hover {
+    background-color: rgb(81, 19, 1);
+}
+
+#addFrame {
+    background-color: rgb(221, 66, 19);
+    border: 1px solid rgb(221, 66, 19);
+}
+
+#addFrame:hover {
+    background-color: rgb(253, 112, 72);
+    transition: background-color .2s;
+}
+
+#canvasPlayer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: none;
+}
+
+#playerContent {
+    width: 100%;
+    max-width: 800px;
+    min-height: 100px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+#canvasPlayerContainer {
+    width: 100%;
+    height: auto;
+}
+
+#playeControllerPanel {}
+
+#animTimeBack {
+    width: 100%;
+    height: 3px;
+    background: rgb(73, 0, 0);
+}
+
+#animTime {
+    display: block;
+    width: 60%;
+    background: linear-gradient(to right, #980000 40%, #ff0000 100%);
+    height: 5px;
+}
+
+#playerData {
+    width: 100%;
+    background: #252525;
+    color: white;
+    line-height: 4;
+    overflow: hidden;
+}
+
+#playerData p {
+    float: left;
+    padding: 0 20px;
+    margin: 0;
+}
+
+#exitPlayer {
+    float: right;
+    padding: 0 20px;
+    line-height: 2;
+}
+
+#playerSteringTools {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background: #252525;
+    color: white;
+    transition: color .2s;
+}
+
+.animCotrollerButton:hover,
+#exitPlayer:hover {
+    color: #ff0000;
+    cursor: pointer;
+    transition: color .2s;
+}
+
+#forwardAnim,
+#backwardAnim {
+    padding-top: 4px;
+}
+
+.disableSter {
+    color: rgb(82, 82, 82);
+    transition: color .2s;
+}
+
+.disableSter:hover {
+    transition: color .2s;
+    color: rgb(82, 82, 82);
+}

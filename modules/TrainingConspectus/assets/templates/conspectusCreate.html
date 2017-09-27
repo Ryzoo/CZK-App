@@ -1,0 +1,104 @@
+<div ng-init="setPerm(['STAFF','TRENER','KOORD'])"></div>
+<div class="section" ng-init="initConsectusCreate()">
+    <div ng-show='showContent' class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content" style='padding-bottom:0px'>
+                    <div class="card-title">Tworzenie nowego konspektu</div>
+                    <div class="row" ng-controller='conspectusCreatorController'>
+                        <table id='soccerFieldBox' ng-init="isSelectedField=false">
+                            <tr>
+                                <td class='soccerField' ng-click="isSelectedField=true">
+                                    <img src="/modules/TrainingConspectus/assets/media/f1.png" alt="field1">
+                                </td>
+                                <td class='soccerField' ng-click="isSelectedField=true">
+                                    <img src="/modules/TrainingConspectus/assets/media/f2.png" alt="field2">
+                                </td>
+                            </tr>
+                        </table>
+                        <div id='itemBox' ng-show='isSelectedField'>
+                            <div class='categories' style='border-color:red' ng-click="changeCategories(mouseActionType.MOVE)">
+                                <i class="fa fa-arrows fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class='categories' ng-click="changeCategories(mouseActionType.OBJECT_ADD)">
+                                <i class="fa fa-th fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class='categories' ng-click="changeCategories(mouseActionType.ARROW_ADD)">
+                                <i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div id='canvasBck' ng-show='isSelectedField'>
+                            <div id='leftBlockItem'>
+                                <div class='itemsList' ng-show="actualMouseAction==mouseActionType.MOVE">
+                                    <div class='categoryItems' id='canActionPlay'>
+                                        <i class="fa fa-play fa-2x" aria-hidden="true"></i>
+                                    </div>
+                                    <div class='categoryItems' id='canActionRotLeft' ng-show="lastSelected!=null">
+                                        <i class="fa fa-undo fa-2x" aria-hidden="true"></i>
+                                    </div>
+                                    <div class='categoryItems' id='canActionRotRight' ng-show="lastSelected!=null">
+                                        <i class="fa fa-repeat fa-2x" aria-hidden="true"></i>
+                                    </div>
+                                    <div class='categoryItems' id='canActionDel' ng-show="lastSelected!=null">
+                                        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD">
+                                    <div class='categoryItems'>
+                                        <img src="/modules/TrainingConspectus/assets/media/bitmap.png" alt="person1">
+                                    </div>
+                                    <div class='categoryItems'>
+                                        <img src="/modules/TrainingConspectus/assets/media/bitmap1.png" alt="person2">
+                                    </div>
+                                    <div class='categoryItems'>
+                                        <img src="/modules/TrainingConspectus/assets/media/bitmap2.png" alt="person3">
+                                    </div>
+                                    <div class='categoryItems'>
+                                        <img src="/modules/TrainingConspectus/assets/media/ball.png" alt="ball1">
+                                    </div>
+                                </div>
+                                <div class='itemsList' ng-show="actualMouseAction==mouseActionType.ARROW_ADD">
+                                    <div class='categoryItems' ng-click="selectArrow(arrowType.FULL_2)">
+                                        <img src="/modules/TrainingConspectus/assets/media/arrow1.png" alt="arrow1">
+                                    </div>
+                                    <div class='categoryItems' ng-click="selectArrow(arrowType.FULL_3)">
+                                        <img src="/modules/TrainingConspectus/assets/media/arrow2.png" alt="arrow2">
+                                    </div>
+                                    <div class='categoryItems' ng-click="selectArrow(arrowType.STRIPED_2)">
+                                        <img src="/modules/TrainingConspectus/assets/media/arrow3.png" alt="arrow3">
+                                    </div>
+                                    <div class='categoryItems' ng-click="selectArrow(arrowType.STRIPED_3)">
+                                        <img src="/modules/TrainingConspectus/assets/media/arrow4.png" alt="arrow4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id='canvasContainer' ng-show='isSelectedField'></div>
+                            <div id="timeline" ng-show='isSelectedField'>
+                                <div class='timeElement' style='border-color:red'> 1 </div>
+                                <div id='addFrame'> + </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

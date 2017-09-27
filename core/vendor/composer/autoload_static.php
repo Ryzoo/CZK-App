@@ -613,6 +613,7 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         'Modules\\Table\\Table' => __DIR__ . '/../..' . '/../modules/Table/Table.php',
         'Modules\\Timetable\\Timetable' => __DIR__ . '/../..' . '/../modules/Timetable/Timetable.php',
         'Modules\\Todo\\Todo' => __DIR__ . '/../..' . '/../modules/Todo/Todo.php',
+        'Modules\\TrainingConspectus\\TrainingConspectus' => __DIR__ . '/../..' . '/../modules/TrainingConspectus/TrainingConspectus.php',
         'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
         'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
         'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
