@@ -300,7 +300,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
         } else if ($scope.actualMouseAction == $scope.mouseActionType.ARROW_ADD && $scope.selectedArrow) {
             $scope.arrowPointCount++;
-            $scope.arrowPoint.push(selectedFrame.getPointerPosition());
+            var scale = selectedFrame.getAttr('scaleX');
+            var mousePos = selectedFrame.getPointerPosition();
+            $scope.arrowPoint.push({
+                x: mousePos.x / scale,
+                y: mousePos.y / scale
+            });
             var countLimit = 0;
             switch ($scope.selectedArrow) {
                 case $scope.arrowType.FULL_2:
@@ -788,22 +793,22 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         var anchor = new Konva.Circle({
             x: x,
             y: y,
-            radius: (type == 'end') ? 5 : 10,
-            stroke: (type == 'ster') ? '#666' : '#dd4213',
-            fill: (type == 'ster') ? '#ddd' : '#dd4213',
+            radius: (type == 'end' || type == 'start') ? 5 : 15,
+            stroke: (type == 'ster') ? '#ddd' : '#dd4213',
+            fill: (type == 'ster') ? '#dda613' : '#dd4213',
             strokeWidth: 1,
             visible: (type == 'ster' || type == 'start'),
             draggable: (type == 'ster')
         });
         // add hover styling
-        anchor.on('mouseover', function() {
+        anchor.on('mouseover touchstart', function() {
             if (type == 'ster') {
                 document.body.style.cursor = 'pointer';
                 this.setStrokeWidth(3);
                 anchorLayer.draw();
             }
         });
-        anchor.on('mouseout', function() {
+        anchor.on('mouseout touchend', function() {
             if (type == 'ster') {
                 document.body.style.cursor = 'default';
                 this.setStrokeWidth(1);
