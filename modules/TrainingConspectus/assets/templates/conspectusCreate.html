@@ -27,9 +27,39 @@
                                 <i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i>
                             </div>
                         </div>
+                        <div id='itemBoxFromCat' ng-show='isSelectedField'>
+                            <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD">
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/bitmap.png" alt="person1">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/bitmap1.png" alt="person2">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/bitmap2.png" alt="person3">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/ball.png" alt="ball1">
+                                </div>
+                            </div>
+                            <div class='itemsList' ng-show="actualMouseAction==mouseActionType.ARROW_ADD">
+                                <div class='categoryItems' ng-click="selectArrow(arrowType.FULL_2)">
+                                    <img src="/modules/TrainingConspectus/assets/media/arrow1.png" alt="arrow1">
+                                </div>
+                                <div class='categoryItems' ng-click="selectArrow(arrowType.FULL_3)">
+                                    <img src="/modules/TrainingConspectus/assets/media/arrow2.png" alt="arrow2">
+                                </div>
+                                <div class='categoryItems' ng-click="selectArrow(arrowType.STRIPED_2)">
+                                    <img src="/modules/TrainingConspectus/assets/media/arrow3.png" alt="arrow3">
+                                </div>
+                                <div class='categoryItems' ng-click="selectArrow(arrowType.STRIPED_3)">
+                                    <img src="/modules/TrainingConspectus/assets/media/arrow4.png" alt="arrow4">
+                                </div>
+                            </div>
+                        </div>
                         <div id='canvasBck' ng-show='isSelectedField'>
                             <div id='leftBlockItem'>
-                                <div class='itemsList' ng-show="actualMouseAction==mouseActionType.MOVE">
+                                <div class='itemsList'>
                                     <div class='categoryItems' id='canActionPlay'>
                                         <i class="fa fa-play fa-2x" aria-hidden="true"></i>
                                     </div>
@@ -41,34 +71,6 @@
                                     </div>
                                     <div class='categoryItems' id='canActionDel' ng-show="lastSelected!=null">
                                         <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD">
-                                    <div class='categoryItems'>
-                                        <img src="/modules/TrainingConspectus/assets/media/bitmap.png" alt="person1">
-                                    </div>
-                                    <div class='categoryItems'>
-                                        <img src="/modules/TrainingConspectus/assets/media/bitmap1.png" alt="person2">
-                                    </div>
-                                    <div class='categoryItems'>
-                                        <img src="/modules/TrainingConspectus/assets/media/bitmap2.png" alt="person3">
-                                    </div>
-                                    <div class='categoryItems'>
-                                        <img src="/modules/TrainingConspectus/assets/media/ball.png" alt="ball1">
-                                    </div>
-                                </div>
-                                <div class='itemsList' ng-show="actualMouseAction==mouseActionType.ARROW_ADD">
-                                    <div class='categoryItems' ng-click="selectArrow(arrowType.FULL_2)">
-                                        <img src="/modules/TrainingConspectus/assets/media/arrow1.png" alt="arrow1">
-                                    </div>
-                                    <div class='categoryItems' ng-click="selectArrow(arrowType.FULL_3)">
-                                        <img src="/modules/TrainingConspectus/assets/media/arrow2.png" alt="arrow2">
-                                    </div>
-                                    <div class='categoryItems' ng-click="selectArrow(arrowType.STRIPED_2)">
-                                        <img src="/modules/TrainingConspectus/assets/media/arrow3.png" alt="arrow3">
-                                    </div>
-                                    <div class='categoryItems' ng-click="selectArrow(arrowType.STRIPED_3)">
-                                        <img src="/modules/TrainingConspectus/assets/media/arrow4.png" alt="arrow4">
                                     </div>
                                 </div>
                             </div>

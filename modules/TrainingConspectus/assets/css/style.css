@@ -1,15 +1,12 @@
-.itemsList {
-    border: 1px solid black;
-}
-
 .categoriesList {
     width: 52px;
 }
 
 #canvasContainer {
     max-width: 800px;
+    overflow: hidden;
     float: left;
-    width: calc( 100% - 211px);
+    width: calc( 100% - 100px);
 }
 
 .categories,
@@ -31,7 +28,6 @@
 
 .categoryItems {
     margin: 5px;
-    margin-bottom: 0;
     margin-right: 0;
 }
 
@@ -42,11 +38,17 @@
     color: #dd4213;
 }
 
-#itemBox {
+#itemBox,
+#itemBoxFromCat {
     background: #242e33;
     display: block;
     overflow: hidden;
     width: 100%;
+    min-height: 50px;
+}
+
+#itemBoxFromCat {
+    background: #2f373b;
 }
 
 #soccerFieldBox {
@@ -66,14 +68,11 @@
     width: 100%;
     max-width: 900px;
     margin: auto;
-    height: 420px;
 }
 
 #leftBlockItem {
-    width: 160px;
+    width: 50px;
     float: left;
-    height: 100%;
-    overflow-y: scroll;
 }
 
 .soccerField {
@@ -166,6 +165,7 @@
 }
 
 #canvasPlayerContainer {
+    overflow: hidden;
     width: 100%;
     height: 100%;
     max-height: calc( 100vh - 110px);

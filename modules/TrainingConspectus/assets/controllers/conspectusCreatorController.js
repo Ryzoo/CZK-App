@@ -18,28 +18,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         STRIPED_2: 3,
         STRIPED_3: 4,
     };
-
-    var lastX = $("#canvasContainer").width();
-    lastX = lastX > 800 ? 800 : lastX;
-    var lastY = lastX * 0.6;
-    var canvasWidth = lastX;
-    var canvasHeight = lastY;
-
+    var stageWidth = 800;
+    var stageHeight = stageWidth * 0.6;
     var selectedFrame = new Konva.Stage({
         container: 'canvasContainer',
-        width: canvasWidth,
-        height: canvasHeight
-    })
-    var newX = selectedFrame.getAttr("container").offsetWidth;
-    newX = newX > 800 ? 800 : newX;
-    var newY = newX * 0.6;
-    selectedFrame.width(newX);
-    selectedFrame.height(newY);
-    selectedFrame.scale({ x: newX / lastX, y: newX / lastX });
-    selectedFrame.draw();
+        width: stageWidth,
+        height: stageHeight
+    });
 
     var customObjectPerFrame = [];
-
     var allObjectPerFrame = [];
     allObjectPerFrame.push({
         arrow: [],
@@ -48,62 +35,25 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     var currentObjPerFrame = 0;
     var allAnimFrame = [];
     var anchorHistory = [];
-
     var actualPlayerFrame = 0;
     var pauseAnim = false;
-
-    var fieldLayer = new Konva.Layer();
-    var mainLayer = new Konva.Layer();
-    var curveLayer = new Konva.Layer();
-    var anchorLayer = new Konva.Layer();
-    var lineLayer = new Konva.Layer();
-
+    var fieldLayer = null;
+    var mainLayer = null;
+    var curveLayer = null;
+    var anchorLayer = null;
+    var lineLayer = null;
     var quadCurves = [];
-
-    selectedFrame.add(fieldLayer);
-    selectedFrame.add(mainLayer);
-    selectedFrame.add(lineLayer);
-    selectedFrame.add(curveLayer);
-    selectedFrame.add(anchorLayer);
+    var isPlayerOpen = false;
+    drawNewStage();
 
     $(window).resize(function() {
-        var newX, newY;
-        if ($scope.orientation == 'landscape') {
-            newX = selectedFrame.getAttr("container").offsetWidth;
-            newX = newX > 800 ? 800 : newX;
-            newY = newX * 0.6;
-        } else {
-            newY = selectedFrame.getAttr("container").offsetHeight;
-            newX = (newY * 100) / 60;
-        }
-
-
-        selectedFrame.width(newX);
-        selectedFrame.height(newY);
-        selectedFrame.scale({ x: newX / lastX, y: newX / lastX });
-        selectedFrame.draw();
+        resize();
     });
 
     $(window).on("orientationchange", function(event) {
         $scope.orientation = $(window).width() > $(window).height() ? 'sd' : 'landscape';
-        console.log($scope.orientation);
-
-        var newX, newY;
-        if ($scope.orientation == 'landscape') {
-            newX = selectedFrame.getAttr("container").offsetWidth;
-            newX = newX > 800 ? 800 : newX;
-            newY = newX * 0.6;
-        } else {
-            newY = selectedFrame.getAttr("container").offsetHeight;
-            newX = (newY * 100) / 60;
-        }
-
-        selectedFrame.width(newX);
-        selectedFrame.height(newY);
-        selectedFrame.scale({ x: newX / lastX, y: newX / lastX });
-        selectedFrame.draw();
+        resize();
     });
-
 
     $scope.actualMouseAction = $scope.mouseActionType.MOVE;
 
@@ -135,20 +85,20 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $('.categories').eq(0).css("border-color", "#dd4213");
     }
 
-    selectedFrame.on('contentClick', function(e) {
+    selectedFrame.on('contentClick contentTap', function(e) {
         clickOnContent();
     })
 
-    $(document).off('click', '.categories');
-    $(document).on('click', '.categories', function() {
+    $(document).off('click touch', '.categories');
+    $(document).on('click touch', '.categories', function() {
         $('.categories').each(function() {
             $(this).css("border-color", "");
         });
         $(this).css("border-color", "#dd4213");
     })
 
-    $(document).off('click', '.categoryItems');
-    $(document).on('click', '.categoryItems', function() {
+    $(document).off('click touch', '.categoryItems');
+    $(document).on('click touch', '.categoryItems', function() {
         $('.categoryItems').each(function() {
             $(this).css("border-color", "");
         });
@@ -160,43 +110,22 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
     })
 
-    $(document).off('click', '.soccerField');
-    $(document).on('click', '.soccerField', function() {
+    $(document).off('click touch', '.soccerField');
+    $(document).on('click touch', '.soccerField', function() {
         $('.soccerField').each(function() {
             $(this).css("transform", "");
         });
         $(this).css("transform", "scale(1, 1.2)");
         selectField($(this).find('img').attr('src'));
-        var newX = selectedFrame.getAttr("container").offsetWidth;
-        newX = newX > 800 ? 800 : newX;
-        var newY = newX * 0.6;
-
-        selectedFrame.width(newX);
-        selectedFrame.height(newY);
-        selectedFrame.scale({ x: newX / lastX, y: newX / lastX });
-        selectedFrame.draw();
     })
 
     function selectField(src) {
         $scope.selectedField = new Image();
-        $scope.selectedField.onload = function() {
-            var field = fieldLayer.find('#field');
-            if (field.length <= 0) {
-                var conImg = new Konva.Image({
-                    x: 0,
-                    y: 0,
-                    image: $scope.selectedField,
-                    width: selectedFrame.getWidth(),
-                    height: selectedFrame.getHeight(),
-                    id: "field"
-                });
-                fieldLayer.add(conImg);
-            } else {
-                field.image($scope.selectedField);
-            }
-            selectedFrame.draw();
-        }
         $scope.fieldImage = $scope.selectedField;
+        $scope.selectedField.onload = function() {
+            $scope.fieldImage = $scope.selectedField;
+            drawNewStage();
+        }
         $scope.selectedField.src = src;
     }
 
@@ -216,20 +145,20 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             loadAnimation();
         }
     });
-    $(document).off('click', '#canActionPlay');
-    $(document).on('click', '#canActionPlay', function() {
+    $(document).off('click touch', '#canActionPlay');
+    $(document).on('click touch', '#canActionPlay', function() {
         showPlayer();
     });
-    $(document).off('click', '#canActionRotRight');
-    $(document).on('click', '#canActionRotRight', function() {
+    $(document).off('click touch', '#canActionRotRight');
+    $(document).on('click touch', '#canActionRotRight', function() {
         rotateCurrent(45);
     });
-    $(document).off('click', '#canActionRotLeft');
-    $(document).on('click', '#canActionRotLeft', function() {
+    $(document).off('click touch', '#canActionRotLeft');
+    $(document).on('click touch', '#canActionRotLeft', function() {
         rotateCurrent(-45);
     });
-    $(document).off('click', '#canActionDel');
-    $(document).on('click', '#canActionDel', function() {
+    $(document).off('click touch', '#canActionDel');
+    $(document).on('click touch', '#canActionDel', function() {
         deleteCurrent();
     });
 
@@ -269,15 +198,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
     }
 
-    $(document).off('click', '.timeElement');
-    $(document).on("click", ".timeElement", function(e) {
+    $(document).off('click touch', '.timeElement');
+    $(document).on("click touch", ".timeElement", function(e) {
         var count = $(this).index('.timeElement');
         changeFrame(count);
         drawNewStage();
     });
 
-    $(document).off('click', '#addFrame');
-    $(document).on("click", "#addFrame", function(e) {
+    $(document).off('click touch', '#addFrame');
+    $(document).on("click touch", "#addFrame", function(e) {
         var count = $(".timeElement").length + 1;
         $(".timeElement").last().after("<div class='timeElement' > " + count + " </div>");
         $(".timeElement").each(function() {
@@ -316,10 +245,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function clickOnContent() {
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD && $scope.selectedObjImg) {
             var mousePos = selectedFrame.getPointerPosition();
+            var scale = selectedFrame.getAttr('scaleX');
             var id = newId();
             var obj = new Konva.Image({
-                x: mousePos.x,
-                y: mousePos.y,
+                x: mousePos.x / scale,
+                y: mousePos.y / scale,
                 offsetX: ($scope.selectedObjImg.width / 2.0),
                 offsetY: ($scope.selectedObjImg.height / 2.0),
                 image: $scope.selectedObjImg,
@@ -327,11 +257,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 id: id
             });
 
-            obj.on('mousedown', function() {
+            obj.on('mousedown touchstart', function() {
                 selectObjStyle(this);
             });
 
-            obj.on('mouseup', function() {
+            obj.on('mouseup touchend', function() {
                 drawBeforePositionPoint();
             });
 
@@ -424,7 +354,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     });
                 }
 
-                arrow.on('mousedown', function() {
+                arrow.on('mousedown touchstart', function() {
                     selectObjStyle(this);
                 });
 
@@ -484,8 +414,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
         arrow.stroke('black');
         arrow.strokeWidth(1);
-        arrow.off('mousedown');
-        arrow.on('mousedown', function() {
+        arrow.off('mousedown touchstart');
+        arrow.on('mousedown touchstart', function() {
             selectObjStyle(this);
         });
         return arrow;
@@ -520,12 +450,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
         obj.stroke('transparent');
         obj.strokeWidth(1);
-        obj.off('mousedown');
-        obj.on('mousedown', function() {
+        obj.off('mousedown touchstart');
+        obj.on('mousedown touchstart', function() {
             selectObjStyle(this);
         });
-        obj.off('mouseup');
-        obj.on('mouseup', function() {
+        obj.off('mouseup touchend');
+        obj.on('mouseup touchend', function() {
             drawBeforePositionPoint();
         });
         obj.off('dragend');
@@ -557,8 +487,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function changeFrame(count, frameContener = allObjectPerFrame) {
-        updateNextFrameBeforePosition(frameContener);
         currentObjPerFrame = count;
+        updateNextFrameBeforePosition(frameContener);
         $(".timeElement").each(function() {
             $(this).css('border-color', "");
         });
@@ -567,6 +497,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function updateNextFrameBeforePosition(frameContener = allObjectPerFrame) {
         if (frameContener != allObjectPerFrame) return;
+        console.log(currentObjPerFrame);
         for (var i = 0; i < frameContener[currentObjPerFrame].obj.length; i++) {
             var objBef = frameContener[currentObjPerFrame].obj[i];
             var objId = objBef.getAttr("id");
@@ -647,31 +578,27 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function drawNewStage(container = 'canvasContainer', frameContainer = allObjectPerFrame) {
-        var newX, newY;
-        if ($scope.orientation == 'landscape') {
-            newX = selectedFrame.getAttr("container").offsetWidth;
-            newX = newX > 800 ? 800 : newX;
-            newY = newX * 0.6;
-        } else {
-            newY = selectedFrame.getAttr("container").offsetHeight;
-            newX = (newY * 100) / 60;
+        if (mainLayer != null) {
+            selectedFrame.off('contentClick contentTap');
+            selectedFrame.destroy();
+            selectedFrame = null;
         }
-
-        selectedFrame.off('contentClick');
-        selectedFrame.destroy();
-        selectedFrame = null;
         selectedFrame = new Konva.Stage({
             container: container,
-            width: newX,
-            height: newY
+            width: stageWidth,
+            height: stageHeight
         });
 
-        mainLayer.destroy();
-        mainLayer = null;
+        if (mainLayer != null) {
+            mainLayer.destroy();
+            mainLayer = null;
+        }
         mainLayer = new Konva.Layer();
 
-        fieldLayer.destroy();
-        fieldLayer = null;
+        if (fieldLayer != null) {
+            fieldLayer.destroy();
+            fieldLayer = null;
+        }
         fieldLayer = new Konva.Layer();
         var conImg = new Konva.Image({
             x: 0,
@@ -682,6 +609,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             id: "field"
         });
         fieldLayer.add(conImg);
+
 
         for (var i = 0; i < frameContainer[currentObjPerFrame].obj.length; i++) {
             var obb = frameContainer[currentObjPerFrame].obj[i];
@@ -702,7 +630,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         selectedFrame.add(mainLayer);
 
         $scope.selectedObjImg = null;
-        $scope.selectedField = null;
         $scope.selectedArrow = null;
         $scope.arrowPointCount = 0;
         $scope.arrowPoint = [];
@@ -713,21 +640,27 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         });
         $(".categories").eq(0).css('border-color', "#dd4213");
 
-
         if (container == 'canvasContainer') {
-            curveLayer.destroy();
-            lineLayer.destroy();
-            anchorLayer.destroy();
-            curveLayer = null;
+            if (curveLayer != null) {
+                curveLayer.destroy();
+                curveLayer = null;
+            }
             curveLayer = new Konva.Layer();
-            lineLayer = null;
+            if (lineLayer != null) {
+                lineLayer.destroy();
+                lineLayer = null;
+            }
             lineLayer = new Konva.Layer();
-            anchorLayer = null;
+            if (anchorLayer != null) {
+                anchorLayer.destroy();
+                anchorLayer = null;
+            }
             anchorLayer = new Konva.Layer();
+
             selectedFrame.add(lineLayer);
             selectedFrame.add(curveLayer);
             selectedFrame.add(anchorLayer);
-            selectedFrame.on('contentClick', function(e) {
+            selectedFrame.on('contentClick contentTap', function(e) {
                 clickOnContent();
             });
 
@@ -747,7 +680,25 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 shape.draggable(true);
             });
         }
+        resize();
+    }
 
+    function resize() {
+        var container = isPlayerOpen ? 'canvasPlayerContainer' : 'canvasContainer';
+        container = document.querySelector('#' + container);
+
+        var containerWidth = container.offsetWidth;
+
+        $scope.orientation = $(window).width() > $(window).height() ? 'sd' : 'landscape';
+        if ($scope.orientation == 'sd' && isPlayerOpen) {
+            var containerHeight = container.offsetHeight;
+            containerWidth = containerHeight * 100 / 60;
+        }
+        var scale = containerWidth / stageWidth;
+
+        selectedFrame.width(stageWidth * scale);
+        selectedFrame.height(stageHeight * scale);
+        selectedFrame.scale({ x: scale, y: scale });
         selectedFrame.draw();
     }
 
@@ -876,8 +827,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var context = curveLayer.getContext();
             context.clear();
             context.beginPath();
-            context.moveTo(quadCurves.start.getAttr("x"), quadCurves.start.getAttr("y"));
-            context.quadraticCurveTo(quadCurves.control.getAttr("x"), quadCurves.control.getAttr("y"), quadCurves.end.getAttr("x"), quadCurves.end.getAttr("y"));
+            var scale = selectedFrame.getAttr('scaleX');
+            context.moveTo(quadCurves.start.getAttr("x") * scale, quadCurves.start.getAttr("y") * scale);
+            context.quadraticCurveTo(quadCurves.control.getAttr("x") * scale, quadCurves.control.getAttr("y") * scale, quadCurves.end.getAttr("x") * scale, quadCurves.end.getAttr("y") * scale);
             context.setAttr('strokeStyle', 'black');
             context.setAttr('lineWidth', 2);
             context.stroke();
@@ -933,7 +885,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
     }
 
-    function rotateObject(id = $scope.lastSelected.getAttr("id"), obj = $scope.lastSelected) {
+    function rotateObject(id = null, obj = $scope.lastSelected) {
+        if (id == null) {
+            if ($scope.lastSelected && $scope.lastSelected != null) {
+                id = $scope.lastSelected.getAttr("id");
+            } else {
+                return;
+            }
+        }
         if (isAnchorHistoryFor(currentObjPerFrame, id)) {
             var actual = getAnchorHistoryFor(currentObjPerFrame, id);
             var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0.9);
@@ -1097,13 +1056,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     }
 
-    $(document).off('click', '#exitPlayer');
-    $(document).on('click', '#exitPlayer', function() {
+    $(document).off('click touch', '#exitPlayer');
+    $(document).on('click touch', '#exitPlayer', function() {
         exitPlayer();
     });
 
-    $(document).off('click', '#playAnim');
-    $(document).on('click', '#playAnim', function() {
+    $(document).off('click touch', '#playAnim');
+    $(document).on('click touch', '#playAnim', function() {
         if (!canClickSter('playAnim')) return;
         playAnimate();
         pauseAnim = false;
@@ -1113,16 +1072,16 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         playerTurnOffSter('playAnim');
     });
 
-    $(document).off('click', '#pauseAnim');
-    $(document).on('click', '#pauseAnim', function() {
+    $(document).off('click touch', '#pauseAnim');
+    $(document).on('click touch', '#pauseAnim', function() {
         if (!canClickSter('pauseAnim')) return;
         pauseAnim = true;
         turnOnAllSter();
         playerTurnOffSter('pauseAnim');
     });
 
-    $(document).off('click', '#stopAnim');
-    $(document).on('click', '#stopAnim', function() {
+    $(document).off('click touch', '#stopAnim');
+    $(document).on('click touch', '#stopAnim', function() {
         pauseAnim = true;
         actualPlayerFrame = 0;
         changeFrame(0, allAnimFrame);
@@ -1131,14 +1090,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         turnOnAllSter();
     });
 
-    $(document).off('click', '#backwardAnim');
-    $(document).on('click', '#backwardAnim', function() {
+    $(document).off('click touch', '#backwardAnim');
+    $(document).on('click touch', '#backwardAnim', function() {
         if (!canClickSter('backwardAnim')) return;
         playerBeforeFrame();
     });
 
-    $(document).off('click', '#forwardAnim');
-    $(document).on('click', '#forwardAnim', function() {
+    $(document).off('click touch', '#forwardAnim');
+    $(document).on('click touch', '#forwardAnim', function() {
         if (!canClickSter('forwardAnim')) return;
         playerNextFrame();
     });
@@ -1167,6 +1126,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function showPlayer() {
         pauseAnim = false;
+        isPlayerOpen = true;
         allAnimFrame = null;
         allAnimFrame = createFrameToAnim();
         $('#canvasPlayer').show();
@@ -1178,11 +1138,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function exitPlayer() {
         pauseAnim = true;
+        isPlayerOpen = false;
         $('#canvasPlayer').hide();
-        currentObjPerFrame = 0;
+        turnOnAllSter();
         changeFrame(0);
         drawNewStage();
-        turnOnAllSter();
     }
 
     function canClickSter(name) {
@@ -1248,8 +1208,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 currentObjPerFrame = 0;
                 $scope.changeCategories($scope.mouseActionType.MOVE);
                 changeFrame(currentObjPerFrame);
-                drawNewStage();
                 selectField(ret.fieldImage);
+                drawNewStage();
             }
         });
     }
