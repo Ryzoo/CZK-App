@@ -6,6 +6,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.arrowPoint = [];
     $scope.lastSelected = null;
     $scope.fieldImage = null;
+    $scope.orientation = 'landscape';
     $scope.mouseActionType = {
         MOVE: 0,
         OBJECT_ADD: 1,
@@ -66,15 +67,43 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     selectedFrame.add(anchorLayer);
 
     $(window).resize(function() {
-        var newX = selectedFrame.getAttr("container").offsetWidth;
-        newX = newX > 800 ? 800 : newX;
-        var newY = newX * 0.6;
+        var newX, newY;
+        if ($scope.orientation == 'landscape') {
+            newX = selectedFrame.getAttr("container").offsetWidth;
+            newX = newX > 800 ? 800 : newX;
+            newY = newX * 0.6;
+        } else {
+            newY = selectedFrame.getAttr("container").offsetHeight;
+            newX = (newY * 100) / 60;
+        }
+
 
         selectedFrame.width(newX);
         selectedFrame.height(newY);
         selectedFrame.scale({ x: newX / lastX, y: newX / lastX });
         selectedFrame.draw();
     });
+
+    $(window).on("orientationchange", function(event) {
+        $scope.orientation = $(window).width() > $(window).height() ? 'sd' : 'landscape';
+        console.log($scope.orientation);
+
+        var newX, newY;
+        if ($scope.orientation == 'landscape') {
+            newX = selectedFrame.getAttr("container").offsetWidth;
+            newX = newX > 800 ? 800 : newX;
+            newY = newX * 0.6;
+        } else {
+            newY = selectedFrame.getAttr("container").offsetHeight;
+            newX = (newY * 100) / 60;
+        }
+
+        selectedFrame.width(newX);
+        selectedFrame.height(newY);
+        selectedFrame.scale({ x: newX / lastX, y: newX / lastX });
+        selectedFrame.draw();
+    });
+
 
     $scope.actualMouseAction = $scope.mouseActionType.MOVE;
 
@@ -618,9 +647,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function drawNewStage(container = 'canvasContainer', frameContainer = allObjectPerFrame) {
-        var newX = $("#" + container).width();
-        newX = newX > 800 ? 800 : newX;
-        var newY = newX * 0.6;
+        var newX, newY;
+        if ($scope.orientation == 'landscape') {
+            newX = selectedFrame.getAttr("container").offsetWidth;
+            newX = newX > 800 ? 800 : newX;
+            newY = newX * 0.6;
+        } else {
+            newY = selectedFrame.getAttr("container").offsetHeight;
+            newX = (newY * 100) / 60;
+        }
 
         selectedFrame.off('contentClick');
         selectedFrame.destroy();
