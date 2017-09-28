@@ -7,10 +7,20 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.lastSelected = null;
     $scope.fieldImage = null;
     $scope.orientation = 'landscape';
+    $scope.animId = -1;
+
+    if ($rootScope.idFromAnimConspectToEdit && $rootScope.idFromAnimConspectToEdit != '' && $rootScope.idFromAnimConspectToEdit != null) {
+        $scope.animId = $rootScope.idFromAnimConspectToEdit;
+        loadAnimation();
+        $rootScope.idFromAnimConspectToEdit = null;
+        $scope.isSelectedField = true;
+    }
+
     $scope.mouseActionType = {
         MOVE: 0,
         OBJECT_ADD: 1,
         ARROW_ADD: 2,
+        FIELD_LIST: 3
     }
     $scope.arrowType = {
         FULL_2: 1,
@@ -25,9 +35,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         width: stageWidth,
         height: stageHeight
     });
-
+    var saveNow = false;
     var customObjectPerFrame = [];
     var allObjectPerFrame = [];
+    $scope.animName = '';
     allObjectPerFrame.push({
         arrow: [],
         obj: []
@@ -55,7 +66,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         resize();
     });
 
-    $scope.actualMouseAction = $scope.mouseActionType.MOVE;
+    $scope.actualMouseAction = $scope.mouseActionType.FIELD_LIST;
 
     $scope.selectArrow = function(arrowTypw) {
         $scope.selectedArrow = arrowTypw;
@@ -131,18 +142,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('keyup');
     $(document).on("keyup", function(e) {
-        if (e.keyCode == 46) {
+        if (e.keyCode == 46) { // delete
             deleteCurrent();
-        } else if (e.keyCode == 80) { // p
-            showPlayer();
         } else if (e.keyCode == 27) { // esc
             exitPlayer();
-        } else if (e.keyCode == 82) { // r
-            rotateCurrent(45);
-        } else if (e.keyCode == 83) { // s
-            saveAnimation();
-        } else if (e.keyCode == 76) { // l
-            loadAnimation();
         }
     });
     $(document).off('click touch', '#canActionPlay');
@@ -502,7 +505,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function updateNextFrameBeforePosition(frameContener = allObjectPerFrame) {
         if (frameContener != allObjectPerFrame) return;
-        console.log(currentObjPerFrame);
         for (var i = 0; i < frameContener[currentObjPerFrame].obj.length; i++) {
             var objBef = frameContener[currentObjPerFrame].obj[i];
             var objId = objBef.getAttr("id");
@@ -613,7 +615,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             height: selectedFrame.getHeight(),
             id: "field"
         });
-        fieldLayer.add(conImg);
+        mainLayer.add(conImg);
 
 
         for (var i = 0; i < frameContainer[currentObjPerFrame].obj.length; i++) {
@@ -631,7 +633,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             mainLayer.add(obj);
         }
 
-        selectedFrame.add(fieldLayer);
         selectedFrame.add(mainLayer);
 
         $scope.selectedObjImg = null;
@@ -927,9 +928,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var objs = allObjectPerFrame[i].obj;
             var arrows = allObjectPerFrame[i].arrow;
 
-
             if (allObjectPerFrame[i + 1]) {
-                for (var x = 0; x < 60; x++) {
+                for (var x = 0; x < 59; x++) {
                     arrowsArray = []
                     arrows = allObjectPerFrame[i + 1].arrow;
                     for (var z = 0; z < arrows.length; z++) {
@@ -955,8 +955,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             var history = getAnchorHistoryFor(i + 1, objs[z].getAttr("id"));
                             var p1, p2, a, degree;
 
-                            p1 = getPosOnCurves(history.start, history.control, history.end, (x / 60.0));
-                            p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / 60.0));
+                            p1 = getPosOnCurves(history.start, history.control, history.end, (x / 59));
+                            p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / 59));
                             var rotOffset = 0;
                             if (p1.x > p2.x) rotOffset = 180;
                             a = (p2.y - p1.y) / (p2.x - p1.x);
@@ -1043,6 +1043,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if (actualPlayerFrame >= allAnimFrame.length) {
             actualPlayerFrame = 0;
         }
+
         var mainPlay = setInterval(function() {
             if (pauseAnim) {
                 window.clearInterval(mainPlay);
@@ -1053,12 +1054,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 window.clearInterval(mainPlay);
                 turnOnAllSter();
             } else {
-                setPlayerToFrame(actualPlayerFrame);
-                changeFrame(actualPlayerFrame, allAnimFrame);
+                var percent = setPlayerToFrame(actualPlayerFrame);
+                currentObjPerFrame = actualPlayerFrame;
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
+                $("#playerData p").first().text("Podgląd animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
             }
-        }, 40);
-
+        }, (1000 / 60));
     }
 
     $(document).off('click touch', '#exitPlayer');
@@ -1099,12 +1100,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $(document).on('click touch', '#backwardAnim', function() {
         if (!canClickSter('backwardAnim')) return;
         playerBeforeFrame();
+        $("#playerData p").first().text("Podgląd animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
     });
 
     $(document).off('click touch', '#forwardAnim');
     $(document).on('click touch', '#forwardAnim', function() {
         if (!canClickSter('forwardAnim')) return;
         playerNextFrame();
+        $("#playerData p").first().text("Podgląd animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
     });
 
     function playerBeforeFrame() {
@@ -1124,9 +1127,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function setPlayerToFrame(frame) {
-        if (frame != 0) frame++;
-        var percent = (frame / allAnimFrame.length) * 100;
+        var percent = Math.round((frame / (allAnimFrame.length - 1)) * 100);
         $('#animTime').css("width", percent + "%");
+        return percent;
     }
 
     function showPlayer() {
@@ -1139,6 +1142,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         changeFrame(actualPlayerFrame, allAnimFrame);
         setPlayerToFrame(actualPlayerFrame);
         drawNewStage("canvasPlayerContainer", allAnimFrame);
+        playAnimate();
     }
 
     function exitPlayer() {
@@ -1173,91 +1177,100 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function loadAnimation() {
-        $.ajax({
-            url: 'get.php',
-            type: "POST",
-            data: {},
-            contentType: "application/json; charset=UTF-8",
-            success: function(ret) {
-                ret = JSON.parse(ret);
-                anchorHistory = ret.anchorHistory;
+        request.backend('loadConspectAnim', { id: $scope.animId }, function(data) {
+            data.anchorHistory = JSON.parse(data.anchorHistory);
+            data.animFrame = JSON.parse(data.animFrame);
+            console.log(data);
+            anchorHistory = data.anchorHistory;
 
-                // create obj
-                allObjectPerFrame = null;
-                allObjectPerFrame = [];
+            allObjectPerFrame = null;
+            allObjectPerFrame = [];
 
-                $(".timeElement").each(function() {
-                    if ($(this).index() != 0)
-                        $(this).remove();
-                });
+            $(".timeElement").each(function() {
+                if ($(this).index() != 0)
+                    $(this).remove();
+            });
 
-                for (var x = 0; x < ret.animFrame.length; x++) {
-                    allObjectPerFrame.push({ arrow: [], obj: [] });
+            for (var x = 0; x < data.animFrame.length; x++) {
+                allObjectPerFrame.push({ arrow: [], obj: [] });
 
-                    for (var i = 0; i < ret.animFrame[x].arrow.length; i++) {
-                        var arrowBef = ret.animFrame[x].arrow[i];
-                        var obj = createArrowObjFromOther(arrowBef, true);
-                        allObjectPerFrame[x].arrow.push(obj);
-                    }
-                    for (var i = 0; i < ret.animFrame[x].obj.length; i++) {
-                        var objBef = ret.animFrame[x].obj[i];
-                        var obj = createObjFromOther(objBef, true);
-                        allObjectPerFrame[x].obj.push(obj);
-                    }
-                    if (x != 0) {
-                        var count = $(".timeElement").length + 1;
-                        $(".timeElement").last().after("<div class='timeElement' > " + count + " </div>");
-                    }
+                for (var i = 0; i < data.animFrame[x].arrow.length; i++) {
+                    var arrowBef = data.animFrame[x].arrow[i];
+                    var obj = createArrowObjFromOther(arrowBef, true);
+                    allObjectPerFrame[x].arrow.push(obj);
                 }
-
-                currentObjPerFrame = 0;
-                $scope.changeCategories($scope.mouseActionType.MOVE);
-                changeFrame(currentObjPerFrame);
-                selectField(ret.fieldImage);
-                drawNewStage();
+                for (var i = 0; i < data.animFrame[x].obj.length; i++) {
+                    var objBef = data.animFrame[x].obj[i];
+                    var obj = createObjFromOther(objBef, true);
+                    allObjectPerFrame[x].obj.push(obj);
+                }
+                if (x != 0) {
+                    var count = $(".timeElement").length + 1;
+                    $(".timeElement").last().after("<div class='timeElement' > " + count + " </div>");
+                }
             }
+
+            $scope.animName = data.name;
+            $('#animName').val($scope.animName);
+
+            $scope.changeCategories($scope.mouseActionType.MOVE);
+            selectField(data.fieldImage);
+            changeFrame(0);
+            drawNewStage();
         });
+
     }
 
     function saveAnimation() {
-        getAnimIcon(function(s) {
-            var allObj = [];
-            for (var index = 0; index < allObjectPerFrame.length; index++) {
-                allObj.push({
-                    obj: [],
-                    arrow: []
-                });
-                for (var x = 0; x < allObjectPerFrame[index].obj.length; x++) {
-                    allObj[index].obj.push(allObjectPerFrame[index].obj[x].toObject());
-                    allObj[index].obj[x].attrs.image = allObjectPerFrame[index].obj[x].getImage().src;
-                }
-                for (var x = 0; x < allObjectPerFrame[index].arrow.length; x++) {
-                    allObj[index].arrow.push(allObjectPerFrame[index].arrow[x].toObject());
-                }
-            }
-
-            var toSend = {
-                icon: s.src,
-                animFrame: allObj,
-                anchorHistory: anchorHistory,
-                fieldImage: $scope.fieldImage ? $scope.fieldImage.src : null
-            };
-
-            $.ajax({
-                url: 'script.php',
-                type: "POST",
-                data: JSON.stringify(toSend),
-                contentType: "application/json; charset=UTF-8",
+        changeFrame(0);
+        drawNewStage();
+        var allObj = [];
+        for (var index = 0; index < allObjectPerFrame.length; index++) {
+            allObj.push({
+                obj: [],
+                arrow: []
             });
+            for (var x = 0; x < allObjectPerFrame[index].obj.length; x++) {
+                allObj[index].obj.push(allObjectPerFrame[index].obj[x].toObject());
+                allObj[index].obj[x].attrs.image = allObjectPerFrame[index].obj[x].getImage().src;
+            }
+            for (var x = 0; x < allObjectPerFrame[index].arrow.length; x++) {
+                allObj[index].arrow.push(allObjectPerFrame[index].arrow[x].toObject());
+            }
+        }
+        var mainImg = mainLayer.toImage({
+            callback: function(img) {
+                var image = img.src.split(",")[1];
+                var toSend = {
+                    id: $scope.animId,
+                    name: $scope.animName,
+                    mainImg: image,
+                    animFrame: JSON.stringify(allObj),
+                    anchorHistory: JSON.stringify(anchorHistory),
+                    fieldImage: $scope.fieldImage.src
+                };
 
-        });
+                request.backend('saveConspectAnim', toSend, function(data) {
+                    if ($scope.animId != -1) notify.localNotify("Sukces", "Animacja pomyślnie edytowana");
+                    else notify.localNotify("Sukces", "Animacja zapisana pomyślnie");
+                    $scope.animId = data;
+                });
+            }
+        })
+
     }
 
-    function getAnimIcon(callback) {
-        selectedFrame.toImage({
-            callback: callback,
-            mimeType: 'image/jpeg'
-        });
+    $scope.saveAnim = function() {
+        $("#playerData p").first().text("Renderowanie animacji: 0% - Proszę czekać");
+        $scope.animName = $('#animName').val();
+
+        if (!$scope.animName || $scope.animName == '' || $scope.animName == ' ' || $scope.animName == null) {
+            notify.localNotify("Walidacja", "Wpisz nazwę danej animacji");
+            return;
+        }
+
+        saveAnimation();
+
     }
 
 });

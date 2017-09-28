@@ -3,13 +3,26 @@
     "description": "Kreator konspektów treningowych",
     "version": "1.0",
     "require": [],
-    "backendRoute": [
-        { "url": "addPaymentToUser", "parameters": ["tmid", "userIds", "amount", "name"], "auth": ["KOORD", "TRENER"] }
-    ],
+    "backendRoute": [{
+        "url": "saveConspectAnim",
+        "parameters": ["id", "name", "mainImg", "animFrame", "anchorHistory", "fieldImage"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "getListOfAnimConspect"
+    }, {
+        "url": "deleteAnimConspect",
+        "parameters": ["id"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "loadConspectAnim",
+        "parameters": ["id"]
+    }],
     "jsControllers": ["TrainingConspectusController", "conspectusCreatorController"],
     "css": ["style"],
+    "js": ["LZWEncoder", "NeuQuant", "GIFEncoder", "b64"],
     "frontendRoute": [
-        { "url": "conspectusCreate", "templateSrc": "conspectusCreate.html", "controllerName": "TrainingConspectusController" }
+        { "url": "conspectusAnim", "templateSrc": "conspectusAnim.html", "controllerName": "TrainingConspectusController" },
+        { "url": "conspectusAnimList", "templateSrc": "conspectusAnimList.html", "controllerName": "TrainingConspectusController" }
     ],
     "anchor": [{
         "destination": "leftMenu",
@@ -17,8 +30,19 @@
         "anchorPointIcon": "fa fa-address-card-o fa-fw",
         "content": {
             "link": {
-                "label": "Kreator",
-                "url": "#!\/conspectusCreate",
+                "label": "Lista animacji",
+                "url": "#!\/conspectusAnimList",
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
+            }
+        }
+    }, {
+        "destination": "leftMenu",
+        "anchorPoint": "Konspekty treningowe",
+        "anchorPointIcon": "fa fa-address-card-o fa-fw",
+        "content": {
+            "link": {
+                "label": "Kreator animacji",
+                "url": "#!\/conspectusAnim",
                 "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
             }
         }
