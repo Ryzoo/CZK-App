@@ -9,7 +9,7 @@
 #canvasContainer {
     max-width: 800px;
     float: left;
-    width: calc( 100% - 100px);
+    width: calc( 100% - 211px);
 }
 
 .categories,
@@ -32,6 +32,7 @@
 .categoryItems {
     margin: 5px;
     margin-bottom: 0;
+    margin-right: 0;
 }
 
 .categories:hover,
@@ -65,11 +66,14 @@
     width: 100%;
     max-width: 900px;
     margin: auto;
+    height: 420px;
 }
 
 #leftBlockItem {
-    width: 50px;
+    width: 160px;
     float: left;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .soccerField {
