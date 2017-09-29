@@ -95,4 +95,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         document.location.href = "/panel#!/";
         $route.reload();
     });
+
+    $rootScope.toggleCardOptions = function(id) {
+        console.log(id);
+        if ($("#" + id)) {
+            $("#" + id).first().toggle('slide', { direction: 'up' });
+        }
+    }
 });

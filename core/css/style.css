@@ -618,6 +618,7 @@ ul.top-menu>li {
 .row {
     margin-left: 0px !important;
     margin-right: 0px !important;
+    line-height: 1 !important;
 }
 
 ul.top-menu>li>a {
@@ -886,8 +887,38 @@ ul.top-menu>li>a:focus {
     margin-bottom: 0 !important;
 }
 
-.card-content {
-    padding: 10px 24px !important;
+.cardOptionsButton {
+    position: relative;
+    float: right;
+    line-height: 2.2;
+    width: 40px;
+    cursor: pointer;
+    transition: all .2s;
+    color: #929292;
+}
+
+.cardOptionsButton:hover {
+    color: black;
+    transition: all .2s;
+}
+
+.cardOptions {
+    z-index: 100;
+    background: #eee;
+    position: absolute;
+    width: 100%;
+    display: none;
+    margin: 0;
+}
+
+.cardOptions div {
+    display: block;
+    color: #929292;
+}
+
+.cardOptions div:hover {
+    color: black;
+    transition: all .2s;
 }
 
 .notify-arrow {
@@ -1332,7 +1363,8 @@ PANELS CONFIGURATIONS
 }
 
 
-/* .card:hover {
+/* 
+.card:hover {
     z-index: 998;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -1342,6 +1374,7 @@ PANELS CONFIGURATIONS
 .card .card-title {
     font-size: .9rem;
     font-weight: 600;
+    background: #f9f9f9 !important;
     padding: 10px;
     padding-bottom: 5px;
     margin-bottom: 10px;
@@ -1359,8 +1392,6 @@ PANELS CONFIGURATIONS
 }
 
 .card .card-content {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
     padding-top: 0 !important;
 }
 

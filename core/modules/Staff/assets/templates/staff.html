@@ -3,7 +3,7 @@
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="getStaffMembers()">
         <div class="col s12 col m6 col l4 noPrint" ng-show="user.role == 'TRENER' || user.role == 'KOORD' ">
-            <div class="card">
+            <div class="card" style='height: 288px'>
                 <div class="card-content">
                     <div class="card-title">
                         Dodaj nowe konto ( personel )
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="col s12 col m6 col l4 noPrint" ng-show="user.role == 'TRENER' || user.role == 'KOORD' ">
-            <div class="card">
+            <div class="card" style='height: 288px'>
                 <div class="card-content">
                     <div class="card-title">
                         Dodaj personel
@@ -59,7 +59,7 @@
         </div>
 
         <div class="col s12 col m6 col l4 " ng-repeat="staff in koordsInSite">
-            <div class="card">
+            <div class="card" style='height: 288px'>
                 <div class="card-content">
                     <div class="card-title">
                         Trener Koordynator
@@ -89,7 +89,7 @@
         </div>
 
         <div class="col s12 col m6 col l4" ng-repeat="staff in staffMembers">
-            <div class="card">
+            <div class="card" style='height: 288px'>
                 <div class="card-content">
                     <div class="card-title">
                         {{staff.stname}}

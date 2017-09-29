@@ -11,6 +11,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             $scope.animArray = data;
             $scope.showContent = true;
             $rootScope.idFromAnimConspectToEdit = null;
+
         });
     }
 

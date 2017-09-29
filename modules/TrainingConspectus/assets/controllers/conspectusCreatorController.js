@@ -6,6 +6,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.arrowPoint = [];
     $scope.lastSelected = null;
     $scope.fieldImage = null;
+    $scope.onlyPlayer = false;
     $scope.orientation = 'landscape';
     $scope.animId = -1;
 
@@ -31,7 +32,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     var stageWidth = 800;
     var stageHeight = stageWidth * 0.6;
     var selectedFrame = new Konva.Stage({
-        container: 'canvasContainer',
+        container: 'canvasPlayerContainer',
         width: stageWidth,
         height: stageHeight
     });
@@ -55,7 +56,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     var lineLayer = null;
     var quadCurves = [];
     var isPlayerOpen = false;
-    drawNewStage();
 
     $(window).resize(function() {
         resize();
@@ -585,6 +585,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function drawNewStage(container = 'canvasContainer', frameContainer = allObjectPerFrame) {
+        if ($scope.onlyPlayer) container = 'canvasPlayerContainer';
         if (mainLayer != null) {
             selectedFrame.off('contentClick contentTap');
             selectedFrame.destroy();
@@ -691,6 +692,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function resize() {
         var container = isPlayerOpen ? 'canvasPlayerContainer' : 'canvasContainer';
+        if ($scope.onlyPlayer) container = 'canvasPlayerContainer';
         container = document.querySelector('#' + container);
 
         var containerWidth = container.offsetWidth;
@@ -1176,7 +1178,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $('#' + name).addClass('disableSter');
     }
 
-    function loadAnimation() {
+    function loadAnimation(callback) {
         request.backend('loadConspectAnim', { id: $scope.animId }, function(data) {
             data.anchorHistory = JSON.parse(data.anchorHistory);
             data.animFrame = JSON.parse(data.animFrame);
@@ -1216,7 +1218,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.changeCategories($scope.mouseActionType.MOVE);
             selectField(data.fieldImage);
             changeFrame(0);
-            drawNewStage();
+            //drawNewStage();
+
+            callback();
         });
 
     }
@@ -1268,9 +1272,17 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             notify.localNotify("Walidacja", "Wpisz nazwę danej animacji");
             return;
         }
-
         saveAnimation();
+    }
 
+    $scope.loadAndPlay = function(id) {
+        $scope.onlyPlayer = true;
+        currentObjPerFrame = 0;
+        $scope.animId = id;
+        $rootScope.idFromAnimConspectToEdit = null;
+        loadAnimation(function() {
+            showPlayer();
+        });
     }
 
 });
