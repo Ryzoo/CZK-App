@@ -1286,3 +1286,5 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
 });
+++
++

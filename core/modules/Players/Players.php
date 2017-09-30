@@ -70,7 +70,7 @@ class Players extends BasicModule{
 
         try{
             $headers = 'MIME-Version: 1.0' . "\r\n" .
-            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'Content-type: text/html; charset=utf-8' . "\r\n" .
             'From: Club Management Center < cmc.app@centrumklubu.pl >' . "\r\n" .
             "CC: cmc.app@centrumklubu.pl" . "\r\n" .
             "X-Sender: Club Management Center < cmc.app@centrumklubu.pl >" . "\r\n" .
