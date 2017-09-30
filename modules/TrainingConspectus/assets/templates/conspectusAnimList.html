@@ -34,7 +34,7 @@
                     </div>
                     <div class="row" style='height: 80px; position: relative'>
                         <div class="tagsContainer">
-                            <div class='oneTag' ng-repeat="tag in anim.tags | limitTo: 6">{{tag}}</div>
+                            <div class='oneTag' style='cursor:pointer;' ng-repeat="tag in anim.tags | limitTo: 6" ng-click='changeSearch(tag)'>{{tag}}</div>
                         </div>
                     </div>
                 </div>

@@ -24,6 +24,7 @@ class Timetable extends BasicModule {
         "Czwartek"=>[],
         "Piątek"=>[],
         "Sobota"=>[],
+        "Niedziela"=>[]
       ];
       for ($i=0; $i < count($allEvent) ; $i++) { 
           array_push( $this->returnedData["data"][ $allEvent[$i]["day_name"] ], $allEvent[$i]);
