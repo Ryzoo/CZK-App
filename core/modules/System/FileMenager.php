@@ -5,7 +5,7 @@ class FileMenager
 {
     static public function saveFile($name,$content,$directory){
         $directory = chop(str_replace('\\',"/",trim($directory)),"/");
-        $name = str_replace(" ","_",trim($name));
+        $name = strtr(str_replace(" ","_",trim($name)), 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn');
         $path = $directory . "/" . $name;
         $relPath = $path;
         $count = 1;
