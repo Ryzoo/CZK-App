@@ -18,7 +18,10 @@
 }
 
 .inputAnimTitle {
-    float: right;
+    display: block;
+    max-width: 350px;
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .inputAnimTitle div {
@@ -48,21 +51,62 @@ h6 {
     position: relative;
 }
 
+.cardConspectList {
+    height: 230px;
+}
+
+.inputAnimTags {
+    padding: 5px;
+    width: 100%;
+    overflow: hidden;
+    color: white;
+}
+
+.inputAnimTags .chip {
+    margin-right: 5px;
+    height: 22px;
+    line-height: 22px;
+    color: white;
+    background-color: #297cf8;
+}
+
+.inputAnimTags .chip .close {
+    line-height: 22px;
+}
+
+.inputAnimTags .chips {
+    min-height: 0;
+}
+
+.inputAnimTags .chips .input {
+    width: 230px !important;
+    height: 2rem;
+    padding-top: 5px;
+    color: white;
+}
+
+.inputAnimTags div,
+.inputAnimTags div div {
+    margin: 0;
+}
+
 .imgConspectAnim img {
-    max-height: 150px;
     width: 100%;
 }
 
 .tagsContainer {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     padding: 5px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .oneTag {
+    font-size: 10px;
     padding: 4px 8px;
+    width: 47%;
+    float: left;
     color: white;
     background: rgb(41, 124, 248);
     margin: 2px;

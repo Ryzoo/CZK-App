@@ -9,7 +9,7 @@ use Core\System\FileMenager;
 class TrainingConspectus extends BasicModule {
 
     function install(){
-     ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `mainImg` VARCHAR(255) NOT NULL , `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL , `anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+     ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL , `anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
     }
 
     function uninstall(){
@@ -30,6 +30,7 @@ class TrainingConspectus extends BasicModule {
         $mainImg = FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/anim/pngs'); 
         $animFrame = $data['animFrame'];
         $anchorHistory = $data['anchorHistory'];
+        $tags = trim($data['tags']);
         $fieldImage = parse_url($data['fieldImage'], PHP_URL_PATH);
 
         return ($this->db->getConnection())->insert("conspectAnim",[
@@ -37,7 +38,8 @@ class TrainingConspectus extends BasicModule {
             "mainImg"=>$mainImg,
             "animFrame"=>$animFrame,
             "anchorHistory"=>$anchorHistory,
-            "fieldImage"=>$fieldImage
+            "fieldImage"=>$fieldImage,
+            "tags"=>$tags
         ]);
     }
 
@@ -45,10 +47,9 @@ class TrainingConspectus extends BasicModule {
         $id = $data['id'];
         $name = $data['name'];
         $animFrame = $data['animFrame'];
+        $tags = trim($data['tags']);
         $anchorHistory = $data['anchorHistory'];
         $fieldImage = parse_url($data['fieldImage'], PHP_URL_PATH);
-
-        
 
         $animGifPath = ($this->db->getConnection())->fetchRow("SELECT mainImg FROM conspectAnim WHERE id=".$id);
         FileMenager::deleteFile($animGifPath['mainImg']);
@@ -59,7 +60,8 @@ class TrainingConspectus extends BasicModule {
             "mainImg"=>$mainImg,
             "animFrame"=>$animFrame,
             "anchorHistory"=>$anchorHistory,
-            "fieldImage"=>$fieldImage
+            "fieldImage"=>$fieldImage,
+            "tags"=>$tags
         ]);
 
         return $data['id'];

@@ -19,14 +19,7 @@
                             <div class='categories' ng-click="changeCategories(mouseActionType.FIELD_LIST)">
                                 <i class="fa fa-futbol-o fa-2x" aria-hidden="true"></i>
                             </div>
-                            <div class='inputAnimTitle'>
-                                <form>
-                                    <div class="input-field col">
-                                        <input id='animName' type="text" placeholder="Wpisz nazwę animacji" required class="validate">
-                                    </div>
-                                    <button type="button" class="waves-effect waves-light btn" ng-click="saveAnim();">Zapisz</button>
-                                </form>
-                            </div>
+
                         </div>
                         <div id='itemBoxFromCat' ng-show='actualMouseAction==mouseActionType.OBJECT_ADD || actualMouseAction==mouseActionType.ARROW_ADD ||actualMouseAction==mouseActionType.FIELD_LIST'>
                             <div class='itemsList' ng-show="actualMouseAction==mouseActionType.FIELD_LIST">
@@ -89,7 +82,21 @@
                                 <div id='addFrame'> + </div>
                             </div>
                         </div>
-
+                        <div id='itemBox' ng-show='isSelectedField'>
+                            <div class='inputAnimTags'>
+                                <div class="input-field">
+                                    <div class="chips chips-placeholder"></div>
+                                </div>
+                            </div>
+                            <div class='inputAnimTitle'>
+                                <form>
+                                    <div class="input-field col">
+                                        <input id='animName' type="text" placeholder="Wpisz nazwę animacji" required class="validate">
+                                    </div>
+                                    <button type="button" class="waves-effect waves-light btn" ng-click="saveAnim();">Zapisz</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,3 +120,11 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $('.chips-placeholder').material_chip({
+        placeholder: ' + Kolejne',
+        secondaryPlaceholder: 'Wpisz powiązane słowa kluczowe',
+    });
+</script>

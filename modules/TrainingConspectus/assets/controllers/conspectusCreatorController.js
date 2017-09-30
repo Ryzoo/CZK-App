@@ -691,7 +691,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function resize() {
-        var container = isPlayerOpen ? 'canvasPlayerContainer' : 'canvasContainer';
+        var container = isPlayerOpen || $scope.onlyPlayer ? 'canvasPlayerContainer' : 'canvasContainer';
         if ($scope.onlyPlayer) container = 'canvasPlayerContainer';
         container = document.querySelector('#' + container);
 
@@ -1228,6 +1228,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function saveAnimation() {
         changeFrame(0);
         drawNewStage();
+
+        var tags = $('.chips-placeholder').material_chip('data');
+        var allTagString = '';
+        for (var x = 0; x < tags.length; x++) {
+            allTagString += " ";
+            allTagString += tags[x].tag;
+        }
+
         var allObj = [];
         for (var index = 0; index < allObjectPerFrame.length; index++) {
             allObj.push({
@@ -1248,6 +1256,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 var toSend = {
                     id: $scope.animId,
                     name: $scope.animName,
+                    tags: allTagString,
                     mainImg: image,
                     animFrame: JSON.stringify(allObj),
                     anchorHistory: JSON.stringify(anchorHistory),
@@ -1260,13 +1269,19 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     $scope.animId = data;
                 });
             }
-        })
-
+        });
     }
 
     $scope.saveAnim = function() {
         $("#playerData p").first().text("Renderowanie animacji: 0% - Proszę czekać");
         $scope.animName = $('#animName').val();
+
+        var tags = $('.chips-placeholder').material_chip('data');
+
+        if (tags.length < 2) {
+            notify.localNotify("Walidacja", "Wpisz przynajmniej dwie frazy z którymi będzie kojarzona dana animacja");
+            return;
+        }
 
         if (!$scope.animName || $scope.animName == '' || $scope.animName == ' ' || $scope.animName == null) {
             notify.localNotify("Walidacja", "Wpisz nazwę danej animacji");
@@ -1286,5 +1301,3 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
 });
-++
-+

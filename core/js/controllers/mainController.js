@@ -97,9 +97,14 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     });
 
     $rootScope.toggleCardOptions = function(id) {
-        console.log(id);
+        $('.cardOptions').each(function() {
+            var tId = $(this).attr('id');
+            if (!tId || (tId && tId != id))
+                $(this).stop().hide('slide', { direction: 'up' });
+        });
+
         if ($("#" + id)) {
-            $("#" + id).first().toggle('slide', { direction: 'up' });
+            $("#" + id).first().stop().toggle('slide', { direction: 'up' });
         }
     }
 });
