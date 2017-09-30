@@ -56,6 +56,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
 
     $scope.addComment = function(psid) {
         var message = $("#tx_" + psid).val();
+        console.log("#tx_" + psid + " : " + message);
         if (message.length < 5 || message.length > 500) {
             notify.localNotify('Walidacja', 'Komentarz musi zawierać od 5 do 500 znaków');
             return;
@@ -65,6 +66,14 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
             $scope.getLastPost();
         }, 'Twój komentarz został pomyślnie dodany');
     }
+
+    $(document).on('keydown','.commentPostInput',function(e){
+        if (e.which == 13) {
+            var postId = $(this).attr('id').split("_")[1];
+            $scope.addComment(postId);
+        }
+    });
+    
 
     $scope.deletePost = function(id) {
         request.backend('deletePost', { psid: id }, function(data) {

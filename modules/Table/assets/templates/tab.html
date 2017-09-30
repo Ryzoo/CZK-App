@@ -40,11 +40,8 @@
                     <div class="row" style="margin-top: 20px;">
                         <div class="col s12" style="padding: 0 10px;">
                             <div class="input-field col s12">
-                                <textarea onkeydown="if (event.keyCode == 13) document.getElementById('sendIt').click()" id="tx_{{ps.psid}}" id="newPostInput" style='min-height: 1rem; height: 1rem;' name="newComment" placeholder="Skomentuj wpisując treść i potwierdzając klawiszem enter" required class="materialize-textarea"
-                                    data-length="120"></textarea>
+                                <textarea id="tx_{{ps.psid}}" style='min-height: 1rem; height: 1rem;' name="newComment" placeholder="Skomentuj wpisując treść i potwierdzając klawiszem enter" required class="materialize-textarea commentPostInput" data-length="120"></textarea>
                             </div>
-                            <button hidden id='sendIt' ng-click="addComment(ps.psid)">
-                            </button>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 20px;">
