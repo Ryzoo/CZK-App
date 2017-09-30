@@ -56,7 +56,6 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
 
     $scope.addComment = function(psid) {
         var message = $("#tx_" + psid).val();
-        console.log("#tx_" + psid + " : " + message);
         if (message.length < 5 || message.length > 500) {
             notify.localNotify('Walidacja', 'Komentarz musi zawierać od 5 do 500 znaków');
             return;
