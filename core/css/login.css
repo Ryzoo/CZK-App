@@ -24,6 +24,17 @@ body {
     height: auto;
 }
 
+.copyrightText {
+    position: relative;
+    overflow: hidden;
+    width: 85%;
+    float: right;
+}
+
+.copyrightText p {
+    margin: 0;
+}
+
 .loginFormContener {
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
@@ -144,20 +155,27 @@ button[type=submit]:hover {
     }
 }
 
-@media (max-width: 500px) {
-    .loginFormContener {
-        width: 100vw;
-        margin: 50px 0;
-        min-width: 0;
-    }
-}
-
-@media (max-width: 300px) {
+@media (max-width: 1000px) {
     .footerLogo {
-        display: none;
+        margin: auto;
+        display: block;
+        float: none;
+        margin-bottom: -10px;
+        margin-top: 10px;
     }
     .footer p {
         width: 100%;
         margin-top: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .copyrightText {
+        width: 100%;
+    }
+    .loginFormContener {
+        width: 100vw;
+        margin: 50px 0;
+        min-width: 0;
     }
 }

@@ -66,13 +66,14 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
         }, 'Twój komentarz został pomyślnie dodany');
     }
 
-    $(document).on('keydown','.commentPostInput',function(e){
+    $(document).off('keydown', '.commentPostInput');
+    $(document).on('keydown', '.commentPostInput', function(e) {
         if (e.which == 13) {
             var postId = $(this).attr('id').split("_")[1];
             $scope.addComment(postId);
         }
     });
-    
+
 
     $scope.deletePost = function(id) {
         request.backend('deletePost', { psid: id }, function(data) {

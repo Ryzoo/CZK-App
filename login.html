@@ -124,9 +124,15 @@
                     <button type="submit" class="waves-effect waves-light btn" ng-click="login(login_email,login_password)">Zaloguj</button>
                 </form>
             </div>
+            <div style="float: left; width: 100%;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;">
+            </div>
             <div class="col s12 text footer">
+                <div class='copyrightText'>
+                    <p class='reg'>Logując się akceptujesz <a href="">Politykę prywatnośći</a> oraz <a href="">Regulamin usług</a> </p>
+                </div>
                 <img class='footerLogo' src="/files/img/club_logo.png" alt="logo klubu" width="50px" height="auto">
-                <p id='copyrightText'></p>
             </div>
         </div>
     </div>
@@ -136,5 +142,5 @@
 </html>
 
 <script>
-    $('#copyrightText').text((new Date().getFullYear()) + ', Wirtualne Centrum Piłkarskie');
+    $('.reg').append('</br>' + (new Date().getFullYear()) + ' Ⓒ Wirtualne Centrum Piłkarskie');
 </script>
