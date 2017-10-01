@@ -21,6 +21,10 @@ body {
     font-size: 13px;
 }
 
+p {
+    line-height: 1.2 !important;
+}
+
 header nav {
     position: fixed !important;
     z-index: 999;

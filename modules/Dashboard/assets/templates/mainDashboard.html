@@ -101,32 +101,6 @@
                 </div>
 
             </div>
-        </div>
-        <div class="col s12 m6 l4">
-            <div class="row">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-title">
-                            OSTATNIA AKTYWNOŚĆ
-                        </div>
-                        <div class="row">
-                            <div class="col s12" ng-show='isLoadedPost'>
-                                <p class="col s12 centered" style="padding-top:15px;">
-                                    <img src="{{lastPost[0].user_img_path}}" class="circle" width="60" height="60">
-                                </p>
-                                <div class="titleIn"><b>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</b></div>
-                                <div style='font-size: 14px; padding-left: 20px; padding-right: 20px'>
-                                    {{lastPost[0].content}}
-                                </div>
-                                <div style='font-size: 10px; padding-top: 10px;'><b class='prettydate'>{{lastPost[0].date_add}}</b></div>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-top: 15px;">
-                            <a href="#!/tab">Przejdź do tablicy ></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
                 <div class="card">
                     <div class="card-content">
@@ -148,6 +122,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col s12 m6 l4">
+            <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            OSTATNIA AKTYWNOŚĆ
+                        </div>
+                        <div class="row">
+                            <div class="col s12" ng-show='isLoadedPost'>
+                                <p class="col s12 centered" style="padding-top:15px;">
+                                    <img src="{{lastPost[0].user_img_path}}" class="circle" width="60" height="60">
+                                </p>
+                                <div class="titleIn"><b>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</b></div>
+                                <div style='font-size: 13px; padding-left: 20px; padding-right: 20px'>
+                                    {{lastPost[0].content}}
+                                </div>
+                                <div style='font-size: 10px; padding-top: 10px;'><b class='prettydate'>{{lastPost[0].date_add}}</b></div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="#!/tab">Przejdź do tablicy ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="col s12 m6 l4">
             <div class="card">

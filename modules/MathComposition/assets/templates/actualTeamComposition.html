@@ -11,6 +11,9 @@
                     <div class="row table-scroll">
                         <h5>Forma dla danego zestawienia</h5>
                         <div id='teamStat'></div>
+                        <div class="input-field col s12">
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
+                        </div>
                         <table class="table highlight centered" ng-init="getTeam()">
                             <thead>
                                 <tr>
@@ -20,7 +23,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="us in notOnField" class='row dragedUser' id='fieldUser-{{us.usid}}' draggable="true">
+                                <tr ng-repeat="us in notOnField | filter:searchText" class='row dragedUser' id='fieldUser-{{us.usid}}' draggable="true">
                                     <td style="padding: 5px 0;">{{us.firstname}}</td>
                                     <td style="padding: 5px 0;">{{us.lastname}}</td>
                                     <td style="padding: 5px 0;">
