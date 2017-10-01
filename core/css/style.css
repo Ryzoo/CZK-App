@@ -899,6 +899,20 @@ ul.top-menu>li>a:focus {
     text-align: right;
 }
 
+#usermImgFileContener {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+}
+
+#usermImgFileContener .btn {
+    width: 100%;
+}
+
+#usermImgFileContener .file-path-wrapper {
+    display: none;
+}
+
 .cardOptionsButton:hover {
     color: black;
     transition: all .2s;
@@ -2109,13 +2123,19 @@ label {
 }
 
 .form-horizontal.style-form .form-group {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .round-form {
     border-radius: 500px;
     -webkit-border-radius: 500px;
+}
+
+textarea.materialize-textarea {
+    padding: 10px;
+    margin: 0;
+    margin-top: 13px;
 }
 
 @media (min-width: 768px) {

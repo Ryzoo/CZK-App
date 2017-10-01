@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-title">Główne dane</div>
-                <div style="box-sizing:border-box; padding: 20px;">
+                <div style="box-sizing:border-box;">
                     <form class="form-horizontal style-form" id="userUpdateDataFormPassImg" enctype="multipart/form-data">
                         <input type="hidden" name="token" value="{{user.token}}">
 
@@ -13,9 +13,9 @@
                                 <div class="row">
                                     <img id="imgPrev" style="width:150px; height:150px; border-radius: 50%" src="{{user.imgPath}}" class="form-control-static img-circle"></img>
                                 </div>
-                                <div class="file-field input-field">
+                                <div class="file-field input-field" id="usermImgFileContener">
                                     <div class="btn">
-                                        <span>Dodaj</span>
+                                        <span>Zmień</span>
                                         <input type="file" name="userImgFile" id="userImgFile">
                                     </div>
                                     <div class="file-path-wrapper">
@@ -40,7 +40,7 @@
 
                         <div class="form-group ">
                             <div class="row">
-                                <div class="input-field col m12  l6">
+                                <div class="input-field col m12 l6">
                                     <input id='passwordInput' type="password" name="password" placeholder="Nowe hasło" class="validate">
                                     <label for="passwordInput">Nowe hasło</label>
                                 </div>
@@ -63,7 +63,7 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-title">Dane dodatkowe</div>
-                <div style="box-sizing:border-box; padding: 20px;">
+                <div style="box-sizing:border-box;">
                     <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
                         <input type="hidden" name="token" value="{{user.token}}">
 

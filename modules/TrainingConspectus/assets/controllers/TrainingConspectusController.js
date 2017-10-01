@@ -1,16 +1,11 @@
 app.controller('TrainingConspectusController', function($scope, auth, $rootScope, notify, request, $location) {
     $scope.showContent = false;
     $scope.animArray = [];
-    $scope.searchText = '';
 
     $scope.initConsectusCreate = function() {
         $scope.showContent = true;
     }
 
-    $scope.changeSearch = function(name) {
-        $scope.searchText = name;
-        console.log($scope.searchText);
-    }
 
     $scope.initConsAnimList = function() {
         request.backend('getListOfAnimConspect', {}, function(data) {

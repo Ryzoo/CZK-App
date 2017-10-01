@@ -27,7 +27,7 @@ class TrainingConspectus extends BasicModule {
 
     function saveAnim($data){
         $name = $data['name'];
-        $mainImg = FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/anim/pngs'); 
+        $mainImg = FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim'); 
         $animFrame = $data['animFrame'];
         $anchorHistory = $data['anchorHistory'];
         $tags = trim($data['tags']);
@@ -53,7 +53,7 @@ class TrainingConspectus extends BasicModule {
 
         $animGifPath = ($this->db->getConnection())->fetchRow("SELECT mainImg FROM conspectAnim WHERE id=".$id);
         FileMenager::deleteFile($animGifPath['mainImg']);
-        $mainImg = FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/anim/pngs'); 
+        $mainImg = FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim'); 
 
         ($this->db->getConnection())->update("conspectAnim",['id'=>$id],[
             "name"=>$name,
