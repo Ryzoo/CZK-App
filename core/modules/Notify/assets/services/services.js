@@ -38,14 +38,13 @@ app.service('notify', function($http, $rootScope, request) {
                 if (reqData.success) {
                     $rootScope.$apply(function() {
                         if (reqData.data) {
-                            if( reqData.data[0] ){
-                                
-                                if( reqData.data[0].id === $rootScope.lastNotId) return;
-                                
+                            if (reqData.data[0]) {
+
+                                if (reqData.data[0].id === $rootScope.lastNotId) return;
+
                                 $rootScope.newNotify = reqData.data;
                                 $rootScope.notifyCount = reqData.data.length;
-                                $rootScope.lastNotId = reqData.data[0].id;
-                                
+
                                 var count = 0;
                                 for (var i = 0; i < $rootScope.notifyCount; i++) {
                                     if (reqData.data[i].is_new === "1") {
@@ -54,16 +53,28 @@ app.service('notify', function($http, $rootScope, request) {
                                 }
                                 $rootScope.notifyCount = count;
                             }
-                                
+
                         } else {
                             $rootScope.notifyCount = 0;
                         }
+
                         for (var i = 0; i < $rootScope.notifyCount; i++) {
-                            if (reqData.data[i].id > $rootScope.lastNotifyId) {
+                            if (reqData.data[i].id > $rootScope.lastNotId) {
                                 local('Otrzymano powiadomienie', reqData.data[i].title);
-                                $rootScope.lastNotifyId = reqData.data[i].id;
+                                $rootScope.lastNotId = reqData.data[i].id;
+
+                                if (window.Notification && Notification.permission !== "denied") {
+                                    Notification.requestPermission(function(status) {
+                                        if (status === "granted") {
+                                            var notification = new Notification(reqData.data[i].title);
+                                        }
+                                    });
+                                }
+                                $rootScope.lastNotId = reqData.data[i].id;
+
                             }
                         }
+
                     });
                 }
             },
