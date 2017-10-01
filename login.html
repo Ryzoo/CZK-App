@@ -107,7 +107,7 @@
                         <p>Zaloguj się</p>
                     </div>
                 </div>
-                <form class="col s12" onsubmit="return false;" ng-init="initLogin()">
+                <form class="col s12" ng-submit="login(login_email,login_password)" ng-init="initLogin()">
                     <div class="row" style='margin-bottom: 0;'>
                         <div class="input-field col s12">
                             <input id='loginEmail' type="email" style="-webkit-text-fill-color: white;-webkit-box-shadow: 0 0 0px 1000px transparent inset;transition: background-color 5000s ease-in-out 0s;" ng-model="login_email" name="login_email" placeholder="Adres email" class="validate white-text">
