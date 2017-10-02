@@ -70,12 +70,12 @@ class Players extends BasicModule{
         ($this->db->getConnection())->update('users', ["id"=>$usid], ["password"=>md5($newPassword)] );
 
         $mailRespond = MailSystem::sendMail($mail,"Zmiana hasła",
-        "<p><b>Witaj!"+$fname+" "+$lname+"</b></br>
+        "<p><b>Witaj! ".$fname." ".$lname."</b></br>
         Twoje hasło zostało właśnie zmienione</br>
         Aktualnie możesz się zalogować za pomocą tych danych:</br>
-        Login: "+$mail+"</br>
-        Hasło: "+$newPassword+"</br>
-        Prosimy o niezwłoczne zalogowanie się na <a href='//"+$_SERVER['HTTP_HOST']+"'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+        Login: ".$mail."</br>
+        Hasło: ".$newPassword."</br>
+        Prosimy o niezwłoczne zalogowanie się na <a href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
         if( !$mailRespond["success"] ){
             $this->returnedData["error"]  = $mailRespond["error"];
             $this->returnedData["success"]  = false;
@@ -135,12 +135,12 @@ class Players extends BasicModule{
                     $toReturn = $isPersonel;
                 }
                 $mailRespond = MailSystem::sendMail($mail,"Nowe konto",
-                "<p><b>Witaj!"+$fname+" "+$lname+"</b></br>
+                "<p><b>Witaj! ".$fname." ".$lname."</b></br>
                 Twoje konto zostao właśnie utworzone</br>
                 Aktualnie możesz się zalogować za pomocą tych danych:</br>
-                Login: "+$mail+"</br>
-                Hasło: "+$newPassword+"</br>
-                Prosimy o niezwłoczne zalogowanie się na <a href='//"+$_SERVER['HTTP_HOST']+"'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+                Login: ".$mail."</br>
+                Hasło: ".$newPassword."</br>
+                Prosimy o niezwłoczne zalogowanie się na <a href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
                 if( !$mailRespond["success"] ){
                     $error  = $mailRespond["error"];
                     $success  = false;
