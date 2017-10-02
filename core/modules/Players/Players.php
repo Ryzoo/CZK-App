@@ -70,12 +70,12 @@ class Players extends BasicModule{
         ($this->db->getConnection())->update('users', ["id"=>$usid], ["password"=>md5($newPassword)] );
 
         $mailRespond = MailSystem::sendMail($mail,"Zmiana hasła",
-        "<p>Witaj!<b> ".$fname." ".$lname."</b></p>
-        <p>Twoje hasło zostało właśnie zmienione
+        "<p style='color:#ffffff'>Witaj!<b> ".$fname." ".$lname."</b></p>
+        <p style='color:#ffffff'>Twoje hasło zostało właśnie zmienione
         Aktualnie możesz się zalogować za pomocą tych danych:</p>
-        <p><b>Login:</b> ".$mail."</p>
-        <p><b>Hasło:</b> ".$newPassword."</p>
-        <p>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+        <p style='color:#ffffff'><b>Login:</b> ".$mail."</p>
+        <p style='color:#ffffff'><b>Hasło:</b> ".$newPassword."</p>
+        <p style='color:#ffffff'>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
         if( !$mailRespond["success"] ){
             $this->returnedData["error"]  = $mailRespond["error"];
             $this->returnedData["success"]  = false;
@@ -135,12 +135,12 @@ class Players extends BasicModule{
                     $toReturn = $isPersonel;
                 }
                 $mailRespond = MailSystem::sendMail($mail,"Nowe konto",
-                "<p><b>Witaj! ".$fname." ".$lname."</b></p>
-                <p>Twoje konto zostao właśnie utworzone
+                "<p style='color:#ffffff'><b>Witaj! ".$fname." ".$lname."</b></p>
+                <p style='color:#ffffff'>Twoje konto zostao właśnie utworzone
                 Aktualnie możesz się zalogować za pomocą tych danych:</p>
-                <p>Login: ".$mail."</p>
-                <p>Hasło: ".$newPassword."</p>
-                <p>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+                <p style='color:#ffffff'>Login: ".$mail."</p>
+                <p style='color:#ffffff'>Hasło: ".$newPassword."</p>
+                <p style='color:#ffffff'>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
                 if( !$mailRespond["success"] ){
                     $error  = $mailRespond["error"];
                     $success  = false;
