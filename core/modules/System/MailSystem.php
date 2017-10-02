@@ -10,7 +10,7 @@ class MailSystem
         $template = MailSystem::loadTemplate();
         $template = str_replace("{{title}}",$title,$template);
         $template = str_replace("{{content}}",$content,$template);
-        $template = str_replace("{{host_dir}}",getProtocol()."://".$_SERVER['HTTP_HOST'],$template);
+        $template = str_replace("{{host_dir}}", MailSystem::getProtocol()."://".$_SERVER['HTTP_HOST'],$template);
         try{
             $headers = 'MIME-Version: 1.0' . "\r\n" .
             'Content-type: text/html; charset=utf-8' . "\r\n" .
