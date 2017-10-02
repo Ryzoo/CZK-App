@@ -75,7 +75,7 @@ class Players extends BasicModule{
         <p>Aktualnie możesz się zalogować za pomocą tych danych:</p>
         <p><b>Login:</b> ".$mail."</p>
         <p><b>Hasło:</b> ".$newPassword."</p>
-        <p>Prosimy o niezwłoczne zalogowanie się na <a href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+        <p>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
         if( !$mailRespond["success"] ){
             $this->returnedData["error"]  = $mailRespond["error"];
             $this->returnedData["success"]  = false;
@@ -140,7 +140,7 @@ class Players extends BasicModule{
                 Aktualnie możesz się zalogować za pomocą tych danych:</br>
                 Login: ".$mail."</br>
                 Hasło: ".$newPassword."</br>
-                Prosimy o niezwłoczne zalogowanie się na <a href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+                Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
                 if( !$mailRespond["success"] ){
                     $error  = $mailRespond["error"];
                     $success  = false;
