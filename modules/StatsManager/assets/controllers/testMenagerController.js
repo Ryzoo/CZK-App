@@ -10,7 +10,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     }
 
     function getAllCategoryWitchTest() {
-        request.backend('getCategoryWitchTest', {  }, function(data) {
+        request.backend('getCategoryWitchTest', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.showContent = true;
                 $scope.categories = data;
@@ -27,19 +27,19 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     $scope.deleteCategory = function(id) {
         $scope.showTest = false;
         $scope.selectedCategoryId = -1;
-        request.backend('deleteCategoryTest', {id: id}, function(data) {
+        request.backend('deleteCategoryTest', { id: id }, function(data) {
             $scope.$apply(function() {
                 getAllCategoryWitchTest();
             });
-        },'Pomyślnie usunięto kategorie');
+        }, 'Pomyślnie usunięto kategorie');
     }
 
     $scope.deleteTest = function(id) {
-        request.backend('deleteTestFromCat', {id: id}, function(data) {
+        request.backend('deleteTestFromCat', { id: id }, function(data) {
             $scope.$apply(function() {
                 getAllCategoryWitchTest();
             });
-        },'Pomyślnie usunięto test');
+        }, 'Pomyślnie usunięto test');
     }
 
     $scope.addCategory = function() {
@@ -56,11 +56,11 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
             return;
         }
 
-        request.backend('addCategoryTest', {name: categoryName}, function(data) {
+        request.backend('addCategoryTest', { name: categoryName }, function(data) {
             $scope.$apply(function() {
                 getAllCategoryWitchTest();
             });
-        },'Pomyślnie dodano nową kategorie');
+        }, 'Pomyślnie dodano nową kategorie');
     }
 
     $scope.addTest = function() {
@@ -103,11 +103,11 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
             return;
         }
 
-        request.backend('addTestToCategory', {best: best, worst: worst, caid: $scope.selectedCategoryId, name: name}, function(data) {
+        request.backend('addTestToCategory', { best: best, worst: worst, caid: $scope.selectedCategoryId, name: name, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 getAllCategoryWitchTest();
             });
-        },'Pomyślnie dodano nowy test do kategorii');
+        }, 'Pomyślnie dodano nowy test do kategorii');
 
     }
 
@@ -134,7 +134,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     $(document).on('change', '.changeBest', function() {
         var newBest = $(this).val();
         if (!$.isNumeric(newBest)) {
-            notify.localNotify('Walidacja','Najwiekszy możliwy wynik musi być liczbą');
+            notify.localNotify('Walidacja', 'Najwiekszy możliwy wynik musi być liczbą');
             return;
         }
         var id = ($(this).attr('id').split("-"))[1];
@@ -145,7 +145,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     $(document).on('change', '.changeWorst', function() {
         var newWorst = $(this).val();
         if (!$.isNumeric(newWorst)) {
-            notify.localNotify('Walidacja','Najgorszy możliwy wynik musi być liczbą');
+            notify.localNotify('Walidacja', 'Najgorszy możliwy wynik musi być liczbą');
             return;
         }
         var id = ($(this).attr('id').split("-"))[1];
@@ -154,12 +154,12 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
 
     function changeTest(id, value, changeType) {
 
-        request.backend('changeTest', {id: id, value: value, changeType: changeType}, function(data) {
+        request.backend('changeTest', { id: id, value: value, changeType: changeType }, function(data) {
             $scope.$apply(function() {
                 getAllCategoryWitchTest();
             });
-        },'Pomyślnie edytowano test');
-     
+        }, 'Pomyślnie edytowano test');
+
     }
 
 });

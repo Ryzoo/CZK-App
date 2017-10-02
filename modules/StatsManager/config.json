@@ -5,11 +5,11 @@
     "appServicesFile": ["services"],
     "backendRoute": [{
             "url": "getStats",
-            "parameters": ["usid"]
+            "parameters": ["usid", "tmid"]
         },
         {
             "url": "getTeamStats",
-            "parameters": ["usid"]
+            "parameters": ["usid", "tmid"]
         },
         {
             "url": "addScore",
@@ -22,7 +22,8 @@
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {
-            "url": "getCategoryWitchTest"
+            "url": "getCategoryWitchTest",
+            "parameters": ["tmid"]
         },
         {
             "url": "addCategoryTest",
@@ -36,7 +37,7 @@
         },
         {
             "url": "addTestToCategory",
-            "parameters": ["name", "caid", "best", "worst"],
+            "parameters": ["name", "caid", "best", "worst", "tmid"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {

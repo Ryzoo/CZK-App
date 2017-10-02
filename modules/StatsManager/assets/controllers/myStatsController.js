@@ -7,7 +7,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
     $scope.dataViewAsTable = true;
 
     $scope.initMyStats = function() {
-        request.backend('getStats', { usid: $rootScope.user.id }, function(data) {
+        request.backend('getStats', { usid: $rootScope.user.id, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.showContent = true;
                 $rootScope.actualStats = data.potential;
@@ -15,7 +15,6 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
             });
             $('#selectPotential').html('');
             $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
-            console.log($rootScope.actualStats);
             if ($rootScope.actualStats) {
                 for (var i = 0; i < $rootScope.actualStats.length; i++) {
                     $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");

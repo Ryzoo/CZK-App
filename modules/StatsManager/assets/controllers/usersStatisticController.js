@@ -18,7 +18,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
         $scope.showTestAndType = false;
         $scope.acutalSelectedUserId = $(this).val();
 
-        request.backend('getStats', { usid: $scope.acutalSelectedUserId }, function(data) {
+        request.backend('getStats', { usid: $scope.acutalSelectedUserId, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.showContent = true;
                 $rootScope.actualStats = data.potential;
@@ -28,7 +28,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
             $('#selectPotential').append("<option value='' disabled>Grupy testowe</option>");
             if ($rootScope.actualStats) {
                 for (var i = 0; i < $rootScope.actualStats.length; i++) {
-                    if ($rootScope.actualStats.length - 1 == i) {
+                    if (i == 0) {
                         $('#selectPotential').append("<option value='" + i + "'selected>" + $rootScope.actualStats[i].name + "</option>");
                     } else {
                         $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");

@@ -21,7 +21,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
             fullTeamScore = statistic.getTeamForm(fullPersonId);
             matchTeamScore = statistic.getTeamForm(matchPersonsId, true);
             statistic.getTeamStats(fullPersonId, function() {
-                if ($rootScope.actualStats.length > 1) {
+                if ($rootScope.actualStats.length > 0) {
                     $('#selectPotential').html('');
                     $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
                     if ($rootScope.actualStats[0].data.potential) {
@@ -29,12 +29,11 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                             $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[0].data.potential[i].name + "</option>");
                         }
                         $('select').material_select();
-
                     }
-                    $rootScope.$apply(function() {
-                        $rootScope.showContent = true;
-                    });
                 }
+                $rootScope.$apply(function() {
+                    $rootScope.showContent = true;
+                });
                 initChartMin();
             });
         });

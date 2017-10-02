@@ -4,7 +4,8 @@ app.service('statistic', function($http, $rootScope, request) {
         var urlToPost = "backend/getStats";
         var dataToSend = {
             token: $rootScope.user.token,
-            usid: userId
+            usid: userId,
+            tmid: $rootScope.user.tmid
         };
         var toReturn = [];
         request.sync('POST', urlToPost, dataToSend,
@@ -28,6 +29,9 @@ app.service('statistic', function($http, $rootScope, request) {
     this.getTeamForm = function(usersId = [], isMatchTeamForm = false) {
         var maxScore = 0;
         var teamScore = 0;
+        if (!usersId || usersId.length == 0) {
+            return 0;
+        }
         var returnedData = this.getStats(usersId, function() {}, false);
         return 100 * (isMatchTeamForm ? (returnedData.teamForm / (11 * 100)) : (returnedData.teamForm / (usersId.length * 100)));
     }

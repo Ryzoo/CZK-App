@@ -18,7 +18,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
     }
 
     function getAllCategoryWitchTest() {
-        request.backend('getCategoryWitchTest', {}, function(data) {
+        request.backend('getCategoryWitchTest', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.categories = data;
                 for (key in $scope.categories) {
@@ -38,7 +38,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
 
     function getUserScore() {
         $scope.scores = [];
-        request.backend('getScoreFromTestId', {tmid: $rootScope.user.tmid, tsid: selectedTestId, usid: selectedUserId}, function(data) {
+        request.backend('getScoreFromTestId', { tmid: $rootScope.user.tmid, tsid: selectedTestId, usid: selectedUserId }, function(data) {
             $scope.$apply(function() {
                 $scope.scores = data
             });
@@ -46,7 +46,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
     }
 
     function getAllPlayers() {
-        request.backend('getAllPlayers', {tmid: $rootScope.user.tmid}, function(data) {
+        request.backend('getAllPlayers', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.users = data;
                 for (key in data) {
@@ -78,18 +78,18 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
     $scope.addScore = function() {
         if ($.isNumeric($('#scoreInput').val().replace(',', '.'))) {
             var score = parseFloat($('#scoreInput').val().replace(',', '.'));
-            request.backend('addScore', {tmid: $rootScope.user.tmid, usid: selectedUserId, tsid: selectedTestId, score: score}, function(data) {
+            request.backend('addScore', { tmid: $rootScope.user.tmid, usid: selectedUserId, tsid: selectedTestId, score: score }, function(data) {
                 getUserScore();
                 $('#scoreInput').val('');
                 notify.addNew(new notify.Notification("Otrzymałeś nowy wynik z kategorii : " + $scope.categories[selectedCategoryKey].name + " -- " + $scope.categories[selectedCategoryKey].tests[selectedTestKey].name, [selectedUserId], "#!/myStats"));
-            },'Pomyślnie dodano nowy wynik testu');
+            }, 'Pomyślnie dodano nowy wynik testu');
         } else {
-            notify.localNotify('Walidacja','Wpisz najpierw wynik. Musi być on liczbą.');
+            notify.localNotify('Walidacja', 'Wpisz najpierw wynik. Musi być on liczbą.');
         }
     }
 
     $scope.deleteScore = function(id) {
-        request.backend('deleteScore', {tmid: $rootScope.user.tmid, tsid: id}, function(data) {
+        request.backend('deleteScore', { tmid: $rootScope.user.tmid, tsid: id }, function(data) {
             $scope.$apply(function() {
                 for (key in $scope.scores) {
                     if ($scope.scores[key].id == id) {
@@ -98,12 +98,12 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
                     }
                 }
             });
-        },'Pomyślnie usunięto wynik testu');
+        }, 'Pomyślnie usunięto wynik testu');
     }
 
     $(document).off('change', '#catSelect');
     $(document).on('change', '#catSelect', function() {
-        if($scope.categories.length != 0){
+        if ($scope.categories.length != 0) {
             $scope.isSelectedCategory = true;
             selectedCategoryKey = $(this).val();
             console.log($scope.categories);
@@ -130,9 +130,9 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
     $scope.deleteUserScore = function(id) {
         $scope.showTest = false;
         $scope.selectedCategoryId = -1;
-        request.backend('deleteCategoryTest', {id: id}, function(data) {
+        request.backend('deleteCategoryTest', { id: id }, function(data) {
             getAllCategoryWitchTest();
-        },'Pomyślnie usunięto kategorie');
+        }, 'Pomyślnie usunięto kategorie');
     }
 
     $scope.addUserScore = function() {
@@ -149,7 +149,7 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
             return;
         }
 
-        request.backend('addCategoryTest', {name: categoryName}, function(data) {
+        request.backend('addCategoryTest', { name: categoryName }, function(data) {
             getAllCategoryWitchTest();
         }, "Pomyślnie dodano nową kategorie");
     }
