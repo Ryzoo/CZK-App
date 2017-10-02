@@ -1,4 +1,4 @@
-app.controller('conspectusCreatorController', function($scope, auth, $rootScope, notify, request) {
+app.controller('conspectusCreatorController', function($scope, auth, $rootScope, notify, request, $location) {
     $scope.selectedObjImg = null;
     $scope.selectedField = null;
     $scope.selectedArrow = null;
@@ -10,11 +10,24 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.orientation = 'landscape';
     $scope.animId = -1;
 
+    $scope.cwName = '';
+    $scope.tags = '';
+    $scope.cwFieldType = '';
+    $scope.cwMaxTime = 0;
+    $scope.cwMinTime = 0;
+    $scope.cwMaxPerson = 0;
+    $scope.cwMinPerson = 0;
+    $scope.cwOps = '';
+    $scope.cwWsk = '';
+    $scope.showAnimCreator = false;
+
     if ($rootScope.idFromAnimConspectToEdit && $rootScope.idFromAnimConspectToEdit != '' && $rootScope.idFromAnimConspectToEdit != null) {
         $scope.animId = $rootScope.idFromAnimConspectToEdit;
-        loadAnimation();
         $rootScope.idFromAnimConspectToEdit = null;
-        $scope.isSelectedField = true;
+        loadAnimation(function() {
+            $scope.isSelectedField = true;
+            $scope.showAnimCreator = true;
+        });
     }
 
     $scope.mouseActionType = {
@@ -589,6 +602,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if (mainLayer != null) {
             selectedFrame.off('contentClick contentTap');
             selectedFrame.destroy();
+            delete selectedFrame;
             selectedFrame = null;
         }
         selectedFrame = new Konva.Stage({
@@ -931,7 +945,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var arrows = allObjectPerFrame[i].arrow;
 
             if (allObjectPerFrame[i + 1]) {
-                for (var x = 0; x < 59; x++) {
+                for (var x = 0; x < 24; x++) {
                     arrowsArray = []
                     arrows = allObjectPerFrame[i + 1].arrow;
                     for (var z = 0; z < arrows.length; z++) {
@@ -957,8 +971,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             var history = getAnchorHistoryFor(i + 1, objs[z].getAttr("id"));
                             var p1, p2, a, degree;
 
-                            p1 = getPosOnCurves(history.start, history.control, history.end, (x / 59));
-                            p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / 59));
+                            p1 = getPosOnCurves(history.start, history.control, history.end, (x / 24));
+                            p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / 24));
                             var rotOffset = 0;
                             if (p1.x > p2.x) rotOffset = 180;
                             a = (p2.y - p1.y) / (p2.x - p1.x);
@@ -1061,7 +1075,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
                 $("#playerData p").first().text("Podgląd animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
             }
-        }, (1000 / 60));
+        }, (1000 / 25));
     }
 
     $(document).off('click touch', '#exitPlayer');
@@ -1137,6 +1151,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function showPlayer() {
         pauseAnim = false;
         isPlayerOpen = true;
+        delete allAnimFrame;
         allAnimFrame = null;
         allAnimFrame = createFrameToAnim();
         $('#canvasPlayer').show();
@@ -1182,9 +1197,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         request.backend('loadConspectAnim', { id: $scope.animId }, function(data) {
             data.anchorHistory = JSON.parse(data.anchorHistory);
             data.animFrame = JSON.parse(data.animFrame);
-            console.log(data);
+            delete anchorHistory;
             anchorHistory = data.anchorHistory;
 
+            delete allObjectPerFrame;
             allObjectPerFrame = null;
             allObjectPerFrame = [];
 
@@ -1192,6 +1208,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 if ($(this).index() != 0)
                     $(this).remove();
             });
+
+            $scope.cwName = data.name;
+            $scope.cwFieldType = data.cwFieldType;
+            $scope.cwMaxTime = data.cwMaxTime;
+            $scope.cwMinTime = data.cwMinTime;
+            $scope.cwMaxPerson = data.cwMaxPerson;
+            $scope.cwMinPerson = data.cwMinPerson;
+            $scope.cwOps = data.cwOps;
+            $scope.cwWsk = data.cwWsk;
 
             for (var x = 0; x < data.animFrame.length; x++) {
                 allObjectPerFrame.push({ arrow: [], obj: [] });
@@ -1212,15 +1237,31 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 }
             }
 
-            $scope.animName = data.name;
-            $('#animName').val($scope.animName);
+            $scope.tags = data.tags.split(' ');
+            var tagTo = {
+                data: []
+            };
 
-            $scope.changeCategories($scope.mouseActionType.MOVE);
-            selectField(data.fieldImage);
-            changeFrame(0);
-            //drawNewStage();
+            for (var ind = 0; ind < $scope.tags.length; ind++) {
+                tagTo.data.push({
+                    tag: $scope.tags[ind]
+                });
+            }
 
-            callback();
+            $('.chips-placeholder').material_chip(tagTo);
+
+            if (data.fieldImage && data.fieldImage.length > 2) {
+                $scope.$apply(function() {
+                    callback();
+                    selectField(data.fieldImage);
+                    $scope.changeCategories($scope.mouseActionType.MOVE);
+                    changeFrame(0);
+                    setTimeout(function() {
+                        resize();
+                    }, 500);
+                });
+            }
+
         });
 
     }
@@ -1250,43 +1291,94 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 allObj[index].arrow.push(allObjectPerFrame[index].arrow[x].toObject());
             }
         }
-        var mainImg = mainLayer.toImage({
-            callback: function(img) {
-                var image = img.src.split(",")[1];
-                var toSend = {
-                    id: $scope.animId,
-                    name: $scope.animName,
-                    tags: allTagString,
-                    mainImg: image,
-                    animFrame: JSON.stringify(allObj),
-                    anchorHistory: JSON.stringify(anchorHistory),
-                    fieldImage: $scope.fieldImage.src
-                };
 
-                request.backend('saveConspectAnim', toSend, function(data) {
-                    if ($scope.animId != -1) notify.localNotify("Sukces", "Animacja pomyślnie edytowana");
-                    else notify.localNotify("Sukces", "Animacja zapisana pomyślnie");
-                    $scope.animId = data;
-                });
-            }
-        });
+        var toSend = {
+            id: $scope.animId,
+            name: $scope.animName,
+            tags: allTagString,
+            mainImg: '',
+            animFrame: JSON.stringify(allObj),
+            anchorHistory: JSON.stringify(anchorHistory),
+            fieldImage: $scope.isSelectedField ? $scope.fieldImage.src : '',
+            cwFieldType: $scope.cwFieldType,
+            cwMaxTime: $scope.cwMaxTime,
+            cwMinTime: $scope.cwMinTime,
+            cwMaxPerson: $scope.cwMaxPerson,
+            cwMinPerson: $scope.cwMinPerson,
+            cwOps: $scope.cwOps,
+            cwWsk: $scope.cwWsk
+        };
+
+        if ($scope.isSelectedField) {
+            var mainImg = mainLayer.toImage({
+                callback: function(img) {
+                    var image = img.src.split(",")[1];
+                    toSend.mainImg = image;
+                    request.backend('saveConspectAnim', toSend, function(data) {
+                        if ($scope.animId != -1) notify.localNotify("Sukces", "Animacja pomyślnie edytowana");
+                        else notify.localNotify("Sukces", "Animacja zapisana pomyślnie");
+                        $scope.animId = data;
+                        $location.url("/conspectusAnimList");
+                    });
+                }
+            });
+        } else {
+            request.backend('saveConspectAnim', toSend, function(data) {
+                if ($scope.animId != -1) notify.localNotify("Sukces", "Animacja pomyślnie edytowana");
+                else notify.localNotify("Sukces", "Animacja zapisana pomyślnie");
+                $scope.animId = data;
+                $location.url("/conspectusAnimList");
+            });
+        }
     }
 
     $scope.saveAnim = function() {
-        $("#playerData p").first().text("Renderowanie animacji: 0% - Proszę czekać");
-        $scope.animName = $('#animName').val();
+        $scope.animName = $('#cwName').val();
+        $scope.tags = $('.chips-placeholder').material_chip('data');
 
-        var tags = $('.chips-placeholder').material_chip('data');
-
-        if (tags.length < 2) {
-            notify.localNotify("Walidacja", "Wpisz przynajmniej dwie frazy z którymi będzie kojarzona dana animacja");
-            return;
-        }
+        $scope.cwFieldType = $('#cwFieldType').val();
+        $scope.cwMaxTime = parseInt($('#maxTime').val());
+        $scope.cwMinTime = parseInt($('#minTime').val());
+        $scope.cwMaxPerson = parseInt($('#maxPerson').val());
+        $scope.cwMinPerson = parseInt($('#minPerson').val());
+        $scope.cwOps = $('#opCw').val();
+        $scope.cwWsk = $('#wskCw').val();
 
         if (!$scope.animName || $scope.animName == '' || $scope.animName == ' ' || $scope.animName == null) {
-            notify.localNotify("Walidacja", "Wpisz nazwę danej animacji");
+            notify.localNotify("Walidacja", "Wpisz nazwę danego ćwiczenia");
             return;
         }
+
+        if (!$scope.cwFieldType || $scope.cwFieldType.length <= 0) {
+            notify.localNotify("Walidacja", "Wpisz poprawnie pole gry");
+            return;
+        }
+
+        if (!$scope.cwMinTime || $scope.cwMinTime.length <= 0 || $scope.cwMinTime <= 0 || !$.isNumeric($scope.cwMinTime)) {
+            notify.localNotify("Walidacja", "Wpisz poprawnie minimalny czas trwania ( więcej niż 0 )");
+            return;
+        }
+
+        if (!$scope.cwMaxTime || $scope.cwMaxTime.length <= 0 || $scope.cwMaxTime <= $scope.cwMinTime || $scope.cwMaxTime > 1000 || !$.isNumeric($scope.cwMaxTime)) {
+            notify.localNotify("Walidacja", "Wpisz poprawnie maksymalny czas trwania ( wiecej niż " + $scope.cwMinTime + " mniej niż 1000 )");
+            return;
+        }
+
+        if (!$scope.cwMinPerson || $scope.cwMinPerson.length <= 0 || $scope.cwMinPerson <= 0 || !$.isNumeric($scope.cwMinPerson)) {
+            notify.localNotify("Walidacja", "Wpisz poprawnie minimalną ilość zawodników ( więcej niż 0 )");
+            return;
+        }
+
+        if (!$scope.cwMaxPerson || $scope.cwMaxPerson.length <= 0 || $scope.cwMaxPerson <= $scope.cwMinPerson || $scope.cwMaxPerson > 100 || !$.isNumeric($scope.cwMaxPerson)) {
+            notify.localNotify("Walidacja", "Wpisz poprawnie maksymalną ilość zawodników ( wiecej niż " + $scope.cwMinPerson + " mniej niż 100 )");
+            return;
+        }
+
+        if (!$scope.tags || $scope.tags.length < 2) {
+            notify.localNotify("Walidacja", "Wpisz przynajmniej dwie frazy z którymi będzie kojarzone dane ćwiczenie");
+            return;
+        }
+
         saveAnimation();
     }
 

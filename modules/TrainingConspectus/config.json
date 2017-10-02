@@ -5,7 +5,10 @@
     "require": [],
     "backendRoute": [{
         "url": "saveConspectAnim",
-        "parameters": ["id", "name", "mainImg", "animFrame", "anchorHistory", "fieldImage", "tags"],
+        "parameters": [
+            "id", "name", "mainImg", "animFrame", "anchorHistory", "fieldImage", "tags",
+            "cwFieldType", "cwMaxTime", "cwMinTime", "cwMaxPerson", "cwMinPerson", "cwOps", "cwWsk"
+        ],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
         "url": "getListOfAnimConspect"
@@ -30,7 +33,7 @@
         "anchorPointIcon": "fa fa-address-card-o fa-fw",
         "content": {
             "link": {
-                "label": "Lista animacji",
+                "label": "Lista ćwiczeń",
                 "url": "#!\/conspectusAnimList",
                 "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
             }
@@ -41,7 +44,7 @@
         "anchorPointIcon": "fa fa-address-card-o fa-fw",
         "content": {
             "link": {
-                "label": "Kreator animacji",
+                "label": "Dodaj nowe ćwiczenie",
                 "url": "#!\/conspectusAnim",
                 "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
             }

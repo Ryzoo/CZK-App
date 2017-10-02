@@ -3,9 +3,90 @@
     <div ng-show='showContent' class="row">
         <div class="col s12">
             <div class="card">
-                <div class="card-content" style='padding-bottom:0px !important'>
-                    <div class="card-title">Tworzenie nowego konspektu</div>
-                    <div class="mainCreateContener" ng-controller='conspectusCreatorController'>
+                <div class="card-content" ng-controller='conspectusCreatorController'>
+                    <div class="card-title">Tworzenie nowego ćwiczenia</div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <input id='cwName' type="text" placeholder="Nazwa ćwiczenia" value='{{cwName}}' class="validate" required>
+                                        <label for="cwName">Nazwa ćwiczenia</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <input id='cwFieldType' type="text" placeholder="Pole gry" value='{{cwFieldType}}' class="validate" required>
+                                        <label for="cwFieldType">Pole gry</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <input id='minTime' type="text" placeholder="Czas wykonania (min)" value='{{cwMinTime}}' class="validate" required>
+                                        <label for="minTime">Minimalny czas wykonania</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <input id='maxTime' type="text" placeholder="Czas wykonania (maks)" value='{{cwMaxTime}}' class="validate" required>
+                                        <label for="maxTime">Maksymalny czas wykonania</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <input id='minPerson' type="text" placeholder="Liczba zawodników (min)" value='{{cwMinPerson}}' class="validate" required>
+                                        <label for="minPerson">Minimalna liczba zawodników</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <input id='maxPerson' type="text" placeholder="Liczba zawodników (maks)" value='{{cwMaxPerson}}' class="validate" required>
+                                        <label for="maxPerson">Maksymalna liczba zawodników</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="opCw" placeholder="Opis ćwiczenia" class="materialize-textarea " data-length="255">{{cwOps}}</textarea>
+                                        <label for="opCw">Opis ćwiczenia</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="wskCw" placeholder="Wskazówki" class="materialize-textarea " data-length="255">{{cwWsk}}</textarea>
+                                        <label for="wskCw">Wskazówki</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <div id='cwTags' style='margin-top: 10px;' class="chips chips-placeholder"></div>
+                                        <label for="cwTags">Powiązane słowa kluczowe</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-hide='showAnimCreator'>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button type="button" class="waves-effect waves-light btn" ng-click="showAnimCreator = true">Dodaj animacje ćwiczenia</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-show='showAnimCreator && !isSelectedField'>
+                        <h5>Wybierz tło do animacji</h5>
+                    </div>
+
+                    <div class="mainCreateContener" ng-show='showAnimCreator'>
+
                         <div id='itemBox' ng-show='isSelectedField'>
                             <div class='categories' style='border-color:red' ng-click="changeCategories(mouseActionType.MOVE)">
                                 <i class="fa fa-arrows fa-2x" aria-hidden="true"></i>
@@ -21,7 +102,7 @@
                             </div>
 
                         </div>
-                        <div id='itemBoxFromCat' ng-show='actualMouseAction==mouseActionType.OBJECT_ADD || actualMouseAction==mouseActionType.ARROW_ADD ||actualMouseAction==mouseActionType.FIELD_LIST'>
+                        <div id='itemBoxFromCat' ng-show='actualMouseAction==mouseActionType.OBJECT_ADD || actualMouseAction==mouseActionType.ARROW_ADD || actualMouseAction==mouseActionType.FIELD_LIST'>
                             <div class='itemsList' ng-show="actualMouseAction==mouseActionType.FIELD_LIST">
                                 <div class='categoryItems soccerField' ng-click="isSelectedField=true">
                                     <img src="/modules/TrainingConspectus/assets/media/f1.png" alt="field1">
@@ -82,19 +163,13 @@
                                 <div id='addFrame'> + </div>
                             </div>
                         </div>
-                        <div id='itemBox' ng-show='isSelectedField'>
-                            <div class='inputAnimTags'>
-                                <div class="input-field">
-                                    <div class="chips chips-placeholder"></div>
-                                </div>
-                            </div>
-                            <div class='inputAnimTitle'>
-                                <form>
-                                    <div class="input-field col">
-                                        <input id='animName' type="text" placeholder="Wpisz nazwę animacji" required class="validate">
-                                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="input-field col s12">
                                     <button type="button" class="waves-effect waves-light btn" ng-click="saveAnim();">Zapisz</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -123,6 +198,7 @@
 
 
 <script>
+    Materialize.updateTextFields();
     $('.chips-placeholder').material_chip({
         placeholder: ' + Kolejne',
         secondaryPlaceholder: 'Wpisz powiązane słowa kluczowe',

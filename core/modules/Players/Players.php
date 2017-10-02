@@ -2,6 +2,7 @@
 namespace Core\Players;
 
 use Core\System\BasicModule;
+use Core\System\MailSystem;
 
 class Players extends BasicModule{
    function install(){
@@ -68,28 +69,18 @@ class Players extends BasicModule{
 
         ($this->db->getConnection())->update('users', ["id"=>$usid], ["password"=>md5($newPassword)] );
 
-        try{
-            $headers = 'MIME-Version: 1.0' . "\r\n" .
-            'Content-type: text/html; charset=utf-8' . "\r\n" .
-            'From: Club Management Center < cmc.app@centrumklubu.pl >' . "\r\n" .
-            "CC: cmc.app@centrumklubu.pl" . "\r\n" .
-            "X-Sender: Club Management Center < cmc.app@centrumklubu.pl >" . "\r\n" .
-            "MIME-Version: 1.0" . "\r\n";
-            'Reply-To: cmc.app@centrumklubu.pl' . "\r\n" .
-            "X-Priority: 1" . "\r\n" .
-            "Return-Path: cmc.app@centrumklubu.pl" . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-            $message = "Witaj <strong>".$fname." ".$lname."</strong>.<br/>Twoje hasło zostało właśnie zmienione. <br/>Możesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
-            $success = mail($mail, 'Utworzenie nowego hasła', $message, $headers);
-            if (!$success) {
-                $errorMessage = error_get_last()['message'];
-                $this->returnedData["error"]  = $errorMessage;
-                $this->returnedData["success"]  = false;
-            }
-        }catch(Exception $e){
-            $this->returnedData["error"]  = 'Nie udało się wysłać meila z hasłem';
+        $mailRespond = MailSystem::sendMail($mail,"Zmiana hasła",
+        "<p><b>Witaj!"+$fname+" "+$lname+"</b></br>
+        Twoje hasło zostało właśnie zmienione</br>
+        Aktualnie możesz się zalogować za pomocą tych danych:</br>
+        Login: "+$mail+"</br>
+        Hasło: "+$newPassword+"</br>
+        Prosimy o niezwłoczne zalogowanie się na <a href='//"+$_SERVER['HTTP_HOST']+"'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+        if( !$mailRespond["success"] ){
+            $this->returnedData["error"]  = $mailRespond["error"];
             $this->returnedData["success"]  = false;
         }
+           
         $this->returnedData["data"] = "Adres email: " . $mail;
         return $this->returnedData;
     }
@@ -143,21 +134,16 @@ class Players extends BasicModule{
                     }
                     $toReturn = $isPersonel;
                 }
-                try{
-                    $headers = 'MIME-Version: 1.0' . "\r\n" .
-                    'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
-                    'From: Club Management Center < cmc.app@centrumklubu.pl >' . "\r\n" .
-                    "CC: cmc.app@centrumklubu.pl" . "\r\n" .
-                    "X-Sender: Club Management Center < cmc.app@centrumklubu.pl >" . "\r\n" .
-                    "MIME-Version: 1.0" . "\r\n";
-                    'Reply-To: cmc.app@centrumklubu.pl' . "\r\n" .
-                    "X-Priority: 1" . "\r\n" .
-                    "Return-Path: cmc.app@centrumklubu.pl" . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-                    $message = "Witaj <strong>".$fname." ".$lname."</strong>.<br/>Twoje konto zostało właśnie utworzone. <br/>Możesz się zalogować używając tego adresu email oraz hasła: <strong>".$newPassword."</strong>";
-                    mail($mail, 'Utworzono Twoje konto', $message, $headers);
-                }catch(Exception $e){
-                    $toReturn = 'Nie udało się wysłać meila z hasłem';
+                $mailRespond = MailSystem::sendMail($mail,"Nowe konto",
+                "<p><b>Witaj!"+$fname+" "+$lname+"</b></br>
+                Twoje konto zostao właśnie utworzone</br>
+                Aktualnie możesz się zalogować za pomocą tych danych:</br>
+                Login: "+$mail+"</br>
+                Hasło: "+$newPassword+"</br>
+                Prosimy o niezwłoczne zalogowanie się na <a href='//"+$_SERVER['HTTP_HOST']+"'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+                if( !$mailRespond["success"] ){
+                    $error  = $mailRespond["error"];
+                    $success  = false;
                 }
             }else{
                 $error = "Nie udało się dodać danych użytkownika";

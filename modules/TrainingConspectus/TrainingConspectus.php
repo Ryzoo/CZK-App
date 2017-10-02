@@ -9,11 +9,11 @@ use Core\System\FileMenager;
 class TrainingConspectus extends BasicModule {
 
     function install(){
-     ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL , `anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
     }
 
     function uninstall(){
-     ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS conspectAnim');
+        ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS conspectAnim');
     }
 
     function saveConspectAnim($data){
@@ -27,11 +27,19 @@ class TrainingConspectus extends BasicModule {
 
     function saveAnim($data){
         $name = $data['name'];
-        $mainImg = FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim'); 
+        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim') : '';
         $animFrame = $data['animFrame'];
         $anchorHistory = $data['anchorHistory'];
         $tags = trim($data['tags']);
         $fieldImage = parse_url($data['fieldImage'], PHP_URL_PATH);
+
+        $cwFieldType = $data['cwFieldType'];
+        $cwMaxTime = $data['cwMaxTime'];
+        $cwMinTime = $data['cwMinTime'];
+        $cwMaxPerson = $data['cwMaxPerson'];
+        $cwMinPerson = $data['cwMinPerson'];
+        $cwOps = $data['cwOps'];
+        $cwWsk = $data['cwWsk'];
 
         return ($this->db->getConnection())->insert("conspectAnim",[
             "name"=>$name,
@@ -39,7 +47,14 @@ class TrainingConspectus extends BasicModule {
             "animFrame"=>$animFrame,
             "anchorHistory"=>$anchorHistory,
             "fieldImage"=>$fieldImage,
-            "tags"=>$tags
+            "cwFieldType"=>$cwFieldType,
+            "cwMaxTime"=>$cwMaxTime,
+            "cwMinTime"=>$cwMinTime,
+            "cwMaxPerson"=>$cwMaxPerson,
+            "cwMinPerson"=>$cwMinPerson,
+            "cwOps"=>$cwOps,
+            "cwWsk"=>$cwWsk,
+            "tags"=>$tags,
         ]);
     }
 
@@ -51,9 +66,17 @@ class TrainingConspectus extends BasicModule {
         $anchorHistory = $data['anchorHistory'];
         $fieldImage = parse_url($data['fieldImage'], PHP_URL_PATH);
 
+        $cwFieldType = $data['cwFieldType'];
+        $cwMaxTime = $data['cwMaxTime'];
+        $cwMinTime = $data['cwMinTime'];
+        $cwMaxPerson = $data['cwMaxPerson'];
+        $cwMinPerson = $data['cwMinPerson'];
+        $cwOps = $data['cwOps'];
+        $cwWsk = $data['cwWsk'];
+
         $animGifPath = ($this->db->getConnection())->fetchRow("SELECT mainImg FROM conspectAnim WHERE id=".$id);
         FileMenager::deleteFile($animGifPath['mainImg']);
-        $mainImg = FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim'); 
+        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim') : '';
 
         ($this->db->getConnection())->update("conspectAnim",['id'=>$id],[
             "name"=>$name,
@@ -61,7 +84,14 @@ class TrainingConspectus extends BasicModule {
             "animFrame"=>$animFrame,
             "anchorHistory"=>$anchorHistory,
             "fieldImage"=>$fieldImage,
-            "tags"=>$tags
+            "cwFieldType"=>$cwFieldType,
+            "cwMaxTime"=>$cwMaxTime,
+            "cwMinTime"=>$cwMinTime,
+            "cwMaxPerson"=>$cwMaxPerson,
+            "cwMinPerson"=>$cwMinPerson,
+            "cwOps"=>$cwOps,
+            "cwWsk"=>$cwWsk,
+            "tags"=>$tags,
         ]);
 
         return $data['id'];

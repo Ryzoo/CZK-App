@@ -341,6 +341,8 @@ return array(
     'Core\\Staff\\Staff' => $baseDir . '/modules/Staff/Staff.php',
     'Core\\System\\BasicModule' => $baseDir . '/modules/System/BasicModule.php',
     'Core\\System\\BasicModuleInterface' => $baseDir . '/modules/System/BasicModuleInterface.php',
+    'Core\\System\\FileMenager' => $baseDir . '/modules/System/FileMenager.php',
+    'Core\\System\\MailSystem' => $baseDir . '/modules/System/MailSystem.php',
     'Core\\System\\Route' => $baseDir . '/modules/System/Route.php',
     'Core\\Teams\\Teams' => $baseDir . '/modules/Teams/Teams.php',
     'Doctrine\\Common\\Collections\\AbstractLazyCollection' => $vendorDir . '/doctrine/collections/lib/Doctrine/Common/Collections/AbstractLazyCollection.php',

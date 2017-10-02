@@ -1,6 +1,7 @@
 app.controller('TrainingConspectusController', function($scope, auth, $rootScope, notify, request, $location) {
     $scope.showContent = false;
     $scope.animArray = [];
+    $scope.showAnimCreator = false;
 
     $scope.initConsectusCreate = function() {
         $scope.showContent = true;

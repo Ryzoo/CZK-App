@@ -512,6 +512,8 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         'Core\\Staff\\Staff' => __DIR__ . '/../..' . '/modules/Staff/Staff.php',
         'Core\\System\\BasicModule' => __DIR__ . '/../..' . '/modules/System/BasicModule.php',
         'Core\\System\\BasicModuleInterface' => __DIR__ . '/../..' . '/modules/System/BasicModuleInterface.php',
+        'Core\\System\\FileMenager' => __DIR__ . '/../..' . '/modules/System/FileMenager.php',
+        'Core\\System\\MailSystem' => __DIR__ . '/../..' . '/modules/System/MailSystem.php',
         'Core\\System\\Route' => __DIR__ . '/../..' . '/modules/System/Route.php',
         'Core\\Teams\\Teams' => __DIR__ . '/../..' . '/modules/Teams/Teams.php',
         'Doctrine\\Common\\Collections\\AbstractLazyCollection' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/AbstractLazyCollection.php',
