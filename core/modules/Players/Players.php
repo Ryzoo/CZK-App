@@ -71,8 +71,8 @@ class Players extends BasicModule{
 
         $mailRespond = MailSystem::sendMail($mail,"Zmiana hasła",
         "<p>Witaj!<b> ".$fname." ".$lname."</b></p>
-        <p>Twoje hasło zostało właśnie zmienione</p>
-        <p>Aktualnie możesz się zalogować za pomocą tych danych:</p>
+        <p>Twoje hasło zostało właśnie zmienione
+        Aktualnie możesz się zalogować za pomocą tych danych:</p>
         <p><b>Login:</b> ".$mail."</p>
         <p><b>Hasło:</b> ".$newPassword."</p>
         <p>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
@@ -135,12 +135,12 @@ class Players extends BasicModule{
                     $toReturn = $isPersonel;
                 }
                 $mailRespond = MailSystem::sendMail($mail,"Nowe konto",
-                "<p><b>Witaj! ".$fname." ".$lname."</b></br>
-                Twoje konto zostao właśnie utworzone</br>
-                Aktualnie możesz się zalogować za pomocą tych danych:</br>
-                Login: ".$mail."</br>
-                Hasło: ".$newPassword."</br>
-                Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
+                "<p><b>Witaj! ".$fname." ".$lname."</b></p>
+                <p>Twoje konto zostao właśnie utworzone
+                Aktualnie możesz się zalogować za pomocą tych danych:</p>
+                <p>Login: ".$mail."</p>
+                <p>Hasło: ".$newPassword."</p>
+                <p>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła. </p>");
                 if( !$mailRespond["success"] ){
                     $error  = $mailRespond["error"];
                     $success  = false;
