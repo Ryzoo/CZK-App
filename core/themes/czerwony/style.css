@@ -56,10 +56,6 @@ table.highlight>tbody>tr:hover {
     background-color: #fff;
 }
 
-.collapsible-header {
-    background-color: #eaeaea;
-}
-
 .c3-chart-arcs .c3-chart-arcs-background {
     fill: #eaeaea;
 }

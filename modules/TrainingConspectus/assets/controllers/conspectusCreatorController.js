@@ -11,6 +11,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.animId = -1;
 
     $scope.cwName = '';
+    $scope.gif = '';
     $scope.tags = '';
     $scope.cwFieldType = '';
     $scope.cwMaxTime = 0;
@@ -1266,70 +1267,90 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     }
 
-    function saveAnimation() {
-        changeFrame(0);
-        drawNewStage();
 
-        var tags = $('.chips-placeholder').material_chip('data');
-        var allTagString = '';
-        for (var x = 0; x < tags.length; x++) {
-            allTagString += " ";
-            allTagString += tags[x].tag;
-        }
+    function renderAnim() {
+        isPlayerOpen = true;
+        delete allAnimFrame;
+        allAnimFrame = null;
+        allAnimFrame = createFrameToAnim();
+        $('#canvasPlayer').show();
+        actualPlayerFrame = 0;
+        changeFrame(actualPlayerFrame, allAnimFrame);
+        setPlayerToFrame(actualPlayerFrame);
+        var encoder = new GIFEncoder();
+        encoder.setRepeat(0);
+        encoder.setQuality(40);
+        encoder.setDelay(40);
+        encoder.start();
 
-        var allObj = [];
-        for (var index = 0; index < allObjectPerFrame.length; index++) {
-            allObj.push({
-                obj: [],
-                arrow: []
-            });
-            for (var x = 0; x < allObjectPerFrame[index].obj.length; x++) {
-                allObj[index].obj.push(allObjectPerFrame[index].obj[x].toObject());
-                allObj[index].obj[x].attrs.image = allObjectPerFrame[index].obj[x].getImage().src;
-            }
-            for (var x = 0; x < allObjectPerFrame[index].arrow.length; x++) {
-                allObj[index].arrow.push(allObjectPerFrame[index].arrow[x].toObject());
-            }
-        }
-
-        var toSend = {
-            id: $scope.animId,
-            name: $scope.animName,
-            tags: allTagString,
-            mainImg: '',
-            animFrame: JSON.stringify(allObj),
-            anchorHistory: JSON.stringify(anchorHistory),
-            fieldImage: $scope.isSelectedField ? $scope.fieldImage.src : '',
-            cwFieldType: $scope.cwFieldType,
-            cwMaxTime: $scope.cwMaxTime,
-            cwMinTime: $scope.cwMinTime,
-            cwMaxPerson: $scope.cwMaxPerson,
-            cwMinPerson: $scope.cwMinPerson,
-            cwOps: $scope.cwOps,
-            cwWsk: $scope.cwWsk
-        };
-
-        if ($scope.isSelectedField) {
-            var mainImg = mainLayer.toImage({
-                callback: function(img) {
-                    var image = img.src.split(",")[1];
-                    toSend.mainImg = image;
-                    request.backend('saveConspectAnim', toSend, function(data) {
-                        if ($scope.animId != -1) notify.localNotify("Sukces", "Animacja pomyślnie edytowana");
-                        else notify.localNotify("Sukces", "Animacja zapisana pomyślnie");
-                        $scope.animId = data;
-                        $location.url("/conspectusAnimList");
-                    });
+        var mainPlay = setInterval(function() {
+            actualPlayerFrame++;
+            if (actualPlayerFrame >= allAnimFrame.length) {
+                window.clearInterval(mainPlay);
+                turnOnAllSter();
+                encoder.finish();
+                var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+                $scope.gif = encode64(binary_gif);
+                var tags = $('.chips-placeholder').material_chip('data');
+                var allTagString = '';
+                for (var x = 0; x < tags.length; x++) {
+                    allTagString += " ";
+                    allTagString += tags[x].tag;
                 }
-            });
-        } else {
-            request.backend('saveConspectAnim', toSend, function(data) {
-                if ($scope.animId != -1) notify.localNotify("Sukces", "Animacja pomyślnie edytowana");
-                else notify.localNotify("Sukces", "Animacja zapisana pomyślnie");
-                $scope.animId = data;
-                $location.url("/conspectusAnimList");
-            });
-        }
+
+                var allObj = [];
+                for (var index = 0; index < allObjectPerFrame.length; index++) {
+                    allObj.push({
+                        obj: [],
+                        arrow: []
+                    });
+                    for (var x = 0; x < allObjectPerFrame[index].obj.length; x++) {
+                        allObj[index].obj.push(allObjectPerFrame[index].obj[x].toObject());
+                        allObj[index].obj[x].attrs.image = allObjectPerFrame[index].obj[x].getImage().src;
+                    }
+                    for (var x = 0; x < allObjectPerFrame[index].arrow.length; x++) {
+                        allObj[index].arrow.push(allObjectPerFrame[index].arrow[x].toObject());
+                    }
+                }
+
+                var toSend = {
+                    id: $scope.animId,
+                    name: $scope.animName,
+                    tags: allTagString,
+                    mainImg: allAnimFrame.length <= 1 ? '' : $scope.gif,
+                    mainImgShow: allAnimFrame.length <= 1 ? '' : selectedFrame.toCanvas().toDataURL("image/jpg").split(',')[1],
+                    animFrame: JSON.stringify(allObj),
+                    anchorHistory: JSON.stringify(anchorHistory),
+                    fieldImage: $scope.isSelectedField ? $scope.fieldImage.src : '',
+                    cwFieldType: $scope.cwFieldType,
+                    cwMaxTime: $scope.cwMaxTime,
+                    cwMinTime: $scope.cwMinTime,
+                    cwMaxPerson: $scope.cwMaxPerson,
+                    cwMinPerson: $scope.cwMinPerson,
+                    cwOps: $scope.cwOps,
+                    cwWsk: $scope.cwWsk
+                };
+
+                request.backend('saveConspectAnim', toSend, function(data) {
+                    exitPlayer();
+                    if ($scope.animId != -1) notify.localNotify("Sukces", "Animacja pomyślnie edytowana");
+                    else notify.localNotify("Sukces", "Animacja zapisana pomyślnie");
+                    $scope.animId = data;
+                    $location.url("/conspectusAnimList");
+                });
+
+            } else {
+                var percent = setPlayerToFrame(actualPlayerFrame);
+                currentObjPerFrame = actualPlayerFrame;
+                drawNewStage("canvasPlayerContainer", allAnimFrame);
+                encoder.addFrame(selectedFrame.toCanvas().getContext('2d'));
+                $("#playerData p").first().text("Renderowanie animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
+            }
+        }, 40);
+    }
+
+    function saveAnimation() {
+        renderAnim();
     }
 
     $scope.saveAnim = function() {

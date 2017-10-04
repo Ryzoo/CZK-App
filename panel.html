@@ -14,10 +14,10 @@
 </head>
 
 <body ng-controller="accountController">
-    <div id='canvasPlayer'>
+    <div id='canvasPlayer' class="noPrint">
         <div id="playerContent">
             <div id="playerData">
-                <p>Podgląd animacji</p>
+                <p style='line-height: 3.4rem !important;'>Podgląd animacji</p>
                 <i id='exitPlayer' class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
             </div>
             <div id="canvasPlayerContainer"></div>
@@ -45,8 +45,14 @@
             </div>
         </div>
     </div>
+
     <div id='loadingContent' class="noPrint">
-        <p>Wczytywanie...<br/><span id='showRun'>Już za chwilę przeniesiemy Cię na główną stronę</span></p>
+        <div id='backgroundLogin'>
+            <img src="/files/img/background.jpg" alt="glowne zdjecie logowania">
+        </div>
+        <div class='loginFormContener'>
+            <div class="loader"></div>
+        </div>
     </div>
     <div id='mainContent'>
         <header class="noPrint">

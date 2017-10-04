@@ -9,10 +9,12 @@ use Core\System\FileMenager;
 class TrainingConspectus extends BasicModule {
 
     function install(){
-        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL ,  `mainImgShow` VARCHAR(255) NOT NULL, `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `conspect` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `master` VARCHAR(255) NOT NULL ,`sezon` VARCHAR(255) NOT NULL, `date` DATE NOT NULL , `team` VARCHAR(255) NOT NULL , `about` TINYTEXT NOT NULL , `tags` VARCHAR(255) NOT NULL , `data` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
     function uninstall(){
+        ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS conspect');
         ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS conspectAnim');
     }
 
@@ -25,9 +27,37 @@ class TrainingConspectus extends BasicModule {
         return $this->returnedData;
     }
 
+    function saveConspect($data){
+        $coName = $data['coName'];
+        $coMaster = $data['coMaster'];
+        $coDate = $data['coDate'];
+        $coSezon = $data['coSezon'];
+        $coTeam = $data['coTeam'];
+        $coOp = $data['coOp'];
+        $coTags = trim($data['coTags']);
+        $data = $data['data'];
+        $this->returnedData['data'] = ($this->db->getConnection())->insert("conspect",[
+            "name"=>$coName,
+            "master"=>$coMaster,
+            "date"=>$coDate,
+            "sezon"=>$coSezon,
+            "team"=>$coTeam,
+            "about"=>$coOp,
+            "tags"=>$coTags,
+            "data"=>$data
+        ]);
+        return $this->returnedData;
+    }
+
+    function getAllTraining(){
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT id, name FROM conspectAnim ORDER BY CHAR_LENGTH(mainImg) DESC");
+        return $this->returnedData;
+    }
+
     function saveAnim($data){
         $name = $data['name'];
-        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim') : '';
+        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name.'.gif',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim') : '';
+        $mainImgShow = strlen($data['mainImgShow']) > 2 ? FileMenager::saveFile($name.'.jpg',base64_decode(str_replace(' ', '+', $data['mainImgShow'])),__DIR__.'/../../files/anim') : '';
         $animFrame = $data['animFrame'];
         $anchorHistory = $data['anchorHistory'];
         $tags = trim($data['tags']);
@@ -44,6 +74,7 @@ class TrainingConspectus extends BasicModule {
         return ($this->db->getConnection())->insert("conspectAnim",[
             "name"=>$name,
             "mainImg"=>$mainImg,
+            "mainImgShow"=>$mainImgShow,
             "animFrame"=>$animFrame,
             "anchorHistory"=>$anchorHistory,
             "fieldImage"=>$fieldImage,
@@ -74,13 +105,16 @@ class TrainingConspectus extends BasicModule {
         $cwOps = $data['cwOps'];
         $cwWsk = $data['cwWsk'];
 
-        $animGifPath = ($this->db->getConnection())->fetchRow("SELECT mainImg FROM conspectAnim WHERE id=".$id);
+        $animGifPath = ($this->db->getConnection())->fetchRow("SELECT mainImg, mainImgShow FROM conspectAnim WHERE id=".$id);
         FileMenager::deleteFile($animGifPath['mainImg']);
-        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name.'.png',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim') : '';
+        FileMenager::deleteFile($animGifPath['mainImgShow']);
+        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name.'.gif',base64_decode(str_replace(' ', '+', $data['mainImg'])),__DIR__.'/../../files/anim') : '';
+        $mainImgShow = strlen($data['mainImgShow']) > 2 ? FileMenager::saveFile($name.'.jpg',base64_decode(str_replace(' ', '+', $data['mainImgShow'])),__DIR__.'/../../files/anim') : '';
 
         ($this->db->getConnection())->update("conspectAnim",['id'=>$id],[
             "name"=>$name,
             "mainImg"=>$mainImg,
+            "mainImgShow"=>$mainImgShow,
             "animFrame"=>$animFrame,
             "anchorHistory"=>$anchorHistory,
             "fieldImage"=>$fieldImage,
@@ -99,7 +133,7 @@ class TrainingConspectus extends BasicModule {
     
 
     function getListOfAnimConspect(){
-        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM conspectAnim ORDER BY name");
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM conspectAnim ORDER BY CHAR_LENGTH(mainImg) DESC");
         return $this->returnedData;
     }
 

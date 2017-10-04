@@ -27,7 +27,7 @@ p {
 
 header nav {
     position: fixed !important;
-    z-index: 999;
+    z-index: 98;
 }
 
 .brand-logo {
@@ -1335,6 +1335,25 @@ PANELS CONFIGURATIONS
     color: white;
 }
 
+#overShow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 99;
+}
+
+#overShowContener{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: white;
+    min-width: 100px;
+    min-height: 100px;
+}
 
 /*White Panel */
 
@@ -2328,6 +2347,15 @@ textarea.materialize-textarea {
 
 /*LOGIN CONFIGURATION PAGE*/
 
+.loginFormContener {
+    position: relative;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.85);
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
 .form-login {
     max-width: 330px;
     margin: 100px auto 0;
@@ -2584,7 +2612,7 @@ textarea.materialize-textarea {
 /*footer*/
 
 .site-footer {
-    background: #transparent;
+    background: transparent;
     color: #2d2d2d;
     padding: 10px 0;
 }
@@ -2616,34 +2644,49 @@ textarea.materialize-textarea {
     left: inherit;
 }
 
-#loadingContent {
+#backgroundLogin {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#backgroundLogin img {
+    min-width: 100%;
+    height: 100%;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loadingContent {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: 2000;
 }
 
-#loadingContent p,
-#loadingContent p span {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Roboto';
-    color: #e8e8e8;
-    font-weight: 800;
-    font-size: 3.5em;
-    width: 100%;
-    text-align: center;
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
-#loadingContent p span {
-    font-size: 30%;
-    width: 100%;
-    top: 115%;
-    display: none;
+.loader {
+    border: 7px solid #455a64;
+    border-top: 7px solid rgba(0, 173, 255, 0.6);
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: spin 2s linear infinite;
 }
 
 .collection {
@@ -2753,6 +2796,9 @@ textarea.materialize-textarea {
 }
 
 .collapsible-header {
+    background-color: #2a2a2a;
+    color: rgba(255, 255, 255, 1);
+    text-align: left;
     border-bottom: none !important;
 }
 

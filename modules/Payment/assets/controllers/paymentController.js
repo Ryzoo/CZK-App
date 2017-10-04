@@ -80,7 +80,6 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
 
         request.backend('getPaymentSummary', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
-                console.log(data);
                 $scope.paymentSummary = data;
             });
         });

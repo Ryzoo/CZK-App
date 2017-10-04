@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request) {
+app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request, $compile) {
     $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD", "STAFF"];
     $scope.contentLoaded = false;
     $rootScope.newNotify = [];
@@ -66,16 +66,13 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                         if (data[0] != null && data[0].tmid != null) $rootScope.user.tmid = data[0].tmid;
                         setInterval(function() {
                             notify.getNew();
-                        }, 2000);
+                        }, 5000);
                     }
                     setTimeout(function() {
-                        $('#showRun').show('fade');
-                    }, 200);
-                    setTimeout(function() {
-                        $('#loadingContent').hide('fade', 'slow');
+                        $('#loadingContent').hide('slide', {}, 500);
                         document.location.href = "/panel#!/";
                         $route.reload();
-                    }, 2000);
+                    }, 500);
                     $('select').material_select();
                 });
 
@@ -107,4 +104,5 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
             $("#" + id).first().stop().toggle('slide', { direction: 'up' });
         }
     }
+
 });

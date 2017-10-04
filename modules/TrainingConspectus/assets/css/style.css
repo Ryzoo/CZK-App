@@ -97,10 +97,6 @@ h6 {
     position: relative;
 }
 
-.imgConspectAnim img {
-    border-bottom: 2px solid #e1301b;
-}
-
 .cardConspectList {
     height: 230px;
 }
@@ -140,8 +136,27 @@ h6 {
     margin: 0;
 }
 
-.imgConspectAnim img {
+.imgConspectAnim img,
+.imgConspectAnim .gifplayer-wrapper img {
     width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-bottom: 2px solid #e1301b;
+    display: block;
+}
+
+.coElement {
+    position: relative;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid #c74040;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.coElement:first-child {
+    margin-top: 0;
 }
 
 .tagsContainer {
