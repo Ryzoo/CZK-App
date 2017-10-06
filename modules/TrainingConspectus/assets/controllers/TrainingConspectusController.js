@@ -43,39 +43,65 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.initConspectusList = function() {
+        request.backend('getAllConspectList', {}, function(data) {
+
+        });
         $scope.showContent = true;
     }
 
     $scope.initConspectusAdd = function() {
         request.backend('getAllTraining', {}, function(data) {
-            $('.selectTrainingFromAll').each(function() {
-                $(this).append("<option value='' disabled selected> Dodaj ćwiczenie z listy </option>");
-                for (var i = 0; i < data.length; i++) {
-                    $(this).append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
-                }
-                $scope.showContent = true;
+            var dataEdit = [];
+            for (var i = 0; i < data.length; i++) {
+                dataEdit[data[i].name + "--" + data[i].id] = null;
+            }
+
+            $('#autocomplete-start').autocomplete({
+                data: dataEdit,
+                limit: 20,
+                onAutocomplete: function(val) {
+                    var toAdd = {
+                        id: val.split("--")[1],
+                        name: val.split("--")[0],
+                        place: 'coStart'
+                    };
+                    $('#autocomplete-start').val('');
+                    $scope.addCwCo(toAdd);
+                },
+                minLength: 1,
             });
-            $('select').material_select();
+            $('#autocomplete-middle').autocomplete({
+                data: dataEdit,
+                limit: 20,
+                onAutocomplete: function(val) {
+                    var toAdd = {
+                        id: val.split("--")[1],
+                        name: val.split("--")[0],
+                        place: 'coMiddle'
+                    };
+                    $('#autocomplete-middle').val('');
+                    $scope.addCwCo(toAdd);
+                },
+                minLength: 1,
+            });
+            $('#autocomplete-end').autocomplete({
+                data: dataEdit,
+                limit: 20,
+                onAutocomplete: function(val) {
+                    var toAdd = {
+                        id: val.split("--")[1],
+                        name: val.split("--")[0],
+                        place: 'coEnd'
+                    };
+                    $('#autocomplete-end').val('');
+                    $scope.addCwCo(toAdd);
+                },
+                minLength: 1,
+            });
+            $scope.showContent = true;
+
         });
     }
-
-    $(document).off('change', '.selectTrainingFromAll');
-    $(document).on('change', '.selectTrainingFromAll', function() {
-        if ($(this).val() == '') return;
-        var id = $(this).val();
-        var name = $(this).children("option").filter(":selected").text();
-        var place = $(this).parent().parent().parent().parent().parent().parent().attr('id');
-        $(this).children("option").filter(":selected").removeAttr('selected');
-        $(this).children("option").first().attr('selected', 'selected');
-        $(this).val('');
-        $('select').material_select();
-        var toAdd = {
-            id: id,
-            name: name,
-            place: place
-        };
-        $scope.addCwCo(toAdd);
-    })
 
     $scope.editAnimCon = function(id) {
         $rootScope.idFromAnimConspectToEdit = id;

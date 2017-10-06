@@ -11,6 +11,8 @@
             ],
             "auth": ["KOORD", "TRENER", "STAFF"]
         }, {
+            "url": "getAllConspectList"
+        }, {
             "url": "saveConspect",
             "parameters": [
                 "coName", "coMaster", "coDate", "coSezon", "coTeam", "coOp",

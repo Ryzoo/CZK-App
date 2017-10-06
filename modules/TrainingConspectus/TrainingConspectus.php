@@ -49,6 +49,16 @@ class TrainingConspectus extends BasicModule {
         return $this->returnedData;
     }
 
+    function getAllConspectList(){
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM conspect");
+        
+        for ($j=0; $j<count($this->returnedData['data']) ; $j++) {
+            $this->returnedData['data'][$j]['data'] = json_decode($this->returnedData['data'][$j]['data']);
+       
+        }
+        return $this->returnedData;
+    }
+
     function getAllTraining(){
         $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT id, name FROM conspectAnim ORDER BY CHAR_LENGTH(mainImg) DESC");
         return $this->returnedData;

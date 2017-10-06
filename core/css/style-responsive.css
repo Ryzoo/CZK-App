@@ -13,7 +13,6 @@
     /*chat room*/
 }
 
-
 @media (max-width: 768px) {
     .header {
         position: absolute;
@@ -23,7 +22,7 @@
         height: auto;
         max-height: 100vh;
         width: 100%;
-        z-index: 888;
+        z-index: 97;
     }
     /* body container */
     #main-content {
@@ -196,7 +195,7 @@
     }
 }
 
-@media (max-width: 728px){
+@media (max-width: 728px) {
     /*-----*/
     ul.sidebar-menu li ul.sub li a {
         padding-left: 10px;

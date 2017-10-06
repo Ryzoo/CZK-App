@@ -341,7 +341,7 @@ ul.top-menu>li>.logout:hover {
 }
 
 #sidebar {
-    padding-top: 60px;
+    padding-top: 54px;
     width: 210px;
     height: 100%;
     position: fixed;
@@ -1335,25 +1335,26 @@ PANELS CONFIGURATIONS
     color: white;
 }
 
-#overShow{
+#overShow {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     min-height: 100vh;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 99;
 }
 
-#overShowContener{
+#overShowContener {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     background: white;
     min-width: 100px;
     min-height: 100px;
 }
+
 
 /*White Panel */
 
