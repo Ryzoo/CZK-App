@@ -7,15 +7,9 @@ Premium: http://www.gridgum.com
 */
 
 
-/* Import fonts */
-
-@import url(https://fonts.googleapis.com/css?family=Ruda:400,700,900);
-@import url('https://fonts.googleapis.com/css?family=Roboto:900');
-
 /* BASIC THEME CONFIGURATION */
 
 body {
-    font-family: 'Montserrat', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
     font-size: 13px;
@@ -2777,6 +2771,19 @@ textarea.materialize-textarea {
 }
 
 @media print {
+    @page {
+        margin: 0mm;
+        width: 1000px;
+    }
+    html {
+        width: 1000px;
+        margin: 0mm;
+        margin-top: -50px;
+    }
+    body {
+        width: 1000px;
+        margin: 0mm;
+    }
     .printIt {
         display: block;
     }
@@ -2785,6 +2792,7 @@ textarea.materialize-textarea {
     }
     .collapsible-body {
         display: block !important;
+        page-break-after: always;
     }
 }
 

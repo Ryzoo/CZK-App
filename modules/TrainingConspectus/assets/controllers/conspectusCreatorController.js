@@ -709,6 +709,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         var container = isPlayerOpen || $scope.onlyPlayer ? 'canvasPlayerContainer' : 'canvasContainer';
         if ($scope.onlyPlayer) container = 'canvasPlayerContainer';
         container = document.querySelector('#' + container);
+        if (!container) return;
 
         var containerWidth = container.offsetWidth;
 

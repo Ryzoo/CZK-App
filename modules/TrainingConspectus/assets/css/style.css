@@ -155,6 +155,26 @@ h6 {
     overflow: hidden;
 }
 
+.elementTitle {
+    width: 100%;
+}
+
+.elementContent {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.elementTime {
+    width: 120px;
+    align-self: center;
+}
+
+.coElementFull {
+    display: flex;
+    align-items: stretch;
+}
+
 .coElement:first-child {
     margin-top: 0;
 }
@@ -167,15 +187,130 @@ h6 {
     transform: translateY(-50%);
 }
 
-.oneTag {
+.oneTag,
+.oneTagFull {
     font-size: 10px;
-    padding: 4px 8px;
+    padding: 4px 8px !important;
     width: 47%;
     float: left;
     color: white;
     background: rgb(41, 124, 248);
     margin: 2px;
     border-radius: 20px;
+}
+
+.conspFullContener,
+.conspFullContenerElement {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.conspFullElementE {
+    margin: 8px 0;
+}
+
+.logoContener {
+    margin: auto;
+    display: table;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.logoContener img {
+    width: 80px;
+    float: left;
+    padding: 10px;
+}
+
+.conspectBodyColE {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.imgElem {
+    width: 100%;
+}
+
+.imgElem img {
+    width: 100%;
+    max-width: 500px;
+}
+
+.opsField {
+    width: 50%;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.opsFieldE {
+    width: 50%;
+}
+
+.conspFullContenerElement {
+    width: calc(100% - 120px);
+}
+
+.conspFullElement {
+    margin: 8px 0;
+    width: 25%;
+}
+
+.collapsible {
+    margin: 0 10px;
+}
+
+@media print {
+    .conspectBodyColE {
+        max-height: none;
+        overflow-y: auto;
+        page-break-after: auto;
+    }
+    .coElementFull {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+}
+
+@media screen and (max-width:890px) {
+    .conspFullElement {
+        width: 50%;
+    }
+    .elementTime,
+    .conspFullContenerElement {
+        width: 100%;
+    }
+    .elementTitle h5 {
+        font-size: 1.2rem;
+    }
+    .collapsible {
+        margin: 0 !important;
+    }
+}
+
+@media screen and (max-width:540px) {
+    .opsFieldE,
+    .conspFullElement {
+        width: 100%;
+    }
+    .elementTitle h5 {
+        font-size: 1rem;
+    }
+}
+
+.conspFullElement p {
+    font-size: 1.1rem;
+    color: #717171 !important;
+}
+
+.conspFullElement i {
+    line-height: 50px;
+}
+
+.oneTagFull {
+    width: auto;
+    margin: 0;
+    margin-top: 3px !important;
 }
 
 .categories,

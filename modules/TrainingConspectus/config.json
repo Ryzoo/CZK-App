@@ -23,9 +23,17 @@
         {
             "url": "getListOfAnimConspect"
         }, {
+            "url": "getConspectById"
+        }, {
+            "url": "getFullConspectById"
+        }, {
             "url": "getAllTraining"
         }, {
             "url": "deleteAnimConspect",
+            "parameters": ["id"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "deleteConspect",
             "parameters": ["id"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         }, {
@@ -33,14 +41,15 @@
             "parameters": ["id"]
         }
     ],
-    "jsControllers": ["TrainingConspectusController", "conspectusCreatorController"],
+    "jsControllers": ["TrainingConspectusController", "conspectusCreatorController", "showConspectController"],
     "css": ["style", "gifplayer"],
     "js": ["LZWEncoder", "NeuQuant", "GIFEncoder", "b64", "gifplayer"],
     "frontendRoute": [
         { "url": "conspectusAnim", "templateSrc": "conspectusAnim.html", "controllerName": "TrainingConspectusController" },
         { "url": "conspectusAnimList", "templateSrc": "conspectusAnimList.html", "controllerName": "TrainingConspectusController" },
         { "url": "conspectusList", "templateSrc": "conspectusList.html", "controllerName": "TrainingConspectusController" },
-        { "url": "conspectusAdd", "templateSrc": "conspectusAdd.html", "controllerName": "TrainingConspectusController" }
+        { "url": "conspectusAdd", "templateSrc": "conspectusAdd.html", "controllerName": "TrainingConspectusController" },
+        { "url": "showConspect", "templateSrc": "showConspect.html", "controllerName": "showConspectController" }
     ],
     "anchor": [{
         "destination": "leftMenu",

@@ -28,6 +28,7 @@ class TrainingConspectus extends BasicModule {
     }
 
     function saveConspect($data){
+        $id = $data['id'];
         $coName = $data['coName'];
         $coMaster = $data['coMaster'];
         $coDate = $data['coDate'];
@@ -36,26 +37,72 @@ class TrainingConspectus extends BasicModule {
         $coOp = $data['coOp'];
         $coTags = trim($data['coTags']);
         $data = $data['data'];
-        $this->returnedData['data'] = ($this->db->getConnection())->insert("conspect",[
-            "name"=>$coName,
-            "master"=>$coMaster,
-            "date"=>$coDate,
-            "sezon"=>$coSezon,
-            "team"=>$coTeam,
-            "about"=>$coOp,
-            "tags"=>$coTags,
-            "data"=>$data
-        ]);
+
+        if( $id >= 0 ){
+            $this->returnedData['data'] = ($this->db->getConnection())->update("conspect",['id'=>$id],[
+                "name"=>$coName,
+                "master"=>$coMaster,
+                "date"=>$coDate,
+                "sezon"=>$coSezon,
+                "team"=>$coTeam,
+                "about"=>$coOp,
+                "tags"=>$coTags,
+                "data"=>$data
+            ]);
+        }else{
+            $this->returnedData['data'] = ($this->db->getConnection())->insert("conspect",[
+                "name"=>$coName,
+                "master"=>$coMaster,
+                "date"=>$coDate,
+                "sezon"=>$coSezon,
+                "team"=>$coTeam,
+                "about"=>$coOp,
+                "tags"=>$coTags,
+                "data"=>$data
+            ]);
+        }
+        return $this->returnedData;
+    }
+
+    function deleteConspect($data){
+        $id = $data['id'];
+        $this->returnedData['data'] = ($this->db->getConnection())->delete('conspect',['id'=>$id]);
+        return $this->returnedData;
+    }
+
+    function getConspectById($data){
+        $id = $data['id'];
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRow("SELECT * FROM conspect WHERE id=".$id);
+        return $this->returnedData;
+    }
+
+    function getFullConspectById($data){
+        $id = $data['id'];
+        $conspect = ($this->db->getConnection())->fetchRow("SELECT * FROM conspect WHERE id=".$id);
+        $conData = json_decode($conspect['data']);
+
+        $group = [
+            'coStart'=>[],
+            'coMiddle'=>[],
+            'coEnd'=>[]
+        ];
+
+        for ($i=0; $i < count($conData); $i++) {
+            $place = $conData[$i]->data->place;
+            if($conData[$i]->type != 'simple'){
+                $conData[$i]->data = $this->loadConspectAnim(['id'=>$conData[$i]->data->id])['data'];
+            }
+            array_push($group[$place],$conData[$i]);
+        }
+
+        $conspect['data'] = $group;
+        $this->returnedData['data'] = $conspect;
+
         return $this->returnedData;
     }
 
     function getAllConspectList(){
         $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM conspect");
-        
-        for ($j=0; $j<count($this->returnedData['data']) ; $j++) {
-            $this->returnedData['data'][$j]['data'] = json_decode($this->returnedData['data'][$j]['data']);
-       
-        }
         return $this->returnedData;
     }
 
@@ -139,8 +186,7 @@ class TrainingConspectus extends BasicModule {
         ]);
 
         return $data['id'];
-    }
-    
+    } 
 
     function getListOfAnimConspect(){
         $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM conspectAnim ORDER BY CHAR_LENGTH(mainImg) DESC");

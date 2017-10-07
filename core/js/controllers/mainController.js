@@ -7,6 +7,8 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $rootScope.notifyCount = 0;
     $rootScope.mainSettings = [];
     $scope.showAllNewsNotify = false;
+    $rootScope.editConspectWithId = null;
+    $rootScope.consepectShowId = null;
     $rootScope.user = {
         email: "",
         token: "",

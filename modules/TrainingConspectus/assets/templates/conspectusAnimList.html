@@ -1,4 +1,4 @@
-<div ng-init="setPerm(['STAFF','TRENER','KOORD'])"></div>
+<div ng-init="setPerm(['STAFF','TRENER','KOORD','ZAWODNIK'])"></div>
 <div class="section" ng-controller='TrainingConspectusController' ng-init="initConsAnimList()">
     <div ng-show='showContent' class="row" ng-controller="conspectusCreatorController">
         <div class="col s12">
@@ -35,22 +35,22 @@
                     </div>
                     <div class="row conspectCwData">
                         <div>
-                            <i class="fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-map-marker fa-fw " aria-hidden="true"></i>
                             <p><b>{{anim.cwFieldType}}</b></p>
                         </div>
                         <div>
-                            <i class="fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-clock-o fa-fw " aria-hidden="true"></i>
                             <p><b>{{anim.cwMinTime}}</b> min. - <b>{{anim.cwMaxTime}}</b> min.</p>
                         </div>
                         <div>
-                            <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-users fa-fw " aria-hidden="true"></i>
                             <p><b>{{anim.cwMinPerson}}</b> os. - <b>{{anim.cwMaxPerson}}</b> os.</p>
                         </div>
                         <div class='opsCw'>
                             <b>Pełna nazwa:</b></br> {{anim.name}}
                         </div>
                         <div class='opsCw'>
-                            <b>Opis:</b></br> {{anim.cwOps}}{{anim.cwOps}}
+                            <b>Opis:</b></br> {{anim.cwOps}}
                         </div>
                         <div class='opsCw'>
                             <b>Wskazówki:</b></br> {{anim.cwWsk}}
@@ -65,9 +65,8 @@
             </div>
         </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
-        <div class="preloader-wrapper big active" style="margin-left: 45%">
+    <div ng-hide='showContent' style="position:relative; margin-top:30%; width: 60%; margin-left: auto; margin-right: auto;">
+        <div class="preloader-wrapper big active" style="margin-left: 40%">
             <div class="spinner-layer spinner-blue">
                 <div class="circle-clipper left">
                     <div class="circle"></div>

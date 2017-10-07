@@ -3,7 +3,9 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.animArray = [];
     $scope.showAnimCreator = false;
     $scope.allCoElement = [];
+    $scope.conspectArray = [];
 
+    $scope.coActualId = -1;
     $scope.coName = '';
     $scope.coMaster = '';
     $scope.coDate = '';
@@ -11,6 +13,64 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.coTeam = '';
     $scope.coOp = '';
     $scope.coTags = '';
+
+    $scope.loadConspect = function(id) {
+        request.backend('getConspectById', { id: id }, function(data) {
+            $scope.$apply(function() {
+                $scope.coActualId = id;
+                $scope.coName = data.name;
+                $scope.coMaster = data.master;
+                $scope.coDate = data.date;
+                $scope.coSezon = data.sezon;
+                $scope.coTeam = data.team;
+                $scope.coOp = data.about;
+                $scope.coTags = data.tags.split(' ');
+            });
+
+            var tagTo = {
+                data: []
+            };
+
+            for (var ind = 0; ind < $scope.coTags.length; ind++) {
+                tagTo.data.push({
+                    tag: $scope.coTags[ind]
+                });
+            }
+
+            $('.chips-placeholder').material_chip(tagTo);
+
+            var fullFieldData = JSON.parse(data.data);
+            for (var i = 0; i < fullFieldData.length; i++) {
+                if (fullFieldData[i].type == 'simple') {
+                    $scope.addSimpleFieldCo(fullFieldData[i].data.place);
+                    $scope.allCoElement[$scope.allCoElement.length - 1].data = {
+                        content: fullFieldData[i].data.content,
+                        timeMin: fullFieldData[i].data.timeMin,
+                        timeMax: fullFieldData[i].data.timeMax,
+                        wsk: fullFieldData[i].data.wsk,
+                        place: fullFieldData[i].data.place
+                    }
+                } else {
+                    var fieldData = {
+                        id: fullFieldData[i].data.id,
+                        name: fullFieldData[i].data.name,
+                        place: fullFieldData[i].data.place
+                    }
+                    $scope.addCwCo(fieldData);
+                }
+            }
+        });
+    }
+
+    if ($rootScope.editConspectWithId && $rootScope.editConspectWithId != null && $rootScope.editConspectWithId >= 0) {
+        $scope.loadConspect($rootScope.editConspectWithId);
+        $rootScope.editConspectWithId = null;
+    }
+
+    $scope.goToEditConspect = function(id) {
+        $rootScope.editConspectWithId = id;
+        $location.url("/conspectusAdd");
+    }
 
     $scope.initConsectusCreate = function() {
         $scope.showContent = true;
@@ -37,16 +97,22 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                         }
                     });
                 }, 500);
-
             });
         });
     }
 
     $scope.initConspectusList = function() {
         request.backend('getAllConspectList', {}, function(data) {
-
+            $scope.conspectArray = data;
+            for (var i = 0; i < $scope.conspectArray.length; i++) {
+                var tags = $scope.conspectArray[i].tags.split(" ");
+                $scope.conspectArray[i].tags = [];
+                for (var x = 0; x < tags.length; x++) {
+                    $scope.conspectArray[i].tags.push(tags[x]);
+                }
+            }
+            $scope.showContent = true;
         });
-        $scope.showContent = true;
     }
 
     $scope.initConspectusAdd = function() {
@@ -103,6 +169,8 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         });
     }
 
+
+
     $scope.editAnimCon = function(id) {
         $rootScope.idFromAnimConspectToEdit = id;
         $location.url("/conspectusAnim");
@@ -124,7 +192,8 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                 content: '',
                 timeMin: 1,
                 timeMax: 2,
-                wsk: ''
+                wsk: '',
+                place: placeId
             }
         });
         var el = "<div class='coElement' id='" + thisId + "-simpleField" + "'><div ng-click='deleteField(" + thisId + ");' style='position: absolute; top: 9px; right: 20px; color: white; font-size: 20px; cursor: pointer'><i class='fa fa-times' aria-hidden='true' ></i></div><div class='form-group'><div class='row'><div class='input-field col s12 m6'><input id='" + thisId + "-simpleContent" + "' type='text' placeholder='Treść' class='validate' ng-model='allCoElement[" + thisId + "].data.content' required><label for='" + thisId + "-simpleContent" + "'>Treść</label></div><div class='input-field col s12 m3'><input id='" + thisId + "-simpleMinTime" + "' type='text' ng-model='allCoElement[" + thisId + "].data.timeMin' placeholder='Czas min' class='validate' required><label for='" + thisId + "-simpleMinTime" + "'>Czas min</label></div><div class='input-field col s12 m3'><input id='" + thisId + "-simpleMaxTime" + "' type='text' ng-model='allCoElement[" + thisId + "].data.timeMax' placeholder='Czas max' class='validate' required><label for='" + thisId + "-simpleMaxTime" + "'>Czas max</label></div><div class='input-field col s12'><textarea id='" + thisId + "-simpleWsk" + "' placeholder='Wskazówki' ng-model='allCoElement[" + thisId + "].data.wsk' class='materialize-textarea' data-length='255'></textarea><label for='" + thisId + "-simpleWsk" + "'>Wskazówki</label></div></div></div></div>";
@@ -141,7 +210,9 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             type: 'training',
             status: 'on',
             data: {
-                id: response.id
+                id: response.id,
+                name: response.name,
+                place: response.place
             }
         });
         var el = "<div class='coElement' id='" + thisId + "-simpleField" + "'><div ng-click='deleteField(" + thisId + ");' style='position: absolute; top: 9px; right: 20px; color: white; font-size: 20px; cursor: pointer'><i class='fa fa-times' aria-hidden='true' ></i></div> <b>Ćwiczenie: </b>" + response.name + "  </div>";
@@ -157,6 +228,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.saveConspect = function() {
+
         $scope.coName = $('#coName').val();
         $scope.coMaster = $('#coMaster').val();
         $scope.coDate = $('#coDate').val();
@@ -195,7 +267,6 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             return;
         }
 
-
         var dataToSend = [];
         var isError = false;
 
@@ -222,7 +293,8 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                 }
                 dataToSend.push({
                     type: $scope.allCoElement[i].type,
-                    data: $scope.allCoElement[i].data
+                    data: $scope.allCoElement[i].data,
+                    place: $scope.allCoElement[i].place
                 });
             }
         }
@@ -234,6 +306,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         }
 
         var toSend = {
+            id: $scope.coActualId,
             coName: $scope.coName,
             coMaster: $scope.coMaster,
             coDate: $scope.coDate,
@@ -247,6 +320,17 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         request.backend('saveConspect', toSend, function(data) {
             $location.url("/conspectusList");
         }, "Pomyślnie zapisano");
+    }
+
+    $scope.showThisContent = function(id) {
+        $rootScope.consepectShowId = id;
+        $location.url("/showConspect");
+    }
+
+    $scope.deleteCon = function(id) {
+        request.backend('deleteConspect', { id: id }, function(data) {
+            $scope.initConspectusList();
+        }, "Pomyślnie usunięto");
     }
 
 });
