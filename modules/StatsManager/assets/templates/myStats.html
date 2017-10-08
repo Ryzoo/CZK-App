@@ -28,8 +28,18 @@
                                         <label>Wybierz sposób prezentacji danych</label>
                                     </div>
                                 </div>
+                                <div class="col s12">
+                                    <h6 style="text-align:center; width: 100%">Moja aktualna forma</h6>
+                                </div>
+                                <div class="col s12">
+                                    <div id="main-summary-chart"></div>
+                                </div>
+                                <div ng-hide='showPreLoad' class="col s12" style='margin-top: 40px;'>
+                                    <h6 style="text-align:center; width: 100%" ng-show="acutalSelectedGroupTest.length > 0">Wyniki w poszczególnych testach</h6>
+                                </div>
                                 <div ng-hide='showPreLoad' class="col s12" style='margin-top:20px;'>
                                     <div class="row">
+
                                         <ul class="collapsible" data-collapsible="accordion">
                                             <li ng-repeat="test in acutalSelectedGroupTest " ng-init='initChart()'>
                                                 <div style='position: relative' class="collapsible-header optionsToShow" ng-class="{active: test.name === 'Podsumowanie'}">{{test.name}}

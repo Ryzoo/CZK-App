@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request, $compile) {
+app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request, $compile,$location) {
     $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD", "STAFF"];
     $scope.contentLoaded = false;
     $rootScope.newNotify = [];
@@ -27,6 +27,12 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         mainPosition: "",
         address: "",
         bodyType: ""
+    }
+    $rootScope.feedType = 'opinia';
+
+    $scope.goFeed = function(type){
+        $rootScope.feedType = type;
+        $location.url("/feedback");
     }
 
     $scope.showNotifications = function(isMainClik = true) {

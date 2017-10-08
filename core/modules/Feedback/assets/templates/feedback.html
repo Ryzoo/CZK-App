@@ -1,0 +1,63 @@
+<div ng-init="setPerm(['ZAWODNIK','TRENER','KOORD','STAFF'])"></div>
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init="initFeedback();">
+        <div class="col s12 m8 offset-m2">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title" ng-show="feedType=='opinia'">
+                        Wysyłania opini o platformie
+                    </div>
+                    <div class="card-title" ng-hide="feedType=='opinia'">
+                        Zgłaszanie błędu w działaniu platformy
+                    </div>
+                    <div class="row" ng-show="feedType=='opinia'">
+                        <h6>Zachęcamy do opisu w kilku zdaniach jak podoba Ci się nasza platforma.
+                        Codziennie dokładamy wszelkich starań, aby każdy był zadowolony z jej działania i funkcjonalności
+                        dlatego też każde słowo pochwały jak i konstruktywnej krytyki będzie dla nas na wagę złota.<br/> 
+                        Pozdrawiamy, zespół <b>Club Management Center</b></h6>
+                    </div>
+                    <div class="row" ng-hide="feedType=='opinia'">
+                        <h6>Prosimy o zgłoszenie każdej napotkanej trudności, błędu w działaniu.
+                        Zajmiemy się tym natychmiast po zgłoszeniu.
+                        Z góry przepraszamy za wszelkie utrudnienia.<br/>
+                        Zespół <b>Club Management Center</b></h6>
+                    </div>
+                    <div class="row" style='margin: 20px !important;'>
+                        <div class="input-field col s12">
+                            <textarea id="contentFeed" placeholder="Treść wiadomości" class="materialize-textarea " data-length="255"></textarea>
+                            <label for="contentFeed">Treść</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="waves-effect waves-light btn" ng-click="sendFeedback()">Wyślij</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
+        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
+        <div class="preloader-wrapper big active" style="margin-left: 45%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

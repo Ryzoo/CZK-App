@@ -1,0 +1,18 @@
+{
+    "name": "Feedback",
+    "description": "Pozwala na komunikację z klientami, wymiane opini, zglaszanie błędów",
+    "version": "1.0",
+    "backendRoute": [
+        {
+            "url": "sendFeedback",
+            "parameters": ["firstname","lastname","tmid","content","type"]
+        }
+    ],
+    "jsControllers": ["feedbackController"],
+    "frontendRoute": [{
+        "url": "feedback",
+        "templateSrc": "feedback.html",
+        "controllerName": "feedbackController"
+    }],
+    "anchor": []
+}

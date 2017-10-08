@@ -23,6 +23,34 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
             $('select').material_select();
             $scope.showTestAndType = true;
             $rootScope.showContent = true;
+            initMainSummary();
+
+        });
+    }
+
+    function initMainSummary() {
+        var data = [];
+        data.push('wynik');
+        data.push($scope.userForm);
+        var chart = c3.generate({
+            bindto: "#main-summary-chart",
+            data: {
+                columns: [
+                    data
+                ],
+                type: 'gauge',
+            },
+            gauge: {},
+            color: {
+                pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
+                threshold: {
+                    values: [30, 60, 90, 100]
+                }
+            },
+            size: {
+                width: 200,
+                height: 100,
+            }
         });
     }
 
