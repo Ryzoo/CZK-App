@@ -154,7 +154,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                     if ($scope.acutalSelectedGroupTest[i].scores != null) {
                         for (var j = 0; j < $scope.acutalSelectedGroupTest[i].scores.length; j++) {
                             data.push($scope.acutalSelectedGroupTest[i].scores[j].wynik);
-                            date.push(new Date($scope.acutalSelectedGroupTest[i].scores[j].data));
+                            date.push(new Date($scope.acutalSelectedGroupTest[i].scores[j].data.replace(/-/g, '/')));
                         }
                         var chart = c3.generate({
                             bindto: '#chart-' + $scope.acutalSelectedGroupTest[i].id,
@@ -171,7 +171,9 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                                     type: 'timeseries',
                                     localtime: false,
                                     tick: {
-                                        format: '%Y/%m/%d'
+                                        format: '%Y / %m / %d',
+                                        rotate: 90,
+                                        multiline: false
                                     }
                                 }
                             },
