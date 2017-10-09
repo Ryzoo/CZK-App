@@ -195,7 +195,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     var updateTime = 50;
     var actualPosMouse = { x: 0, y: 0 };
     var canvas = document.getElementById("canvas");
-    var ctx = document.getElementById('canvas').getContext('2d', { alpha: false });
+    var ctx = document.getElementById('canvas').getContext('2d', { alpha: true });
 
     var backgorund = new Image();
     backgorund.src = './files/img/canvas/background.png';
@@ -273,16 +273,11 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             var actualHelp = $(this).html();
             $(this).css('color', "#ee6e73");
             if (actualHelp == 'osiągnięto limit zawodników') return;
-            actualHelp = parseFloat(actualHelp);
-            var word = actualHelp == 0 ? '' : actualHelp > 0 ? "+" : "-";
-            actualHelp = Math.abs(actualHelp);
-            $(this).html(word + " " + actualHelp);
+            var word = actualHelp.split(' ')[0];
             $(this).css('font-weight', "800");
             $(this).css('font-size', "12px");
             if (word == '+') {
                 $(this).css('color', "#34cd33");
-            } else {
-                $(this).css('color', "#ee6e73");
             }
         });
     }

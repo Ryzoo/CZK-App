@@ -25,21 +25,22 @@ class MathComposition extends BasicModule {
             }
         }else{
             $statManager = new StatsManager();
-           
-    
             for ($i=0; $i < count($otherTeam); $i++) { 
                 $userArray = array_merge($matchTeam,[$otherTeam[$i]]);
                 $formWithThisUser = 100 * ($statManager->getStats([
                     "tmid"=>$tmid,
                     "usid"=>$userArray
                 ])['data']['teamForm'])/(1100.0);
+
+                $varToShow = round($formWithThisUser - $teamForm,2);
+                $wordToShow =  $varToShow == 0 ? "" : $varToShow > 0 ? "+" : "-";
+                $varToShow  = abs($varToShow);
                 
                 array_push($this->returnedData["data"],[
-                    "help" => round($formWithThisUser - $teamForm,2)
+                    "help" => $wordToShow . ' ' . $varToShow
                 ]);
             }
         }
-
         return $this->returnedData;
     }
 }
