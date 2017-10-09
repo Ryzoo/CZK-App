@@ -152,6 +152,11 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
 
     function checkTableScoreProgress() {
         $('.statTable tbody').each(function() {
+            var thisBest = $(this).parent().parent().find('.bestSc').first().html();
+            var thisWorst = $(this).parent().parent().find('.worstSc').first().html();
+            var bestIsMore = false;
+            if (thisBest > thisWorst) bestIsMore = true;
+
             var allTr = $(this).find('tr');
             for (var i = 0; i < allTr.length - 1; i++) {
                 var actual = parseFloat($(this).find('tr').eq(i).find('td').eq(0).html());
@@ -160,8 +165,10 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                 if (progress == 0) continue;
                 var word = progress > 0 ? "+" : "-";
                 progress = Math.abs(progress);
+                var className = (word == '+' ? "tableProgressElementPositive" : "tableProgressElementNegative");
+                className = bestIsMore ? className : className == "tableProgressElementPositive" ? "tableProgressElementNegative" : "tableProgressElementPositive";
                 progress = progress.toFixed(2);
-                $(this).find('tr').eq(i).find('td').eq(0).append("<span class='" + (word == '+' ? "tableProgressElementPositive" : "tableProgressElementNegative") + "'> " + word + " " + progress + "</span>");
+                $(this).find('tr').eq(i).find('td').eq(0).append("<span class='" + className + "'> " + word + " " + progress + "</span>");
             }
         });
     }

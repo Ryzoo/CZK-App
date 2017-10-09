@@ -47,8 +47,8 @@
                                                 <div class="row">
                                                     <div class="col s12 m8">
                                                         <h5><b>{{test.name}}</b></h5>
-                                                        <p>Najlepszy możliwy wynik: <b>{{test.best}}</b></p>
-                                                        <p>Najgorszy możliwy wynik: <b>{{test.worst}}</b></p>
+                                                        <p>Najlepszy możliwy wynik: <b class='bestSc'>{{test.best}}</b></p>
+                                                        <p>Najgorszy możliwy wynik: <b class='worstSc'>{{test.worst}}</b></p>
                                                     </div>
                                                     <div class="col s12 m4">
                                                         <canvas style='width: 50px; float:right;' id='chart-percent-{{test.id}}'></canvas>
