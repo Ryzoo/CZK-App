@@ -9,29 +9,28 @@
                         Ławka rezerwowych
                     </div>
                     <div class="row table-scroll">
-                        <h5>Forma dla danego zestawienia</h5>
-                        <div id='teamStat'></div>
+                        <div class="row" style="overflow:hidden;"><canvas id='teamStat'></canvas></div>
                         <div class="input-field col s12">
                             <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
                         </div>
                         <table class="table highlight centered" ng-init="getTeam()">
                             <thead>
                                 <tr>
-                                    <th>Imię</th>
-                                    <th>Nazwisko</th>
-                                    <th>Numer na koszulce</th>
+                                    <th>Zawodnik</th>
+                                    <th>Nr. koszulka</th>
+                                    <th>Wpływ (poziom)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="us in notOnField | filter:searchText" class='row dragedUser' id='fieldUser-{{us.usid}}' draggable="true">
-                                    <td style="padding: 5px 0;">{{us.firstname}}</td>
-                                    <td style="padding: 5px 0;">{{us.lastname}}</td>
+                                    <td style="padding: 5px 0;">{{us.firstname.slice(0,1)}}.{{us.lastname}}</td>
                                     <td style="padding: 5px 0;">
                                         <div class="input-field col" style="text-align: center; padding: 0 5px; margin: 0;width: 100%">
                                             <input style="text-align: center; margin: 0; height: 25px; width: 100%" ng-show="user.role != 'ZAWODNIK' " class='changeNumber' id='changeNumber-{{us.tmmid}}-0' type="text" value="{{us.nr_on_tshirt}}" required>
                                         </div>
                                         <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
                                     </td>
+                                    <td class='helpTd'>{{us.help}}</td>
                                 </tr>
                             </tbody>
                         </table>

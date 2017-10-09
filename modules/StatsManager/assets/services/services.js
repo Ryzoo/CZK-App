@@ -33,7 +33,7 @@ app.service('statistic', function($http, $rootScope, request) {
             return 0;
         }
         var returnedData = this.getStats(usersId, function() {}, false);
-        return 100 * (isMatchTeamForm ? (returnedData.teamForm / (11 * 100)) : (returnedData.teamForm / (usersId.length * 100)));
+        return parseFloat(100 * (isMatchTeamForm ? (returnedData.teamForm / (1100)) : (returnedData.teamForm / (usersId.length * 100)))).toFixed(2);
     }
 
     this.getTeamStats = function(usersId = [], functionAfter) {

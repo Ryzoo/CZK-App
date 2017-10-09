@@ -3,7 +3,10 @@
     "description": "Dodaje możliwość graficznego ułożenia zawodników na boisku oraz podglądu formy dla danego zestawienia",
     "require": ["StatsManager"],
     "version": "1.0",
-    "backendRoute": [],
+    "backendRoute": [{
+        "url": "getUsersHelpfulness",
+        "parameters": ["teamForm", "otherTeam", "tmid"]
+    }],
     "jsControllers": ["compositionController"],
     "frontendRoute": [{
         "url": "teamComposition",

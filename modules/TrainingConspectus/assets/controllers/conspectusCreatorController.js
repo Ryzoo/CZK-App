@@ -1344,7 +1344,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 var percent = setPlayerToFrame(actualPlayerFrame);
                 currentObjPerFrame = actualPlayerFrame;
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
-                encoder.addFrame(selectedFrame.toCanvas().getContext('2d'));
+                encoder.addFrame(selectedFrame.toCanvas().getContext('2d', { alpha: false }));
                 $("#playerData p").first().text("Renderowanie animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
             }
         }, 40);

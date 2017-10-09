@@ -3,6 +3,8 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     $scope.notOnField = [];
     $scope.showContent = false;
     $scope.selectedOnFieldId = -1;
+    var mainChart = null;
+
 
     $scope.getTeam = function() {
         request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid }, function(data) {
@@ -193,7 +195,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     var updateTime = 50;
     var actualPosMouse = { x: 0, y: 0 };
     var canvas = document.getElementById("canvas");
-    var ctx = document.getElementById('canvas').getContext('2d');
+    var ctx = document.getElementById('canvas').getContext('2d', { alpha: false });
 
     var backgorund = new Image();
     backgorund.src = './files/img/canvas/background.png';
@@ -236,35 +238,91 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         }
     }
 
+    function checkHelpfulnessInTeam(teamForm) {
+        if ($scope.notOnField && $scope.notOnField.length > 0) {
+
+            var userNotOnF = []
+            var userOnF = []
+
+            for (var i = 0; i < $scope.users.length; i++) {
+                userOnF.push($scope.users[i].usid);
+            }
+            for (var i = 0; i < $scope.notOnField.length; i++) {
+                userNotOnF.push($scope.notOnField[i].usid);
+            }
+
+            request.backend('getUsersHelpfulness', {
+                    tmid: $rootScope.user.tmid,
+                    teamForm: teamForm,
+                    matchTeam: userOnF,
+                    otherTeam: userNotOnF
+                },
+                function(data) {
+                    $scope.$apply(function() {
+                        for (var i = 0; i < $scope.notOnField.length; i++) {
+                            $scope.notOnField[i].help = data[i].help;
+                        }
+                    });
+                    prettyFieldHelp();
+                });
+        }
+    }
+
+    function prettyFieldHelp() {
+        $('.helpTd').each(function() {
+            var actualHelp = $(this).html();
+            $(this).css('color', "#ee6e73");
+            if (actualHelp == 'osiągnięto limit zawodników') return;
+            actualHelp = parseFloat(actualHelp);
+            var word = actualHelp == 0 ? '' : actualHelp > 0 ? "+" : "-";
+            actualHelp = Math.abs(actualHelp);
+            $(this).html(word + " " + actualHelp);
+            $(this).css('font-weight', "800");
+            $(this).css('font-size', "12px");
+            if (word == '+') {
+                $(this).css('color', "#34cd33");
+            } else {
+                $(this).css('color', "#ee6e73");
+            }
+        });
+    }
+
     function teamFormChartInit() {
-        data = [];
-        data.push('wynik');
+
         var matchPersonsId = [];
         for (var i = 0; i < $scope.users.length; i++) {
             matchPersonsId.push($scope.users[i].usid);
         }
         var fullTeamScore = statistic.getTeamForm(matchPersonsId, true);
-
-        data.push(fullTeamScore);
-        var chart = c3.generate({
-            bindto: "#teamStat",
-            data: {
-                columns: [
-                    data
-                ],
-                type: 'gauge',
-            },
-            gauge: {},
-            color: {
-                pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
-                threshold: {
-                    values: [30, 60, 90, 100]
+        if (!mainChart || mainChart == null) {
+            mainChart = new Chart($('#teamStat'), {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [fullTeamScore, 100 - fullTeamScore],
+                        backgroundColor: [
+                            '#ff6384',
+                            '#36a2eb'
+                        ]
+                    }],
+                    labels: [
+                        'Poziom zawodników na boisku',
+                        'Braki do maksimum'
+                    ]
                 }
-            },
-            size: {
-                height: 90
-            }
-        });
+            });
+        } else {
+            mainChart.data.datasets = [{
+                data: [fullTeamScore, 100 - fullTeamScore],
+                backgroundColor: [
+                    '#ff6384',
+                    '#36a2eb'
+                ]
+            }]
+            mainChart.update();
+        }
+
+        checkHelpfulnessInTeam(fullTeamScore);
     }
 
     function initCanvas() {
