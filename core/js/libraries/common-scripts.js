@@ -60,14 +60,6 @@ var Script = function() {
         function responseResize() {
             var wSize = $(window).width();
             if (wSize <= 768) {
-                $('#container').addClass('sidebar-close');
-                $('#sidebar > ul').hide();
-                $('#main-content').css({
-                    'margin-left': '0px'
-                });
-                $('#sidebar').css({
-                    'margin-left': '-210px'
-                });
                 $(".sidebar-toggle-box").first().css("margin-left", "15px");
             } else {
                 $('#container').removeClass('sidebar-close');

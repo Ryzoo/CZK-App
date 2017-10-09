@@ -1,0 +1,11 @@
+.tableProgressElementPositive,
+.tableProgressElementNegative {
+    color: #34cd33;
+    font-weight: 800;
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.tableProgressElementNegative {
+    color: #ee6e73;
+}

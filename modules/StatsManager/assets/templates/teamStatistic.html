@@ -3,7 +3,7 @@
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="initTeamStats();">
 
-        <div class="col s12">
+        <div class="col s12 l10 offset-l1">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
@@ -16,26 +16,26 @@
                                     <div class="row">
                                         <div class="row">
                                             <div class="col s12 m6">
-                                                <h5>Aktualna forma dla całej drużyny</h5>
-                                                <div style='overflow:hidden' id="fullTeamForm"></div>
+                                                <canvas style='overflow:hidden' id="fullTeamForm"></canvas>
                                             </div>
                                             <div class="col s12 m6">
-                                                <h5>Aktualna forma zespołu meczowego</h5>
-                                                <div style='overflow:hidden' id="actualTeamForm"></div>
+                                                <canvas style='overflow:hidden' id="actualTeamForm"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="row" style='margin-top: 30px !important;'>
+                                            <div class="col s12 m6">
+                                                <canvas style='overflow:hidden' id="teamChartRadar"></canvas>
+                                            </div>
+                                            <div class="col s12 m6">
+                                                <canvas style='overflow:hidden' id="teamMatchChartRadar"></canvas>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <h5>Poszczególne zestawienie zawodników w kategoriach</h5>
-                                            <div class="input-field col s6 offset-s3 ">
-                                                <select id='selectPotential'>
-                                                <option value="" disabled selected>Grupy testowe</option>
-                                            </select>
-                                                <label>Wybierz grupę testową</label>
-                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col s12">
-                                                <div id="chart-main"></div>
+                                                <canvas id="chart-main"></canvas>
                                             </div>
                                         </div>
                                     </div>

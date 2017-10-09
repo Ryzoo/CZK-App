@@ -3,7 +3,7 @@
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="initUsersStats();">
 
-        <div class="col s12">
+        <div class="col s12 l10 offset-l1">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
@@ -12,6 +12,12 @@
                     <div class="row">
                         <div class="form-group ">
                             <div class="row">
+                                <div class="row" ng-hide='showPreLoad' style='margin-bottom: 20px !important;'>
+                                    <div class="col s12">
+                                        <div class="col s12 m6"><canvas id="main-summary-chart"></canvas></div>
+                                        <div class="col s12 m6"><canvas id="main-summary-chart-radar"></canvas></div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="input-field col s12 m4 ">
                                         <select id='selectUserToStat'>
@@ -34,54 +40,45 @@
                                         <label>Wybierz sposób prezentacji danych</label>
                                     </div>
                                 </div>
-                                <div ng-hide='showPreLoad' class="col s12" style='margin-top:20px;'>
+                                <div ng-hide='showPreLoad' class="col s12">
                                     <div class="row">
                                         <div class="col s12">
-                                            <h6 style="text-align:center; width: 100%">Aktualna forma zawodnika</h6>
-                                        </div>
-                                        <div class="col s12">
-                                            <div id="main-summary-chart"></div>
-                                        </div>
-                                        <div class="col s12" style='margin-top: 40px;'>
-                                            <h6 style="text-align:center; width: 100%" ng-show="acutalSelectedGroupTest.length > 0">Wyniki w poszczególnych testach</h6>
-                                        </div>
-                                        <div class="col s12">
-                                            <ul class="collapsible" data-collapsible="accordion">
-                                                <li ng-repeat="test in acutalSelectedGroupTest " ng-init='initChart()'>
-                                                    <div style='position: relative' class="collapsible-header optionsToShow" ng-class="{active: test.name === 'Podsumowanie',active: test.name === 'Zestawienie'}">{{test.name}}
-                                                        <div style='width: 50px; float:right;' id='chart-percent-{{test.id}}'></div>
+                                            <div ng-repeat="test in acutalSelectedGroupTest " style='margin-top:50px;'>
+                                                <div class="row">
+                                                    <div class="col s12 m8">
+                                                        <h5><b>{{test.name}}</b></h5>
+                                                        <p>Najlepszy możliwy wynik: <b>{{test.best}}</b></p>
+                                                        <p>Najgorszy możliwy wynik: <b>{{test.worst}}</b></p>
                                                     </div>
-                                                    <div class="collapsible-body">
-                                                        <div class="row">
-                                                            <div ng-hide="test.name === 'Podsumowanie' || test.name === 'Zestawienie'">
-                                                                <table ng-show='dataViewAsTable' class='highlight responsive-table centered'>
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="padding: 2px 2px">Wynik</th>
-                                                                            <th style="padding: 2px 2px">Najlepszy możliwy</th>
-                                                                            <th style="padding: 2px 2px">Najgorszy możliwy</th>
-                                                                            <th style="padding: 2px 2px">Data</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr ng-show='test.scores.length > 0' ng-repeat="score in test.scores">
-                                                                            <td style="padding: 2px 2px">{{score.wynik}}</td>
-                                                                            <td style="padding: 2px 2px">{{test.best}}</td>
-                                                                            <td style="padding: 2px 2px">{{test.worst}}</td>
-                                                                            <td style="padding: 2px 2px">{{score.data}}</td>
-                                                                        </tr>
-                                                                        <tr ng-show='test.scores.length <= 0 || test.scores == null'>
-                                                                            <td colspan='3'>Brak danych</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <div ng-hide='dataViewAsTable' style='overflow:hidden;' class="row" id="chart-{{test.id}}">
-                                                                </div>
-                                                            </div>
+                                                    <div class="col s12 m4">
+                                                        <canvas style='width: 50px; float:right;' id='chart-percent-{{test.id}}'></canvas>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <table ng-show='dataViewAsTable' class='highlight centered statTable' style='margin-top:10px;'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="padding: 2px 2px">Wynik</th>
+                                                                <th style="padding: 2px 2px">Data</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-show='test.scores.length > 0' ng-repeat="score in test.scores">
+                                                                <td style="padding: 2px 2px">{{score.wynik}}</td>
+                                                                <td style="padding: 2px 2px">{{score.data.split(' ')[0]}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="col s12 " ng-hide='test.scores.length <= 0 || test.scores == null'>
+                                                        <canvas ng-hide='dataViewAsTable' style='overflow:hidden;' class="row" id="chart-{{test.id}}"></canvas>
+                                                    </div>
+                                                    <div class="col s12">
+                                                        <div ng-show='test.scores.length <= 0 || test.scores == null'>
+                                                            <h5>Brak danych</h5>
                                                         </div>
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

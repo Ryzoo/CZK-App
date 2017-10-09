@@ -23,6 +23,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                 $scope.showContent = true;
                 $rootScope.actualStats = data.potential;
                 $scope.userForm = data.form
+                $scope.showTestAndType = true;
             });
             $('#selectPotential').html('');
             $('#selectPotential').append("<option value='' disabled>Grupy testowe</option>");
@@ -36,8 +37,11 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                 }
             }
             $('select').material_select();
-            $scope.showTestAndType = true;
-            setTimeout(changePotential, 100);
+            setTimeout(function() {
+                changePotential();
+                initMainSummary();
+                initMainSummaryRadar();
+            }, 50);
         });
 
     });
@@ -56,7 +60,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
         $('.collapsible').collapsible();
         $scope.initChart();
         initPercentChart();
-        initMainSummary();
+        checkTableScoreProgress();
     }
 
     $(document).off('change', '#selectDataType');
@@ -74,26 +78,20 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
         if ($scope.acutalSelectedGroupTest)
             for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
                 if ($scope.acutalSelectedGroupTest[i].id != undefined) {
-                    var data = [];
-                    data.push('wynik');
-                    data.push($scope.acutalSelectedGroupTest[i].summary);
-                    var chart = c3.generate({
-                        bindto: '#chart-percent-' + $scope.acutalSelectedGroupTest[i].id,
+                    var chart = new Chart($('#chart-percent-' + $scope.acutalSelectedGroupTest[i].id), {
+                        type: 'doughnut',
                         data: {
-                            columns: [
-                                data
-                            ],
-                            type: 'gauge',
-                        },
-                        gauge: {},
-                        color: {
-                            pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
-                            threshold: {
-                                values: [30, 60, 90, 100]
-                            }
-                        },
-                        size: {
-                            height: 40
+                            datasets: [{
+                                data: [$scope.acutalSelectedGroupTest[i].summary, 100 - $scope.acutalSelectedGroupTest[i].summary],
+                                backgroundColor: [
+                                    '#ff6384',
+                                    '#36a2eb'
+                                ]
+                            }],
+                            labels: [
+                                'Aktualna średnia',
+                                'Braki do mistrzostwa'
+                            ]
                         }
                     });
                 }
@@ -102,75 +100,111 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
 
     function initMainSummary() {
         if ($scope.acutalSelectedGroupTest) {
-            var data = [];
-            data.push('wynik');
-            data.push($scope.userForm);
-            var chart = c3.generate({
-                bindto: "#main-summary-chart",
+            var chart = new Chart($('#main-summary-chart'), {
+                type: 'doughnut',
                 data: {
-                    columns: [
-                        data
-                    ],
-                    type: 'gauge',
-                },
-                gauge: {},
-                color: {
-                    pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
-                    threshold: {
-                        values: [30, 60, 90, 100]
-                    }
-                },
-                size: {
-                    width: 200,
-                    height: 100,
+                    datasets: [{
+                        data: [$scope.userForm, 100 - $scope.userForm],
+                        backgroundColor: [
+                            '#ff6384',
+                            '#36a2eb'
+                        ]
+                    }],
+                    labels: [
+                        'Aktualna forma',
+                        'Braki do mistrzostwa'
+                    ]
                 }
             });
         }
     }
 
-    $scope.initChart = function() {
-        if (!$scope.dataViewAsTable && $scope.acutalSelectedGroupTest) {
-            setTimeout(function() {
-                for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
-                    var data = [];
-                    var date = [];
-                    date.push('x');
-                    data.push('Wyniki');
-                    if ($scope.acutalSelectedGroupTest[i].scores != null) {
-                        for (var j = 0; j < $scope.acutalSelectedGroupTest[i].scores.length; j++) {
-                            data.push($scope.acutalSelectedGroupTest[i].scores[j].wynik);
-                            date.push(new Date($scope.acutalSelectedGroupTest[i].scores[j].data.replace(/-/g, '/')));
-                        }
-                        var chart = c3.generate({
-                            bindto: '#chart-' + $scope.acutalSelectedGroupTest[i].id,
-                            data: {
-                                x: 'x',
-                                columns: [
-                                    date,
-                                    data
-                                ],
-                                type: 'spline'
-                            },
-                            axis: {
-                                x: {
-                                    type: 'timeseries',
-                                    localtime: false,
-                                    tick: {
-                                        format: '%Y / %m / %d',
-                                        rotate: 90,
-                                        multiline: false
-                                    }
-                                }
-                            },
-                            width: 50,
-                            zoom: {
-                                enabled: true
-                            }
-                        });
-
+    function initMainSummaryRadar() {
+        var label = [];
+        var dataSe = [];
+        for (var i = 0; i < $rootScope.actualStats.length; i++) {
+            label.push($rootScope.actualStats[i].name);
+            dataSe.push($rootScope.actualStats[i].summary);
+        }
+        var chart = new Chart($('#main-summary-chart-radar'), {
+            type: 'radar',
+            data: {
+                datasets: [{
+                    label: "Wyniki w poszczególnych kategoriach",
+                    data: dataSe,
+                    backgroundColor: 'rgba(255, 99, 132,0.2)',
+                    borderColor: '#ff6384',
+                }],
+                labels: label,
+            },
+            options: {
+                legend: {
+                    position: 'top',
+                },
+                scale: {
+                    ticks: {
+                        beginAtZero: true
                     }
                 }
-            }, 50);
+            }
+        });
+    }
+
+    function checkTableScoreProgress() {
+        $('.statTable tbody').each(function() {
+            var allTr = $(this).find('tr');
+            for (var i = 0; i < allTr.length - 1; i++) {
+                var actual = parseFloat($(this).find('tr').eq(i).find('td').eq(0).html());
+                var before = parseFloat($(this).find('tr').eq(i + 1).find('td').eq(0).html());
+                var progress = actual - before;
+                if (progress == 0) continue;
+                var word = progress > 0 ? "+" : "-";
+                progress = Math.abs(progress);
+                progress = progress.toFixed(2);
+                $(this).find('tr').eq(i).find('td').eq(0).append("<span class='" + (word == '+' ? "tableProgressElementPositive" : "tableProgressElementNegative") + "'> " + word + " " + progress + "</span>");
+            }
+        });
+    }
+
+    $scope.initChart = function() {
+        moment.locale('pl');
+        if (!$scope.dataViewAsTable && $scope.acutalSelectedGroupTest) {
+            for (var i = 0; i < $scope.acutalSelectedGroupTest.length; i++) {
+                var data = [];
+                var labels = [];
+                if ($scope.acutalSelectedGroupTest[i].scores != null) {
+                    for (var j = 0; j < $scope.acutalSelectedGroupTest[i].scores.length; j++) {
+                        var thisDate = moment($scope.acutalSelectedGroupTest[i].scores[j].data);
+                        labels.push(thisDate.format('LL'));
+                        data.push({
+                            t: thisDate,
+                            y: $scope.acutalSelectedGroupTest[i].scores[j].wynik
+                        });
+                    }
+                    var chart = new Chart($('#chart-' + $scope.acutalSelectedGroupTest[i].id), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: "Wyniki testów",
+                                data: data,
+                                borderColor: '#ff6384'
+                            }],
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time',
+                                        distribution: 'series',
+                                        ticks: {
+                                            source: 'labels'
+                                        }
+                                    }]
+                                }
+                            }
+                        }
+                    });
+                }
+            }
         }
     }
 

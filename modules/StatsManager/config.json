@@ -55,6 +55,8 @@
             "parameters": ["usid", "tsid"]
         }
     ],
+    "js": ["chart.min"],
+    "css": ["style"],
     "jsControllers": ["myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController"],
     "frontendRoute": [{
             "url": "myStats",

@@ -1,10 +1,12 @@
 app.controller('teamStatisticController', function($scope, auth, $rootScope, notify, statistic, request) {
     $rootScope.showContent = false;
     $rootScope.actualStats = [];
-    $scope.acutalSelectedGroup = 0;
-    $scope.acutalSelectedGroupTest = []
+    $rootScope.teamCategorySummary = [];
+    $rootScope.teamMatchCategorySummary = [];
     var fullTeamScore = 0;
     var matchTeamScore = 0;
+    var mainChartToCheck = null;
+    var colorIndex = 0;
 
     $scope.initTeamStats = function() {
         request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid }, function(data) {
@@ -20,123 +22,200 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
             }
             fullTeamScore = statistic.getTeamForm(fullPersonId);
             matchTeamScore = statistic.getTeamForm(matchPersonsId, true);
-            statistic.getTeamStats(fullPersonId, function() {
-                if ($rootScope.actualStats.length > 0) {
-                    $('#selectPotential').html('');
-                    $('#selectPotential').append("<option value='' disabled selected>Grupy testowe</option>");
-                    if ($rootScope.actualStats[0].data.potential) {
-                        for (var i = 0; i < $rootScope.actualStats[0].data.potential.length; i++) {
-                            $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[0].data.potential[i].name + "</option>");
-                        }
-                        $('select').material_select();
-                    }
-                }
-                $rootScope.$apply(function() {
-                    $rootScope.showContent = true;
-                });
-                initChartMin();
-            });
-        });
-    }
 
-    $(document).off('change', '#selectPotential');
-    $(document).on('change', '#selectPotential', function() {
-        $scope.$apply(function() {
-            $scope.acutalSelectedGroup = $("#selectPotential").val();
-        });
-        $('.collapsible').collapsible();
-        $scope.initChart();
-    });
-
-    function initChartMin() {
-        setTimeout(function() {
-            data = [];
-            data.push('wynik');
-            data.push(fullTeamScore);
-            var chart = c3.generate({
-                bindto: "#fullTeamForm",
-                data: {
-                    columns: [
-                        data
-                    ],
-                    type: 'gauge',
-                },
-                gauge: {},
-                color: {
-                    pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
-                    threshold: {
-                        values: [30, 60, 90, 100]
-                    }
-                },
-                size: {
-                    height: 90
-                }
-            });
-            data = [];
-            data.push('wynik');
-            data.push(matchTeamScore);
-            var chart1 = c3.generate({
-                bindto: "#actualTeamForm",
-                data: {
-                    columns: [
-                        data
-                    ],
-                    type: 'gauge',
-                },
-                gauge: {},
-                color: {
-                    pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
-                    threshold: {
-                        values: [30, 60, 90, 100]
-                    }
-                },
-                size: {
-                    height: 90
-                }
-            });
-        }, 50);
-    }
-
-    $scope.initChart = function() {
-        setTimeout(function() {
-            if ($scope.acutalSelectedGroup) {
-                var data = [];
-                var label = [];
-                data.push('Wyniki');
+            statistic.getTeamStats(matchPersonsId, function() {
+                $rootScope.teamMatchCategorySummary = [];
                 if ($rootScope.actualStats) {
-
-                    for (var j = 0; j < $rootScope.actualStats.length; j++) {
-                        data.push($rootScope.actualStats[j].data.potential[$scope.acutalSelectedGroup].summary);
-                        label.push($rootScope.actualStats[j].userName);
+                    for (var j = 0; j < $rootScope.actualStats[0].data.potential.length; j++) {
+                        var testLabel = $rootScope.actualStats[0].data.potential[j].name;
+                        var score = 0;
+                        for (var i = 0; i < $rootScope.actualStats.length; i++) {
+                            score += $rootScope.actualStats[i].data.potential[j].summary;
+                        }
+                        score /= $rootScope.actualStats.length;
+                        score = Math.round(score);
+                        $rootScope.teamMatchCategorySummary.push({
+                            name: testLabel,
+                            summary: score
+                        });
                     }
-
-                    var chart = c3.generate({
-                        bindto: '#chart-main',
-                        data: {
-                            columns: [
-                                data
-                            ],
-                            type: 'bar'
-                        },
-                        axis: {
-                            x: {
-                                type: 'category',
-                                categories: label,
-                                tick: {
-                                    rotate: 90,
-                                    multiline: false
+                }
+                statistic.getTeamStats(fullPersonId, function() {
+                    $rootScope.$apply(function() {
+                        $rootScope.showContent = true;
+                        $rootScope.teamCategorySummary = [];
+                        if ($rootScope.actualStats) {
+                            for (var j = 0; j < $rootScope.actualStats[0].data.potential.length; j++) {
+                                var testLabel = $rootScope.actualStats[0].data.potential[j].name;
+                                var score = 0;
+                                for (var i = 0; i < $rootScope.actualStats.length; i++) {
+                                    score += $rootScope.actualStats[i].data.potential[j].summary;
                                 }
-                            },
-                            y: {
-                                max: 90,
-                                min: 10,
+                                score /= $rootScope.actualStats.length;
+                                score = Math.round(score);
+                                $rootScope.teamCategorySummary.push({
+                                    name: testLabel,
+                                    summary: score
+                                });
                             }
                         }
                     });
+                    initChartMin();
+                    $scope.initChart();
+                });
+            });
 
-                }
+
+        });
+    }
+
+    function getRandomColor() {
+        var list = [
+            '#ff6384',
+            '#36a2eb',
+            '#00a588',
+            "#EF5350",
+            "#BA68C8"
+        ];
+        colorIndex++;
+        if (colorIndex > list.length) colorIndex = 0;
+        return list[colorIndex];
+    }
+
+    function initChartMin() {
+        var chart = new Chart($('#fullTeamForm'), {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [fullTeamScore, 100 - fullTeamScore],
+                    backgroundColor: [
+                        '#ff6384',
+                        '#36a2eb'
+                    ]
+                }],
+                labels: [
+                    'Poziom sekcji',
+                    'Braki do mistrzostwa'
+                ]
             }
-        }, 50);
+        });
+
+        var chart = new Chart($('#actualTeamForm'), {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [matchTeamScore, 100 - matchTeamScore],
+                    backgroundColor: [
+                        '#ff6384',
+                        '#36a2eb'
+                    ]
+                }],
+                labels: [
+                    'Poziom zawodników ( boisko )',
+                    'Braki do maksimum'
+                ]
+            }
+        });
+
+        if ($rootScope.teamCategorySummary.length > 0) {
+            var label = [];
+            var dataSe = [];
+            for (var i = 0; i < $rootScope.teamCategorySummary.length; i++) {
+                label.push($rootScope.teamCategorySummary[i].name);
+                dataSe.push($rootScope.teamCategorySummary[i].summary);
+            }
+            var chart = new Chart($('#teamChartRadar'), {
+                type: 'radar',
+                data: {
+                    datasets: [{
+                        label: "Predyspozycje drużyny",
+                        data: dataSe,
+                        backgroundColor: 'rgba(255, 99, 132,0.2)',
+                        borderColor: '#ff6384',
+                    }],
+                    labels: label,
+                },
+                options: {
+                    legend: {
+                        position: 'top',
+                    },
+                    scale: {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        if ($rootScope.teamMatchCategorySummary.length > 0) {
+            var label = [];
+            var dataSe = [];
+            for (var i = 0; i < $rootScope.teamMatchCategorySummary.length; i++) {
+                label.push($rootScope.teamMatchCategorySummary[i].name);
+                dataSe.push($rootScope.teamMatchCategorySummary[i].summary);
+            }
+            var chart = new Chart($('#teamMatchChartRadar'), {
+                type: 'radar',
+                data: {
+                    datasets: [{
+                        label: "Predyspozycje zespołu meczowego",
+                        data: dataSe,
+                        backgroundColor: 'rgba(255, 99, 132,0.2)',
+                        borderColor: '#ff6384',
+                    }],
+                    labels: label,
+                },
+                options: {
+                    legend: {
+                        position: 'top',
+                    },
+                    scale: {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    $scope.initChart = function() {
+        var data = [];
+        var label = [];
+        if ($rootScope.actualStats) {
+            for (var j = 0; j < $rootScope.actualStats.length; j++) {
+                label.push($rootScope.actualStats[j].userName);
+            }
+
+            for (var j = 0; j < $rootScope.actualStats[0].data.potential.length; j++) {
+                var testLabel = $rootScope.actualStats[0].data.potential[j].name;
+                var allScore = [];
+                for (var i = 0; i < $rootScope.actualStats.length; i++) {
+                    allScore.push($rootScope.actualStats[i].data.potential[j].summary);
+                }
+                data.push({
+                    label: testLabel,
+                    data: allScore,
+                    backgroundColor: getRandomColor()
+                });
+            }
+
+            if (!mainChartToCheck || mainChartToCheck == null) {
+                mainChartToCheck = new Chart($('#chart-main'), {
+                    type: 'horizontalBar',
+                    data: {
+                        datasets: data,
+                        labels: label
+                    }
+                });
+            } else {
+                mainChartToCheck.data.labels = label;
+                mainChartToCheck.data.datasets = data;
+                mainChartToCheck.update();
+            }
+
+        }
     }
 
 });
