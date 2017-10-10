@@ -980,7 +980,7 @@ ul.top-menu>li>a:focus {
 .contactUl a {
     padding-left: 3px;
     text-align: center;
-    color: #fff;
+    color: #fff !important;
     font-size: 12px;
 }
 
@@ -990,6 +990,8 @@ ul.top-menu>li>a:focus {
 
 .contactUl-background:hover {
   background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  text-align: center;
 }
 
 
