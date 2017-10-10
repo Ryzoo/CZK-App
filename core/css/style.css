@@ -985,7 +985,7 @@ ul.top-menu>li>a:focus {
 }
 
 .contactUl-background {
-  all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .contactUl-background:hover {
