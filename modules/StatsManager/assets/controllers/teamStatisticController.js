@@ -75,7 +75,6 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
             '#FFC300',
             '#FF5733',
             "#C70039",
-            "#900C3F",
             "#581845"
         ];
         colorIndex++;
