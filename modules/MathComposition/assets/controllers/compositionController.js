@@ -228,11 +228,11 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
 
             ctx.drawImage(tshirt, 0, 0, tshirt.width, tshirt.height, pos.x - tshirtWidth / 2, pos.y - tshirtHeight * 0.2, tshirtWidth, tshirtHeight);
 
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#fff';
             ctx.textAlign = "center";
             ctx.font = actualFontSize + "px Arial";
             ctx.fillText($scope.users[i].nr_on_tshirt, pos.x, parseInt(pos.y) + actualFontSize * 1.5);
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#fff';
             ctx.font = actualFontSize + "px Arial";
             ctx.fillText($scope.users[i].firstname[0] + '. ' + $scope.users[i].lastname, pos.x, (parseInt(pos.y) + actualCircleSize + actualFontSize * 3));
         }
@@ -271,7 +271,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
     function prettyFieldHelp() {
         $('.helpTd').each(function() {
             var actualHelp = $(this).html();
-            $(this).css('color', "#ee6e73");
+            $(this).css('color', "#ec1800");
             if (actualHelp == 'osiągnięto limit zawodników') return;
             var word = actualHelp.split(' ')[0];
             $(this).css('font-weight', "800");
@@ -296,8 +296,8 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                     datasets: [{
                         data: [fullTeamScore, 100 - fullTeamScore],
                         backgroundColor: [
-                            '#2a2a2a',
-                            '#ec1800'
+                            '#ec1800',
+                            '#2a2a2a'
                         ]
                     }],
                     labels: [
@@ -310,8 +310,8 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
             mainChart.data.datasets = [{
                 data: [fullTeamScore, 100 - fullTeamScore],
                 backgroundColor: [
-                    '#2a2a2a',
-                    '#ec1800'
+                    '#ec1800',
+                    '#2a2a2a'
                 ]
             }]
             mainChart.update();
