@@ -71,11 +71,12 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
 
     function getRandomColor() {
         var list = [
-            '#ec1800',
-            '#4e4e4e',
-            '#00a588',
-            "#EF5350",
-            "#BA68C8"
+            '#DAF7A6',
+            '#FFC300',
+            '#FF5733',
+            "#C70039",
+            "#900C3F",
+            "#581845"
         ];
         colorIndex++;
         if (colorIndex > list.length) colorIndex = 0;
