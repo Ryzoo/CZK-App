@@ -980,7 +980,8 @@ ul.top-menu>li>a:focus {
 .contactUl a {
     padding-left: 3px;
     text-align: center;
-    color: rgb(244, 98, 81);
+    color: #fff;
+    font-size: 12px;
 }
 
 
@@ -1417,7 +1418,7 @@ PANELS CONFIGURATIONS
 }
 
 
-/* 
+/*
 .card:hover {
     z-index: 998;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);

@@ -75,7 +75,7 @@
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Sekcje",
+                    "label": "Drużyny",
                     "url": "#!/teamsMenager",
                     "icon": "fa fa-address-card-o fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""
