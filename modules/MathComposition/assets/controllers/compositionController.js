@@ -297,7 +297,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                         data: [fullTeamScore, 100 - fullTeamScore],
                         backgroundColor: [
                             '#ec1800',
-                            '#2a2a2a'
+                            '#4e4e4e'
                         ]
                     }],
                     labels: [
@@ -311,7 +311,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                 data: [fullTeamScore, 100 - fullTeamScore],
                 backgroundColor: [
                     '#ec1800',
-                    '#2a2a2a'
+                    '#4e4e4e'
                 ]
             }]
             mainChart.update();
