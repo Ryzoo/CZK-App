@@ -992,6 +992,7 @@ ul.top-menu>li>a:focus {
   background: rgba(0, 0, 0, 0.2);
   width: 100%;
   text-align: center;
+  border-left: solid 1px #ec1800;
 }
 
 
