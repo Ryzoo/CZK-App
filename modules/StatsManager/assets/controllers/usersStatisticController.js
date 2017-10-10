@@ -132,7 +132,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                 datasets: [{
                     label: "Wyniki w poszczególnych kategoriach",
                     data: dataSe,
-                    backgroundColor: 'rgba(236, 24, 0, 0.2)'
+                    backgroundColor: 'rgba(236, 24, 0, 0.2)',
                     borderColor: '#ec1800',
                 }],
                 labels: label,
