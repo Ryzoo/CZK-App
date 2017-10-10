@@ -107,7 +107,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                         data: [$scope.userForm, 100 - $scope.userForm],
                         backgroundColor: [
                             '#ec1800',
-                            '#36a2eb'
+                            '#4e4e4e'
                         ]
                     }],
                     labels: [
