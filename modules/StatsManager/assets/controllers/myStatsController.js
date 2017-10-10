@@ -43,7 +43,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                     }],
                     labels: [
                         'Aktualna forma',
-                        'Braki do mistrzostwa'
+                        'Braki do maksimum'
                     ]
                 }
             });
@@ -141,7 +141,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                             }],
                             labels: [
                                 'Aktualna średnia',
-                                'Braki do mistrzostwa'
+                                'Braki do maksimum'
                             ]
                         }
                     });

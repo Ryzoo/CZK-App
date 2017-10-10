@@ -94,8 +94,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     ]
                 }],
                 labels: [
-                    'Poziom sekcji',
-                    'Braki do mistrzostwa'
+                    'Poziom całej drużyny',
+                    'Braki do maksimum'
                 ]
             }
         });
@@ -111,7 +111,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     ]
                 }],
                 labels: [
-                    'Poziom zawodników ( boisko )',
+                    'Poziom składu meczowego',
                     'Braki do maksimum'
                 ]
             }
@@ -159,7 +159,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                 type: 'radar',
                 data: {
                     datasets: [{
-                        label: "Predyspozycje zespołu meczowego",
+                        label: "Predyspozycje składu meczowego",
                         data: dataSe,
                         backgroundColor: 'rgba(255, 99, 132,0.2)',
                         borderColor: '#ff6384',

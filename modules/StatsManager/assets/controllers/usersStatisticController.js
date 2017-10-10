@@ -84,13 +84,13 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                             datasets: [{
                                 data: [$scope.acutalSelectedGroupTest[i].summary, 100 - $scope.acutalSelectedGroupTest[i].summary],
                                 backgroundColor: [
-                                    '#ff6384',
-                                    '#36a2eb'
+                                    '#ec1800',
+                                    '#4e4e4e'
                                 ]
                             }],
                             labels: [
                                 'Aktualna średnia',
-                                'Braki do mistrzostwa'
+                                'Braki do maksimum'
                             ]
                         }
                     });
@@ -106,13 +106,13 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                     datasets: [{
                         data: [$scope.userForm, 100 - $scope.userForm],
                         backgroundColor: [
-                            '#ff6384',
+                            '#ec1800',
                             '#36a2eb'
                         ]
                     }],
                     labels: [
                         'Aktualna forma',
-                        'Braki do mistrzostwa'
+                        'Braki do maksimum'
                     ]
                 }
             });
@@ -133,7 +133,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                     label: "Wyniki w poszczególnych kategoriach",
                     data: dataSe,
                     backgroundColor: 'rgba(255, 99, 132,0.2)',
-                    borderColor: '#ff6384',
+                    borderColor: '#ec1800',
                 }],
                 labels: label,
             },
@@ -195,7 +195,7 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                             datasets: [{
                                 label: "Wyniki testów",
                                 data: data,
-                                borderColor: '#ff6384'
+                                borderColor: '#ec1800'
                             }],
                             options: {
                                 scales: {
