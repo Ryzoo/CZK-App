@@ -207,6 +207,10 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     data: {
                         datasets: data,
                         labels: label
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
                     }
                 });
             } else {
