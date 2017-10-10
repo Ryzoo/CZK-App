@@ -71,8 +71,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
 
     function getRandomColor() {
         var list = [
-            '#ff6384',
-            '#36a2eb',
+            '#ec1800',
+            '#4e4e4e',
             '#00a588',
             "#EF5350",
             "#BA68C8"
@@ -89,8 +89,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                 datasets: [{
                     data: [fullTeamScore, 100 - fullTeamScore],
                     backgroundColor: [
-                        '#ff6384',
-                        '#36a2eb'
+                        '#ec1800',
+                        '#4e4e4e'
                     ]
                 }],
                 labels: [
@@ -106,8 +106,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                 datasets: [{
                     data: [matchTeamScore, 100 - matchTeamScore],
                     backgroundColor: [
-                        '#ff6384',
-                        '#36a2eb'
+                        '#ec1800',
+                        '#4e4e4e'
                     ]
                 }],
                 labels: [
@@ -130,8 +130,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     datasets: [{
                         label: "Predyspozycje drużyny",
                         data: dataSe,
-                        backgroundColor: 'rgba(255, 99, 132,0.2)',
-                        borderColor: '#ff6384',
+                        backgroundColor: 'rgba(236, 24, 0, 0.2)',
+                        borderColor: '#ec1800',
                     }],
                     labels: label,
                 },
@@ -161,8 +161,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     datasets: [{
                         label: "Predyspozycje składu meczowego",
                         data: dataSe,
-                        backgroundColor: 'rgba(255, 99, 132,0.2)',
-                        borderColor: '#ff6384',
+                        backgroundColor: 'rgba(236, 24, 0, 0.2)',
+                        borderColor: '#ec1800',
                     }],
                     labels: label,
                 },

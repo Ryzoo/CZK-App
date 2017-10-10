@@ -37,8 +37,8 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                     datasets: [{
                         data: [$scope.userForm, 100 - $scope.userForm],
                         backgroundColor: [
-                            '#ff6384',
-                            '#36a2eb'
+                            '#ec1800',
+                            '#4e4e4e'
                         ]
                     }],
                     labels: [
@@ -63,8 +63,8 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                 datasets: [{
                     label: "Wyniki w poszczególnych kategoriach",
                     data: dataSe,
-                    backgroundColor: 'rgba(255, 99, 132,0.2)',
-                    borderColor: '#ff6384',
+                    backgroundColor: 'rgba(236, 24, 0, 0.2)',
+                    borderColor: '#ec1800',
                 }],
                 labels: label,
             },
@@ -135,8 +135,8 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                             datasets: [{
                                 data: [$scope.acutalSelectedGroupTest[i].summary, 100 - $scope.acutalSelectedGroupTest[i].summary],
                                 backgroundColor: [
-                                    '#ff6384',
-                                    '#36a2eb'
+                                    '#ec1800',
+                                    '#4e4e4e'
                                 ]
                             }],
                             labels: [
@@ -171,7 +171,7 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                             datasets: [{
                                 label: "Wyniki testów",
                                 data: data,
-                                borderColor: '#ff6384'
+                                borderColor: '#ec1800'
                             }],
                             options: {
                                 scales: {
