@@ -146,6 +146,10 @@ button[type=submit]:hover {
     float: left
 }
 
+.reg a {
+  color: #26a69a;
+}
+
 @media (max-height: 550px) {
     .loginFormContener {
         top: 0;
