@@ -142,7 +142,7 @@ button[type=submit]:hover {
 }
 
 .footerLogo {
-    margin-top: 20px;
+    margin-top: 28px;
     float: left
 }
 
@@ -163,7 +163,7 @@ button[type=submit]:hover {
         display: block;
         float: none;
         margin-bottom: -10px;
-        margin-top: 28px;
+        margin-top: 10px;
     }
     .footer p {
         width: 100%;
