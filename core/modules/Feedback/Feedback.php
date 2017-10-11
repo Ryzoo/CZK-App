@@ -23,7 +23,7 @@ class Feedback extends BasicModule {
         $data = [
             'author' => $author,
             'content' => $content,
-            'type' => $type 
+            'type' => $type
         ];
 
         $this->returnedData['data'] = ($this->db->getConnection())->insert('feedback', $data);

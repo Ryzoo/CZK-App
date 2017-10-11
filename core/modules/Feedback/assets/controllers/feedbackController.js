@@ -13,7 +13,7 @@ app.controller('feedbackController', function($scope, auth, $rootScope, notify, 
             notify.localNotify("Walidacja","Prosimy o wpisanie dłuższej wiadomości.");
             return;
         }
-        request.backend('sendFeedback', { 
+        request.backend('sendFeedback', {
             firstname: $rootScope.user.firstname,
             lastname: $rootScope.user.lastname,
             tmid: $rootScope.user.tmid,
@@ -21,6 +21,6 @@ app.controller('feedbackController', function($scope, auth, $rootScope, notify, 
             type: type
          }, function(data) {
             $('#contentFeed').val('');
-         },"Dziękujemy za udział w poprawie standardów naszej platformy :)");
+         },"Dziękujemy za udział w poprawie standardów naszej platformy.");
     }
 });
