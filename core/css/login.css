@@ -38,15 +38,13 @@ body {
 .loginFormContener {
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
-    top: 40%;
-    left: 50%;
+    left: 5%;
     min-width: 400px;
-    transform: translate(-50%, -50%);
     max-width: 600px;
     width: 50vw;
     overflow: hidden;
-    margin: 50px 0;
     padding: 20px;
+    height: 100%;
 }
 
 .logoContener {
@@ -114,11 +112,11 @@ button[type=submit]:active {
     cursor: pointer;
     border: none;
     transition: all 0.3s ease-out;
-    border: 1px solid #246e97;
+    border: 1px solid #26a69a;
 }
 
 button[type=submit]:hover {
-    background-color: rgba(0, 137, 236, 0.5);
+    background-color: #26a69a;
     color: #fff;
     transition: all 0.3s ease-out;
 }
