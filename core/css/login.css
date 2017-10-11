@@ -73,6 +73,7 @@ body {
 .formContener {
     float: left;
     width: 100%;
+    margin-top: 75px;
 }
 
 .text {
@@ -131,6 +132,10 @@ button[type=submit]:hover {
 .footer {
     float: left;
     width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 30px;
 }
 
 .footer p {
