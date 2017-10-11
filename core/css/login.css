@@ -18,6 +18,13 @@ body {
     transform: translate(-50%, -50%);
 }
 
+@media(min-width: 770px) {
+  #backgroundLogin img {
+    height: 100%;
+    width: auto;
+  }
+}
+
 .loginMainContener {
     width: 100%;
     min-height: 100%;
@@ -177,7 +184,6 @@ button[type=submit]:hover {
     }
     .loginFormContener {
         width: 100vw;
-        margin: 50px 0;
         min-width: 0;
     }
 }
