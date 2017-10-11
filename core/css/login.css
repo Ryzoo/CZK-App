@@ -165,7 +165,7 @@ button[type=submit]:hover {
 @media (max-height: 550px) {
     .loginFormContener {
         top: 0;
-        transform: translate( -50%, 0);
+        /* transform: translate( -50%, 0); */
     }
 }
 
