@@ -35,8 +35,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         MOVE: 0,
         PLAYER_ADD: 1,
         ARROW_ADD: 2,
-        FIELD_LIST: 3,
-        BALL_ADD: 4
+        FIELD_LIST: 3
     }
     $scope.arrowType = {
         FULL_2: 1,
@@ -131,19 +130,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $(this).css("border-color", "#dd4213");
 
         if ($scope.actualMouseAction == $scope.mouseActionType.PLAYER_ADD) {
-            $scope.selectedObjImg = new Image();
-            $scope.selectedObjImg.src = $(this).find('img').attr('src');
-        }
-    })
-
-    $(document).off('click touch', '.categoryItems');
-    $(document).on('click touch', '.categoryItems', function() {
-        $('.categoryItems').each(function() {
-            $(this).css("border-color", "");
-        });
-        $(this).css("border-color", "#dd4213");
-
-        if ($scope.actualMouseAction == $scope.mouseActionType.BALL_ADD) {
             $scope.selectedObjImg = new Image();
             $scope.selectedObjImg.src = $(this).find('img').attr('src');
         }
@@ -287,20 +273,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 name: "movementObject",
                 id: id
             });
-
-            if ($scope.actualMouseAction == $scope.mouseActionType.BALL_ADD && $scope.selectedObjImg) {
-                var mousePos = selectedFrame.getPointerPosition();
-                var scale = selectedFrame.getAttr('scaleX');
-                var id = newId();
-                var obj = new Konva.Image({
-                    x: mousePos.x / scale,
-                    y: mousePos.y / scale,
-                    offsetX: ($scope.selectedObjImg.width / 2.0),
-                    offsetY: ($scope.selectedObjImg.height / 2.0),
-                    image: $scope.selectedObjImg,
-                    name: "movementObject",
-                    id: id
-                });
 
             obj.on('mousedown touchstart', function() {
                 selectObjStyle(this);
