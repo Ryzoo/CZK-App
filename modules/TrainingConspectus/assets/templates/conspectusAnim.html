@@ -121,7 +121,7 @@
                             <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Tyczki" ng-click="changeCategories(mouseActionType.POLE_ADD)">
                                 <i class="fa fa-italic fa-2x" aria-hidden="true"></i>
                             </div>
-                            <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Mini-bramki" ng-click="changeCategories(mouseActionType.MINI_GOAL_ADD)">
+                            <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Bramki" ng-click="changeCategories(mouseActionType.GOAL_ADD)">
                                 <i class="fa fa-window-maximize fa-2x" aria-hidden="true"></i>
                             </div>
                             <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Murek" ng-click="changeCategories(mouseActionType.WALL_ADD)">
@@ -537,6 +537,43 @@
                                 </div>
                                 <div class='categoryItems'>
                                     <img src="/modules/TrainingConspectus/assets/media/hurdles/high-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">
+                                </div>
+                            </div>
+                            <div class='itemsList' ng-show="actualMouseAction==mouseActionType.GOAL_ADD">
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/goals/goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bramka">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/goals/mini-goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Mini-bramka">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/goals/wide-mini-goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Mini-bramka szeroka">
+                                </div>
+                            </div>
+                            <div class='itemsList' ng-show="actualMouseAction==mouseActionType.WALL_ADD">
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-1x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (1 zawodnik)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-2x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (2 zawodników)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (3 zawodników)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (4 zawodników)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-1x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (1 zawodnik)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-2x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (2 zawodników)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (3 zawodników)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (4 zawodników)">
                                 </div>
                             </div>
                         </div>
