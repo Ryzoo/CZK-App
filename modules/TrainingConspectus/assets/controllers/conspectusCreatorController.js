@@ -33,7 +33,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $scope.mouseActionType = {
         MOVE: 0,
-        PLAYER_ADD: 1,
+        OBJECT_ADD: 1,
         ARROW_ADD: 2,
         FIELD_LIST: 3
     }
@@ -129,7 +129,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         });
         $(this).css("border-color", "#dd4213");
 
-        if ($scope.actualMouseAction == $scope.mouseActionType.PLAYER_ADD) {
+        if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD) {
             $scope.selectedObjImg = new Image();
             $scope.selectedObjImg.src = $(this).find('img').attr('src');
         }
@@ -260,7 +260,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function clickOnContent() {
-        if ($scope.actualMouseAction == $scope.mouseActionType.PLAYER_ADD && $scope.selectedObjImg) {
+        if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD && $scope.selectedObjImg) {
             var mousePos = selectedFrame.getPointerPosition();
             var scale = selectedFrame.getAttr('scaleX');
             var id = newId();
