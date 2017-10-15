@@ -127,6 +127,9 @@
                             <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Murek" ng-click="changeCategories(mouseActionType.WALL_ADD)">
                                 <i class="fa fa-male fa-2x" aria-hidden="true"></i>
                             </div>
+                            <!-- BRAK IKONY <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Płotki" ng-click="changeCategories(mouseActionType.HURDLE_ADD)">
+                                <i class="fa ________ fa-2x" aria-hidden="true"></i>
+                            </div> -->
                         </div>
                         <div id='itemBoxFromCat' ng-show='actualMouseAction==mouseActionType.PLAYER_ADD || actualMouseAction==mouseActionType.ARROW_ADD || actualMouseAction==mouseActionType.FIELD_LIST'>
                             <div class='itemsList' ng-show="actualMouseAction==mouseActionType.FIELD_LIST">
@@ -523,6 +526,17 @@
                                 </div>
                                 <div class='categoryItems'>
                                     <img src="/modules/TrainingConspectus/assets/media/ladders/ladder-6x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 6x">
+                                </div>
+                            </div>
+                            <div class='itemsList' ng-show="actualMouseAction==mouseActionType.HURDLE_ADD">
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/hurdles/low-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niski płotek">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/hurdles/mid-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/hurdles/high-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">
                                 </div>
                             </div>
                         </div>
