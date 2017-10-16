@@ -995,7 +995,6 @@ ul.top-menu>li>a:focus {
   border-left: solid 1px #ec1800;
 }
 
-
 /*--sidebar toggle---*/
 
 .sidebar-toggle-box {
@@ -1009,6 +1008,10 @@ ul.top-menu>li>a:focus {
     display: inline-block;
     font-size: 20px;
     color: #fff;
+}
+
+.sidebar-toggle-box .fa-bars:hover {
+  color: #ec1800;
 }
 
 .sidebar-closed>#sidebar>ul {
