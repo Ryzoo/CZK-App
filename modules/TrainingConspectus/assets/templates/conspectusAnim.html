@@ -97,6 +97,9 @@
                             <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Akcje" ng-click="changeCategories(mouseActionType.ARROW_ADD)">
                                 <i class="fa fa-long-arrow-right fa-2x" aria-hidden="true"></i>
                             </div>
+                            <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Akcje" ng-click="changeCategories(mouseActionType.SELECT)">
+                                <i class="fa fa-square-o fa-2x" aria-hidden="true"></i>
+                            </div>
                             <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Zawodnicy" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='PLAYER_ADD'">
                                 <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                             </div>
@@ -612,6 +615,62 @@
                                 </div>
                                 <div class='categoryItems'>
                                     <img src="/modules/TrainingConspectus/assets/media/flags/right/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
+                                </div>
+                            </div>
+                            <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='SELECT'">
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/white-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (3 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/white-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (4 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/white-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (5 punktów)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/grey-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (3 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/grey-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (4 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/grey-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (5 punktów)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/blue-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (3 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/blue-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (4 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/blue-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (5 punktów)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/purple-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (3 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/purple-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (4 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/purple-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (5 punktów)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/orange-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (3 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/orange-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (4 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/orange-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (5 punktów)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/red-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (3 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/red-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (4 punkty)">
+                                </div>
+                                <div class='categoryItems'>
+                                    <img src="/modules/TrainingConspectus/assets/media/select/red-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (5 punktów)">
                                 </div>
                             </div>
                         </div>
