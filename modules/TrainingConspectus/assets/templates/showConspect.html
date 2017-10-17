@@ -40,24 +40,7 @@
                                             <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
                                             <h5 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h5>
                                         </div>
-                                        <div class="elementTime">
-                                            <i class="fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
-                                            <p ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
-                                            <p ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
-                                        </div>
-                                        <div class="conspFullContenerElement">
-                                            <div class="conspFullElementE" ng-show="coElement.type!='simple'">
-                                                <i class="fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
-                                                <p><b>{{coElement.data.cwFieldType}}</b></p>
-                                            </div>
-                                            <div class="conspFullElementE" ng-show="coElement.type!='simple'">
-                                                <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
-                                                <p><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
-                                            </div>
-                                            <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">
-                                                <img data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{coElement.data.mainImgShow}}" data-gif='{{coElement.data.mainImg}}' alt="Zdjęcie poglądowe - {{coElement.dat.name}}">
-                                                <button type="button" class="waves-effect waves-light btn noPrint" ng-click="loadAndPlay(coElement.data.id)">Podgląd w odtwarzaczu</button>
-                                            </div>
+                                        <div class="leftConspectColumn">
                                             <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
                                                 <p><b>Opis:</b></br> {{coElement.data.cwOps}}</p>
                                             </div>
@@ -68,6 +51,31 @@
                                                 <p><b>Wskazówki:</b></br> {{coElement.data.cwOps}}</p>
                                             </div>
                                         </div>
+                                        <div class="middleConspectColumn">
+                                            <div class="elementTime">
+                                                <i class="fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
+                                                <p ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
+                                            </div>
+                                            <div class="conspFullContenerElement">
+                                                <div class="conspFullElementE" ng-show="coElement.type!='simple'">
+                                                    <i class="fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
+                                                    <p><b>{{coElement.data.cwFieldType}}</b></p>
+                                                </div>
+                                                <div class="conspFullElementE" ng-show="coElement.type!='simple'">
+                                                    <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
+                                                    <p><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
+                                                </div>
+                                                <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">
+                                                    <img data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{coElement.data.mainImgShow}}" data-gif='{{coElement.data.mainImg}}' alt="Zdjęcie poglądowe - {{coElement.dat.name}}">
+                                                    <button type="button" class="waves-effect waves-light btn noPrint" ng-click="loadAndPlay(coElement.data.id)">Podgląd w odtwarzaczu</button>
+                                                    <br/>
+                                                    <br/>
+                                                    <a href="{{coElement.data.mainImg}}" class="noPrint" download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz gif</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

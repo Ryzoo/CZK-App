@@ -28,6 +28,23 @@
     margin: 0;
 }
 
+.leftConspectColumn {
+    float: left;
+    width: 40%;
+}
+
+.middleConspectColumn {
+    float: left;
+    width: 60%;
+}
+
+@media screen and (max-width: 768px) {
+    .middleConspectColumn,
+    .leftConspectColumn {
+        width: 100%;
+    }
+}
+
 .conspectCwData {
     padding: 10px 10px 0;
 }
@@ -234,17 +251,13 @@ h6 {
 
 .imgElem img {
     width: 100%;
-    max-width: 500px;
+    height: auto;
 }
 
 .opsField {
     width: 50%;
     max-height: 200px;
     overflow-y: scroll;
-}
-
-.opsFieldE {
-    width: 50%;
 }
 
 .conspFullContenerElement {
