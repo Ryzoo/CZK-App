@@ -33,6 +33,8 @@
                         <img ng-show='anim.mainImg.length > 2' data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{anim.mainImgShow}}" data-gif='{{anim.mainImg}}' alt="Zdjęcie podglądowe - {{anim.name}}">
                         <h5 ng-hide='anim.mainImg.length > 2' class='powImg'>Brak podglądu</h5>
                     </div>
+                    <br/>
+                    <a href="{{anim.mainImg}}" class="noPrint" download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz gif</a>
                     <div class="row conspectCwData">
                         <div>
                             <i class="fa fa-map-marker fa-fw " aria-hidden="true"></i>
