@@ -1091,7 +1091,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var obj = createObjFromOther(obb);
             frameContainer[currentObjPerFrame].obj[i] = obj;
             mainLayer.add(frameContainer[currentObjPerFrame].obj[i]);
-            if (container == 'canvasContainer') rotateObject(frameContainer[currentObjPerFrame].obj[i].getAttr("id"), frameContainer[currentObjPerFrame].obj[i]);
         }
 
         for (var i = 0; i < frameContainer[currentObjPerFrame].arrow.length; i++) {
@@ -1541,12 +1540,27 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             var history = getAnchorHistoryFor(i + 1, objs[z].getAttr("id"));
                             var p1, p2, a, degree;
 
+                            // check if user rotate it
+                            p1 = getPosOnCurves(history.start, history.control, history.end, 0.9);
+                            p2 = getPosOnCurves(history.start, history.control, history.end, 1);
+                            var rotOffset = 0;
+                            if (p1.x > p2.x) rotOffset = 180;
+                            a = (p2.y - p1.y) / (p2.x - p1.x);
+                            degree = parseFloat(((Math.atan(a) * 180) / Math.PI) + rotOffset, 2).toFixed(2);
+                            var lastDegreee = parseDeg(parseInt(degree));
+                            var isReRotation = parseDeg(parseInt(objs[z].getAttr("rotation"))) != lastDegreee;
+                            console.log(lastDegreee);
+                            console.log(parseDeg(parseInt(objs[z].getAttr("rotation"))));
                             p1 = getPosOnCurves(history.start, history.control, history.end, (x / 24));
                             p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / 24));
                             var rotOffset = 0;
                             if (p1.x > p2.x) rotOffset = 180;
                             a = (p2.y - p1.y) / (p2.x - p1.x);
-                            degree = parseFloat(((Math.atan(a) * 180) / Math.PI) + rotOffset, 2).toFixed(2);
+                            degree = parseDeg(parseFloat(((Math.atan(a) * 180) / Math.PI) + rotOffset, 2).toFixed(2));
+
+                            if (isReRotation) {
+                                degree = parseFloat(degree) + Math.abs(lastDegreee - parseDeg(parseInt(objs[z].getAttr("rotation"))));
+                            }
 
                             var obj = new Konva.Image({
                                 x: p1.x,
@@ -1665,6 +1679,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
         }
         return animationFrames;
+    }
+
+    function parseDeg(deg) {
+        deg = parseFloat(deg);
+        if (deg >= 0) return deg;
+        return 360 + deg;
     }
 
     function playAnimate() {
