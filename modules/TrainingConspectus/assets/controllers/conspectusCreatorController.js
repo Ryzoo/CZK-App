@@ -13,6 +13,21 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.animId = -1;
     $scope.turnOnHelperNet = false;
     $scope.turnOnHekperFullScreen = false;
+    $scope.fullElement = null;
+
+    $("#animCreator").niceScroll({
+        cursorborderradius: '0px', // Scroll cursor radius
+        cursorborder: 'none',
+        scrollspeed: 60, // scrolling speed
+        emulatetouch: true,
+        hwacceleration: true,
+        smoothscroll: true,
+        bouncescroll: true,
+        mousescrollstep: 30, // scrolling speed with mouse wheel (pixel)
+        background: 'transparent', // The scrollbar rail color
+        cursorwidth: '4px', // Scroll cursor width
+        cursorcolor: '#a51100'
+    });
 
     $scope.cwName = '';
     $scope.gif = '';
@@ -988,25 +1003,24 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function goToFull() {
-        var elem = document.getElementById("animCreator");
-        if (elem.requestFullScreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullScreen) {
-            elem.webkitRequestFullScreen();
-        } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
+        $scope.fullElement = document.getElementById("animCreator");
+        if ($scope.fullElement.requestFullScreen) {
+            $scope.fullElement.requestFullscreen();
+        } else if ($scope.fullElement.webkitRequestFullScreen) {
+            $scope.fullElement.webkitRequestFullScreen();
+        } else if ($scope.fullElement.mozRequestFullScreen) {
+            $scope.fullElement.mozRequestFullScreen();
         }
     }
 
     $scope.endFromFull = function(endFromCreator = true) {
-        if (endFromCreator) showAnimCreator = false;
-        var elem = document.getElementById("animCreator");
-        if (elem.cancelFullScreen) {
-            elem.cancelFullScreen();
-        } else if (elem.webkitCancelFullScreen) {
-            elem.webkitCancelFullScreen();
-        } else if (elem.mozCancelFullScreen) {
-            elem.mozCancelFullScreen();
+        if (endFromCreator) $scope.showAnimCreator = false;
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
         }
     }
 
@@ -1622,7 +1636,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if ($scope.turnOnHekperFullScreen) {
             goToFull();
         } else {
-            $scope.endFromFull();
+            $scope.endFromFull(false);
         }
     });
 

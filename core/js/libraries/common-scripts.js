@@ -26,6 +26,7 @@ $("#sidebar").niceScroll({
     cursorcolor: '#a51100'
 });
 
+
 var Script = function() {
 
     $(function() {
