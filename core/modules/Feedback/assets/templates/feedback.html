@@ -11,17 +11,11 @@
                         Zgłaszanie błędu w działaniu platformy Club Management Center
                     </div>
                     <div class="row" ng-show="feedType=='opinia'">
-                        <h6>Zachęcamy do napisania kilku zdań na temat naszej platformy.
-                        Codziennie dokładamy wszelkich starań, aby każdy był zadowolony z jej działania i funkcjonalności,
-                        dlatego też każde dobre słowo, jak i konstruktywna krytyka będzie dla nas na wagę złota.
-                        Możesz również napisać, czego brakuje Ci w Club Management Center - postaramy się to nadrobić.<br/>
-                        Pozdrawiamy, zespół <b>Club Management Center.</b></h6>
+                        <h6>Zachęcamy do napisania kilku zdań na temat naszej platformy. Codziennie dokładamy wszelkich starań, aby każdy był zadowolony z jej działania i funkcjonalności, dlatego też każde dobre słowo, jak i konstruktywna krytyka będzie dla
+                            nas na wagę złota. Możesz również napisać, czego brakuje Ci w Club Management Center - postaramy się to nadrobić.<br/> Pozdrawiamy, zespół <b>Club Management Center.</b></h6>
                     </div>
                     <div class="row" ng-hide="feedType=='opinia'">
-                        <h6>Napotkałeś błąd podczas korzystania z naszej platformy?
-                        Napisz nam o tym błędzie, a natychmiast się nim zajmiemy!
-                        Z góry przepraszamy za wszelkie utrudnienia.<br/>
-                        Pozdrawiamy, zespół <b>Club Management Center.</b></h6>
+                        <h6>Napotkałeś błąd podczas korzystania z naszej platformy? Napisz nam o tym błędzie, a natychmiast się nim zajmiemy! Z góry przepraszamy za wszelkie utrudnienia.<br/> Pozdrawiamy, zespół <b>Club Management Center.</b></h6>
                     </div>
                     <div class="row" style='margin: 20px !important;'>
                         <div class="input-field col s12">
@@ -36,20 +30,9 @@
             </div>
         </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
-        <div class="preloader-wrapper big active" style="margin-left: 45%">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
         </div>
     </div>
 </div>

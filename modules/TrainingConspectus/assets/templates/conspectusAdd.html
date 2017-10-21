@@ -62,12 +62,11 @@
                                 <div class="actions">
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="input-field col s12 m5">
+                                            <div class="input-field col s12 m6">
                                                 <button type="button" class="waves-effect waves-light btn" ng-click="addSimpleFieldCo('coStart');">proste pole + </button>
                                             </div>
-                                            <div class="input-field col s12 m7">
-                                                <input type="text" id="autocomplete-start" class="autocomplete">
-                                                <label for="autocomplete-start">Lub wpisz nazwę ćwiczenia do dodania</label>
+                                            <div class="input-field col s12 m6">
+                                                <button type="button" class="waves-effect waves-light btn" ng-click="selectFromWidget('coStart');">Wybierz cwiczenie</button>
                                             </div>
                                         </div>
                                     </div>
@@ -82,12 +81,11 @@
                                 <div class="actions">
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="input-field col s12 m5">
+                                            <div class="input-field col s12 m6">
                                                 <button type="button" class="waves-effect waves-light btn" ng-click="addSimpleFieldCo('coMiddle');">proste pole + </button>
                                             </div>
-                                            <div class="input-field col s12 m7">
-                                                <input type="text" id="autocomplete-middle" class="autocomplete">
-                                                <label for="autocomplete-middle">Lub wpisz nazwę ćwiczenia do dodania</label>
+                                            <div class="input-field col s12 m6">
+                                                <button type="button" class="waves-effect waves-light btn" ng-click="selectFromWidget('coMiddle');">Wybierz cwiczenie</button>
                                             </div>
                                         </div>
                                     </div>
@@ -102,12 +100,11 @@
                                 <div class="actions">
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="input-field col s12 m5">
+                                            <div class="input-field col s12 m6">
                                                 <button type="button" class="waves-effect waves-light btn" ng-click="addSimpleFieldCo('coEnd');">proste pole + </button>
                                             </div>
-                                            <div class="input-field col s12 m7">
-                                                <input type="text" id="autocomplete-end" class="autocomplete">
-                                                <label for="autocomplete-end">Lub wpisz nazwę ćwiczenia do dodania</label>
+                                            <div class="input-field col s12 m6">
+                                                <button type="button" class="waves-effect waves-light btn" ng-click="selectFromWidget('coEnd');">Wybierz cwiczenie</button>
                                             </div>
                                         </div>
                                     </div>
@@ -128,19 +125,9 @@
             </div>
         </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:30%; width: 60%; margin-left: auto; margin-right: auto;">
-        <div class="preloader-wrapper big active" style="margin-left: 40%">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
         </div>
     </div>
 </div>

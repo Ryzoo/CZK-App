@@ -23,17 +23,17 @@
                             </div>
                         </div>
                         <div class="form-group col s12">
-                            <div class="row" ng-init=" payDay=0; payWeek=0; payMonth=0; " >
+                            <div class="row" ng-init=" payDay=0; payWeek=0; payMonth=0; ">
                                 <div class="input-field col s12 m4">
                                     <input id='payForDay' ng-disabled="payMonth != '0' || payWeek !='0'" ng-model="payDay" type="number" placeholder="Co ile dni ?" class="validate" min="0" max="30">
                                     <label for="payForDay">Co ile dni ?</label>
                                 </div>
                                 <div class="input-field col s12 m4">
-                                    <input id='payForWeek' ng-disabled="payDay != '0' || payMonth !='0' " ng-model="payWeek" type="number" placeholder="Co ile tygodni ?" class="validate"  min="0" max="30">
+                                    <input id='payForWeek' ng-disabled="payDay != '0' || payMonth !='0' " ng-model="payWeek" type="number" placeholder="Co ile tygodni ?" class="validate" min="0" max="30">
                                     <label for="payForWeek">Co ile tygodni ?</label>
                                 </div>
                                 <div class="input-field col s12 m4">
-                                    <input id='payForMonth' ng-disabled="payWeek != '0' || payDay !='0'" ng-model="payMonth" type="number" placeholder="Co ile miesięcy ?" class="validate"  min="0" max="30">
+                                    <input id='payForMonth' ng-disabled="payWeek != '0' || payDay !='0'" ng-model="payMonth" type="number" placeholder="Co ile miesięcy ?" class="validate" min="0" max="30">
                                     <label for="payForMonth">Co ile miesięcy ?</label>
                                 </div>
                             </div>
@@ -79,20 +79,9 @@
             </div>
         </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
-        <div class="preloader-wrapper big active" style="margin-left: 45%">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
         </div>
     </div>
 </div>

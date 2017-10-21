@@ -62,20 +62,9 @@
             <p ng-hide='canGetMorePost' class='center-align'>To już niestety wszystkie posty</p>
         </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
-        <div class="preloader-wrapper big active" style="margin-left: 45%">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
         </div>
     </div>
 </div>

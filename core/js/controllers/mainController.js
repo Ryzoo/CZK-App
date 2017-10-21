@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request, $compile,$location) {
+app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request, $compile, $location) {
     $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD", "STAFF"];
     $scope.contentLoaded = false;
     $rootScope.newNotify = [];
@@ -9,6 +9,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $scope.showAllNewsNotify = false;
     $rootScope.editConspectWithId = null;
     $rootScope.consepectShowId = null;
+    $rootScope.widgetResponse = null;
     $rootScope.user = {
         email: "",
         token: "",
@@ -30,7 +31,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     }
     $rootScope.feedType = 'opinia';
 
-    $scope.goFeed = function(type){
+    $scope.goFeed = function(type) {
         $rootScope.feedType = type;
         $location.url("/feedback");
     }
@@ -47,6 +48,25 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
             $scope.showAllNewsNotify = false;
         }
     }
+
+    $rootScope.closeWidget = function(response = null) {
+        $rootScope.widgetResponse = response;
+        $("#widgetContainer").hide("slide", {}, 200);
+    }
+
+    $rootScope.showWidget = function(widgetName, moduleName) {
+        $.get("modules/" + moduleName + "/assets/widget/" + widgetName + ".html", function(data) {
+            data = "<button class='waves-effect waves-light btn widgetClose' style='width:100%' ng-click='closeWidget();' >Zamknij okno</button>" + data;
+            var content = $compile(data)($scope);
+            $('.widgetContentContainer').html('');
+            $('.widgetContentContainer').append(content);
+            $("#widgetContainer").show("slide", {}, 200);
+        });
+    }
+
+    $(document).keyup(function(e) {
+        if (e.keyCode === 27) $rootScope.closeWidget();
+    });
 
     $scope.mainInit = function() {
 

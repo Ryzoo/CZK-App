@@ -84,7 +84,7 @@ text tspan {
 /* --- SIDEBAR --- */
 
 #sidebar {
-    background: #2a2a2a;
+    background: #1a1a1a;
 }
 
 ul.sidebar-menu li a.active,
@@ -130,7 +130,7 @@ ul.sidebar-menu li ul.sub li {
 /* --- TOPBAR --- */
 
 .topbar {
-    background: #a51100;
+    background: #a32d1f;
 }
 
 nav ul a:hover {
@@ -139,10 +139,11 @@ nav ul a:hover {
 
 .fa-color {
     color: #fff;
+    transition: all .2s;
 }
 
 .fa-color:hover {
-    color: #ec1800;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .notifyContenerTitle {

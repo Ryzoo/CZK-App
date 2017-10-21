@@ -41,7 +41,7 @@
             "parameters": ["id"]
         }
     ],
-    "jsControllers": ["TrainingConspectusController", "conspectusCreatorController", "showConspectController"],
+    "jsControllers": ["TrainingConspectusController", "conspectusCreatorController", "showConspectController", "TrainingListAdditionalController"],
     "css": ["style", "gifplayer"],
     "js": ["LZWEncoder", "NeuQuant", "GIFEncoder", "b64", "gifplayer"],
     "frontendRoute": [

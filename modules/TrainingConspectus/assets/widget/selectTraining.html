@@ -1,6 +1,5 @@
-<div ng-init="setPerm(['STAFF','TRENER','KOORD','ZAWODNIK'])"></div>
-<div class="section" ng-controller='TrainingConspectusController' ng-init="initConsAnimList()">
-    <div ng-show='showContent' class="row" ng-controller="conspectusCreatorController">
+<div class="section" ng-controller='TrainingListAdditionalController' ng-init="initConsAnimList()">
+    <div ng-show='showContent' class="row">
         <div class="col s12">
             <div class="card">
                 <div class="card-content" style='padding-bottom: 0 !important;'>
@@ -25,6 +24,7 @@
                                 <div ng-click="deleteAnimCon(anim.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></div>
                             </div>
                         </div>
+                        <button type="button" class="waves-effect waves-light btn" ng-click="closeWidget({name: anim.name,id: anim.id});">Wybierz</button>
                     </div>
                     <div class="row imgConspectAnim">
                         <img ng-show='anim.mainImg.length > 2' data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{anim.mainImgShow}}" data-gif='{{anim.mainImg}}' alt="Zdjęcie podglądowe - {{anim.name}}">

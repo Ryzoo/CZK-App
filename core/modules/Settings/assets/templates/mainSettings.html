@@ -2,18 +2,28 @@
 
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="initMainSettings()">
-        <div class="col s12 m4">
+        <div class="col s12 m10 offset-m1">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
-                        Ustawienia
+                        Główne dane i ustawienia
                     </div>
                     <div class="row">
                         <div class="form-group ">
                             <div class="row">
-                                <div class="input-field col s12">
-                                    <input value="{{mainSettings.appName}}" id="appName" type="text" class="validate">
-                                    <label for="appName">Nazwa aplikacji</label>
+                                <div class="input-field col s12 m10 offset-m1">
+                                    <input type="text" disabled value="{{mainSettings.appVersion}}">
+                                    <label for="appName">Aktualna wersja aplikacji</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="input-field col s12 m10 offset-m1">
+                                            <input value="{{mainSettings.appName}}" id="appName" type="text" class="validate">
+                                            <label for="appName">Nazwa aplikacji</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -21,43 +31,10 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m8">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-title">
-                            Aktualizacje
-                        </div>
-                        <div class="row">
-                            <div class="form-group ">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <input type="text"disabled value="{{mainSettings.appVersion}}">
-                                        <label for="appName">Aktualna wersja aplikacji</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <button type="button" class="waves-effect waves-light btn" ng-click="checkAppUpdate()">Sprawdź aktualizację</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
     </div>
-    <div ng-hide='showContent' style="position:relative; margin-top:15%; width: 60%; margin-left: auto; margin-right: auto;">
-        <h3 style='text-align:center;'>Wczytywanie zawartości...</h3>
-        <div class="preloader-wrapper big active" style="margin-left: 45%">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
         </div>
     </div>
 </div>

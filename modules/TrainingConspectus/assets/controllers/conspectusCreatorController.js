@@ -193,14 +193,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $scope.selectedField.src = src;
     }
 
-    $(document).off('keyup');
-    $(document).on("keyup", function(e) {
-        if (e.keyCode == 46) { // delete
-            deleteCurrent();
-        } else if (e.keyCode == 27) { // esc
-            exitPlayer();
-        }
-    });
     $(document).off('click touch', '#canActionPlay');
     $(document).on('click touch', '#canActionPlay', function() {
         showPlayer();

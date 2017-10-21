@@ -14,6 +14,11 @@
 </head>
 
 <body ng-controller="accountController">
+    <div id="widgetContainer">
+        <div class="widgetContentContainer">
+        </div>
+    </div>
+
     <div id='canvasPlayer' class="noPrint">
         <div id="playerContent">
             <div id="playerData">
@@ -213,7 +218,7 @@
         success: function(msg) {
             if (msg.success) {
                 JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js");
-                JavaScript.load("//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js");
+                JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js");
                 JavaScript.load("/core/js/services.js");
                 for (var x = 0; x < msg.data.length; x++) {
                     JavaScript.load(msg.data[x]);
