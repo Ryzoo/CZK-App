@@ -222,6 +222,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $(document).on('click touch', '#canActionRotLeft', function() {
         rotateCurrent(-45);
     });
+    $(document).off('click touch', '#scaleUpButton');
+    $(document).on('click touch', '#scaleUpButton', function() {
+        scaleCurrent(0.1);
+    });
+    $(document).off('click touch', '#scaleDownButton');
+    $(document).on('click touch', '#scaleDownButton', function() {
+        scaleCurrent(-0.1);
+    });
     $(document).off('click touch', '#canActionDel');
     $(document).on('click touch', '#canActionDel', function() {
         deleteCurrent();
@@ -269,6 +277,17 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function rotateCurrent(rot) {
         if ($scope.lastSelected) {
             $scope.lastSelected.rotate(rot);
+            selectedFrame.draw();
+        }
+    }
+
+    function scaleCurrent(scale) {
+        if ($scope.lastSelected) {
+            var newScale = {
+                x: $scope.lastSelected.scale().x + scale,
+                y: $scope.lastSelected.scale().y + scale,
+            };
+            $scope.lastSelected.scale(newScale);
             selectedFrame.draw();
         }
     }
@@ -620,6 +639,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 dash: other.getAttr("dash"),
                 lineCap: other.getAttr("lineCap"),
                 tension: other.getAttr("tension"),
+                scale: other.getAttr("scale"),
                 id: other.getAttr("id")
             });
         } else {
@@ -633,6 +653,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 lineJoin: other.attrs.lineJoin,
                 dash: other.attrs.dash,
                 lineCap: other.attrs.lineCap,
+                scale: {
+                    x: other.attrs.scaleX,
+                    y: other.attrs.scaleY
+                },
                 tension: other.attrs.tension,
                 id: other.attrs.id
             });
@@ -657,6 +681,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 rotation: other.getAttr("rotation"),
                 image: other.getAttr("image"),
                 name: other.getAttr("name"),
+                scale: other.getAttr("scale"),
                 id: other.getAttr("id")
             });
         } else {
@@ -669,6 +694,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 offsetY: other.attrs.offsetY,
                 rotation: other.attrs.rotation,
                 image: newImg,
+                scale: {
+                    x: other.attrs.scaleX,
+                    y: other.attrs.scaleY
+                },
                 name: other.attrs.name,
                 id: other.attrs.id
             });
@@ -709,6 +738,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 name: other.getAttr("name"),
                 fill: other.getAttr("fill"),
                 stroke: other.getAttr("stroke"),
+                scale: other.getAttr("scale"),
                 strokeWidth: other.getAttr("strokeWidth"),
                 id: other.getAttr("id")
             });
@@ -727,6 +757,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 name: other.attrs.name,
                 fill: other.attrs.fill,
                 stroke: other.attrs.stroke,
+                scale: {
+                    x: other.attrs.scaleX,
+                    y: other.attrs.scaleY
+                },
                 strokeWidth: other.attrs.strokeWidth,
                 id: other.attrs.id
             });
@@ -1282,6 +1316,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             dash: arrows[z].getAttr("dash"),
                             lineCap: arrows[z].getAttr("lineCap"),
                             tension: arrows[z].getAttr("tension"),
+                            scale: arrows[z].getAttr("scale"),
                             id: arrows[z].getAttr("id")
                         });
                         arrowsArray.push(arrow);
@@ -1296,6 +1331,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             name: shapes[z].getAttr("name"),
                             fill: shapes[z].getAttr("fill"),
                             stroke: shapes[z].getAttr("stroke"),
+                            scale: shapes[z].getAttr("scale"),
                             strokeWidth: shapes[z].getAttr("strokeWidth"),
                             id: shapes[z].getAttr("id")
                         });
@@ -1324,6 +1360,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                                 rotation: degree,
                                 image: objs[z].getAttr("image"),
                                 name: objs[z].getAttr("name"),
+                                scale: objs[z].getAttr("scale"),
                                 id: objs[z].getAttr("id")
                             });
                         } else {
@@ -1335,6 +1372,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                                 rotation: objs[z].getAttr("rotation"),
                                 image: objs[z].getAttr("image"),
                                 name: objs[z].getAttr("name"),
+                                scale: objs[z].getAttr("scale"),
                                 id: objs[z].getAttr("id"),
                             });
                         }
@@ -1361,6 +1399,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         name: arrows[z].getAttr("name"),
                         lineJoin: arrows[z].getAttr("lineJoin"),
                         dash: arrows[z].getAttr("dash"),
+                        scale: arrows[z].getAttr("scale"),
                         lineCap: arrows[z].getAttr("lineCap"),
                         tension: arrows[z].getAttr("tension"),
                         id: arrows[z].getAttr("id")
@@ -1375,6 +1414,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         sceneFunc: shapes[z].getAttr("sceneFunc"),
                         name: shapes[z].getAttr("name"),
                         fill: shapes[z].getAttr("fill"),
+                        scale: shapes[z].getAttr("scale"),
                         stroke: shapes[z].getAttr("stroke"),
                         strokeWidth: shapes[z].getAttr("strokeWidth"),
                         id: shapes[z].getAttr("id")
@@ -1392,6 +1432,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         offsetY: objs[z].getAttr("offsetY"),
                         rotation: objs[z].getAttr("rotation"),
                         image: objs[z].getAttr("image"),
+                        scale: objs[z].getAttr("scale"),
                         name: objs[z].getAttr("name"),
                         id: objs[z].getAttr("id")
                     });
