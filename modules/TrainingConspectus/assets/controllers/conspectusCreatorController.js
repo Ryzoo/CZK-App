@@ -1577,7 +1577,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         encoder.start();
 
         var mainPlay = setInterval(function() {
-            actualPlayerFrame++;
             if (actualPlayerFrame >= allAnimFrame.length) {
                 window.clearInterval(mainPlay);
                 turnOnAllSter();
@@ -1616,8 +1615,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     id: $scope.animId,
                     name: $scope.animName,
                     tags: allTagString,
-                    mainImg: allAnimFrame.length <= 1 ? '' : $scope.gif,
-                    mainImgShow: allAnimFrame.length <= 1 ? '' : selectedFrame.toCanvas().toDataURL("image/jpg").split(',')[1],
+                    mainImg: allAnimFrame.length <= 0 ? '' : $scope.gif,
+                    mainImgShow: allAnimFrame.length <= 0 ? '' : selectedFrame.toCanvas().toDataURL("image/jpg").split(',')[1],
                     animFrame: JSON.stringify(allObj),
                     anchorHistory: JSON.stringify(anchorHistory),
                     fieldImage: $scope.isSelectedField ? $scope.fieldImage.src : '',
@@ -1644,6 +1643,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
                 encoder.addFrame(selectedFrame.toCanvas().getContext('2d', { alpha: false }));
                 $("#playerData p").first().text("Renderowanie animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
+                actualPlayerFrame++;
             }
         }, 40);
     }

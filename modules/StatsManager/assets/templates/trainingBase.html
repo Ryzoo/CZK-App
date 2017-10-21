@@ -1,0 +1,53 @@
+<div ng-init="setPerm(['STAFF','TRENER','KOORD'])"></div>
+<div class="section">
+    <div ng-show='showContent' class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <div class="card-title">
+                        Filtr wyszukiwania
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m8 offset-m2">
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, tag, nazwę' ng-model='searchText'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m10 offset-m1">
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <div class="card-title" style='margin-bottom: 0 !important; text-align:left;'>
+                        Lista treningów
+                    </div>
+                    <div class="row">
+                        <ul class="collapsible" data-collapsible="accordion" style='margin: 0 20px;'>
+                            <li ng-repeat="training in trainingBase | filter:searchText">
+                                <div class="collapsible-header ">{{training.name}}</div>
+                                <div class="collapsible-body">
+                                    {{training.content}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' style="position:relative; margin-top:30%; width: 60%; margin-left: auto; margin-right: auto;">
+        <div class="preloader-wrapper big active" style="margin-left: 40%">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

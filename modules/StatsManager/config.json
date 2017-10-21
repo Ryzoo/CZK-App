@@ -57,7 +57,7 @@
     ],
     "js": ["chart.min"],
     "css": ["style"],
-    "jsControllers": ["myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController"],
+    "jsControllers": ["myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController", "trainingBaseController"],
     "frontendRoute": [{
             "url": "myStats",
             "templateSrc": "myStats.html",
@@ -82,6 +82,11 @@
             "url": "newScore",
             "templateSrc": "newScore.html",
             "controllerName": "newScoreController"
+        },
+        {
+            "url": "trainingBase",
+            "templateSrc": "trainingBase.html",
+            "controllerName": "trainingBaseController"
         }
     ],
     "anchor": [{
@@ -138,6 +143,17 @@
                 "link": {
                     "label": "Statystyki drużynowe",
                     "url": "#!/teamStatistic"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Testy / statystyki",
+            "anchorPointIcon": "fa fa-bar-chart fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Baza treningów",
+                    "url": "#!/trainingBase"
                 }
             }
         }
