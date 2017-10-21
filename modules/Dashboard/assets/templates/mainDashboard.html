@@ -1,8 +1,51 @@
 <div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK','STAFF'])"></div>
 <div class="section" ng-init="getAllEvents();">
-    <div ng-show='showContent' class="row">
-        <div class="col s12 m6 l4">
-            <div class="row">
+    <div ng-show='showContent'>
+        <div class="fElementRowConainer">
+            <div class="f50" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            PODSUMOWANIE PŁATNOŚCI
+                        </div>
+                        <div class="row">
+                            <div class="col s12" ng-controller='paymentController'>
+                                <div class="row" ng-init='getPaymentSummary()'>
+                                    <p class="paymentPrice">Wystawione <b>{{paymentSummary.all}}</b> zł w tym: </p>
+                                    <p class="paymentPrice">Zakończone: <b>{{paymentSummary.completed}}</b> zł</p>
+                                    <p class="paymentPrice">Oczekujące: <b>{{paymentSummary.waiting}}</b> zł</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="#!/payment">Przejdź do płatności ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f50" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            INFORAMCJE O LICENCJI
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m10 offset-m1">
+                                <p>Data wygaśnięcia licencji: <span style='font-weight: bold'> {{mainSettings.licenseEnd}} </span></p>
+                                <p>Pozostało: <span style='font-weight: bold' class='licenseEndDay'> {{dayToDate(mainSettings.licenseEnd)}} </span> dni</p>
+                                <p>Wersja licencji: <span style='font-weight: bold'> {{mainSettings.licenseType}} </span></p>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="https://sklep.centrumklubu.pl">Przejdź do sklepu Centrum Klubu ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fElementRowConainer">
+            <div class="f33">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
@@ -32,12 +75,74 @@
                             </div>
                         </div>
                         <div class="row">
-                            <a href="#!/calendar">Przejdź do kalendarza></a>
+                            <a href="#!/calendar">Przejdź do kalendarza ></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="f33">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            OSTATNIA AKTYWNOŚĆ
+                        </div>
+                        <div class="row">
+                            <div class="col s12" ng-show='isLoadedPost'>
+                                <p class="col s12 centered" style="padding-top:15px;">
+                                    <img src="{{lastPost[0].user_img_path}}" class="circle" width="60" height="60">
+                                </p>
+                                <div class="titleIn"><b>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</b></div>
+                                <div style='font-size: 13px; padding-left: 20px; padding-right: 20px'>
+                                    {{lastPost[0].content | limitTo : 100}}{{lastPost[0].content.length > 100 ? "..." : ""}}
+                                </div>
+                                <div style='font-size: 10px; padding-top: 10px;'><b class='prettydate'>{{lastPost[0].date_add}}</b></div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="#!/tab">Przejdź do tablicy ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f33">
+                <div class="card">
+                    <div class="card-content" ng-controller="todoController" ng-init='initToDo();'>
+                        <div class="card-title">
+                            MOJE ZADANIA
+                        </div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="row">
+                                        <div class="todoColorPicker">
+                                            <div class="todoColorPink" ng-click="selectColor('#de5c8a');"></div>
+                                            <div class="todoColorPurple" ng-click="selectColor('#8754a3');"></div>
+                                            <div class="todoColorRoyal" ng-click="selectColor('#5579b7');"></div>
+                                            <div class="todoColorTurquoise" ng-click="selectColor('#17ae9f');"></div>
+                                        </div>
+                                    </div>
+                                    <form class="col s12" id='todoAdd'>
+                                        <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia" onsubmit="addTodo()"></input>
+                                        <button ng-click="addTodo()" id='todoButton'><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                                <div class="col s12">
+                                    <ul class="collection todoTable">
+                                        <li class="collection-item" ng-repeat="tod in todoList |orderBy: '-date_add' | limitTo: 10">
+                                            <div class='todoColorMain ' style='background:{{tod.color}};'></div>
+                                            {{tod.title}}
+                                            <button ng-click="endTodo(tod.id)">
+                                                <i class="fa fa-check fa-4x" aria-hidden="true"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f33">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
@@ -95,99 +200,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <a href="#!/timetable">Przejdź do planu zajęć</a>
+                            <a href="#!/timetable">Przejdź do planu zajęć > </a>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <div class="row" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-title">
-                            PODSUMOWANIE PŁATNOŚCI
-                        </div>
-                        <div class="row">
-                            <div class="col s12" ng-controller='paymentController'>
-                                <div class="row" ng-init='getPaymentSummary()'>
-                                    <div class="paymentPrice">Wystawione <b>{{paymentSummary.all}}</b> zł w tym: </div>
-                                    <div class="paymentPrice">Zakończone: <b>{{paymentSummary.completed}}</b> zł</div>
-                                    <div class="paymentPrice">Oczekujące: <b>{{paymentSummary.waiting}}</b> zł</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-top: 15px;">
-                            <a href="#!/payment">Przejdź do płatności ></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l4">
-            <div class="row">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-title">
-                            OSTATNIA AKTYWNOŚĆ
-                        </div>
-                        <div class="row">
-                            <div class="col s12" ng-show='isLoadedPost'>
-                                <p class="col s12 centered" style="padding-top:15px;">
-                                    <img src="{{lastPost[0].user_img_path}}" class="circle" width="60" height="60">
-                                </p>
-                                <div class="titleIn"><b>{{lastPost[0].firstname}} {{lastPost[0].lastname}}</b></div>
-                                <div style='font-size: 13px; padding-left: 20px; padding-right: 20px'>
-                                    {{lastPost[0].content}}
-                                </div>
-                                <div style='font-size: 10px; padding-top: 10px;'><b class='prettydate'>{{lastPost[0].date_add}}</b></div>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-top: 15px;">
-                            <a href="#!/tab">Przejdź do tablicy ></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
-        <div class="col s12 m6 l4">
-            <div class="card">
-                <div class="card-content" ng-controller="todoController" ng-init='initToDo();'>
-                    <div class="card-title">
-                        MOJE ZADANIA
-                    </div>
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="row">
-                                    <div class="todoColorPicker">
-                                        <div class="todoColorPink" ng-click="selectColor('#de5c8a');"></div>
-                                        <div class="todoColorPurple" ng-click="selectColor('#8754a3');"></div>
-                                        <div class="todoColorRoyal" ng-click="selectColor('#5579b7');"></div>
-                                        <div class="todoColorTurquoise" ng-click="selectColor('#17ae9f');"></div>
-                                    </div>
-                                </div>
-                                <form class="col s12" id='todoAdd'>
-                                    <input type='text' id='todoText' placeholder="Wpisz tekst przypomnienia" onsubmit="addTodo()"></input>
-                                    <button ng-click="addTodo()" id='todoButton'><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-                            <div class="col s12">
-                                <ul class="collection todoTable">
-                                    <li class="collection-item" ng-repeat="tod in todoList |orderBy: '-date_add' | limitTo: 10">
-                                        <div class='todoColorMain ' style='background:{{tod.color}};'></div>
-                                        {{tod.title}}
-                                        <button ng-click="endTodo(tod.id)">
-                                            <i class="fa fa-check fa-4x" aria-hidden="true"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
     </div>
     <div ng-hide='showContent' class='loaderContainer'>
         <div id="loader-wrapper">

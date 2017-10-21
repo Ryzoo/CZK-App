@@ -54,6 +54,17 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         $("#widgetContainer").hide("slide", {}, 200);
     }
 
+    $rootScope.dayToDate = function(date) {
+        var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+        var firstDate = new Date();
+        var secondDate = new Date(date.split('/')[2], date.split('/')[1], date.split('/')[0]);
+
+        var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
+        var color = diffDays > 30 ? '#30a42e' : diffDays < 14 ? '#a32d1f' : '#eab233';
+        $('.licenseEndDay').css("color", color);
+        return diffDays;
+    }
+
     $rootScope.showWidget = function(widgetName, moduleName) {
         $.get("modules/" + moduleName + "/assets/widget/" + widgetName + ".html", function(data) {
             data = "<button class='waves-effect waves-light btn widgetClose' style='width:100%' ng-click='closeWidget();' >Zamknij okno</button>" + data;

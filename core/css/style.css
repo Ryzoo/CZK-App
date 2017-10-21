@@ -47,6 +47,33 @@ Premium: http://www.gridgum.com
     animation: spin-reverse .9s linear infinite;
 }
 
+.fElementRowConainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.f50 {
+    width: 50%;
+}
+
+.f33 {
+    width: 33.3%;
+}
+
+@media (max-width:768px) {
+    .f33 {
+        width: 50%;
+    }
+}
+
+@media (max-width:630px) {
+    .f33,
+    .f50 {
+        width: 100%;
+    }
+}
+
 #loader::after {
     content: "";
     position: absolute;
