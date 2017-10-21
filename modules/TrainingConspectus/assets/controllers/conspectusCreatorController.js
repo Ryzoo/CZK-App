@@ -11,6 +11,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.onlyPlayer = false;
     $scope.orientation = 'landscape';
     $scope.animId = -1;
+    $scope.turnOnHelperNet = false;
+    $scope.turnOnHekperFullScreen = false;
 
     $scope.cwName = '';
     $scope.gif = '';
@@ -947,7 +949,65 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 shape.draggable(true);
             });
         }
+        checkHelperNet();
         resize();
+    }
+
+    function checkHelperNet() {
+        if ($scope.turnOnHelperNet) {
+            var helperLayer = new Konva.Layer();
+            var canvasWidth = selectedFrame.getAttr('width');
+            var canvasHeight = selectedFrame.getAttr('height');
+            var pos = canvasWidth / 16;
+
+            while (pos < canvasWidth) {
+                var whiteLine = new Konva.Line({
+                    points: [pos, 0, pos, canvasHeight],
+                    stroke: 'white',
+                    strokeWidth: 1,
+                    lineCap: 'round',
+                    lineJoin: 'round'
+                });
+                helperLayer.add(whiteLine);
+                pos += canvasWidth / 16;
+            }
+            pos = canvasHeight / 10;
+            while (pos < canvasHeight) {
+                var whiteLine = new Konva.Line({
+                    points: [0, pos, canvasWidth, pos],
+                    stroke: 'white',
+                    strokeWidth: 1,
+                    lineCap: 'round',
+                    lineJoin: 'round'
+                });
+                helperLayer.add(whiteLine);
+                pos += canvasHeight / 10;
+            }
+            selectedFrame.add(helperLayer);
+        }
+    }
+
+    function goToFull() {
+        var elem = document.getElementById("animCreator");
+        if (elem.requestFullScreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        }
+    }
+
+    $scope.endFromFull = function(endFromCreator = true) {
+        if (endFromCreator) showAnimCreator = false;
+        var elem = document.getElementById("animCreator");
+        if (elem.cancelFullScreen) {
+            elem.cancelFullScreen();
+        } else if (elem.webkitCancelFullScreen) {
+            elem.webkitCancelFullScreen();
+        } else if (elem.mozCancelFullScreen) {
+            elem.mozCancelFullScreen();
+        }
     }
 
     function resize() {
@@ -1552,8 +1612,25 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     }
 
+    $(document).off('change', '#turnOnHelperNet');
+    $(document).on('change', '#turnOnHelperNet', function() {
+        drawNewStage();
+    });
+
+    $(document).off('change', '#turnOnHekperFullScreen');
+    $(document).on('change', '#turnOnHekperFullScreen', function() {
+        if ($scope.turnOnHekperFullScreen) {
+            goToFull();
+        } else {
+            $scope.endFromFull();
+        }
+    });
+
+
+
 
     function renderAnim() {
+        $scope.turnOnHelperNet = false;
         isPlayerOpen = true;
         delete allAnimFrame;
         allAnimFrame = null;
