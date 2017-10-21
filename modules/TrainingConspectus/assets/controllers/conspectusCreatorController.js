@@ -102,7 +102,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     allObjectPerFrame.push({
         arrow: [],
         obj: [],
-        shapes: []
+        shapes: [],
+        text: []
     });
     $scope.selectedShape = null;
     var currentObjPerFrame = 0;
@@ -622,6 +623,75 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $scope.shapePoint = [];
                 drawNewStage();
             }
+        } else if ($scope.actualMouseAction == $scope.mouseActionType.TEXT_ADD) {
+            var mousePos = selectedFrame.getPointerPosition();
+            var scale = selectedFrame.getAttr('scaleX');
+            var id = newId();
+            var obj = new Konva.Text({
+                x: mousePos.x / scale,
+                y: mousePos.y / scale,
+                offsetX: 140,
+                offsetY: 20,
+                text: 'Kliknij dwa razy, aby edytować',
+                fontSize: 20,
+                fill: 'white',
+                align: 'center',
+                name: "movementObject",
+                id: id
+            });
+            obj.on('mousedown touchstart', function() {
+                selectObjStyle(this);
+            });
+
+            var shapes = selectedFrame.find(".movementObject");
+            shapes.each(function(shape) {
+                shape.stroke('transparent');
+            });
+            var shapes = selectedFrame.find(".arrow");
+            shapes.each(function(shape) {
+                shape.stroke('black');
+            });
+            obj.stroke('#dd4213');
+            obj.strokeWidth(1);
+            $scope.lastSelected = obj;
+
+            // add the shape to the mainLayer
+            mainLayer.add(obj);
+            allObjectPerFrame[currentObjPerFrame].text.push(obj);
+            selectedFrame.draw();
+
+            obj.on('dblclick', () => {
+                // create textarea over canvas with absolute position
+                // first we need to find its positon
+                var textPosition = obj.getAbsolutePosition();
+                var stageBox = selectedFrame.getContainer().getBoundingClientRect();
+                var areaPosition = {
+                    x: textPosition.x + stageBox.left,
+                    y: textPosition.y + stageBox.top
+                };
+                // create textarea and style it
+                var textarea = document.createElement('textarea');
+                document.body.appendChild(textarea);
+                textarea.value = obj.text();
+                textarea.style.position = 'absolute';
+                textarea.style.top = areaPosition.y + 5 + 'px';
+                textarea.style.left = areaPosition.x - 100 + 'px';
+                textarea.style.zIndex = '300';
+                textarea.style.width = "200px";
+                textarea.style.color = "white";
+                textarea.style.backogrund = "rgba(0, 0, 0, 0.34)";
+                textarea.focus();
+                textarea.addEventListener('keydown', function(e) {
+                    // hide on enter
+                    if (e.keyCode === 13) {
+                        obj.text(textarea.value);
+                        selectedFrame.draw();
+                        document.body.removeChild(textarea);
+                    }
+                });
+            })
+            $scope.changeCategories($scope.mouseActionType.MOVE);
+
         }
     }
 
@@ -772,8 +842,91 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         return shape;
     }
 
+    function createTextFromOther(other, isNoObj = false) {
+        var obj;
+        if (!isNoObj) {
+            obj = new Konva.Text({
+                x: other.getAttr("x"),
+                y: other.getAttr("y"),
+                offsetX: other.getAttr("offsetX"),
+                offsetY: other.getAttr("offsetY"),
+                rotation: other.getAttr("rotation"),
+                fontSize: other.getAttr("fontSize"),
+                text: other.getAttr("text"),
+                name: other.getAttr("name"),
+                scale: other.getAttr("scale"),
+                fill: other.getAttr("fill"),
+                align: other.getAttr("align"),
+                id: other.getAttr("id")
+            });
+        } else {
+            obj = new Konva.Text({
+                x: other.attrs.x,
+                y: other.attrs.y,
+                offsetX: other.attrs.offsetX,
+                offsetY: other.attrs.offsetY,
+                rotation: other.attrs.rotation,
+                fontSize: other.attrs.fontSize,
+                text: other.attrs.text,
+                fill: other.attrs.fill,
+                align: other.attrs.align,
+                scale: {
+                    x: other.attrs.scaleX,
+                    y: other.attrs.scaleY
+                },
+                name: other.attrs.name,
+                id: other.attrs.id
+            });
+        }
+        obj.off('mousedown touchstart');
+        obj.on('mousedown touchstart', function() {
+            selectObjStyle(this);
+        });
+
+        var shapes = selectedFrame.find(".movementObject");
+        shapes.each(function(shape) {
+            shape.stroke('transparent');
+        });
+        var shapes = selectedFrame.find(".arrow");
+        shapes.each(function(shape) {
+            shape.stroke('black');
+        });
+        obj.off('dblclick');
+        obj.on('dblclick', () => {
+            // create textarea over canvas with absolute position
+            // first we need to find its positon
+            var textPosition = obj.getAbsolutePosition();
+            var stageBox = selectedFrame.getContainer().getBoundingClientRect();
+            var areaPosition = {
+                x: textPosition.x + stageBox.left,
+                y: textPosition.y + stageBox.top
+            };
+            // create textarea and style it
+            var textarea = document.createElement('textarea');
+            document.body.appendChild(textarea);
+            textarea.value = obj.text();
+            textarea.style.position = 'absolute';
+            textarea.style.top = areaPosition.y + 5 + 'px';
+            textarea.style.left = areaPosition.x - 100 + 'px';
+            textarea.style.zIndex = '300';
+            textarea.style.width = "200px";
+            textarea.style.color = "white";
+            textarea.style.backogrund = "rgba(0, 0, 0, 0.34)";
+            textarea.focus();
+            textarea.addEventListener('keydown', function(e) {
+                // hide on enter
+                if (e.keyCode === 13) {
+                    obj.text(textarea.value);
+                    selectedFrame.draw();
+                    document.body.removeChild(textarea);
+                }
+            });
+        })
+        return obj;
+    }
+
     function addFrame() {
-        allObjectPerFrame.push({ arrow: [], obj: [], shapes: [] });
+        allObjectPerFrame.push({ arrow: [], obj: [], shapes: [], text: [] });
         var beforeFrameNumber = currentObjPerFrame;
         currentObjPerFrame = allObjectPerFrame.length - 1;
 
@@ -791,6 +944,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var objBef = allObjectPerFrame[beforeFrameNumber].shapes[i];
             var obj = createShapeObjFromOther(objBef);
             allObjectPerFrame[currentObjPerFrame].shapes.push(obj);
+        }
+        for (var i = 0; i < allObjectPerFrame[beforeFrameNumber].text.length; i++) {
+            var objBef = allObjectPerFrame[beforeFrameNumber].text[i];
+            var obj = createTextFromOther(objBef);
+            allObjectPerFrame[currentObjPerFrame].text.push(obj);
         }
 
         $scope.changeCategories($scope.mouseActionType.MOVE);
@@ -940,6 +1098,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var obb = frameContainer[currentObjPerFrame].arrow[i];
             var obj = createArrowObjFromOther(obb);
             frameContainer[currentObjPerFrame].arrow[i] = obj;
+            mainLayer.add(obj);
+        }
+
+        for (var i = 0; i < frameContainer[currentObjPerFrame].text.length; i++) {
+            var obb = frameContainer[currentObjPerFrame].text[i];
+            var obj = createTextFromOther(obb);
+            frameContainer[currentObjPerFrame].text[i] = obj;
             mainLayer.add(obj);
         }
 
@@ -1293,12 +1458,23 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function createFrameToAnim() {
+        var shapes = selectedFrame.find(".movementObject");
+        shapes.each(function(shape) {
+            shape.stroke('transparent');
+        });
+        var shapes = selectedFrame.find(".arrow");
+        shapes.each(function(shape) {
+            shape.stroke('black');
+        });
+        $scope.lastSelected = null;
+
         var animationFrames = [];
 
         for (var i = 0; i < allObjectPerFrame.length; i++) {
             var objs = allObjectPerFrame[i].obj;
             var arrows = allObjectPerFrame[i].arrow;
             var shapes = allObjectPerFrame[i].shapes;
+            var text = allObjectPerFrame[i].text;
 
             if (allObjectPerFrame[i + 1]) {
                 for (var x = 0; x < 24; x++) {
@@ -1336,6 +1512,26 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             id: shapes[z].getAttr("id")
                         });
                         shapesArray.push(shape);
+                    }
+
+                    textArray = []
+                    text = allObjectPerFrame[i + 1].text;
+                    for (var z = 0; z < text.length; z++) {
+                        var obj = new Konva.Text({
+                            x: text[z].getAttr("x"),
+                            y: text[z].getAttr("y"),
+                            offsetX: text[z].getAttr("offsetX"),
+                            offsetY: text[z].getAttr("offsetY"),
+                            rotation: text[z].getAttr("rotation"),
+                            fontSize: text[z].getAttr("fontSize"),
+                            text: text[z].getAttr("text"),
+                            name: text[z].getAttr("name"),
+                            fill: text[z].getAttr("fill"),
+                            align: text[z].getAttr("align"),
+                            scale: text[z].getAttr("scale"),
+                            id: text[z].getAttr("id")
+                        });
+                        textArray.push(obj);
                     }
 
                     objectArrays = []
@@ -1383,7 +1579,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     animationFrames.push({
                         arrow: arrowsArray,
                         obj: objectArrays,
-                        shapes: shapesArray
+                        shapes: shapesArray,
+                        text: textArray
                     });
 
                 }
@@ -1422,6 +1619,25 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     shapesArray.push(shape);
                 }
 
+                textArray = []
+                for (var z = 0; z < text.length; z++) {
+                    var obj = new Konva.Text({
+                        x: text[z].getAttr("x"),
+                        y: text[z].getAttr("y"),
+                        offsetX: text[z].getAttr("offsetX"),
+                        offsetY: text[z].getAttr("offsetY"),
+                        rotation: text[z].getAttr("rotation"),
+                        fontSize: text[z].getAttr("fontSize"),
+                        text: text[z].getAttr("text"),
+                        name: text[z].getAttr("name"),
+                        fill: text[z].getAttr("fill"),
+                        align: text[z].getAttr("align"),
+                        scale: text[z].getAttr("scale"),
+                        id: text[z].getAttr("id")
+                    });
+                    textArray.push(obj);
+                }
+
                 objectArrays = []
 
                 for (var z = 0; z < objs.length; z++) {
@@ -1442,7 +1658,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 animationFrames.push({
                     arrow: arrowsArray,
                     obj: objectArrays,
-                    shapes: shapesArray
+                    shapes: shapesArray,
+                    text: textArray
                 });
             }
 
@@ -1614,7 +1831,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.cwWsk = data.cwWsk;
 
             for (var x = 0; x < data.animFrame.length; x++) {
-                allObjectPerFrame.push({ arrow: [], obj: [], shapes: [] });
+                allObjectPerFrame.push({ arrow: [], obj: [], shapes: [], text: [] });
 
                 for (var i = 0; i < data.animFrame[x].arrow.length; i++) {
                     var arrowBef = data.animFrame[x].arrow[i];
@@ -1631,6 +1848,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     var obj = createShapeObjFromOther(objBef, true);
                     allObjectPerFrame[x].shapes.push(obj);
                 }
+                for (var i = 0; i < data.animFrame[x].text.length; i++) {
+                    var objBef = data.animFrame[x].text[i];
+                    var obj = createTextFromOther(objBef, true);
+                    allObjectPerFrame[x].text.push(obj);
+                }
+
 
                 if (x != 0) {
                     var count = $(".timeElement").length + 1;
@@ -1719,7 +1942,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     allObj.push({
                         obj: [],
                         arrow: [],
-                        shapes: []
+                        shapes: [],
+                        text: []
                     });
                     for (var x = 0; x < allObjectPerFrame[index].obj.length; x++) {
                         allObj[index].obj.push(allObjectPerFrame[index].obj[x].toObject());
@@ -1731,8 +1955,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     for (var x = 0; x < allObjectPerFrame[index].shapes.length; x++) {
                         allObj[index].shapes.push(allObjectPerFrame[index].shapes[x].toObject());
                     }
-
-
+                    for (var x = 0; x < allObjectPerFrame[index].text.length; x++) {
+                        allObj[index].text.push(allObjectPerFrame[index].text[x].toObject());
+                    }
                 }
 
                 var toSend = {
