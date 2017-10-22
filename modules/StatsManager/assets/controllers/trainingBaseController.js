@@ -2,7 +2,10 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     $rootScope.showContent = true;
     $scope.trainingBase = [{
         name: "Beep Test",
-        content: "asas dasd"
+        age-category: "<strong>Kategoria wiekowa:</strong>"
+        equipment: "<strong>Wyposażenie:</strong>"
+        execution: "<strong>Wykonanie:</strong>"
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Bieg bez piłki",
         content: "asasd asd2"
