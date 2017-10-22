@@ -2,9 +2,9 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     $rootScope.showContent = true;
     $scope.trainingBase = [{
         name: "Beep Test",
-        age-category: "<strong>Kategoria wiekowa:</strong>"
-        equipment: "<strong>Wyposażenie:</strong>"
-        execution: "<strong>Wykonanie:</strong>"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
         scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Bieg bez piłki",
@@ -54,6 +54,5 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     }, {
         name: "Żonglerka piłką",
         content: "asas dasd2"
-      }
     }]
 });
