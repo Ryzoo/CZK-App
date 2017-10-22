@@ -54,5 +54,6 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     }, {
         name: "Żonglerka piłką",
         content: "asas dasd2"
+      }
     }]
 });
