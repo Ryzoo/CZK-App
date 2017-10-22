@@ -30,6 +30,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     });
 
     $scope.cwName = '';
+    $scope.arrowArrayPostionAnchor = [];
+    $scope.shapeArrayPostionAnchor = [];
     $scope.gif = '';
     $scope.tags = '';
     $scope.cwFieldType = '';
@@ -149,11 +151,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             shapes.each(function(shape) {
                 shape.draggable(true);
             });
+
         } else {
             var shapes = selectedFrame.find(".movementObject");
             shapes.each(function(shape) {
                 shape.draggable(false);
             });
+
         }
         if ($scope.actualMouseAction == $scope.mouseActionType.ARROW_ADD) {
             $scope.selectedArrow = null;
@@ -270,6 +274,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }
             deleteAnchor(currentObjPerFrame, $scope.lastSelected.getAttr('id'));
             deleteAnchor(currentObjPerFrame + 1, $scope.lastSelected.getAttr('id'));
+            if (anchorLayer != null) {
+                anchorLayer.destroy();
+                anchorLayer = null;
+            }
+            anchorLayer = new Konva.Layer();
+            selectedFrame.add(anchorLayer);
             $scope.lastSelected.destroy();
             selectedFrame.draw();
         }
@@ -329,7 +339,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             });
             var shapes = selectedFrame.find(".arrow");
             shapes.each(function(shape) {
-                shape.stroke('black');
+                shape.stroke('white');
             });
             var shapes = selectedFrame.find(".shapes");
             shapes.each(function(shape) {
@@ -343,8 +353,103 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
     }
 
+    function createAnchorToArrow(x, y, arrowObj, arrowArrayIndex) {
+        var anchor = new Konva.Circle({
+            x: x,
+            y: y,
+            radius: 5,
+            stroke: '#ddd',
+            fill: '#dda613',
+            strokeWidth: 1,
+            visible: true,
+            draggable: true
+        });
+
+        // add hover styling
+        anchor.on('mouseover touchstart', function() {
+            document.body.style.cursor = 'pointer';
+            this.setStrokeWidth(3);
+            anchorLayer.draw();
+        });
+        anchor.on('mouseout touchend', function() {
+            document.body.style.cursor = 'default';
+            this.setStrokeWidth(1);
+            anchorLayer.draw();
+        });
+        anchor.on('dragend', function() {
+            $scope.arrowArrayPostionAnchor[arrowArrayIndex] = {
+                x: anchor.getAttr("x"),
+                y: anchor.getAttr("y")
+            }
+            updateArrow(arrowObj);
+        });
+        anchorLayer.add(anchor);
+
+        return anchor;
+    }
+
+    function updateArrow(arrowObj) {
+        var pointsArray = [];
+        for (var index = 0; index < $scope.arrowArrayPostionAnchor.length; index++) {
+            pointsArray.push($scope.arrowArrayPostionAnchor[index].x);
+            pointsArray.push($scope.arrowArrayPostionAnchor[index].y);
+        }
+        arrowObj.setAttr('points', pointsArray);
+        mainLayer.draw();
+    }
+
+    function createAnchorToShape(x, y, shapeObj, shapeArrayIndex) {
+        var anchor = new Konva.Circle({
+            x: x,
+            y: y,
+            radius: 5,
+            stroke: '#ddd',
+            fill: '#dda613',
+            strokeWidth: 1,
+            visible: true,
+            draggable: true
+        });
+        // add hover styling
+        anchor.on('mouseover touchstart', function() {
+            document.body.style.cursor = 'pointer';
+            this.setStrokeWidth(3);
+            anchorLayer.draw();
+        });
+        anchor.on('mouseout touchend', function() {
+            document.body.style.cursor = 'default';
+            this.setStrokeWidth(1);
+            anchorLayer.draw();
+        });
+        anchor.on('dragend', function() {
+            $scope.shapeArrayPostionAnchor[shapeArrayIndex] = {
+                x: anchor.getAttr("x"),
+                y: anchor.getAttr("y")
+            }
+            updateShape(shapeObj);
+        });
+        anchorLayer.add(anchor);
+        return anchor;
+    }
+
+
+    function updateShape(shapeObj) {
+        var pointsArray = [];
+        for (var index = 0; index < $scope.arrowArrayPostionAnchor.length; index++) {
+            pointsArray.push($scope.arrowArrayPostionAnchor[index].x);
+            pointsArray.push($scope.arrowArrayPostionAnchor[index].y);
+        }
+        shapeObj.setAttr('points', pointsArray);
+        mainLayer.draw();
+    }
+
     function clickOnContent() {
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD && $scope.selectedObjImg) {
+            if (anchorLayer != null) {
+                anchorLayer.destroy();
+                anchorLayer = null;
+            }
+            anchorLayer = new Konva.Layer();
+            selectedFrame.add(anchorLayer);
             var mousePos = selectedFrame.getPointerPosition();
             var scale = selectedFrame.getAttr('scaleX');
             var id = newId();
@@ -460,8 +565,40 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     });
                 }
 
+                if (anchorLayer != null) {
+                    anchorLayer.destroy();
+                    anchorLayer = null;
+                }
+                anchorLayer = new Konva.Layer();
+                selectedFrame.add(anchorLayer);
+
+                $scope.arrowArrayPostionAnchor = $scope.arrowPoint;
+                for (var index = 0; index < $scope.arrowPoint.length; index++) {
+                    createAnchorToArrow($scope.arrowPoint[index].x, $scope.arrowPoint[index].y, arrow, index);
+                }
+
                 arrow.on('mousedown touchstart', function() {
                     selectObjStyle(this);
+                    if (anchorLayer != null) {
+                        anchorLayer.destroy();
+                        anchorLayer = null;
+                    }
+                    anchorLayer = new Konva.Layer();
+                    selectedFrame.add(anchorLayer);
+                    var ar = this.getAttr('points');
+                    var newAr = [];
+                    for (var index = 0; index < ar.length; index += 2) {
+                        newAr.push({
+                            x: ar[index],
+                            y: ar[index + 1]
+                        });
+                    }
+                    $scope.arrowArrayPostionAnchor = newAr;
+
+                    for (var index = 0; index < $scope.arrowArrayPostionAnchor.length; index++) {
+                        createAnchorToArrow($scope.arrowArrayPostionAnchor[index].x, $scope.arrowArrayPostionAnchor[index].y, this, index);
+                    }
+                    selectedFrame.draw();
                 });
 
                 var shapes = selectedFrame.find(".movementObject");
@@ -485,6 +622,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 selectedFrame.draw();
             }
         } else if ($scope.actualMouseAction == $scope.mouseActionType.SHAPE_ADD && $scope.selectedShape) {
+
             $scope.shapePointCount++;
             var scale = selectedFrame.getAttr('scaleX');
             var mousePos = selectedFrame.getPointerPosition();
@@ -608,22 +746,50 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     strokeWidth: 2,
                     id: id
                 });
-
-                triangle.on('mousedown touchstart', function() {
-                    selectObjStyle(this);
-                });
-
                 $scope.lastSelected = triangle;
-
                 // add the shape to the layer
                 mainLayer.add(triangle);
                 allObjectPerFrame[currentObjPerFrame].shapes.push(triangle);
 
+                if (anchorLayer != null) {
+                    anchorLayer.destroy();
+                    anchorLayer = null;
+                }
+                anchorLayer = new Konva.Layer();
+                selectedFrame.add(anchorLayer);
+
+                $scope.shapeArrayPostionAnchor = $scope.shapePoint;
+                for (var index = 0; index < $scope.shapePoint.length; index++) {
+                    createAnchorToShape($scope.shapePoint[index].x, $scope.shapePoint[index].y, triangle, index);
+                }
+
+                triangle.on('mousedown touchstart', function() {
+                    selectObjStyle(this);
+                    if (anchorLayer != null) {
+                        anchorLayer.destroy();
+                        anchorLayer = null;
+                    }
+                    anchorLayer = new Konva.Layer();
+                    selectedFrame.add(anchorLayer);
+                    $scope.shapeArrayPostionAnchor = this.getAttr('arrowPoint');
+                    for (var index = 0; index < $scope.shapeArrayPostionAnchor.length; index++) {
+                        createAnchorToShape($scope.shapeArrayPostionAnchor[index].x, $scope.shapeArrayPostionAnchor[index].y, this, index);
+                    }
+                    selectedFrame.draw();
+                });
+
                 $scope.shapePointCount = 0;
                 $scope.shapePoint = [];
-                drawNewStage();
+                anchorLayer.draw();
+                mainLayer.draw();
             }
         } else if ($scope.actualMouseAction == $scope.mouseActionType.TEXT_ADD) {
+            if (anchorLayer != null) {
+                anchorLayer.destroy();
+                anchorLayer = null;
+            }
+            anchorLayer = new Konva.Layer();
+            selectedFrame.add(anchorLayer);
             var mousePos = selectedFrame.getPointerPosition();
             var scale = selectedFrame.getAttr('scaleX');
             var id = newId();
@@ -691,7 +857,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 });
             })
             $scope.changeCategories($scope.mouseActionType.MOVE);
-
         }
     }
 
@@ -703,6 +868,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 pointerLength: other.getAttr("pointerLength"),
                 pointerWidth: other.getAttr("pointerWidth"),
                 fill: other.getAttr("fill"),
+                offset: other.getAttr("offset"),
                 strokeWidth: other.getAttr("strokeWidth"),
                 name: other.getAttr("name"),
                 lineJoin: other.getAttr("lineJoin"),
@@ -718,6 +884,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 pointerLength: other.attrs.pointerLength,
                 pointerWidth: other.attrs.pointerWidth,
                 fill: other.attrs.fill,
+                offsetX: other.attrs.offsetX,
+                offsetY: other.attrs.offsetY,
                 strokeWidth: other.attrs.strokeWidth,
                 name: other.attrs.name,
                 lineJoin: other.attrs.lineJoin,
@@ -731,11 +899,30 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 id: other.attrs.id
             });
         }
-        arrow.stroke('black');
+        arrow.stroke('white');
         arrow.strokeWidth(1);
         arrow.off('mousedown touchstart');
         arrow.on('mousedown touchstart', function() {
             selectObjStyle(this);
+            if (anchorLayer != null) {
+                anchorLayer.destroy();
+                anchorLayer = null;
+            }
+            anchorLayer = new Konva.Layer();
+            selectedFrame.add(anchorLayer);
+            var ar = arrow.getAttr('points');
+            var newAr = [];
+            for (var index = 0; index < ar.length; index += 2) {
+                newAr.push({
+                    x: ar[index],
+                    y: ar[index + 1]
+                });
+            }
+            $scope.arrowArrayPostionAnchor = newAr;
+            for (var index = 0; index < $scope.arrowArrayPostionAnchor.length; index++) {
+                createAnchorToArrow($scope.arrowArrayPostionAnchor[index].x, $scope.arrowArrayPostionAnchor[index].y, arrow, index);
+            }
+            selectedFrame.draw();
         });
         return arrow;
     }
@@ -838,6 +1025,17 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         shape.off('mousedown touchstart');
         shape.on('mousedown touchstart', function() {
             selectObjStyle(this);
+            if (anchorLayer != null) {
+                anchorLayer.destroy();
+                anchorLayer = null;
+            }
+            anchorLayer = new Konva.Layer();
+            selectedFrame.add(anchorLayer);
+            $scope.shapeArrayPostionAnchor = this.getAttr('arrowPoint');
+            for (var index = 0; index < $scope.shapeArrayPostionAnchor.length; index++) {
+                createAnchorToShape($scope.shapeArrayPostionAnchor[index].x, $scope.shapeArrayPostionAnchor[index].y, this, index);
+            }
+            selectedFrame.draw();
         });
         return shape;
     }
@@ -1058,6 +1256,22 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             height: stageHeight
         });
 
+        if (curveLayer != null) {
+            curveLayer.destroy();
+            curveLayer = null;
+        }
+        curveLayer = new Konva.Layer();
+        if (lineLayer != null) {
+            lineLayer.destroy();
+            lineLayer = null;
+        }
+        lineLayer = new Konva.Layer();
+        if (anchorLayer != null) {
+            anchorLayer.destroy();
+            anchorLayer = null;
+        }
+        anchorLayer = new Konva.Layer();
+
         if (mainLayer != null) {
             mainLayer.destroy();
             mainLayer = null;
@@ -1123,21 +1337,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $(".categories").eq(0).css('border-color', "#dd4213");
 
         if (container == 'canvasContainer') {
-            if (curveLayer != null) {
-                curveLayer.destroy();
-                curveLayer = null;
-            }
-            curveLayer = new Konva.Layer();
-            if (lineLayer != null) {
-                lineLayer.destroy();
-                lineLayer = null;
-            }
-            lineLayer = new Konva.Layer();
-            if (anchorLayer != null) {
-                anchorLayer.destroy();
-                anchorLayer = null;
-            }
-            anchorLayer = new Konva.Layer();
 
             selectedFrame.add(lineLayer);
             selectedFrame.add(curveLayer);
