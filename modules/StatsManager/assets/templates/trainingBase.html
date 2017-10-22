@@ -22,14 +22,34 @@
                         Lista treningów
                     </div>
                     <div class="row">
+
+                        <!-- Tutaj zaczynamy tworzyc nasz szablon, czemu ? Poniewaz tutaj uzylismy dyrektywy ng-repeat -->
                         <ul class="collapsible" data-collapsible="accordion" style='margin: 0 20px;'>
                             <li ng-repeat="training in trainingBase | filter:searchText">
-                                <div class="collapsible-header ">{{training.name}}</div>
+                                <!-- dokladnie tutaj jest ng-repeat -->
+                                <!-- ten element bedzie sie powtarzal tyle razy ile jest obiektow w naszej tablicy w jsie  -->
+                                <!-- w zmiennej  'training' jest jeden obiekt, wyrenderuja sie kolejno wszystkie  -->
+                                <div class="collapsible-header ">
+                                    <h5>{{training.name}}</h5>
+                                    <!-- wyswietlenie prostej zmiennej obiektu -->
+                                </div>
                                 <div class="collapsible-body">
-                                    {{training.age_category}}
+                                    <b>{{training.ageCategory}}</b>
+                                    <!-- wyswietlenie prostej zmiennej obiektu -->
+
+                                    <!-- chciales sobie wyswietlic liste, powiedzmy ze w obiekt ma zmienna 'kolejnaWlasnoscJakoTablica'
+                                    mozemy jej kolejne wartosci wyswietlic znow za pomoca ng-repeat 
+                                    tworzymy wiec jakis element z dyrektywa-->
+
+                                    <!-- nowy  div bedzie sie tworzyl kolejno z kazda wartoscia z 'kolejnaWlasnoscJakoTablica' -->
+                                    <div ng-repeat="jednaWartosc in training.kolejnaWlasnoscJakoTablica">
+                                        {{ jednaWartosc }}
+                                    </div>
                                 </div>
                             </li>
                         </ul>
+                        <!-- ng-repeat stworzy sobie kolejne <ul> wedlug tego wzoru u gory -->
+
                     </div>
                 </div>
             </div>
