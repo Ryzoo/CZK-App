@@ -8,51 +8,99 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Bieg bez piłki",
-        content: "asasd asd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "FMS - Mobilność barków",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "FMS - Pompka",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "FMS - Przejście nad płotkiem",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "FMS - Przysiad głęboki",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "FMS - Przysiad w wykroku",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "FMS - Stabilność rotacyjna tułowia",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "FMS - Uniesienie wyprostowanej nogi",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Ławeczki",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Prowadzenie piłki",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "RAST",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Skok w dal z miejsca",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Szybkość (30m)",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Wyskok dosiężny",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Zwroty z piłką",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }, {
         name: "Żonglerka piłką",
-        content: "asas dasd2"
+        age-category: "<strong>Kategoria wiekowa:</strong>",
+        equipment: "<strong>Wyposażenie:</strong>",
+        execution: "<strong>Wykonanie:</strong>",
+        scoring: "<strong>Punktacja:</strong>"
     }]
 });
