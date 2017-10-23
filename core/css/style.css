@@ -3028,6 +3028,10 @@ textarea.materialize-textarea {
     border-bottom: none !important;
 }
 
+.textToLeft {
+  text-align: left;
+}
+
 .collapsible {
     border-top: none !important;
     border-right: none !important;
