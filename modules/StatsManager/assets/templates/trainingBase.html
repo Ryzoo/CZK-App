@@ -34,8 +34,8 @@
                                     <!-- wyswietlenie prostej zmiennej obiektu -->
                                 </div>
                                 <div class="collapsible-body">
-                                    <b>Kategoria wiekowa: </b>{{training.ageCategory}}</br>
-                                    <b>Wyposażenie: </b>{{training.equipment}}</br>
+                                    <b>Kategoria wiekowa: </b>{{training.ageCategory}}</br></br>
+                                    <b>Wyposażenie: </b>{{training.equipment}}</br></br>
                                     <!-- wyswietlenie prostej zmiennej obiektu -->
 
                                     <!-- chciales sobie wyswietlic liste, powiedzmy ze w obiekt ma zmienna 'kolejnaWlasnoscJakoTablica'
@@ -47,7 +47,7 @@
                                     <div ng-repeat="jednaWartosc in training.execution">
                                         {{ jednaWartosc }}
                                     </div>
-                                    <b>Punktacja: </b>{{training.scoring}}</br>
+                                    </br><b>Punktacja: </b>{{training.scoring}}</br>
                                 </div>
                             </li>
                         </ul>
