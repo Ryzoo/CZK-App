@@ -25,9 +25,9 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
             ageCategory: "od 8 do 13 roku życia wzwyż",
             equipment: "8 tyczek (lub innych znaczników)",
             execution: [
-              "1. Zawodnik staje na linii startu."
-              "2. Ma przebiec po wyznaczonej trasie (obiegając każdą z tyczek) w jak najszybszym czasie."
-              "3. Rozpoczęcie biegu następuje po komendzie trenera – wtedy również zaczynamy liczenie czasu."
+              "1. Zawodnik staje na linii startu.",
+              "2. Ma przebiec po wyznaczonej trasie (obiegając każdą z tyczek) w jak najszybszym czasie.",
+              "3. Rozpoczęcie biegu następuje po komendzie trenera – wtedy również zaczynamy liczenie czasu.",
               "4. Zatrzymujemy czas w momencie przebiegnięcia zawodnika przez linię mety."
             ],
             scoring: "Im krótszy czas wykonania – tym lepiej. Niepoprawne wykonanie testu oznacza dyskwalifikację. Należy wtedy powtórzyć cały test od nowa."
