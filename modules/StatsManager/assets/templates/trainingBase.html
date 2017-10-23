@@ -26,11 +26,11 @@
                         <!-- Tutaj zaczynamy tworzyc nasz szablon, czemu ? Poniewaz tutaj uzylismy dyrektywy ng-repeat -->
                         <ul class="collapsible" data-collapsible="accordion" style='margin: 20px;'>
                             <li ng-repeat="training in trainingBase | filter:searchText">
-                                <i class="fa fa-caret-down" aria-hidden="true"></i>
                                 <!-- dokladnie tutaj jest ng-repeat -->
                                 <!-- ten element bedzie sie powtarzal tyle razy ile jest obiektow w naszej tablicy w jsie  -->
                                 <!-- w zmiennej  'training' jest jeden obiekt, wyrenderuja sie kolejno wszystkie  -->
                                 <div class="collapsible-header trainingName">
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
                                     <h5>{{training.name}}</h5>
                                     <!-- wyswietlenie prostej zmiennej obiektu -->
                                 </div>
