@@ -41,6 +41,7 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
               "Im krótszy czas wykonania – tym lepiej.",
               "Niepoprawne wykonanie testu oznacza dyskwalifikację.",
               "Należy wtedy powtórzyć cały test od nowa."
+            ]
         },
 
         {
