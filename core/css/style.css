@@ -3032,6 +3032,12 @@ textarea.materialize-textarea {
   text-align: left;
 }
 
+.trainingName {
+  font-size: 0.9rem;
+  margin: 0;
+  padding-top: 1.2%;
+}
+
 .collapsible {
     border-top: none !important;
     border-right: none !important;
