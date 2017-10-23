@@ -18,11 +18,11 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
                 "8. Jeśli zawodnik dotrze do linii za szybko, powinien poczekać na sygnał."
             ],
             scoring: [
-              "Im więcej zaliczonych etapów i odcinków 20-metrowych – tym lepiej."
-              "Do e-platformy Club Management Center wynik wprowadzamy w następujący sposób:"
-              "liczba przed kropką oznacza etap, a po kropce – odcinek."
-              "Takim sposobem, gdy zawodnik ukończył test na 10 etapie i 2 odcinku, zapisujemy wynik jako 10.02."
-              "Analogicznie jeśli ukończył test na 9 etapie i 10 odcinku, zapisujemy wynik jako 9.1."
+              "Im więcej zaliczonych etapów i odcinków 20-metrowych – tym lepiej.",
+              "Do e-platformy Club Management Center wynik wprowadzamy w następujący sposób:",
+              "liczba przed kropką oznacza etap, a po kropce – odcinek.",
+              "Takim sposobem, gdy zawodnik ukończył test na 10 etapie i 2 odcinku, zapisujemy wynik jako 10.02.",
+              "Analogicznie jeśli ukończył test na 9 etapie i 10 odcinku, zapisujemy wynik jako 9.1.",
               "W razie niepewności prosimy o kontakt z działem technicznym."
             ]
         },
@@ -38,8 +38,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
               "4. Zatrzymujemy czas w momencie przebiegnięcia zawodnika przez linię mety."
             ],
             scoring: [
-              "Im krótszy czas wykonania – tym lepiej."
-              "Niepoprawne wykonanie testu oznacza dyskwalifikację."
+              "Im krótszy czas wykonania – tym lepiej.",
+              "Niepoprawne wykonanie testu oznacza dyskwalifikację.",
               "Należy wtedy powtórzyć cały test od nowa."
         },
 
