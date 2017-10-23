@@ -60,6 +60,118 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 		          "2pkt: Odległość między pięściami nie przekracza półtorej długości dłoni zawodnika.",
 		          "1pkt: Odległość między pięściami przekracza półtorej długości dłoni zawodnika."
             ]
+        },
+
+        {
+            name: "FMS - Pompka",
+            ageCategory: "wszyscy",
+            equipment: "brak",
+            execution: [
+              "1. Zawodnik przyjmuje pozycję do pompki z rękoma rozstawionymi na szerokość barków.",
+		          "2. Mężczyźni: kciuki mają znajdować się na wysokości czubka głowy.",
+		          "Kobiety: kciuki mają znajdować się na wysokości policzków.",
+		          "3. Zawodnik wykonuje pompkę.",
+		          "4. Należy zwrócić uwagę, aby zawodnik uniósł całe ciało bez wyginania kręgosłupa."
+            ],
+            scoring: [
+              "3pkt: Mężczyźni: Poprawnie wykonana pompka.",
+		          "Kobiety: Poprawnie wykonana pompka.",
+          		"2pkt: Mężczyźni: Poprawnie wykonana pompka, ale z kciukami na wysokości policzków.",
+              "Kobiety: Poprawnie wykonana pompka, ale z kciukami na wysokości obojczyków.",
+              "1pkt: Brak poprawnie wykonanej pompki."
+            ]
+        },
+
+        {
+            name: "FMS - Przejście pod płotkiem",
+            ageCategory: "wszyscy",
+            equipment: "drążek (może być tyczka lub kij), płotek (lub sznurek)",
+            execution: [
+              "1. Zawodnik stoi przed płotkiem (palce stóp pod płotkiem).",
+              "2. Zawodnik trzyma oburącz drążek, opiera go na barkach.",
+              "3. Rozpoczyna się zadanie – zawodnik ma przenieść nogę nad płotkiem, bez dotykania go.",
+              "4. Należy postawić nogę po drugiej stronie płotka i dotknąć piętą podłoża.",
+              "5. Zawodnik wraca do pozycji wyjściowej, a następnie powtarza całość wykonując drugą nogą."
+            ],
+            scoring: [
+              "3pkt: Biodro, kolano i stopa nogi znajdującej się po drugiej stronie płotka są w jednej osi. Odcinek lędźwiowy kręgosłupa ma być nieruchomy, a drążek z listwą ustawione do siebie równolegle.",
+              "2pkt: Brak osi wzdłuż nogi znajdującej się po drugiej stronie płotka. Odcinek lędźwiowy kręgosłupa nie jest nieruchomy, a drążek z listwą nie są ustawione równolegle.",
+              "1pkt: Zawodnik dotknął płotka i tracił równowagę."
+            ]
+        },
+
+        {
+            name: "FMS - Przysiad głęboki",
+            ageCategory: "wszyscy",
+            equipment: "drążek (może być tyczka lub kij)",
+            execution: [
+              "1. Zawodnik stoi w rozkroku na szerokość bioder.",
+	            "2. Zawodnik trzyma nad głową drążek – ręce wyprostowane w łokciach.",
+              "3. Rozpoczyna się zadanie – zawodnik ma wykonać maksymalny przysiad.",
+              "4. Należy zwrócić uwagę na to, aby ciało zawodnika było skierowane na wprost, a jego pięty mają przylegać do ziemi."
+            ],
+            scoring: [
+              "3pkt: Zawodnik zszedł na tyle nisko, że jego biodra znalazły się poniżej linii kolan, kolana znajdują się osi nóg, uda ułożone są równolegle do tułowia, a drążek jest na wysokości stóp.",
+              "2pkt: Zawodnik wykonał przysiad, ale z pomocą – z podstawką położoną pod piętami, kolana nie znajdują się w osi nóg.",
+              "1pkt: Zawodnik nie wykonuje poprawnie przysiadu nawet z pomocą, dodatkowo zgięcie w części lędźwiowej kręgosłupa."
+            ]
+        },
+
+        {
+            name: "FMS - Przysiad w wykroku",
+            ageCategory: "wszyscy",
+            equipment: "drążek (może być tyczka lub kij), podstawa (lub listwa), taśma centymetrowa (lub inny przyrząd do pomiaru odległości)",
+            execution: [
+              "1. Należy zacząć od zmierzenia długości podudzia zawodnika.",
+              "2. Zawodnik stoi na początku podstawy, od tego miejsca (od czubka stopy) należy odmierzyć na podstawie odległość równą długości podudzia i zaznaczyć ją na podstawie.",
+              "3. Zawodnik otrzymuje drążek, ma go trzymać oburącz i przyłożyć go do pleców.",
+              "4. Teraz zawodnik stawia piętę jednej z nóg w wyznaczonym punkcie i wykonuje przysiad.",
+              "5. Należy dotknąć kolanem podstawy (za piętą postawioną w wyznaczonym punkcie).",
+              "6. Zawodnik wraca do pozycji wyjściowej i wykonuje to samo drugą nogą."
+            ],
+            scoring: [
+              "3pkt: Stopy i kolana podczas wykonywania ćwiczenia utrzymane były w jednej linii, dotknięto kolanem podstawy, ruch tułowia był minimalny.",
+              "2pkt: Nie utrzymano jednej linii stóp i kolan, nie dotknięto kolanem podstawy, pochylono się do przodu podczas wykonywania ćwiczenia.",
+              "1pkt: Zawodnik całkowicie utracił równowagę."
+            ]
+        },
+
+        {
+            name: "FMS - Stabilność rotacyjna tułowia",
+            ageCategory: "wszyscy",
+            equipment: "brak",
+            execution: [
+              "1. Zawodnik ustawia się w następujący sposób: klęczy w podporze na ziemi tak, aby biodra i barki były ustawione do tułowia pod kątem 90 stopni. Stopy mają być wyprostowane.",
+              "2. Zawodnik ma jednocześnie unieść lewą rękę i lewą nogę, a następnie wyprostować obie kończyny w powietrzu.",
+              "3. Teraz zawodnik musi ugiąć kończyny i dotknąć łokciem kolana.",
+              "4. Następnie należy znowu wyprostować kończyny.",
+              "5. Na koniec powrót do pozycji wyjściowej i powtórzenie testu drugą parą kończyn."
+            ],
+            scoring: [
+              "3pkt: Poprawne wykonanie, zawodnik utrzymał tułów równolegle do podłoża, a kolano i łokieć były w jednej linii.",
+              "2pkt: Poprawne wykonanie skośnej wersji testu (przeciwległe kończyny, czyli kiedy podnosimy lewą rękę, musimy podnieść prawą nogę), zawodnik utrzymał tułów równolegle do podłoża.",
+              "1pkt: Brak poprawnego wykonania skośnej wersji testu."
+            ]
+        },
+
+        {
+            name: "FMS - Uniesienie wyprostowanej nogi",
+            ageCategory: "wszyscy",
+            equipment: "deska, drążek (lub tyczka)",
+            execution: [
+              "1. Zawodnika kładzie się na plecach.",
+              "2. Pod kolanami umieszczamy deskę.",
+              "3. Należy znaleźć kolec biodrowy przedni górny oraz szparę stawu kolanowego zawodnika.",
+              "4. Zawodnik unosi wyprostowaną nogę. Stopa zgięta w taki sposób, aby tworzyła z nogą kąt 90 stopni (jakbyśmy chcieli pokazać palcami stopy na siebie).",
+              "5. Teraz należy przyłożyć do kostki zawodnika drążek, tak aby był prostopadle do ziemi.",
+              "6. Zauważamy miejsce padania drążka i powtarzamy test drugą nogą."
+
+            ],
+            scoring: [
+              "3pkt: Miejsce padania drążka znajduje się między kolcem biodrowym przednim górnym zawodnika, a środkiem uda.",
+              "2pkt: Miejsce padania drążka znajduje się między środkiem uda, a linią stawu kolanowego.",
+              "1pkt: Miejsce padania drążka znajduje się za szparą stawu kolanowego."
+            ]
         }
     ]
 });
