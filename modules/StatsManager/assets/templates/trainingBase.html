@@ -48,7 +48,10 @@
                                     <div ng-repeat="jednaWartosc in training.execution">
                                         {{ jednaWartosc }}
                                     </div>
-                                    </br><b>Punktacja: </b>{{training.scoring}}</br>
+                                    <b>Punktacja: </b>
+                                    <div ng-repeat="jednaWartosc in training.scoring">
+                                        {{ jednaWartosc }}
+                                    </div>
                                 </div>
                             </li>
                         </ul>
