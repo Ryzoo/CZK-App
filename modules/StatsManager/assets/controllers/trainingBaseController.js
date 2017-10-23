@@ -4,17 +4,17 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     $scope.trainingBase = [ //tablica obiektow, jeden obiekt to jeden trening
 
         { // rozpoczecie pierwszego obiektu, w srodku jego pola
-            name: "Tutaj nazwa danego treningu",
-            ageCategory: "17+",
-            jakasKolejnaWlasnosc: "fajna wartosc wlasnosci",
-            kolejnaWlasnoscJakoTablica: [ // wartosc tego pola jest tablica czyli []
+            name: "Beep Test",
+            ageCategory: "od 13 roku życia wzwyż",
+            equipment: "2 linie (lub inne znaczniki), urządzenie audio do sygnalizowania (np. laptop)",
+            execution: [ // wartosc tego pola jest tablica czyli []
                 "wartosc1",
                 "wartosc2",
                 "itp"
             ]
         }
         // teraz po przecinku dodajemy kolejne obiekty
-        // w htmlu beda one wyswietlane kolejno wedlug szablonu 
+        // w htmlu beda one wyswietlane kolejno wedlug szablonu
         // jak cos jest w tablicy mozemy uzyc dyrektyw ng-repeat zeby wyswietlac kolejne elementy -> patrz templatka trainingBase.html
 
     ]

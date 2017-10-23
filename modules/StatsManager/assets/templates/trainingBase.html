@@ -34,16 +34,17 @@
                                     <!-- wyswietlenie prostej zmiennej obiektu -->
                                 </div>
                                 <div class="collapsible-body">
-                                    <b>{{training.ageCategory}}</b>
+                                    <b>Kategoria wiekowa: {{training.ageCategory}}</b>
+                                    <b>Wyposażenie: {{training.equipment}}</b>
                                     <!-- wyswietlenie prostej zmiennej obiektu -->
 
                                     <!-- chciales sobie wyswietlic liste, powiedzmy ze w obiekt ma zmienna 'kolejnaWlasnoscJakoTablica'
-                                    mozemy jej kolejne wartosci wyswietlic znow za pomoca ng-repeat 
+                                    mozemy jej kolejne wartosci wyswietlic znow za pomoca ng-repeat
                                     tworzymy wiec jakis element z dyrektywa-->
 
                                     <!-- nowy  div bedzie sie tworzyl kolejno z kazda wartoscia z 'kolejnaWlasnoscJakoTablica' -->
-                                    <div ng-repeat="jednaWartosc in training.kolejnaWlasnoscJakoTablica">
-                                        {{ jednaWartosc }}
+                                    <div ng-repeat="jednaWartosc in training.execution">
+                                        Wykonanie: {{ jednaWartosc }}
                                     </div>
                                 </div>
                             </li>
