@@ -159,7 +159,7 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
             ageCategory: "wszyscy",
             equipment: "deska, drążek (lub tyczka)",
             execution: [
-              "1. Zawodnika kładzie się na plecach.",
+              "1. Zawodnik kładzie się na plecach.",
               "2. Pod kolanami umieszczamy deskę.",
               "3. Należy znaleźć kolec biodrowy przedni górny oraz szparę stawu kolanowego zawodnika.",
               "4. Zawodnik unosi wyprostowaną nogę. Stopa zgięta w taki sposób, aby tworzyła z nogą kąt 90 stopni (jakbyśmy chcieli pokazać palcami stopy na siebie).",
