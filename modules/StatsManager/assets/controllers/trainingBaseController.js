@@ -29,7 +29,7 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Bieg bez piłki",
-            ageCategory: "od 8 do 13 roku życia wzwyż",
+            ageCategory: "od 8 do 13 roku życia",
             equipment: "8 tyczek (lub innych znaczników)",
             execution: [
               "1. Zawodnik staje na linii startu.",
@@ -159,7 +159,7 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
             ageCategory: "wszyscy",
             equipment: "deska, drążek (lub tyczka)",
             execution: [
-              "1. Zawodnika kładzie się na plecach.",
+              "1. Zawodnik kładzie się na plecach.",
               "2. Pod kolanami umieszczamy deskę.",
               "3. Należy znaleźć kolec biodrowy przedni górny oraz szparę stawu kolanowego zawodnika.",
               "4. Zawodnik unosi wyprostowaną nogę. Stopa zgięta w taki sposób, aby tworzyła z nogą kąt 90 stopni (jakbyśmy chcieli pokazać palcami stopy na siebie).",
@@ -171,6 +171,158 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
               "3pkt: Miejsce padania drążka znajduje się między kolcem biodrowym przednim górnym zawodnika, a środkiem uda.",
               "2pkt: Miejsce padania drążka znajduje się między środkiem uda, a linią stawu kolanowego.",
               "1pkt: Miejsce padania drążka znajduje się za szparą stawu kolanowego."
+            ]
+        },
+
+        {
+            name: "Ławeczki",
+            ageCategory: "od 13 do 16 roku życia",
+            equipment: "2 tyczki (lub inne znaczniki), ławeczka, piłka",
+            execution: [
+              "1. Zawodnik przez 90 sekund ma za zadanie uderzać piłką o ławeczkę.",
+              "2. Uderzenie ma być wykonane wewnętrzną częścią stopy, na przemian lewą i prawą nogą.",
+              "3. Odległość od miejsca wykonania uderzenia do ławeczki wynosi 3m.",
+              "4. Po uderzeniu zawodnik ma dowolnie przyjąć piłkę, przeprowadzić ją przez „bramkę” z tyczek i wykonać kolejne powtórzenie.",
+              "5. Liczymy ilość poprawnych uderzeń."
+            ],
+            scoring: [
+              "5pkt: powyżej 21 uderzeń",
+              "4pkt: 21-20 uderzeń",
+              "3pkt: 20-19 uderzeń",
+              "2pkt: 18-17 uderzeń",
+              "1pkt: 16-15 uderzeń",
+              "0pkt: poniżej 15 uderzeń"
+            ]
+        },
+
+        {
+            name: "Prowadzenie piłki",
+            ageCategory: "od 8 do 13 roku życia",
+            equipment: "8 tyczek (lub innych znaczników), piłka",
+            execution: [
+              "1. Zawodnik staje z piłką na linii startowej.",
+              "2. Ma przebiec po wyznaczonej trasie (obiegając każdą z tyczek) w jak najszybszym czasie – jednocześnie prowadząc piłkę.",
+              "3. Rozpoczęcie biegu następuje po komendzie trenera – wtedy również zaczynamy liczenie czasu.",
+              "4. Zatrzymujemy czas w momencie przebiegnięcia zawodnika przez linię mety."
+            ],
+            scoring: [
+              "Im krótszy czas wykonania – tym lepiej.",
+              "Niepoprawne wykonanie testu oznacza dyskwalifikację.",
+              "Należy wtedy powtórzyć cały test od nowa."
+            ]
+        },
+
+        {
+            name: "RAST",
+            ageCategory: "od 16 roku życia wzwyż",
+            equipment: "4 tyczki (lub inne znaczniki), fotokomórki",
+            execution: [
+              "1. Odległość między liniami startu i mety wynosi 30m.",
+              "2. Test polega na jak najszybszym wykonaniu siedmiu sprintów na tym dystansie.",
+              "3. Pomiędzy powtórzeniami występuje przerwa (trucht) o długości 25s.",
+              "4. Zawodnik ustawia się na jednej z linii.",
+              "5. Zawodnik ma wykonać jak najszybszy sprint, a po nim wrócić na linię startową truchtem.",
+              "6. Mierzymy czas średni wszystkich biegów oraz procentowy spadek czasu.",
+              "7. Procentowy spadek czasu jest różnicą między najszybszym, a najwolniejszym sprintem."
+            ],
+            scoring: [
+              "Im krótszy czas średni i im mniejszy spadek procentowy czasu – tym lepiej."
+            ]
+        },
+
+        {
+            name: "Skok w dal z miejsca",
+            ageCategory: "od 8 do 13 roku życia",
+            equipment: "jedna linia, taśma centymetrowa",
+            execution: [
+              "1. Zawodnik staje dwoma nogami przed linią.",
+              "2. Wzdłuż przestrzeni przeznaczonej do skoku rozkładamy taśmę centymetrową.",
+              "3. Wyskok jak i lądowanie powinno być wykonane obunóż.",
+              "4. Zadaniem zawodnika jest wykonanie jak najdalszego skoku w dal z miejsca.",
+              "5. Wynik jest odległością od linii skoku do pięty zawodnika."
+            ],
+            scoring: [
+              "Im dalsza odległość od linii wyskoku – tym lepiej.",
+              "Niepoprawne wykonanie testu oznacza dyskwalifikację.",
+              "Zawodnik musi wyskoczyć i wylądować obunóż, przy lądowaniu nie może pomagać sobie opierając się rękoma.",
+              "Należy wtedy powtórzyć cały test od nowa."
+            ]
+        },
+
+        {
+            name: "Szybkość (30m)",
+            ageCategory: "od 13 roku życia wzwyż",
+            equipment: "2 linie, fotokomórki",
+            execution: [
+              "1. Zawodnik staje na linii startu w pozycji wykroczno-zakrocznej (ok. 5cm od linii).",
+              "2. Linię startu wyznacza światło fotokomórek.",
+              "3. Czas mierzymy fotokomórkami (dokładność min. do 0.01s).",
+              "4. Czas mierzymy na dystansie 30m.",
+              "5. Opcjonalnie, jeśli mamy wystarczającą ilość fotokomórek, możemy zmierzyć zmierzyć czas na dystansach 5m i 20m."
+            ],
+            scoring: [
+              "Im krótszy czas wykonania – tym lepiej.",
+              "Niepoprawne wykonanie testu oznacza dyskwalifikację.",
+              "Należy wtedy powtórzyć cały test od nowa."
+            ]
+        },
+
+        {
+            name: "Wyskok dosiężny",
+            ageCategory: "od 13 roku życia wzwyż",
+            equipment: "tablica, kreda, taśma centymetrowa",
+            execution: [
+              "1. Zawodnik staje przy tablicy.",
+              "2. Wyciąga ramię i dotyka palcami tablicy.",
+              "3. Teraz, stojąc bokiem do ściany, robi przysiad.",
+              "4. Wyskakuje w górę z przedmachem ramion w tył.",
+              "5. Stara się dotknąć tablicy w jak najwyższym punkcie.",
+              "6. Teraz mierzymy odległość od punktu zaznaczonego podczas stania w miejscu do punktu zaznaczonego podczas wyskoku."
+            ],
+            scoring: [
+              "5pkt: powyżej 54cm",
+		          "4pkt: 54-50cm",
+		          "3pkt: 49-45cm",
+		          "2pkt: 44-40cm",
+		          "1pkt: 39-35cm",
+              "0pkt: poniżej 35cm"
+            ]
+        },
+
+        {
+            name: "Zwroty z piłką",
+            ageCategory: "od 8 do 13 roku życia",
+            equipment: "dwie linie (lub pachołki), piłka",
+            execution: [
+              "1. Zawodnik staje z piłką na jednej z linii.",
+          		"2. Linie oddalone są od siebie o 5m.",
+		          "3. Zawodnik jak najszybciej biegnie, prowadząc piłkę w kierunku drugiej linii.",
+		          "4. Za drugą linią zawodnik ma wykonać zwrot z piłką.",
+		          "5. Następnie bez przerwy biegnie do poprzedniej linii i znowu wykonuje zwrot.",
+		          "6. Należy jak najszybciej wykonać 6 zwrotów.",
+		          "7. Czas liczony jest od momentu wystartowania zawodnika, a zatrzymany w momencie przebiegnięcia zawodnika za linię podczas ostatniego powtórzenia.",
+		          "8. Piłka za każdym razem musi znajdować się za linią całym swoim obwodem."
+            ],
+            scoring: [
+              "Im krótszy czas wykonania – tym lepiej.",
+              "Niepoprawne wykonanie testu oznacza dyskwalifikację.",
+              "Należy wtedy powtórzyć cały test od nowa."
+            ]
+        },
+
+        {
+            name: "Żonglerka piłką",
+            ageCategory: "od 8 do 13 roku życia",
+            equipment: "cztery pachołki (lub inne znaczniki), piłka",
+            execution: [
+              "1. Zawodnik staje z piłką wewnątrz wyznaczonego pola – kwadrat 5m x 5m.",
+		          "2. Test polega na podbijaniu piłki dowolną częścią ciała (poza rękoma). Liczymy ilość podbić.",
+		          "3. Test trwa 30 sekund. Jeśli piłka wyleci poza pole, zawodnik biegnie po nią i kontynuuje test, ale czas nie jest wstrzymywany.",
+		          "4. Zawodnicy z kategorii wiekowej Orlik i Młodzik rozpoczynają żonglowanie od podniesienia piłki z ziemi nogą oraz żonglują tylko w powietrzu (piłka nie może dotknąć podłoża).",
+		          "5. Zawodnicy z kategorii wiekowej Żak i Skrzat rozpoczynają żonglowanie od opuszczenia piłki z rąk, a piłka może dotknąć ziemi."
+            ],
+            scoring: [
+              "Im większa ilość podbić piłki – tym lepiej."
             ]
         }
     ]
