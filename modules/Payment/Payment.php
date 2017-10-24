@@ -240,20 +240,7 @@ class Payment extends BasicModule {
         $title = $allUserCycelPay[$i]["title"];
         $amount = $allUserCycelPay[$i]["amount"];
         
-        while( strtotime($dateStart) <= strtotime($dateNow)){
-          if( $dateNow === $dateStart && !$is_added_today ){
-            $this->addPaymentToUser([
-              "token" => $token,
-              "userIds" => [$id_user],
-              "tmid" => $tmid,
-              "amount" => $amount,
-              "name" => $title,
-            ]);
-            ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>1]);
-          }else if( $dateNow !== $dateStart && $is_added_today){
-            ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>0]);
-          }
-
+        while( strtotime($dateStart) < strtotime($dateNow)){
           if( $intervalName === "dzień"){
             $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' days'));
           }else if($intervalName === "tydzień"){
@@ -261,8 +248,22 @@ class Payment extends BasicModule {
           }else{
             $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' months'));
           }
-          
         }
+
+        if( $dateNow === $dateStart && !$is_added_today ){
+          $this->addPaymentToUser([
+            "token" => $token,
+            "userIds" => [$id_user],
+            "tmid" => $tmid,
+            "amount" => $amount,
+            "name" => $title,
+          ]);
+          ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>1]);
+          break;
+        }else if( $dateNow !== $dateStart && $is_added_today){
+          ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>0]);
+        }
+
       }
     }
 
