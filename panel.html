@@ -10,7 +10,17 @@
     <link rel="icon" href="/files/img/favicon.ico">
     <title ng-show="mainSettings.length > 0">{{mainSettings.appName}}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.10&appId=1252678551503419';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </head>
 
 <body ng-controller="accountController">
@@ -100,10 +110,12 @@
                     </p>
                     <h5 class="centered">{{user.firstname}} {{user.lastname}}</h5>
                 </ul>
+
                 <ul class='contactUl'>
                     <li class="contactUl-background"><i class="fa fa-check-square-o fa-fw" aria-hidden="true" style='color: #fff'></i><a href="" ng-click="goFeed('opinia')">Prześlij opinię</a></li>
                     <li class="contactUl-background"><i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true" style='color: #fff'></i><a href="" ng-click="goFeed('blad')">Zgłoś błąd</a></li>
                 </ul>
+                <div class="fb-like" data-href="https://www.facebook.com/centrumklubu" style='margin: auto;display: table;' data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
             </div>
 
 
