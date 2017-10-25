@@ -494,6 +494,7 @@ ul.top-menu>li>.logout:hover {
 }
 
 #sidebar {
+    padding-bottom: 50px;
     width: 210px;
     height: 100%;
     position: fixed;
@@ -3029,13 +3030,13 @@ textarea.materialize-textarea {
 }
 
 .textToLeft {
-  text-align: left;
+    text-align: left;
 }
 
 .trainingName h5 {
-  font-size: 0.9rem;
-  margin: 0;
-  padding-top: 1.2%;
+    font-size: 0.9rem;
+    margin: 0;
+    padding-top: 1.2%;
 }
 
 .trainingName i {
