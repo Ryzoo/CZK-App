@@ -1,0 +1,28 @@
+<div ng-init="setPerm(['ZAWODNIK'])"></div>
+<div class="section" ng-init="getAllMasters()">
+    <div class='row' ng-show='showContent'>
+        <div class="col s12 m10 offset-m1">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Ustawienia naboru do sekcji
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

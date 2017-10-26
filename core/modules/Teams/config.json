@@ -50,18 +50,44 @@
             "url": "changeWeightTeam",
             "parameters": ["weight", "tmid"],
             "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "getSectionData",
+            "parameters": ["tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "turnOnSectionGet",
+            "parameters": ["tmid", "min", "max", "desc"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "turnOffSectionGet",
+            "parameters": ["tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "getSectionApplayer",
+            "parameters": ["tmid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
         }
     ],
-    "jsControllers": ["teamsMenagerController", "masterMenagerController"],
+    "jsControllers": ["teamsMenagerController", "masterMenagerController", "sectionGetController"],
     "frontendRoute": [{
             "url": "teamsMenager",
             "templateSrc": "teamsMenager.html",
             "controllerName": "teamsMenagerController"
         },
         {
+            "url": "sectionGet",
+            "templateSrc": "sectionGet.html",
+            "controllerName": "sectionGetController"
+        },
+        {
             "url": "masterMenager",
             "templateSrc": "masterMenager.html",
             "controllerName": "masterMenagerController"
+        },
+        {
+            "url": "sectionGetForPlayer",
+            "templateSrc": "sectionGetForPlayer.html",
+            "controllerName": "sectionGetController"
         }
     ],
     "anchor": [{
@@ -75,7 +101,7 @@
             "destination": "leftMenu",
             "content": {
                 "link": {
-                    "label": "Drużyny",
+                    "label": "Sekcje",
                     "url": "#!/teamsMenager",
                     "icon": "fa fa-address-card-o fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""
@@ -83,6 +109,26 @@
             }
         },
         {
+            "destination": "leftMenu",
+            "content": {
+                "link": {
+                    "label": "Nabór do sekcji",
+                    "url": "#!/sectionGet",
+                    "icon": "fa fa-handshake-o fa-fw",
+                    "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "content": {
+                "link": {
+                    "label": "Nabór do sekcji",
+                    "url": "#!/sectionGetForPlayer",
+                    "icon": "fa fa-handshake-o fa-fw",
+                    "additional": "ng-show=\"user.role == 'ZAWODNIK'\""
+                }
+            }
+        }, {
             "destination": "leftMenu",
             "content": {
                 "link": {

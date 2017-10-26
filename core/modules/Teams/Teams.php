@@ -131,6 +131,40 @@ class Teams extends BasicModule {
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
+    function getSectionData($data){
+        $tmid = $data['tmid'];
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRow('SELECT * FROM teams WHERE id = '.$tmid);
+        return $this->returnedData;
+    }
+
+    function turnOnSectionGet($data){
+        $tmid = $data['tmid'];
+        $min = $data['min'];
+        $max = $data['max'];
+        $desc = $data['desc'];
+        $this->returnedData['data'] = ($this->db->getConnection())->update('teams',["id"=>$tmid],[
+                "minYear"=>$min,
+                "maxYear"=>$max,
+                "description"=>$desc,
+                "isGetEnabled"=>1
+            ]);
+        return $this->returnedData;
+    }
+
+    function turnOffSectionGet($data){
+        $tmid = $data['tmid'];
+        $this->returnedData['data'] = ($this->db->getConnection())->update('teams',["id"=>$tmid],[
+                "isGetEnabled"=>0
+            ]);
+        return $this->returnedData;
+    }
+
+    function getSectionApplayer($data){
+        $tmid = $data['tmid'];
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT users.id as usid, firstname, lastname, YEAR(CURDATE()) - EXTRACT( YEAR FROM user_data.birthdate )  AS yearOld , tel, parent_tel, email FROM sectionApplayers, users, user_data  WHERE sectionApplayers.id_user = users.id AND users.id = user_data.user_id AND sectionApplayers.id_team =".$tmid);
+        return $this->returnedData;
+    }
+
     function deleteTeam($data){
         $toReturn = null;
         $success = true;

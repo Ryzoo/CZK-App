@@ -1,0 +1,88 @@
+<div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<div class="section" ng-init="getSectionData()">
+    <div class='row' ng-show='showContent'>
+        <div class="col s12 m10 offset-m1">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        Ustawienia naboru do sekcji
+                    </div>
+                    <div class="row">
+                        <p style='padding: 10px 50px;'>Nabór do sekcji pozwoli na rejestrowanie użytkownikom nowych kąt w panelu logowanie. Nowi użytkownicy będą mogil przeglądać podstawowe dane sekcji z listy sekcji o otwartym naborze. Po zdecydowaniu mogą aplikować do wybranej. Po
+                            tym, użytkownicy tacy pojawią się na liście poniżej i trener będzie mógł zadecydwoać o przyjęciu. Aplikować do sekcji może każdy użytkownik który ma wypełnione wszystkie dane konta.
+                        </p>
+                        <div ng-show="!isGetEnabled">
+                            <h5>Uzupełnij informacje o sekcji</h5>
+                            <form>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="input-field col s12 m3">
+                                            <input id="sectionYMin" type="text" name="teamYearMin" placeholder="Np. 17" value='{{sectionData.minYear}}' class="validate">
+                                            <label for="sectionYMin">Przedział wiekowy (min)</label>
+                                        </div>
+                                        <div class="input-field col s12 m3">
+                                            <input id="sectionYMax" type="text" name="teamYearMax" placeholder="Np. 20" value='{{sectionData.maxYear}}' class="validate">
+                                            <label for="sectionYMax">Przedział wiekowy (maks)</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="sectionDesc" type="text" name="teamOps" placeholder="Krótki opis" value='{{sectionData.description}}' class="validate">
+                                            <label for="sectionDesc">Krótki opis</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="turnOnSectionGet()">Włącz nabór</button>
+                            </form>
+                            <br/>
+                            <br/>
+                            <p>Pozwoli użytkowniką rejestrować się i aplikować do tej sekcji. Zostaną przypisani zaraz po akceptacji prośby przez trenera.</p>
+                        </div>
+                        <div ng-show="isGetEnabled">
+                            <h5>Lista próśb o dołączenie</h5>
+                            <table class='centered'>
+                                <thead>
+                                    <tr>
+                                        <th>Imię i nazwisko</th>
+                                        <th>Wiek</th>
+                                        <th>Telefon</th>
+                                        <th>Adres Email</th>
+                                        <th>Akcje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="userApplayer in sectionApplayer">
+                                        <td>{{userApplayer.firstname}} {{userApplayer.lastname}}</td>
+                                        <td>{{userApplayer.yearOld}}</td>
+                                        <td>{{userApplayer.tel}}<br/>{{userApplayer.parent_tel}}</td>
+                                        <td>{{userApplayer.email}}</td>
+                                        <td>
+                                            <a href='' ng-click='addPlayerToTeam(userApplayer.usid)'><i class="fa fa-plus-circle fa-2x fa-fw" aria-hidden="true"></i></a>
+                                            <a href='' ng-click='deletePlayerApplay(userApplayer.usid)'><i class="fa fa-trash fa-2x fa-fw" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="waves-effect waves-light btn" style='margin-top:10px;' ng-click="turnOffSectionGet()">Zakończ nabór</button>
+                            <br/>
+                            <br/>
+                            <p>Usunie wszystkie nierozstrzygnięte prośby i zakończy możliwość aplikowania do tej sekcji.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+</script>

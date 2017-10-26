@@ -43,7 +43,7 @@
             "link": {
                 "label": "Zmień plan",
                 "url": "#!\/timetableSettings",
-                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' && user.role != 'STAFF'\""
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
             }
         }
     }]

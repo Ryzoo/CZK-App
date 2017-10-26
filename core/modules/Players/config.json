@@ -20,8 +20,7 @@
         },
         {
             "url": "getCountOfLicenseData",
-            "parameters": ["tmid"],
-            "auth": ["KOORD", "TRENER", "STAFF"]
+            "parameters": ["tmid"]
         },
         {
             "url": "addPlayerToTeam",

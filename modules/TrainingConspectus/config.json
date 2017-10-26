@@ -54,7 +54,7 @@
     "anchor": [{
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
-        "anchorPointIcon": "fa fa-address-card-o fa-fw",
+        "anchorPointIcon": "fa fa-address-card fa-fw",
         "content": {
             "link": {
                 "label": "Lista konspektów",
@@ -65,7 +65,7 @@
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
-        "anchorPointIcon": "fa fa-address-card-o fa-fw",
+        "anchorPointIcon": "fa fa-address-card fa-fw",
         "content": {
             "link": {
                 "label": "Dodaj nowy konspekt",
@@ -76,7 +76,7 @@
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
-        "anchorPointIcon": "fa fa-address-card-o fa-fw",
+        "anchorPointIcon": "fa fa-address-card fa-fw",
         "content": {
             "link": {
                 "label": "Lista ćwiczeń",
@@ -87,7 +87,7 @@
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
-        "anchorPointIcon": "fa fa-address-card-o fa-fw",
+        "anchorPointIcon": "fa fa-address-card fa-fw",
         "content": {
             "link": {
                 "label": "Dodaj nowe ćwiczenie",
