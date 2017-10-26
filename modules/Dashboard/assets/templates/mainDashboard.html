@@ -1,8 +1,8 @@
 <div ng-init="setPerm(['KOORD','TRENER','ZAWODNIK','STAFF'])"></div>
 <div class="section" ng-init="getAllEvents();">
     <div ng-show='showContent'>
-        <div class="fElementRowConainer">
-            <div class="f50" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+        <div class="fElementRowConainer" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+            <div class="f33" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="f50" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+            <div class="f33" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
@@ -38,6 +38,25 @@
                         </div>
                         <div class="row" style="padding-top: 15px;">
                             <a href="https://sklep.centrumklubu.pl">Przejdź do sklepu Centrum Klubu ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f33" ng-show="user.tmid != '' && user.role != 'ZAWODNIK'">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            OGRANICZENIA LICENCJI
+                        </div>
+                        <div class="row" ng-init='getLicenseDate()'>
+                            <div class="col s12 m10 offset-m1">
+                                <p>Ilość drużyn: <span style='font-weight: bold'> {{licenseDate.teamCount}} / {{mainSettings.maxTeams}} </span></p>
+                                <p>Ilość kont trenerów<span style='font-weight: bold'> {{licenseDate.mastersCount}} / {{mainSettings.maxMasters}} </span></p>
+                                <p>Ilość kont zawodników: <span style='font-weight: bold'> {{licenseDate.playerCount}} / {{mainSettings.maxPlayers}} </span></p>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 15px;">
+                            <a href="https://centrumklubu.pl">Przejdź do strony Centrum Klubu ></a>
                         </div>
                     </div>
                 </div>

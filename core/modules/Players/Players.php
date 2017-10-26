@@ -3,6 +3,7 @@ namespace Core\Players;
 
 use Core\System\BasicModule;
 use Core\System\MailSystem;
+use Core\Settings\Settings;
 
 class Players extends BasicModule{
    function install(){
@@ -20,8 +21,20 @@ class Players extends BasicModule{
             'id_team'  => $tmid
         ];
 
-        $teamMembersId = ($this->db->getConnection())->insert('team_members', $data);
+        $settings = new Settings();
+        $mainSettings = $settings->getMainPageSettings()['data'];
+        $maxPlayersCount = $mainSettings->maxPlayers;
+        if( $maxPlayersCount != 'MAX' ){
+            $maxPlayersCount = (int) $maxPlayersCount;
+            $playerCount = count(($this->db->getConnection())->fetchRowMany("SELECT id FROM team_members WHERE id_team = ".$tmid));
+            if( $playerCount >=$maxPlayersCount  ){
+                $this->returnedData['error'] = "Niestety limit zawodników nie pozwala na dodanie kolejnego";
+                $this->returnedData['success'] = false;
+                return $this->returnedData;
+            }
+        }
 
+        $teamMembersId = ($this->db->getConnection())->insert('team_members', $data);
         return $this->returnedData;
     }
 
@@ -100,6 +113,32 @@ class Players extends BasicModule{
         $role = ($isAdminAc ? 2 : ($isPersonel ? 4 : 3));
         $newPassword = md5( $lname . random_int(1, 100) . $token );
 
+        $settings = new Settings();
+        $mainSettings = $settings->getMainPageSettings()['data'];
+        if( !$isAdminAc ){
+            $maxPlayersCount = $mainSettings->maxPlayers;
+            if( $maxPlayersCount != 'MAX' ){
+                $maxPlayersCount = (int) $maxPlayersCount;
+                $playerCount = count(($this->db->getConnection())->fetchRowMany("SELECT id FROM team_members WHERE id_team = ".$tmid));
+                if( $playerCount >=$maxPlayersCount  ){
+                    $error = "Niestety limit zawodników nie pozwala na dodanie kolejnego";
+                    $success = false;
+                    return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+                }
+            }
+        }else{
+            $maxMasterCount = $mainSettings->maxMasters;
+            if( $maxMasterCount != 'MAX' ){
+                $maxMasterCount = (int) $maxMasterCount;
+                $mastersCount = count(($this->db->getConnection())->fetchRowMany("SELECT id FROM users WHERE id_role=2"));
+                if( $mastersCount >=$maxMasterCount  ){
+                    $error = "Niestety limit zawodników nie pozwala na dodanie kolejnego";
+                    $success = false;
+                    return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+                }
+            }
+        }
+
         $toReturn = ($this->db->getConnection())->fetchRowMany("SELECT id FROM users WHERE email = '".$mail."'");
         if( $toReturn != null ){
             $error = "Dany adres email istnieje już w bazie";
@@ -167,6 +206,24 @@ class Players extends BasicModule{
         $toReturn = ($this->db->getConnection())->fetchRow('SELECT *  FROM users, user_data, roles WHERE users.id_role = roles.id  AND users.id = user_data.user_id AND users.id = '.$usid);
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
+    function getCountOfLicenseData($data){
+        $settings = new Settings();
+        $mainSettings = $settings->getMainPageSettings()['data'];
+        $tmid = $data['tmid'];
+        $teamCount = count(($this->db->getConnection())->fetchRowMany("SELECT id FROM teams"));
+        $mastersCount = count(($this->db->getConnection())->fetchRowMany("SELECT id FROM users WHERE id_role=2"));
+        $playerCount = count(($this->db->getConnection())->fetchRowMany("SELECT id FROM team_members WHERE id_team = ".$tmid));
+        $this->returnedData['data'] = [
+            "teamCount" => $teamCount,
+            "mastersCount" => $mastersCount,
+            "playerCount" => $playerCount,
+            "maxTeams" => $mainSettings->maxTeams,
+            "maxMasters" => $mainSettings->maxMasters,
+            "maxPlayers" => $mainSettings->maxPlayers
+        ];
+        return $this->returnedData;
     }
 
     function deleteUser( $data ){

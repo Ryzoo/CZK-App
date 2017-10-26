@@ -1,6 +1,7 @@
 <?php
 namespace Core\Teams;
 use Core\System\BasicModule;
+use Core\Settings\Settings;
 
 class Teams extends BasicModule {
     function install(){
@@ -101,6 +102,19 @@ class Teams extends BasicModule {
             'weight' => $data["weight"]
         ];
 
+        $settings = new Settings();
+        $mainSettings = $settings->getMainPageSettings()['data'];
+        $maxTeamCount = $mainSettings->maxTeams;
+        if( $maxTeamCount != 'MAX' ){
+            $maxTeamCount = (int) $maxTeamCount;
+            $teamCount = count(($this->db->getConnection())->fetchRowMany("SELECT id FROM teams "));
+            if( $teamCount >=$maxTeamCount  ){
+                $this->returnedData['error'] = "Niestety limit drużyn nie pozwala na dodanie kolejnej";
+                $this->returnedData['success'] = false;
+                return $this->returnedData;
+            }
+        }
+
         $toReturn = ($this->db->getConnection())->insert('teams', $data);
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
@@ -162,6 +176,7 @@ class Teams extends BasicModule {
             'id_user' => $data["mid"],
             'id_team' => $data["tmid"],
         ];
+ 
 
         $cm = ($this->db->getConnection())->fetchRowMany('SELECT id FROM team_members WHERE id_team = '.$tmid . ' AND id_user = '.$mid);
         if( $cm != null ){

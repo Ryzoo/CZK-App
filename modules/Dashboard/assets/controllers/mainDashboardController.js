@@ -5,6 +5,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.showContent = true;
     $scope.isLoadedPost = false;
     $scope.todayInt = (new Date()).getDay();
+    $scope.licenseDate = [];
 
 
     $scope.getAllEvents = function() {
@@ -19,6 +20,14 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
         request.backend('getNextEvents', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.nextEvents = data;
+            });
+        });
+    }
+
+    $scope.getLicenseDate = function() {
+        request.backend('getCountOfLicenseData', { tmid: $rootScope.user.tmid }, function(data) {
+            $scope.$apply(function() {
+                $scope.licenseDate = data;
             });
         });
     }

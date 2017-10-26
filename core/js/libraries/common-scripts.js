@@ -40,7 +40,7 @@ var Script = function() {
                 });
                 $(".sidebar-toggle-box").first().css("margin-left", "15px");
                 $('#sidebar').css({
-                    'margin-left': '-210px'
+                    'margin-left': '-768px'
                 });
             }
 
@@ -88,7 +88,7 @@ var Script = function() {
                 'margin-left': '0px'
             });
             $('#sidebar').css({
-                'margin-left': '-210px'
+                'margin-left': '-768px'
             });
         }
     })
@@ -101,7 +101,7 @@ var Script = function() {
                 'margin-left': '0px'
             });
             $('#sidebar').css({
-                'margin-left': '-210px'
+                'margin-left': '-768px'
             });
         }
     })
@@ -116,7 +116,7 @@ var Script = function() {
                 'margin-left': '0px'
             });
             $('#sidebar').css({
-                'margin-left': '-210px'
+                'margin-left': '-768px'
             });
             $('#sidebar > ul').hide();
             $("#container").addClass("sidebar-closed");

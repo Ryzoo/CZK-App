@@ -1,92 +1,218 @@
-<div ng-init="setPerm(['KOORD'])"></div>
-
-<div class="section">
-    <div ng-show='showContent' class="row" ng-init="initSettings()">
-        <div class="col s12 m10 offset-m1">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Moduły
-                    </div>
-                    <div class="row">
-                        <form id="addModuleForm" enctype="multipart/form-data">
-                            <input type="hidden" name="token" value="{{user.token}}">
-                            <div class="file-field input-field">
-                                <div class="btn">
-                                    <span>Wgraj nowy</span>
-                                    <input type="file" name="moduleFile" id="moduleFile" accept=".zip">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Moduł - zip">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="card-tabs">
-                            <ul class="tabs tabs-fixed-width" ng-init="installed=1;">
-                                <li class="tab"><a class="active" href="" ng-click='installed=1; toInstall=0;toUpdate=0'>Włączone</a></li>
-                                <li class="tab"><a href="" ng-click='installed=0; toInstall=1;toUpdate=0'>Wyłączone</a></li>
-                            </ul>
-                        </div>
-                        <div class="card-content">
-                            <div ng-show="installed">
-                                <div class="row">
-                                    <ul class="collection none-border">
-                                        <li class="collection-item avatar moduleCollection" ng-repeat="module in installedModules">
-                                            <img src="{{module.icon}}" alt="module icon"><span class="title">{{module.name}} - {{module.version}}</span>
-                                            <p style='padding: 5px 15px;'>{{module.description}}</p>
-                                            <p style='padding: 5px 15px;' ng-show="module.require.length > 0">Wymaga: <b>{{module.require}}</b></p>
-                                            <a href="" class="secondary-content" ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div ng-show="toInstall">
-                                <div class="row">
-                                    <ul class="collection none-border">
-                                        <li class="collection-item avatar moduleCollection" ng-repeat="module in notInstalledModules">
-                                            <img src="{{module.icon}}" alt="module icon">
-                                            <span class="title">{{module.name}} - {{module.version}}</span>
-                                            <p>{{module.description}}</p>
-                                            <p ng-show="module.require.length > 0">Wymaga: <b>{{module.require}}</b></p>
-                                            <a href="" class="secondary-content" ng-click="installModule(module.name)"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- <div ng-show="toUpdate">
-                                <div class="row">
-                                    <div class="titleIn">Pamiętaj! Aktualizacja może usunąć wszystkie dane powiązane z modułem</div>
-                                    <ul class="collection none-border">
-                                        <li class="collection-item avatar moduleCollection" ng-repeat="module in toUpdateModule">
-                                            <img src="/files/img/defaultModule.png" alt="module icon">
-                                            <span class="title">{{module.name}} Nowa wersja - {{module.ver}}</span>
-                                            <a href="" class="secondary-content" ng-click="updateModule(module.name)"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div ng-hide='showContent' class='loaderContainer'>
-        <div id="loader-wrapper">
-            <div id="loader"></div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            Materialize.updateTextFields();
-            $('select').material_select();
-            $('ul.tabs').tabs();
-        }, 500);
-    });
-</script>
+<table class="tableShowPacketData">
+    <thead>
+        <tr>
+            <th>
+                <h4>Usługi i limity</h4>
+            </th>
+            <th>
+                <h4>Status pakietu Basic</h4>
+            </th>
+            <th>
+                <h4>Status pakietu Standard</h4>
+            </th>
+            <th>
+                <h4>Status pakietu Professional</h4>
+            </th>
+            <th>
+                <h4>Status pakietu Champion</h4>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Limit drużyn</strong></td>
+            <td>
+                <h6>4 drużyny</h6>
+            </td>
+            <td>
+                <h6>10 drużyn</h6>
+            </td>
+            <td>
+                <h6>30 drużyn</h6>
+            </td>
+            <td>
+                <h6>Brak limitu</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Limit koordynatorów</strong></td>
+            <td>
+                <h6>1 konto</h6>
+            </td>
+            <td>
+                <h6>1 konto</h6>
+            </td>
+            <td>
+                <h6>2 konto</h6>
+            </td>
+            <td>
+                <h6>Brak limitu</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Limit trenerów</strong></td>
+            <td>
+                <h6>8 kont</h6>
+            </td>
+            <td>
+                <h6>20 kont</h6>
+            </td>
+            <td>
+                <h6>60 kont</h6>
+            </td>
+            <td>
+                <h6>Brak limitu</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Limit zawodników</strong></td>
+            <td>
+                <h6>20 zawodników / drużyna</h6>
+            </td>
+            <td>
+                <h6>30 zawodników / drużyna</h6>
+            </td>
+            <td>
+                <h6>Brak limitu</h6>
+            </td>
+            <td>
+                <h6>Brak limitu</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Motywy graficzne</strong></td>
+            <td>
+                <h6>3 podstawowe</h6>
+            </td>
+            <td>
+                <h6>Wszystkie Dostępne</h6>
+            </td>
+            <td>
+                <h6>Dostępne / Najnowsze</h6>
+            </td>
+            <td>
+                <h6>Dostępne / Najnowsze / Na zamówienie</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Wsparcie techniczne</strong></td>
+            <td>
+                <h6>PEŁNE</h6>
+            </td>
+            <td>
+                <h6>PEŁNE</h6>
+            </td>
+            <td>
+                <h6>PEŁNE</h6>
+            </td>
+            <td>
+                <h6>PEŁNE</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Instrukcja / manual</strong></td>
+            <td>
+                <h6>PDF</h6>
+            </td>
+            <td>
+                <h6>PDF</h6>
+            </td>
+            <td>
+                <h6>PDF + MP4</h6>
+            </td>
+            <td>
+                <h6>PDF + MP4</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Dostęp do Gold Club</strong></td>
+            <td>
+                <h6>po 3 latach</h6>
+            </td>
+            <td>
+                <h6>po 2 latach</h6>
+            </td>
+            <td>
+                <h6>po roku</h6>
+            </td>
+            <td>
+                <h6>natychmiast</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Wprowadzenie danych przez nas</strong></td>
+            <td>
+                <h6>Brak możliwości</h6>
+            </td>
+            <td>
+                <h6>Podstawowe dane</h6>
+            </td>
+            <td>
+                <h6>Pełne dane</h6>
+            </td>
+            <td>
+                <h6>Pełne dane i aktualizacje</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Wersja pobilna platformy</strong></td>
+            <td>
+                <h6>Pełna</h6>
+            </td>
+            <td>
+                <h6>Pełna</h6>
+            </td>
+            <td>
+                <h6>Pełna</h6>
+            </td>
+            <td>
+                <h6>Pełna</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Szyfrowany dostęp z certyfikatem SSL</strong></td>
+            <td>
+                <h6>Brak</h6>
+            </td>
+            <td>
+                <h6>Aktywny</h6>
+            </td>
+            <td>
+                <h6>Aktywny</h6>
+            </td>
+            <td>
+                <h6>Aktywny</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Aktualizacja platformy</strong></td>
+            <td>
+                <h6>PEŁNA - SPORADYCZNA</h6>
+            </td>
+            <td>
+                <h6>PEŁNA - SPORADYCZNA</h6>
+            </td>
+            <td>
+                <h6>PEŁNA - SZYBKA</h6>
+            </td>
+            <td>
+                <h6>PEŁNA - NATYCHMIASTOWA</h6>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Aktualizacja modułów</strong></td>
+            <td>
+                <h6>PEŁNA - SPORADYCZNA</h6>
+            </td>
+            <td>
+                <h6>PEŁNA - SPORADYCZNA</h6>
+            </td>
+            <td>
+                <h6>PEŁNA - SZYBKA</h6>
+            </td>
+            <td>
+                <h6>PEŁNA - NATYCHMIASTOWA</h6>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -304,7 +304,7 @@ class Settings extends BasicModule{
         return $this->returnedData;
     }
 
-    public function getMainPageSettings($data){
+    public function getMainPageSettings($data=null){
         $json = new JSON();
         $siteConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');
         $this->returnedData['data'] = $siteConfig->mainSettings;

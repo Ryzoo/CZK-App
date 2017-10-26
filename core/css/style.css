@@ -65,6 +65,9 @@ Premium: http://www.gridgum.com
     .f33 {
         width: 50%;
     }
+    #nav-accordion p a img {
+        display: none;
+    }
 }
 
 @media (max-width:630px) {
