@@ -1748,8 +1748,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             degree = parseFloat(((Math.atan(a) * 180) / Math.PI) + rotOffset, 2).toFixed(2);
                             var lastDegreee = parseDeg(parseInt(degree));
                             var isReRotation = parseDeg(parseInt(objs[z].getAttr("rotation"))) != lastDegreee;
-                            console.log(lastDegreee);
-                            console.log(parseDeg(parseInt(objs[z].getAttr("rotation"))));
                             p1 = getPosOnCurves(history.start, history.control, history.end, (x / 24));
                             p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / 24));
                             var rotOffset = 0;
@@ -2052,27 +2050,30 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             for (var x = 0; x < data.animFrame.length; x++) {
                 allObjectPerFrame.push({ arrow: [], obj: [], shapes: [], text: [] });
 
-                for (var i = 0; i < data.animFrame[x].arrow.length; i++) {
-                    var arrowBef = data.animFrame[x].arrow[i];
-                    var obj = createArrowObjFromOther(arrowBef, true);
-                    allObjectPerFrame[x].arrow.push(obj);
-                }
-                for (var i = 0; i < data.animFrame[x].obj.length; i++) {
-                    var objBef = data.animFrame[x].obj[i];
-                    var obj = createObjFromOther(objBef, true);
-                    allObjectPerFrame[x].obj.push(obj);
-                }
-                for (var i = 0; i < data.animFrame[x].shapes.length; i++) {
-                    var objBef = data.animFrame[x].shapes[i];
-                    var obj = createShapeObjFromOther(objBef, true);
-                    allObjectPerFrame[x].shapes.push(obj);
-                }
-                for (var i = 0; i < data.animFrame[x].text.length; i++) {
-                    var objBef = data.animFrame[x].text[i];
-                    var obj = createTextFromOther(objBef, true);
-                    allObjectPerFrame[x].text.push(obj);
-                }
-
+                if (data.animFrame[x].arrow)
+                    for (var i = 0; i < data.animFrame[x].arrow.length; i++) {
+                        var arrowBef = data.animFrame[x].arrow[i];
+                        var obj = createArrowObjFromOther(arrowBef, true);
+                        allObjectPerFrame[x].arrow.push(obj);
+                    }
+                if (data.animFrame[x].obj)
+                    for (var i = 0; i < data.animFrame[x].obj.length; i++) {
+                        var objBef = data.animFrame[x].obj[i];
+                        var obj = createObjFromOther(objBef, true);
+                        allObjectPerFrame[x].obj.push(obj);
+                    }
+                if (data.animFrame[x].shapes)
+                    for (var i = 0; i < data.animFrame[x].shapes.length; i++) {
+                        var objBef = data.animFrame[x].shapes[i];
+                        var obj = createShapeObjFromOther(objBef, true);
+                        allObjectPerFrame[x].shapes.push(obj);
+                    }
+                if (data.animFrame[x].text)
+                    for (var i = 0; i < data.animFrame[x].text.length; i++) {
+                        var objBef = data.animFrame[x].text[i];
+                        var obj = createTextFromOther(objBef, true);
+                        allObjectPerFrame[x].text.push(obj);
+                    }
 
                 if (x != 0) {
                     var count = $(".timeElement").length + 1;

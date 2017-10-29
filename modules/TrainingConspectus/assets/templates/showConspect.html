@@ -28,13 +28,13 @@
                         </div>
                     </div>
                     <div class="row noPrint" style='margin: 20px !important;'>
-                        <div class='oneTagFull col s12 m6 l4' ng-repeat="tag in conspect.tags ">{{tag}}</div>
+                        <div class='oneTagFull col s12 m6 l4' ng-repeat="tag in conspect.tags track by $index">{{tag}}</div>
                     </div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header "><i class="material-icons">filter_drama</i>Część wstępna</div>
                             <div id='coStart' class="collapsible-body conspectBodyColE">
-                                <div ng-repeat="coElement in conspect.data.coStart" class='coElement coElementFull'>
+                                <div ng-repeat="coElement in conspect.data.coStart track by $index" class='coElement coElementFull'>
                                     <div class="elementContent">
                                         <div class="elementTitle">
                                             <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
@@ -83,7 +83,7 @@
                         <li>
                             <div class="collapsible-header"><i class="material-icons">place</i>Część główna</div>
                             <div id='coMiddle' class="collapsible-body conspectBodyColE">
-                                <div ng-repeat="coElement in conspect.data.coMiddle" class='coElement coElementFull'>
+                                <div ng-repeat="coElement in conspect.data.coMiddle track by $index" class='coElement coElementFull'>
                                     <div class="elementContent">
                                         <div class="elementTitle">
                                             <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
@@ -118,7 +118,7 @@
                         <li>
                             <div class="collapsible-header"><i class="material-icons">whatshot</i>Część końcowa</div>
                             <div id='coEnd' class="collapsible-body conspectBodyColE">
-                                <div ng-repeat="coElement in conspect.data.coEnd" class='coElement coElementFull'>
+                                <div ng-repeat="coElement in conspect.data.coEnd track by $index" class='coElement coElementFull'>
                                     <div class="elementContent">
                                         <div class="elementTitle">
                                             <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
