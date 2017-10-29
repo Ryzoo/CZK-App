@@ -13,6 +13,7 @@ app.controller('showConspectController', function($scope, auth, $rootScope, noti
         request.backend('getFullConspectById', { id: id }, function(data) {
             $scope.$apply(function() {
                 $scope.conspect = data;
+                $scope.conspect.tags = $scope.conspect.tags.replace('  ', ' ');
                 $scope.conspect.tags = $scope.conspect.tags.split(' ');
                 $scope.showContent = true;
             });

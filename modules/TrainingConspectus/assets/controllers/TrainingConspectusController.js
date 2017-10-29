@@ -100,7 +100,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             $scope.$apply(function() {
                 $scope.animArray = data;
                 for (var i = 0; i < $scope.animArray.length; i++) {
-                    var tags = $scope.animArray[i].tags.split(" ");
+                    var tags = $scope.animArray[i].tags.replace("  ", " ").split(" ");
                     $scope.animArray[i].tags = [];
                     for (var x = 0; x < tags.length; x++) {
                         $scope.animArray[i].tags.push(tags[x]);
@@ -124,7 +124,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         request.backend('getAllConspectList', {}, function(data) {
             $scope.conspectArray = data;
             for (var i = 0; i < $scope.conspectArray.length; i++) {
-                var tags = $scope.conspectArray[i].tags.split(" ");
+                var tags = $scope.conspectArray[i].tags.replace("  ", " ").split(" ");
                 $scope.conspectArray[i].tags = [];
                 for (var x = 0; x < tags.length; x++) {
                     $scope.conspectArray[i].tags.push(tags[x]);

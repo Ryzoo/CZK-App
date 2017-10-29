@@ -112,7 +112,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                         }, 5000);
                     }
                     setTimeout(function() {
-                        $('#loadingContent').hide('slide', {}, 500);
+                        $('#loadingContent').hide('slide', {}, 1000);
                         document.location.href = "/panel#!/";
                         $route.reload();
                     }, 500);

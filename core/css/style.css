@@ -61,6 +61,14 @@ Premium: http://www.gridgum.com
     width: 33.3%;
 }
 
+.loaderMainText h5 {
+    text-align: center;
+    margin-top: -20vh;
+    padding: 0 10px;
+    color: #9f9f9f;
+    font-weight: 300;
+}
+
 @media (max-width:768px) {
     .f33 {
         width: 50%;
