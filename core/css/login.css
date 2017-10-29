@@ -10,8 +10,8 @@ body {
 }
 
 #backgroundLogin img {
-    width: 100%;
-    height: auto;
+    min-width: 100vw;
+    height: 100vh;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -19,10 +19,10 @@ body {
 }
 
 @media(max-width: 1035px) {
-  #backgroundLogin img {
-    height: 100%;
-    width: auto;
-  }
+    #backgroundLogin img {
+        height: 100%;
+        width: auto;
+    }
 }
 
 .loginMainContener {
@@ -46,12 +46,22 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
     left: 5%;
-    min-width: 400px;
-    max-width: 600px;
-    width: 50vw;
+    width: 40vw;
+    max-width: 450px;
     overflow: hidden;
     padding: 20px;
-    height: 100%;
+    min-height: 100vh;
+}
+
+.registerFormContener {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    right: 5%;
+    max-width: 450px;
+    width: 40vw;
+    overflow: hidden;
+    padding: 20px;
+    min-height: 100vh;
 }
 
 .logoContener {
@@ -74,6 +84,12 @@ body {
     float: left;
     width: 100%;
     margin-top: 75px;
+}
+
+@media(max-width:768px) {
+    .formContener {
+        margin-top: 50px;
+    }
 }
 
 .text {
@@ -130,12 +146,9 @@ button[type=submit]:hover {
 }
 
 .footer {
-    float: left;
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 30px;
+    float: left;
+    padding: 50px 10px 0;
 }
 
 .footer p {
@@ -159,7 +172,7 @@ button[type=submit]:hover {
 }
 
 .reg a {
-  color: #26a69a;
+    color: #26a69a;
 }
 
 @media (max-height: 550px) {
@@ -183,13 +196,17 @@ button[type=submit]:hover {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .copyrightText {
         width: 100%;
     }
-    .loginFormContener {
-        width: 100vw;
-        min-width: 0;
+    .loginFormContener,
+    .registerFormContener {
+        width: 100%;
+        max-width: 100%;
+        float: left;
+        position: relative;
         left: 0;
+        min-height: 0;
     }
 }
