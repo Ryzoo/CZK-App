@@ -15,12 +15,12 @@ $(function() {
 $("#sidebar").niceScroll({
     cursorborderradius: '0px', // Scroll cursor radius
     cursorborder: 'none',
-    scrollspeed: 60, // scrolling speed
+    scrollspeed: 10, // scrolling speed
     emulatetouch: true,
     hwacceleration: true,
     smoothscroll: true,
     bouncescroll: true,
-    mousescrollstep: 30, // scrolling speed with mouse wheel (pixel)
+    mousescrollstep: 10, // scrolling speed with mouse wheel (pixel)
     background: 'transparent', // The scrollbar rail color
     cursorwidth: '4px', // Scroll cursor width
     cursorcolor: '#a51100'
