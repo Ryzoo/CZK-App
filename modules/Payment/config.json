@@ -57,21 +57,25 @@
         "destination": "leftMenu",
         "anchorPoint": "P\u0142atno\u015bci w klubie",
         "anchorPointIcon": "fa fa-shopping-cart fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": { "link": { "label": "Proste p\u0142atno\u015bci", "url": "#!\/payment", "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' \"" } }
     }, {
         "destination": "leftMenu",
         "anchorPoint": "P\u0142atno\u015bci w klubie",
         "anchorPointIcon": "fa fa-shopping-cart fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": { "link": { "label": "Moje p\u0142atno\u015bci", "url": "#!\/clientPayment", "additional": "ng-show=\"user.tmid != '' && user.role == 'ZAWODNIK'\"" } }
     }, {
         "destination": "leftMenu",
         "anchorPoint": "P\u0142atno\u015bci w klubie",
         "anchorPointIcon": "fa fa-shopping-cart fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": { "link": { "label": "P\u0142atno\u015bci cykliczne", "url": "#!\/cyclicPayment", "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' \"" } }
     }, {
         "destination": "leftMenu",
         "anchorPoint": "P\u0142atno\u015bci w klubie",
         "anchorPointIcon": "fa fa-shopping-cart fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": { "link": { "label": "Ustawienia", "url": "#!\/paymentSettings", "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"" } }
     }],
     "merchantPosId": "302273",

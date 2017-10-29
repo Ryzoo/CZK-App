@@ -98,6 +98,63 @@ class Players extends BasicModule{
         return $this->returnedData;
     }
 
+    function registerNewApplayer($data){
+        $mail = $data['email'];
+        $firstname = $data['firstname'];
+        $lastname = $data['lastname'];
+
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany("SELECT id FROM users WHERE email = '".$mail."'");
+        if( $toReturn != null ){
+            $error = "Dany adres email istnieje już w bazie";
+            $success = false;
+            return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+        }
+
+        $newPassword = $data['firstname'] . $data['lastname'];
+
+        $data = [
+            'email'   => $mail,
+            'password'  => md5($newPassword),
+            'id_role' => 3,
+            'create_account_date'  => date("Y-m-d H:i:s")
+        ];
+        $newPersonId = ($this->db->getConnection())->insert('users', $data);
+        if( isset($newPersonId) && $newPersonId >= 0 ){
+            $data = [
+                'user_id'   => $newPersonId,
+                'firstname'  => $firstname ,
+                'lastname' => $lastname,
+            ];
+            $user_data = ($this->db->getConnection())->insert('user_data', $data);
+            if( isset($user_data) && $user_data >= 0 ){
+                $mailRespond = MailSystem::sendMail($mail,"Nowe konto",
+                "<p style='color:#ffffff'><b>Witaj! ".$firstname." ".$lastname."</b></p>
+                <p style='color:#ffffff'>Twoje konto zostało właśnie utworzone
+                Aktualnie możesz się zalogować za pomocą tych danych:</p>
+                <p style='color:#ffffff'>Login: ".$mail."</p>
+                <p style='color:#ffffff'>Hasło: ".$newPassword."</p>
+                <p style='color:#ffffff'>Prosimy o niezwłoczne zalogowanie się na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a> w celu zmiany hasła i uzupełnienia profilu. </p>");
+                if( !$mailRespond["success"] ){
+                    $error  = $mailRespond["error"];
+                    $success  = false;
+                }
+            }else{
+                $error = "Nie udało się dodać danych użytkownika";
+                $success = false;
+            }
+
+        }else{
+            $error = "Nie udało się dodać użytkownika";
+            $success = false;
+        }
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
     function addPerson( $post ){
         $toReturn = null;
         $success = true;

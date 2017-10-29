@@ -17,6 +17,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     }
 
     $scope.getNextEvents = function() {
+        if($rootScope.user.tmid && $rootScope.user.tmid != '')
         request.backend('getNextEvents', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.nextEvents = data;
@@ -25,6 +26,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     }
 
     $scope.getLicenseDate = function() {
+        if($rootScope.user.tmid && $rootScope.user.tmid != '')
         request.backend('getCountOfLicenseData', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.licenseDate = data;
@@ -33,6 +35,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     }
 
     $scope.getNowStartEvents = function() {
+        if($rootScope.user.tmid && $rootScope.user.tmid != '')
         request.backend('getNowEvents', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.nowEvents = data;
@@ -41,6 +44,7 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     }
 
     $scope.getLastPost = function() {
+        if($rootScope.user.tmid && $rootScope.user.tmid != '')
         request.backend('getLastPost', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.lastPost = data;

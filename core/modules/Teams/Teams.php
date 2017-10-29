@@ -155,9 +155,50 @@ class Teams extends BasicModule {
         $tmid = $data['tmid'];
         ($this->db->getConnection())->delete('sectionApplayers',["id_team"=>$tmid]);
         $this->returnedData['data'] = ($this->db->getConnection())->update('teams',["id"=>$tmid],[
-                "isGetEnabled"=>0
-            ]);
+            "isGetEnabled"=>0
+        ]);
 
+        return $this->returnedData;
+    }
+
+    function isApplayerActive($data=null){
+        $actived = ($this->db->getConnection())->fetchRowMany("SELECT id FROM teams WHERE isGetEnabled=1");
+        if( isset($actived) && count($actived) >= 1 ){
+            $this->returnedData['data'] = true;
+        }else{
+            $this->returnedData['data'] = false;
+        }
+        return $this->returnedData;
+    }
+
+    function addPersonToTeamApplicant($data){
+        $usid = $data['usid'];
+        $tmid = $data['tmid'];
+        $data = [
+            'id_user'   => $usid,
+            'id_team'  => $tmid
+        ];
+        $isApplayers = ($this->db->getConnection())->fetchRowMany("SELECT id FROM sectionApplayers WHERE id_user = ".$usid." AND id_team= ".$tmid);
+        if( $isApplayers && count($isApplayers) >= 1 ){
+            $this->returnedData['error'] = "Już aplikowałeś do tej sekcji, poczekaj na rozpatrzenie tego zgłoszenia.";
+            $this->returnedData['success'] = false;
+        }else{
+            $this->returnedData['data'] = ($this->db->getConnection())->insert('sectionApplayers',$data);
+        }
+        return $this->returnedData;
+    }
+
+    function getAvailableSection($data){
+        $usid = $data["usid"];
+        $availableTeams = ($this->db->getConnection())->fetchRowMany("SELECT * FROM teams WHERE isGetEnabled = 1");
+        $this->returnedData['data'] = [];
+        for($i=0;$i<count($availableTeams);$i++){
+            $checkedId = $availableTeams[$i]['id'];
+            $personInTema = ($this->db->getConnection())->fetchRowMany("SELECT id FROM team_members WHERE id_user= ".$usid." AND id_team= ".$checkedId);
+            if(!isset($personInTema) || count($personInTema) == 0){
+                array_push($this->returnedData['data'],$availableTeams[$i]);
+            }
+        }
         return $this->returnedData;
     }
 
@@ -174,7 +215,7 @@ class Teams extends BasicModule {
         $tmid = $data['tmid'];
         ($this->db->getConnection())->delete('sectionApplayers',["id"=>$aplId]);
         $personInTema = ($this->db->getConnection())->fetchRowMany("SELECT id FROM team_members WHERE id_user= ".$usid." AND id_team= ".$tmid);
-        if(!isset($personInTema) | count($personInTema) == 0){
+        if(!isset($personInTema) || count($personInTema) == 0){
             $data = [
                 'id_user'   => $usid,
                 'id_team'  => $tmid

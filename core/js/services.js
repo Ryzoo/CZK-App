@@ -12,7 +12,6 @@ var locaNotifyFun = function(type, message) {
         time: 3,
         class_name: 'my-sticky-class'
     });
-    
 }
 
 app.service('request', function($http, $rootScope) {

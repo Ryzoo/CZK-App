@@ -64,6 +64,32 @@
         </div>
 
         <div class="fElementRowConainer">
+            <div style='width: 100%' ng-show="!user.tmid || user.tmid == ''">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            Nabór do sekcji
+                        </div>
+                        <h5>Witaj</h5>
+                        <h6 style='width:100%'>Twoje konto jest już gotowe do pracy.</h6>
+                        <div style=' padding : 0 50px;'>
+                            <p>Twoimi pierwszymi krokami powinno być przejście do zakładki <b>Mój profil -> Moje dane</b> z menu po lewej w celu uzupełnienia danych. <br/> Możesz oczywiście zrobić to później jednak bez uzupełnionego profilu nie będziesz
+                                mógł zapisać się do wybranej sekcji.</p>
+                            <br/>
+                            <div class="row">
+                                <a href="#!/myProfile">Przejdź do edycji profilu > </a>
+                            </div>
+                            <br/>
+                            <p>Kolejnym krokiem powinno być przejście do zakładki <b>Nabór do sekcji</b> w celu przeglądu sodtępnych dla Ciebie sekcji.</p>
+                            <p>W imieniu całego teamu <b>Club Management Center</b> chcieliśmy podziękować za używanie naszej aplikacji.</p>
+                            <br/>
+                        </div>
+                        <div class="row">
+                            <a href="#!/sectionGetForPlayer">Przejdź do zakładki 'nabór do sekcji' > </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="f33">
                 <div class="card">
                     <div class="card-content">
@@ -161,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <div class="f33">
+            <div class="f33" ng-show="user.tmid && user.tmid != ''">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">
@@ -225,6 +251,7 @@
                 </div>
 
             </div>
+
 
         </div>
 

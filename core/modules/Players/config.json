@@ -23,6 +23,10 @@
             "parameters": ["tmid"]
         },
         {
+            "url": "registerNewApplayer",
+            "parameters": ["firstname","lastname","email"]
+        },
+        {
             "url": "addPlayerToTeam",
             "parameters": ["tmid", "usid"],
             "auth": ["KOORD", "TRENER", "STAFF"]

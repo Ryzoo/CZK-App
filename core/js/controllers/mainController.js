@@ -109,12 +109,14 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                         }
                         setInterval(function() {
                             notify.getNew();
-                        }, 5000);
+                        }, 2000);
                     }
                     setTimeout(function() {
                         $('#loadingContent').hide('slide', {}, 1000);
+                        $('#mainContent').show('fade', {}, 1000);
                         document.location.href = "/panel#!/";
                         $route.reload();
+
                     }, 500);
                     $('select').material_select();
                 });

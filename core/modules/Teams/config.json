@@ -74,6 +74,13 @@
             "url": "applayPlayerToTeam",
             "parameters": ["tmid", "aplId", "usid"],
             "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "isApplayerActive"
+        }, {
+            "url": "getAvailableSection"
+        }, {
+            "url": "addPersonToTeamApplicant",
+            "parameters": ["tmid", "usid"]
         }
 
 
@@ -99,8 +106,6 @@
             "templateSrc": "sectionGetForPlayer.html",
             "controllerName": "sectionGetController"
         }
-
-
     ],
     "anchor": [{
             "destination": "leftMenu",

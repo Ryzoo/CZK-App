@@ -18,7 +18,6 @@ app.config(function($routeProvider) {
                             controller: msg.data[x].controllerName
                         });
                     }
-
                 }
             } else {
                 if (msg.error)

@@ -27,6 +27,7 @@
     "anchor": [{
         "destination": "leftMenu",
         "anchorPoint": "Grafik",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "anchorPointIcon": "fa fa-calendar-times-o fa-fw",
         "content": {
             "link": {
@@ -39,6 +40,7 @@
         "destination": "leftMenu",
         "anchorPoint": "Grafik",
         "anchorPointIcon": "fa fa-calendar-times-o fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": {
             "link": {
                 "label": "Zmień plan",

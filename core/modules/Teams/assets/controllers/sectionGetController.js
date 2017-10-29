@@ -3,6 +3,7 @@ app.controller('sectionGetController', function($scope, auth, $rootScope, notify
     $scope.isGetEnabled = false;
     $scope.sectionData = [];
     $scope.sectionApplayer = [];
+    $scope.availableSection = [];
 
     $scope.turnOnSectionGet = function() {
         var minY = parseInt($('#sectionYMin').val());
@@ -21,6 +22,19 @@ app.controller('sectionGetController', function($scope, auth, $rootScope, notify
                 $scope.isGetEnabled = true;
                 getSectionApplayer();
             })
+        });
+    }
+
+    $scope.addPersonToTeamApplicant = function(tmid) {
+        request.backend('addPersonToTeamApplicant', { usid: $rootScope.user.id, tmid: tmid }, function(data) {}, "Twoja aplikacja została dodana, oczekuj na powiadomienia związane z decyzją");
+    }
+
+    $scope.getAvailableSection = function() {
+        request.backend('getAvailableSection', { usid: $rootScope.user.id }, function(data) {
+            $scope.$apply(function() {
+                $scope.availableSection = data;
+                $scope.showContent = true;
+            });
         });
     }
 
