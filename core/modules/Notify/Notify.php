@@ -33,8 +33,7 @@ class Notify extends BasicModule {
                 if( is_null($userids) ) $userids = [];
                 $to = [];
                 for($i=0;$i<count($userids);$i++){
-                    if( $userids[$i] != $usid)
-                        array_push($to,$userids[$i]['id_user']);
+                    array_push($to,$userids[$i]['id_user']);
                 }
             }
             $data = [];

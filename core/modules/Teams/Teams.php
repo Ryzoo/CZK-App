@@ -153,15 +153,41 @@ class Teams extends BasicModule {
 
     function turnOffSectionGet($data){
         $tmid = $data['tmid'];
+        ($this->db->getConnection())->delete('sectionApplayers',["id_team"=>$tmid]);
         $this->returnedData['data'] = ($this->db->getConnection())->update('teams',["id"=>$tmid],[
                 "isGetEnabled"=>0
             ]);
+
+        return $this->returnedData;
+    }
+
+    function deletePlayerAplay($data){
+        $aplId = $data['aplId'];
+        ($this->db->getConnection())->delete('sectionApplayers',["id"=>$aplId]);
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT sectionApplayers.id as id, users.id as usid, firstname, lastname, YEAR(CURDATE()) - EXTRACT( YEAR FROM user_data.birthdate )  AS yearOld , tel, parent_tel, email FROM sectionApplayers, users, user_data  WHERE sectionApplayers.id_user = users.id AND users.id = user_data.user_id AND sectionApplayers.id_team =".$tmid);
+        return $this->returnedData;
+    }
+
+    function applayPlayerToTeam($data){
+        $aplId = $data['aplId'];
+        $usid = $data['usid'];
+        $tmid = $data['tmid'];
+        ($this->db->getConnection())->delete('sectionApplayers',["id"=>$aplId]);
+        $personInTema = ($this->db->getConnection())->fetchRowMany("SELECT id FROM team_members WHERE id_user= ".$usid." AND id_team= ".$tmid);
+        if(!isset($personInTema) | count($personInTema) == 0){
+            $data = [
+                'id_user'   => $usid,
+                'id_team'  => $tmid
+            ];
+            ($this->db->getConnection())->insert('team_members', $data);
+        }
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT sectionApplayers.id as id, users.id as usid, firstname, lastname, YEAR(CURDATE()) - EXTRACT( YEAR FROM user_data.birthdate )  AS yearOld , tel, parent_tel, email FROM sectionApplayers, users, user_data  WHERE sectionApplayers.id_user = users.id AND users.id = user_data.user_id AND sectionApplayers.id_team =".$tmid);
         return $this->returnedData;
     }
 
     function getSectionApplayer($data){
         $tmid = $data['tmid'];
-        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT users.id as usid, firstname, lastname, YEAR(CURDATE()) - EXTRACT( YEAR FROM user_data.birthdate )  AS yearOld , tel, parent_tel, email FROM sectionApplayers, users, user_data  WHERE sectionApplayers.id_user = users.id AND users.id = user_data.user_id AND sectionApplayers.id_team =".$tmid);
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT sectionApplayers.id as id, users.id as usid, firstname, lastname, YEAR(CURDATE()) - EXTRACT( YEAR FROM user_data.birthdate )  AS yearOld , tel, parent_tel, email FROM sectionApplayers, users, user_data  WHERE sectionApplayers.id_user = users.id AND users.id = user_data.user_id AND sectionApplayers.id_team =".$tmid);
         return $this->returnedData;
     }
 

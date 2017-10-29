@@ -28,7 +28,12 @@ app.controller('sectionGetController', function($scope, auth, $rootScope, notify
         request.backend('turnOffSectionGet', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.isGetEnabled = false;
-            })
+            });
+            var usArray = [];
+            for (var index = 0; index < $scope.sectionApplayer.length; index++) {
+                usArray.push($scope.sectionApplayer[index].usid);
+            }
+            notify.addNew(new notify.Notification("Nabór do sekcji " + $rootScope.teamNameStr + " został zakończony. Nie zostałeś przyjęty.", usArray, "#!/sectionGetForPlayer"));
         });
     }
 
@@ -45,12 +50,22 @@ app.controller('sectionGetController', function($scope, auth, $rootScope, notify
         });
     }
 
-    $scope.deletePlayerApplay = function($usid) {
-
+    $scope.deletePlayerApplay = function(aplId, usid) {
+        request.backend('deletePlayerAplay', { tmid: $rootScope.user.tmid, aplId: aplId, usid: usid }, function(data) {
+            $scope.$apply(function() {
+                $scope.sectionApplayer = data;
+            });
+            notify.addNew(new notify.Notification("Twoja prośba o dołączenie do sekcji: " + $rootScope.teamNameStr + " została odrzucona", [usid], "#!/sectionGetForPlayer"));
+        }, "Pomyślnie usunięto prośbę. Zostanie ona odpowiednio powiadomiona.");
     }
 
-    $scope.addPlayerToTeam = function($usid) {
-
+    $scope.addPlayerToTeam = function(aplId, usid) {
+        request.backend('applayPlayerToTeam', { tmid: $rootScope.user.tmid, aplId: aplId, usid: usid }, function(data) {
+            $scope.$apply(function() {
+                $scope.sectionApplayer = data;
+            });
+            notify.addNew(new notify.Notification("Prośba o dołączenie do sekcji: " + $rootScope.teamNameStr + " rozpatrzona pomyślnie. Zostałeś przypisany", [usid], "#!/sectionGetForPlayer"));
+        }, "Pomyślnie dodano osobę do teamu. Zostanie ona odpowiednio powiadomiona.");
     }
 
     function getSectionApplayer() {

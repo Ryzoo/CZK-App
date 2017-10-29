@@ -10,6 +10,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $rootScope.editConspectWithId = null;
     $rootScope.consepectShowId = null;
     $rootScope.widgetResponse = null;
+    $rootScope.teamNameStr = '';
     $rootScope.user = {
         email: "",
         token: "",
@@ -102,7 +103,10 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                         for (var i = 0; i < data.length; i++) {
                             $('#teamSelect').append("<option value='" + data[i].tmid + "'" + (i == 0 ? 'selected' : '') + ">" + data[i].name + "</option>");
                         }
-                        if (data[0] != null && data[0].tmid != null) $rootScope.user.tmid = data[0].tmid;
+                        if (data[0] != null && data[0].tmid != null) {
+                            $rootScope.user.tmid = data[0].tmid;
+                            $rootScope.teamNameStr = data[0].name;
+                        }
                         setInterval(function() {
                             notify.getNew();
                         }, 5000);
@@ -127,7 +131,8 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     });
 
     $(document).on('change', '#teamSelect', function() {
-        $rootScope.user.tmid = $("#teamSelect").val();
+        $rootScope.user.tmid = $(this + "option:selected").val();
+        $rootScope.teamNameStr = $(this + "option:selected").text();
         document.location.href = "/panel#!/";
         $route.reload();
     });

@@ -57,21 +57,19 @@ app.service('notify', function($http, $rootScope, request) {
                         } else {
                             $rootScope.notifyCount = 0;
                         }
-
+                        var powAdded = false;
                         for (var i = 0; i < $rootScope.notifyCount; i++) {
                             if (reqData.data[i].id > $rootScope.lastNotId) {
                                 local('Otrzymano powiadomienie', reqData.data[i].title);
                                 $rootScope.lastNotId = reqData.data[i].id;
-
-                                if (window.Notification && Notification.permission !== "denied") {
+                                if (window.Notification && Notification.permission !== "denied" && i - 1 == $rootScope.notifyCount) {
+                                    powAdded = true;
                                     Notification.requestPermission(function(status) {
                                         if (status === "granted") {
                                             var notification = new Notification(reqData.data[i].title);
                                         }
                                     });
                                 }
-                                $rootScope.lastNotId = reqData.data[i].id;
-
                             }
                         }
 

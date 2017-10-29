@@ -66,7 +66,17 @@
             "url": "getSectionApplayer",
             "parameters": ["tmid"],
             "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "deletePlayerAplay",
+            "parameters": ["tmid", "aplId", "usid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        }, {
+            "url": "applayPlayerToTeam",
+            "parameters": ["tmid", "aplId", "usid"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
         }
+
+
     ],
     "jsControllers": ["teamsMenagerController", "masterMenagerController", "sectionGetController"],
     "frontendRoute": [{
@@ -89,6 +99,8 @@
             "templateSrc": "sectionGetForPlayer.html",
             "controllerName": "sectionGetController"
         }
+
+
     ],
     "anchor": [{
             "destination": "leftMenu",
