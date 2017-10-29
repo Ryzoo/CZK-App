@@ -1,4 +1,4 @@
-<div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<div ng-init="setPerm(['KOORD','TRENER','STAFF','ZAWODNIK'])"></div>
 <div class="section" ng-init="initFreq()">
     <div ng-show='showContent' class="row">
         <div class="col s12 m3 lg2">
@@ -47,10 +47,18 @@
                                     <td>{{user.firstname}}</td>
                                     <td>{{user.lastname}}</td>
                                     <td>
-                                        <div class="switch">
+                                        <div class="switch" ng-show="user.role != 'ZAWODNIK'">
                                             <label>
                                                 Nieobecny
                                                 <input type="checkbox" class='onTrainingChecbox' id='onTraining-{{user.usid}}' ng-checked="user.onTraining">
+                                                <span class="lever"></span>
+                                                Obecny
+                                            </label>
+                                        </div>
+                                        <div class="switch" ng-hide="user.role != 'ZAWODNIK'">
+                                            <label>
+                                                Nieobecny
+                                                <input type="checkbox" ng-checked="user.onTraining" disabled >
                                                 <span class="lever"></span>
                                                 Obecny
                                             </label>

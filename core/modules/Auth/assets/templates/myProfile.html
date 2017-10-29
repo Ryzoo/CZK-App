@@ -64,6 +64,9 @@
             <div class="card-content">
                 <div class="card-title">Dane dodatkowe</div>
                 <div style="box-sizing:border-box;">
+                    <div class="form-group">
+                        <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate()">Zapisz dane</button>
+                    </div>
                     <form class="form-horizontal style-form" id="userUpdateDataForm" enctype="multipart/form-data">
                         <input type="hidden" name="token" value="{{user.token}}">
 
@@ -202,7 +205,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate()">Zmień dane</button>
+                            <button type="button " class="waves-effect waves-light btn" ng-click="updateUserDate()">Zapisz dane</button>
                         </div>
                     </form>
                 </div>

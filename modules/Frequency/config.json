@@ -5,7 +5,7 @@
     "backendRoute": [{
             "url": "getFrequency",
             "parameters": ["tmid", "year", "month", "day"],
-            "auth": ["KOORD", "TRENER", "STAFF"]
+            "auth": ["KOORD", "TRENER", "STAFF", "ZAWODNIK"]
         }, {
             "url": "setOnTraining",
             "parameters": ["tmid", "usid", "year", "month", "day"],
@@ -31,7 +31,7 @@
                 "label": "Frekwencja zawodników",
                 "url": "#!/teamFreq",
                 "icon": "fa fa-list-alt fa-fw",
-                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
+                "additional": "ng-show=\"user.tmid != ''\""
             }
         }
     }]

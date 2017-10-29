@@ -63,9 +63,10 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     }
 
     $scope.deleteUser = function(usidN) {
-        request.backend('deleteUser', { usid: usidN }, function() {
+        request.backend('deleteUser', { usid: usidN, tmid: $rootScope.user.tmid }, function() {
             $scope.getAllPlayers();
-        }, 'Osoba usunięta wraz z powiązaniami');
+            notify.addNew(new notify.Notification("Zostałeś usunięty z sekcji: " + $rootScope.teamNameStr, [usidN], "#!/"));
+        }, 'Osoba usunięta z sekcji');
     }
 
     $scope.addPerson = function() {

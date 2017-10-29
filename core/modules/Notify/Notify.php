@@ -18,7 +18,7 @@ class Notify extends BasicModule {
         $tmid = $data["tmid"];
         $token = $data["token"];
         $to = $data["to"];
-        $toAll = $data["toAll"] == true ? true : $data["toAll"] == 'true' ? true : false;
+        $toAll = $data["toAll"] == 'true' ? true : false;
         $url = $data["url"];
         $idUser = ($this->auth)->getUserId($token);
 

@@ -74,10 +74,14 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         var month = $("#monthDate").val();
         var day = $("#dayDate").val();
         var isChecked = $(this).is(':checked');
-        if (isChecked) {
-            request.backend('setOnTraining', { tmid: $rootScope.user.tmid, year: year, month: month, day: day, usid: usid });
-        } else {
-            request.backend('setOffTraining', { tmid: $rootScope.user.tmid, year: year, month: month, day: day, usid: usid });
+        if ($rootScope.user.role != 'ZAWODNIK') {
+            if (isChecked) {
+                request.backend('setOnTraining', { tmid: $rootScope.user.tmid, year: year, month: month, day: day, usid: usid });
+                $(this).prop('checked', true);
+            } else {
+                request.backend('setOffTraining', { tmid: $rootScope.user.tmid, year: year, month: month, day: day, usid: usid });
+                $(this).prop('checked', false);
+            }
         }
     });
 

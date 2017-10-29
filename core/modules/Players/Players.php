@@ -285,16 +285,12 @@ class Players extends BasicModule{
 
     function deleteUser( $data ){
         $usid = $data['usid'];
+        $tmid = $data['tmid'];
         $toReturn = null;
         $success = true;
         $error = "";
         
-        ($this->db->getConnection())->delete('user_data', ['user_id' => $usid]);
-        ($this->db->getConnection())->delete('team_members', ['id_user' => $usid]);
-        ($this->db->getConnection())->delete('comments', ['id_user' => $usid]);
-        ($this->db->getConnection())->delete('posts', ['id_user' => $usid]);
-        ($this->db->getConnection())->delete('staff', ['id_user' => $usid]);
-        ($this->db->getConnection())->delete('users', ['id' => $usid]);
+        ($this->db->getConnection())->delete('team_members', ['id_user' => $usid, "id_team"=>$tmid]);
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }

@@ -195,7 +195,27 @@ class Teams extends BasicModule {
         for($i=0;$i<count($availableTeams);$i++){
             $checkedId = $availableTeams[$i]['id'];
             $personInTema = ($this->db->getConnection())->fetchRowMany("SELECT id FROM team_members WHERE id_user= ".$usid." AND id_team= ".$checkedId);
-            if(!isset($personInTema) || count($personInTema) == 0){
+            
+            $userYearOld = ($this->db->getConnection())->fetchRowMany("SELECT YEAR(CURDATE()) - EXTRACT( YEAR FROM user_data.birthdate ) AS yearOld FROM users, user_data WHERE users.id = user_data.user_id AND users.id =".$usid);
+            $userYearOld = (int)$userYearOld[0]["yearOld"];
+
+            if((!isset($personInTema) || count($personInTema) == 0) && $userYearOld >= $availableTeams[$i]["minYear"] && $userYearOld <= $availableTeams[$i]["maxYear"]){
+                $availableTeams[$i]["events"] = [
+                    "Poniedziałek"=>[],
+                    "Wtorek"=>[],
+                    "Środa"=>[],
+                    "Czwartek"=>[],
+                    "Piątek"=>[],
+                    "Sobota"=>[],
+                    "Niedziela"=>[]
+                ];
+                $tmid = $checkedId;
+                $allEvent = ($this->db->getConnection())->fetchRowMany("SELECT `id`, `id_team`, `title`, `day_name`, `time`,`timeEnd`, `color` FROM `timetable` WHERE id_team=".$tmid." ORDER BY time");
+
+                for ($j=0; $j < count($allEvent) ; $j++) { 
+                    array_push( $availableTeams[$i]["events"][ $allEvent[$j]["day_name"] ], $allEvent[$j]);
+                }
+                $availableTeams[$i]["allCyclePayments"] = ($this->db->getConnection())->fetchRowMany('SELECT * FROM cyclePayments WHERE id_team='.$tmid);
                 array_push($this->returnedData['data'],$availableTeams[$i]);
             }
         }

@@ -7,7 +7,17 @@
                     <div class="card-title">
                         Lista sekcji z aktywnym naborem
                     </div>
-                    <div class='row'>
+                    <div class="row" ng-show="user.birthdate == '' || ( user.tel == '' && user.parentTel == '')">
+                        <h5>Uzupełnij najpierw swoje dane</h5>
+                        <p>Aby mieć możliwość podglądu i zapisu do sekcji prosimy o uzupełnienie danych w profilu</p>
+                        <br/>
+                        <div class="row">
+                            <a href="#!/myProfile">Przejdź do edycji profilu > </a>
+                        </div>
+                        <br/>
+                        <p>Minimum jakie musisz posiadać to uzupełnioną datę urodzenia oraz telefon własny lub rodzica</p>
+                    </div>
+                    <div class='row' ng-hide="user.birthdate == '' || ( user.tel == '' && user.parentTel == '')">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li ng-repeat="section in availableSection">
                                 <div class="collapsible-header active">
@@ -18,11 +28,94 @@
                                     <h5>Opis sekcji:</h5>
                                     {{section.description}}
                                     <h5>Plan tygodnia:</h5>
+                                    <div class="timetable">
+                                        <table class="table highlight centered">
+                                            <tr>
+                                                <th>Poniedziałek</th>
+                                                <td>
+                                                    <div class="timetableEvent" ng-repeat='event in section.events["Poniedziałek"]' style='background-color: {{event.color}}'>
+                                                        <p>{{event.title}}</p>
+                                                        <b>{{event.time}} - {{event.timeEnd}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Wtorek</th>
+                                                <td>
+                                                    <div class="timetableEvent" ng-repeat='event in section.events["Wtorek"]' style='background-color: {{event.color}}'>
+                                                        <p>{{event.title}}</p>
+                                                        <b>{{event.time}} - {{event.timeEnd}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Środa</th>
+                                                <td>
+                                                    <div class="timetableEvent" ng-repeat='event in section.events["Środa"]' style='background-color: {{event.color}}'>
+                                                        <p>{{event.title}}</p>
+                                                        <b>{{event.time}} - {{event.timeEnd}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Czwartek</th>
+                                                <td>
+                                                    <div class="timetableEvent" ng-repeat='event in section.events["Czwartek"]' style='background-color: {{event.color}}'>
+                                                        <p>{{event.title}}</p>
+                                                        <b>{{event.time}} - {{event.timeEnd}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Piątek</th>
+                                                <td>
+                                                    <div class="timetableEvent" ng-repeat='event in section.events["Piątek"]' style='background-color: {{event.color}}'>
+                                                        <p>{{event.title}}</p>
+                                                        <b>{{event.time}} - {{event.timeEnd}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Sobota</th>
+                                                <td>
+                                                    <div class="timetableEvent" ng-repeat='event in section.events["Sobota"]' style='background-color: {{event.color}}'>
+                                                        <p>{{event.title}}</p>
+                                                        <b>{{event.time}} - {{event.timeEnd}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Niedziela</th>
+                                                <td>
+                                                    <div class="timetableEvent" ng-repeat='event in section.events["Niedziela"]' style='background-color: {{event.color}}'>
+                                                        <p>{{event.title}}</p>
+                                                        <b>{{event.time}} - {{event.timeEnd}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                     <h5>Opłaty cykliczne:</h5>
+                                    <table class="table highlight centered">
+                                        <thead>
+                                            <tr>
+                                                <th>Okres czasowy</th>
+                                                <th>Tytuł</th>
+                                                <th>Kwota</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="pay in section.allCyclePayments">
+                                                <td>{{pay.intervalTime}} {{pay.intervalName}}</td>
+                                                <td>{{pay.title}}</td>
+                                                <td><b>{{pay.amount}} zł</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </li>
                         </ul>
-
+                        <p ng-show='availableSection.length <= 0'> Niestety brak aktywnych naborów odpowiednich do Twoich danych </p>
                     </div>
                 </div>
             </div>
