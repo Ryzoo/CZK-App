@@ -42,6 +42,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.cwOps = '';
     $scope.cwWsk = '';
     $scope.showAnimCreator = false;
+    $scope.selectedObjConfig = [];
 
     if ($rootScope.idFromAnimConspectToEdit && $rootScope.idFromAnimConspectToEdit != '' && $rootScope.idFromAnimConspectToEdit != null) {
         $scope.animId = $rootScope.idFromAnimConspectToEdit;
@@ -193,6 +194,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD) {
             $scope.selectedObjImg = new Image();
             $scope.selectedObjImg.src = $(this).find('img').attr('src');
+            $scope.selectedObjConfig = $(this).find('img').data('config') ? $(this).find('img').data('config') : [];
         }
     })
 
@@ -459,6 +461,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 offsetX: ($scope.selectedObjImg.width / 2.0),
                 offsetY: ($scope.selectedObjImg.height / 2.0),
                 image: $scope.selectedObjImg,
+                config: $scope.selectedObjConfig,
                 name: "movementObject",
                 id: id
             });
@@ -876,7 +879,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 lineCap: other.getAttr("lineCap"),
                 tension: other.getAttr("tension"),
                 scale: other.getAttr("scale"),
-                id: other.getAttr("id")
+                id: other.getAttr("id"),
+                config: other.getAttr("config")
             });
         } else {
             arrow = new Konva.Arrow({
@@ -896,7 +900,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     y: other.attrs.scaleY
                 },
                 tension: other.attrs.tension,
-                id: other.attrs.id
+                id: other.attrs.id,
+                config: other.attrs.config
             });
         }
         arrow.stroke('white');
@@ -939,7 +944,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 image: other.getAttr("image"),
                 name: other.getAttr("name"),
                 scale: other.getAttr("scale"),
-                id: other.getAttr("id")
+                id: other.getAttr("id"),
+                config: other.getAttr("config")
             });
         } else {
             var newImg = new Image();
@@ -956,7 +962,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     y: other.attrs.scaleY
                 },
                 name: other.attrs.name,
-                id: other.attrs.id
+                id: other.attrs.id,
+                config: other.attrs.config
             });
         }
         obj.stroke('transparent');
@@ -997,7 +1004,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 stroke: other.getAttr("stroke"),
                 scale: other.getAttr("scale"),
                 strokeWidth: other.getAttr("strokeWidth"),
-                id: other.getAttr("id")
+                id: other.getAttr("id"),
+                config: other.getAttr("config")
             });
         } else {
             shape = new Konva.Shape({
@@ -1019,7 +1027,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     y: other.attrs.scaleY
                 },
                 strokeWidth: other.attrs.strokeWidth,
-                id: other.attrs.id
+                id: other.attrs.id,
+                config: other.attrs.config
             });
         }
         shape.off('mousedown touchstart');
@@ -1055,7 +1064,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 scale: other.getAttr("scale"),
                 fill: other.getAttr("fill"),
                 align: other.getAttr("align"),
-                id: other.getAttr("id")
+                id: other.getAttr("id"),
+                config: other.getAttr("config")
             });
         } else {
             obj = new Konva.Text({
@@ -1073,7 +1083,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     y: other.attrs.scaleY
                 },
                 name: other.attrs.name,
-                id: other.attrs.id
+                id: other.attrs.id,
+                config: other.attrs.config
             });
         }
         obj.off('mousedown touchstart');
