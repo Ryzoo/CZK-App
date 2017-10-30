@@ -2195,7 +2195,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     cwMaxPerson: $scope.cwMaxPerson,
                     cwMinPerson: $scope.cwMinPerson,
                     cwOps: $scope.cwOps,
-                    cwWsk: $scope.cwWsk
+                    cwWsk: $scope.cwWsk,
+                    usid: $rootScope.user.id
                 };
 
                 request.backend('saveConspectAnim', toSend, function(data) {

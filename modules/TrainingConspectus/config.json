@@ -6,7 +6,7 @@
     "backendRoute": [{
             "url": "saveConspectAnim",
             "parameters": [
-                "id", "name", "mainImg", "animFrame", "anchorHistory", "fieldImage", "tags",
+                "id", "name", "mainImg", "animFrame", "anchorHistory", "fieldImage", "tags", "usid",
                 "cwFieldType", "cwMaxTime", "cwMinTime", "cwMaxPerson", "cwMinPerson", "cwOps", "cwWsk", "mainImgShow"
             ],
             "auth": ["KOORD", "TRENER", "STAFF"]
@@ -16,7 +16,7 @@
             "url": "saveConspect",
             "parameters": [
                 "coName", "coMaster", "coDate", "coSezon", "coTeam", "coOp",
-                "coTags", "data"
+                "coTags", "data", "usid"
             ],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },

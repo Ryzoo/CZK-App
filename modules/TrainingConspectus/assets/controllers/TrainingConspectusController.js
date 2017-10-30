@@ -332,6 +332,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             coOp: $scope.coOp,
             coTags: allTagString,
             data: JSON.stringify(dataToSend),
+            usid: $rootScope.user.id
         }
 
         request.backend('saveConspect', toSend, function(data) {
