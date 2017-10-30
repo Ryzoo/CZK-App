@@ -334,6 +334,7 @@ return array(
     'Composer\\XdebugHandler' => $vendorDir . '/composer/composer/src/Composer/XdebugHandler.php',
     'Core\\Auth\\Auth' => $baseDir . '/modules/Auth/Auth.php',
     'Core\\Database\\Database' => $baseDir . '/modules/Database/Database.php',
+    'Core\\Feedback\\Feedback' => $baseDir . '/modules/Feedback/Feedback.php',
     'Core\\Notify\\Notify' => $baseDir . '/modules/Notify/Notify.php',
     'Core\\Players\\Players' => $baseDir . '/modules/Players/Players.php',
     'Core\\Raports\\Raports' => $baseDir . '/modules/Raports/Raports.php',

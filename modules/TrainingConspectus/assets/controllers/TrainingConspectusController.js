@@ -96,7 +96,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.initConsAnimList = function() {
-        request.backend('getListOfAnimConspect', {}, function(data) {
+        request.backend('getListOfAnimConspect', { usid: $rootScope.user.id }, function(data) {
             $scope.$apply(function() {
                 $scope.animArray = data;
                 for (var i = 0; i < $scope.animArray.length; i++) {
@@ -120,8 +120,12 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         });
     }
 
+    $scope.initConspectusAdd = function() {
+        $scope.showContent = true;
+    }
+
     $scope.initConspectusList = function() {
-        request.backend('getAllConspectList', {}, function(data) {
+        request.backend('getAllConspectList', { usid: $rootScope.user.id }, function(data) {
             $scope.conspectArray = data;
             for (var i = 0; i < $scope.conspectArray.length; i++) {
                 var tags = $scope.conspectArray[i].tags.replace("  ", " ").split(" ");
@@ -131,60 +135,6 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                 }
             }
             $scope.showContent = true;
-        });
-    }
-
-    $scope.initConspectusAdd = function() {
-        request.backend('getAllTraining', {}, function(data) {
-            var dataEdit = [];
-            for (var i = 0; i < data.length; i++) {
-                dataEdit[data[i].name + "--" + data[i].id] = null;
-            }
-
-            $('#autocomplete-start').autocomplete({
-                data: dataEdit,
-                limit: 20,
-                onAutocomplete: function(val) {
-                    var toAdd = {
-                        id: val.split("--")[1],
-                        name: val.split("--")[0],
-                        place: 'coStart'
-                    };
-                    $('#autocomplete-start').val('');
-                    $scope.addCwCo(toAdd);
-                },
-                minLength: 1,
-            });
-            $('#autocomplete-middle').autocomplete({
-                data: dataEdit,
-                limit: 20,
-                onAutocomplete: function(val) {
-                    var toAdd = {
-                        id: val.split("--")[1],
-                        name: val.split("--")[0],
-                        place: 'coMiddle'
-                    };
-                    $('#autocomplete-middle').val('');
-                    $scope.addCwCo(toAdd);
-                },
-                minLength: 1,
-            });
-            $('#autocomplete-end').autocomplete({
-                data: dataEdit,
-                limit: 20,
-                onAutocomplete: function(val) {
-                    var toAdd = {
-                        id: val.split("--")[1],
-                        name: val.split("--")[0],
-                        place: 'coEnd'
-                    };
-                    $('#autocomplete-end').val('');
-                    $scope.addCwCo(toAdd);
-                },
-                minLength: 1,
-            });
-            $scope.showContent = true;
-
         });
     }
 

@@ -505,6 +505,7 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         'Composer\\XdebugHandler' => __DIR__ . '/..' . '/composer/composer/src/Composer/XdebugHandler.php',
         'Core\\Auth\\Auth' => __DIR__ . '/../..' . '/modules/Auth/Auth.php',
         'Core\\Database\\Database' => __DIR__ . '/../..' . '/modules/Database/Database.php',
+        'Core\\Feedback\\Feedback' => __DIR__ . '/../..' . '/modules/Feedback/Feedback.php',
         'Core\\Notify\\Notify' => __DIR__ . '/../..' . '/modules/Notify/Notify.php',
         'Core\\Players\\Players' => __DIR__ . '/../..' . '/modules/Players/Players.php',
         'Core\\Raports\\Raports' => __DIR__ . '/../..' . '/modules/Raports/Raports.php',

@@ -11,7 +11,8 @@
             ],
             "auth": ["KOORD", "TRENER", "STAFF"]
         }, {
-            "url": "getAllConspectList"
+            "url": "getAllConspectList",
+            "parameters": ["usid", "token"]
         }, {
             "url": "saveConspect",
             "parameters": [
@@ -21,13 +22,12 @@
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {
-            "url": "getListOfAnimConspect"
+            "url": "getListOfAnimConspect",
+            "parameters": ["usid", "token"]
         }, {
             "url": "getConspectById"
         }, {
             "url": "getFullConspectById"
-        }, {
-            "url": "getAllTraining"
         }, {
             "url": "deleteAnimConspect",
             "parameters": ["id"],
@@ -55,19 +55,19 @@
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
         "anchorPointIcon": "fa fa-address-card fa-fw",
-        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
             "link": {
                 "label": "Lista konspektów",
                 "url": "#!\/conspectusList",
-                "additional": "ng-show=\"user.tmid != ''\""
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
             }
         }
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
         "anchorPointIcon": "fa fa-address-card fa-fw",
-        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
             "link": {
                 "label": "Dodaj nowy konspekt",
@@ -79,19 +79,19 @@
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
         "anchorPointIcon": "fa fa-address-card fa-fw",
-        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
             "link": {
                 "label": "Lista ćwiczeń",
                 "url": "#!\/conspectusAnimList",
-                "additional": "ng-show=\"user.tmid != ''\""
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
             }
         }
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
         "anchorPointIcon": "fa fa-address-card fa-fw",
-        "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+        "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
             "link": {
                 "label": "Dodaj nowe ćwiczenie",
