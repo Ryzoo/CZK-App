@@ -1904,7 +1904,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
                 $("#playerData p").first().text("Podgląd animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
             }
-        }, (1000 / 25));
+        }, 70);
     }
 
     $(document).off('click touch', '#exitPlayer');
@@ -2125,8 +2125,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     });
 
 
-
-
     function renderAnim() {
         $scope.turnOnHelperNet = false;
         isPlayerOpen = true;
@@ -2140,7 +2138,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         var encoder = new GIFEncoder();
         encoder.setRepeat(0);
         encoder.setQuality(40);
-        encoder.setDelay(40);
+        encoder.setDelay(70);
         encoder.start();
 
         var mainPlay = setInterval(function() {
@@ -2215,7 +2213,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $("#playerData p").first().text("Renderowanie animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
                 actualPlayerFrame++;
             }
-        }, 40);
+        }, 70);
     }
 
     function saveAnimation() {
