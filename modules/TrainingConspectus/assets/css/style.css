@@ -349,6 +349,85 @@ canvas,
     margin-top: 3px !important;
 }
 
+#lastSelectedConfig {
+    position: absolute;
+    background: #242e33;
+    z-index: 300;
+    border-radius: 5px;
+    border-top: 5px solid #dd4213;
+    padding: 20px;
+    width: 250px;
+    height: auto;
+}
+
+.lastSelectedConfigContener {
+    position: relative;
+    min-width: 100px;
+    max-width: 300px;
+    max-height: 500px;
+}
+
+.lastSelectedConfigContener span {
+    position: absolute;
+    width: 100%;
+    display: table;
+    top: -25px;
+}
+
+.lastSelectedConfigContener span p {
+    float: left;
+    width: 95%;
+    text-align: center;
+    margin: 0;
+    color: #d7d7d7;
+}
+
+.configEditText {
+    color: rgb(87, 181, 195);
+    margin: 0;
+}
+
+.configColorPicker {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.configColorPicker p {
+    width: 100%
+}
+
+.configColor {
+    float: left;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 5px;
+    border: 1px solid;
+    transition: all .2s;
+}
+
+.configColor:hover {
+    transform: scale(1.1);
+}
+
+.lastSelectedConfigContener .lastSelectedConfigContent p {
+    color: #adadad;
+}
+
+.lastSelectedConfigContener span i {
+    color: #686868 !important;
+    cursor: pointer;
+    transition: all .2s;
+    float: right;
+}
+
+.lastSelectedConfigContener span i:hover {
+    color: #fff !important;
+}
+
 .categories,
 .categoryItems {
     margin: 5px;

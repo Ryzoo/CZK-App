@@ -23,7 +23,7 @@ app.controller('showConspectController', function($scope, auth, $rootScope, noti
                         $(this).addClass('isGifed');
                         $(this).gifplayer();
                     }
-                });
+                }); 
             }, 500);
         });
     }
