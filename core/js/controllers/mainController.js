@@ -133,8 +133,8 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     });
 
     $(document).on('change', '#teamSelect', function() {
-        $rootScope.user.tmid = $(this + "option:selected").val();
-        $rootScope.teamNameStr = $(this + "option:selected").text();
+        $rootScope.user.tmid = $("option:selected", this).val();
+        $rootScope.teamNameStr = $("option:selected", this).text();
         document.location.href = "/panel#!/";
         $route.reload();
     });
