@@ -5,8 +5,8 @@
 #canvasContainer {
     max-width: 1000px;
     overflow: hidden;
-    float: left;
-    width: calc( 100% - 100px);
+    margin: auto;
+    width: 100%;
 }
 
 .mainCreateContener {
@@ -14,6 +14,94 @@
     margin: auto;
     display: block;
     position: relative;
+}
+
+.containerforcontainer {
+    float: left;
+    width: calc( 100% - 250px);
+}
+
+@media (max-width:768px) {
+    #canvasBck {
+        flex-wrap: wrap;
+    }
+    #leftBlockItem,
+    .containerforcontainer,
+    .itemBoxWithItem {
+        width: 100% !important;
+    }
+}
+
+.itemBox-bottom {
+    margin-top: 5px;
+}
+
+#ascrail2000,
+#ascrail2000-hr {
+    z-index: 90 !important;
+}
+
+p.confTitle {
+    color: #cacaca !important;
+    font-size: 1rem;
+    line-height: 2 !important;
+    padding: 0 10px;
+    text-align: left;
+    background: #a51100;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #7b1b1f;
+    cursor: pointer;
+}
+
+.hideIs:after {
+    content: "\f0d7";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    float: right;
+    text-decoration: none;
+}
+
+.showIs:after {
+    content: "\f0d8";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    float: right;
+    text-decoration: none;
+}
+
+.configleft {
+    background: #313c40;
+}
+
+.configleftContent {
+    display: none;
+}
+
+.flexedIt {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.range-field>span {
+    position: absolute;
+    right: 20px;
+    top: -22px;
+    color: white;
+}
+
+p.confInfo {
+    color: #9f9da0 !important;
+    padding: 8px;
+    text-align: left;
+}
+
+@media (min-height:740px) {
+    .itemBox-bottom {
+        position: fixed;
+        bottom: 5px;
+    }
 }
 
 .inputAnimTitle {
@@ -349,39 +437,6 @@ canvas,
     margin-top: 3px !important;
 }
 
-#lastSelectedConfig {
-    position: absolute;
-    background: #242e33;
-    z-index: 300;
-    border-radius: 5px;
-    border-top: 5px solid #dd4213;
-    padding: 20px;
-    width: 250px;
-    height: auto;
-}
-
-.lastSelectedConfigContener {
-    position: relative;
-    min-width: 100px;
-    max-width: 300px;
-    max-height: 500px;
-}
-
-.lastSelectedConfigContener span {
-    position: absolute;
-    width: 100%;
-    display: table;
-    top: -25px;
-}
-
-.lastSelectedConfigContener span p {
-    float: left;
-    width: 95%;
-    text-align: center;
-    margin: 0;
-    color: #d7d7d7;
-}
-
 .configEditText {
     color: rgb(87, 181, 195);
     margin: 0;
@@ -391,12 +446,27 @@ canvas,
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    float: left;
     justify-content: center;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.configColorPicker input {
+    height: 30px;
 }
 
 .configColorPicker p {
     width: 100%
+}
+
+.additionalIconInConf {
+    margin: 0px !important;
+    float: none !important;
+}
+
+.lastSelectedConfigContent {
+    overflow: hidden;
 }
 
 .configColor {
@@ -465,16 +535,22 @@ canvas,
 
 #itemBox,
 #itemBoxFromCat {
-    background: rgb(54, 64, 69);
+    background: rgba(36, 46, 51, 0.58);
     box-shadow: inset 0px 1px 10px 1px rgba(39, 34, 34, 0.5);
-    display: block;
-    overflow: hidden;
-    width: 100%;
+    display: flex;
     min-height: 50px;
+}
+
+.itemBoxWithItem {
+    position: absolute;
+    z-index: 1;
+    width: calc( 100% - 250px);
+    top: 50px;
 }
 
 #itemBox {
     box-shadow: none;
+    position: relative;
     background: #242e33;
 }
 
@@ -500,12 +576,16 @@ canvas,
     width: 100%;
     margin: auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 #leftBlockItem {
-    width: 50px;
+    width: 250px;
     float: left;
+    background: #2b363a;
+    border: 1px solid rgba(255, 26, 0, 0.55);
+    border-left: none;
+    border-right: none;
 }
 
 .categories {
@@ -524,17 +604,26 @@ canvas,
 }
 
 #timeline {
-    width: 50px;
+    height: 30px;
     float: left;
+}
+
+#timeline p {
+    color: #9e9e9e;
+    margin-top: 5px;
+    font-size: .8rem;
+    text-align: left;
+    margin-bottom: 2px;
 }
 
 .timeElement,
 #addFrame {
-    width: 50px;
+    width: 30px;
     line-height: 1.8;
     background: rgb(42, 42, 42);
     text-align: center;
     color: white;
+    float: left;
     border: 1px solid rgb(42, 42, 42);
     cursor: pointer;
     transition: background-color .2s;

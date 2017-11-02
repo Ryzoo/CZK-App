@@ -49,8 +49,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         },
         arrow: {
             text: "Strzałka",
-            arrowTypes: ["Pełna", "Kręcona", "Przerywana"],
-            arrowType: "Pełna"
+            arrowTypes: ["Podanie", "Prowadzenie piłki", "Bieg bez piłki", "Linia pomocnicza", "Odległość zawodników", "Strzał"],
+            arrowType: "Podanie"
         },
         shape: {
             text: "Pole gry",
@@ -176,6 +176,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(window).resize(function() {
         resize();
+        $(".itemBoxWithItem").first().css("top", $("#itemBox").height() + "px");
     });
 
     $(window).on("orientationchange", function(event) {
@@ -186,7 +187,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.actualMouseAction = $scope.mouseActionType.FIELD_LIST;
 
     $scope.selectArrow = function(arrowTypw) {
-        $scope.selectedArrow = arrowTypw;
+        $scope.actualMouseAction = $scope.mouseActionType.ARROW_ADD;
         $scope.arrowPointCount = 0;
         $scope.arrowPoint = [];
     }
@@ -228,11 +229,24 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('click touch', '.categories');
     $(document).on('click touch', '.categories', function() {
-        $scope.exitObjConfig();
         $('.categories').each(function() {
             $(this).css("border-color", "");
         });
         $(this).css("border-color", "#dd4213");
+        $scope.selectedObjConfig = $(this).data('config') ? $scope.objConfig[$(this).data('config')] : $scope.selectedObjConfig;
+    })
+
+    $(document).off('click touch', '.confTitle');
+    $(document).on('click touch', '.confTitle', function() {
+        if ($(this).hasClass("hideIs")) {
+            $(this).removeClass("hideIs");
+            $(this).addClass("showIs");
+            $(this).next('.configleftContent').first().stop().show('slide', { direction: "up" }, 300);
+        } else {
+            $(this).addClass("hideIs");
+            $(this).removeClass("showIs");
+            $(this).next('.configleftContent').first().stop().hide('slide', { direction: "up" }, 300);
+        }
     })
 
     $(document).off('click touch', '.categoryItems');
@@ -245,7 +259,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $(this).css("border-color", "#dd4213");
 
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD) {
-            $scope.exitObjConfig();
             $scope.selectedObjImg = new Image();
             $scope.selectedObjImg.src = $(this).find('img').attr('src');
         }
@@ -254,26 +267,20 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $scope.showObjConfig = function() {
         if ($scope.lastSelected && $scope.lastSelected != null) {
-            var settingsDiv = $compile("<div id='lastSelectedConfig'><div class='lastSelectedConfigContener' ><span ng-click='exitObjConfig();'><p>Konfiguracja obiektu</p><i class='fa fa-times' aria-hidden='true'></i></span><div class='lastSelectedConfigContent'><p>Brak dostępnych opcji konfiguracyjnych</p></div></div></div>")($scope);
-            $('body').append(settingsDiv);
-            var textPosition = $scope.lastSelected.getAbsolutePosition();
-            var stageBox = selectedFrame.getContainer().getBoundingClientRect();
-            var areaPosition = {
-                x: textPosition.x + stageBox.left + 50,
-                y: textPosition.y + stageBox.top
-            };
-            $("#lastSelectedConfig").css('top', (stageBox.top + selectedFrame.height() / 2) - 100 + 'px');
-            $("#lastSelectedConfig").css('left', (stageBox.left + selectedFrame.width() / 2) - 125 + 'px');
+            var settingsDiv = "<div class='lastSelectedConfigContent'><p class='confInfo' >Brak dostępnych opcji konfiguracyjnych</p></div>";
+            $("#lastSelectedConfig").first().html("");
+            $("#lastSelectedConfig").first().append(settingsDiv);
 
             var config = $scope.lastSelected.getAttr("config");
-            if (!config) return;
+
+            if (!config || config == []) return;
             $('.lastSelectedConfigContent').first().html("");
 
             //text
             if (config.text) {
-                var textEdit = "<p style='margin-bottom:0'>Tekst nad obiektem</p>";
+                var textEdit = "<p class='confInfo' style='padding-bottom:0'>Tekst nad obiektem</p>";
                 textEdit += "<div style='margin-top:0' class='input-field col s12'>";
-                textEdit += "<input style='margin-bottom:0;text-align:center' class='configEditText' type='text' class='validate' value='" + config.text + "'></input>";
+                textEdit += "<input style='height: 30px; margin-bottom:0;text-align:center' class='configEditText' type='text' class='validate' value='" + config.text + "'></input>";
                 textEdit += "</div>";
                 $('.lastSelectedConfigContent').first().append(textEdit);
                 var thisOb = $scope.lastSelected;
@@ -297,7 +304,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             //createColorPicker
             if (config.colors) {
                 var colorPicker = "<div class='configColorPicker'>";
-                colorPicker += "<p>Wersja kolorystyczna:</p>"
+                colorPicker += "<p class='confInfo'>Wersja kolorystyczna:</p>"
                 for (var i = 0; i < config.colors.length; i++) {
                     colorPicker += "<div class='configColor' style='background-color:" + (config.colors[i].background) + "; border-color:" + (config.colors[i].border) + "'></div>";
                 }
@@ -332,10 +339,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             //arrow type
             if (config.arrowTypes) {
                 var arrowPicker = "<div class='configArrowTypes'>";
-                arrowPicker += "<p>Typ strzałki:</p>"
-                arrowPicker += "<form action=''>";
+                arrowPicker += "<form style='display: table;margin: 10px;'>"
+                arrowPicker += "<p class='confInfo'>Typ akcji:</p>"
                 for (var i = 0; i < config.arrowTypes.length; i++) {
-                    if (i == 0) add = "checked='checked'";
+                    if (config.arrowTypes[i] == config.arrowType) add = "checked='checked'";
                     else add = '';
                     arrowPicker += "<p><input name='arrowTypeGroup' " + add + " type='radio' id='" + config.arrowTypes[i] + "' /><label for='" + config.arrowTypes[i] + "'>" + config.arrowTypes[i] + "</label></p>";
                 }
@@ -415,15 +422,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
     }
 
-    $scope.exitObjConfig = function() {
-        $("#lastSelectedConfig").each(function() {
-            $(this).remove();
-        });
-    }
+
 
     $(document).off('click touch', '.soccerField');
     $(document).on('click touch', '.soccerField', function() {
-        $scope.exitObjConfig();
         $('.soccerField').each(function() {
             $(this).css("transform", "");
         });
@@ -432,35 +434,35 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     })
 
     function selectField(src) {
-        $scope.selectedField = new Image();
-        $scope.fieldImage = $scope.selectedField;
-        $scope.selectedField.onload = function() {
+        $scope.$apply(function() {
+            $scope.selectedField = new Image();
             $scope.fieldImage = $scope.selectedField;
-            drawNewStage();
-        }
-        $scope.selectedField.src = src;
+            $scope.selectedField.onload = function() {
+                $scope.fieldImage = $scope.selectedField;
+                drawNewStage();
+            }
+            $scope.actualMouseAction = $scope.mouseActionType.MOVE;
+            $scope.selectedField.src = src;
+        });
     }
 
     $(document).off('click touch', '#canActionPlay');
     $(document).on('click touch', '#canActionPlay', function() {
         showPlayer();
     });
-    $(document).off('click touch', '#canActionRotRight');
-    $(document).on('click touch', '#canActionRotRight', function() {
-        rotateCurrent(45);
+
+    $(document).off('change', '#rotationConfig');
+    $(document).on('change', '#rotationConfig', function() {
+        rotateCurrent($(this).val());
+        showInConfigObjData();
     });
-    $(document).off('click touch', '#canActionRotLeft');
-    $(document).on('click touch', '#canActionRotLeft', function() {
-        rotateCurrent(-45);
+
+    $(document).off('change', '#scaleConfig');
+    $(document).on('change', '#scaleConfig', function() {
+        scaleCurrent($(this).val());
+        showInConfigObjData();
     });
-    $(document).off('click touch', '#scaleUpButton');
-    $(document).on('click touch', '#scaleUpButton', function() {
-        scaleCurrent(0.1);
-    });
-    $(document).off('click touch', '#scaleDownButton');
-    $(document).on('click touch', '#scaleDownButton', function() {
-        scaleCurrent(-0.1);
-    });
+
     $(document).off('click touch', '#canActionDel');
     $(document).on('click touch', '#canActionDel', function() {
         deleteCurrent();
@@ -518,7 +520,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function rotateCurrent(rot) {
         if ($scope.lastSelected) {
-            $scope.lastSelected.rotate(rot);
+            $scope.lastSelected.setAttr("rotation", rot);
             selectedFrame.draw();
         }
     }
@@ -526,8 +528,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function scaleCurrent(scale) {
         if ($scope.lastSelected) {
             var newScale = {
-                x: $scope.lastSelected.scale().x + scale,
-                y: $scope.lastSelected.scale().y + scale,
+                x: scale,
+                y: scale
             };
             $scope.lastSelected.scale(newScale);
             selectedFrame.draw();
@@ -536,7 +538,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('click touch', '.timeElement');
     $(document).on("click touch", ".timeElement", function(e) {
-        $scope.exitObjConfig();
         var count = $(this).index('.timeElement');
         changeFrame(count);
         drawNewStage();
@@ -544,7 +545,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('click touch', '#addFrame');
     $(document).on("click touch", "#addFrame", function(e) {
-        $scope.exitObjConfig();
         var count = $(".timeElement").length + 1;
         $(".timeElement").last().after("<div class='timeElement' > " + count + " </div>");
         $(".timeElement").each(function() {
@@ -565,6 +565,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function selectObjStyle(thisObj) {
+        anchorLayer.destroy();
         var shapes = selectedFrame.find(".movementObject");
         shapes.each(function(shape) {
             shape.stroke('transparent');
@@ -572,7 +573,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         var shapes = selectedFrame.find(".arrow");
         shapes.each(function(shape) {
             shape.stroke('white');
-            shape.strokeWidth(4);
         });
         var shapes = selectedFrame.find(".shapes");
         shapes.each(function(shape) {
@@ -581,12 +581,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             shape.stroke(fillColor);
         });
         if (thisObj) {
-            thisObj.stroke('#dd4213');
-            thisObj.strokeWidth(2);
+            if (thisObj.getAttr('name') != "arrow")
+                thisObj.stroke('#dd4213');
+            thisObj.strokeWidth(1);
             $scope.$apply(function() {
                 $scope.lastSelected = thisObj;
             });
+            showInConfigObjData(thisObj);
         }
+        $scope.showObjConfig();
         selectedFrame.draw();
     }
 
@@ -733,75 +736,171 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var odleglosc = Math.sqrt(Math.pow(pkt2.x - pkt1.x, 2) + Math.pow(pkt2.y - pkt1.y, 2)) +
                 Math.sqrt(Math.pow(pkt3.x - pkt2.x, 2) + Math.pow(pkt3.y - pkt2.y, 2));
             var iloscCzesci = odleglosc / odchylenie;
-            var ubytek;
-            if ((ile - 2) <= 1) ubytek = ((1.0 / iloscCzesci) * 2);
-            else ubytek = (1.0 / iloscCzesci);
+            var ubytek = (1.0 / iloscCzesci);
             var last;
             var wykonanie = 0;
-            for (var i = 1.0 / iloscCzesci; i <= 1 - ubytek; i += 1.0 / iloscCzesci) {
+            for (var i = ubytek; i <= 1 - ubytek; i += ubytek) {
 
-                switch (obj.getAttr("config").arrowType) {
-                    case "Pełna":
+                last = getPosOnCurves(pkt1, pkt2, pkt3, i);
+                switch (String(obj.getAttr("config").arrowType)) {
+                    case "Odległość zawodników":
+                    case "Podanie":
                         var pkts = getPosOnCurves(pkt1, pkt2, pkt3, i);
-                        var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + 1.0 / iloscCzesci);
+                        var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + ubytek);
                         context.quadraticCurveTo(pkts.x, pkts.y, pktsEnd.x, pktsEnd.y);
-                        last = pkts;
                         break;
-                    case "Przerywana":
+                    case "Strzał":
+                        var pkts = getPosOnCurves(pkt1, pkt2, pkt3, i);
+                        var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + ubytek);
+                        var angle = Math.atan((pktsEnd.y - pkts.y) / (pktsEnd.x - pkts.x));
+                        var newpx = parseFloat(odchylenie / 2 * (Math.cos(angle + 1.57)));
+                        var newpy = parseFloat(odchylenie / 2 * (Math.sin(angle + 1.57)));
+                        pkts.x += newpx;
+                        pkts.y += newpy;
+                        context.lineTo(pkts.x, pkts.y);
+                        break;
+                    case "Linia pomocnicza":
+                    case "Bieg bez piłki":
                         if (wykonanie % 2 == 0) {
                             context.beginPath();
                             var pkts = getPosOnCurves(pkt1, pkt2, pkt3, i);
-                            var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + 1.0 / iloscCzesci);
+                            var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + ubytek);
                             context.quadraticCurveTo(pkts.x, pkts.y, pktsEnd.x, pktsEnd.y);
                             context.stroke();
                             context.fillStrokeShape(obj);
                             context.closePath();
-                            last = pkts;
                         }
                         break;
-                    case "Kręcona":
+                    case "Prowadzenie piłki":
                         var pkts = getPosOnCurves(pkt1, pkt2, pkt3, i);
-                        var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + 1.0 / iloscCzesci);
+                        var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + ubytek);
                         var angle = Math.atan((pktsEnd.y - pkts.y) / (pktsEnd.x - pkts.x));
-                        var newpx = parseFloat(odchylenie * ((Math.cos(angle + poz))));
+                        var newpx = parseFloat(odchylenie * (Math.cos(angle + poz)));
                         var newpy = parseFloat(odchylenie * (Math.sin(angle + poz)));
                         pkts.x += newpx;
                         pkts.y += newpy;
                         poz *= -1;
-                        last = pkts;
-                        context.quadraticCurveTo(pkts.x, pkts.y, pktsEnd.x, pktsEnd.y);
+                        context.lineTo(pkts.x, pkts.y);
                         break;
+
                 }
                 wykonanie++;
-
             }
 
-            if ((ile - 2) <= 1) {
-                context.stroke();
-                context.fillStrokeShape(obj);
-                context.closePath();
-                context.beginPath();
-                context.moveTo(last.x, last.y);
-                var pkts = getPosOnCurves(pkt1, pkt2, pkt3, 1 - ubytek);
-                var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, 1);
-                var angle = Math.atan((pktsEnd.y - pkts.y) / (pktsEnd.x - pkts.x));
-                var newpx = parseFloat(odchylenie * ((Math.cos(angle + 90))));
-                var newpy = parseFloat(odchylenie * (Math.sin(angle + 90)));
-                pkts.x += newpx;
-                pkts.y += newpy;
-                context.lineTo(pkts.x, pkts.y);
-                context.lineTo(pktsEnd.x, pktsEnd.y);
-                var pkts = getPosOnCurves(pkt1, pkt2, pkt3, 1 - ubytek);
-                var newpx = parseFloat(odchylenie * ((Math.cos(angle - 90))));
-                var newpy = parseFloat(odchylenie * (Math.sin(angle - 90)));
-                pkts.x += newpx;
-                pkts.y += newpy;
-                context.lineTo(pkts.x, pkts.y);
-                context.lineTo(last.x, last.y);
-                context.fillStyle = '#ffffff';
-                context.fill();
-            }
 
+            if ((String(obj.getAttr("config").arrowType)) != "Linia pomocnicza")
+                if ((ile - 2) <= 1) {
+                    context.stroke();
+                    context.fillStrokeShape(obj);
+                    context.closePath();
+                    context.beginPath();
+                    context.moveTo(last.x, last.y);
+                    var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, 1);
+                    var angle = parseFloat(Math.atan((pktsEnd.y - last.y) / (pktsEnd.x - last.x)));
+                    var newpx = parseFloat((3) * Math.cos(angle + parseFloat(1.57)));
+                    var newpy = parseFloat((3) * Math.sin(angle + parseFloat(1.57)));
+                    var newPos = {
+                        x: parseFloat(last.x + newpx),
+                        y: parseFloat(last.y + newpy),
+                    };
+                    context.lineTo(newPos.x, newPos.y);
+                    context.lineTo(pktsEnd.x, pktsEnd.y);
+                    var newpx = parseFloat((3) * Math.cos(angle - parseFloat(1.57)));
+                    var newpy = parseFloat((3) * Math.sin(angle - parseFloat(1.57)));
+                    var newPos = {
+                        x: parseFloat(last.x + newpx),
+                        y: parseFloat(last.y + newpy),
+                    };
+                    context.lineTo(newPos.x, newPos.y);
+                    context.lineTo(last.x, last.y);
+                    context.fillStyle = '#ffffff';
+                    context.fill();
+
+                }
+        }
+        context.stroke();
+        context.fillStrokeShape(obj);
+
+        if ((String(obj.getAttr("config").arrowType)) == "Odległość zawodników") {
+            if (pkt.length >= 3) {
+                pkt1 = pkt[0];
+                pkt2 = pkt[1];
+                pkt3 = pkt[2];
+            } else if (pkt.length == 2) {
+                pkt1 = pkt[0];
+                pkt3 = pkt[1];
+                pkt2 = {
+                    x: (pkt1.x + pkt3.x) / 2,
+                    y: (pkt1.y + pkt3.y) / 2,
+                }
+            }
+            var odleglosc = Math.sqrt(Math.pow(pkt2.x - pkt1.x, 2) + Math.pow(pkt2.y - pkt1.y, 2)) +
+                Math.sqrt(Math.pow(pkt3.x - pkt2.x, 2) + Math.pow(pkt3.y - pkt2.y, 2));
+            var iloscCzesci = odleglosc / odchylenie;
+            var ubytek = (1.0 / iloscCzesci);
+            context.beginPath();
+            var pktsStart = getPosOnCurves(pkt1, pkt2, pkt3, 0);
+            context.moveTo(pktsStart.x, pktsStart.y);
+            var last = getPosOnCurves(pkt1, pkt2, pkt3, ubytek);
+
+            var angle = parseFloat(Math.atan((pktsStart.y - last.y) / (pktsStart.x - last.x)));
+            var newpx = parseFloat((3) * Math.cos(angle + parseFloat(1.57)));
+            var newpy = parseFloat((3) * Math.sin(angle + parseFloat(1.57)));
+            var newPos = {
+                x: parseFloat(last.x + newpx),
+                y: parseFloat(last.y + newpy),
+            };
+            context.lineTo(newPos.x, newPos.y);
+            var newpx = parseFloat((3) * Math.cos(angle - parseFloat(1.57)));
+            var newpy = parseFloat((3) * Math.sin(angle - parseFloat(1.57)));
+            var newPos = {
+                x: parseFloat(last.x + newpx),
+                y: parseFloat(last.y + newpy),
+            };
+            context.lineTo(newPos.x, newPos.y);
+            context.lineTo(pktsStart.x, pktsStart.y);
+            context.fillStyle = '#ffffff';
+            context.fill();
+        } else if ((String(obj.getAttr("config").arrowType)) == "Strzał") {
+            context.stroke();
+            context.fillStrokeShape(obj);
+            context.beginPath();
+            context.moveTo(pkt[0].x, pkt[0].y);
+            for (var z = 0; z < pkt.length; z += 2) {
+                var ile = pkt.length - z;
+                if (ile >= 3) {
+                    pkt1 = pkt[z];
+                    pkt2 = pkt[z + 1];
+                    pkt3 = pkt[z + 2];
+                } else if (ile == 2) {
+                    pkt1 = pkt[z];
+                    pkt3 = pkt[z + 1];
+                    pkt2 = {
+                        x: (pkt1.x + pkt3.x) / 2,
+                        y: (pkt1.y + pkt3.y) / 2,
+                    }
+                } else {
+                    break;
+                }
+                var odleglosc = Math.sqrt(Math.pow(pkt2.x - pkt1.x, 2) + Math.pow(pkt2.y - pkt1.y, 2)) +
+                    Math.sqrt(Math.pow(pkt3.x - pkt2.x, 2) + Math.pow(pkt3.y - pkt2.y, 2));
+                var iloscCzesci = odleglosc / odchylenie;
+                var ubytek = (1.0 / iloscCzesci);
+                var last;
+                var wykonanie = 0;
+                for (var i = ubytek; i <= 1 - ubytek; i += ubytek) {
+                    last = getPosOnCurves(pkt1, pkt2, pkt3, i);
+                    var pkts = getPosOnCurves(pkt1, pkt2, pkt3, i);
+                    var pktsEnd = getPosOnCurves(pkt1, pkt2, pkt3, i + ubytek);
+                    var angle = Math.atan((pktsEnd.y - pkts.y) / (pktsEnd.x - pkts.x));
+                    var newpx = parseFloat(odchylenie / 2 * (Math.cos(angle - 1.57)));
+                    var newpy = parseFloat(odchylenie / 2 * (Math.sin(angle - 1.57)));
+                    pkts.x += newpx;
+                    pkts.y += newpy;
+                    context.lineTo(pkts.x, pkts.y);
+                    wykonanie++;
+                }
+            }
         }
 
         context.stroke();
@@ -809,7 +908,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function clickOnContent() {
-        $scope.exitObjConfig();
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD && $scope.selectedObjImg) {
             if (anchorLayer != null) {
                 anchorLayer.destroy();
@@ -877,7 +975,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             });
             selectedFrame.draw();
 
-        } else if ($scope.actualMouseAction == $scope.mouseActionType.ARROW_ADD && $scope.selectedArrow) {
+        } else if ($scope.actualMouseAction == $scope.mouseActionType.ARROW_ADD) {
             $scope.arrowPointCount++;
             var scale = selectedFrame.getAttr('scaleX');
             var mousePos = selectedFrame.getPointerPosition();
@@ -899,7 +997,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 var arrow = new Konva.Shape({
                     points: $scope.arrowPoint,
                     stroke: 'white',
-                    strokeWidth: 4,
+                    strokeWidth: 1,
                     id: id,
                     textObj: null,
                     name: 'arrow',
@@ -909,9 +1007,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     }
                 });
 
-                $scope.$apply(function() {
-                    $scope.lastSelected = arrow;
-                });
+                selectObjStyle(arrow);
+                anchorLayer = new Konva.Layer();
+                selectedFrame.add(anchorLayer);
 
                 var complexText = createTextB($scope.arrowPoint[0].x, $scope.arrowPoint[0].y, ($scope.selectedObjConfig && $scope.selectedObjConfig.text) ? $scope.selectedObjConfig.text : "");
                 textInfoLayer.add(complexText);
@@ -919,24 +1017,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 else complexText.setAttr('offsetY', 10);
                 arrow.setAttr('textObj', complexText);
 
-                if (anchorLayer != null) {
-                    anchorLayer.destroy();
-                    anchorLayer = null;
-                }
-                anchorLayer = new Konva.Layer();
-                selectedFrame.add(anchorLayer);
-
                 $scope.arrowArrayPostionAnchor = $scope.arrowPoint;
                 for (var index = 0; index < $scope.arrowPoint.length; index++) {
                     createAnchorToArrow($scope.arrowPoint[index].x, $scope.arrowPoint[index].y, arrow, index);
                 }
+                selectedFrame.draw();
 
                 arrow.on('mousedown touchstart', function() {
                     selectObjStyle(this);
-                    if (anchorLayer != null) {
-                        anchorLayer.destroy();
-                        anchorLayer = null;
-                    }
                     anchorLayer = new Konva.Layer();
                     selectedFrame.add(anchorLayer);
                     $scope.arrowArrayPostionAnchor = this.getAttr('points');
@@ -945,11 +1033,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     }
                     selectedFrame.draw();
                 });
-                selectObjStyle(arrow);
 
                 mainLayer.add(arrow);
                 allObjectPerFrame[currentObjPerFrame].arrow.push(arrow);
-
                 mainLayer.draw();
             } else if ($scope.arrowPointCount > 2) {
                 $scope.lastSelected.setAttr("points", $scope.arrowPoint);
@@ -2084,6 +2170,17 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             obj.rotation(degree + rotOffset);
         }
         selectedFrame.draw();
+        showInConfigObjData(obj);
+    }
+
+    function showInConfigObjData(obj = $scope.lastSelected) {
+        if (obj == null) return;
+        var rot = obj.getAttr("rotation");
+        var scl = obj.getAttr("scale").x;
+        $("#rotationConfig").parent().find("span").first().html(rot + "'");
+        $("#scaleConfig").parent().find("span").first().html(scl);
+        $("#rotationConfig").val(rot);
+        $("#scaleConfig").val(scl);
     }
 
     function createFrameToAnim() {
