@@ -490,6 +490,29 @@
                                     </div>
                                     <div id='leftBlockItem'>
 
+                                        <div class="playAnimContainer" id='canActionPlay'>
+                                            <div style='margin: auto !important'>
+                                                <i class="fa fa-play fa-2x fa-fw" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="configleft playerConfigLeft">
+                                            <p class='confTitle hideIs'>Właściwości odtwarzacza</p>
+                                            <div class="configleftContent" style='padding: 0 15px'>
+
+                                                <p class='confInfo'>Ilość klatek pomiędzy klatkami głównymi</p>
+                                                <input style='height: 30px; margin-bottom:0;text-align:center;color: #26a69a;' type='number' class='validate' min="5" max="100" ng-model='iloscklatekPomiedzyGlownymi'>
+
+                                                <p class='confInfo'>Jakość wyrenderowanej animacji</p>
+                                                <input style='height: 30px; margin-bottom:0;text-align:center;color: #26a69a;' type='number' class='validate' min="1" max="256" ng-model='jakoscAnimacji'>
+
+                                                <p class='confInfo'>Ilość fpsów animacji</p>
+                                                <input style='height: 30px; margin-bottom:0;text-align:center;color: #26a69a;' type='number' class='validate' min="10" max="60" ng-model='iloscfps'>
+                                                <p class='confInfo'>Wszystkie parametry mają duży wpływ na <b>długość renderowania</b> animacji przy zapisie.</p>
+
+                                            </div>
+                                        </div>
+
                                         <div class="configleft ">
                                             <p class='confTitle showIs'>Konfiguracja obiektu</p>
                                             <div class="configleftContent" style="display:block">
@@ -525,25 +548,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="configleft playerConfigLeft">
-                                            <p class='confTitle hideIs'>Właściwości odtwarzacza</p>
-                                            <div class="configleftContent" style='padding: 0 15px'>
 
-                                                <p class='confInfo'>Ilość klatek pomiędzy klatkami głównymi</p>
-                                                <input style='height: 30px; margin-bottom:0;text-align:center;color: #26a69a;' type='number' class='validate' min="5" max="100" ng-model='iloscklatekPomiedzyGlownymi'>
-                                                
-                                                <p class='confInfo'>Jakość wyrenderowanej animacji</p>
-                                                <input style='height: 30px; margin-bottom:0;text-align:center;color: #26a69a;' type='number' class='validate' min="1" max="256" ng-model='jakoscAnimacji'>
-                                                
-                                                <p class='confInfo'>Ilość fpsów animacji</p>
-                                                <input style='height: 30px; margin-bottom:0;text-align:center;color: #26a69a;' type='number' class='validate' min="10" max="60" ng-model='iloscfps'>
-                                                <p class='confInfo'>Wszystkie parametry mają duży wpływ na <b>długość renderowania</b> animacji przy zapisie.</br>
-                                                Kliknij, aby zobaczyć <b>podgląd</b></p>
-                                                <div class='categoryItems additionalIconInConf' id='canActionPlay' style='margin: auto !important'>
-                                                    <i class="fa fa-play fa-2x fa-fw" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     </div>
                                 </div>

@@ -401,6 +401,24 @@ canvas,
     }
 }
 
+.playAnimContainer {
+    width: 100%;
+    line-height: 2;
+    background: #c11502;
+    border: 5px solid #a51100;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.playAnimContainer i {
+    line-height: 1.7;
+    color: white;
+}
+
+.playAnimContainer:hover {
+    background: #f41e06;
+}
+
 @media screen and (max-width:890px) {
     .conspFullElement {
         width: 50%;

@@ -175,16 +175,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     var lineLayer = null;
     var quadCurves = [];
     var isPlayerOpen = false;
-    if($(window).width() > 1250){
-        $(".itemBoxWithItem").first().width($(window).width()-250);
-        $("#leftBlockItem").width($(window).width()-1000);
+    if ($(window).width() > 1250) {
+        $(".itemBoxWithItem").first().width($(window).width() - 250);
+        $("#leftBlockItem").width($(window).width() - 1000);
     }
     $(window).resize(function() {
         resize();
         $(".itemBoxWithItem").first().css("top", $("#itemBox").height() + "px");
-        if($(window).width() > 1250){
-            $(".itemBoxWithItem").first().width($(window).width()-250);
-            $("#leftBlockItem").width($(window).width()-1000);
+        if ($(window).width() > 1250) {
+            $("#leftBlockItem").width($(window).width() - 1000);
+            $(".itemBoxWithItem").first().width($(window).width() - $("#leftBlockItem").width());
+        } else {
+            $(".itemBoxWithItem").first().width($(window).width() - 250);
         }
     });
 
@@ -238,11 +240,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('click touch', '.categories');
     $(document).on('click touch', '.categories', function() {
-        if($(window).width() > 1250){
-            $("#leftBlockItem").width($(window).width()-1000);
-            $(".itemBoxWithItem").first().width($(window).width()-$("#leftBlockItem").width());
-        }else{
-            $(".itemBoxWithItem").first().width($(window).width()-250);
+        if ($(window).width() > 1250) {
+            $("#leftBlockItem").width($(window).width() - 1000);
+            $(".itemBoxWithItem").first().width($(window).width() - $("#leftBlockItem").width());
+        } else {
+            $(".itemBoxWithItem").first().width($(window).width() - 250);
         }
         $('.categories').each(function() {
             $(this).css("border-color", "");
@@ -939,7 +941,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 offsetX: ($scope.selectedObjImg.width / 2.0),
                 offsetY: ($scope.selectedObjImg.height / 2.0),
                 image: $scope.selectedObjImg,
-                config: $.extend(true,  $scope.selectedObjConfig,[]),
+                config: $.extend(true, $scope.selectedObjConfig, []),
                 name: "movementObject",
                 id: id,
                 textObj: null
@@ -1015,7 +1017,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     id: id,
                     textObj: null,
                     name: 'arrow',
-                    config: $.extend(true, $scope.selectedObjConfig,[]),
+                    config: $.extend(true, $scope.selectedObjConfig, []),
                     sceneFunc: function(context) {
                         drawArrowStyle(context, this);
                     }
@@ -1190,7 +1192,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     strokeWidth: 2,
                     id: id,
                     textObj: null,
-                    config: $.extend(true, $scope.selectedObjConfig,[])
+                    config: $.extend(true, $scope.selectedObjConfig, [])
                 });
                 selectObjStyle(triangle);
 
@@ -2549,7 +2551,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
                 $("#playerData p").first().text("Podgląd animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
             }
-        }, 1000/$scope.iloscfps);
+        }, 1000 / $scope.iloscfps);
     }
 
     $(document).off('click touch', '#exitPlayer');
@@ -2689,7 +2691,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.iloscklatekPomiedzyGlownymi = data.frameBeetween;
             $scope.jakoscAnimacji = data.qualityAnim;
             $scope.iloscfps = data.fps;
-            
+
             for (var x = 0; x < data.animFrame.length; x++) {
                 allObjectPerFrame.push({ arrow: [], obj: [], shapes: [], text: [] });
 
@@ -2781,7 +2783,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         var encoder = new GIFEncoder();
         encoder.setRepeat(0);
         encoder.setQuality($scope.jakoscAnimacji);
-        encoder.setDelay(1000/$scope.iloscfps);
+        encoder.setDelay(1000 / $scope.iloscfps);
         encoder.start();
 
         var mainPlay = setInterval(function() {
@@ -2860,7 +2862,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $("#playerData p").first().text("Renderowanie animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
                 actualPlayerFrame++;
             }
-        }, 1000/$scope.iloscfps);
+        }, 1000 / $scope.iloscfps);
     }
 
     function saveAnimation() {
