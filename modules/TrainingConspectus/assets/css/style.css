@@ -565,6 +565,7 @@ canvas,
     z-index: 1;
     width: 100%;
     top: 50px;
+    justify-content: center;
 }
 
 #itemBox {
