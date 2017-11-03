@@ -716,6 +716,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             fill: '#fff',
             padding: 20,
             width: 200,
+            listening: false,
             align: 'center'
         });
     }
@@ -941,7 +942,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 offsetX: ($scope.selectedObjImg.width / 2.0),
                 offsetY: ($scope.selectedObjImg.height / 2.0),
                 image: $scope.selectedObjImg,
-                config: $.extend(true, $scope.selectedObjConfig, []),
+                config: $.extend(true, {}, $scope.selectedObjConfig),
                 name: "movementObject",
                 id: id,
                 textObj: null
@@ -1017,7 +1018,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     id: id,
                     textObj: null,
                     name: 'arrow',
-                    config: $.extend(true, $scope.selectedObjConfig, []),
+                    config: $.extend(true, {}, $scope.selectedObjConfig),
                     sceneFunc: function(context) {
                         drawArrowStyle(context, this);
                     }
@@ -1192,7 +1193,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     strokeWidth: 2,
                     id: id,
                     textObj: null,
-                    config: $.extend(true, $scope.selectedObjConfig, [])
+                    config: $.extend(true, {}, $scope.selectedObjConfig)
                 });
                 selectObjStyle(triangle);
 
@@ -1397,6 +1398,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 fill: '#fff',
                 padding: 20,
                 width: 200,
+                listening: false,
                 align: 'center'
             });
             obj = new Konva.Image({
@@ -1426,6 +1428,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 fontFamily: 'Calibri',
                 fill: '#fff',
                 padding: 20,
+                listening: false,
                 align: 'center'
             });
             obj = new Konva.Image({
@@ -1483,6 +1486,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 fill: '#fff',
                 padding: 20,
                 width: 200,
+                listening: false,
                 align: 'center'
             });
             if (other.getAttr("arrowPoint")[0].y < other.getAttr("arrowPoint")[1].y) complexText.setAttr('offsetY', 50);
@@ -1518,6 +1522,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 fontFamily: 'Calibri',
                 fill: '#fff',
                 padding: 20,
+                listening: false,
                 align: 'center'
             });
             if (other.attrs.arrowPoint[0].y < other.attrs.arrowPoint[1].y) complexText.setAttr('offsetY', 50);
@@ -2203,7 +2208,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             if (allObjectPerFrame[i + 1]) {
                 for (var x = 0; x < $scope.iloscklatekPomiedzyGlownymi; x++) {
                     arrowsArray = []
-                    arrows = allObjectPerFrame[i + 1].arrow;
                     for (var z = 0; z < arrows.length; z++) {
                         var complexText = new Konva.Text({
                             x: arrows[z].getAttr("points")[0].x,
@@ -2235,7 +2239,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     }
 
                     shapesArray = []
-                    shapes = allObjectPerFrame[i + 1].shapes;
                     for (var z = 0; z < shapes.length; z++) {
                         var complexText = new Konva.Text({
                             x: shapes[z].getAttr("x"),
@@ -2265,7 +2268,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     }
 
                     textArray = []
-                    text = allObjectPerFrame[i + 1].text;
                     for (var z = 0; z < text.length; z++) {
                         var complexText = new Konva.Text({
                             x: text[z].getAttr("x"),
@@ -2822,6 +2824,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         allObj[index].text.push(allObjectPerFrame[index].text[x].toObject());
                     }
                 }
+
+                currentObjPerFrame = 0;
+                drawNewStage("canvasPlayerContainer", allAnimFrame);
 
                 var toSend = {
                     id: $scope.animId,

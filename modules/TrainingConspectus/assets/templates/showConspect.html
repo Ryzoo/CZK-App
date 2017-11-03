@@ -71,7 +71,8 @@
                                                     <button type="button" class="waves-effect waves-light btn noPrint" ng-click="loadAndPlay(coElement.data.id)">Podgląd w odtwarzaczu</button>
                                                     <br/>
                                                     <br/>
-                                                    <a href="{{coElement.data.mainImg}}" class="noPrint" download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz gif</a>
+                                                    <a ng-show='coElement.data.mainImg.length > 2' href="{{coElement.data.mainImg}}" class="noPrint" download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz animacje</a>
+                                                    <a ng-show='coElement.data.mainImgShow.length > 2' href="{{coElement.data.mainImgShow}}" class="noPrint" download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz podgląd</a>
                                                 </div>
                                             </div>
                                         </div>

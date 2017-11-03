@@ -37,8 +37,7 @@ class TrainingConspectus extends BasicModule {
         $coTeam = $data['coTeam'];
         $coOp = $data['coOp'];
         $coTags = trim($data['coTags']);
-
-
+        $data = $data['data'];
 
         if( $id >= 0 ){
             $this->returnedData['data'] = ($this->db->getConnection())->update("conspect",['id'=>$id],[
