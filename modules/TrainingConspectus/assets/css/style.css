@@ -18,7 +18,8 @@
 
 .containerforcontainer {
     float: left;
-    width: calc( 100% - 250px);
+    max-width: 1000px;
+    width: calc(100% - 250px);
 }
 
 @media (max-width:768px) {
@@ -544,7 +545,7 @@ canvas,
 .itemBoxWithItem {
     position: absolute;
     z-index: 1;
-    width: calc( 100% - 250px);
+    width: 100%;
     top: 50px;
 }
 
@@ -576,7 +577,7 @@ canvas,
     width: 100%;
     margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 #leftBlockItem {

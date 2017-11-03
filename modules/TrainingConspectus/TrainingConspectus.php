@@ -9,9 +9,10 @@ use Core\System\FileMenager;
 class TrainingConspectus extends BasicModule {
 
     function install(){
-        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL ,  `mainImgShow` VARCHAR(255) NOT NULL, `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `frameBeetween` INT NOT NULL, `qualityAnim` INT NOT NULL, `fps` INT NOT NULL , `mainImgShow` VARCHAR(255) NOT NULL, `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
         ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `conspect` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `master` VARCHAR(255) NOT NULL ,`sezon` VARCHAR(255) NOT NULL, `date` DATE NOT NULL , `team` VARCHAR(255) NOT NULL , `about` TINYTEXT NOT NULL , `tags` VARCHAR(255) NOT NULL , `data` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
+
 
     function uninstall(){
         ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS conspect');
@@ -36,7 +37,8 @@ class TrainingConspectus extends BasicModule {
         $coTeam = $data['coTeam'];
         $coOp = $data['coOp'];
         $coTags = trim($data['coTags']);
-        $data = $data['data'];
+
+
 
         if( $id >= 0 ){
             $this->returnedData['data'] = ($this->db->getConnection())->update("conspect",['id'=>$id],[
@@ -127,6 +129,9 @@ class TrainingConspectus extends BasicModule {
         $cwMinPerson = $data['cwMinPerson'];
         $cwOps = $data['cwOps'];
         $cwWsk = $data['cwWsk'];
+        $frameBeetween = $data['frameBeetween'];
+        $qualityAnim = $data['qualityAnim'];
+        $fps = $data['fps'];
 
         return ($this->db->getConnection())->insert("conspectAnim",[
             "name"=>$name,
@@ -143,6 +148,9 @@ class TrainingConspectus extends BasicModule {
             "cwOps"=>$cwOps,
             "cwWsk"=>$cwWsk,
             "tags"=>$tags,
+            "frameBeetween"=>$frameBeetween,
+            "qualityAnim"=>$qualityAnim,
+            "fps"=>$fps,
         ]);
     }
 
@@ -161,6 +169,9 @@ class TrainingConspectus extends BasicModule {
         $cwMinPerson = $data['cwMinPerson'];
         $cwOps = $data['cwOps'];
         $cwWsk = $data['cwWsk'];
+        $frameBeetween = $data['frameBeetween'];
+        $qualityAnim = $data['qualityAnim'];
+        $fps = $data['fps'];
 
         $animGifPath = ($this->db->getConnection())->fetchRow("SELECT mainImg, mainImgShow FROM conspectAnim WHERE id=".$id);
         FileMenager::deleteFile($animGifPath['mainImg']);
@@ -183,6 +194,9 @@ class TrainingConspectus extends BasicModule {
             "cwOps"=>$cwOps,
             "cwWsk"=>$cwWsk,
             "tags"=>$tags,
+            "frameBeetween"=>$frameBeetween,
+            "qualityAnim"=>$qualityAnim,
+            "fps"=>$fps,
         ]);
 
         return $data['id'];

@@ -14,6 +14,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.turnOnHelperNet = false;
     $scope.turnOnHekperFullScreen = false;
     $scope.fullElement = null;
+    $scope.iloscklatekPomiedzyGlownymi = 40;
+    $scope.jakoscAnimacji = 40;
+    $scope.iloscfps = 30;
 
     $("#animCreator").niceScroll({
         cursorborderradius: '0px', // Scroll cursor radius
@@ -167,16 +170,22 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     var pauseAnim = false;
     var fieldLayer = null;
     var mainLayer = null;
-    var textInfoLayer = null;
     var curveLayer = null;
     var anchorLayer = null;
     var lineLayer = null;
     var quadCurves = [];
     var isPlayerOpen = false;
-
+    if($(window).width() > 1250){
+        $(".itemBoxWithItem").first().width($(window).width()-250);
+        $("#leftBlockItem").width($(window).width()-1000);
+    }
     $(window).resize(function() {
         resize();
         $(".itemBoxWithItem").first().css("top", $("#itemBox").height() + "px");
+        if($(window).width() > 1250){
+            $(".itemBoxWithItem").first().width($(window).width()-250);
+            $("#leftBlockItem").width($(window).width()-1000);
+        }
     });
 
     $(window).on("orientationchange", function(event) {
@@ -229,11 +238,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('click touch', '.categories');
     $(document).on('click touch', '.categories', function() {
+        if($(window).width() > 1250){
+            $("#leftBlockItem").width($(window).width()-1000);
+            $(".itemBoxWithItem").first().width($(window).width()-$("#leftBlockItem").width());
+        }else{
+            $(".itemBoxWithItem").first().width($(window).width()-250);
+        }
         $('.categories').each(function() {
             $(this).css("border-color", "");
         });
         $(this).css("border-color", "#dd4213");
-        $scope.selectedObjConfig = $(this).data('config') ? $scope.objConfig[$(this).data('config')] : $scope.selectedObjConfig;
+        $scope.selectedObjConfig = $(this).data('config') ? $scope.objConfig[$(this).data('config')] : [];
+
     })
 
     $(document).off('click touch', '.confTitle');
@@ -262,7 +278,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.selectedObjImg = new Image();
             $scope.selectedObjImg.src = $(this).find('img').attr('src');
         }
-        $scope.selectedObjConfig = $(this).find('img').data('config') ? $scope.objConfig[$(this).find('img').data('config')] : $scope.selectedObjConfig;
+        $scope.selectedObjConfig = $(this).find('img').data('config') ? $scope.objConfig[$(this).find('img').data('config')] : [];
+
     })
 
     $scope.showObjConfig = function() {
@@ -272,9 +289,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $("#lastSelectedConfig").first().append(settingsDiv);
 
             var config = $scope.lastSelected.getAttr("config");
-
-            if (!config || config == []) return;
-            $('.lastSelectedConfigContent').first().html("");
+            if (!config) return;
+            if (config.text || config.colors || config.arrowTypes)
+                $('.lastSelectedConfigContent').first().html("");
 
             //text
             if (config.text) {
@@ -297,7 +314,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     thisOb.setAttr("textObj", textObj);
 
                     configTextUpdate(thisOb);
-                    textInfoLayer.draw();
+                    mainLayer.draw();
                 });
             }
 
@@ -421,8 +438,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }
         }
     }
-
-
 
     $(document).off('click touch', '.soccerField');
     $(document).on('click touch', '.soccerField', function() {
@@ -565,7 +580,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function selectObjStyle(thisObj) {
-        anchorLayer.destroy();
+        if (anchorLayer) anchorLayer.destroy();
         var shapes = selectedFrame.find(".movementObject");
         shapes.each(function(shape) {
             shape.stroke('transparent');
@@ -638,7 +653,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if ($scope.arrowArrayPostionAnchor[0].y < $scope.arrowArrayPostionAnchor[1].y) txtObj.setAttr('offsetY', 50);
         else txtObj.setAttr('offsetY', 10);
         arrowObj.setAttr('textObj', txtObj);
-        textInfoLayer.draw();
         mainLayer.draw();
     }
 
@@ -685,7 +699,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if ($scope.shapeArrayPostionAnchor[0].y < $scope.shapeArrayPostionAnchor[1].y) txtObj.setAttr('offsetY', 50);
         else txtObj.setAttr('offsetY', 10);
         shapeObj.setAttr('textObj', txtObj);
-        textInfoLayer.draw();
+        mainLayer.draw();
         mainLayer.draw();
     }
 
@@ -925,7 +939,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 offsetX: ($scope.selectedObjImg.width / 2.0),
                 offsetY: ($scope.selectedObjImg.height / 2.0),
                 image: $scope.selectedObjImg,
-                config: $.extend(true, [], $scope.selectedObjConfig),
+                config: $.extend(true,  $scope.selectedObjConfig,[]),
                 name: "movementObject",
                 id: id,
                 textObj: null
@@ -936,7 +950,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             });
 
             var complexText = createTextB(mousePos.x / scale, mousePos.y / scale, $scope.selectedObjConfig && $scope.selectedObjConfig.text ? $scope.selectedObjConfig.text : "");
-            textInfoLayer.add(complexText);
+            mainLayer.add(complexText);
             obj.setAttr('textObj', complexText);
 
             obj.on('mousedown touchstart', function() {
@@ -948,7 +962,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 txtObj.setAttr('x', obj.getAttr("x"));
                 txtObj.setAttr('y', obj.getAttr("y"));
                 obj.setAttr('textObj', txtObj);
-                textInfoLayer.draw();
+                mainLayer.draw();
             });
 
             obj.on('dragend', function() {
@@ -1001,7 +1015,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     id: id,
                     textObj: null,
                     name: 'arrow',
-                    config: $.extend(true, [], $scope.selectedObjConfig),
+                    config: $.extend(true, $scope.selectedObjConfig,[]),
                     sceneFunc: function(context) {
                         drawArrowStyle(context, this);
                     }
@@ -1012,7 +1026,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 selectedFrame.add(anchorLayer);
 
                 var complexText = createTextB($scope.arrowPoint[0].x, $scope.arrowPoint[0].y, ($scope.selectedObjConfig && $scope.selectedObjConfig.text) ? $scope.selectedObjConfig.text : "");
-                textInfoLayer.add(complexText);
+                mainLayer.add(complexText);
                 if (pointsArray[1] < pointsArray[3]) complexText.setAttr('offsetY', 50);
                 else complexText.setAttr('offsetY', 10);
                 arrow.setAttr('textObj', complexText);
@@ -1176,12 +1190,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     strokeWidth: 2,
                     id: id,
                     textObj: null,
-                    config: $.extend(true, [], $scope.selectedObjConfig)
+                    config: $.extend(true, $scope.selectedObjConfig,[])
                 });
                 selectObjStyle(triangle);
 
                 var complexText = createTextB(shapPointArr[0].x, shapPointArr[0].y, ($scope.selectedObjConfig && $scope.selectedObjConfig.text) ? $scope.selectedObjConfig.text : "");
-                textInfoLayer.add(complexText);
+                mainLayer.add(complexText);
                 if (shapPointArr[0].y < shapPointArr[1].y) complexText.setAttr('offsetY', 50);
                 else complexText.setAttr('offsetY', 10);
                 triangle.setAttr('textObj', complexText);
@@ -1221,7 +1235,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $scope.shapePoint = [];
                 anchorLayer.draw();
                 mainLayer.draw();
-                textInfoLayer.draw();
+                mainLayer.draw();
             }
         } else if ($scope.actualMouseAction == $scope.mouseActionType.TEXT_ADD) {
             if (anchorLayer != null) {
@@ -1348,7 +1362,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 config: other.attrs.config
             });
         }
-        if (textInfoLayer) textInfoLayer.add(complexText);
+        if (mainLayer) mainLayer.add(complexText);
         arrow.off('mousedown touchstart');
         arrow.on('mousedown touchstart', function() {
             selectObjStyle(this);
@@ -1429,7 +1443,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 textObj: complexText
             });
         }
-        if (textInfoLayer) textInfoLayer.add(complexText);
+        if (mainLayer) mainLayer.add(complexText);
         obj.stroke('transparent');
         obj.strokeWidth(1);
         obj.off('mousedown touchstart');
@@ -1442,7 +1456,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             txtObj.setAttr('x', obj.getAttr("x"));
             txtObj.setAttr('y', obj.getAttr("y"));
             obj.setAttr('textObj', txtObj);
-            textInfoLayer.draw();
+            mainLayer.draw();
         });
 
         obj.off('dragend');
@@ -1530,7 +1544,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 textObj: complexText
             });
         }
-        if (textInfoLayer) textInfoLayer.add(complexText);
+        if (mainLayer) mainLayer.add(complexText);
         shape.off('mousedown touchstart');
         shape.on('mousedown touchstart', function() {
             selectObjStyle(this);
@@ -1777,12 +1791,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
         anchorLayer = new Konva.Layer();
 
-        if (textInfoLayer != null) {
-            textInfoLayer.destroy();
-            textInfoLayer = null;
-        }
-        textInfoLayer = new Konva.Layer({ listening: false });
-
         if (mainLayer != null) {
             mainLayer.destroy();
             mainLayer = null;
@@ -1833,7 +1841,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
 
         selectedFrame.add(mainLayer);
-        selectedFrame.add(textInfoLayer);
 
         $scope.selectedObjImg = null;
         $scope.selectedArrow = null;
@@ -1841,9 +1848,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $scope.arrowPoint = [];
         $scope.shapePointCount = 0;
         $scope.shapePoint = [];
-        $scope.$apply(function() {
-            $scope.lastSelected = null;
-        });
+        $scope.lastSelected = null;
         $scope.actualMouseAction = $scope.mouseActionType.MOVE;
         $(".categories").each(function() {
             $(this).css('border-color', "");
@@ -2194,7 +2199,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var text = allObjectPerFrame[i].text;
 
             if (allObjectPerFrame[i + 1]) {
-                for (var x = 0; x < 60; x++) {
+                for (var x = 0; x < $scope.iloscklatekPomiedzyGlownymi; x++) {
                     arrowsArray = []
                     arrows = allObjectPerFrame[i + 1].arrow;
                     for (var z = 0; z < arrows.length; z++) {
@@ -2307,8 +2312,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             degree = parseFloat(((Math.atan(a) * 180) / Math.PI) + rotOffset, 2).toFixed(2);
                             var lastDegreee = parseDeg(parseInt(degree));
                             var isReRotation = parseDeg(parseInt(objs[z].getAttr("rotation"))) != lastDegreee;
-                            p1 = getPosOnCurves(history.start, history.control, history.end, (x / 60));
-                            p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / 60));
+                            p1 = getPosOnCurves(history.start, history.control, history.end, (x / $scope.iloscklatekPomiedzyGlownymi));
+                            p2 = getPosOnCurves(history.start, history.control, history.end, ((x + 1) / $scope.iloscklatekPomiedzyGlownymi));
                             var rotOffset = 0;
                             if (p1.x > p2.x) rotOffset = 180;
                             a = (p2.y - p1.y) / (p2.x - p1.x);
@@ -2544,7 +2549,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
                 $("#playerData p").first().text("Podgląd animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
             }
-        }, 40);
+        }, 1000/$scope.iloscfps);
     }
 
     $(document).off('click touch', '#exitPlayer');
@@ -2673,11 +2678,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             allObjectPerFrame = null;
             allObjectPerFrame = [];
 
-            $(".timeElement").each(function() {
-                if ($(this).index() != 0)
-                    $(this).remove();
-            });
-
             $scope.cwName = data.name;
             $scope.cwFieldType = data.cwFieldType;
             $scope.cwMaxTime = data.cwMaxTime;
@@ -2686,7 +2686,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.cwMinPerson = data.cwMinPerson;
             $scope.cwOps = data.cwOps;
             $scope.cwWsk = data.cwWsk;
-
+            $scope.iloscklatekPomiedzyGlownymi = data.frameBeetween;
+            $scope.jakoscAnimacji = data.qualityAnim;
+            $scope.iloscfps = data.fps;
+            
             for (var x = 0; x < data.animFrame.length; x++) {
                 allObjectPerFrame.push({ arrow: [], obj: [], shapes: [], text: [] });
 
@@ -2735,9 +2738,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $('.chips-placeholder').material_chip(tagTo);
 
             if (data.fieldImage && data.fieldImage.length > 2) {
+                selectField(data.fieldImage);
                 $scope.$apply(function() {
                     callback();
-                    selectField(data.fieldImage);
                     $scope.changeCategories($scope.mouseActionType.MOVE);
                     changeFrame(0);
                     setTimeout(function() {
@@ -2777,8 +2780,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         setPlayerToFrame(actualPlayerFrame);
         var encoder = new GIFEncoder();
         encoder.setRepeat(0);
-        encoder.setQuality(40);
-        encoder.setDelay(40);
+        encoder.setQuality($scope.jakoscAnimacji);
+        encoder.setDelay(1000/$scope.iloscfps);
         encoder.start();
 
         var mainPlay = setInterval(function() {
@@ -2786,7 +2789,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 window.clearInterval(mainPlay);
                 turnOnAllSter();
                 encoder.finish();
-                var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+                var binary_gif = encoder.stream().getData();
                 $scope.gif = encode64(binary_gif);
                 var tags = $('.chips-placeholder').material_chip('data');
                 var allTagString = '';
@@ -2834,8 +2837,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     cwMinPerson: $scope.cwMinPerson,
                     cwOps: $scope.cwOps,
                     cwWsk: $scope.cwWsk,
-                    usid: $rootScope.user.id
+                    usid: $rootScope.user.id,
+                    frameBeetween: $scope.iloscklatekPomiedzyGlownymi,
+                    qualityAnim: $scope.jakoscAnimacji,
+                    fps: $scope.iloscfps
                 };
+
 
                 request.backend('saveConspectAnim', toSend, function(data) {
                     exitPlayer();
@@ -2849,11 +2856,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 var percent = setPlayerToFrame(actualPlayerFrame);
                 currentObjPerFrame = actualPlayerFrame;
                 drawNewStage("canvasPlayerContainer", allAnimFrame);
-                encoder.addFrame(selectedFrame.toCanvas().getContext('2d', { alpha: false }));
+                encoder.addFrame(selectedFrame.toCanvas().getContext('2d'));
                 $("#playerData p").first().text("Renderowanie animacji - klatka: " + (actualPlayerFrame + 1) + " / " + allAnimFrame.length);
                 actualPlayerFrame++;
             }
-        }, 40);
+        }, 1000/$scope.iloscfps);
     }
 
     function saveAnimation() {
