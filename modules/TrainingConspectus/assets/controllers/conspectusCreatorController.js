@@ -175,10 +175,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     var lineLayer = null;
     var quadCurves = [];
     var isPlayerOpen = false;
-    if ($(window).width() > 1250) {
-        $(".itemBoxWithItem").first().width($(window).width() - 250);
-        $("#leftBlockItem").width($(window).width() - 1000);
-    }
+
     $(window).resize(function() {
         resize();
         $(".itemBoxWithItem").first().css("top", $("#itemBox").height() + "px");
@@ -1273,7 +1270,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             allObjectPerFrame[currentObjPerFrame].text.push(obj);
             selectedFrame.draw();
 
-            obj.on('dblclick', () => {
+            obj.on('dblclick', function(){
                 // create textarea over canvas with absolute position
                 // first we need to find its positon
                 var textPosition = obj.getAbsolutePosition();

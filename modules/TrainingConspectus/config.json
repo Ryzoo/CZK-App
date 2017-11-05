@@ -39,9 +39,28 @@
         }, {
             "url": "loadConspectAnim",
             "parameters": ["id"]
+        },{
+            "url": "getSharedListForAnim",
+            "parameters": ["aid"],
+            "auth": ["KOORD"]
+        },{
+            "url": "getAvailableSharedMasterForAnim",
+            "parameters": ["aid"],
+            "auth": ["KOORD"]
+        },{
+            "url": "addSharedForAnim",
+            "parameters": ["aid","usid"],
+            "auth": ["KOORD"]
+        },{
+            "url": "deleteSharedForAnim",
+            "parameters": ["aid","usid"],
+            "auth": ["KOORD"]
         }
+
+
+
     ],
-    "jsControllers": ["TrainingConspectusController", "conspectusCreatorController", "showConspectController", "TrainingListAdditionalController"],
+    "jsControllers": ["TrainingConspectusController", "conspectusCreatorController", "showConspectController", "TrainingListAdditionalController", "shareList"],
     "css": ["style", "gifplayer"],
     "js": ["LZWEncoder", "NeuQuant", "GIFEncoder", "b64", "gifplayer"],
     "frontendRoute": [

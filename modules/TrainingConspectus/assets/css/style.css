@@ -140,14 +140,12 @@ p.confInfo {
 .conspectCwData div {
     display: table;
     margin: auto;
-    min-width: 150px;
-    text-align: left;
+    text-align: center;
     overflow: hidden;
 }
 
 .conspectCwData i,
 .conspectCwData p {
-    float: left;
     text-align: left;
 }
 
@@ -202,8 +200,33 @@ h6 {
     position: relative;
 }
 
+.sharedPersonContainerDel{
+    margin: 0 !important;
+    cursor: pointer;
+}
+
+.sharedPersonContainer{
+    display: flex !important;
+    line-height: 2.2rem;
+    justify-content: space-between;
+    font-size: 12px;
+    margin: 0 2px !important;
+    border: 1px solid red;
+    border-radius: 20px;
+    padding: 0px 10px;
+}
+
 .cardConspectList {
     height: 230px;
+}
+
+.card .card-content .sharedFor{
+    width: 100%;
+    margin: 10px !important;
+}
+
+.sharedFor b{
+    margin-bottom: 8px;
 }
 
 .inputAnimTags {
@@ -287,20 +310,16 @@ h6 {
 .tagsContainer {
     width: 100%;
     padding: 5px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .oneTag,
 .oneTagFull {
     font-size: 10px;
     padding: 4px 8px !important;
-    width: 47%;
     float: left;
     color: white;
     background: rgb(41, 124, 248);
-    margin: 2px;
+    margin: 2px !important;
     border-radius: 20px;
 }
 

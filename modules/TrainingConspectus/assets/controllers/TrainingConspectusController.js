@@ -5,6 +5,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.allCoElement = [];
     $scope.conspectArray = [];
     $rootScope.lastPlaceInConspect = null;
+    $rootScope.sharedAnimId = null;
 
     $scope.coActualId = -1;
     $scope.coName = '';
@@ -15,8 +16,10 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.coOp = '';
     $scope.coTags = '';
 
-    if ($rootScope.widgetInterval)
+    if ($rootScope.widgetInterval){
         clearInterval($rootScope.widgetInterval);
+    }
+
     $rootScope.widgetInterval = setInterval(function() {
         if ($rootScope.widgetResponse && $rootScope.widgetResponse != null) {
             $scope.addCwCo({
@@ -63,7 +66,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                         timeMax: fullFieldData[i].data.timeMax,
                         wsk: fullFieldData[i].data.wsk,
                         place: fullFieldData[i].data.place
-                    }
+                    };
                 } else {
                     var fieldData = {
                         id: fullFieldData[i].data.id,
@@ -144,9 +147,16 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.deleteAnimCon = function(id) {
-        request.backend('deleteAnimConspect', { id: id }, function(data) {
-            $scope.initConsAnimList();
-        }, "Pomyślnie usunięto");
+        $rootScope.showModalWindow("Nieodwracalne usunięcie ćwiczenia",function(){
+            request.backend('deleteAnimConspect', { id: id }, function(data) {
+                $scope.initConsAnimList();
+            }, "Pomyślnie usunięto");
+        })
+    }
+
+    $scope.showShareWidget = function(aid){
+        $rootScope.sharedAnimId = aid;
+        $rootScope.showWidget('shareList','TrainingConspectus');
     }
 
     $scope.addSimpleFieldCo = function(placeId) {
@@ -195,7 +205,6 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.saveConspect = function() {
-
         $scope.coName = $('#coName').val();
         $scope.coMaster = $('#coMaster').val();
         $scope.coDate = $('#coDate').val();

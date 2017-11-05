@@ -1,64 +1,90 @@
 <div ng-init="setPerm(['STAFF','TRENER','KOORD','ZAWODNIK'])"></div>
 <div class="section" ng-controller='TrainingConspectusController' ng-init="initConsAnimList()">
     <div ng-show='showContent' class="row" ng-controller="conspectusCreatorController">
-        <div class="col s12">
+        <div class="col s12" ng-show="animArray.length > 0">
             <div class="card">
                 <div class="card-content" style='padding-bottom: 0 !important;'>
                     <div class="row">
                         <div class="input-field col s12 m8 offset-m2">
-                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, tag, nazwę animacji' ng-model='searchText'>
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, tag, nazwę animacji'
+                                   ng-model='searchText'>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4" ng-repeat="anim in animArray | filter:searchText track by $index">
+        <div class="col s12" ng-show="animArray.length <= 0">
+            <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Niestety nie posiadasz jeszcze żadnych
+                ćwiczeń.</br> Utwórz własne lub poproś koordynatora o udostępnienie.</h5>
+        </div>
+        <div class="col s12" ng-repeat="anim in animArray | filter:searchText track by $index">
             <div class="card">
                 <div class="card-content" style='padding-bottom: 0 !important;'>
                     <div class="card-title" style='margin-bottom: 0 !important; text-align:left;'>
-                        {{anim.name | limitTo: 16}}{{anim.name.length > 16 ? '...' : ''}}
+                        {{anim.name}}
                         <div class='cardOptionsButton'>
-                            <div ng-click="toggleCardOptions( 'cardOptions-anim-'+anim.id )"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                            <div ng-click="toggleCardOptions( 'cardOptions-anim-'+anim.id )"><i class="fa fa-bars"
+                                                                                                aria-hidden="true"></i>
+                            </div>
                             <div id='cardOptions-anim-{{anim.id}}' class='cardOptions'>
-                                <div ng-show='anim.mainImg.length > 2' ng-click="loadAndPlay(anim.id)"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></div>
-                                <div ng-click="editAnimCon(anim.id)"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></div>
-                                <div ng-click="deleteAnimCon(anim.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></div>
+                                <div ng-show='anim.mainImg.length > 2' ng-click="loadAndPlay(anim.id)"><i
+                                        class="fa fa-eye fa-fw" aria-hidden="true"></i></div>
+                                <div ng-show="anim.id_user == user.id || user.role =='KOORD' "
+                                     ng-click="editAnimCon(anim.id)"><i class="fa fa-pencil-square-o fa-fw"
+                                                                        aria-hidden="true"></i></div>
+                                <div ng-show="user.role =='KOORD' "
+                                     ng-click="showShareWidget(anim.id)"><i class="fa fa-share-square-o fa-fw"
+                                                                        aria-hidden="true"></i></div>
+                                <div ng-show="anim.id_user == user.id || user.role =='KOORD' "
+                                     ng-click="deleteAnimCon(anim.id)"><i class="fa fa-times fa-fw"
+                                                                          aria-hidden="true"></i></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row imgConspectAnim">
-                        <img ng-show='anim.mainImg.length > 2' data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{anim.mainImgShow}}" data-gif='{{anim.mainImg}}' alt="Zdjęcie podglądowe - {{anim.name}}">
-                        <h5 ng-hide='anim.mainImg.length > 2' class='powImg'>Brak podglądu</h5>
-                    </div>
-                    <br/>
-                    <a ng-show='anim.mainImg.length > 2' href="{{anim.mainImg}}" class="noPrint" download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz animacje</a>
-                    <a ng-show='anim.mainImgShow.length > 2' href="{{anim.mainImgShow}}" class="noPrint" download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz podgląd</a>
-                    <div class="row conspectCwData">
-                        <div>
-                            <i class="fa fa-map-marker fa-fw " aria-hidden="true"></i>
-                            <p><b>{{anim.cwFieldType}}</b></p>
+                    <div style="display: flex; flex-wrap: wrap;  align-items: center;">
+                        <div class=" imgConspectAnim f50" ng-show='anim.mainImg.length > 2'>
+                            <img data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{anim.mainImgShow}}"
+                                 data-gif='{{anim.mainImg}}' alt="Zdjęcie podglądowe - {{anim.name}}">
+
                         </div>
-                        <div>
-                            <i class="fa fa-clock-o fa-fw " aria-hidden="true"></i>
-                            <p><b>{{anim.cwMinTime}}</b> min. - <b>{{anim.cwMaxTime}}</b> min.</p>
-                        </div>
-                        <div>
-                            <i class="fa fa-users fa-fw " aria-hidden="true"></i>
-                            <p><b>{{anim.cwMinPerson}}</b> os. - <b>{{anim.cwMaxPerson}}</b> os.</p>
-                        </div>
-                        <div class='opsCw'>
-                            <b>Pełna nazwa:</b></br> {{anim.name}}
-                        </div>
-                        <div class='opsCw'>
-                            <b>Opis:</b></br> {{anim.cwOps}}
-                        </div>
-                        <div class='opsCw'>
-                            <b>Wskazówki:</b></br> {{anim.cwWsk}}
-                        </div>
-                    </div>
-                    <div class="row" style='height: 80px; position: relative'>
-                        <div class="tagsContainer">
-                            <div class='oneTag' style='cursor:pointer;' ng-repeat="tag in anim.tags | limitTo: 6 track by $index" ng-click='changeSearch(tag)'>{{tag}}</div>
+                        <div class=" conspectCwData f50">
+                            <div style="display: flex; flex-wrap: wrap;">
+                                <div style="width: 100%; margin: 0 0 10px; text-align: center;">
+                                    <b>Właściciel ćwiczenia: </b> {{anim.firstname}} {{anim.lastname}}
+                                </div>
+                                <div>
+                                    <i class="fa fa-map-marker fa-fw " aria-hidden="true"></i>
+                                    <p><b>{{anim.cwFieldType}}</b></p>
+                                </div>
+                                <div>
+                                    <i class="fa fa-clock-o fa-fw " aria-hidden="true"></i>
+                                    <p><b>{{anim.cwMinTime}}</b> min. - <b>{{anim.cwMaxTime}}</b> min.</p>
+                                </div>
+                                <div>
+                                    <i class="fa fa-users fa-fw " aria-hidden="true"></i>
+                                    <p><b>{{anim.cwMinPerson}}</b> os. - <b>{{anim.cwMaxPerson}}</b> os.</p>
+                                </div>
+                            </div>
+                            <div class='opsCw'>
+                                <b>Opis:</b></br> {{anim.cwOps}}
+                            </div>
+                            <div class='opsCw'>
+                                <b>Wskazówki:</b></br> {{anim.cwWsk}}
+                            </div>
+                            <div class="col s12">
+                                <a ng-show='anim.mainImg.length > 2' href="{{anim.mainImg}}" class="noPrint" download>
+                                    <i class="fa fa-download" aria-hidden="true"></i> Pobierz animacje</a>
+                                <a ng-show='anim.mainImg.length > 2' href="{{anim.mainImgShow}}" class="noPrint"
+                                   download> <i class="fa fa-download" aria-hidden="true"></i> Pobierz podgląd</a>
+                            </div>
+                            <div class="row">
+                                <div class="tagsContainer">
+                                    <div class='oneTag' style='cursor:pointer;'
+                                         ng-repeat="tag in anim.tags | limitTo: 6 track by $index">
+                                        {{tag}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

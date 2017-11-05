@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, auth, $rootScope, $route, notify, request, $compile, $location) {
+app.controller('mainController', function ($scope, auth, $rootScope, $route, notify, request, $compile, $location) {
     $rootScope.viewPerm = ["TRENER", "ZAWODNIK", "KOORD", "STAFF"];
     $scope.contentLoaded = false;
     $rootScope.newNotify = [];
@@ -32,12 +32,12 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     }
     $rootScope.feedType = 'opinia';
 
-    $scope.goFeed = function(type) {
+    $scope.goFeed = function (type) {
         $rootScope.feedType = type;
         $location.url("/feedback");
     }
 
-    $scope.showNotifications = function(isMainClik = true) {
+    $scope.showNotifications = function (isMainClik = true) {
         if (isMainClik) {
             if ($scope.showAllNewsNotify == false) {
                 $scope.showAllNewsNotify = true;
@@ -50,12 +50,12 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         }
     }
 
-    $rootScope.closeWidget = function(response = null) {
+    $rootScope.closeWidget = function (response = null) {
         $rootScope.widgetResponse = response;
         $("#widgetContainer").hide("slide", {}, 200);
     }
 
-    $rootScope.dayToDate = function(date) {
+    $rootScope.dayToDate = function (date) {
         var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
         var firstDate = new Date();
         var secondDate = new Date(date.split('/')[2], date.split('/')[1], date.split('/')[0]);
@@ -66,8 +66,8 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         return diffDays;
     }
 
-    $rootScope.showWidget = function(widgetName, moduleName) {
-        $.get("modules/" + moduleName + "/assets/widget/" + widgetName + ".html", function(data) {
+    $rootScope.showWidget = function (widgetName, moduleName) {
+        $.get("modules/" + moduleName + "/assets/widget/" + widgetName + ".html", function (data) {
             data = "<button class='waves-effect waves-light btn widgetClose' style='width:100%' ng-click='closeWidget();' >Zamknij okno</button>" + data;
             var content = $compile(data)($scope);
             $('.widgetContentContainer').html('');
@@ -76,11 +76,33 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         });
     }
 
-    $(document).keyup(function(e) {
+    $rootScope.showModalWindow = function (text, agreeFunction, disagreeFunction = null) {
+        var data = "<h5 style='padding: 10px 20px;'>Czy jesteś pewny tego działania ?</h5>" +
+            "<p style='padding: 0 20px 20px;'>"+text+"</p>"+
+            "<button class='waves-effect waves-light btn widgetClose' style='width:calc(50% - 40px); float:left; margin: 0 20px 20px;' id='widgetAgree' >Tak, wykonaj</button>"+
+            "<button class='waves-effect waves-light btn widgetClose' style='width:calc(50% - 40px); float:left; margin: 0 20px 20px;' id='widgetDisagree' >Anuluj</button>";
+
+        var content = $compile(data)($scope);
+        $('.widgetContentContainer').html('');
+        $('.widgetContentContainer').append(content);
+        $("#widgetContainer").show("slide", {}, 200);
+        $(document).off("click","#widgetAgree");
+        $(document).on("click","#widgetAgree",function(){
+            $rootScope.closeWidget();
+            agreeFunction();
+        });
+        $(document).off("click","#widgetDisagree");
+        $(document).on("click","#widgetDisagree",function(){
+            $rootScope.closeWidget();
+            disagreeFunction();
+        });
+    }
+
+    $(document).keyup(function (e) {
         if (e.keyCode === 27) $rootScope.closeWidget();
     });
 
-    $scope.mainInit = function() {
+    $scope.mainInit = function () {
 
         if (!auth.checkIsLogged()) {
             auth.logout();
@@ -88,13 +110,13 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         } else {
             var data = auth.getUserData();
             if (data.success) {
-                request.backend('getMainPageSettings', {}, function(data) {
-                    $rootScope.$apply(function() {
+                request.backend('getMainPageSettings', {}, function (data) {
+                    $rootScope.$apply(function () {
                         $rootScope.mainSettings = data;
                     });
                 });
 
-                request.backend('getTeams', {}, function(data) {
+                request.backend('getTeams', {}, function (data) {
                     if (data.length == 0) {
                         notify.localNotify('Uwaga', "Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do sekcji");
                     } else {
@@ -107,11 +129,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                             $rootScope.user.tmid = data[0].tmid;
                             $rootScope.teamNameStr = data[0].name;
                         }
-                        setInterval(function() {
+                        setInterval(function () {
                             notify.getNew();
                         }, 2000);
                     }
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('#loadingContent').hide('slide', {}, 1000);
                         $('#mainContent').show('fade', {}, 1000);
                         document.location.href = "/panel#!/";
@@ -128,26 +150,26 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         }
     };
 
-    $(document).on('click', '#printButton', function() {
+    $(document).on('click', '#printButton', function () {
         window.print();
     });
 
-    $(document).on('change', '#teamSelect', function() {
+    $(document).on('change', '#teamSelect', function () {
         $rootScope.user.tmid = $("option:selected", this).val();
         $rootScope.teamNameStr = $("option:selected", this).text();
         document.location.href = "/panel#!/";
         $route.reload();
     });
 
-    $rootScope.toggleCardOptions = function(id) {
-        $('.cardOptions').each(function() {
+    $rootScope.toggleCardOptions = function (id) {
+        $('.cardOptions').each(function () {
             var tId = $(this).attr('id');
             if (!tId || (tId && tId != id))
-                $(this).stop().hide('slide', { direction: 'up' });
+                $(this).stop().hide('slide', {direction: 'up'});
         });
 
         if ($("#" + id)) {
-            $("#" + id).first().stop().toggle('slide', { direction: 'up' });
+            $("#" + id).first().stop().toggle('slide', {direction: 'up'});
         }
     }
 

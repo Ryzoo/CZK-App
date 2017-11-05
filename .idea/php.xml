@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="www.czk-app.pl" id="28d8bf76-0400-4180-94c4-1c2f09ddfdd4" name="CMC" />
+    </servers>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7" />
+</project>

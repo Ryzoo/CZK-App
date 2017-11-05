@@ -7,7 +7,7 @@
                     <div class="card-title">Tworzenie nowego ćwiczenia</div>
 
                     <div class="row">
-                        <div class="col s12">
+                        <div class="col s12 m6">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="input-field col s12 m6">
@@ -22,35 +22,42 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="input-field col s12 m6">
+                                    <div class="input-field col s6">
                                         <input id='minTime' type="text" placeholder="Czas wykonania (min)" value='{{cwMinTime}}' class="validate" requi#ec1800>
-                                        <label for="minTime">Minimalny czas wykonania</label>
+                                        <label for="minTime">Czas wykonania min</label>
                                     </div>
-                                    <div class="input-field col s12 m6">
+                                    <div class="input-field col s6">
                                         <input id='maxTime' type="text" placeholder="Czas wykonania (maks)" value='{{cwMaxTime}}' class="validate" requi#ec1800>
-                                        <label for="maxTime">Maksymalny czas wykonania</label>
+                                        <label for="maxTime">Czas wykonania maks</label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="input-field col s12 m6">
+                                    <div class="input-field col s6">
                                         <input id='minPerson' type="text" placeholder="Liczba zawodników (min)" value='{{cwMinPerson}}' class="validate" requi#ec1800>
-                                        <label for="minPerson">Minimalna liczba zawodników</label>
+                                        <label for="minPerson">Liczba zawodników min</label>
                                     </div>
-                                    <div class="input-field col s12 m6">
+                                    <div class="input-field col s6">
                                         <input id='maxPerson' type="text" placeholder="Liczba zawodników (maks)" value='{{cwMaxPerson}}' class="validate" requi#ec1800>
-                                        <label for="maxPerson">Maksymalna liczba zawodników</label>
+                                        <label for="maxPerson">Liczba zawodników maks</label>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row" ng-hide='showAnimCreator'>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <button type="button" class="waves-effect waves-light btn" ng-click="showAnimCreator = true">Animacja ćwiczenia</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="input-field col s12 m6">
+                                    <div class="input-field col s12">
                                         <textarea id="opCw" placeholder="Opis ćwiczenia" class="materialize-textarea " data-length="255">{{cwOps}}</textarea>
                                         <label for="opCw">Opis ćwiczenia</label>
                                     </div>
-                                    <div class="input-field col s12 m6">
+                                    <div class="input-field col s12">
                                         <textarea id="wskCw" placeholder="Wskazówki" class="materialize-textarea " data-length="255">{{cwWsk}}</textarea>
                                         <label for="wskCw">Wskazówki</label>
                                     </div>
@@ -64,18 +71,20 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row" ng-hide='showAnimCreator'>
-                        <div class="form-group">
                             <div class="row">
-                                <div class="input-field col s12">
-                                    <button type="button" class="waves-effect waves-light btn" ng-click="showAnimCreator = true">Animacja ćwiczenia</button>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <button type="button" class="waves-effect waves-light btn" ng-click="saveAnim();">Zapisz</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
 
                     <div id='animCreator' ng-show='showAnimCreator'>
                         <div class="animCreatorConainer">
@@ -579,15 +588,7 @@
                     </div>
 
 
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <button type="button" class="waves-effect waves-light btn" ng-click="saveAnim();">Zapisz</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
