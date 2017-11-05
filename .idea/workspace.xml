@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -107,21 +107,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shareList.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/shareList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="888">
-              <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-              <folding>
-                <element signature="e#201#501#0" expanded="false" />
-                <element signature="e#885#1362#0" expanded="false" />
-                <element signature="e#1918#2112#0" expanded="false" />
-                <element signature="e#2391#2590#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/config.json">
           <provider selected="true" editor-type-id="text-editor">
@@ -197,7 +182,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conspectusList.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="conspectusList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -207,6 +192,16 @@
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selectTraining.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -261,6 +256,7 @@
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareListC.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareList.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html" />
       </list>
     </option>
   </component>
@@ -475,12 +471,12 @@
       <workItem from="1509799439687" duration="1115000" />
       <workItem from="1509800573462" duration="21841000" />
       <workItem from="1509873959611" duration="291000" />
-      <workItem from="1509877205575" duration="1502000" />
+      <workItem from="1509877205575" duration="2090000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24749000" />
+    <option name="totallyTimeSpent" value="25337000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1089,6 +1085,14 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
