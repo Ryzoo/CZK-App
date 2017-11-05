@@ -12,45 +12,44 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4" ng-repeat="conspect in conspectArray | filter:searchText track by $index">
+        <div class="col s12 m6" ng-repeat="conspect in conspectArray | filter:searchText track by $index">
             <div class="card">
                 <div class="card-content" style='padding-bottom: 0 !important;'>
                     <div class="card-title" style='margin-bottom: 0 !important; text-align:left;'>
-                        {{conspect.name | limitTo: 16}}{{conspect.name.length > 16 ? '...' : ''}}
+                        {{conspect.name}}
                         <div class='cardOptionsButton'>
                             <div ng-click="toggleCardOptions( 'cardOptions-conspect-'+conspect.id )"><i class="fa fa-bars" aria-hidden="true"></i></div>
                             <div id='cardOptions-conspect-{{conspect.id}}' class='cardOptions'>
                                 <div ng-click="showThisContent(conspect.id)"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></div>
-                                <div ng-click="goToEditConspect(conspect.id)"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></div>
-                                <div ng-click="deleteCon(conspect.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></div>
+                                <div ng-show="anim.id_user == user.id || user.role =='KOORD' " ng-click="goToEditConspect(conspect.id)"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></div>
+                                <div ng-show="user.role =='KOORD' "
+                                     ng-click="showShareWidget(conspect.id,true)"><i class="fa fa-share-square-o fa-fw"
+                                                                            aria-hidden="true"></i></div>
+                                <div ng-show="anim.id_user == user.id || user.role =='KOORD' " ng-click="deleteCon(conspect.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row conspectCwData">
-                        <div class='opsCw'>
-                            <b>Pełna nazwa:</b></br> {{conspect.name}}
+                    <div class="row conspectCwData" style="display: flex;flex-wrap: wrap;">
+                        <div style="width: 100%; margin: 0 0 10px; text-align: center;">
+                            <b>Właściciel konspektu: </b> {{conspect.firstname}} {{conspect.lastname}}
                         </div>
                         <div>
                             <i class="fa fa-calendar fa-fw " aria-hidden="true"></i>
-                            <p><b>{{conspect.date}}</b></p>
-                        </div>
-                        <div>
-                            <i class="fa fa-user-circle-o fa-fw " aria-hidden="true"></i>
-                            <p><b>{{conspect.master}}</b></p>
+                            <b>{{conspect.date}}</b>
                         </div>
                         <div>
                             <i class="fa fa-calendar-o fa-fw" aria-hidden="true"></i>
-                            <p><b>{{conspect.sezon}}</b></p>
+                            <b>{{conspect.sezon}}</b>
                         </div>
                         <div>
                             <i class="fa fa-users fa-fw " aria-hidden="true"></i>
-                            <p><b>{{conspect.team}}</b></p>
+                            <b>{{conspect.team}}</b>
                         </div>
                         <div class='opsCw'>
                             <b>Opis:</b></br> {{conspect.about}}
                         </div>
                     </div>
-                    <div class="row" style='height: 80px; position: relative'>
+                    <div class="row" >
                         <div class="tagsContainer">
                             <div class='oneTag' style='cursor:pointer;' ng-repeat="tag in conspect.tags | limitTo: 6 track by $index" ng-click='changeSearch(tag)'>{{tag}}</div>
                         </div>

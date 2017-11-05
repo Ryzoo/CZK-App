@@ -85,7 +85,7 @@
     </column>
     <column id="42" parent="6" name="shared_ids">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>tinytext|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="43" parent="6" name="name">

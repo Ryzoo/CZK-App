@@ -1,0 +1,51 @@
+<div ng-init="setPerm(['KOORD'])"></div>
+<div class="section" ng-controller='shareList' ng-init="loadSharedListC()">
+    <div ng-show='showContent' class="row" >
+        <div class="col s12" ng-show="shareList.length > 0">
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                   <div class="row">
+                       <div class="input-field col s12 m8 offset-m2" style="margin-bottom: 20px;">
+                           <input type="text" id="autocompleteMaster" class="autocomplete">
+                           <label for="autocompleteMaster">Udostępnij wybranemu trenerowi</label>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" ng-show="shareList.length <= 0">
+            <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Żaden trener nie posiada wglądu</h5>
+        </div>
+        <div class="col s12" ng-show="shareList.length > 0">
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <table class="highlighted centered">
+                        <thead>
+                        <tr>
+                            <th>Imię i nazwisko <input id='changeFilter' type="text" placeholder='Wpisz imię, nazwisko do wyszukania'
+                                                       ng-model='searchText'></th>
+                            <th>Usuń udostępnienie</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="share in shareList | filter:searchText track by $index">
+                            <td>{{share.firstname}} {{share.lastname}}</td>
+                            <td>
+                                <div class='sharedPersonContainerDel'
+                                     ng-click="deleteFromSharedC(share.id)"><i
+                                        class="fa fa-times fa-fw" aria-hidden="true"></i></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>

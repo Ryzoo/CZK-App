@@ -6,6 +6,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.conspectArray = [];
     $rootScope.lastPlaceInConspect = null;
     $rootScope.sharedAnimId = null;
+    $rootScope.sharedConspId = null;
 
     $scope.coActualId = -1;
     $scope.coName = '';
@@ -151,12 +152,17 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             request.backend('deleteAnimConspect', { id: id }, function(data) {
                 $scope.initConsAnimList();
             }, "Pomyślnie usunięto");
-        })
+        });
     }
 
-    $scope.showShareWidget = function(aid){
-        $rootScope.sharedAnimId = aid;
-        $rootScope.showWidget('shareList','TrainingConspectus');
+    $scope.showShareWidget = function(aid,isConspect = false){
+        if(isConspect){
+            $rootScope.sharedConspId = aid;
+            $rootScope.showWidget('shareListC','TrainingConspectus');
+        }else{
+            $rootScope.sharedAnimId = aid;
+            $rootScope.showWidget('shareList','TrainingConspectus');
+        }
     }
 
     $scope.addSimpleFieldCo = function(placeId) {
@@ -206,7 +212,6 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
 
     $scope.saveConspect = function() {
         $scope.coName = $('#coName').val();
-        $scope.coMaster = $('#coMaster').val();
         $scope.coDate = $('#coDate').val();
         $scope.coSezon = $('#coSezon').val();
         $scope.coTeam = $('#coTeam').val();
@@ -215,11 +220,6 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
 
         if (!$scope.coName || $scope.coName == '' || $scope.coName == ' ' || $scope.coName == null) {
             notify.localNotify("Walidacja", "Wpisz nazwę danego konspektu");
-            return;
-        }
-
-        if (!$scope.coMaster || $scope.coMaster == '' || $scope.coMaster == ' ' || $scope.coMaster == null) {
-            notify.localNotify("Walidacja", "Wpisz imie, nazwisko trenera");
             return;
         }
 
@@ -284,14 +284,13 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         var toSend = {
             id: $scope.coActualId,
             coName: $scope.coName,
-            coMaster: $scope.coMaster,
+            id_user: $rootScope.user.id,
             coDate: $scope.coDate,
             coSezon: $scope.coSezon,
             coTeam: $scope.coTeam,
             coOp: $scope.coOp,
             coTags: allTagString,
-            data: JSON.stringify(dataToSend),
-            usid: $rootScope.user.id
+            data: JSON.stringify(dataToSend)
         }
 
         request.backend('saveConspect', toSend, function(data) {
@@ -305,9 +304,11 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.deleteCon = function(id) {
-        request.backend('deleteConspect', { id: id }, function(data) {
-            $scope.initConspectusList();
-        }, "Pomyślnie usunięto");
+        $rootScope.showModalWindow("Nieodwracalne usunięcie konspektu",function(){
+            request.backend('deleteConspect', { id: id }, function(data) {
+                $scope.initConspectusList();
+            }, "Pomyślnie usunięto");
+        });
     }
 
 });

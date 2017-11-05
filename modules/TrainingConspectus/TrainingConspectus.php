@@ -14,7 +14,7 @@ class TrainingConspectus extends BasicModule
     function install()
     {
         ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL , `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `frameBeetween` INT NOT NULL, `qualityAnim` INT NOT NULL, `fps` INT NOT NULL , `mainImgShow` VARCHAR(255) NOT NULL, `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
-        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `conspect` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL, `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL , `master` VARCHAR(255) NOT NULL ,`sezon` VARCHAR(255) NOT NULL, `date` DATE NOT NULL , `team` VARCHAR(255) NOT NULL , `about` TINYTEXT NOT NULL , `tags` VARCHAR(255) NOT NULL , `data` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `conspect` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL, `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL  ,`sezon` VARCHAR(255) NOT NULL, `date` DATE NOT NULL , `team` VARCHAR(255) NOT NULL , `about` TINYTEXT NOT NULL , `tags` VARCHAR(255) NOT NULL , `data` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
     function uninstall()
@@ -37,7 +37,7 @@ class TrainingConspectus extends BasicModule
     {
         $id = $data['id'];
         $coName = $data['coName'];
-        $coMaster = $data['coMaster'];
+        $usid = $data['id_user'];
         $coDate = $data['coDate'];
         $coSezon = $data['coSezon'];
         $coTeam = $data['coTeam'];
@@ -48,7 +48,7 @@ class TrainingConspectus extends BasicModule
         if ($id >= 0) {
             $this->returnedData['data'] = ($this->db->getConnection())->update("conspect", ['id' => $id], [
                 "name" => $coName,
-                "master" => $coMaster,
+                "id_user" => $usid,
                 "date" => $coDate,
                 "sezon" => $coSezon,
                 "team" => $coTeam,
@@ -59,7 +59,7 @@ class TrainingConspectus extends BasicModule
         } else {
             $this->returnedData['data'] = ($this->db->getConnection())->insert("conspect", [
                 "name" => $coName,
-                "master" => $coMaster,
+                "id_user" => $usid,
                 "date" => $coDate,
                 "sezon" => $coSezon,
                 "team" => $coTeam,
@@ -111,9 +111,95 @@ class TrainingConspectus extends BasicModule
         return $this->returnedData;
     }
 
-    function getAllConspectList()
+    function getAllConspectList($data)
     {
-        $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM conspect");
+        $usid = $data['usid'];
+        $token = $data['token'];
+        $isKoord = $this->auth->checkPerm($token, "KOORD");
+
+        if ($isKoord) {
+            $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user ");
+        } else {
+            $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user AND (id_user = " . $usid . " OR conspect.shared_ids LIKE '%" . $usid . "%' ) ");
+        }
+
+        return $this->returnedData;
+    }
+
+
+    function getSharedListForConsp($data)
+    {
+        $aid = $data["aid"];
+        $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspect WHERE id=" . $aid);
+        $sharedList = $sharedList[0]["shared_ids"];
+        $sharedList = str_replace(" ", "", $sharedList);
+        $sharedList = explode(",", $sharedList);
+        $sharedArray = [];
+        foreach ($sharedList as $keyIn => $sharedPerson) {
+            $userData = explode(" ", $this->auth->getUserName($sharedPerson));
+            array_push($sharedArray, [
+                "id" => $sharedPerson,
+                "firstname" => $userData[0],
+                "lastname" => $userData[1]
+            ]);
+        }
+
+        $this->returnedData['data'] = $sharedArray;
+        return $this->returnedData;
+    }
+
+    function getAvailableSharedMasterForConsp($data)
+    {
+        $aid = $data["aid"];
+        $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspect WHERE id=" . $aid);
+        $sharedList = $sharedList[0]["shared_ids"];
+        $sharedList = str_replace(" ", "", $sharedList);
+        $sharedList = explode(",", $sharedList);
+
+        $playersManager = new Players();
+        $allMasters = $playersManager->getAllMaster()["data"];
+
+        $this->returnedData['data'] = [];
+        foreach ($allMasters as $master) {
+            $canAdd = true;
+            foreach ($sharedList as $shared) {
+                if ($master["usid"] == $shared) {
+                    $canAdd = false;
+                    break;
+                }
+            }
+            if ($canAdd) $this->returnedData['data'][$master["firstname"] . " " . $master["lastname"] . "-" . $master["usid"]] = null;
+        }
+        return $this->returnedData;
+    }
+
+    function addSharedForConsp($data)
+    {
+        $usid = $data['usid'];
+        $aid = $data["aid"];
+        $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspect WHERE id=" . $aid);
+        $sharedList = $sharedList[0]["shared_ids"];
+        $sharedList = str_replace(" ", "", $sharedList);
+        if (strlen($sharedList) == 0) {
+            $sharedList = "" . $usid;
+        } else {
+            $sharedList = $sharedList . "," . $usid;
+        }
+        $this->returnedData['data'] = ($this->db->getConnection())->update("conspect", ["id" => $aid], ["shared_ids" => $sharedList]);
+        return $this->returnedData;
+    }
+
+    function deleteSharedForConsp($data)
+    {
+        $usid = $data['usid'];
+        $aid = $data["aid"];
+        $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspect WHERE id=" . $aid);
+        $sharedList = $sharedList[0]["shared_ids"];
+        $sharedList = str_replace(" ", "", $sharedList);
+        $sharedList = str_replace($usid . ",", "", $sharedList);
+        $sharedList = str_replace("," . $usid, "", $sharedList);
+        $sharedList = str_replace($usid, "", $sharedList);
+        $this->returnedData['data'] = ($this->db->getConnection())->update("conspect", ["id" => $aid], ["shared_ids" => $sharedList]);
         return $this->returnedData;
     }
 
@@ -249,6 +335,7 @@ class TrainingConspectus extends BasicModule
                 "lastname" => $userData[1]
             ]);
         }
+
         $this->returnedData['data'] = $sharedArray;
         return $this->returnedData;
     }
@@ -273,7 +360,7 @@ class TrainingConspectus extends BasicModule
                     break;
                 }
             }
-            if ($canAdd) $this->returnedData['data'][$master["firstname"] . " " . $master["lastname"]."-".$master["usid"]] = null;
+            if ($canAdd) $this->returnedData['data'][$master["firstname"] . " " . $master["lastname"] . "-" . $master["usid"]] = null;
         }
         return $this->returnedData;
     }
@@ -285,12 +372,12 @@ class TrainingConspectus extends BasicModule
         $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspectAnim WHERE id=" . $aid);
         $sharedList = $sharedList[0]["shared_ids"];
         $sharedList = str_replace(" ", "", $sharedList);
-        if(strlen($sharedList)==0){
-            $sharedList = "".$usid;
-        }else{
-            $sharedList = $sharedList.",".$usid;
+        if (strlen($sharedList) == 0) {
+            $sharedList = "" . $usid;
+        } else {
+            $sharedList = $sharedList . "," . $usid;
         }
-        $this->returnedData['data'] = ($this->db->getConnection())->update("conspectAnim",["id"=>$aid],["shared_ids"=>$sharedList]);
+        $this->returnedData['data'] = ($this->db->getConnection())->update("conspectAnim", ["id" => $aid], ["shared_ids" => $sharedList]);
         return $this->returnedData;
     }
 
@@ -301,12 +388,13 @@ class TrainingConspectus extends BasicModule
         $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspectAnim WHERE id=" . $aid);
         $sharedList = $sharedList[0]["shared_ids"];
         $sharedList = str_replace(" ", "", $sharedList);
-        $sharedList = str_replace($usid.",", "", $sharedList);
-        $sharedList = str_replace(",".$usid, "", $sharedList);
+        $sharedList = str_replace($usid . ",", "", $sharedList);
+        $sharedList = str_replace("," . $usid, "", $sharedList);
         $sharedList = str_replace($usid, "", $sharedList);
-        $this->returnedData['data'] = ($this->db->getConnection())->update("conspectAnim",["id"=>$aid],["shared_ids"=>$sharedList]);
+        $this->returnedData['data'] = ($this->db->getConnection())->update("conspectAnim", ["id" => $aid], ["shared_ids" => $sharedList]);
         return $this->returnedData;
     }
+
 
     function deleteAnimConspect($data)
     {

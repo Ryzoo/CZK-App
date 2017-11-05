@@ -310,6 +310,7 @@ h6 {
 .tagsContainer {
     width: 100%;
     padding: 5px;
+    display: table;
 }
 
 .oneTag,

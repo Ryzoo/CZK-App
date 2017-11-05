@@ -16,8 +16,8 @@
         }, {
             "url": "saveConspect",
             "parameters": [
-                "coName", "coMaster", "coDate", "coSezon", "coTeam", "coOp",
-                "coTags", "data", "usid"
+                "coName", "coDate", "coSezon", "coTeam", "coOp",
+                "coTags", "data"
             ],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
@@ -53,6 +53,24 @@
             "auth": ["KOORD"]
         },{
             "url": "deleteSharedForAnim",
+            "parameters": ["aid","usid"],
+            "auth": ["KOORD"]
+        }
+
+        ,{
+            "url": "getSharedListForConsp",
+            "parameters": ["aid"],
+            "auth": ["KOORD"]
+        },{
+            "url": "getAvailableSharedMasterForConsp",
+            "parameters": ["aid"],
+            "auth": ["KOORD"]
+        },{
+            "url": "addSharedForConsp",
+            "parameters": ["aid","usid"],
+            "auth": ["KOORD"]
+        },{
+            "url": "deleteSharedForConsp",
             "parameters": ["aid","usid"],
             "auth": ["KOORD"]
         }
