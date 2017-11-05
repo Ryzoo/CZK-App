@@ -133,7 +133,10 @@ class TrainingConspectus extends BasicModule
         $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspect WHERE id=" . $aid);
         $sharedList = $sharedList[0]["shared_ids"];
         $sharedList = str_replace(" ", "", $sharedList);
-        $sharedList = explode(",", $sharedList);
+        if( strlen($sharedList) >0 )
+            $sharedList = explode(",", $sharedList);
+        else
+            $sharedList = [];
         $sharedArray = [];
         foreach ($sharedList as $keyIn => $sharedPerson) {
             $userData = explode(" ", $this->auth->getUserName($sharedPerson));
@@ -325,7 +328,10 @@ class TrainingConspectus extends BasicModule
         $sharedList = ($this->db->getConnection())->fetchRowMany("SELECT shared_ids FROM conspectAnim WHERE id=" . $aid);
         $sharedList = $sharedList[0]["shared_ids"];
         $sharedList = str_replace(" ", "", $sharedList);
-        $sharedList = explode(",", $sharedList);
+        if( strlen($sharedList) >0 )
+            $sharedList = explode(",", $sharedList);
+        else
+            $sharedList = [];
         $sharedArray = [];
         foreach ($sharedList as $keyIn => $sharedPerson) {
             $userData = explode(" ", $this->auth->getUserName($sharedPerson));
