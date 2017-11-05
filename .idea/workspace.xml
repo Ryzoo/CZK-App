@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/angular_js.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/chart_min_js.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jQuery.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jQuery_ui.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/cmc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/shareList.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/js/controllers/mainController.js" afterPath="$PROJECT_DIR$/core/js/controllers/mainController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/mainConf.json" afterPath="$PROJECT_DIR$/core/mainConf.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/TrainingConspectusController.js" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/TrainingConspectusController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/css/style.css" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnimList.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnimList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/config.json" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -108,11 +85,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shareList.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shareList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/shareList.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="384">
               <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conspectusAdd.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="103" column="106" lean-forward="false" selection-start-line="103" selection-start-column="106" selection-end-line="103" selection-end-column="106" />
               <folding />
             </state>
           </provider>
@@ -128,22 +115,6 @@
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="conspectusCreatorController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="517" column="20" lean-forward="false" selection-start-line="517" selection-start-column="20" selection-end-line="517" selection-end-column="20" />
-              <folding>
-                <marker date="1509855723874" expanded="true" signature="9899:9915" ph="..." />
-                <marker date="1509855723874" expanded="true" signature="9983:9995" ph="..." />
-                <marker date="1509855723874" expanded="true" signature="10071:10118" ph="..." />
-                <marker date="1509855723874" expanded="true" signature="11435:11504" ph="..." />
-                <marker date="1509855723874" expanded="true" signature="13164:13192" ph="..." />
               </folding>
             </state>
           </provider>
@@ -284,6 +255,7 @@
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/config.json" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/shareList.js" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html" />
       </list>
     </option>
   </component>
@@ -493,12 +465,12 @@
       <option name="presentableId" value="Default" />
       <updated>1509799436970</updated>
       <workItem from="1509799439687" duration="1115000" />
-      <workItem from="1509800573462" duration="18862000" />
+      <workItem from="1509800573462" duration="19463000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19977000" />
+    <option name="totallyTimeSpent" value="20578000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -591,14 +563,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -822,6 +786,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="103" column="106" lean-forward="false" selection-start-line="103" selection-start-column="106" selection-end-line="103" selection-end-column="106" />
           <folding />
         </state>
       </provider>
