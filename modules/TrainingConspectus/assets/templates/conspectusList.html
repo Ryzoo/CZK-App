@@ -12,6 +12,10 @@
                 </div>
             </div>
         </div>
+        <div class="col s12" ng-show="animArray.length <= 0">
+            <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Niestety nie posiadasz jeszcze żadnych
+                konspektów.</br> Utwórz własne lub poproś koordynatora o udostępnienie.</h5>
+        </div>
         <div class="col s12 m6" ng-repeat="conspect in conspectArray | filter:searchText track by $index">
             <div class="card">
                 <div class="card-content" style='padding-bottom: 0 !important;'>
