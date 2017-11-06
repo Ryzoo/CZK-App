@@ -98,6 +98,23 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.showAnimCreator = false;
     $scope.selectedObjConfig = [];
 
+    $scope.initObjList = function(){
+        request.backend('getConspectAnimObj', { }, function(data) {
+            $scope.$apply(function(){
+                if(data.length > 0){
+                    for(var i=0;i<data.length;i++){
+                        var content = $compile(data[i].category)($scope);
+                        $('#categoryFromItemBox').append(content);
+                        if( data[i].obj){
+                            var content = $compile(data[i].obj)($scope);
+                            $('#itemBoxFromCat').append(content);
+                        }
+                    }
+                }
+            });
+        });
+    }
+
     if ($rootScope.idFromAnimConspectToEdit && $rootScope.idFromAnimConspectToEdit != '' && $rootScope.idFromAnimConspectToEdit != null) {
         $scope.animId = $rootScope.idFromAnimConspectToEdit;
         $rootScope.idFromAnimConspectToEdit = null;

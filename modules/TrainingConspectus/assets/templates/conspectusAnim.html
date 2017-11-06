@@ -3,7 +3,7 @@
     <div ng-show='showContent' class="row">
         <div class="col s12">
             <div class="card">
-                <div class="card-content" ng-controller='conspectusCreatorController'>
+                <div class="card-content" ng-controller='conspectusCreatorController' ng-init="initObjList()">
                     <div class="card-title">Tworzenie nowego ćwiczenia</div>
 
                     <div class="row">
@@ -96,400 +96,192 @@
                             <div class="mainCreateContener" ng-show='showAnimCreator'>
 
                                 <div id='itemBox' ng-init='OBJ_TYPE=null;'>
-                                    <div ng-show="isSelectedField">
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Przesuń" style='border-color:#ec1800' ng-click="changeCategories(mouseActionType.MOVE)">
-                                            <i class="fa fa-arrows fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Rodzaj boiska" ng-click="changeCategories(mouseActionType.FIELD_LIST)">
-                                            <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Tekst" ng-click="changeCategories(mouseActionType.TEXT_ADD)">
-                                            <i class="fa fa-font fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Akcje" data-config='arrow' ng-click="selectArrow();">
-                                            <i class="fa fa-long-arrow-right fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Zaznacz obszar" ng-click="changeCategories(mouseActionType.SHAPE_ADD)">
-                                            <i class="fa fa-square-o fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Zawodnicy" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='PLAYER_ADD'">
-                                            <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Trener" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='COACH_ADD'">
-                                            <i class="fa fa-user-secret fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Piłki" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='BALL_ADD'">
-                                            <i class="fa fa-futbol-o fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Pachołki" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='CONE_ADD'">
-                                            <i class="fa fa-caret-up fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Pierścienie" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='RINGS_ADD'">
-                                            <i class="fa fa-circle-o fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Chorągiewki" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='FLAG_ADD'">
-                                            <i class="fa fa-flag fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Drabinki" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='LADDER_ADD'">
-                                            <i class="fa fa-columns fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Tyczki" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='POLE_ADD'">
-                                            <i class="fa fa-italic fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Bramki" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='GOAL_ADD'">
-                                            <i class="fa fa-shield fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Murek" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='WALL_ADD'">
-                                            <i class="fa fa-male fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class='categories tooltipped' data-position="bottom" data-delay="50" data-tooltip="Płotki" ng-click="changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE='HURDLE_ADD'">
-                                            <i class="fa fa-window-maximize fa-2x" aria-hidden="true"></i>
-                                        </div>
+                                    <div id='categoryFromItemBox' ng-show="isSelectedField">
                                     </div>
 
                                     <div id='itemBoxFromCat' class='itemBoxWithItem' ng-show='actualMouseAction==mouseActionType.SHAPE_ADD || actualMouseAction==mouseActionType.OBJECT_ADD || actualMouseAction==mouseActionType.FIELD_LIST'>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.FIELD_LIST">
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko trawiaste">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/upper-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górna połowa boiska trawiastego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/lower-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolna połowa boiska trawiastego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/upper-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górne 3/4 boiska trawiastego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/lower-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolne 3/4 boiska trawiastego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko trawiaste">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/3,4-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="3/4 boiska trawiastego (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/empty-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko trawiaste (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/full-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko trawiaste (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/grass/half-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Połowa boiska trawiastego (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko halowe">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/upper-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górna połowa boiska halowego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/lower-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolna połowa boiska halowego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/upper-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górne 3/4 boiska halowego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/lower-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolne 3/4 boiska halowego">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko halowe">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/3,4-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="3/4 boiska halowego (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/empty-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko halowe (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/full-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko halowe (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/hall/half-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Połowa boiska halowego (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko typu tartan">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/upper-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górna połowa boiska typu tartan">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/lower-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolna połowa boiska typu tartan">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/upper-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górne 3/4 boiska typu tartan">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/lower-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolne 3/4 boiska typu tartan">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko typu tartan">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/3,4-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="3/4 boiska typu tartan (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/empty-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko typu tartan (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/full-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko typu tartan (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/tartan/half-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Połowa boiska typu tartan (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko - same linie">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/upper-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górna połowa boiska - same linie">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/lower-half.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolna połowa boiska - same linie">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/upper-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Górne 3/4 boiska - same linie">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/lower-3,4.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Dolne 3/4 boiska - same linie">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko - same linie">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/3,4-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="3/4 boiska - same linie (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/empty-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Puste boisko - same linie (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/full-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pełne boisko - same linie (perspektywa)">
-                                            </div>
-                                            <div class='categoryItems soccerField' ng-click="isSelectedField=true">
-                                                <img src="/modules/TrainingConspectus/assets/media/pitch/lines/half-3d.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Połowa boiska - same linie (perspektywa)">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='PLAYER_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/players/version1/zawCircle-rgb(43,87,246)rgb(255,255,255).png" data-config='player' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zawodnik niebieski, bez numeru">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/players/version2/zaw-rgb(43,87,246)rgb(255,255,255).png" data-config='player' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zawodnik niebieski, bez numeru">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='BALL_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/balls/normal-ball.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Normalna piłka">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/balls/winter-ball.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Piłka na śnieg">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/balls/medical-ball.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Piłka lekarska">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='CONE_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version1/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Biały pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version1/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Szary pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version1/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niebieski pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version1/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Fioletowy pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version1/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pomarańczowy pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version1/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Czerwony pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version2/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Biały pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version2/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Szary pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version2/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niebieski pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version2/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Fioletowy pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version2/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pomarańczowy pachołek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/cones/version2/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Czerwony pachołek">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='POLE_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/poles/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka biała">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/poles/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka szara">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/poles/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka niebieska">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/poles/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka fioletowa">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/poles/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka pomarańczowa">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/poles/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka czerwona">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='COACH_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/coach/version1/coach.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Trener">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/coach/version1/coach-T.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Trener">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/coach/version2/coach.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Trener">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='RINGS_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/rings/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień biały">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/rings/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień szary">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/rings/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień niebieski">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/rings/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień fioletowy">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/rings/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień pomarańczowy">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/rings/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień czerwony">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='LADDER_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/ladders/ladder-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 3x">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/ladders/ladder-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 4x">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/ladders/ladder-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 5x">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/ladders/ladder-6x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 6x">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='HURDLE_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/hurdles/low-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niski płotek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/hurdles/mid-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/hurdles/high-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='GOAL_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/goals/goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bramka">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/goals/mini-goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Mini-bramka">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/goals/wide-mini-goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Mini-bramka szeroka">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='WALL_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-1x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (1 zawodnik)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-2x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (2 zawodników)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (3 zawodników)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (4 zawodników)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-1x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (1 zawodnik)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-2x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (2 zawodników)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (3 zawodników)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (4 zawodników)">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='FLAG_ADD'">
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/left/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/left/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/left/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/left/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/left/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/left/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/right/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/right/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/right/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/right/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/right/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/flags/right/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">
-                                            </div>
-                                        </div>
-                                        <div class='itemsList' ng-show="actualMouseAction==mouseActionType.SHAPE_ADD">
 
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/select/blue-3x.png" data-config='shape' ng-click='selectShape(shapeType.BLUE_3)' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (3 punkty)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/select/blue-4x.png" data-config='shape' ng-click='selectShape(shapeType.BLUE_4)' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (4 punkty)">
-                                            </div>
-                                            <div class='categoryItems'>
-                                                <img src="/modules/TrainingConspectus/assets/media/select/blue-5x.png" data-config='shape' ng-click='selectShape(shapeType.BLUE_5)' class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Zaznacz pole (5 punktów)">
-                                            </div>
-                                        </div>
+
+                                        // Trzeba to przepisac do jsona - sciezka - conspectObj.json
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='CONE_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version1/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Biały pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version1/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Szary pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version1/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niebieski pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version1/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Fioletowy pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version1/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pomarańczowy pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version1/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Czerwony pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version2/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Biały pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version2/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Szary pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version2/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niebieski pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version2/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Fioletowy pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version2/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pomarańczowy pachołek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/cones/version2/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Czerwony pachołek">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='POLE_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/poles/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka biała">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/poles/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka szara">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/poles/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka niebieska">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/poles/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka fioletowa">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/poles/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka pomarańczowa">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/poles/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Tyczka czerwona">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='RINGS_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/rings/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień biały">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/rings/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień szary">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/rings/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień niebieski">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/rings/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień fioletowy">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/rings/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień pomarańczowy">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/rings/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Pierścień czerwony">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='LADDER_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/ladders/ladder-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 3x">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/ladders/ladder-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 4x">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/ladders/ladder-5x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 5x">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/ladders/ladder-6x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Drabinka koordynacyjna 6x">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='HURDLE_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/hurdles/low-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niski płotek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/hurdles/mid-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/hurdles/high-hurdle.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='GOAL_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/goals/goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bramka">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/goals/mini-goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Mini-bramka">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/goals/wide-mini-goal.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Mini-bramka szeroka">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='WALL_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-1x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (1 zawodnik)">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-2x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (2 zawodników)">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (3 zawodników)">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version1/wall-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (4 zawodników)">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-1x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (1 zawodnik)">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-2x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (2 zawodników)">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-3x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (3 zawodników)">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/wall/version2/wall-4x.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Murek (4 zawodników)">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class='itemsList' ng-show="actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE=='FLAG_ADD'">-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/left/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/left/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/left/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/left/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/left/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/left/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/right/white.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/right/grey.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/right/blue.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/right/purple.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/right/orange.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                            <!--<div class='categoryItems'>-->
+                                                <!--<img src="/modules/TrainingConspectus/assets/media/flags/right/red.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
                                     </div>
                                 </div>
 

@@ -73,6 +73,8 @@
             "url": "deleteSharedForConsp",
             "parameters": ["aid","usid"],
             "auth": ["KOORD"]
+        },{
+            "url": "getConspectAnimObj"
         }
 
 

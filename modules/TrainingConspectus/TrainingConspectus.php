@@ -126,6 +126,40 @@ class TrainingConspectus extends BasicModule
         return $this->returnedData;
     }
 
+    function getConspectAnimObj(){
+        $json = new JSON();
+        $objList = $json->decodeFile(__DIR__. '/conspectObj.json' );
+        $objReturned = [];
+        foreach ($objList->objectList as $obj){
+            $categoryItem = "<div class='categories tooltipped' ".(isset($obj->config)?"data-config='".$obj->config."'":"")." data-position='bottom' data-delay='50' data-tooltip='".(isset($obj->tooltip)?$obj->tooltip:"" )."' ".(isset($obj->style) ? "style='".$obj->style."'" : "")." ".(isset($obj->ngClick)?"ng-click='".$obj->ngClick."'":"")." >";
+            $categoryItem .= "<i class='fa ".(isset($obj->icon)?$obj->icon:"" )." fa-2x' aria-hidden='true'></i>";
+            $categoryItem .= "</div>";
+            $objToAdd = null;
+            if( isset($obj->objectsIn) && isset($obj->objectsIn->list))
+            {
+                $objToAdd = "<div class='itemsList' ".(isset($obj->objectsIn->ngShow) ? "ng-show='".$obj->objectsIn->ngShow."'" : "").">";
+                foreach ($obj->objectsIn->list as $objIn) {
+                    $addedClass = "";
+                    if( isset($objIn->addClass) )
+                    foreach ($objIn->addClass as $classAdd){
+                        $addedClass .= " ".$classAdd;
+                    }
+                    $objToAdd .= "<div class='categoryItems ".$addedClass."' ".(isset($objIn->config)?"data-config='".$objIn->config."'":"")."  ".(isset($objIn->ngClick)?"ng-click='".$objIn->ngClick."'":"")." >";
+                    $objToAdd .= "<img src='/modules/TrainingConspectus/assets/media/".$objIn->img."' class='tooltipped' data-position='bottom' data-delay='50' data-tooltip='".$objIn->tooltip."'>";
+                    $objToAdd .= "</div>";
+                }
+                $objToAdd .= "</div>";
+            }
+
+            array_push($objReturned,[
+                "category" => $categoryItem,
+                "obj" => $objToAdd
+            ]);
+        }
+
+        $this->returnedData['data'] = $objReturned;
+        return $this->returnedData;
+    }
 
     function getSharedListForConsp($data)
     {

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/config.json" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/config.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,156 +62,98 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="conspectusAnim.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="39" column="42" lean-forward="false" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-              <folding>
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrainingConspectusController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/TrainingConspectusController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="164" column="9" lean-forward="false" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
-              <folding>
-                <element signature="e#741#1085#0" expanded="false" />
-                <element signature="e#1133#2936#0" expanded="false" />
-                <element signature="e#3611#4631#0" expanded="false" />
-                <element signature="e#4762#5312#0" expanded="false" />
-                <marker date="1509873024667" expanded="true" signature="6631:6720" ph="..." />
-                <marker date="1509873024667" expanded="true" signature="8624:8713" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shareListC.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareListC.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shareList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrainingConspectus.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-              <folding>
-                <element signature="e#46#71#0#PHP" expanded="true" />
-                <element signature="e#6100#7058#0#PHP" expanded="false" />
-                <element signature="e#7064#7725#0#PHP" expanded="false" />
-                <element signature="e#7731#8426#0#PHP" expanded="false" />
-                <element signature="e#8432#8659#0#PHP" expanded="false" />
-                <element signature="e#8665#10503#0#PHP" expanded="false" />
-                <element signature="e#10509#12660#0#PHP" expanded="false" />
-                <element signature="e#12666#13535#0#PHP" expanded="false" />
-                <marker date="1509877686191" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-                <marker date="1509877686191" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-                <marker date="1509877686191" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-                <marker date="1509877686191" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-                <marker date="1509877686191" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-                <marker date="1509877686191" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-                <marker date="1509877686191" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-                <marker date="1509877686191" expanded="true" signature="5349:5390" ph="SELECT share... conspect" />
-                <marker date="1509877686191" expanded="true" signature="6250:6291" ph="SELECT share... conspect" />
-                <marker date="1509877686191" expanded="true" signature="7230:7271" ph="SELECT share... conspect" />
-                <marker date="1509877686191" expanded="true" signature="7900:7941" ph="SELECT share... conspect" />
-                <marker date="1509877686191" expanded="true" signature="8546:8614" ph="SELECT id, n... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="11295:11350" ph="SELECT mainI... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="12945:13118" ph="SELECT consp... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="13225:13479" ph="SELECT consp... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="13679:13724" ph="SELECT share... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="14583:14628" ph="SELECT share... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="15566:15611" ph="SELECT share... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="16243:16288" ph="SELECT share... conspectAnim" />
-                <marker date="1509877686191" expanded="true" signature="17150:17186" ph="SELECT * FRO... conspectAnim" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="showConspectController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/showConspectController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="conspectusAnimList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnimList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="18" selection-end-column="14" />
-              <folding>
-                <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="conspectusList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-              <folding>
-                <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="selectTraining.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.6122449">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file leaf-file-name="conspectusAnim.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="322">
+                  <caret line="282" column="53" lean-forward="true" selection-start-line="282" selection-start-column="53" selection-end-line="282" selection-end-column="53" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="conspectusCreatorController.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="192">
+                  <caret line="101" column="52" lean-forward="true" selection-start-line="101" selection-start-column="52" selection-end-line="101" selection-end-column="52" />
+                  <folding>
+                    <marker date="1509977188480" expanded="true" signature="10554:10570" ph="..." />
+                    <marker date="1509977188480" expanded="true" signature="10638:10650" ph="..." />
+                    <marker date="1509977188480" expanded="true" signature="10726:10773" ph="..." />
+                    <marker date="1509977188480" expanded="true" signature="12090:12159" ph="..." />
+                    <marker date="1509977188480" expanded="true" signature="13819:13847" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TrainingConspectus.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1104">
+                  <caret line="145" column="21" lean-forward="true" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
+                  <folding>
+                    <element signature="e#46#71#0#PHP" expanded="true" />
+                    <element signature="e#8114#9072#0#PHP" expanded="false" />
+                    <element signature="e#9078#9739#0#PHP" expanded="false" />
+                    <element signature="e#9745#10440#0#PHP" expanded="false" />
+                    <element signature="e#10446#10673#0#PHP" expanded="false" />
+                    <element signature="e#10679#12517#0#PHP" expanded="false" />
+                    <element signature="e#12523#14674#0#PHP" expanded="false" />
+                    <element signature="e#14680#15549#0#PHP" expanded="false" />
+                    <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
+                    <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
+                    <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
+                    <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
+                    <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="conspectObj.json" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="577">
+                  <caret line="357" column="34" lean-forward="true" selection-start-line="357" selection-start-column="34" selection-end-line="357" selection-end-column="34" />
+                  <folding>
+                    <element signature="e#339#9635#0" expanded="false" />
+                    <element signature="e#10035#10726#0" expanded="false" />
+                    <element signature="e#10900#11386#0" expanded="false" />
+                    <element signature="e#11563#12007#0" expanded="false" />
+                    <element signature="e#12179#12636#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -233,6 +180,10 @@
       <find>deleteCon</find>
       <find>showShareWidget</find>
       <find>saveConspect</find>
+      <find>initConsAnimList</find>
+      <find>initConsectusCreate</find>
+      <find>$compile</find>
+      <find>itemBox</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -242,21 +193,23 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/core/mainConf.json" />
-        <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" />
-        <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" />
         <option value="$PROJECT_DIR$/core/js/controllers/mainController.js" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/shareList.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnimList.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/css/style.css" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/TrainingConspectusController.js" />
-        <option value="$PROJECT_DIR$/modules/TrainingConspectus/config.json" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/shareList.js" />
-        <option value="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareListC.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareList.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectObj.json" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/config.json" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" />
       </list>
     </option>
   </component>
@@ -360,7 +313,7 @@
               <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="core" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Players" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="System" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
@@ -394,23 +347,7 @@
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="TrainingConspectus" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="TrainingConspectus" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="TrainingConspectus" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="widget" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -436,6 +373,7 @@
       <recent name="C:\xampp\htdocs\CZK-App\modules\TrainingConspectus\assets\widget" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\CZK-App\modules\TrainingConspectus" />
       <recent name="C:\xampp\htdocs\CZK-App\modules\TrainingConspectus\assets\widget" />
     </key>
   </component>
@@ -471,12 +409,14 @@
       <workItem from="1509799439687" duration="1115000" />
       <workItem from="1509800573462" duration="21841000" />
       <workItem from="1509873959611" duration="291000" />
-      <workItem from="1509877205575" duration="2090000" />
+      <workItem from="1509877205575" duration="2257000" />
+      <workItem from="1509957846751" duration="1736000" />
+      <workItem from="1509972378743" duration="7662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25337000" />
+    <option name="totallyTimeSpent" value="34902000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -491,18 +431,18 @@
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20676692" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21267454" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27801725" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23845327" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14930183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14930183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25725028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978448" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978448" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -514,6 +454,30 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27801725" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23845327" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27196652" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21267454" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14930183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25725028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978448" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -528,13 +492,18 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
           <caret line="39" column="42" lean-forward="false" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -557,12 +526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="888">
           <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding>
-            <element signature="e#201#501#0" expanded="false" />
-            <element signature="e#885#1362#0" expanded="false" />
-            <element signature="e#1918#2112#0" expanded="false" />
-            <element signature="e#2391#2590#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -570,7 +533,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="20" column="80" lean-forward="false" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -588,34 +550,34 @@
           <caret line="183" column="37" lean-forward="false" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
           <folding>
             <element signature="e#46#71#0#PHP" expanded="true" />
-            <element signature="e#6100#7058#0#PHP" expanded="false" />
-            <element signature="e#7064#7725#0#PHP" expanded="false" />
-            <element signature="e#7731#8426#0#PHP" expanded="false" />
-            <element signature="e#8432#8659#0#PHP" expanded="false" />
-            <element signature="e#8665#10503#0#PHP" expanded="false" />
-            <element signature="e#10509#12660#0#PHP" expanded="false" />
-            <element signature="e#12666#13535#0#PHP" expanded="false" />
-            <marker date="1509877686191" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-            <marker date="1509877686191" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-            <marker date="1509877686191" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-            <marker date="1509877686191" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-            <marker date="1509877686191" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-            <marker date="1509877686191" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-            <marker date="1509877686191" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-            <marker date="1509877686191" expanded="true" signature="5349:5390" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="6250:6291" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="7230:7271" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="7900:7941" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="8546:8614" ph="SELECT id, n... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="11295:11350" ph="SELECT mainI... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="12945:13118" ph="SELECT consp... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="13225:13479" ph="SELECT consp... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="13679:13724" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="14583:14628" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="15566:15611" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="16243:16288" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="17150:17186" ph="SELECT * FRO... conspectAnim" />
+            <element signature="e#8114#9072#0#PHP" expanded="false" />
+            <element signature="e#9078#9739#0#PHP" expanded="false" />
+            <element signature="e#9745#10440#0#PHP" expanded="false" />
+            <element signature="e#10446#10673#0#PHP" expanded="false" />
+            <element signature="e#10679#12517#0#PHP" expanded="false" />
+            <element signature="e#12523#14674#0#PHP" expanded="false" />
+            <element signature="e#14680#15549#0#PHP" expanded="false" />
+            <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
+            <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
+            <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
+            <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
+            <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
+            <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
+            <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
+            <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
           </folding>
         </state>
       </provider>
@@ -624,10 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="25" column="62" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -644,10 +602,10 @@
         <state relative-caret-position="816">
           <caret line="34" column="32" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="36" selection-end-column="101" />
           <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -663,9 +621,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
           <caret line="39" column="42" lean-forward="false" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -688,7 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="20" column="80" lean-forward="true" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,12 +659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="888">
           <caret line="62" column="37" lean-forward="true" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding>
-            <element signature="e#201#501#0" expanded="false" />
-            <element signature="e#885#1362#0" expanded="false" />
-            <element signature="e#1918#2112#0" expanded="false" />
-            <element signature="e#2391#2590#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -724,10 +673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="25" column="62" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -744,10 +689,10 @@
         <state relative-caret-position="816">
           <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="36" selection-end-column="101" />
           <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,34 +703,34 @@
           <caret line="183" column="37" lean-forward="true" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
           <folding>
             <element signature="e#46#71#0#PHP" expanded="true" />
-            <element signature="e#6100#7058#0#PHP" expanded="false" />
-            <element signature="e#7064#7725#0#PHP" expanded="false" />
-            <element signature="e#7731#8426#0#PHP" expanded="false" />
-            <element signature="e#8432#8659#0#PHP" expanded="false" />
-            <element signature="e#8665#10503#0#PHP" expanded="false" />
-            <element signature="e#10509#12660#0#PHP" expanded="false" />
-            <element signature="e#12666#13535#0#PHP" expanded="false" />
-            <marker date="1509877686191" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-            <marker date="1509877686191" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-            <marker date="1509877686191" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-            <marker date="1509877686191" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-            <marker date="1509877686191" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-            <marker date="1509877686191" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-            <marker date="1509877686191" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-            <marker date="1509877686191" expanded="true" signature="5349:5390" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="6250:6291" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="7230:7271" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="7900:7941" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="8546:8614" ph="SELECT id, n... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="11295:11350" ph="SELECT mainI... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="12945:13118" ph="SELECT consp... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="13225:13479" ph="SELECT consp... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="13679:13724" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="14583:14628" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="15566:15611" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="16243:16288" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="17150:17186" ph="SELECT * FRO... conspectAnim" />
+            <element signature="e#8114#9072#0#PHP" expanded="false" />
+            <element signature="e#9078#9739#0#PHP" expanded="false" />
+            <element signature="e#9745#10440#0#PHP" expanded="false" />
+            <element signature="e#10446#10673#0#PHP" expanded="false" />
+            <element signature="e#10679#12517#0#PHP" expanded="false" />
+            <element signature="e#12523#14674#0#PHP" expanded="false" />
+            <element signature="e#14680#15549#0#PHP" expanded="false" />
+            <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
+            <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
+            <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
+            <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
+            <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
+            <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
+            <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
+            <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
           </folding>
         </state>
       </provider>
@@ -831,30 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="134" column="13" lean-forward="false" selection-start-line="134" selection-start-column="13" selection-end-line="134" selection-end-column="13" />
-          <folding>
-            <marker date="1508184520605" expanded="true" signature="380:427" ph="SELECT passw... users" />
-            <marker date="1508184520605" expanded="true" signature="1468:1585" ph="SELECT * FRO... users" />
-            <marker date="1508184520605" expanded="true" signature="1938:1977" ph="SELECT id FR... users" />
-            <marker date="1508184520605" expanded="true" signature="5790:5948" ph="SELECT user_... users" />
-            <marker date="1508184520605" expanded="true" signature="6131:6221" ph="SELECT roles... users" />
-            <marker date="1508184520605" expanded="true" signature="6804:6842" ph="SELECT id FR... users" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/js/controllers/mainController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="68" column="25" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="25" />
-          <folding>
-            <marker date="1509857364411" expanded="true" signature="2426:2436" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="2854:2873" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="2940:2961" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3055:3077" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3055:3111" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3232:3254" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3232:3288" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -865,58 +786,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/mainConf.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/modules/Players/Players.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
           <caret line="69" column="35" lean-forward="true" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
-          <folding>
-            <marker date="1509398685353" expanded="true" signature="741:785" ph="SELECT id FR... team_members" />
-            <marker date="1509398685353" expanded="true" signature="1361:1684" ph="SELECT users... team_members" />
-            <marker date="1509398685353" expanded="true" signature="1870:2097" ph="SELECT users... team_members" />
-            <marker date="1509398685353" expanded="true" signature="2170:2395" ph="SELECT users... users" />
-            <marker date="1509398685353" expanded="true" signature="3003:3229" ph="SELECT users... users" />
-            <marker date="1509398685353" expanded="true" signature="3437:3579" ph="SELECT users... users" />
-            <marker date="1509398685353" expanded="true" signature="3931:3944" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="4004:4017" ph="..." />
-            <marker date="1509398685353" expanded="true" signature="4018:4121" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="4141:4154" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="4202:4215" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="4270:4283" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="4336:4351" ph="..." />
-            <marker date="1509398685353" expanded="true" signature="5014:5060" ph="SELECT id FR... users" />
-            <marker date="1509398685353" expanded="true" signature="6080:6093" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="6168:6181" ph="..." />
-            <marker date="1509398685353" expanded="true" signature="6182:6293" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="6321:6334" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="6383:6396" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="6452:6465" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="6518:6533" ph="..." />
-            <marker date="1509398685353" expanded="true" signature="10630:10643" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="10711:10724" ph="..." />
-            <marker date="1509398685353" expanded="true" signature="10725:10835" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="10863:10876" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="10925:10938" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="10994:11007" ph="..." />
-            <marker date="1509398685353" expanded="false" signature="11060:11075" ph="..." />
-            <marker date="1509398685353" expanded="true" signature="11861:11980" ph="SELECT * FRO... users" />
-            <marker date="1509398685353" expanded="true" signature="12325:12345" ph="SELECT id FR... teams" />
-            <marker date="1509398685353" expanded="true" signature="12424:12460" ph="SELECT id FR... users" />
-            <marker date="1509398685353" expanded="true" signature="12538:12582" ph="SELECT id FR... team_members" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2713">
-          <caret line="517" column="20" lean-forward="false" selection-start-line="517" selection-start-column="20" selection-end-line="517" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -924,13 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="56" column="125" lean-forward="false" selection-start-line="56" selection-start-column="113" selection-end-line="56" selection-end-column="125" />
         </state>
       </provider>
     </entry>
@@ -945,27 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="888">
           <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding>
-            <element signature="e#201#501#0" expanded="false" />
-            <element signature="e#885#1362#0" expanded="false" />
-            <element signature="e#1918#2112#0" expanded="false" />
-            <element signature="e#2391#2590#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/TrainingConspectusController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="164" column="9" lean-forward="false" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
-          <folding>
-            <element signature="e#741#1085#0" expanded="false" />
-            <element signature="e#1133#2936#0" expanded="false" />
-            <element signature="e#3611#4631#0" expanded="false" />
-            <element signature="e#4762#5312#0" expanded="false" />
-            <marker date="1509873024667" expanded="true" signature="6631:6720" ph="..." />
-            <marker date="1509873024667" expanded="true" signature="8624:8713" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -983,41 +828,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#71#0#PHP" expanded="true" />
-            <element signature="e#6100#7058#0#PHP" expanded="false" />
-            <element signature="e#7064#7725#0#PHP" expanded="false" />
-            <element signature="e#7731#8426#0#PHP" expanded="false" />
-            <element signature="e#8432#8659#0#PHP" expanded="false" />
-            <element signature="e#8665#10503#0#PHP" expanded="false" />
-            <element signature="e#10509#12660#0#PHP" expanded="false" />
-            <element signature="e#12666#13535#0#PHP" expanded="false" />
-            <marker date="1509877686191" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-            <marker date="1509877686191" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-            <marker date="1509877686191" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-            <marker date="1509877686191" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-            <marker date="1509877686191" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-            <marker date="1509877686191" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-            <marker date="1509877686191" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-            <marker date="1509877686191" expanded="true" signature="5349:5390" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="6250:6291" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="7230:7271" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="7900:7941" ph="SELECT share... conspect" />
-            <marker date="1509877686191" expanded="true" signature="8546:8614" ph="SELECT id, n... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="11295:11350" ph="SELECT mainI... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="12945:13118" ph="SELECT consp... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="13225:13479" ph="SELECT consp... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="13679:13724" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="14583:14628" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="15566:15611" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="16243:16288" ph="SELECT share... conspectAnim" />
-            <marker date="1509877686191" expanded="true" signature="17150:17186" ph="SELECT * FRO... conspectAnim" />
-          </folding>
+        <state relative-caret-position="72">
+          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="42" column="43" lean-forward="true" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareListC.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1029,69 +864,154 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/mainConf.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state relative-caret-position="168">
+          <caret line="76" column="39" lean-forward="false" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareListC.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="39" column="42" lean-forward="false" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnimList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="18" selection-end-column="14" />
+        <state relative-caret-position="312">
+          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html">
+    <entry file="file://$PROJECT_DIR$/core/modules/System/Route.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="672">
+          <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="29" selection-end-column="75" />
           <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#30#52#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/selectTraining.html">
+    <entry file="file://$PROJECT_DIR$/core/js/controllers/mainController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        <state relative-caret-position="259">
+          <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="74" selection-end-column="57" />
+          <folding>
+            <marker date="1509857364411" expanded="true" signature="2426:2436" ph="..." />
+            <marker date="1509857364411" expanded="true" signature="2854:2873" ph="..." />
+            <marker date="1509857364411" expanded="true" signature="2940:2961" ph="..." />
+            <marker date="1509857364411" expanded="true" signature="3055:3077" ph="..." />
+            <marker date="1509857364411" expanded="true" signature="3055:3111" ph="..." />
+            <marker date="1509857364411" expanded="true" signature="3232:3254" ph="..." />
+            <marker date="1509857364411" expanded="true" signature="3232:3288" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/TrainingConspectusController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="184" column="16" lean-forward="false" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="16" />
+          <folding>
+            <element signature="e#741#1085#0" expanded="false" />
+            <element signature="e#1133#2936#0" expanded="false" />
+            <element signature="e#3611#4631#0" expanded="false" />
+            <element signature="e#4762#5312#0" expanded="false" />
+            <marker date="1509873024667" expanded="true" signature="6631:6720" ph="..." />
+            <marker date="1509873024667" expanded="true" signature="8624:8713" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAdd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="56" column="125" lean-forward="false" selection-start-line="56" selection-start-column="113" selection-end-line="56" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1104">
+          <caret line="145" column="21" lean-forward="true" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
+          <folding>
+            <element signature="e#46#71#0#PHP" expanded="true" />
+            <element signature="e#8114#9072#0#PHP" expanded="false" />
+            <element signature="e#9078#9739#0#PHP" expanded="false" />
+            <element signature="e#9745#10440#0#PHP" expanded="false" />
+            <element signature="e#10446#10673#0#PHP" expanded="false" />
+            <element signature="e#10679#12517#0#PHP" expanded="false" />
+            <element signature="e#12523#14674#0#PHP" expanded="false" />
+            <element signature="e#14680#15549#0#PHP" expanded="false" />
+            <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
+            <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
+            <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
+            <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
+            <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
+            <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
+            <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
+            <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
+            <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
+            <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="101" column="52" lean-forward="true" selection-start-line="101" selection-start-column="52" selection-end-line="101" selection-end-column="52" />
+          <folding>
+            <marker date="1509977188480" expanded="true" signature="10554:10570" ph="..." />
+            <marker date="1509977188480" expanded="true" signature="10638:10650" ph="..." />
+            <marker date="1509977188480" expanded="true" signature="10726:10773" ph="..." />
+            <marker date="1509977188480" expanded="true" signature="12090:12159" ph="..." />
+            <marker date="1509977188480" expanded="true" signature="13819:13847" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="357" column="34" lean-forward="true" selection-start-line="357" selection-start-column="34" selection-end-line="357" selection-end-column="34" />
+          <folding>
+            <element signature="e#339#9635#0" expanded="false" />
+            <element signature="e#10035#10726#0" expanded="false" />
+            <element signature="e#10900#11386#0" expanded="false" />
+            <element signature="e#11563#12007#0" expanded="false" />
+            <element signature="e#12179#12636#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="282" column="53" lean-forward="true" selection-start-line="282" selection-start-column="53" selection-end-line="282" selection-end-column="53" />
           <folding />
         </state>
       </provider>
