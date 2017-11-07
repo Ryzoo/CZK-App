@@ -58,12 +58,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         shape: {
             text: "Pole gry",
             selectedColor: {
-                border: "rgb(0, 126, 255)",
-                background: "rgba(0, 126, 255, 0.4)"
-            },
-            colors: [{
                 border: "rgb(255, 255, 255)",
                 background: "rgba(255, 255, 255, 0.4)"
+            },
+            colors: [{
+                border: "rgb(0, 126, 255)",
+                background: "rgba(0, 126, 255, 0.4)"
             }, {
                 border: "rgb(202, 203, 203)",
                 background: "rgba(202, 203, 203, 0.4)"

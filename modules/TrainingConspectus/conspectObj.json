@@ -16,242 +16,299 @@
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/full.jpg",
+              "img": "pitch/normal/grass/full.jpg",
               "tooltip": "Pełne boisko trawiaste"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/upper-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/lower-half.jpg",
-              "tooltip": "Dolna połowa boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/empty.jpg",
+              "img": "pitch/normal/grass/empty.jpg",
               "tooltip": "Puste boisko trawiaste"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/3,4-3d.png",
-              "tooltip": "3/4 boiska trawiastego (perspektywa)"
+              "img": "pitch/normal/grass/middle.jpg",
+              "tooltip": "Środek boiska trawiastego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/empty-3d.png",
-              "tooltip": "Puste boisko trawiaste (perspektywa)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/full-3d.png",
-              "tooltip": "Pełne boisko trawiaste (perspektywa)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/half-3d.png",
-              "tooltip": "Połowa boiska trawiastego (perspektywa)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/full.jpg",
+              "img": "pitch/normal/grass/upper-half.jpg",
               "tooltip": "Górna połowa boiska trawiastego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/upper-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/grass/lower-half.jpg",
+              "tooltip": "Dolna połowa boiska trawiastego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/lower-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/grass/upper-3,4.jpg",
+              "tooltip": "Górne 3/4 boiska trawiastego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/upper-3,4.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/grass/lower-3,4.jpg",
+              "tooltip": "Dolne 3/4 boiska trawiastego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/lower-3,4.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall/full.jpg",
+              "tooltip": "Pełne boisko halowe"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/empty.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall/empty.jpg",
+              "tooltip": "Puste boisko halowe"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/3,4-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall/middle.jpg",
+              "tooltip": "Środek boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/empty-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall/upper-half.jpg",
+              "tooltip": "Górna połowa boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/full-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall/lower-half.jpg",
+              "tooltip": "Dolna połowa boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/hall/half-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall/upper-3,4.jpg",
+              "tooltip": "Górne 3/4 boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/full.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall/lower-3,4.jpg",
+              "tooltip": "Dolne 3/4 boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/upper-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall-2/full.jpg",
+              "tooltip": "Pełne boisko halowe"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/lower-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall-2/empty.jpg",
+              "tooltip": "Puste boisko halowe"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/upper-3,4.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall-2/middle.jpg",
+              "tooltip": "Środek boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/lower-3,4.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall-2/upper-half.jpg",
+              "tooltip": "Górna połowa boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/empty.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall-2/lower-half.jpg",
+              "tooltip": "Dolna połowa boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/3,4-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall-2/upper-3,4.jpg",
+              "tooltip": "Górne 3/4 boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/empty-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/hall-2/lower-3,4.jpg",
+              "tooltip": "Dolne 3/4 boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/full-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/lines/full.jpg",
+              "tooltip": "Pełne boisko - same linie"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/tartan/half-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/lines/empty.jpg",
+              "tooltip": "Puste boisko - same linie"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/full.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/lines/middle.jpg",
+              "tooltip": "Środek boiska - same linie"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/upper-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/lines/upper-half.jpg",
+              "tooltip": "Górna połowa boiska - same linie"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/lower-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/lines/lower-half.jpg",
+              "tooltip": "Dolna połowa boiska - same linie"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/upper-3,4.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/lines/upper-3,4.jpg",
+              "tooltip": "Górne 3/4 boiska - same linie"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/lower-3,4.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/lines/lower-3,4.jpg",
+              "tooltip": "Dolne 3/4 boiska - same linie"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/empty.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/tartan/full.jpg",
+              "tooltip": "Pełne boisko typu tartan"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/3,4-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/tartan/empty.jpg",
+              "tooltip": "Puste boisko typu tartan"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/empty-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/tartan/middle.jpg",
+              "tooltip": "Środek boiska typu tartan"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/lines/full-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/tartan/upper-half.jpg",
+              "tooltip": "Górna połowa boiska typu tartan"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/grass/lines/half-3d.png",
-              "tooltip": "Górna połowa boiska trawiastego"
+              "img": "pitch/normal/tartan/lower-half.jpg",
+              "tooltip": "Dolna połowa boiska typu tartan"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/normal/tartan/upper-3,4.jpg",
+              "tooltip": "Górne 3/4 boiska typu tartan"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/normal/tartan/lower-3,4.jpg",
+              "tooltip": "Dolne 3/4 boiska typu tartan"
+            }
+          ]
+        }
+    },{
+      "icon": "fa-picture-o",
+      "tooltip": "Rodzaj boiska (perspektywa)",
+      "ngClick": "changeCategories(mouseActionType.FIELD_LIST)",
+      "objectsIn": {
+          "ngShow": "actualMouseAction==mouseActionType.FIELD_LIST",
+          "list": [
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/full-horizontal.jpg",
+              "tooltip": "Pełne boisko trawiaste (horyzontalnie)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/full-vertical.jpg",
+              "tooltip": "Pełne boisko trawiaste (wertykalnie)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/empty.jpg",
+              "tooltip": "Puste boisko trawiaste"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/empty-angled-left.jpg",
+              "tooltip": "Puste boisko trawiaste (obórcone w lewo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/empty-angled-right.jpg",
+              "tooltip": "Puste boisko trawiaste (obórcone w prawo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/left-half.jpg",
+              "tooltip": "Lewa połowa boiska trawiastego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/right-half.jpg",
+              "tooltip": "Prawa połowa boiska trawiastego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/upper-3,4.jpg",
+              "tooltip": "Górne 3/4 boiska trawiastego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/lower-3,4.jpg",
+              "tooltip": "Dolne 3/4 boiska trawiastego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/upper-3,4-angled-left.jpg",
+              "tooltip": "Górne 3/4 boiska trawiastego (obrócone w lewo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/upper-3,4-angled-right.jpg",
+              "tooltip": "Górne 3/4 boiska trawiastego (obrócone w prawo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/penalty-box-angled-left.jpg",
+              "tooltip": "Pole karne boiska tarwiastego (obrócone w lewo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/grass/penalty-box-angled-right.jpg",
+              "tooltip": "Pole karne boiska tarwiastego (obrócone w prawo)"
             }
           ]
         }
@@ -266,7 +323,7 @@
       "ngClick": "selectArrow()"
     },{
       "icon": "fa-square-o",
-      "tooltip": "Zaznacz obszar",
+      "tooltip": "Obszar",
       "ngClick": "changeCategories(mouseActionType.SHAPE_ADD)",
       "objectsIn": {
         "ngShow": "actualMouseAction==mouseActionType.SHAPE_ADD",
@@ -274,19 +331,19 @@
           {
             "config": "shape",
             "img": "select/blue-3x.png",
-            "tooltip": "obszar - 3 punkty",
+            "tooltip": "3 punkty",
             "ngClick": "selectShape(shapeType.BLUE_3)"
           },
           {
             "config": "shape",
             "img": "select/blue-4x.png",
-            "tooltip": "obszar - 4 punkty",
+            "tooltip": "4 punkty",
             "ngClick": "selectShape(shapeType.BLUE_4)"
           },
           {
             "config": "shape",
             "img": "select/blue-5x.png",
-            "tooltip": "obszar - 5 punktów",
+            "tooltip": "5 punktów",
             "ngClick": "selectShape(shapeType.BLUE_5)"
           }
         ]
