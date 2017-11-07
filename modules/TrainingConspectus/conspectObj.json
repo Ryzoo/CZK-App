@@ -396,10 +396,6 @@
             "tooltip": "Normalna piłka"
           },
           {
-            "img": "balls/ball-rgb(254,100,62)rgb(0,0,0).png",
-            "tooltip": "Piłka na śnieg"
-          },
-          {
             "img": "balls/medical-ball-rgb(145,27,0)rgb(0,0,0).png",
             "tooltip": "Piłka lekarska"
           }
