@@ -330,21 +330,21 @@
         "list": [
           {
             "config": "shape",
-            "img": "select/blue-3x.png",
+            "img": "select/white-3x.png",
             "tooltip": "3 punkty",
-            "ngClick": "selectShape(shapeType.BLUE_3)"
+            "ngClick": "selectShape(shapeType.WHITE_3)"
           },
           {
             "config": "shape",
-            "img": "select/blue-4x.png",
+            "img": "select/white-4x.png",
             "tooltip": "4 punkty",
-            "ngClick": "selectShape(shapeType.BLUE_4)"
+            "ngClick": "selectShape(shapeType.WHITE_4)"
           },
           {
             "config": "shape",
-            "img": "select/blue-5x.png",
+            "img": "select/white-5x.png",
             "tooltip": "5 punktów",
-            "ngClick": "selectShape(shapeType.BLUE_5)"
+            "ngClick": "selectShape(shapeType.WHITE_5)"
           }
         ]
       }
@@ -357,14 +357,14 @@
         "list": [
           {
             "config": "player",
-            "img": "players/version1/zawCircle-rgb(43,87,246)rgb(255,255,255).png",
-            "tooltip": "Zawodnik pełny"
+            "img": "players/version1/circle-rgb(255,255,255)rgb(255,255,255).png",
+            "tooltip": "Zawodnik (okrągły)"
           },
           {
             "config": "player",
-            "img": "players/version2/zaw-rgb(43,87,246)rgb(255,255,255).png",
-            "tooltip": "Zawodnik mini"
-          }
+            "img": "players/version2/player-rgb(255,255,255)rgb(255,255,255).png",
+            "tooltip": "Zawodnik (człowiek)"
+          },
         ]
       }
     },{
