@@ -1,13 +1,11 @@
 <?php
 
-namespace Simplon\Helper\Data;
-
-use Simplon\Helper\Interfaces\DataInterface;
+namespace Simplon\Mysql\Crud;
 
 /**
- * @package Simplon\Helper\Data
+ * @package Simplon\Mysql\Crud
  */
-abstract class Data implements DataInterface
+abstract class CrudModel implements CrudModelInterface
 {
     /**
      * @var string
@@ -15,14 +13,19 @@ abstract class Data implements DataInterface
     private $internalChecksum;
 
     /**
-     * @param array|null $data
+     * @return static
      */
-    public function __construct(?array $data = null)
+    public function beforeSave()
     {
-        if ($data)
-        {
-            $this->fromArray($data);
-        }
+        return $this;
+    }
+
+    /**
+     * @return static
+     */
+    public function beforeUpdate()
+    {
+        return $this;
     }
 
     /**
@@ -35,11 +38,10 @@ abstract class Data implements DataInterface
 
     /**
      * @param array $data
-     * @param bool $buildChecksum Build checksum of data. Use FALSE in case you're rebuilding existing object.
      *
      * @return static
      */
-    public function fromArray(array $data, bool $buildChecksum = true)
+    public function fromArray(array $data)
     {
         if ($data)
         {
@@ -68,10 +70,8 @@ abstract class Data implements DataInterface
                 }
             }
 
-            if ($buildChecksum)
-            {
-                $this->internalChecksum = $this->calcMd5($this->toArray());
-            }
+            // lets create checksum here
+            $this->internalChecksum = $this->calcMd5($this->toArray());
         }
 
         return $this;
@@ -82,7 +82,7 @@ abstract class Data implements DataInterface
      *
      * @return array
      */
-    public function toArray(bool $snakeCase = true): array
+    public function toArray($snakeCase = true): array
     {
         $result = [];
 
@@ -122,36 +122,13 @@ abstract class Data implements DataInterface
     }
 
     /**
-     * @param bool $snakeCase
-     *
-     * @return string
-     */
-    public function toJson(bool $snakeCase = true): string
-    {
-        return json_encode(
-            $this->toArray($snakeCase)
-        );
-    }
-
-    /**
-     * @param string $json
-     * @param bool $buildChecksum Build checksum of data. Use FALSE in case you're rebuilding existing object.
-     *
-     * @return static
-     */
-    public function fromJson(string $json, bool $buildChecksum = true)
-    {
-        return $this->fromArray(json_decode($json, true), $buildChecksum);
-    }
-
-    /**
      * @param $string
      *
      * @return string
      */
-    protected static function snakeCaseString($string)
+    protected static function snakeCaseString(string $string)
     {
-        return strtolower(preg_replace('/([A-Z1-9])/', '_\\1', $string));
+        return strtolower(preg_replace('/([A-Z])/', '_\\1', $string));
     }
 
     /**
@@ -159,7 +136,7 @@ abstract class Data implements DataInterface
      *
      * @return string
      */
-    protected static function camelCaseString($string)
+    protected static function camelCaseString(string $string)
     {
         $string = strtolower($string);
         $string = ucwords(str_replace('_', ' ', $string));
