@@ -144,8 +144,8 @@ class TrainingConspectus extends BasicModule
                     foreach ($objIn->addClass as $classAdd){
                         $addedClass .= " ".$classAdd;
                     }
-                    $objToAdd .= "<div class='categoryItems ".$addedClass."' ".(isset($objIn->config)?"data-config='".$objIn->config."'":"")."  ".(isset($objIn->ngClick)?"ng-click='".$objIn->ngClick."'":"")." >";
-                    $objToAdd .= "<img src='/modules/TrainingConspectus/assets/media/".$objIn->img."' class='tooltipped' data-position='bottom' data-delay='50' data-tooltip='".$objIn->tooltip."'>";
+                    $objToAdd .= "<div class='categoryItems ".$addedClass."' ".(isset($objIn->ngClick)?"ng-click='".$objIn->ngClick."'":"")." >";
+                    $objToAdd .= "<img ".(isset($objIn->config)?"data-config='".$objIn->config."'":"")." src='/modules/TrainingConspectus/assets/media/".$objIn->img."' class='tooltipped' data-position='bottom' data-delay='50' data-tooltip='".$objIn->tooltip."'>";
                     $objToAdd .= "</div>";
                 }
                 $objToAdd .= "</div>";

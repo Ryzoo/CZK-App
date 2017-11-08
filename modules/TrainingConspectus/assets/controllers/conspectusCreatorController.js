@@ -34,29 +34,52 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $scope.objConfig = {
         player: {
-            text: "Zawodnik",
+            text: " ",
             selectedColor: {
-                background: "rgb(43,87,246)",
-                border: "rgb(255,255,255)"
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
             },
             colors: [{
-                background: "rgb(43,87,246)",
-                border: "rgb(255,255,255)"
+                background: "rgb(0,126,255)",
+                border: "rgb(255, 255, 255)"
             }, {
-                background: "rgb(239,29,32)",
-                border: "rgb(255,255,255)"
+                background: "rgb(144, 0, 255)",
+                border: "rgb(255, 255, 255)"
             }, {
-                background: "rgb(0,255,42)",
-                border: "rgb(255,255,255)"
+                background: "rgb(174, 174, 174)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 48, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 204, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            }]
+        },
+        playerp: {
+            text: " ",
+            selectedColor: {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            },
+            colors: [{
+                background: "rgb(0,0,0)",
+                border: "rgb(140, 47, 40)"
+            }, {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(0, 0, 0)"
             }]
         },
         arrow: {
-            text: "Strzałka",
+            text: " ",
             arrowTypes: ["Podanie", "Prowadzenie piłki", "Bieg bez piłki", "Linia pomocnicza", "Odległość zawodników", "Strzał"],
             arrowType: "Podanie"
         },
         shape: {
-            text: "Pole gry",
+            text: " ",
             selectedColor: {
                 border: "rgb(255, 255, 255)",
                 background: "rgba(255, 255, 255, 0.4)"
@@ -80,7 +103,127 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 border: "rgb(255, 204, 0)",
                 background: "rgba(255, 204, 0, 0.4)"
             }]
+        },
+        ball: {
+            text: " ",
+            selectedColor: {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(0, 0, 0)"
+            },
+            colors: [{
+                background: "rgb(254,100,62)",
+                border: "rgb(0, 0, 0)"
+            }, {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(0, 0, 0)"
+            }]
+        },
+        cones: {
+            text: " ",
+            selectedColor: {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255,255,255)"
+            },
+            colors: [{
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255,255,255)"
+            }, {
+                background: "rgb(255, 204, 0)",
+                border: "rgb(255,255,255)"
+            }, {
+                background: "rgb(255, 48, 0)",
+                border: "rgb(255,255,255)"
+            }, {
+                background: "rgb(174, 174, 174)",
+                border: "rgb(255,255,255)"
+            }, {
+                background: "rgb(144, 0, 255)",
+                border: "rgb(255,255,255)"
+            }, {
+                background: "rgb(0, 126, 255)",
+                border: "rgb(255,255,255)"
+            }]
+        },
+        rings: {
+            text: " ",
+            selectedColor: {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            },
+            colors: [{
+                background: "rgb(0,126,255)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(144, 0, 255)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(174, 174, 174)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 48, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 204, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            }]
+        },
+        flags: {
+            text: " ",
+            selectedColor: {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            },
+            colors: [{
+                background: "rgb(0,126,255)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(144, 0, 255)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(174, 174, 174)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 48, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 204, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            }]
+        },
+        poles: {
+            text: " ",
+            selectedColor: {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            },
+            colors: [{
+                background: "rgb(0,126,255)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(144, 0, 255)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(174, 174, 174)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 48, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 204, 0)",
+                border: "rgb(255, 255, 255)"
+            }, {
+                background: "rgb(255, 255, 255)",
+                border: "rgb(255, 255, 255)"
+            }]
         }
+
+
     };
 
     $scope.cwName = '';
@@ -98,14 +241,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.showAnimCreator = false;
     $scope.selectedObjConfig = [];
 
-    $scope.initObjList = function(){
-        request.backend('getConspectAnimObj', { }, function(data) {
-            $scope.$apply(function(){
-                if(data.length > 0){
-                    for(var i=0;i<data.length;i++){
+    $scope.initObjList = function() {
+        request.backend('getConspectAnimObj', {}, function(data) {
+            $scope.$apply(function() {
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
                         var content = $compile(data[i].category)($scope);
                         $('#categoryFromItemBox').append(content);
-                        if( data[i].obj){
+                        if (data[i].obj) {
                             var content = $compile(data[i].obj)($scope);
                             $('#itemBoxFromCat').append(content);
                         }
@@ -1287,7 +1430,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             allObjectPerFrame[currentObjPerFrame].text.push(obj);
             selectedFrame.draw();
 
-            obj.on('dblclick', function(){
+            obj.on('dblclick', function() {
                 // create textarea over canvas with absolute position
                 // first we need to find its positon
                 var textPosition = obj.getAbsolutePosition();
