@@ -81,31 +81,31 @@
       <file leaf-file-name="TrainingConspectus.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="136" column="11" lean-forward="true" selection-start-line="136" selection-start-column="11" selection-end-line="136" selection-end-column="11" />
+            <state relative-caret-position="264">
+              <caret line="134" column="43" lean-forward="true" selection-start-line="134" selection-start-column="43" selection-end-line="134" selection-end-column="43" />
               <folding>
                 <element signature="e#46#71#0#PHP" expanded="true" />
-                <marker date="1510181994367" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
-                <marker date="1510181994367" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
-                <marker date="1510181994367" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
-                <marker date="1510181994367" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
-                <marker date="1510181994367" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
-                <marker date="1510181994367" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
-                <marker date="1510181994367" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
-                <marker date="1510181994367" expanded="true" signature="7990:8031" ph="SELECT share... conspect" />
-                <marker date="1510181994367" expanded="true" signature="8891:8932" ph="SELECT share... conspect" />
-                <marker date="1510181994367" expanded="true" signature="9871:9912" ph="SELECT share... conspect" />
-                <marker date="1510181994367" expanded="true" signature="10541:10582" ph="SELECT share... conspect" />
-                <marker date="1510181994367" expanded="true" signature="11187:11255" ph="SELECT id, n... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="13936:13991" ph="SELECT mainI... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="15586:15759" ph="SELECT consp... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="15866:16120" ph="SELECT consp... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="16320:16365" ph="SELECT share... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="17224:17269" ph="SELECT share... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="18207:18252" ph="SELECT share... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="18884:18929" ph="SELECT share... conspectAnim" />
-                <marker date="1510181994367" expanded="true" signature="19791:19827" ph="SELECT * FRO... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+                <marker date="1510183497388" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+                <marker date="1510183497388" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+                <marker date="1510183497388" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+                <marker date="1510183497388" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+                <marker date="1510183497388" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+                <marker date="1510183497388" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+                <marker date="1510183497388" expanded="true" signature="7942:7983" ph="SELECT share... conspect" />
+                <marker date="1510183497388" expanded="true" signature="8843:8884" ph="SELECT share... conspect" />
+                <marker date="1510183497388" expanded="true" signature="9823:9864" ph="SELECT share... conspect" />
+                <marker date="1510183497388" expanded="true" signature="10493:10534" ph="SELECT share... conspect" />
+                <marker date="1510183497388" expanded="true" signature="11139:11207" ph="SELECT id, n... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="13888:13943" ph="SELECT mainI... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="15538:15711" ph="SELECT consp... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="15818:16072" ph="SELECT consp... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="16272:16317" ph="SELECT share... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="17176:17221" ph="SELECT share... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="18159:18204" ph="SELECT share... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="18836:18881" ph="SELECT share... conspectAnim" />
+                <marker date="1510183497388" expanded="true" signature="19743:19779" ph="SELECT * FRO... conspectAnim" />
               </folding>
             </state>
           </provider>
@@ -362,12 +362,12 @@
       <workItem from="1509877205575" duration="2257000" />
       <workItem from="1509957846751" duration="1736000" />
       <workItem from="1509972378743" duration="7662000" />
-      <workItem from="1510180465217" duration="1537000" />
+      <workItem from="1510180465217" duration="2148000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36439000" />
+    <option name="totallyTimeSpent" value="37050000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -492,27 +492,27 @@
           <caret line="183" column="37" lean-forward="false" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
           <folding>
             <element signature="e#46#71#0#PHP" expanded="true" />
-            <marker date="1510181994367" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
-            <marker date="1510181994367" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
-            <marker date="1510181994367" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
-            <marker date="1510181994367" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
-            <marker date="1510181994367" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
-            <marker date="1510181994367" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
-            <marker date="1510181994367" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
-            <marker date="1510181994367" expanded="true" signature="7990:8031" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="8891:8932" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="9871:9912" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="10541:10582" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="11187:11255" ph="SELECT id, n... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="13936:13991" ph="SELECT mainI... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="15586:15759" ph="SELECT consp... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="15866:16120" ph="SELECT consp... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="16320:16365" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="17224:17269" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="18207:18252" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="18884:18929" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="19791:19827" ph="SELECT * FRO... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+            <marker date="1510183497388" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+            <marker date="1510183497388" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+            <marker date="1510183497388" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+            <marker date="1510183497388" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+            <marker date="1510183497388" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+            <marker date="1510183497388" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+            <marker date="1510183497388" expanded="true" signature="7942:7983" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="8843:8884" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="9823:9864" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="10493:10534" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="11139:11207" ph="SELECT id, n... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="13888:13943" ph="SELECT mainI... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="15538:15711" ph="SELECT consp... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="15818:16072" ph="SELECT consp... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="16272:16317" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="17176:17221" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="18159:18204" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="18836:18881" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="19743:19779" ph="SELECT * FRO... conspectAnim" />
           </folding>
         </state>
       </provider>
@@ -615,27 +615,27 @@
           <caret line="183" column="37" lean-forward="true" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
           <folding>
             <element signature="e#46#71#0#PHP" expanded="true" />
-            <marker date="1510181994367" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
-            <marker date="1510181994367" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
-            <marker date="1510181994367" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
-            <marker date="1510181994367" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
-            <marker date="1510181994367" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
-            <marker date="1510181994367" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
-            <marker date="1510181994367" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
-            <marker date="1510181994367" expanded="true" signature="7990:8031" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="8891:8932" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="9871:9912" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="10541:10582" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="11187:11255" ph="SELECT id, n... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="13936:13991" ph="SELECT mainI... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="15586:15759" ph="SELECT consp... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="15866:16120" ph="SELECT consp... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="16320:16365" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="17224:17269" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="18207:18252" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="18884:18929" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="19791:19827" ph="SELECT * FRO... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+            <marker date="1510183497388" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+            <marker date="1510183497388" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+            <marker date="1510183497388" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+            <marker date="1510183497388" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+            <marker date="1510183497388" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+            <marker date="1510183497388" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+            <marker date="1510183497388" expanded="true" signature="7942:7983" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="8843:8884" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="9823:9864" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="10493:10534" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="11139:11207" ph="SELECT id, n... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="13888:13943" ph="SELECT mainI... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="15538:15711" ph="SELECT consp... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="15818:16072" ph="SELECT consp... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="16272:16317" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="17176:17221" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="18159:18204" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="18836:18881" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="19743:19779" ph="SELECT * FRO... conspectAnim" />
           </folding>
         </state>
       </provider>
@@ -843,31 +843,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="136" column="11" lean-forward="true" selection-start-line="136" selection-start-column="11" selection-end-line="136" selection-end-column="11" />
+        <state relative-caret-position="264">
+          <caret line="134" column="43" lean-forward="true" selection-start-line="134" selection-start-column="43" selection-end-line="134" selection-end-column="43" />
           <folding>
             <element signature="e#46#71#0#PHP" expanded="true" />
-            <marker date="1510181994367" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
-            <marker date="1510181994367" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
-            <marker date="1510181994367" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
-            <marker date="1510181994367" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
-            <marker date="1510181994367" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
-            <marker date="1510181994367" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
-            <marker date="1510181994367" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
-            <marker date="1510181994367" expanded="true" signature="7990:8031" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="8891:8932" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="9871:9912" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="10541:10582" ph="SELECT share... conspect" />
-            <marker date="1510181994367" expanded="true" signature="11187:11255" ph="SELECT id, n... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="13936:13991" ph="SELECT mainI... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="15586:15759" ph="SELECT consp... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="15866:16120" ph="SELECT consp... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="16320:16365" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="17224:17269" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="18207:18252" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="18884:18929" ph="SELECT share... conspectAnim" />
-            <marker date="1510181994367" expanded="true" signature="19791:19827" ph="SELECT * FRO... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+            <marker date="1510183497388" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+            <marker date="1510183497388" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+            <marker date="1510183497388" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+            <marker date="1510183497388" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+            <marker date="1510183497388" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+            <marker date="1510183497388" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+            <marker date="1510183497388" expanded="true" signature="7942:7983" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="8843:8884" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="9823:9864" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="10493:10534" ph="SELECT share... conspect" />
+            <marker date="1510183497388" expanded="true" signature="11139:11207" ph="SELECT id, n... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="13888:13943" ph="SELECT mainI... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="15538:15711" ph="SELECT consp... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="15818:16072" ph="SELECT consp... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="16272:16317" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="17176:17221" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="18159:18204" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="18836:18881" ph="SELECT share... conspectAnim" />
+            <marker date="1510183497388" expanded="true" signature="19743:19779" ph="SELECT * FRO... conspectAnim" />
           </folding>
         </state>
       </provider>
