@@ -132,8 +132,8 @@ class TrainingConspectus extends BasicModule
 
     function ccc(){
         $ffmpeg = FFMpeg::create(array(
-            'ffmpeg.binaries'  => 'ffmpeg',
-            'ffprobe.binaries' => 'ffprobe'
+            'ffmpeg.binaries'  => '/usr/local/share/ffmpeg/ffmpeg',
+            'ffprobe.binaries' => '/usr/local/share/ffmpeg/ffprobe'
         ));
         $video = $ffmpeg->open('video.mpg');
         $video
