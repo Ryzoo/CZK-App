@@ -39,46 +39,43 @@
         }, {
             "url": "loadConspectAnim",
             "parameters": ["id"]
-        },{
+        }, {
             "url": "getSharedListForAnim",
             "parameters": ["aid"],
             "auth": ["KOORD"]
-        },{
+        }, {
             "url": "getAvailableSharedMasterForAnim",
             "parameters": ["aid"],
             "auth": ["KOORD"]
-        },{
+        }, {
             "url": "addSharedForAnim",
-            "parameters": ["aid","usid"],
+            "parameters": ["aid", "usid"],
             "auth": ["KOORD"]
-        },{
+        }, {
             "url": "deleteSharedForAnim",
-            "parameters": ["aid","usid"],
+            "parameters": ["aid", "usid"],
             "auth": ["KOORD"]
-        }
-
-        ,{
+        }, {
             "url": "getSharedListForConsp",
             "parameters": ["aid"],
             "auth": ["KOORD"]
-        },{
+        }, {
             "url": "getAvailableSharedMasterForConsp",
             "parameters": ["aid"],
             "auth": ["KOORD"]
-        },{
+        }, {
             "url": "addSharedForConsp",
-            "parameters": ["aid","usid"],
+            "parameters": ["aid", "usid"],
             "auth": ["KOORD"]
-        },{
+        }, {
             "url": "deleteSharedForConsp",
-            "parameters": ["aid","usid"],
+            "parameters": ["aid", "usid"],
             "auth": ["KOORD"]
-        },{
+        }, {
             "url": "getConspectAnimObj"
+        }, {
+            "url": "ccc"
         }
-
-
-
     ],
     "jsControllers": ["TrainingConspectusController", "conspectusCreatorController", "showConspectController", "TrainingListAdditionalController", "shareList"],
     "css": ["style", "gifplayer"],

@@ -2,6 +2,9 @@
 
 namespace Simplon\Mysql\QueryBuilder;
 
+/**
+ * @package Simplon\Mysql\QueryBuilder
+ */
 class ReadQueryBuilder
 {
     const ORDER_ASC = 'ASC';
@@ -338,11 +341,7 @@ class ReadQueryBuilder
                         $key = strpos($key, '.') !== false ? $key : '`' . $key . '`';
                         $condQuery = $key . ' = :' . $formattedKey;
 
-                        if ($value === null)
-                        {
-                            $condQuery = $key . ' IS NULL';
-                        }
-                        elseif (is_array($value))
+                        if (is_array($value))
                         {
                             $condQuery = $key . ' IN(:' . $formattedKey . ')';
                         }

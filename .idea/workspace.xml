@@ -2,11 +2,580 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/.scrutinizer.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/.sensiolabs.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/ci/phpmd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/ci/phpspec-with-coverage.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/composer.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/composer.lock" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/phpspec.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/phpunit.xml.dist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/Collection.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/CollectionTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/Exceptions/InvalidArgument.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/Exceptions/InvalidReturnValue.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/Exceptions/ItemNotFound.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/Exceptions/NoMoreItems.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/Exceptions/RuntimeException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/collection_functions.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/src/utility_functions.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/helpers/Car.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/helpers/Machine.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/helpers/PlusOneAdder.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/performance/map_vs_array_map.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/performance/reduce_vs_array_reduce.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/scenarios/CallableFuctionNamesTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/scenarios/CustomPassthroughFunctionTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/scenarios/FibonaccisSequenceTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/scenarios/GroupingFlightsTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/scenarios/MultipleOperationsTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/spec/CollectionSpec.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/spec/Exceptions/InvalidArgumentSpec.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/spec/Exceptions/InvalidReturnValueSpec.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/spec/Exceptions/ItemNotFoundSpec.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/dusank/knapsack/tests/spec/Exceptions/NoMoreItemsSpec.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/composer.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/composer.lock" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/CastAway.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/Data/Data.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/Data/InstanceData.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/DataUri.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/DetectMimeType.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/Instances.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/Interfaces/DataInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/helper/src/SecurityUtil.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Utils/StorageUtil.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Utils/UniqueTokenOptions.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/media/players/version3/P10-rgb(0,0,0)rgb(140,47,40).png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/media/players/version3/P5-rgb(0,0,0)rgb(140,47,40).png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/media/players/version3/P9-rgb(0,0,0)rgb(140,47,40).png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/composer.json" afterPath="$PROJECT_DIR$/core/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/composer.lock" afterPath="$PROJECT_DIR$/core/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/bin/composer" afterPath="$PROJECT_DIR$/core/vendor/bin/composer" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/composer/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/core/vendor/composer/autoload_classmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/autoload_files.php" afterPath="$PROJECT_DIR$/core/vendor/composer/autoload_files.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/autoload_namespaces.php" afterPath="$PROJECT_DIR$/core/vendor/composer/autoload_namespaces.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/core/vendor/composer/autoload_psr4.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/core/vendor/composer/autoload_static.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/composer.json" afterPath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/res/cacert.pem" afterPath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/res/cacert.pem" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/src/CaBundle.php" afterPath="$PROJECT_DIR$/core/vendor/composer/ca-bundle/src/CaBundle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/.gitattributes" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/.gitattributes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/.github/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/.github/CONTRIBUTING.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/CHANGELOG.md" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/composer.lock" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/doc/03-cli.md" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/doc/03-cli.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Command/UpdateCommand.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Command/UpdateCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Compiler.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Compiler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Composer.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Composer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Console/Application.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Console/Application.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Downloader/PathDownloader.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Downloader/PathDownloader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Installer.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Installer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Json/JsonManipulator.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Json/JsonManipulator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Repository/PathRepository.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Repository/PathRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Repository/Vcs/GitLabDriver.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Repository/Vcs/GitLabDriver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Util/RemoteFilesystem.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/src/Composer/Util/RemoteFilesystem.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/tests/Composer/Test/Json/JsonManipulatorTest.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/tests/Composer/Test/Json/JsonManipulatorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/composer/tests/Composer/Test/Repository/Vcs/GitLabDriverTest.php" afterPath="$PROJECT_DIR$/core/vendor/composer/composer/tests/Composer/Test/Repository/Vcs/GitLabDriverTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/core/vendor/composer/installed.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/CONTRIBUTING.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/composer.json" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/AbstractLazyCollection.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/AbstractLazyCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Collection.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Collection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Criteria.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Criteria.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/ClosureExpressionVisitor.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/ClosureExpressionVisitor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/Comparison.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/Comparison.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/CompositeExpression.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/CompositeExpression.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/Expression.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/Expression.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/ExpressionVisitor.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/ExpressionVisitor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/Value.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Expr/Value.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ExpressionBuilder.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ExpressionBuilder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Selectable.php" afterPath="$PROJECT_DIR$/core/vendor/doctrine/collections/lib/Doctrine/Common/Collections/Selectable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/composer.json" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/composer.lock" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudManager.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudModel.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudModelInterface.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudModelInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudStore.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudStore.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudStoreInterface.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Crud/CrudStoreInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Mysql.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/Mysql.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/MysqlException.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/MysqlException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/MysqlQueryIterator.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/MysqlQueryIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/PDOConnector.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/PDOConnector.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/CreateQueryBuilder.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/CreateQueryBuilder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/DeleteQueryBuilder.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/DeleteQueryBuilder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/ReadQueryBuilder.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/ReadQueryBuilder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/UpdateQueryBuilder.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/src/QueryBuilder/UpdateQueryBuilder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/Crud/NameModel.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/Crud/NameModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/Crud/NamesStore.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/Crud/NamesStore.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/Crud/test-crud.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/Crud/test-crud.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/config.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/config.php.dist" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/config.php.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/test-mysql-in.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/test-mysql-in.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/test-mysql.php" afterPath="$PROJECT_DIR$/core/vendor/simplon/mysql/test/test-mysql.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/.gitignore" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Application.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Application.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/CHANGELOG.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Command/Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Command/Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Command/HelpCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Command/HelpCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Command/ListCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Command/ListCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Command/LockableTrait.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Command/LockableTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/ConsoleEvents.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/ConsoleEvents.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/DependencyInjection/AddConsoleCommandPass.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/DependencyInjection/AddConsoleCommandPass.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/ApplicationDescription.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/ApplicationDescription.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/Descriptor.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/Descriptor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/DescriptorInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/DescriptorInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/JsonDescriptor.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/JsonDescriptor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/MarkdownDescriptor.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/MarkdownDescriptor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/TextDescriptor.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/TextDescriptor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/XmlDescriptor.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Descriptor/XmlDescriptor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleCommandEvent.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleCommandEvent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleErrorEvent.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleErrorEvent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleEvent.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleEvent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleExceptionEvent.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleExceptionEvent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleTerminateEvent.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Event/ConsoleTerminateEvent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/EventListener/ErrorListener.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/EventListener/ErrorListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/CommandNotFoundException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/CommandNotFoundException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/ExceptionInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/ExceptionInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/InvalidArgumentException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/InvalidArgumentException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/InvalidOptionException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/InvalidOptionException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/LogicException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/LogicException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/RuntimeException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Exception/RuntimeException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatter.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterStyle.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterStyle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterStyleInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterStyleInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterStyleStack.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Formatter/OutputFormatterStyleStack.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/DebugFormatterHelper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/DebugFormatterHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/DescriptorHelper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/DescriptorHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/FormatterHelper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/FormatterHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/Helper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/Helper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/HelperInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/HelperInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/HelperSet.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/HelperSet.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/InputAwareHelper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/InputAwareHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/ProcessHelper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/ProcessHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/ProgressBar.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/ProgressBar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/ProgressIndicator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/ProgressIndicator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/QuestionHelper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/QuestionHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/SymfonyQuestionHelper.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/SymfonyQuestionHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/Table.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/Table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/TableCell.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/TableCell.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/TableSeparator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/TableSeparator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/TableStyle.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Helper/TableStyle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/ArgvInput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/ArgvInput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/ArrayInput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/ArrayInput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/Input.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/Input.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputArgument.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputArgument.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputAwareInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputAwareInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputDefinition.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputDefinition.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputOption.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/InputOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/StreamableInputInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/StreamableInputInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Input/StringInput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Input/StringInput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Logger/ConsoleLogger.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Logger/ConsoleLogger.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Output/BufferedOutput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Output/BufferedOutput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Output/ConsoleOutput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Output/ConsoleOutput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Output/ConsoleOutputInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Output/ConsoleOutputInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Output/NullOutput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Output/NullOutput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Output/Output.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Output/Output.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Output/OutputInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Output/OutputInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Output/StreamOutput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Output/StreamOutput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Question/ChoiceQuestion.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Question/ChoiceQuestion.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Question/ConfirmationQuestion.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Question/ConfirmationQuestion.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Question/Question.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Question/Question.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Style/OutputStyle.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Style/OutputStyle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Style/StyleInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Style/StyleInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Style/SymfonyStyle.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Style/SymfonyStyle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Terminal.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Terminal.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tester/ApplicationTester.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tester/ApplicationTester.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tester/CommandTester.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tester/CommandTester.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/ApplicationTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/ApplicationTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/CommandTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/CommandTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/HelpCommandTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/HelpCommandTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/ListCommandTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/ListCommandTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/LockableTraitTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Command/LockableTraitTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/DependencyInjection/AddConsoleCommandPassTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/DependencyInjection/AddConsoleCommandPassTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/AbstractDescriptorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/AbstractDescriptorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/JsonDescriptorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/JsonDescriptorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/MarkdownDescriptorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/MarkdownDescriptorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/ObjectsProvider.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/ObjectsProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/TextDescriptorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/TextDescriptorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/XmlDescriptorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Descriptor/XmlDescriptorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/EventListener/ErrorListenerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/EventListener/ErrorListenerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/BarBucCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/BarBucCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorApplication1.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorApplication1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorApplication2.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorApplication2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorApplicationMbString.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorApplicationMbString.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand1.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand2.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand3.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand3.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand4.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommand4.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommandMbString.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DescriptorCommandMbString.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DummyOutput.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/DummyOutput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo1Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo1Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo2Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo2Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo3Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo3Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo4Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo4Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo5Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo5Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo6Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Foo6Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooLock2Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooLock2Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooLockCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooLockCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooOptCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooOptCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooSubnamespaced1Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooSubnamespaced1Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooSubnamespaced2Command.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FooSubnamespaced2Command.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FoobarCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/FoobarCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_0.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_0.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_1.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_10.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_10.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_11.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_11.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_12.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_12.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_13.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_13.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_14.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_14.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_15.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_15.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_16.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_16.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_17.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_17.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_2.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_3.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_3.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_4.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_4.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_5.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_5.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_6.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_6.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_7.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_7.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_8.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_8.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_9.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_9.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/interactive_command_1.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/interactive_command_1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/interactive_output_1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/interactive_output_1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_0.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_0.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_10.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_10.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_11.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_11.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_12.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_12.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_13.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_13.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_14.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_14.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_15.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_15.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_16.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_16.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_17.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_17.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_3.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_3.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_4.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_4.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_5.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_5.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_6.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_6.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_7.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_7.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_8.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_8.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_9.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/output/output_9.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/TestCommand.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/TestCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_filtered_namespace.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_filtered_namespace.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_mbstring.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_mbstring.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_mbstring.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_mbstring.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception3.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception3.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception3decorated.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception3decorated.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception4.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception4.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_doublewidth1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_doublewidth1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_doublewidth1decorated.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_doublewidth1decorated.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_doublewidth2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_doublewidth2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_escapeslines.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_renderexception_escapeslines.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run3.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run3.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run4.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/application_run4.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_mbstring.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_mbstring.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_mbstring.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/command_mbstring.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_default_inf_value.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_argument_with_style.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_1.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_1.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_1.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_definition_4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_default_inf_value.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.xml" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Fixtures/input_option_with_style_array.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Formatter/OutputFormatterStyleStackTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Formatter/OutputFormatterStyleStackTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Formatter/OutputFormatterStyleTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Formatter/OutputFormatterStyleTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Formatter/OutputFormatterTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Formatter/OutputFormatterTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/AbstractQuestionHelperTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/AbstractQuestionHelperTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/FormatterHelperTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/FormatterHelperTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/HelperSetTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/HelperSetTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/HelperTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/HelperTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/ProcessHelperTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/ProcessHelperTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/ProgressBarTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/ProgressBarTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/ProgressIndicatorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/ProgressIndicatorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/QuestionHelperTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/QuestionHelperTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/SymfonyQuestionHelperTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/SymfonyQuestionHelperTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/TableStyleTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/TableStyleTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/TableTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Helper/TableTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/ArgvInputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/ArgvInputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/ArrayInputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/ArrayInputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputArgumentTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputArgumentTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputDefinitionTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputDefinitionTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputOptionTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputOptionTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/InputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/StringInputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Input/StringInputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Logger/ConsoleLoggerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Logger/ConsoleLoggerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/ConsoleOutputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/ConsoleOutputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/NullOutputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/NullOutputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/OutputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/OutputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/StreamOutputTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Output/StreamOutputTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Style/SymfonyStyleTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Style/SymfonyStyleTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/TerminalTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/TerminalTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Tester/ApplicationTesterTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Tester/ApplicationTesterTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Tester/CommandTesterTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/Tests/Tester/CommandTesterTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/composer.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/console/phpunit.xml.dist" afterPath="$PROJECT_DIR$/core/vendor/symfony/console/phpunit.xml.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/.gitignore" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/BufferingLogger.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/BufferingLogger.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/CHANGELOG.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Debug.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Debug.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/DebugClassLoader.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/DebugClassLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/ErrorHandler.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/ErrorHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/ClassNotFoundException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/ClassNotFoundException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/ContextErrorException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/ContextErrorException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/FatalErrorException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/FatalErrorException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/FatalThrowableError.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/FatalThrowableError.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/FlattenException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/FlattenException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/OutOfMemoryException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/OutOfMemoryException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/SilencedErrorContext.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/SilencedErrorContext.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/UndefinedFunctionException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/UndefinedFunctionException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/UndefinedMethodException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Exception/UndefinedMethodException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/ExceptionHandler.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/ExceptionHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/ClassNotFoundFatalErrorHandler.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/ClassNotFoundFatalErrorHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/FatalErrorHandlerInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/FatalErrorHandlerInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/UndefinedFunctionFatalErrorHandler.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/UndefinedFunctionFatalErrorHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/UndefinedMethodFatalErrorHandler.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/FatalErrorHandler/UndefinedMethodFatalErrorHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/config.m4" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/config.m4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/config.w32" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/config.w32" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/php_symfony_debug.h" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/php_symfony_debug.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/symfony_debug.c" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/symfony_debug.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/001.phpt" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/001.phpt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/002.phpt" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/002.phpt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/002_1.phpt" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/002_1.phpt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/003.phpt" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Resources/ext/tests/003.phpt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/DebugClassLoaderTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/DebugClassLoaderTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/ErrorHandlerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/ErrorHandlerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Exception/FlattenExceptionTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Exception/FlattenExceptionTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/ExceptionHandlerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/ExceptionHandlerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/FatalErrorHandler/ClassNotFoundFatalErrorHandlerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/FatalErrorHandler/ClassNotFoundFatalErrorHandlerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/FatalErrorHandler/UndefinedFunctionFatalErrorHandlerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/FatalErrorHandler/UndefinedFunctionFatalErrorHandlerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/FatalErrorHandler/UndefinedMethodFatalErrorHandlerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/FatalErrorHandler/UndefinedMethodFatalErrorHandlerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/ClassAlias.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/ClassAlias.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/DeprecatedClass.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/DeprecatedClass.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/DeprecatedInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/DeprecatedInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/ExtendedFinalMethod.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/ExtendedFinalMethod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/FinalClass.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/FinalClass.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/FinalMethod.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/FinalMethod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/NonDeprecatedInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/NonDeprecatedInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/PEARClass.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/PEARClass.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/ToStringThrower.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/ToStringThrower.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/casemismatch.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/casemismatch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/notPsr0Bis.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/notPsr0Bis.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/psr4/Psr4CaseMismatch.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/psr4/Psr4CaseMismatch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/reallyNotPsr0.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures/reallyNotPsr0.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures2/RequiredTwice.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/Fixtures2/RequiredTwice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/HeaderMock.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/HeaderMock.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/MockExceptionHandler.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/Tests/MockExceptionHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/composer.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/debug/phpunit.xml.dist" afterPath="$PROJECT_DIR$/core/vendor/symfony/debug/phpunit.xml.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/.gitignore" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/CHANGELOG.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/ExceptionInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/ExceptionInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/FileNotFoundException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/FileNotFoundException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/IOException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/IOException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/IOExceptionInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Exception/IOExceptionInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Filesystem.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Filesystem.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/LockHandler.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/LockHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/ExceptionTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/ExceptionTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/FilesystemTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/FilesystemTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/FilesystemTestCase.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/FilesystemTestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/Fixtures/MockStream/MockStream.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/Fixtures/MockStream/MockStream.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/LockHandlerTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/Tests/LockHandlerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/composer.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/filesystem/phpunit.xml.dist" afterPath="$PROJECT_DIR$/core/vendor/symfony/filesystem/phpunit.xml.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/.gitignore" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/CHANGELOG.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Comparator/Comparator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Comparator/Comparator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Comparator/DateComparator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Comparator/DateComparator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Comparator/NumberComparator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Comparator/NumberComparator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Exception/AccessDeniedException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Exception/AccessDeniedException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Exception/ExceptionInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Exception/ExceptionInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Finder.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Finder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Glob.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Glob.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/CustomFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/CustomFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/DateRangeFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/DateRangeFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/DepthRangeFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/DepthRangeFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/ExcludeDirectoryFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/ExcludeDirectoryFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FileTypeFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FileTypeFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FilecontentFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FilecontentFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FilenameFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FilenameFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/FilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/MultiplePcreFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/MultiplePcreFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/PathFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/PathFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/RecursiveDirectoryIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/RecursiveDirectoryIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/SizeRangeFilterIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/SizeRangeFilterIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/SortableIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Iterator/SortableIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/SplFileInfo.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/SplFileInfo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Comparator/ComparatorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Comparator/ComparatorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Comparator/DateComparatorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Comparator/DateComparatorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Comparator/NumberComparatorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Comparator/NumberComparatorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/FinderTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/FinderTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Fixtures/dolor.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Fixtures/dolor.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Fixtures/ipsum.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Fixtures/ipsum.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Fixtures/lorem.txt" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Fixtures/lorem.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/GlobTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/GlobTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/CustomFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/CustomFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/DateRangeFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/DateRangeFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/DepthRangeFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/DepthRangeFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/ExcludeDirectoryFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/ExcludeDirectoryFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FileTypeFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FileTypeFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FilecontentFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FilecontentFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FilenameFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FilenameFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/FilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/Iterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/Iterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/IteratorTestCase.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/IteratorTestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/MockFileListIterator.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/MockFileListIterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/MockSplFileInfo.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/MockSplFileInfo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/MultiplePcreFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/MultiplePcreFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/PathFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/PathFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/RealIteratorTestCase.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/RealIteratorTestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/RecursiveDirectoryIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/RecursiveDirectoryIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/SizeRangeFilterIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/SizeRangeFilterIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/SortableIteratorTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/Tests/Iterator/SortableIteratorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/composer.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/finder/phpunit.xml.dist" afterPath="$PROJECT_DIR$/core/vendor/symfony/finder/phpunit.xml.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/Mbstring.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/Mbstring.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/Resources/unidata/lowerCase.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/Resources/unidata/lowerCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/Resources/unidata/upperCase.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/Resources/unidata/upperCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/bootstrap.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/bootstrap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/composer.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/polyfill-mbstring/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/.gitignore" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/CHANGELOG.md" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/ExceptionInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/ExceptionInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/InvalidArgumentException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/InvalidArgumentException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/LogicException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/LogicException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/ProcessFailedException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/ProcessFailedException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/ProcessTimedOutException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/ProcessTimedOutException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/RuntimeException.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Exception/RuntimeException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/ExecutableFinder.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/ExecutableFinder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/InputStream.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/InputStream.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/LICENSE" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/PhpExecutableFinder.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/PhpExecutableFinder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/PhpProcess.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/PhpProcess.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/AbstractPipes.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/AbstractPipes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/PipesInterface.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/PipesInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/UnixPipes.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/UnixPipes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/WindowsPipes.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Pipes/WindowsPipes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Process.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Process.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/ProcessBuilder.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/ProcessBuilder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/ProcessUtils.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/ProcessUtils.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ExecutableFinderTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ExecutableFinderTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/NonStopableProcess.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/NonStopableProcess.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/PhpExecutableFinderTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/PhpExecutableFinderTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/PhpProcessTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/PhpProcessTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/PipeStdinInStdoutStdErrStreamSelect.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/PipeStdinInStdoutStdErrStreamSelect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessBuilderTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessBuilderTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessFailedExceptionTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessFailedExceptionTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessUtilsTest.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/ProcessUtilsTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/SignalListener.php" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/Tests/SignalListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/composer.json" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/vendor/symfony/process/phpunit.xml.dist" afterPath="$PROJECT_DIR$/core/vendor/symfony/process/phpunit.xml.dist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/TrainingConspectus/config.json" afterPath="$PROJECT_DIR$/modules/TrainingConspectus/config.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,98 +631,60 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6122449">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="conspectusAnim.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="322">
-                  <caret line="282" column="53" lean-forward="true" selection-start-line="282" selection-start-column="53" selection-end-line="282" selection-end-column="53" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="conspectusCreatorController.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="192">
-                  <caret line="101" column="52" lean-forward="true" selection-start-line="101" selection-start-column="52" selection-end-line="101" selection-end-column="52" />
-                  <folding>
-                    <marker date="1509977188480" expanded="true" signature="10554:10570" ph="..." />
-                    <marker date="1509977188480" expanded="true" signature="10638:10650" ph="..." />
-                    <marker date="1509977188480" expanded="true" signature="10726:10773" ph="..." />
-                    <marker date="1509977188480" expanded="true" signature="12090:12159" ph="..." />
-                    <marker date="1509977188480" expanded="true" signature="13819:13847" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TrainingConspectus.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1104">
-                  <caret line="145" column="21" lean-forward="true" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
-                  <folding>
-                    <element signature="e#46#71#0#PHP" expanded="true" />
-                    <element signature="e#8114#9072#0#PHP" expanded="false" />
-                    <element signature="e#9078#9739#0#PHP" expanded="false" />
-                    <element signature="e#9745#10440#0#PHP" expanded="false" />
-                    <element signature="e#10446#10673#0#PHP" expanded="false" />
-                    <element signature="e#10679#12517#0#PHP" expanded="false" />
-                    <element signature="e#12523#14674#0#PHP" expanded="false" />
-                    <element signature="e#14680#15549#0#PHP" expanded="false" />
-                    <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-                    <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-                    <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
-                    <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
-                    <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="conspectObj.json" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="577">
-                  <caret line="357" column="34" lean-forward="true" selection-start-line="357" selection-start-column="34" selection-end-line="357" selection-end-column="34" />
-                  <folding>
-                    <element signature="e#339#9635#0" expanded="false" />
-                    <element signature="e#10035#10726#0" expanded="false" />
-                    <element signature="e#10900#11386#0" expanded="false" />
-                    <element signature="e#11563#12007#0" expanded="false" />
-                    <element signature="e#12179#12636#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="conspectusAnim.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="112" column="27" lean-forward="false" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conspectusCreatorController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5856">
+              <caret line="244" column="52" lean-forward="false" selection-start-line="244" selection-start-column="52" selection-end-line="244" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrainingConspectus.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-816">
+              <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+              <folding>
+                <marker date="1510180706081" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+                <marker date="1510180706081" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+                <marker date="1510180706081" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+                <marker date="1510180706081" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+                <marker date="1510180706081" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+                <marker date="1510180706081" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+                <marker date="1510180706081" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+                <marker date="1510180706081" expanded="true" signature="7838:7879" ph="SELECT share... conspect" />
+                <marker date="1510180706081" expanded="true" signature="8739:8780" ph="SELECT share... conspect" />
+                <marker date="1510180706081" expanded="true" signature="9719:9760" ph="SELECT share... conspect" />
+                <marker date="1510180706081" expanded="true" signature="10389:10430" ph="SELECT share... conspect" />
+                <marker date="1510180706081" expanded="true" signature="11035:11103" ph="SELECT id, n... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="13784:13839" ph="SELECT mainI... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="15434:15607" ph="SELECT consp... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="15714:15968" ph="SELECT consp... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="16168:16213" ph="SELECT share... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="17072:17117" ph="SELECT share... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="18055:18100" ph="SELECT share... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="18732:18777" ph="SELECT share... conspectAnim" />
+                <marker date="1510180706081" expanded="true" signature="19639:19675" ph="SELECT * FRO... conspectAnim" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -207,9 +738,9 @@
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectObj.json" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/config.json" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js" />
-        <option value="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
-        <option value="$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json" />
+        <option value="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
       </list>
     </option>
   </component>
@@ -276,7 +807,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -341,19 +871,12 @@
               <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="TrainingConspectus" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -412,11 +935,12 @@
       <workItem from="1509877205575" duration="2257000" />
       <workItem from="1509957846751" duration="1736000" />
       <workItem from="1509972378743" duration="7662000" />
+      <workItem from="1510180465217" duration="410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34902000" />
+    <option name="totallyTimeSpent" value="35312000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -431,7 +955,7 @@
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21267454" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21267454" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27801725" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23845327" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -511,14 +1035,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3936">
           <caret line="164" column="9" lean-forward="false" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
-          <folding>
-            <element signature="e#741#1085#0" expanded="false" />
-            <element signature="e#1133#2936#0" expanded="false" />
-            <element signature="e#3611#4631#0" expanded="false" />
-            <element signature="e#4762#5312#0" expanded="false" />
-            <marker date="1509873024667" expanded="true" signature="6631:6720" ph="..." />
-            <marker date="1509873024667" expanded="true" signature="8624:8713" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -540,7 +1056,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1392">
           <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -549,35 +1064,27 @@
         <state relative-caret-position="4296">
           <caret line="183" column="37" lean-forward="false" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
           <folding>
-            <element signature="e#46#71#0#PHP" expanded="true" />
-            <element signature="e#8114#9072#0#PHP" expanded="false" />
-            <element signature="e#9078#9739#0#PHP" expanded="false" />
-            <element signature="e#9745#10440#0#PHP" expanded="false" />
-            <element signature="e#10446#10673#0#PHP" expanded="false" />
-            <element signature="e#10679#12517#0#PHP" expanded="false" />
-            <element signature="e#12523#14674#0#PHP" expanded="false" />
-            <element signature="e#14680#15549#0#PHP" expanded="false" />
-            <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-            <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-            <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-            <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-            <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-            <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-            <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-            <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+            <marker date="1510180706081" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+            <marker date="1510180706081" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+            <marker date="1510180706081" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+            <marker date="1510180706081" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+            <marker date="1510180706081" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+            <marker date="1510180706081" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+            <marker date="1510180706081" expanded="true" signature="7838:7879" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="8739:8780" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="9719:9760" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="10389:10430" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="11035:11103" ph="SELECT id, n... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="13784:13839" ph="SELECT mainI... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="15434:15607" ph="SELECT consp... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="15714:15968" ph="SELECT consp... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="16168:16213" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="17072:17117" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="18055:18100" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="18732:18777" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="19639:19675" ph="SELECT * FRO... conspectAnim" />
           </folding>
         </state>
       </provider>
@@ -593,7 +1100,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -601,12 +1107,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="34" column="32" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="36" selection-end-column="101" />
-          <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -629,14 +1129,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3936">
           <caret line="164" column="9" lean-forward="true" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
-          <folding>
-            <element signature="e#741#1085#0" expanded="false" />
-            <element signature="e#1133#2936#0" expanded="false" />
-            <element signature="e#3611#4631#0" expanded="false" />
-            <element signature="e#4762#5312#0" expanded="false" />
-            <marker date="1509873024667" expanded="true" signature="6631:6720" ph="..." />
-            <marker date="1509873024667" expanded="true" signature="8624:8713" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -651,7 +1143,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1392">
           <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -680,7 +1171,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="18" column="15" lean-forward="true" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -688,12 +1178,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="36" selection-end-column="101" />
-          <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -702,35 +1186,27 @@
         <state relative-caret-position="4296">
           <caret line="183" column="37" lean-forward="true" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
           <folding>
-            <element signature="e#46#71#0#PHP" expanded="true" />
-            <element signature="e#8114#9072#0#PHP" expanded="false" />
-            <element signature="e#9078#9739#0#PHP" expanded="false" />
-            <element signature="e#9745#10440#0#PHP" expanded="false" />
-            <element signature="e#10446#10673#0#PHP" expanded="false" />
-            <element signature="e#10679#12517#0#PHP" expanded="false" />
-            <element signature="e#12523#14674#0#PHP" expanded="false" />
-            <element signature="e#14680#15549#0#PHP" expanded="false" />
-            <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-            <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-            <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-            <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-            <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-            <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-            <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-            <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+            <marker date="1510180706081" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+            <marker date="1510180706081" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+            <marker date="1510180706081" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+            <marker date="1510180706081" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+            <marker date="1510180706081" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+            <marker date="1510180706081" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+            <marker date="1510180706081" expanded="true" signature="7838:7879" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="8739:8780" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="9719:9760" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="10389:10430" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="11035:11103" ph="SELECT id, n... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="13784:13839" ph="SELECT mainI... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="15434:15607" ph="SELECT consp... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="15714:15968" ph="SELECT consp... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="16168:16213" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="17072:17117" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="18055:18100" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="18732:18777" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="19639:19675" ph="SELECT * FRO... conspectAnim" />
           </folding>
         </state>
       </provider>
@@ -860,7 +1336,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -868,7 +1343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,7 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="76" column="39" lean-forward="false" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,12 +1357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#h5#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -897,9 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
           <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="29" selection-end-column="75" />
-          <folding>
-            <element signature="e#30#52#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -907,15 +1371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="74" selection-end-column="57" />
-          <folding>
-            <marker date="1509857364411" expanded="true" signature="2426:2436" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="2854:2873" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="2940:2961" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3055:3077" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3055:3111" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3232:3254" ph="..." />
-            <marker date="1509857364411" expanded="true" signature="3232:3288" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -923,14 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="184" column="16" lean-forward="false" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="16" />
-          <folding>
-            <element signature="e#741#1085#0" expanded="false" />
-            <element signature="e#1133#2936#0" expanded="false" />
-            <element signature="e#3611#4631#0" expanded="false" />
-            <element signature="e#4762#5312#0" expanded="false" />
-            <marker date="1509873024667" expanded="true" signature="6631:6720" ph="..." />
-            <marker date="1509873024667" expanded="true" signature="8624:8713" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -938,81 +1385,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="56" column="125" lean-forward="false" selection-start-line="56" selection-start-column="113" selection-end-line="56" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5856">
+          <caret line="244" column="52" lean-forward="false" selection-start-line="244" selection-start-column="52" selection-end-line="244" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="671" column="1" lean-forward="false" selection-start-line="671" selection-start-column="1" selection-end-line="671" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="112" column="27" lean-forward="false" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="145" column="21" lean-forward="true" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
+        <state relative-caret-position="-816">
+          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding>
-            <element signature="e#46#71#0#PHP" expanded="true" />
-            <element signature="e#8114#9072#0#PHP" expanded="false" />
-            <element signature="e#9078#9739#0#PHP" expanded="false" />
-            <element signature="e#9745#10440#0#PHP" expanded="false" />
-            <element signature="e#10446#10673#0#PHP" expanded="false" />
-            <element signature="e#10679#12517#0#PHP" expanded="false" />
-            <element signature="e#12523#14674#0#PHP" expanded="false" />
-            <element signature="e#14680#15549#0#PHP" expanded="false" />
-            <marker date="1509979378461" expanded="true" signature="303:1026" ph="CREATE TABLE... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="1081:1450" ph="CREATE TABLE... conspect" />
-            <marker date="1509979378461" expanded="true" signature="1543:1572" ph="DROP TABLE I... " />
-            <marker date="1509979378461" expanded="true" signature="1626:1659" ph="DROP TABLE I... " />
-            <marker date="1509979378461" expanded="true" signature="3540:3572" ph="SELECT * FRO... conspect" />
-            <marker date="1509979378461" expanded="true" signature="3758:3790" ph="SELECT * FRO... conspect" />
-            <marker date="1509979378461" expanded="true" signature="4709:4835" ph="SELECT consp... conspect" />
-            <marker date="1509979378461" expanded="true" signature="4943:5146" ph="SELECT consp... conspect" />
-            <marker date="1509979378461" expanded="true" signature="7363:7404" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="8264:8305" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="9244:9285" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="9914:9955" ph="SELECT share... conspect" />
-            <marker date="1509979378461" expanded="true" signature="10560:10628" ph="SELECT id, n... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="13309:13364" ph="SELECT mainI... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="14959:15132" ph="SELECT consp... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="15239:15493" ph="SELECT consp... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="15693:15738" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="16597:16642" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="17580:17625" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="18257:18302" ph="SELECT share... conspectAnim" />
-            <marker date="1509979378461" expanded="true" signature="19164:19200" ph="SELECT * FRO... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="396:1119" ph="CREATE TABLE... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="1174:1543" ph="CREATE TABLE... conspect" />
+            <marker date="1510180706081" expanded="true" signature="1636:1665" ph="DROP TABLE I... " />
+            <marker date="1510180706081" expanded="true" signature="1719:1752" ph="DROP TABLE I... " />
+            <marker date="1510180706081" expanded="true" signature="3633:3665" ph="SELECT * FRO... conspect" />
+            <marker date="1510180706081" expanded="true" signature="3851:3883" ph="SELECT * FRO... conspect" />
+            <marker date="1510180706081" expanded="true" signature="4802:4928" ph="SELECT consp... conspect" />
+            <marker date="1510180706081" expanded="true" signature="5036:5239" ph="SELECT consp... conspect" />
+            <marker date="1510180706081" expanded="true" signature="7838:7879" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="8739:8780" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="9719:9760" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="10389:10430" ph="SELECT share... conspect" />
+            <marker date="1510180706081" expanded="true" signature="11035:11103" ph="SELECT id, n... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="13784:13839" ph="SELECT mainI... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="15434:15607" ph="SELECT consp... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="15714:15968" ph="SELECT consp... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="16168:16213" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="17072:17117" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="18055:18100" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="18732:18777" ph="SELECT share... conspectAnim" />
+            <marker date="1510180706081" expanded="true" signature="19639:19675" ph="SELECT * FRO... conspectAnim" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/conspectusCreatorController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="101" column="52" lean-forward="true" selection-start-line="101" selection-start-column="52" selection-end-line="101" selection-end-column="52" />
-          <folding>
-            <marker date="1509977188480" expanded="true" signature="10554:10570" ph="..." />
-            <marker date="1509977188480" expanded="true" signature="10638:10650" ph="..." />
-            <marker date="1509977188480" expanded="true" signature="10726:10773" ph="..." />
-            <marker date="1509977188480" expanded="true" signature="12090:12159" ph="..." />
-            <marker date="1509977188480" expanded="true" signature="13819:13847" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="357" column="34" lean-forward="true" selection-start-line="357" selection-start-column="34" selection-end-line="357" selection-end-column="34" />
-          <folding>
-            <element signature="e#339#9635#0" expanded="false" />
-            <element signature="e#10035#10726#0" expanded="false" />
-            <element signature="e#10900#11386#0" expanded="false" />
-            <element signature="e#11563#12007#0" expanded="false" />
-            <element signature="e#12179#12636#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="282" column="53" lean-forward="true" selection-start-line="282" selection-start-column="53" selection-end-line="282" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -46,12 +46,12 @@ class NamesStore extends CrudStore
     }
 
     /**
-     * @param ReadQueryBuilder|null $builder
+     * @param ReadQueryBuilder $builder
      *
      * @return NameModel[]|null
      * @throws MysqlException
      */
-    public function read(?ReadQueryBuilder $builder = null): ?array
+    public function read(ReadQueryBuilder $builder): ?array
     {
         /** @var NameModel[]|null $response */
         $response = $this->crudRead($builder);

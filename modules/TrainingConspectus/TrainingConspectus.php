@@ -5,8 +5,12 @@ namespace Modules\TrainingConspectus;
 use Core\Players\Players;
 use Core\System\BasicModule;
 use \KHerGe\JSON\JSON;
-use Core\Teams\Teams;
 use Core\System\FileMenager;
+use FFMpeg\FFMpeg;
+use FFMpeg\Coordinate\Dimension;
+use FFMpeg\Format\Video\X264;
+use FFMpeg\Coordinate\TimeCode;
+
 
 class TrainingConspectus extends BasicModule
 {
@@ -124,6 +128,20 @@ class TrainingConspectus extends BasicModule
         }
 
         return $this->returnedData;
+    }
+
+    function ccc(){
+        $ffmpeg = FFMpeg::create();
+        $video = $ffmpeg->open('video.mpg');
+        $video
+            ->filters()
+            ->resize(new Dimension(320, 240))
+            ->synchronize();
+        $video
+            ->frame( TimeCode::fromSeconds(2))
+            ->save('frame.jpg');
+        $video
+            ->save(new X264(), 'export-x264.mp4');
     }
 
     function getConspectAnimObj(){

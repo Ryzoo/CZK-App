@@ -3,7 +3,8 @@
         "simplon/mysql": "*",
         "kherge/json": "*",
         "alchemy/zippy": "*",
-        "composer/composer": "*"
+        "composer/composer": "*",
+        "php-ffmpeg/php-ffmpeg": "*"
     },
     "autoload": {
         "psr-4": {

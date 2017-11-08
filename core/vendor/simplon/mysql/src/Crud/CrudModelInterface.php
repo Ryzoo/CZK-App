@@ -2,6 +2,9 @@
 
 namespace Simplon\Mysql\Crud;
 
+/**
+ * @package Simplon\Mysql\Crud
+ */
 interface CrudModelInterface
 {
     /**

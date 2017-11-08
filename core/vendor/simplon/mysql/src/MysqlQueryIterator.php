@@ -2,6 +2,9 @@
 
 namespace Simplon\Mysql;
 
+/**
+ * @package Simplon\Mysql
+ */
 class MysqlQueryIterator implements \Iterator
 {
     /**
