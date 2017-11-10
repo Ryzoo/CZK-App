@@ -309,6 +309,66 @@
               "ngClick" : "isSelectedField=true",
               "img": "pitch/perspective/grass/penalty-box-angled-right.jpg",
               "tooltip": "Pole karne boiska tarwiastego (obrócone w prawo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/full-horizontal.jpg",
+              "tooltip": "Pełne boisko halowe (horyzontalnie)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/full-vertical.jpg",
+              "tooltip": "Pełne boisko halowe (wertykalnie)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/left-half.jpg",
+              "tooltip": "Lewa połowa boiska halowego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/right-half.jpg",
+              "tooltip": "Prawa połowa boiska halowego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/upper-3,4.jpg",
+              "tooltip": "Górne 3/4 boiska halowego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/lower-3,4.jpg",
+              "tooltip": "Dolne 3/4 boiska halowego"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/upper-3,4-angled-left.jpg",
+              "tooltip": "Górne 3/4 boiska halowego (obrócone w lewo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/upper-3,4-angled-right.jpg",
+              "tooltip": "Górne 3/4 boiska halowego (obrócone w prawo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/penalty-box-angled-left.jpg",
+              "tooltip": "Pole karne boiska halowego (obrócone w lewo)"
+            },
+            {
+              "addClass": ["soccerField"],
+              "ngClick" : "isSelectedField=true",
+              "img": "pitch/perspective/hall/penalty-box-angled-right.jpg",
+              "tooltip": "Pole karne boiska halowego (obrócone w prawo)"
             }
           ]
         }
@@ -543,7 +603,7 @@
       }
     },{
       "icon": "fa-table",
-      "tooltip": "Bramki",
+      "tooltip": "Siatkonoga",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
       "objectsIn": {
         "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
