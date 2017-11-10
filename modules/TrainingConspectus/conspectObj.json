@@ -373,61 +373,61 @@
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/full-horizontal.jpg",
+              "img": "pitch/perspective/hall-2/full-horizontal.jpg",
               "tooltip": "Pełne boisko halowe (horyzontalnie)"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/full-vertical.jpg",
+              "img": "pitch/perspective/hall-2/full-vertical.jpg",
               "tooltip": "Pełne boisko halowe (wertykalnie)"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/left-half.jpg",
+              "img": "pitch/perspective/hall-2/left-half.jpg",
               "tooltip": "Lewa połowa boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/right-half.jpg",
+              "img": "pitch/perspective/hall-2/right-half.jpg",
               "tooltip": "Prawa połowa boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/upper-3,4.jpg",
+              "img": "pitch/perspective/hall-2/upper-3,4.jpg",
               "tooltip": "Górne 3/4 boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/lower-3,4.jpg",
+              "img": "pitch/perspective/hall-2/lower-3,4.jpg",
               "tooltip": "Dolne 3/4 boiska halowego"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/upper-3,4-angled-left.jpg",
+              "img": "pitch/perspective/hall-2/upper-3,4-angled-left.jpg",
               "tooltip": "Górne 3/4 boiska halowego (obrócone w lewo)"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/upper-3,4-angled-right.jpg",
+              "img": "pitch/perspective/hall-2/upper-3,4-angled-right.jpg",
               "tooltip": "Górne 3/4 boiska halowego (obrócone w prawo)"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/penalty-box-angled-left.jpg",
+              "img": "pitch/perspective/hall-2/penalty-box-angled-left.jpg",
               "tooltip": "Pole karne boiska halowego (obrócone w lewo)"
             },
             {
               "addClass": ["soccerField"],
               "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall2/penalty-box-angled-right.jpg",
+              "img": "pitch/perspective/hall-2/penalty-box-angled-right.jpg",
               "tooltip": "Pole karne boiska halowego (obrócone w prawo)"
             },
             {
