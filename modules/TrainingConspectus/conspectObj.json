@@ -614,6 +614,121 @@
             "config": "player",
             "img": "players/version2/player-main-rgb(255,255,255)rgb(255,255,255).png",
             "tooltip": "Zawodnik podświetlony (człowiek)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P1-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P2-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P3-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P4-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P5-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P6-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P7-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P8-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P9-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P10-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P11-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P12-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P13-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P14-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P15-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P16-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P17-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P18-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P19-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P20-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P21-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P22-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
+          },
+          {
+            "config": "player",
+            "img": "players/version3/P23-rgb(255,255,255).png",
+            "tooltip": "Zawodnik (perspektywa)"
           }
         ]
       }
@@ -656,7 +771,7 @@
       "tooltip": "Pachołki",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"CONE_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"CONE_ADD\"",
         "list": [
           {
             "img": "cones/cone-rgb(255,255,255)rgb(255,255,255).png",
@@ -673,7 +788,7 @@
       "tooltip": "Pierścienie",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"RINGS_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"RINGS_ADD\"",
         "list": [
           {
             "img": "rings/ring-rgb(255,255,255)rgb(255,255,255).png",
@@ -686,7 +801,7 @@
       "tooltip": "Chorągiewki",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"FLAG_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"FLAG_ADD\"",
         "list": [
           {
             "img": "flags/left/flag-rgb(255,255,255)rgb(255,255,255).png",
@@ -703,7 +818,7 @@
       "tooltip": "Drabinki",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"LADDER_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"LADDER_ADD\"",
         "list": [
           {
             "img": "ladders/ladder-3x.png",
@@ -728,7 +843,7 @@
       "tooltip": "Tyczki",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"POLE_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"POLE_ADD\"",
         "list": [
           {
             "img": "poles/pole-rgb(255,255,255)rgb(255,255,255).png",
@@ -741,7 +856,7 @@
       "tooltip": "Bramki",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
         "list": [
           {
             "img": "goals/goal.png",
@@ -786,7 +901,7 @@
       "tooltip": "Siatkonoga",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
         "list": [
           {
             "img": "volleyball/volleyball.png",
@@ -803,7 +918,7 @@
       "tooltip": "Murek",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"WALL_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"WALL_ADD\"",
         "list": [
           {
             "img": "wall/version1/wall-1x.png",
@@ -844,7 +959,7 @@
       "tooltip": "Płotki",
       "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"HURDLE_ADD\"",
       "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"HURDLE_ADD\"",
         "list": [
           {
             "img": "hurdles/low-hurdle.png",
