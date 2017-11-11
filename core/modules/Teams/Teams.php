@@ -224,6 +224,7 @@ class Teams extends BasicModule {
 
     function deletePlayerAplay($data){
         $aplId = $data['aplId'];
+        $tmid = $data['tmid'];
         ($this->db->getConnection())->delete('sectionApplayers',["id"=>$aplId]);
         $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT sectionApplayers.id as id, users.id as usid, firstname, lastname, YEAR(CURDATE()) - EXTRACT( YEAR FROM user_data.birthdate )  AS yearOld , tel, parent_tel, email FROM sectionApplayers, users, user_data  WHERE sectionApplayers.id_user = users.id AND users.id = user_data.user_id AND sectionApplayers.id_team =".$tmid);
         return $this->returnedData;
