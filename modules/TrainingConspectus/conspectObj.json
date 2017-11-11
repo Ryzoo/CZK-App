@@ -622,6 +622,11 @@
           },
           {
             "config": "player",
+            "img": "players/version3/P1-main-rgb(255,255,255).png",
+            "tooltip": "Zawodnik podświetlony (perspektywa)"
+          },
+          {
+            "config": "player",
             "img": "players/version3/P2-rgb(255,255,255).png",
             "tooltip": "Zawodnik (perspektywa)"
           },
