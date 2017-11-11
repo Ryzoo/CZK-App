@@ -708,27 +708,27 @@
           {
             "config": "player",
             "img": "players/version3/P19-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
+            "tooltip": "Bramkarz (perspektywa)"
           },
           {
             "config": "player",
             "img": "players/version3/P20-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
+            "tooltip": "Bramkarz (perspektywa)"
           },
           {
             "config": "player",
             "img": "players/version3/P21-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
+            "tooltip": "Bramkarz (perspektywa)"
           },
           {
             "config": "player",
             "img": "players/version3/P22-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
+            "tooltip": "Bramkarz (perspektywa)"
           },
           {
             "config": "player",
             "img": "players/version3/P23-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
+            "tooltip": "Bramkarz (perspektywa)"
           }
         ]
       }
