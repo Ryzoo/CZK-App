@@ -256,6 +256,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             $('#itemBoxFromCat').append(content);
                         }
                     }
+                    $(document).ready(function() {
+                        $('.tooltipped').tooltip({
+                            delay: 50
+                        });
+                    });
                 }
             });
         });
