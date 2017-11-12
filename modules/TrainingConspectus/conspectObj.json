@@ -1,985 +1,974 @@
 {
-  "objectList": [
-    {
-      "icon": "fa-arrows",
-      "tooltip": "Przesuń",
-      "ngClick": "changeCategories(mouseActionType.MOVE)",
-      "style": "border-color:#ec1800"
-    },
-    {
-      "icon": "fa-picture-o",
-      "tooltip": "Rodzaj boiska",
-      "ngClick": "changeCategories(mouseActionType.FIELD_LIST)",
-      "objectsIn": {
-          "ngShow": "actualMouseAction==mouseActionType.FIELD_LIST",
-          "list": [
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/grass/full.jpg",
-              "tooltip": "Pełne boisko trawiaste"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/grass/empty.jpg",
-              "tooltip": "Puste boisko trawiaste"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/grass/middle.jpg",
-              "tooltip": "Środek boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/grass/upper-half.jpg",
-              "tooltip": "Górna połowa boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/grass/lower-half.jpg",
-              "tooltip": "Dolna połowa boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/grass/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/grass/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall/full.jpg",
-              "tooltip": "Pełne boisko halowe"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall/empty.jpg",
-              "tooltip": "Puste boisko halowe"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall/middle.jpg",
-              "tooltip": "Środek boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall/upper-half.jpg",
-              "tooltip": "Górna połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall/lower-half.jpg",
-              "tooltip": "Dolna połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall-2/full.jpg",
-              "tooltip": "Pełne boisko halowe"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall-2/empty.jpg",
-              "tooltip": "Puste boisko halowe"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall-2/middle.jpg",
-              "tooltip": "Środek boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall-2/upper-half.jpg",
-              "tooltip": "Górna połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall-2/lower-half.jpg",
-              "tooltip": "Dolna połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall-2/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/hall-2/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/lines/full.jpg",
-              "tooltip": "Pełne boisko - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/lines/empty.jpg",
-              "tooltip": "Puste boisko - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/lines/middle.jpg",
-              "tooltip": "Środek boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/lines/upper-half.jpg",
-              "tooltip": "Górna połowa boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/lines/lower-half.jpg",
-              "tooltip": "Dolna połowa boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/lines/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/lines/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/tartan/full.jpg",
-              "tooltip": "Pełne boisko typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/tartan/empty.jpg",
-              "tooltip": "Puste boisko typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/tartan/middle.jpg",
-              "tooltip": "Środek boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/tartan/upper-half.jpg",
-              "tooltip": "Górna połowa boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/tartan/lower-half.jpg",
-              "tooltip": "Dolna połowa boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/tartan/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/normal/tartan/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska typu tartan"
+    "objectList": [{
+            "icon": "fa-arrows",
+            "tooltip": "Przesuń",
+            "ngClick": "changeCategories(mouseActionType.MOVE)",
+            "style": "border-color:#ec1800"
+        },
+        {
+            "icon": "fa-picture-o",
+            "tooltip": "Rodzaj boiska",
+            "ngClick": "changeCategories(mouseActionType.FIELD_LIST); fieldNormal = true",
+            "objectsIn": {
+                "ngShow": "(actualMouseAction==mouseActionType.FIELD_LIST && fieldNormal) || !isSelectedField",
+                "list": [{
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/grass/full.jpg",
+                        "tooltip": "Pełne boisko trawiaste"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/grass/empty.jpg",
+                        "tooltip": "Puste boisko trawiaste"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/grass/middle.jpg",
+                        "tooltip": "Środek boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/grass/upper-half.jpg",
+                        "tooltip": "Górna połowa boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/grass/lower-half.jpg",
+                        "tooltip": "Dolna połowa boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/grass/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/grass/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall/full.jpg",
+                        "tooltip": "Pełne boisko halowe"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall/empty.jpg",
+                        "tooltip": "Puste boisko halowe"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall/middle.jpg",
+                        "tooltip": "Środek boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall/upper-half.jpg",
+                        "tooltip": "Górna połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall/lower-half.jpg",
+                        "tooltip": "Dolna połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall-2/full.jpg",
+                        "tooltip": "Pełne boisko halowe"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall-2/empty.jpg",
+                        "tooltip": "Puste boisko halowe"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall-2/middle.jpg",
+                        "tooltip": "Środek boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall-2/upper-half.jpg",
+                        "tooltip": "Górna połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall-2/lower-half.jpg",
+                        "tooltip": "Dolna połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall-2/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/hall-2/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/lines/full.jpg",
+                        "tooltip": "Pełne boisko - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/lines/empty.jpg",
+                        "tooltip": "Puste boisko - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/lines/middle.jpg",
+                        "tooltip": "Środek boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/lines/upper-half.jpg",
+                        "tooltip": "Górna połowa boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/lines/lower-half.jpg",
+                        "tooltip": "Dolna połowa boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/lines/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/lines/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/tartan/full.jpg",
+                        "tooltip": "Pełne boisko typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/tartan/empty.jpg",
+                        "tooltip": "Puste boisko typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/tartan/middle.jpg",
+                        "tooltip": "Środek boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/tartan/upper-half.jpg",
+                        "tooltip": "Górna połowa boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/tartan/lower-half.jpg",
+                        "tooltip": "Dolna połowa boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/tartan/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/normal/tartan/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska typu tartan"
+                    }
+                ]
             }
-          ]
-        }
-    },{
-      "icon": "fa-picture-o",
-      "tooltip": "Rodzaj boiska (perspektywa)",
-      "ngClick": "changeCategories(mouseActionType.FIELD_LIST)",
-      "objectsIn": {
-          "ngShow": "actualMouseAction==mouseActionType.FIELD_LIST",
-          "list": [
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/full-horizontal.jpg",
-              "tooltip": "Pełne boisko trawiaste (horyzontalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/full-vertical.jpg",
-              "tooltip": "Pełne boisko trawiaste (wertykalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/empty.jpg",
-              "tooltip": "Puste boisko trawiaste"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/empty-angled-left.jpg",
-              "tooltip": "Puste boisko trawiaste (obórcone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/empty-angled-right.jpg",
-              "tooltip": "Puste boisko trawiaste (obórcone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/left-half.jpg",
-              "tooltip": "Lewa połowa boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/right-half.jpg",
-              "tooltip": "Prawa połowa boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska trawiastego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/upper-3,4-angled-left.jpg",
-              "tooltip": "Górne 3/4 boiska trawiastego (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/upper-3,4-angled-right.jpg",
-              "tooltip": "Górne 3/4 boiska trawiastego (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/penalty-box-angled-left.jpg",
-              "tooltip": "Pole karne boiska tarwiastego (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/grass/penalty-box-angled-right.jpg",
-              "tooltip": "Pole karne boiska tarwiastego (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/full-horizontal.jpg",
-              "tooltip": "Pełne boisko halowe (horyzontalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/full-vertical.jpg",
-              "tooltip": "Pełne boisko halowe (wertykalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/left-half.jpg",
-              "tooltip": "Lewa połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/right-half.jpg",
-              "tooltip": "Prawa połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/upper-3,4-angled-left.jpg",
-              "tooltip": "Górne 3/4 boiska halowego (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/upper-3,4-angled-right.jpg",
-              "tooltip": "Górne 3/4 boiska halowego (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/penalty-box-angled-left.jpg",
-              "tooltip": "Pole karne boiska halowego (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall/penalty-box-angled-right.jpg",
-              "tooltip": "Pole karne boiska halowego (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/full-horizontal.jpg",
-              "tooltip": "Pełne boisko halowe (horyzontalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/full-vertical.jpg",
-              "tooltip": "Pełne boisko halowe (wertykalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/left-half.jpg",
-              "tooltip": "Lewa połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/right-half.jpg",
-              "tooltip": "Prawa połowa boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska halowego"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/upper-3,4-angled-left.jpg",
-              "tooltip": "Górne 3/4 boiska halowego (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/upper-3,4-angled-right.jpg",
-              "tooltip": "Górne 3/4 boiska halowego (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/penalty-box-angled-left.jpg",
-              "tooltip": "Pole karne boiska halowego (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/hall-2/penalty-box-angled-right.jpg",
-              "tooltip": "Pole karne boiska halowego (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/full-horizontal.jpg",
-              "tooltip": "Pełne boisko - same linie (horyzontalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/full-vertical.jpg",
-              "tooltip": "Pełne boisko - same linie (wertykalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/left-half.jpg",
-              "tooltip": "Lewa połowa boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/right-half.jpg",
-              "tooltip": "Prawa połowa boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska - same linie"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/upper-3,4-angled-left.jpg",
-              "tooltip": "Górne 3/4 boiska - same linie (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/upper-3,4-angled-right.jpg",
-              "tooltip": "Górne 3/4 boiska - same linie (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/penalty-box-angled-left.jpg",
-              "tooltip": "Pole karne boiska - same linie (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/lines/penalty-box-angled-right.jpg",
-              "tooltip": "Pole karne boiska - same linie (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/full-horizontal.jpg",
-              "tooltip": "Pełne boisko typu tartan (horyzontalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/full-vertical.jpg",
-              "tooltip": "Pełne boisko typu tartan (wertykalnie)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/left-half.jpg",
-              "tooltip": "Lewa połowa boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/right-half.jpg",
-              "tooltip": "Prawa połowa boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/upper-3,4.jpg",
-              "tooltip": "Górne 3/4 boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/lower-3,4.jpg",
-              "tooltip": "Dolne 3/4 boiska typu tartan"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/upper-3,4-angled-left.jpg",
-              "tooltip": "Górne 3/4 boiska typu tartan (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/upper-3,4-angled-right.jpg",
-              "tooltip": "Górne 3/4 boiska typu tartan (obrócone w prawo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/penalty-box-angled-left.jpg",
-              "tooltip": "Pole karne boiska typu tartan (obrócone w lewo)"
-            },
-            {
-              "addClass": ["soccerField"],
-              "ngClick" : "isSelectedField=true",
-              "img": "pitch/perspective/tartan/penalty-box-angled-right.jpg",
-              "tooltip": "Pole karne boiska typu tartan (obrócone w prawo)"
+        }, {
+            "icon": "fa-picture-o",
+            "tooltip": "Rodzaj boiska (perspektywa)",
+            "ngClick": "changeCategories(mouseActionType.FIELD_LIST); fieldNormal = false",
+            "objectsIn": {
+                "ngShow": "(actualMouseAction==mouseActionType.FIELD_LIST && !fieldNormal) || !isSelectedField",
+                "list": [{
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/full-horizontal.jpg",
+                        "tooltip": "Pełne boisko trawiaste (horyzontalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/full-vertical.jpg",
+                        "tooltip": "Pełne boisko trawiaste (wertykalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/empty.jpg",
+                        "tooltip": "Puste boisko trawiaste"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/empty-angled-left.jpg",
+                        "tooltip": "Puste boisko trawiaste (obórcone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/empty-angled-right.jpg",
+                        "tooltip": "Puste boisko trawiaste (obórcone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/left-half.jpg",
+                        "tooltip": "Lewa połowa boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/right-half.jpg",
+                        "tooltip": "Prawa połowa boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska trawiastego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/upper-3,4-angled-left.jpg",
+                        "tooltip": "Górne 3/4 boiska trawiastego (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/upper-3,4-angled-right.jpg",
+                        "tooltip": "Górne 3/4 boiska trawiastego (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/penalty-box-angled-left.jpg",
+                        "tooltip": "Pole karne boiska tarwiastego (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/grass/penalty-box-angled-right.jpg",
+                        "tooltip": "Pole karne boiska tarwiastego (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/full-horizontal.jpg",
+                        "tooltip": "Pełne boisko halowe (horyzontalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/full-vertical.jpg",
+                        "tooltip": "Pełne boisko halowe (wertykalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/left-half.jpg",
+                        "tooltip": "Lewa połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/right-half.jpg",
+                        "tooltip": "Prawa połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/upper-3,4-angled-left.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/upper-3,4-angled-right.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/penalty-box-angled-left.jpg",
+                        "tooltip": "Pole karne boiska halowego (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall/penalty-box-angled-right.jpg",
+                        "tooltip": "Pole karne boiska halowego (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/full-horizontal.jpg",
+                        "tooltip": "Pełne boisko halowe (horyzontalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/full-vertical.jpg",
+                        "tooltip": "Pełne boisko halowe (wertykalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/left-half.jpg",
+                        "tooltip": "Lewa połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/right-half.jpg",
+                        "tooltip": "Prawa połowa boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska halowego"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/upper-3,4-angled-left.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/upper-3,4-angled-right.jpg",
+                        "tooltip": "Górne 3/4 boiska halowego (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/penalty-box-angled-left.jpg",
+                        "tooltip": "Pole karne boiska halowego (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/hall-2/penalty-box-angled-right.jpg",
+                        "tooltip": "Pole karne boiska halowego (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/full-horizontal.jpg",
+                        "tooltip": "Pełne boisko - same linie (horyzontalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/full-vertical.jpg",
+                        "tooltip": "Pełne boisko - same linie (wertykalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/left-half.jpg",
+                        "tooltip": "Lewa połowa boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/right-half.jpg",
+                        "tooltip": "Prawa połowa boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska - same linie"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/upper-3,4-angled-left.jpg",
+                        "tooltip": "Górne 3/4 boiska - same linie (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/upper-3,4-angled-right.jpg",
+                        "tooltip": "Górne 3/4 boiska - same linie (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/penalty-box-angled-left.jpg",
+                        "tooltip": "Pole karne boiska - same linie (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/lines/penalty-box-angled-right.jpg",
+                        "tooltip": "Pole karne boiska - same linie (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/full-horizontal.jpg",
+                        "tooltip": "Pełne boisko typu tartan (horyzontalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/full-vertical.jpg",
+                        "tooltip": "Pełne boisko typu tartan (wertykalnie)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/left-half.jpg",
+                        "tooltip": "Lewa połowa boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/right-half.jpg",
+                        "tooltip": "Prawa połowa boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/upper-3,4.jpg",
+                        "tooltip": "Górne 3/4 boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/lower-3,4.jpg",
+                        "tooltip": "Dolne 3/4 boiska typu tartan"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/upper-3,4-angled-left.jpg",
+                        "tooltip": "Górne 3/4 boiska typu tartan (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/upper-3,4-angled-right.jpg",
+                        "tooltip": "Górne 3/4 boiska typu tartan (obrócone w prawo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/penalty-box-angled-left.jpg",
+                        "tooltip": "Pole karne boiska typu tartan (obrócone w lewo)"
+                    },
+                    {
+                        "addClass": ["soccerField"],
+                        "ngClick": "isSelectedField=true",
+                        "img": "pitch/perspective/tartan/penalty-box-angled-right.jpg",
+                        "tooltip": "Pole karne boiska typu tartan (obrócone w prawo)"
+                    }
+                ]
             }
-          ]
+        }, {
+            "icon": "fa-font",
+            "tooltip": "Tekst",
+            "ngClick": "changeCategories(mouseActionType.TEXT_ADD)"
+        }, {
+            "icon": "fa-arrows-alt",
+            "tooltip": "Akcje",
+            "config": "arrow",
+            "ngClick": "selectArrow()"
+        }, {
+            "icon": "fa-square-o",
+            "tooltip": "Obszar",
+            "ngClick": "changeCategories(mouseActionType.SHAPE_ADD)",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.SHAPE_ADD",
+                "list": [{
+                        "config": "shape",
+                        "img": "select/white-3x.png",
+                        "tooltip": "3 punkty",
+                        "ngClick": "selectShape(shapeType.WHITE_3)"
+                    },
+                    {
+                        "config": "shape",
+                        "img": "select/white-4x.png",
+                        "tooltip": "4 punkty",
+                        "ngClick": "selectShape(shapeType.WHITE_4)"
+                    },
+                    {
+                        "config": "shape",
+                        "img": "select/white-5x.png",
+                        "tooltip": "5 punktów",
+                        "ngClick": "selectShape(shapeType.WHITE_5)"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-user",
+            "tooltip": "Zawodnicy",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"PLAYER_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"PLAYER_ADD\"",
+                "list": [{
+                        "config": "player",
+                        "img": "players/version1/circle-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (okrągły)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version1/circle-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (okrągły)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version2/player-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (człowiek)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version2/player-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (człowiek)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P1-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P1-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P2-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P3-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P4-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P5-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P6-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P7-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P8-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P9-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P10-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P11-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P12-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P13-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P14-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P15-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P16-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P17-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P18-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P19-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Bramkarz (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P20-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Bramkarz (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P21-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Bramkarz (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P22-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Bramkarz (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P23-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Bramkarz (perspektywa)"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-user-secret",
+            "tooltip": "Trener",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"COACH_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"COACH_ADD\"",
+                "list": [{
+                        "img": "coach/version1/coach.png",
+                        "tooltip": "Trener"
+                    },
+                    {
+                        "img": "coach/version2/coach.png",
+                        "tooltip": "Trener"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-futbol-o",
+            "tooltip": "Piłki",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"BALL_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
+                "list": [{
+                        "img": "balls/ball-rgb(255,255,255)rgb(0,0,0).png",
+                        "tooltip": "Normalna piłka",
+                        "config": "ball"
+                    },
+                    {
+                        "img": "balls/medical-ball-rgb(145,27,0)rgb(0,0,0).png",
+                        "tooltip": "Piłka lekarska"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-caret-up",
+            "tooltip": "Pachołki",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"CONE_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"CONE_ADD\"",
+                "list": [{
+                        "img": "cones/cone-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Pachołek",
+                        "config": "cones"
+                    },
+                    {
+                        "img": "cones-2/cone2-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Stożek",
+                        "config": "cones"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-circle-o",
+            "tooltip": "Pierścienie",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"RINGS_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"RINGS_ADD\"",
+                "list": [{
+                    "img": "rings/ring-rgb(255,255,255)rgb(255,255,255).png",
+                    "tooltip": "Pierścień",
+                    "config": "rings"
+                }]
+            }
+        }, {
+            "icon": "fa-flag",
+            "tooltip": "Chorągiewki",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"FLAG_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"FLAG_ADD\"",
+                "list": [{
+                        "img": "flags/left/flag-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Flaga zwrócona w lewo",
+                        "config": "flags"
+                    },
+                    {
+                        "img": "flags/right/flag-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Flaga zwrócona w prawo",
+                        "config": "flags"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-columns",
+            "tooltip": "Drabinki",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"LADDER_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"LADDER_ADD\"",
+                "list": [{
+                        "img": "ladders/ladder-3x.png",
+                        "tooltip": "Drabinka (3 poziomy)"
+                    },
+                    {
+                        "img": "ladders/ladder-4x.png",
+                        "tooltip": "Drabinka (4 poziomy)"
+                    },
+                    {
+                        "img": "ladders/ladder-5x.png",
+                        "tooltip": "Drabinka (5 poziomów)"
+                    },
+                    {
+                        "img": "ladders/ladder-6x.png",
+                        "tooltip": "Drabinka (6 poziomów)"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-italic",
+            "tooltip": "Tyczki",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"POLE_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"POLE_ADD\"",
+                "list": [{
+                    "img": "poles/pole-rgb(255,255,255)rgb(255,255,255).png",
+                    "tooltip": "Tyczka",
+                    "config": "poles"
+                }]
+            }
+        }, {
+            "icon": "fa-shield",
+            "tooltip": "Bramki",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
+                "list": [{
+                        "img": "goals/goal.png",
+                        "tooltip": "Bramka"
+                    },
+                    {
+                        "img": "goals/mini-goal.png",
+                        "tooltip": "Mini-bramka"
+                    },
+                    {
+                        "img": "goals/wide-mini-goal.png",
+                        "tooltip": "Szeroka mini-bramka"
+                    },
+                    {
+                        "img": "goals/perspective-goal-front.png",
+                        "tooltip": "Bramka - przód (perspektywa)"
+                    },
+                    {
+                        "img": "goals/perspective-goal-back.png",
+                        "tooltip": "Bramka - tył (perspektywa)"
+                    },
+                    {
+                        "img": "goals/perspective-goal-top.png",
+                        "tooltip": "Bramka - górna (perspektywa)"
+                    },
+                    {
+                        "img": "goals/perspective-goal-bottom.png",
+                        "tooltip": "Bramka - dolna (perspektywa)"
+                    },
+                    {
+                        "img": "goals/mini-perspective-goal-left.png",
+                        "tooltip": "Mini-bramka - lewo (perspektywa)"
+                    },
+                    {
+                        "img": "goals/mini-perspective-goal-right.png",
+                        "tooltip": "Mini-bramka - prawo (perspektywa)"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-table",
+            "tooltip": "Siatkonoga",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
+                "list": [{
+                        "img": "volleyball/volleyball.png",
+                        "tooltip": "Siatkonoga"
+                    },
+                    {
+                        "img": "volleyball/perspective-volleyball.png",
+                        "tooltip": "Siatkonoga (perspektywa)"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-male",
+            "tooltip": "Murek",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"WALL_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"WALL_ADD\"",
+                "list": [{
+                        "img": "wall/version1/wall-1x.png",
+                        "tooltip": "Murek (1x)"
+                    },
+                    {
+                        "img": "wall/version1/wall-2x.png",
+                        "tooltip": "Murek (2x)"
+                    },
+                    {
+                        "img": "wall/version1/wall-3x.png",
+                        "tooltip": "Murek (3x)"
+                    },
+                    {
+                        "img": "wall/version1/wall-4x.png",
+                        "tooltip": "Murek (4x)"
+                    },
+                    {
+                        "img": "wall/version2/wall-1x.png",
+                        "tooltip": "Murek (1x)"
+                    },
+                    {
+                        "img": "wall/version2/wall-2x.png",
+                        "tooltip": "Murek (2x)"
+                    },
+                    {
+                        "img": "wall/version2/wall-3x.png",
+                        "tooltip": "Murek (3x)"
+                    },
+                    {
+                        "img": "wall/version2/wall-4x.png",
+                        "tooltip": "Murek (4x)"
+                    }
+                ]
+            }
+        }, {
+            "icon": "fa-window-maximize",
+            "tooltip": "Płotki",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"HURDLE_ADD\"",
+            "objectsIn": {
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"HURDLE_ADD\"",
+                "list": [{
+                        "img": "hurdles/low-hurdle.png",
+                        "tooltip": "Niski płotek"
+                    },
+                    {
+                        "img": "hurdles/mid-hurdle.png",
+                        "tooltip": "Średni płotek"
+                    },
+                    {
+                        "img": "hurdles/high-hurdle.png",
+                        "tooltip": "Wysoki płotek"
+                    }
+                ]
+            }
         }
-    },{
-      "icon": "fa-font",
-      "tooltip": "Tekst",
-      "ngClick": "changeCategories(mouseActionType.TEXT_ADD)"
-    },{
-      "icon": "fa-arrows-alt",
-      "tooltip": "Akcje",
-      "config": "arrow",
-      "ngClick": "selectArrow()"
-    },{
-      "icon": "fa-square-o",
-      "tooltip": "Obszar",
-      "ngClick": "changeCategories(mouseActionType.SHAPE_ADD)",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.SHAPE_ADD",
-        "list": [
-          {
-            "config": "shape",
-            "img": "select/white-3x.png",
-            "tooltip": "3 punkty",
-            "ngClick": "selectShape(shapeType.WHITE_3)"
-          },
-          {
-            "config": "shape",
-            "img": "select/white-4x.png",
-            "tooltip": "4 punkty",
-            "ngClick": "selectShape(shapeType.WHITE_4)"
-          },
-          {
-            "config": "shape",
-            "img": "select/white-5x.png",
-            "tooltip": "5 punktów",
-            "ngClick": "selectShape(shapeType.WHITE_5)"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-user",
-      "tooltip": "Zawodnicy",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"PLAYER_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"PLAYER_ADD\"",
-        "list": [
-          {
-            "config": "player",
-            "img": "players/version1/circle-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Zawodnik (okrągły)"
-          },
-          {
-            "config": "player",
-            "img": "players/version1/circle-main-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Zawodnik podświetlony (okrągły)"
-          },
-          {
-            "config": "player",
-            "img": "players/version2/player-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Zawodnik (człowiek)"
-          },
-          {
-            "config": "player",
-            "img": "players/version2/player-main-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Zawodnik podświetlony (człowiek)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P1-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P1-main-rgb(255,255,255).png",
-            "tooltip": "Zawodnik podświetlony (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P2-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P3-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P4-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P5-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P6-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P7-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P8-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P9-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P10-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P11-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P12-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P13-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P14-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P15-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P16-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P17-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P18-rgb(255,255,255).png",
-            "tooltip": "Zawodnik (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P19-rgb(255,255,255).png",
-            "tooltip": "Bramkarz (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P20-rgb(255,255,255).png",
-            "tooltip": "Bramkarz (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P21-rgb(255,255,255).png",
-            "tooltip": "Bramkarz (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P22-rgb(255,255,255).png",
-            "tooltip": "Bramkarz (perspektywa)"
-          },
-          {
-            "config": "player",
-            "img": "players/version3/P23-rgb(255,255,255).png",
-            "tooltip": "Bramkarz (perspektywa)"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-user-secret",
-      "tooltip": "Trener",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"COACH_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"COACH_ADD\"",
-        "list": [
-          {
-            "img": "coach/version1/coach.png",
-            "tooltip": "Trener"
-          },
-          {
-            "img": "coach/version2/coach.png",
-            "tooltip": "Trener"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-futbol-o",
-      "tooltip": "Piłki",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"BALL_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"BALL_ADD\"",
-        "list": [
-          {
-            "img": "balls/ball-rgb(255,255,255)rgb(0,0,0).png",
-            "tooltip": "Normalna piłka"
-          },
-          {
-            "img": "balls/medical-ball-rgb(145,27,0)rgb(0,0,0).png",
-            "tooltip": "Piłka lekarska"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-caret-up",
-      "tooltip": "Pachołki",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"CONE_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"CONE_ADD\"",
-        "list": [
-          {
-            "img": "cones/cone-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Pachołek"
-          },
-          {
-            "img": "cones-2/cone2-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Stożek"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-circle-o",
-      "tooltip": "Pierścienie",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"RINGS_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"RINGS_ADD\"",
-        "list": [
-          {
-            "img": "rings/ring-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Pierścień"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-flag",
-      "tooltip": "Chorągiewki",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"FLAG_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"FLAG_ADD\"",
-        "list": [
-          {
-            "img": "flags/left/flag-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Flaga zwrócona w lewo"
-          },
-          {
-            "img": "flags/right/flag-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Flaga zwrócona w prawo"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-columns",
-      "tooltip": "Drabinki",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"LADDER_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"LADDER_ADD\"",
-        "list": [
-          {
-            "img": "ladders/ladder-3x.png",
-            "tooltip": "Drabinka (3 poziomy)"
-          },
-          {
-            "img": "ladders/ladder-4x.png",
-            "tooltip": "Drabinka (4 poziomy)"
-          },
-          {
-            "img": "ladders/ladder-5x.png",
-            "tooltip": "Drabinka (5 poziomów)"
-          },
-          {
-            "img": "ladders/ladder-6x.png",
-            "tooltip": "Drabinka (6 poziomów)"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-italic",
-      "tooltip": "Tyczki",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"POLE_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"POLE_ADD\"",
-        "list": [
-          {
-            "img": "poles/pole-rgb(255,255,255)rgb(255,255,255).png",
-            "tooltip": "Tyczka"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-shield",
-      "tooltip": "Bramki",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
-        "list": [
-          {
-            "img": "goals/goal.png",
-            "tooltip": "Bramka"
-          },
-          {
-            "img": "goals/mini-goal.png",
-            "tooltip": "Mini-bramka"
-          },
-          {
-            "img": "goals/wide-mini-goal.png",
-            "tooltip": "Szeroka mini-bramka"
-          },
-          {
-            "img": "goals/perspective-goal-front.png",
-            "tooltip": "Bramka - przód (perspektywa)"
-          },
-          {
-            "img": "goals/perspective-goal-back.png",
-            "tooltip": "Bramka - tył (perspektywa)"
-          },
-          {
-            "img": "goals/perspective-goal-top.png",
-            "tooltip": "Bramka - górna (perspektywa)"
-          },
-          {
-            "img": "goals/perspective-goal-bottom.png",
-            "tooltip": "Bramka - dolna (perspektywa)"
-          },
-          {
-            "img": "goals/mini-perspective-goal-left.png",
-            "tooltip": "Mini-bramka - lewo (perspektywa)"
-          },
-          {
-            "img": "goals/mini-perspective-goal-right.png",
-            "tooltip": "Mini-bramka - prawo (perspektywa)"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-table",
-      "tooltip": "Siatkonoga",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
-        "list": [
-          {
-            "img": "volleyball/volleyball.png",
-            "tooltip": "Siatkonoga"
-          },
-          {
-            "img": "volleyball/perspective-volleyball.png",
-            "tooltip": "Siatkonoga (perspektywa)"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-male",
-      "tooltip": "Murek",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"WALL_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"WALL_ADD\"",
-        "list": [
-          {
-            "img": "wall/version1/wall-1x.png",
-            "tooltip": "Murek (1x)"
-          },
-          {
-            "img": "wall/version1/wall-2x.png",
-            "tooltip": "Murek (2x)"
-          },
-          {
-            "img": "wall/version1/wall-3x.png",
-            "tooltip": "Murek (3x)"
-          },
-          {
-            "img": "wall/version1/wall-4x.png",
-            "tooltip": "Murek (4x)"
-          },
-          {
-            "img": "wall/version2/wall-1x.png",
-            "tooltip": "Murek (1x)"
-          },
-          {
-            "img": "wall/version2/wall-2x.png",
-            "tooltip": "Murek (2x)"
-          },
-          {
-            "img": "wall/version2/wall-3x.png",
-            "tooltip": "Murek (3x)"
-          },
-          {
-            "img": "wall/version2/wall-4x.png",
-            "tooltip": "Murek (4x)"
-          }
-        ]
-      }
-    },{
-      "icon": "fa-window-maximize",
-      "tooltip": "Płotki",
-      "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"HURDLE_ADD\"",
-      "objectsIn": {
-        "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"HURDLE_ADD\"",
-        "list": [
-          {
-            "img": "hurdles/low-hurdle.png",
-            "tooltip": "Niski płotek"
-          },
-          {
-            "img": "hurdles/mid-hurdle.png",
-            "tooltip": "Średni płotek"
-          },
-          {
-            "img": "hurdles/high-hurdle.png",
-            "tooltip": "Wysoki płotek"
-          }
-        ]
-      }
-    }
-  ]
+    ]
 }

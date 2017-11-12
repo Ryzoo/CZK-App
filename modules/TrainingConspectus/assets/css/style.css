@@ -200,12 +200,12 @@ h6 {
     position: relative;
 }
 
-.sharedPersonContainerDel{
+.sharedPersonContainerDel {
     margin: 0 !important;
     cursor: pointer;
 }
 
-.sharedPersonContainer{
+.sharedPersonContainer {
     display: flex !important;
     line-height: 2.2rem;
     justify-content: space-between;
@@ -220,12 +220,12 @@ h6 {
     height: 230px;
 }
 
-.card .card-content .sharedFor{
+.card .card-content .sharedFor {
     width: 100%;
     margin: 10px !important;
 }
 
-.sharedFor b{
+.sharedFor b {
     margin-bottom: 8px;
 }
 
@@ -481,7 +481,8 @@ canvas,
     margin: 0;
 }
 
-.configColorPicker {
+.configColorPicker,
+.configColorPickerForText {
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
@@ -489,6 +490,15 @@ canvas,
     float: left;
     justify-content: center;
     padding-bottom: 10px;
+}
+
+.configColorPickerForText {
+    width: 50%;
+}
+
+.textSizeChanger {
+    float: left;
+    width: 50%;
 }
 
 .configColorPicker input {
@@ -508,7 +518,8 @@ canvas,
     overflow: hidden;
 }
 
-.configColor {
+.configColor,
+.configColorText {
     float: left;
     width: 30px;
     height: 30px;
@@ -516,6 +527,11 @@ canvas,
     margin-right: 5px;
     border: 1px solid;
     transition: all .2s;
+}
+
+.configColorText {
+    width: 15px;
+    height: 15px;
 }
 
 .configColor:hover {
@@ -712,6 +728,7 @@ canvas,
 }
 
 #canvasPlayerContainer {
+    background: rgba(0, 0, 0, 0.57);
     overflow: hidden;
     width: 100%;
     height: 100%;

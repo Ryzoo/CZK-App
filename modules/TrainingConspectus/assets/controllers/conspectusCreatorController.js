@@ -12,6 +12,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.orientation = 'landscape';
     $scope.animId = -1;
     $scope.turnOnHelperNet = false;
+    $scope.turnOnRotation = false;
     $scope.turnOnHekperFullScreen = false;
     $scope.fullElement = null;
     $scope.iloscklatekPomiedzyGlownymi = 40;
@@ -35,6 +36,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.objConfig = {
         player: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             selectedColor: {
                 background: "rgb(255, 255, 255)",
                 border: "rgb(255, 255, 255)"
@@ -59,27 +62,17 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 border: "rgb(255, 255, 255)"
             }]
         },
-        playerp: {
-            text: " ",
-            selectedColor: {
-                background: "rgb(255, 255, 255)",
-                border: "rgb(255, 255, 255)"
-            },
-            colors: [{
-                background: "rgb(0,0,0)",
-                border: "rgb(140, 47, 40)"
-            }, {
-                background: "rgb(255, 255, 255)",
-                border: "rgb(0, 0, 0)"
-            }]
-        },
         arrow: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             arrowTypes: ["Podanie", "Prowadzenie piłki", "Bieg bez piłki", "Linia pomocnicza", "Odległość zawodników", "Strzał"],
             arrowType: "Podanie"
         },
         shape: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             selectedColor: {
                 border: "rgb(255, 255, 255)",
                 background: "rgba(255, 255, 255, 0.4)"
@@ -106,6 +99,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         },
         ball: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             selectedColor: {
                 background: "rgb(255, 255, 255)",
                 border: "rgb(0, 0, 0)"
@@ -120,6 +115,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         },
         cones: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             selectedColor: {
                 background: "rgb(255, 255, 255)",
                 border: "rgb(255,255,255)"
@@ -146,6 +143,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         },
         rings: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             selectedColor: {
                 background: "rgb(255, 255, 255)",
                 border: "rgb(255, 255, 255)"
@@ -172,6 +171,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         },
         flags: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             selectedColor: {
                 background: "rgb(255, 255, 255)",
                 border: "rgb(255, 255, 255)"
@@ -198,6 +199,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         },
         poles: {
             text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17",
             selectedColor: {
                 background: "rgb(255, 255, 255)",
                 border: "rgb(255, 255, 255)"
@@ -454,12 +457,47 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
             //text
             if (config.text) {
-                var textEdit = "<p class='confInfo' style='padding-bottom:0'>Tekst nad obiektem</p>";
+                var textEdit = "<div class='configColorPickerForText'>";
+
+                textEdit += "<p class='confInfo' style='width: 100%'>Kolor czcionki:</p>"
+                textEdit += "<div class='configColorText' style='background-color:rgb(255,255,255); border-color:rgb(0,0,0)'></div>";
+                textEdit += "<div class='configColorText' style='background-color:rgb(0,0,0); border-color:rgb(0,0,0)'></div>";
+                textEdit += "<div class='configColorText' style='background-color:rgb(255,82,82); border-color:rgb(0,0,0)'></div>";
+                textEdit += "<div class='configColorText' style='background-color:rgb(253,216,53); border-color:rgb(0,0,0)'></div>";
+                textEdit += "</div>";
+
+                textEdit += "<div class='textSizeChanger'>"
+                textEdit += "<p class='confInfo' style='padding-bottom:0'>Rozmiar czcionki:</p>"
+                textEdit += "<input style='height: 30px; margin-bottom:10px;text-align:center; color: #adadad' class='configTextSize' type='number' class='validate' value='" + config.selectedTextSize + "'></input>";
+                textEdit += "</div>";
+
+                textEdit += "<p class='confInfo' style='padding-bottom:0'>Tekst przy obiekcie</p>";
                 textEdit += "<div style='margin-top:0' class='input-field col s12'>";
-                textEdit += "<input style='height: 30px; margin-bottom:0;text-align:center' class='configEditText' type='text' class='validate' value='" + config.text + "'></input>";
+                textEdit += "<input style='height: 30px; margin-bottom:0;text-align:center' class='configEditText' placeholder='Treść' type='text' class='validate' value='" + config.text + "'></input>";
                 textEdit += "</div>";
                 $('.lastSelectedConfigContent').first().append(textEdit);
                 var thisOb = $scope.lastSelected;
+
+                $(document).off('click', '.configColorText');
+                $(document).on('click', '.configColorText', function() {
+                    var configNow = $scope.lastSelected.getAttr('config');
+                    configNow.selectedColorText = ($(this).css("background-color"));
+                    $scope.lastSelected.setAttr('config', configNow);
+                    var text = $scope.lastSelected.getAttr('textObj');
+                    text.setAttr("fill", ($(this).css("background-color")));
+                    mainLayer.draw();
+                });
+
+                $(document).off('change', '.configTextSize');
+                $(document).on('change', '.configTextSize', function() {
+                    var configNow = $scope.lastSelected.getAttr('config');
+                    configNow.selectedTextSize = $(this).val();
+                    $scope.lastSelected.setAttr('config', configNow);
+                    var text = $scope.lastSelected.getAttr('textObj');
+                    text.setAttr("fontSize", $(this).val());
+                    mainLayer.draw();
+                });
+
                 $(document).off('change', '.configEditText');
                 $(document).on('change', '.configEditText', function() {
                     var shapes = selectedFrame.find(".movementObject");
@@ -480,7 +518,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             //createColorPicker
             if (config.colors) {
                 var colorPicker = "<div class='configColorPicker'>";
-                colorPicker += "<p class='confInfo'>Wersja kolorystyczna:</p>"
+                colorPicker += "<p class='confInfo'>Wersja kolorystyczna obiektu:</p>"
                 for (var i = 0; i < config.colors.length; i++) {
                     colorPicker += "<div class='configColor' style='background-color:" + (config.colors[i].background) + "; border-color:" + (config.colors[i].border) + "'></div>";
                 }
@@ -868,9 +906,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             y: y,
             offsetX: 100,
             text: text,
-            fontSize: 18,
+            fontSize: $scope.selectedObjConfig.selectedTextSize,
             fontFamily: 'Calibri',
-            fill: '#fff',
+            fill: $scope.selectedObjConfig.selectedColorText,
             padding: 20,
             width: 200,
             listening: false,
@@ -1109,7 +1147,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $scope.lastSelected = obj;
             });
 
-            var complexText = createTextB(mousePos.x / scale, mousePos.y / scale, $scope.selectedObjConfig && $scope.selectedObjConfig.text ? $scope.selectedObjConfig.text : "");
+            var complexText = createTextB(mousePos.x / scale, (mousePos.y / scale) + (obj.height() / 4), $scope.selectedObjConfig && $scope.selectedObjConfig.text ? $scope.selectedObjConfig.text : "");
             mainLayer.add(complexText);
             obj.setAttr('textObj', complexText);
 
@@ -1120,7 +1158,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             obj.on('dragmove', function() {
                 var txtObj = obj.getAttr("textObj");
                 txtObj.setAttr('x', obj.getAttr("x"));
-                txtObj.setAttr('y', obj.getAttr("y"));
+                txtObj.setAttr('y', obj.getAttr("y") + (obj.height() / 4));
                 obj.setAttr('textObj', txtObj);
                 mainLayer.draw();
             });
@@ -1128,7 +1166,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             obj.on('dragend', function() {
                 drawBeforePositionPoint();
                 updateNextFrameBeforePosition();
-                rotateObject();
+                if ($scope.turnOnRotation) rotateObject();
             });
 
             obj.strokeWidth(1);
@@ -1547,12 +1585,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if (!isNoObj) {
             var complexText = new Konva.Text({
                 x: other.getAttr("x"),
-                y: other.getAttr("y"),
+                y: other.getAttr("y") + other.height() / 4,
                 offsetX: 100,
                 text: other.getAttr("config") && other.getAttr("config").text ? other.getAttr("config").text : " ",
-                fontSize: 18,
+                fontSize: other.getAttr("config") && other.getAttr("config").selectedTextSize ? other.getAttr("config").selectedTextSize : 17,
                 fontFamily: 'Calibri',
-                fill: '#fff',
+                fill: other.getAttr("config") && other.getAttr("config").selectedColorText ? other.getAttr("config").selectedColorText : "rgb(255,255,255)",
                 padding: 20,
                 width: 200,
                 listening: false,
@@ -1576,14 +1614,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             newImg.src = other.attrs.image;
             var complexText = new Konva.Text({
                 x: other.attrs.x,
-                y: other.attrs.y,
+                y: other.attrs.y + other.attrs.height / 4,
                 offsetX: 100,
                 offsetX: other.attrs.offsetX,
                 offsetY: other.attrs.offsetY,
                 text: (other.attrs.config && other.attrs.config.text) ? other.attrs.config.text : "",
-                fontSize: 18,
+                fontSize: (other.attrs.config && other.attrs.config.selectedTextSize) ? other.attrs.config.selectedTextSize : 17,
                 fontFamily: 'Calibri',
-                fill: '#fff',
+                fill: (other.attrs.config && other.attrs.config.selectedColorText) ? other.attrs.config.selectedColorText : "rgb(255,255,255)",
                 padding: 20,
                 listening: false,
                 align: 'center'
@@ -1616,7 +1654,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         obj.on('dragmove', function() {
             var txtObj = obj.getAttr("textObj");
             txtObj.setAttr('x', obj.getAttr("x"));
-            txtObj.setAttr('y', obj.getAttr("y"));
+            txtObj.setAttr('y', obj.getAttr("y") + obj.height() / 4);
             obj.setAttr('textObj', txtObj);
             mainLayer.draw();
         });
@@ -1625,7 +1663,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         obj.on('dragend', function() {
             drawBeforePositionPoint();
             updateNextFrameBeforePosition();
-            rotateObject();
+            if ($scope.turnOnRotation) rotateObject();
         });
         return obj;
     }
@@ -2201,7 +2239,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
             drawCurves();
             updateDottedLines();
-            rotateObject();
+            if ($scope.turnOnRotation) rotateObject();
             selectedFrame.draw();
         } else {
             quadCurves = null;
@@ -2239,7 +2277,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 saveAnchorPoint();
                 drawCurves();
                 updateDottedLines();
-                rotateObject();
+                if ($scope.turnOnRotation) rotateObject();
             }
         });
         anchorLayer.add(anchor);
@@ -2292,7 +2330,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         };
 
         saveToAnchorHistory(currentObjPerFrame, $scope.lastSelected.getAttr("id"), anchorToSave);
-        rotateObject();
+        if ($scope.turnOnRotation) rotateObject();
 
         selectedFrame.draw();
     }
@@ -2501,7 +2539,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                                 y: p1.y,
                                 offsetX: objs[z].getAttr("offsetX"),
                                 offsetY: objs[z].getAttr("offsetY"),
-                                rotation: degree,
+                                rotation: ($scope.turnOnRotation) ? degree : objs[z].getAttr("rotation"),
                                 image: objs[z].getAttr("image"),
                                 scale: objs[z].getAttr("scale"),
                                 name: objs[z].getAttr("name"),
