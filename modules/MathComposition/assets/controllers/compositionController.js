@@ -208,7 +208,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         canvas.width = actualWidth;
         canvas.height = actualWidth * 0.78;
         var actualCircleSize = parseInt(actualWidth * 0.04);
-        var actualFontSize = parseInt(actualWidth * 0.03);
+        var actualFontSize = parseInt(actualWidth * 0.025);
 
         ctx.drawImage(backgorund, 0, 0, backgorund.width, backgorund.height, 10, 10, actualWidth - 20, (actualWidth * 0.78) - 10);
 
@@ -223,7 +223,7 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                 }
             }
 
-            var tshirtWidth = actualWidth / 9.0;
+            var tshirtWidth = actualWidth / 11.0;
             var tshirtHeight = tshirtWidth * 1.2;
 
             ctx.drawImage(tshirt, 0, 0, tshirt.width, tshirt.height, pos.x - tshirtWidth / 2, pos.y - tshirtHeight * 0.2, tshirtWidth, tshirtHeight);

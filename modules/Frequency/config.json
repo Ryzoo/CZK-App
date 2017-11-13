@@ -31,7 +31,7 @@
                 "label": "Frekwencja zawodników",
                 "url": "#!/teamFreq",
                 "icon": "fa fa-list-alt fa-fw",
-                "additional": "ng-show=\"user.tmid != ''\""
+                "additional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\""
             }
         }
     }]
