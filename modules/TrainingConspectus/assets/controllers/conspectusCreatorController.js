@@ -399,7 +399,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $(document).off('click touch', '.categories');
     $(document).on('click touch', '.categories', function() {
         if ($(window).width() > 1000) {
-            $(".itemBoxWithItem").first().width(800);
+            $(".itemBoxWithItem").first().width(750);
         } else {
             // $(".itemBoxWithItem").first().width($(window).width() - 200);
         }

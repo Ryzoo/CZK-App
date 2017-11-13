@@ -22,7 +22,7 @@
 
 .containerforcontainer {
     float: left;
-    width: calc(100% - 200px);
+    width: calc(100% - 250px);
 }
 
 @media (min-width:1000px) {
@@ -649,7 +649,7 @@ canvas,
 }
 
 #leftBlockItem {
-    width: 200px;
+    width: 250px;
     float: left;
     max-height: 480px;
     overflow-y: scroll;
