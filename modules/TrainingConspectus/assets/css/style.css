@@ -10,16 +10,30 @@
 }
 
 .mainCreateContener {
+    max-width: 1000px;
     width: 100%;
     margin: auto;
     display: block;
+    overflow: hidden;
+    border-radius: 20px;
     position: relative;
+    min-height: 350px;
 }
 
 .containerforcontainer {
     float: left;
-    max-width: 1000px;
-    width: calc(100% - 250px);
+    width: calc(100% - 200px);
+}
+
+@media (min-width:1000px) {
+    .mainCreateContener {
+        width: 1000px;
+        float: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 @media (max-width:768px) {
@@ -44,13 +58,11 @@
 
 p.confTitle {
     color: #cacaca !important;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 2 !important;
     padding: 0 10px;
     text-align: left;
-    background: #a51100;
-    letter-spacing: 1px;
-    border-bottom: 1px solid #7b1b1f;
+    background: #2a3438;
     cursor: pointer;
 }
 
@@ -73,7 +85,7 @@ p.confTitle {
 }
 
 .configleft {
-    background: #313c40;
+    background: #262e31;
 }
 
 .configleftContent {
@@ -371,6 +383,7 @@ h6 {
 .animCreatorConainer {
     position: relative;
     margin: auto;
+    min-height: 100vh;
 }
 
 canvas,
@@ -424,19 +437,18 @@ canvas,
 .playAnimContainer {
     width: 100%;
     line-height: 2;
-    background: #c11502;
-    border: 5px solid #a51100;
+    background: #2a3438;
     cursor: pointer;
     transition: all .2s;
 }
 
 .playAnimContainer i {
     line-height: 1.7;
-    color: white;
+    color: #bf4824;
 }
 
 .playAnimContainer:hover {
-    background: #f41e06;
+    background: #313c40;
 }
 
 @media screen and (max-width:890px) {
@@ -525,6 +537,7 @@ canvas,
     height: 30px;
     cursor: pointer;
     margin-right: 5px;
+    margin-top: 5px;
     border: 1px solid;
     transition: all .2s;
 }
@@ -557,7 +570,7 @@ canvas,
 .categoryItems {
     margin: 5px;
     line-height: 3.7;
-    color: #d9d9d9;
+    color: #222a2d;
     margin-right: 0;
     width: 40px;
     height: 40px;
@@ -566,6 +579,7 @@ canvas,
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    border-radius: 20px;
     transition: all .2s;
 }
 
@@ -590,8 +604,7 @@ canvas,
 
 #itemBox,
 #itemBoxFromCat {
-    background: rgba(36, 46, 51, 0.58);
-    box-shadow: inset 0px 1px 10px 1px rgba(39, 34, 34, 0.5);
+    background: rgb(34, 42, 45);
     display: flex;
     min-height: 50px;
 }
@@ -607,7 +620,7 @@ canvas,
 #itemBox {
     box-shadow: none;
     position: relative;
-    background: #242e33;
+    background: #dedede;
 }
 
 #soccerFieldBox {
@@ -636,12 +649,11 @@ canvas,
 }
 
 #leftBlockItem {
-    width: 250px;
+    width: 200px;
     float: left;
-    background: #2b363a;
-    border: 1px solid rgba(255, 26, 0, 0.55);
-    border-left: none;
-    border-right: none;
+    max-height: 480px;
+    overflow-y: scroll;
+    background: #222a2d;
 }
 
 .categories {
@@ -674,7 +686,7 @@ canvas,
 
 .timeElement,
 #addFrame {
-    width: 30px;
+    padding: 0 5px;
     line-height: 1.8;
     background: rgb(42, 42, 42);
     text-align: center;
@@ -690,8 +702,8 @@ canvas,
 }
 
 #addFrame {
-    background-color: rgb(221, 66, 19);
-    border: 1px solid rgb(221, 66, 19);
+    background-color: rgb(191, 72, 36);
+    border: 1px solid rgb(191, 72, 36);
 }
 
 #addFrame:hover {
@@ -712,11 +724,13 @@ canvas,
 
 #playerContent {
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     min-height: 100px;
     max-height: 100vh;
     height: auto;
     position: absolute;
+    border-radius: 10px;
+    overflow: hidden;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -752,8 +766,8 @@ canvas,
 
 #playerData {
     width: 100%;
-    background: #252525;
-    color: white;
+    background: #dedede;
+    color: #222a2d;
     line-height: 4;
     overflow: hidden;
 }
@@ -774,14 +788,14 @@ canvas,
     display: flex;
     justify-content: space-around;
     padding: 15px;
-    background: #252525;
-    color: white;
+    background: #dedede;
+    color: #222a2d;
     transition: color .2s;
 }
 
 .animCotrollerButton:hover,
 #exitPlayer:hover {
-    color: #ff0000;
+    color: #bf4824;
     cursor: pointer;
     transition: color .2s;
 }

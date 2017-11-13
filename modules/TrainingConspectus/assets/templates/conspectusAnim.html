@@ -114,7 +114,7 @@
 
                                         <div class="configleft playerConfigLeft">
                                             <p class='confTitle hideIs'>Właściwości odtwarzacza</p>
-                                            <div class="configleftContent" style='padding: 0 15px'>
+                                            <div class="configleftContent">
 
                                                 <p class='confInfo'>Ilość klatek pomiędzy klatkami głównymi</p>
                                                 <input style='height: 30px; margin-bottom:0;text-align:center;color: #26a69a;' type='number' class='validate' min="5" max="100" ng-model='iloscklatekPomiedzyGlownymi'>
@@ -157,41 +157,38 @@
                                                     <p class='confInfo'>Usuwanie obiektu</p>
                                                     <div class='flexedIt'>
                                                         <div class='categoryItems additionalIconInConf' id='canActionDel' ng-show="lastSelected!=null">
-                                                            <i class="fa fa-trash fa-2x fa-fw" aria-hidden="true"></i>
+                                                            <i class="fa fa-trash fa-2x fa-fw" style='color:#dedede' aria-hidden="true"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                 </div>
-                                <div id='itemBox' class='itemBox-bottom' ng-show='isSelectedField' style='justify-content: center;'>
+                                <div id='itemBox' class='itemBox-bottom' ng-show='isSelectedField'>
                                     <div class="itemSettingsTrainingCreator switch">
-                                        <label>
+                                        <label style='color:#222a2d;'>
                                             Rotacja
                                             <input type="checkbox" id='turnOnRotation' ng-model="turnOnRotation">
-                                            <span class="lever"></span>
+                                            <span style='background-color: rgb(42, 52, 56);' class="lever"></span>
                                         </label>
                                     </div>
                                     <div class="itemSettingsTrainingCreator switch">
-                                        <label>
+                                        <label style='color:#222a2d;'>
                                             Siatka
                                             <input type="checkbox" id='turnOnHelperNet' ng-model="turnOnHelperNet">
-                                            <span class="lever"></span>
+                                            <span style='background-color: rgb(42, 52, 56);' class="lever"></span>
                                         </label>
                                     </div>
                                     <div class="itemSettingsTrainingCreator switch">
-                                        <label>
+                                        <label style='color:#222a2d;'>
                                             Pełny ekran
                                             <input type="checkbox" id='turnOnHekperFullScreen' ng-model="turnOnHekperFullScreen">
-                                            <span class="lever"></span>
+                                            <span style='background-color: rgb(42, 52, 56);' class="lever"></span>
                                         </label>
                                     </div>
                                     <div id="timeline" ng-show='isSelectedField'>
-                                        <p>Klatki animacji</p>
+                                        <p style='color:#222a2d;'>Klatki animacji</p>
                                         <div class='timeElement' style='border-color:#ec1800'> 1 </div>
                                         <div id='addFrame'> + </div>
                                     </div>

@@ -346,13 +346,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(window).resize(function() {
         resize();
-        $(".itemBoxWithItem").first().css("top", $("#itemBox").height() + "px");
-        if ($(window).width() > 1250) {
-            $("#leftBlockItem").width($(window).width() - 1000);
-            $(".itemBoxWithItem").first().width($(window).width() - $("#leftBlockItem").width());
-        } else {
-            $(".itemBoxWithItem").first().width($(window).width() - 250);
-        }
     });
 
     $(window).on("orientationchange", function(event) {
@@ -396,7 +389,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $('.categories').each(function() {
             $(this).css("border-color", "");
         });
-        $('.categories').eq(0).css("border-color", "#dd4213");
+        $('.categories').eq(0).css("border-color", "rgb(191, 72, 36)");
     }
 
     selectedFrame.on('contentClick contentTap', function(e) {
@@ -405,16 +398,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('click touch', '.categories');
     $(document).on('click touch', '.categories', function() {
-        if ($(window).width() > 1250) {
-            $("#leftBlockItem").width($(window).width() - 1000);
-            $(".itemBoxWithItem").first().width($(window).width() - $("#leftBlockItem").width());
+        if ($(window).width() > 1000) {
+            $(".itemBoxWithItem").first().width(800);
         } else {
-            $(".itemBoxWithItem").first().width($(window).width() - 250);
+            // $(".itemBoxWithItem").first().width($(window).width() - 200);
         }
         $('.categories').each(function() {
             $(this).css("border-color", "");
         });
-        $(this).css("border-color", "#dd4213");
+        $(this).css("border-color", "rgb(191, 72, 36)");
         $scope.selectedObjConfig = $(this).data('config') ? $scope.objConfig[$(this).data('config')] : [];
 
     })
@@ -439,7 +431,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $('.categoryItems').each(function() {
             $(this).css("border-color", "");
         });
-        $(this).css("border-color", "#dd4213");
+        $(this).css("border-color", "rgb(191, 72, 36)");
 
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD) {
             $scope.selectedObjImg = new Image();
@@ -646,7 +638,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $('.soccerField').each(function() {
             $(this).css("transform", "");
         });
-        $(this).css("transform", "scale(1, 1.2)");
         selectField($(this).find('img').attr('src'));
     })
 
