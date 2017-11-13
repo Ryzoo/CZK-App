@@ -92,7 +92,7 @@ class TrainingConspectus extends BasicModule
     function getFullConspectById($data)
     {
         $id = $data['id'];
-        $conspect = ($this->db->getConnection())->fetchRow("SELECT * FROM conspect WHERE id=" . $id);
+        $conspect = ($this->db->getConnection())->fetchRow("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user && conspect.id=" . $id);
         $conData = json_decode($conspect['data']);
 
         $group = [

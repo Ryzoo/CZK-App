@@ -8,7 +8,7 @@
                     <div class="row conspFullContener">
                         <div class="conspFullElement">
                             <i class="fa fa-user-circle-o fa-fw fa-2x" aria-hidden="true"></i>
-                            <p>{{conspect.master}}</p>
+                            <p>{{conspect.firstname}} {{conspect.lastname}}</p>
                         </div>
                         <div class="conspFullElement">
                             <i class="fa fa-calendar fa-fw fa-2x" aria-hidden="true"></i>
@@ -22,13 +22,13 @@
                             <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
                             <p>{{conspect.team}}</p>
                         </div>
-                        <div class="conspFullElement" style='width: 100%'>
+                        <div class="conspFullElement">
                             <i class="fa fa-pencil-square-o fa-fw fa-2x" aria-hidden="true"></i>
                             <p style='font-size: .9rem'>{{conspect.about}}</p>
                         </div>
                     </div>
                     <div class="row noPrint" style='margin: 20px !important;'>
-                        <div class='oneTagFull col s12 m6 l4' ng-repeat="tag in conspect.tags track by $index">{{tag}}</div>
+                        <div class='oneTagFull' ng-repeat="tag in conspect.tags track by $index">{{tag}}</div>
                     </div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
