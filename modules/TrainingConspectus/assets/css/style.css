@@ -651,7 +651,7 @@ canvas,
 #leftBlockItem {
     width: 250px;
     float: left;
-    max-height: 480px;
+    max-height: 450px;
     overflow-y: scroll;
     background: #222a2d;
 }
