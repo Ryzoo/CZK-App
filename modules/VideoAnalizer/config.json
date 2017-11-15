@@ -8,6 +8,7 @@
     }],
     "jsControllers": ["videoController"],
     "css": ["style"],
+    "js": ["fileupload", "fileuploadprocess", "fileuploadvalidate"],
     "frontendRoute": [{
         "url": "addAnalize",
         "templateSrc": "addAnalize.html",

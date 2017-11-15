@@ -1,10 +1,18 @@
 AddDefaultCharset UTF-8
 AddType application/x-httpd-php71 .php
 DirectoryIndex index.html index.php login.html
+
+php_value upload_max_filesize 9G
+php_value post_max_size 9G
+php_value max_execution_time 200
+php_value max_input_time 200
+php_value memory_limit 256M
+
 RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_URI} !\.css$
 RewriteCond %{REQUEST_URI} !\.js$
+RewriteCond %{REQUEST_URI} !\.php$
 RewriteCond %{REQUEST_URI} !\.ttf$
 RewriteCond %{REQUEST_URI} !\.woff$
 RewriteCond %{REQUEST_URI} !\.woff2$

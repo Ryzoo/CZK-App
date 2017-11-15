@@ -3,6 +3,8 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
     $scope.showVideoPlayer = false;
     $scope.fragmentName = '';
     $scope.fragmentList = [];
+    $scope.endFragmentSelect = false;
+    $scope.showSendProgressBar = false;
     var cutterStart = null;
     var cutterEnd = null;
     var start;
@@ -113,6 +115,54 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         });
         source[0].src = URL.createObjectURL(this.files[0]);
     });
+
+    $scope.saveAnalize = function() {
+        if ($('#analizeName').val().length <= 3) {
+            notify.localNotify("Walidacja", "Podaj dłuższą nazwę analizy");
+            return;
+        }
+        if ($('#analizeName').val().length > 100) {
+            notify.localNotify("Walidacja", "Podaj krótszą nazwę analizy");
+            return;
+        }
+        if ($('#analizeDescription').val().length > 500) {
+            notify.localNotify("Walidacja", "Podaj krótszy opis");
+            return;
+        }
+        if ($scope.fragmentList.length <= 0) {
+            notify.localNotify("Walidacja", "Nie wyznaczyłeś żadnych fragmentów z danego klipu video. Wyznacz przynajmniej jeden.");
+            return;
+        }
+        $scope.showSendProgressBar = true;
+
+        var countChunk = 0;
+        var maxChunk = Math.ceil(($('#videoToAnalize').prop('files')[0].size / 10000000));
+        $('#videoToAnalize').fileupload({
+                maxChunkSize: 10000000,
+                files: $('#videoToAnalize').prop('files')[0],
+                url: 'videoFileSend.php'
+            })
+            .on('fileuploadchunkdone', function(e, data) {
+                countChunk++;
+                $('.progresBarSender').find("span").first().html((parseInt((countChunk / maxChunk) * 100)) + "%");
+                $('.progresBarSenderPrc').first().css("width", (parseInt((countChunk / maxChunk) * 100)) + "%");
+            })
+
+        $('#videoToAnalize').fileupload("send", {
+                maxChunkSize: 10000000,
+                files: $('#videoToAnalize').prop('files')[0],
+                url: 'videoFileSend.php',
+                singleFileUploads: true,
+                multipart: false,
+                acceptFileTypes: /(\.|\/)(gif|jpe?g|png|mp4)$/i
+            })
+            .error(function(result, textStatus, jqXHR) {
+                console.log('error');
+            })
+            .complete(function(result, textStatus, jqXHR) {
+                console.log('end');
+            });
+    }
 
     $scope.addFragment = function() {
         if ($('#fragmentName').val().length <= 3) {
@@ -246,8 +296,8 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         var actualTime = (Math.ceil(player.currentTime) - start);
         actualTime = actualTime > fullTime ? fullTime : actualTime;
         var percent = (((player.currentTime - start) / fullTime) * 100);
-        actualTime = (actualTime / 100).toFixed(3);
-        fullTime = (fullTime / 100).toFixed(3);
+        actualTime = (actualTime / 100).toFixed(2);
+        fullTime = (fullTime / 100).toFixed(2);
         $(player).next().next().next().html(actualTime + "<span>/</span>" + fullTime);
         percent = percent > 100 ? 100 : percent;
         progressBar.css('width', percent + "%");

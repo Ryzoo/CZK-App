@@ -4,6 +4,7 @@ namespace Modules\VideoAnalizer;
 use Core\System\BasicModule;
 use \KHerGe\JSON\JSON;
 use Core\Teams\Teams;
+use Modules\VideoAnalizer\UploadHandler;
 
 class VideoAnalizer extends BasicModule {
     private $teamsMenager;
@@ -17,7 +18,9 @@ class VideoAnalizer extends BasicModule {
     }
 
     function checkIt(){
-      var_dump(shell_exec("ffmpeg"));
+      error_reporting(E_ALL | E_STRICT);
+      $upload_handler = new UploadHandler();
+      var_dump($upload_handler->get_response());
     }
 
 }
