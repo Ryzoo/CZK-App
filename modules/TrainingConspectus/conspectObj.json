@@ -627,8 +627,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P2-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P3-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P3-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -637,8 +647,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P4-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P5-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P5-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -647,8 +667,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P6-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P7-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P7-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -657,8 +687,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P8-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P9-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P9-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -667,8 +707,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P10-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P11-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P11-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -677,8 +727,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P12-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P13-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P13-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -687,8 +747,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P14-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P15-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P15-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -697,8 +767,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P16-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P17-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Zawodnik (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P17-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -707,8 +787,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P18-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P19-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Bramkarz (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P19-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -717,8 +807,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P20-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P21-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Bramkarz (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P21-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     },
                     {
                         "config": "player",
@@ -727,8 +827,18 @@
                     },
                     {
                         "config": "player",
+                        "img": "players/version3/P22-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
+                    },
+                    {
+                        "config": "player",
                         "img": "players/version3/P23-rgb(255,255,255)rgb(255,255,255).png",
                         "tooltip": "Bramkarz (perspektywa)"
+                    },
+                    {
+                        "config": "player",
+                        "img": "players/version3/P23-main-rgb(255,255,255)rgb(255,255,255).png",
+                        "tooltip": "Zawodnik podświetlony (perspektywa)"
                     }
                 ]
             }
