@@ -1,0 +1,45 @@
+{
+    "name": "VideoAnalizer",
+    "description": "Analiza plików video, wycinanie fragmentow",
+    "version": "1.0",
+    "require": [],
+    "backendRoute": [{
+        "url": "checkIt"
+    }],
+    "jsControllers": ["videoController"],
+    "css": ["style"],
+    "frontendRoute": [{
+        "url": "addAnalize",
+        "templateSrc": "addAnalize.html",
+        "controllerName": "videoController"
+    }, {
+        "url": "analizeOptions",
+        "templateSrc": "analizeOptions.html",
+        "controllerName": "videoController"
+    }],
+    "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Analiza video",
+        "anchorPointIcon": "fa fa-video-camera fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
+        "content": {
+            "link": {
+                "label": "Dodaj analizę",
+                "url": "#!\/addAnalize",
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
+            }
+        }
+    }, {
+        "destination": "leftMenu",
+        "anchorPoint": "Analiza video",
+        "anchorPointIcon": "fa fa-video-camera fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
+        "content": {
+            "link": {
+                "label": "Ustawienia",
+                "url": "#!\/analizeOptions",
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
+            }
+        }
+    }]
+}

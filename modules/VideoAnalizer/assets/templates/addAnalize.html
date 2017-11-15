@@ -1,0 +1,149 @@
+<div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<div class="section paymentSection" ng-init="initVideo()">
+    <div ng-show='showContent' class="row">
+        <div class="col s12 m7" ng-hide='showVideoPlayer'>
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Wycinanie fragmentu</div>
+                    <div class="row">
+                        <div class="row" style='padding: 10px'>
+                            <h5>Wybierz z dysku video do obróbki</h5>
+                            <p styl='font-size:14px; color: #808080'>Pamiętaj! Używaj plików w foramcie mp4. Duży plik znacząco wpłynie na długość przetwarzania.</p>
+                        </div>
+                        <div class="file-field input-field" id="usermImgFileContener" style='width: 80%; margin: auto'>
+                            <div class="btn">
+                                <span>Wgraj video</span>
+                                <input type="file" name="videoToAnalize" id="videoToAnalize">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Wgraj video" type="file" accept="video/mp4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m7" ng-show='showVideoPlayer'>
+            <div class="row">
+                <div class='videoPlayerContainer'>
+                    <video class='videoPLayer' id='playerVid' data-time-start='3' data-time-end='10'>
+                        <source src="" type="video/mp4" >
+                </video>
+                    <div class='playerPlayStopButton'>
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </div>
+                    <div class='playerTime'>
+                        <div class='currentTime'></div>
+                    </div>
+                    <div class='playerTimeShow'></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content" style='padding-bottom:0 !important;'>
+                    <div class="card-title" style='margin-bottom:0'>
+                        <div class="form-group ">
+                            <div class="flexIconContener">
+                                <div class='oneIconfToAnalizer' data-analize-name='Dośrodkowanie'>
+                                    <img src="./modules/VideoAnalizer/assets/media/dosrodkowanie.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Nieczyste zagranie'>
+                                    <img src="./modules/VideoAnalizer/assets/media/faul.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Podanie niskie'>
+                                    <img src="./modules/VideoAnalizer/assets/media/podanie-niskie.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Przyjęcie wysokie'>
+                                    <img src="./modules/VideoAnalizer/assets/media/przyjecie-wysokie.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Przyjęcie'>
+                                    <img src="./modules/VideoAnalizer/assets/media/przyjecie.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Strzał niski'>
+                                    <img src="./modules/VideoAnalizer/assets/media/strzal.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Strzał głową'>
+                                    <img src="./modules/VideoAnalizer/assets/media/strzalglowa.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Wślizg'>
+                                    <img src="./modules/VideoAnalizer/assets/media/wslizg.png" alt="icon">
+                                </div>
+                                <div class='oneIconfToAnalizer' data-analize-name='Wyrzut z autu'>
+                                    <img src="./modules/VideoAnalizer/assets/media/wyrzut-aut.png" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content" style='padding-bottom:0 !important;'>
+                    <div class="card-title" style='margin-bottom:0'>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="input-field col s12 m8">
+                                    <input id='fragmentName' type="text" placeholder="Nazwa fragmentu" class="validate" style='margin-top: 8px; height: 1.7rem'>
+                                    <label for="fragmentName">Podaj nazwę wycinka</label>
+                                </div>
+                                <button type="button " class="waves-effect waves-light btn col s12 m4" style='margin-top:16px' ng-click="addFragment()">Dodaj</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style='margin-top: 25px;'>
+                <button type="button " class="waves-effect waves-light btn col s12">Zakończ edycję i zapisz analizę</button>
+            </div>
+        </div>
+
+        <div class="col s12 m5">
+            <div class="card" ng-show='fragmentList.length <= 0 '>
+                <div class="card-content">
+                    <div class="card-title">Lista fragmentów</div>
+                    <div class="row">
+                        <div class="row" style='padding: 10px'>
+                            <h5 style='margin-top: 0;'>Wytnij coś</h5>
+                            <p>Pamiętaj, że fragmenty będą zgrupowane po nazwach jeśli te się powtórzą.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" ng-repeat="fragment in fragmentList" ng-show='fragmentList.length > 0 '>
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <div class="card-title fragmentName" style='margin-bottom: 0;'>{{fragment.name}}</div>
+                    <div class="row">
+                        <table class="table centered highlight striped fragmentList">
+                            <tr style='cursor: pointer;' ng-repeat="oneFragment in fragment.list" ng-click='editFragment(fragment.name,$index)'>
+                                <td style='padding: 3px'>{{oneFragment.start}} - {{oneFragment.end}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+            $('ul.tabs').tabs();
+            $('.collapsible').collapsible();
+            $('.datetimepicker').datetimepicker({
+                format: 'Y/m/d',
+                lang: 'pl',
+                timepicker: false,
+            });
+        }, 500);
+    });
+</script>
