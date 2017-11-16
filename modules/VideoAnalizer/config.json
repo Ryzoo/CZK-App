@@ -4,8 +4,7 @@
     "version": "1.0",
     "require": [],
     "backendRoute": [{
-        "url": "saveVideoClip",
-        "auth": ["KOORD", "TRENER", "STAFF"]
+        "url": "saveVideoClip"
     }, {
         "url": "saveFragments",
         "parameters": [

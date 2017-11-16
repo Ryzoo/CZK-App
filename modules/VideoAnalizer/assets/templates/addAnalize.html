@@ -149,7 +149,7 @@
                             </div>
                             <div class="row" style='margin-top: 10px'>
                                 <p>Pamiętaj! Czas zapisu analizy zależy od rozmiaru załączonego pliku. Jeśli Twój plik jest znaczących rozmiarów przesyłanie może zająć bardzo dużo czasu.</br>
-                                    Nie zamykaj tej strony w czasie zapisu. Gdy przesyłanie się zakończy strona przekieruje Cię do podglądu dodanej analizy.
+                                    Nie zamykaj tej strony w czasie zapisu.
                                 </p>
                                 <button type="button" class="waves-effect waves-light btn" style='margin: auto;margin-top: 10px' ng-click="saveAnalize()">Zapisz analizę</button>
                             </div>
@@ -161,7 +161,7 @@
         <div ng-show="showSendProgressBar">
             <div class="col s12 m10 offset-m1">
                 <div class="card">
-                    <div class="card-content">
+                    <div class="card-content" ng-show='stillIsSending'>
                         <div class="card-title">
                             Trwa przesyłanie klipu video na server
                         </div>
@@ -175,7 +175,15 @@
                                 <span>0%</span>
                                 <div class="progresBarSenderPrc"></div>
                             </div>
-                            <p style='margin-top: 10px'>Trwa wysyłanie pliku. Prosimy o nie zamykanie tej strony. Po przesłaniu zostaniesz przekierowany do podglądu analizy.</p>
+                            <p style='margin-top: 10px'>Trwa wysyłanie pliku. Prosimy o nie zamykanie tej strony do zakończenia.</p>
+                        </div>
+                    </div>
+                    <div class="card-content" ng-show='!stillIsSending'>
+                        <div class="card-title">
+                            Zapis udany
+                        </div>
+                        <div class="row" style='padding: 50px;'>
+                            <p style='margin-top: 10px'>Dziękujemy za cierpliwość. Twoja analiza została odpowiednio przerobiona i zapisana</p>
                         </div>
                     </div>
                 </div>

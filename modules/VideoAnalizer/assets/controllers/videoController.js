@@ -5,6 +5,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
     $scope.fragmentList = [];
     $scope.endFragmentSelect = false;
     $scope.showSendProgressBar = false;
+    $scope.stillIsSending = true;
     var cutterStart = null;
     var cutterEnd = null;
     var start;
@@ -136,11 +137,11 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         $scope.showSendProgressBar = true;
 
         var countChunk = 0;
-        var maxChunk = Math.ceil(($('#videoToAnalize').prop('files')[0].size / 10000000));
+        var maxChunk = Math.ceil(($('#videoToAnalize').prop('files')[0].size / 3000000));
         $('#videoToAnalize').fileupload({
-                maxChunkSize: 10000000,
+                maxChunkSize: 3000000,
                 files: $('#videoToAnalize').prop('files')[0],
-                url: 'backend/checkIt'
+                url: 'backend/saveVideoClip'
             })
             .on('fileuploadchunkdone', function(e, data) {
                 countChunk++;
@@ -149,9 +150,9 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
             })
 
         $('#videoToAnalize').fileupload("send", {
-                maxChunkSize: 10000000,
+                maxChunkSize: 3000000,
                 files: $('#videoToAnalize').prop('files')[0],
-                url: 'backend/checkIt',
+                url: 'backend/saveVideoClip',
                 singleFileUploads: true,
                 multipart: false,
                 acceptFileTypes: /(\.|\/)(gif|jpe?g|png|mp4)$/i
@@ -162,7 +163,9 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
             .complete(function(result, textStatus, jqXHR) {
                 notify.localNotify("Zapis na serwerze", "Twój film został właśnie zapisany na serwerze.Poczekaj jeszcze chwilkę");
                 request.backend('saveFragments', { frName: $('#analizeName').val(), frDescription: $('#analizeDescription').val(), frList: $scope.fragmentList, videoName: $('#videoToAnalize').prop('files')[0].name }, function(data) {
-                    $scope.$apply(function() {});
+                    $scope.$apply(function() {
+                        $scope.stillIsSending = false;
+                    });
                 });
             });
     }

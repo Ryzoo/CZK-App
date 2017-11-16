@@ -21,21 +21,22 @@ class VideoAnalizer extends BasicModule {
       return $this->returnedData;
     }
 
-    function checkIt(){
-      
+    function saveVideoClip(){
       $fileName = explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1];
-      $o2 = explode("/",explode("-",$_SERVER['HTTP_CONTENT_RANGE'])[1]);
       $tq = str_replace("tq=","",$_SERVER['HTTP_COOKIE']);
-      
-      file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
+      if(!isset($fileName) || strlen($fileName) <= 3 ||!isset($tq) || strlen($tq) <= 3 ){
+        $this->returnedData['success'] = false;
+        $this->returnedData['error'] = "Brak odpowiednich danych";
+      }else{
+        file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
       }
+      return $this->returnedData;
+    }
 
       function decode_chunked($data) {
         if (!preg_match('/^([0-9a-f]+)(?:;(?:[\w-]*)(?:=(?:(?:[\w-]*)*|"(?:[^\r\n])*"))?)*\r\n/i', trim($data))) {
             return $data;
         }
-    
-    
     
         $decoded = '';
         $encoded = $data;
