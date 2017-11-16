@@ -140,7 +140,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         $('#videoToAnalize').fileupload({
                 maxChunkSize: 10000000,
                 files: $('#videoToAnalize').prop('files')[0],
-                url: 'videoFileSend.php'
+                url: 'backend/checkIt'
             })
             .on('fileuploadchunkdone', function(e, data) {
                 countChunk++;
@@ -151,16 +151,19 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         $('#videoToAnalize').fileupload("send", {
                 maxChunkSize: 10000000,
                 files: $('#videoToAnalize').prop('files')[0],
-                url: 'videoFileSend.php',
+                url: 'backend/checkIt',
                 singleFileUploads: true,
                 multipart: false,
                 acceptFileTypes: /(\.|\/)(gif|jpe?g|png|mp4)$/i
             })
             .error(function(result, textStatus, jqXHR) {
-                console.log('error');
+                notify.localNotify("Błąd podczas przesyłania", "Przepraszamy nie możemy teraz obsłużyć tego żadania");
             })
             .complete(function(result, textStatus, jqXHR) {
-                console.log('end');
+                notify.localNotify("Zapis na serwerze", "Twój film został właśnie zapisany na serwerze.Poczekaj jeszcze chwilkę");
+                request.backend('saveFragments', { frName: $('#analizeName').val(), frDescription: $('#analizeDescription').val(), frList: $scope.fragmentList, videoName: $('#videoToAnalize').prop('files')[0].name }, function(data) {
+                    $scope.$apply(function() {});
+                });
             });
     }
 

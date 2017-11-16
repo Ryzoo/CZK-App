@@ -4,7 +4,14 @@
     "version": "1.0",
     "require": [],
     "backendRoute": [{
-        "url": "checkIt"
+        "url": "saveVideoClip",
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "saveFragments",
+        "parameters": [
+            "token", "frName", "frDescription", "frList", "videoName"
+        ],
+        "auth": ["KOORD", "TRENER", "STAFF"]
     }],
     "jsControllers": ["videoController"],
     "css": ["style"],
