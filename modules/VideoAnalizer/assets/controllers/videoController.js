@@ -161,8 +161,8 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
                 notify.localNotify("Błąd podczas przesyłania", "Przepraszamy nie możemy teraz obsłużyć tego żadania");
             })
             .complete(function(result, textStatus, jqXHR) {
-                notify.localNotify("Zapis na serwerze", "Twój film został właśnie zapisany na serwerze.Poczekaj jeszcze chwilkę");
-                request.backend('saveFragments', { frName: $('#analizeName').val(), frDescription: $('#analizeDescription').val(), frList: $scope.fragmentList, videoName: $('#videoToAnalize').prop('files')[0].name }, function(data) {
+                notify.localNotify("Zapis na serwerze", "Twój film został właśnie zapisany na serwerze. Poczekaj jeszcze chwilkę");
+                request.backend('saveFragments', { usid: $rootScope.user.id, frName: $('#analizeName').val(), frDescription: $('#analizeDescription').val(), frList: $scope.fragmentList, videoName: $('#videoToAnalize').prop('files')[0].name }, function(data) {
                     $scope.$apply(function() {
                         $scope.stillIsSending = false;
                     });

@@ -8,7 +8,7 @@
     }, {
         "url": "saveFragments",
         "parameters": [
-            "token", "frName", "frDescription", "frList", "videoName"
+            "token", "frName", "frDescription", "frList", "videoName", "usid"
         ],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }],
