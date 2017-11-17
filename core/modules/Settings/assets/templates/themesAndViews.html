@@ -2,28 +2,29 @@
 
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="initThemes()">
-        <div class="col s12 m6">
+        <div class="col s12 m10 offset-m1">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
                         Podstawowa grafika na stronie
                     </div>
                     <div class="row">
-                        <div class="titleIn">Ustaw podstawową grafikę na stronie</div>
+                        <h5>Wybierz szablon wyglądu z poniższych</h5>
+                        <select id='selectThemes'>
+                            </select>
+                    </div>
+                    <div class="row">
                         <div class="logoLoginPage">
                             <div class="row">
-                                <img src="./files/img/club_logo.png" alt="login page logo" id='prevLogo' class='col s6 offset-s3 m4 offset-m4'>
-                            </div>
-                            <div class="row">
-                                <form id="addLogoForm" enctype="multipart/form-data">
+                                <div class='col s6  ' style='margin-top:12px'>
+                                    <img style='max-height:50px' src="./files/img/club_logo.png" alt="login page logo" id='prevLogo'>
+                                </div>
+                                <form id="addLogoForm" enctype="multipart/form-data" class='col s6 '>
                                     <input type="hidden" name="token" value="{{user.token}}">
                                     <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>Nowe logo</span>
+                                        <div class="btn" style='float: none'>
+                                            <span>Zmień logo</span>
                                             <input type="file" name="logoFile" id="logoFile" accept=".png">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" placeholder="Logo panelu logowania">
                                         </div>
                                     </div>
                                 </form>
@@ -31,18 +32,15 @@
                         </div>
                         <div class="backgroundLoginPage">
                             <div class="row">
-                                <img src="./files/img/background.jpg" alt="login page background" id='prevBack' class='col s6 offset-s3 m4 offset-m4'>
-                            </div>
-                            <div class="row">
-                                <form id="addBackgroundForm" enctype="multipart/form-data">
+                                <div class='col s6 ' style='margin-top:12px'>
+                                    <img style='max-height:50px' src="./files/img/background.jpg" alt="login page background" id='prevBack'>
+                                </div>
+                                <form id="addBackgroundForm" enctype="multipart/form-data" class='col s6 '>
                                     <input type="hidden" name="token" value="{{user.token}}">
                                     <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>Nowe tło</span>
+                                        <div class="btn" style='float: none'>
+                                            <span>Zmień tło</span>
                                             <input type="file" name="backFile" id="backFile" accept=".jpg">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" placeholder="Tło panelu logowania">
                                         </div>
                                     </div>
                                 </form>
@@ -50,37 +48,20 @@
                         </div>
                         <div class="pageIcon">
                             <div class="row">
-                                <img src="./files/img/favicon.ico" alt="panel icon" id='prevIconPage' class='col s2 offset-s5'>
-                            </div>
-                            <div class="row">
-                                <form id="addIconForm" enctype="multipart/form-data">
+                                <div class='col s6' style='margin-top:12px'>
+                                    <img style='max-height:50px' src="./files/img/favicon.ico" alt="panel icon" id='prevIconPage'>
+                                </div>
+                                <form id="addIconForm" enctype="multipart/form-data" class='col s6 '>
                                     <input type="hidden" name="token" value="{{user.token}}">
                                     <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>Nowa ikona</span>
+                                        <div class="btn" style='float: none'>
+                                            <span>Zmień ikonę</span>
                                             <input type="file" name="icoFile" id="icoFile" accept=".ico">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" placeholder="Ikona strony">
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Wygląd panelu głównego
-                    </div>
-                    <div class="row">
-                        <div class="titleIn">Wybierz szablon wyglądu z poniższych</div>
-                        <select id='selectThemes'>
-                        </select>
                     </div>
                 </div>
             </div>

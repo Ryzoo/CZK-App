@@ -177,9 +177,11 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         $scope.showSendProgressBar = true;
 
         var countChunk = 0;
-        var maxChunk = Math.ceil(($('#videoToAnalize').prop('files')[0].size / 3000000));
+        var fileSize = $('#videoToAnalize').prop('files')[0].size;
+        var chunkSize = fileSize < 3000000 ? fileSize / 2 : 3000000;
+        var maxChunk = Math.ceil((fileSize / chunkSize));
         $('#videoToAnalize').fileupload({
-                maxChunkSize: 3000000,
+                maxChunkSize: chunkSize,
                 files: $('#videoToAnalize').prop('files')[0],
                 url: 'backend/saveVideoClip'
             })
@@ -190,7 +192,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
             })
 
         $('#videoToAnalize').fileupload("send", {
-                maxChunkSize: 3000000,
+                maxChunkSize: chunkSize,
                 files: $('#videoToAnalize').prop('files')[0],
                 url: 'backend/saveVideoClip',
                 singleFileUploads: true,
@@ -205,6 +207,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
                 request.backend('saveFragments', { usid: $rootScope.user.id, frName: $('#analizeName').val(), frDescription: $('#analizeDescription').val(), frList: $scope.fragmentList, videoName: $('#videoToAnalize').prop('files')[0].name }, function(data) {
                     $scope.$apply(function() {
                         $scope.stillIsSending = false;
+                        $location.url("/analizeList");
                     });
                 }, "Zapis zakończony");
             });
@@ -378,6 +381,5 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         percent = percent > 100 ? 100 : percent;
         progressBar.css('width', percent + "%");
     }
-
 
 });
