@@ -6,6 +6,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
     $scope.endFragmentSelect = false;
     $scope.showSendProgressBar = false;
     $scope.stillIsSending = true;
+    $scope.analizeList = [];
     var cutterStart = null;
     var cutterEnd = null;
     var start;
@@ -166,8 +167,33 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
                     $scope.$apply(function() {
                         $scope.stillIsSending = false;
                     });
-                });
+                }, "Zapis zakończony");
             });
+    }
+
+    $scope.deleteAnalize = function(id) {
+        $rootScope.showModalWindow("Nieodwracalne usunięcie analizay video", function() {
+            request.backend('deleteAnalize', { id: id }, function(data) {
+                $scope.$apply(function() {
+                    for (let i = 0; i < $scope.analizeList.length; i++) {
+                        if ($scope.analizeList[i].id == id) {
+                            $scope.analizeList.splice(i, 1);
+                            break;
+                        }
+                    }
+                });
+            }, "Pomyślnie usunięto");
+        });
+    }
+
+
+    $scope.loadAnalize = function() {
+        request.backend('getAnalizeList', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.showContent = true;
+                $scope.analizeList = data;
+            });
+        });
     }
 
     $scope.addFragment = function() {

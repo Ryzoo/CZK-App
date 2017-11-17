@@ -1,0 +1,71 @@
+<div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<div class="section paymentSection" ng-init="loadAnalize()">
+    <div ng-show='showContent' class="row">
+        <div class="col s12" ng-hide="analizeList.length <= 0">
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <div class="row">
+                        <div class="input-field col s12 m8 offset-m2">
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę' ng-model='searchText'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" ng-show="analizeList.length <= 0">
+            <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Niestety żadna analiza nie została jeszcze wykonana.
+                </br>Utwórz pierwszą przechodząc do zakładki analizy video.</h5>
+        </div>
+        <div class="col s12" ng-hide="analizeList.length <= 0">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Dostępne analizy video</div>
+                    <div class="row">
+                        <table class='table centered highlight striped'>
+                            <thead>
+                                <tr>
+                                    <th>Nazwa</th>
+                                    <th>Autor</th>
+                                    <th>Opis</th>
+                                    <th>Akcje</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="analize in analizeList | filter:searchText track by $index">
+                                    <td>{{analize.name}}</td>
+                                    <td>{{analize.firstname}} {{analize.lastname}}</td>
+                                    <td>{{analize.description}}</td>
+                                    <td>
+                                        <span style='cursor: pointer' ng-click="showAnalize(analize.id)"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></span>
+                                        <span style='cursor: pointer' ng-click="deleteAnalize(analize.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+            $('ul.tabs').tabs();
+            $('.collapsible').collapsible();
+            $('.datetimepicker').datetimepicker({
+                format: 'Y/m/d',
+                lang: 'pl',
+                timepicker: false,
+            });
+        }, 500);
+    });
+</script>

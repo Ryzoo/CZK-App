@@ -11,6 +11,13 @@
             "token", "frName", "frDescription", "frList", "videoName", "usid"
         ],
         "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "getAnalizeList",
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "deleteAnalize",
+        "parameters": ["id"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
     }],
     "jsControllers": ["videoController"],
     "css": ["style"],
@@ -23,8 +30,24 @@
         "url": "analizeOptions",
         "templateSrc": "analizeOptions.html",
         "controllerName": "videoController"
+    }, {
+        "url": "analizeList",
+        "templateSrc": "analizeList.html",
+        "controllerName": "videoController"
     }],
     "anchor": [{
+        "destination": "leftMenu",
+        "anchorPoint": "Analiza video",
+        "anchorPointIcon": "fa fa-video-camera fa-fw",
+        "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
+        "content": {
+            "link": {
+                "label": "Lista analiz",
+                "url": "#!\/analizeList",
+                "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
+            }
+        }
+    }, {
         "destination": "leftMenu",
         "anchorPoint": "Analiza video",
         "anchorPointIcon": "fa fa-video-camera fa-fw",

@@ -65,6 +65,11 @@ class VideoAnalizer extends BasicModule {
       return $this->returnedData;
     }
 
+    function getAnalizeList(){
+      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT videoAnalize.*, user_data.firstname, user_data.lastname FROM videoAnalize, user_data WHERE user_data.user_id = videoAnalize.id_user ORDER BY videoAnalize.name DESC");
+      return $this->returnedData;
+    }
+
     function saveVideoClip(){
       $fileName = explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1];
       $tq = str_replace("tq=","",$_SERVER['HTTP_COOKIE']);
@@ -74,6 +79,19 @@ class VideoAnalizer extends BasicModule {
       }else{
         file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
       }
+      return $this->returnedData;
+    }
+
+    function deleteAnalize($data){
+      $id = $data["id"];
+      $name = ($this->db->getConnection())->fetchRowMany("SELECT name FROM videoAnalize WHERE id=".$id)[0]["name"];
+      $name = str_replace(" ","_", $name);
+      $pathToFile = "../files/videoAnalize/";
+      $analizeDirectory = $pathToFile . $name ;
+      $this->returnedData['data'] = ($this->db->getConnection())->delete("videoAnalize",["id"=>$id]);
+      $this->returnedData['data'] = ($this->db->getConnection())->delete("videoFragments",["id_analize"=>$id]);
+      array_map('unlink', glob("$analizeDirectory/*.*"));
+      if( file_exists($analizeDirectory) )rmdir($analizeDirectory);
       return $this->returnedData;
     }
 

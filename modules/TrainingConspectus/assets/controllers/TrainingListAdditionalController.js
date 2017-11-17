@@ -198,9 +198,11 @@ app.controller('TrainingListAdditionalController', function($scope, auth, $rootS
     }
 
     $scope.deleteCon = function(id) {
-        request.backend('deleteConspect', { id: id }, function(data) {
-            $scope.initConspectusList();
-        }, "Pomyślnie usunięto");
+        $rootScope.showModalWindow("Nieodwracalne usunięcie konspektu", function() {
+            request.backend('deleteConspect', { id: id }, function(data) {
+                $scope.initConspectusList();
+            }, "Pomyślnie usunięto");
+        });
     }
 
 });
