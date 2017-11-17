@@ -1,4 +1,4 @@
-app.controller('videoController', function($scope, auth, $rootScope, notify, request) {
+app.controller('videoController', function($scope, auth, $rootScope, notify, request, $location) {
     $scope.showContent = false;
     $scope.showVideoPlayer = false;
     $scope.fragmentName = '';
