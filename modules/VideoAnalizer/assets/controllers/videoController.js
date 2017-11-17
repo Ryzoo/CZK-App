@@ -186,6 +186,11 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         });
     }
 
+    $scope.showAnalize = function(id) {
+        $rootScope.analizeId = id;
+        $rootScope.showWidget('showAnalize', 'VideoAnalizer');
+    }
+
 
     $scope.loadAnalize = function() {
         request.backend('getAnalizeList', {}, function(data) {

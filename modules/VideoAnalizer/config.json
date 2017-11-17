@@ -18,8 +18,12 @@
         "url": "deleteAnalize",
         "parameters": ["id"],
         "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "getAnalizeFragment",
+        "parameters": ["id"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
     }],
-    "jsControllers": ["videoController"],
+    "jsControllers": ["videoController", "analizeShowController"],
     "css": ["style"],
     "js": ["fileupload", "fileuploadprocess", "fileuploadvalidate"],
     "frontendRoute": [{

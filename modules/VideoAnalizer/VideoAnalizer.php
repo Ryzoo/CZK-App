@@ -95,6 +95,12 @@ class VideoAnalizer extends BasicModule {
       return $this->returnedData;
     }
 
+    function getAnalizeFragment($data){
+      $id = $data["id"];
+      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM videoFragments WHERE id_analize=".$id);
+      return $this->returnedData;
+    }
+
     function decode_chunked($data) {
         if (!preg_match('/^([0-9a-f]+)(?:;(?:[\w-]*)(?:=(?:(?:[\w-]*)*|"(?:[^\r\n])*"))?)*\r\n/i', trim($data))) {
             return $data;
