@@ -1,14 +1,29 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
 <div class="section" ng-controller='showAnalizeController' ng-init="loadAnalizeById()">
     <div ng-show='showContent' class="row">
+        <div class="col s12" ng-hide="fragmentList.length <= 0">
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <div class="row">
+                        <h5 style='padding-top:20px;'>Kliknij w wybrany fragment aby zobaczyć go w odtwarzaczu.</h5>
+                        <p>Możesz użyć wyszukiwarki poniżej aby wyszukać konkretną akcję</p>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m8 offset-m2">
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę' ng-model='searchText'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col s12">
-            <div class="card" ng-repeat="fragment in fragmentList">
+            <div class="card" ng-repeat="fragment in fragmentList | filter:searchText track by $index">
                 <div class="card-content" style='padding-bottom: 0 !important;'>
                     <div class="card-title fragmentName" style='margin-bottom: 0;'>{{fragment.name}}</div>
                     <div class="row">
                         <table class="table centered highlight striped fragmentList">
-                            <tr style='cursor: pointer;' ng-repeat="oneFragment in fragment.list" ng-click='editFragment(fragment.name,$index)'>
-                                <td style='padding: 3px'>{{oneFragment.start_time}} - {{oneFragment.end_time}}</td>
+                            <tr style='cursor: pointer;' ng-repeat="oneFragment in fragment.list">
+                                <td style='padding: 10px' ng-click='showInPlayer(oneFragment.url)'>{{oneFragment.start_time}} - {{oneFragment.end_time}}</td>
                             </tr>
                         </table>
                     </div>

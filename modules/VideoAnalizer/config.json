@@ -23,7 +23,7 @@
         "parameters": ["id"],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }],
-    "jsControllers": ["videoController", "analizeShowController"],
+    "jsControllers": ["videoController", "showAnalizeController"],
     "css": ["style"],
     "js": ["fileupload", "fileuploadprocess", "fileuploadvalidate"],
     "frontendRoute": [{

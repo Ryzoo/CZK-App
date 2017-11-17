@@ -27,7 +27,8 @@
                                     <th>Nazwa</th>
                                     <th>Autor</th>
                                     <th>Opis</th>
-                                    <th>Akcje</th>
+                                    <th>Fragmenty</th>
+                                    <th>Usuń</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,8 +37,10 @@
                                     <td>{{analize.firstname}} {{analize.lastname}}</td>
                                     <td>{{analize.description}}</td>
                                     <td>
-                                        <span style='cursor: pointer' ng-click="showAnalize(analize.id)"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></span>
-                                        <span style='cursor: pointer' ng-click="deleteAnalize(analize.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></span>
+                                        <span style='cursor: pointer; padding: 10px;' ng-click="showAnalize(analize.id)"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></span>
+                                    </td>
+                                    <td>
+                                        <span style='cursor: pointer; padding: 10px;' ng-click="deleteAnalize(analize.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></span>
                                     </td>
                                 </tr>
                             </tbody>

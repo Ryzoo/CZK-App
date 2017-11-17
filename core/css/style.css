@@ -18,7 +18,7 @@ Premium: http://www.gridgum.com
     transform: translate(-50%, -50%);
 }
 
-#canvasPlayer{
+#canvasPlayer {
     display: none;
 }
 
@@ -210,6 +210,23 @@ header nav {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+
+#videoPlayerContMain {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    z-index: 300;
+    display: none;
+}
+
+#videoPlayerContMain video {
+    max-width: 50vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #mainContent {

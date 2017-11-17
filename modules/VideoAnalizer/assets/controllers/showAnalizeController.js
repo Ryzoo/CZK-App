@@ -7,25 +7,44 @@ app.controller('showAnalizeController', function($scope, auth, $rootScope, notif
             $scope.$apply(function() {
                 for (let i = 0; i < data.length; i++) {
                     var isExist = false;
-                    if ($scope.fragmentList[i].name == data[i].name) {
-                        $scope.fragmentList[i].list.push({
-                            start_time: data[i].start_time,
-                            end_time: data[i].end_time
-                        });
-                        isExist = true;
-                        break;
+
+                    for (let x = 0; x < $scope.fragmentList.length; x++) {
+                        if ($scope.fragmentList[x].name == data[i].name) {
+                            $scope.fragmentList[x].list.push({
+                                start_time: data[i].start_time,
+                                end_time: data[i].end_time,
+                                url: data[i].url
+                            });
+                            isExist = true;
+                            break;
+                        }
                     }
-                    if (!finded) {
+
+                    if (!isExist) {
                         $scope.fragmentList.push({
                             name: data[i].name,
                             list: [{
                                 start_time: data[i].start_time,
-                                end_time: data[i].end_time
+                                end_time: data[i].end_time,
+                                url: data[i].url
                             }]
                         });
                     }
                 }
+                $scope.showContent = true;
             });
+        });
+    }
+
+    $scope.showInPlayer = function(url) {
+        $('#videoPlayerContMain').show();
+        $('#videoPlayerContMain video').first().attr("src", url);
+        $('#videoPlayerContMain video')[0].load();
+
+        $('#videoPlayerContMain').off("click")
+        $('#videoPlayerContMain').on("click", function() {
+            $('#videoPlayerContMain video')[0].pause();
+            $('#videoPlayerContMain').hide();
         });
     }
 
