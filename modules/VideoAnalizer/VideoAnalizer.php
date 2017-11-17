@@ -12,11 +12,93 @@ class VideoAnalizer extends BasicModule {
     function install(){
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `videoAnalize` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `description` TINYTEXT NOT NULL , `id_user` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `videoFragments` ( `id` INT NOT NULL AUTO_INCREMENT , `id_analize` INT NOT NULL, `name` VARCHAR(255) NOT NULL , `start_time` FLOAT NOT NULL , `end_time` FLOAT NOT NULL , `url` TINYTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `videoHelpIcon` ( `id` INT NOT NULL AUTO_INCREMENT, `url` TINYTEXT NOT NULL , `description` TINYTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+      $basicUrl = "./modules/VideoAnalizer/assets/media/icons/";
+      ($this->db->getConnection())->insertMany("videoHelpIcon",[
+          [
+            "url"=> $basicUrl."1.png",
+            "description"=>"Dośrodkowanie",
+          ],
+          [
+            "url"=> $basicUrl."2.png",
+            "description"=>"Nieczyste zagranie",
+          ],
+          [
+            "url"=> $basicUrl."3.png",
+            "description"=>"Podanie niskie",
+          ],
+          [
+            "url"=> $basicUrl."4.png",
+            "description"=>"Przyjęcie wysokie",
+          ],
+          [
+            "url"=> $basicUrl."5.png",
+            "description"=>"Przyjęcie",
+          ],
+          [
+            "url"=> $basicUrl."6.png",
+            "description"=>"Strzał niski",
+          ],
+          [
+            "url"=> $basicUrl."7.png",
+            "description"=>"Strzał głową",
+          ],
+          [
+            "url"=> $basicUrl."8.png",
+            "description"=>"Wślizg",
+          ],
+          [
+            "url"=> $basicUrl."9.png",
+            "description"=>"Wyrzut z autu",
+          ],
+        ]);
     }
 
+    
     function uninstall(){
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS videoFragments');
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS videoAnalize');
+      ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS videoHelpIcon');
+    }
+
+    function deleteVideoIcon($data){
+      $id = $data['id'];
+      $this->returnedData['data'] = ($this->db->getConnection())->delete("videoHelpIcon",["id"=>$id]);
+      return $this->returnedData;
+    }
+
+    function saveVideoIcon($data){
+      $id = $data['id'];
+      $value = $data['value'];
+      $this->returnedData['data'] = ($this->db->getConnection())->update("videoHelpIcon",["id"=>$id],["description"=>$value]);
+      return $this->returnedData;
+    }
+
+    function addVideoIcon($data){
+      if( isset($_FILES["iconFile"]) ){
+          $ext = pathinfo($_FILES["iconFile"]["name"],PATHINFO_EXTENSION);
+          $fileName = "icon_".(bin2hex(random_bytes(10))).".".$ext;
+          move_uploaded_file($_FILES["iconFile"]["tmp_name"], "../modules/VideoAnalizer/assets/media/icons/".$fileName);
+          $url = "./modules/VideoAnalizer/assets/media/icons/".$fileName;
+          $this->returnedData['data'] = ($this->db->getConnection())->insert("videoHelpIcon",[
+            "url"=>$url,
+            "description"=>"",
+            ]);
+      }else{
+        $this->returnedData["success"] = false;
+        $this->returnedData["error"] = "Brak pliku, problem z przesłaniem";
+      }
+      return $this->returnedData;
+    }
+
+    function getVideoIcon(){
+      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM videoHelpIcon ORDER BY CHAR_LENGTH(description)");
+      return $this->returnedData;
+    }
+
+    function getVideoIconFull(){
+      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT * FROM videoHelpIcon WHERE CHAR_LENGTH(description) > 0");
+      return $this->returnedData;
     }
 
     function saveFragments($data){
@@ -50,7 +132,7 @@ class VideoAnalizer extends BasicModule {
           $fragmentName = str_replace(" ","_", $name)."_".str_replace(".","_", $start)."_".str_replace(".","_", $duration).".mp4";
           $fragmentUrl = $analizeDir.$fragmentName;
           exec("ffmpeg -ss ".$start." -i ".$pathToFile.$fileName." -t ".$duration." -c copy ".$fragmentUrl);
-          $analizeId = ($this->db->getConnection())->insert("videoFragments", [
+          ($this->db->getConnection())->insert("videoFragments", [
               "id_analize" => $analizeId,
               "name" => $name,
               "start_time" => $start,

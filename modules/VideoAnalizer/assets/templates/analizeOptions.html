@@ -8,14 +8,35 @@
                     <div class="row">
                         <h5>Ikony szybkiego wyboru</h5>
                         <p>Przypisz ikoną tekst według własnego upodobania. Ikony nie podpisane nie będą widoczne przy analizie</p>
-                        <table class="table centered striped">
+
+                        <form id='iconAdderForm' enctype="multipart/form-data">
+                            <input type="hidden" name="token" value="{{user.token}}">
+                            <div class="file-field input-field">
+                                <div class="btn" style='float: none'>
+                                    <span>Dodaj nową ikonę</span>
+                                    <input id='iconAdder' type="file" accept="image/*" name="iconFile">
+                                </div>
+                            </div>
+                        </form>
+
+                        <table class="table centered striped highlight">
                             <thead>
                                 <tr>
                                     <th>Ikona</th>
                                     <th>Tekst powiązany</th>
+                                    <th>Usuń</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr ng-repeat="icon in iconList">
+                                    <td><img src="{{icon.url}}" alt="ikona"></td>
+                                    <td>
+                                        <input type="text" class='iconInput' id='icon-{{icon.id}}' value='{{icon.description}}'>
+                                    </td>
+                                    <td>
+                                        <span style='cursor: pointer; padding: 10px;' ng-click="deleteIcon(icon.id)"><i class="fa fa-times fa-fw" aria-hidden="true"></i></span>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -7,6 +7,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
     $scope.showSendProgressBar = false;
     $scope.stillIsSending = true;
     $scope.analizeList = [];
+    $scope.iconList = [];
     var cutterStart = null;
     var cutterEnd = null;
     var start;
@@ -16,9 +17,47 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
     var progressBar;
 
     $scope.initVideo = function() {
-        $scope.showContent = true;
+        request.backend('getVideoIconFull', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.showContent = true;
+                $scope.iconList = data;
+            });
+        });
     }
 
+    $scope.initOptionsVid = function() {
+        request.backend('getVideoIcon', {}, function(data) {
+            $scope.$apply(function() {
+                $scope.showContent = true;
+                $scope.iconList = data;
+            });
+        });
+    }
+
+    $scope.deleteIcon = function(id) {
+        request.backend('deleteVideoIcon', { id: id }, function(data) {
+            $scope.initOptionsVid();
+        }, "Usuwanie przebiegło pomyślnie");
+    }
+
+
+    $(document).off('change', "#iconAdder");
+    $(document).on('change', "#iconAdder", function() {
+        request.backend('addVideoIcon', new FormData($("#iconAdderForm")[0]), function(data) {
+            $scope.initOptionsVid();
+        }, "Dodano nową ikonę", true);
+    });
+
+    $(document).off('change', ".iconInput");
+    $(document).on('change', ".iconInput", function() {
+        var id = $(this).attr('id').split("-")[1];
+        var value = $(this).val();
+        $scope.saveIcon(id, value);
+    });
+
+    $scope.saveIcon = function(id, value) {
+        request.backend('saveVideoIcon', { id, value }, function(data) {});
+    }
 
     $(document).off('click', ".oneIconfToAnalizer");
     $(document).on('click', ".oneIconfToAnalizer", function() {

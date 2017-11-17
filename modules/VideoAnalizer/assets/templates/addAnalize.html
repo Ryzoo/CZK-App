@@ -45,32 +45,8 @@
                         <div class="card-title" style='margin-bottom:0'>
                             <div class="form-group ">
                                 <div class="flexIconContener">
-                                    <div class='oneIconfToAnalizer' data-analize-name='Dośrodkowanie'>
-                                        <img src="./modules/VideoAnalizer/assets/media/dosrodkowanie.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Nieczyste zagranie'>
-                                        <img src="./modules/VideoAnalizer/assets/media/faul.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Podanie niskie'>
-                                        <img src="./modules/VideoAnalizer/assets/media/podanie-niskie.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Przyjęcie wysokie'>
-                                        <img src="./modules/VideoAnalizer/assets/media/przyjecie-wysokie.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Przyjęcie'>
-                                        <img src="./modules/VideoAnalizer/assets/media/przyjecie.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Strzał niski'>
-                                        <img src="./modules/VideoAnalizer/assets/media/strzal.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Strzał głową'>
-                                        <img src="./modules/VideoAnalizer/assets/media/strzalglowa.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Wślizg'>
-                                        <img src="./modules/VideoAnalizer/assets/media/wslizg.png" alt="icon">
-                                    </div>
-                                    <div class='oneIconfToAnalizer' data-analize-name='Wyrzut z autu'>
-                                        <img src="./modules/VideoAnalizer/assets/media/wyrzut-aut.png" alt="icon">
+                                    <div ng-repeat='icon in iconList' class='oneIconfToAnalizer' data-analize-name='{{icon.description}}'>
+                                        <img src="{{icon.url}}" alt="{{icon.description}}">
                                     </div>
                                 </div>
                             </div>

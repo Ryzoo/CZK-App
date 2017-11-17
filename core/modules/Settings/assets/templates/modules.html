@@ -2,42 +2,28 @@
 
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="initSettings()">
-        <div class="col s12 m5 lg4">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">
-                        Opcje
-                    </div>
-                    <div class="row">
-                        <form id="addModuleForm" enctype="multipart/form-data">
-                            <input type="hidden" name="token" value="{{user.token}}">
-                            <div class="file-field input-field">
-                                <div class="btn">
-                                    <span>Wgraj nowy</span>
-                                    <input type="file" name="moduleFile" id="moduleFile" accept=".zip">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Moduł - zip">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m7 lg8">
+        <div class="col s12 m10 offset-m1">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">
                         Moduły
                     </div>
                     <div class="row">
+                        <form id="addModuleForm" enctype="multipart/form-data">
+                            <input type="hidden" name="token" value="{{user.token}}">
+                            <div class="file-field input-field">
+                                <div class="btn" style='float:none;'>
+                                    <span>Wgraj nowy</span>
+                                    <input type="file" name="moduleFile" id="moduleFile" accept=".zip">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
                         <div class="card-tabs">
                             <ul class="tabs tabs-fixed-width" ng-init="installed=1;">
                                 <li class="tab"><a class="active" href="" ng-click='installed=1; toInstall=0;toUpdate=0'>Włączone</a></li>
                                 <li class="tab"><a href="" ng-click='installed=0; toInstall=1;toUpdate=0'>Wyłączone</a></li>
-                                <li class="tab"><a href="" ng-click='installed=0; toInstall=0;toUpdate=1; checkUpdateModule();'>Aktualizacje</a></li>
                             </ul>
                         </div>
                         <div class="card-content">

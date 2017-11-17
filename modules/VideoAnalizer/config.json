@@ -22,6 +22,22 @@
         "url": "getAnalizeFragment",
         "parameters": ["id"],
         "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "getVideoIcon",
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "getVideoIconFull",
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "saveVideoIcon",
+        "parameters": ["id", "value"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "addVideoIcon"
+    }, {
+        "url": "deleteVideoIcon",
+        "parameters": ["id"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
     }],
     "jsControllers": ["videoController", "showAnalizeController"],
     "css": ["style"],
