@@ -149,7 +149,7 @@ class VideoAnalizer extends BasicModule {
 
           $fragmentName = str_replace(" ","_", $name)."_".str_replace(".","_", $start)."_".str_replace(".","_", $duration).".mp4";
           $fragmentUrl = $analizeDir.$fragmentName;
-          exec("ffmpeg -ss ".$start." -i ".$pathToFile.$fileName." -t ".$duration." ".$fragmentUrl);
+          exec("ffmpeg -ss ".$start." -i ".$pathToFile.$fileName." -t ".$duration." -c copy ".$fragmentUrl);
           
           ($this->db->getConnection())->insert("videoFragments", [
               "id_analize" => $analizeId,

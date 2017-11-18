@@ -204,9 +204,9 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
             })
             .complete(function(result, textStatus, jqXHR) {
                 notify.localNotify("Zapis na serwerze", "Twój film został właśnie zapisany na serwerze. Poczekaj jeszcze chwilkę");
+                $scope.stillIsSending = false;
                 request.backend('saveFragments', { usid: $rootScope.user.id, frName: $('#analizeName').val(), frDescription: $('#analizeDescription').val(), frList: $scope.fragmentList, videoName: $('#videoToAnalize').prop('files')[0].name }, function(data) {
                     $scope.$apply(function() {
-                        $scope.stillIsSending = false;
                         $location.url("/analizeList");
                     });
                 }, "Zapis zakończony");
