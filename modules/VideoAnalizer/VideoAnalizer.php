@@ -127,6 +127,7 @@ class VideoAnalizer extends BasicModule {
       foreach($frList as $fragments){
         $name = $fragments["name"];
         foreach($fragments["list"] as $oneFragment){
+          
 
           $start = (int)round(((float)$oneFragment["start"])*100);
           $sh =  (int)( (int)($start / 60)/ 60);
@@ -137,7 +138,7 @@ class VideoAnalizer extends BasicModule {
           $ss = $ss < 10 ? "0".$ss : $ss;
           $start = $sh.":".$sm.":".$ss;
 
-          $duration = (int)round(((float)$oneFragment["end"])*100);
+          $duration = ((int)round(((float)$oneFragment["end"])*100)) - ((int)round(((float)$oneFragment["start"])*100));
           $dh = (int)( (int)($duration / 60)/ 60);
           $dm = (int)($duration / 60) - $dh*60;
           $ds = (int)((($duration - $dh*60*60)) - $dm*60);
@@ -148,13 +149,13 @@ class VideoAnalizer extends BasicModule {
 
           $fragmentName = str_replace(" ","_", $name)."_".str_replace(".","_", $start)."_".str_replace(".","_", $duration).".mp4";
           $fragmentUrl = $analizeDir.$fragmentName;
-          exec("ffmpeg -i ".$pathToFile.$fileName." -ss ".$start." -to ".$duration." -c copy ".$fragmentUrl);
-
+          exec("ffmpeg -ss ".$start." -i ".$pathToFile.$fileName." -t ".$duration." ".$fragmentUrl);
+          
           ($this->db->getConnection())->insert("videoFragments", [
               "id_analize" => $analizeId,
               "name" => $name,
-              "start_time" => $start,
-              "end_time" => ((float)$oneFragment["end"])*100,
+              "start_time" => round(((float)$oneFragment["start"])*100,1),
+              "end_time" => round(((float)$oneFragment["end"])*100,1),
               "url" => str_replace("../","./", $fragmentUrl)
           ]);
         }
