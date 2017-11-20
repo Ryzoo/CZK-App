@@ -106,7 +106,7 @@ class VideoAnalizer extends BasicModule {
       $frDescription = $data['frDescription'];
       $frList = $data['frList'];
       $usid = $data['usid'];
-      $videoName = $data['videoName'];
+      $videoName = str_replace("%20","_",str_replace(" ","_",$data['videoName']));
       $token = $data['token'];
 
       $fileName = $token."_".$videoName;
@@ -172,13 +172,14 @@ class VideoAnalizer extends BasicModule {
     }
 
     function saveVideoClip(){
-      $fileName = explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1];
+      $fileName = str_replace("%20","_",str_replace(" ","_",explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1]));
       $tq = str_replace("tq=","",$_SERVER['HTTP_COOKIE']);
       if(!isset($fileName) || strlen($fileName) <= 3 ||!isset($tq) || strlen($tq) <= 3 ){
         $this->returnedData['success'] = false;
         $this->returnedData['error'] = "Brak odpowiednich danych";
       }else{
         file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
+        $this->returnedData['data'] = "../files/videoAnalize/".$tq."_".$fileName;
       }
       return $this->returnedData;
     }
