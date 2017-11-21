@@ -252,6 +252,15 @@ header nav {
     transform: translate(-50%, -50%);
 }
 
+#videoPlayerContMain .videoPlayerCont {
+    max-width: 70vw;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .closeVideoPlayer {
     background: white;
     text-align: right;

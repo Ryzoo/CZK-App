@@ -150,12 +150,15 @@ class VideoAnalizer extends BasicModule {
 
           $fragmentName = str_replace(" ","_", $name)."_".str_replace(".","_", $start)."_".str_replace(".","_", $duration).".mp4";
           $fragmentUrl = $analizeDir.$fragmentName;
-          $execReturn = exec("ffmpeg -ss ".$start." -i ".$pathToFile.$fileName." -t ".$duration." -c copy ".$fragmentUrl);
-
+          $out = [];
+          $execReturn = [];
+          exec("ffmpeg -i '".$pathToFile.$fileName."' -ss ".$start." -t ".$duration." -vcodec copy -acodec copy '".$fragmentUrl."' >> output.txt",$out,$execReturn);
+          
           array_push($fragmentsList,[
             "fragmentMain"=>$pathToFile.$fileName,
             "fragmentUrl"=>$fragmentUrl,
             "execReturn"=>$execReturn,
+            "out"=>$out,
             "start"=>$start,
             "duration"=>$duration,
           ]);
