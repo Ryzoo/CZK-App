@@ -84,19 +84,17 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
 
     $scope.deleteList = function() {
         $rootScope.showModalWindow("Nieodwracalne usunięcie analiz w liczbie: " + $scope.selectedList.length, function() {
-            $scope.$apply(function() {
-                for (let i = 0; i < $scope.selectedList.length; i++) {
-                    request.backend('deleteAnalize', { id: $scope.selectedList[i] }, function(data) {
-                        for (let i = 0; i < $scope.analizeList.length; i++) {
-                            if ($scope.analizeList[i].id == $scope.selectedList[i]) {
-                                $scope.analizeList.splice(i, 1);
-                                break;
-                            }
-                        }
-
-                    });
+            for (let i = 0; i < $scope.selectedList.length; i++) {
+                request.backend('deleteAnalize', { id: $scope.selectedList[i] }, function(data) {});
+                for (let i = 0; i < $scope.analizeList.length; i++) {
+                    if ($scope.analizeList[i].id == $scope.selectedList[i]) {
+                        $scope.$apply(function() {
+                            $scope.analizeList.splice(i, 1);
+                        });
+                        break;
+                    }
                 }
-            });
+            }
         });
     }
 
@@ -271,13 +269,14 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
             })
             .error(function(result, textStatus, jqXHR) {
                 notify.localNotify("Błąd podczas przesyłania", "Przepraszamy nie możemy teraz obsłużyć tego żadania");
+                console.log($('#videoToAnalize').prop('files'));
             })
             .complete(function(result, textStatus, jqXHR) {
                 notify.localNotify("Zapis na serwerze", "Twój film został właśnie zapisany na serwerze. Poczekaj jeszcze chwilkę");
                 $scope.stillIsSending = false;
                 request.backend('saveFragments', { usid: $rootScope.user.id, frName: $('#analizeName').val(), frDescription: $('#analizeDescription').val(), frList: $scope.fragmentList, videoName: $('#videoToAnalize').prop('files')[0].name }, function(data) {
                     $scope.$apply(function() {
-                        $location.url("/analizeList");
+                        // $location.url("/analizeList");
                     });
                 }, "Zapis zakończony");
             });

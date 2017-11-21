@@ -185,7 +185,7 @@ class VideoAnalizer extends BasicModule {
       return $this->returnedData;
     }
 
-    function saveVideoClip(){
+    function saveVideoClip($data){
       $fileName = str_replace("%20","_",str_replace(" ","_",explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1]));
       $tq = str_replace("tq=","",$_SERVER['HTTP_COOKIE']);
       if(!isset($fileName) || strlen($fileName) <= 3 ||!isset($tq) || strlen($tq) <= 3 ){
@@ -194,9 +194,8 @@ class VideoAnalizer extends BasicModule {
       }else{
         $putContent = file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
         $this->returnedData['data'] = [
-          "filePath" => "File put in: " . "../files/videoAnalize/".$tq."_".$fileName,
-          "putContentReturn" => $putContent,
-          "fileContentToPut" => file_get_contents("php://input")
+          filePath => "File put in: " . "../files/videoAnalize/".$tq."_".$fileName,
+          putContentReturn => $putContent
         ];
       }
       return $this->returnedData;
