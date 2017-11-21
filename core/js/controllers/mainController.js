@@ -33,6 +33,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     }
     $rootScope.feedType = 'opinia';
 
+
+    $scope.turnOffAdw = function() {
+        $rootScope.showAdw = false;
+    }
+
     $scope.goFeed = function(type) {
         $rootScope.feedType = type;
         $location.url("/feedback");
