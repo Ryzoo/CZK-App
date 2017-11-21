@@ -123,12 +123,13 @@ class VideoAnalizer extends BasicModule {
       if( !file_exists($analizeDir) ){
         mkdir($analizeDir);
       }
+
+      $fragmentsList = [];
        
       foreach($frList as $fragments){
         $name = $fragments["name"];
         foreach($fragments["list"] as $oneFragment){
           
-
           $start = (int)round(((float)$oneFragment["start"])*100);
           $sh =  (int)( (int)($start / 60)/ 60);
           $sm =  (int)($start / 60) - $sh*60;
@@ -149,7 +150,15 @@ class VideoAnalizer extends BasicModule {
 
           $fragmentName = str_replace(" ","_", $name)."_".str_replace(".","_", $start)."_".str_replace(".","_", $duration).".mp4";
           $fragmentUrl = $analizeDir.$fragmentName;
-          exec("ffmpeg -ss ".$start." -i ".$pathToFile.$fileName." -t ".$duration." -c copy ".$fragmentUrl);
+          $execReturn = exec("ffmpeg -ss ".$start." -i ".$pathToFile.$fileName." -t ".$duration." -c copy ".$fragmentUrl);
+
+          array_push($fragmentsList,[
+            "fragmentMain"=>$pathToFile.$fileName,
+            "fragmentUrl"=>$fragmentUrl,
+            "execReturn"=>$execReturn,
+            "start"=>$start,
+            "duration"=>$duration,
+          ]);
           
           ($this->db->getConnection())->insert("videoFragments", [
               "id_analize" => $analizeId,
@@ -161,7 +170,12 @@ class VideoAnalizer extends BasicModule {
         }
       }
 
-      unlink($pathToFile.$fileName);
+      $this->returnedData['data'] = [
+        "fragments" => $fragmentsList,
+        "filePath" => $pathToFile.$fileName
+      ];
+
+      // unlink($pathToFile.$fileName);
 
       return $this->returnedData;
     }
@@ -178,8 +192,12 @@ class VideoAnalizer extends BasicModule {
         $this->returnedData['success'] = false;
         $this->returnedData['error'] = "Brak odpowiednich danych";
       }else{
-        file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
-        $this->returnedData['data'] = "../files/videoAnalize/".$tq."_".$fileName;
+        $putContent = file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
+        $this->returnedData['data'] = [
+          "filePath" => "File put in: " . "../files/videoAnalize/".$tq."_".$fileName,
+          "putContentReturn" => $putContent,
+          "fileContentToPut" => file_get_contents("php://input")
+        ];
       }
       return $this->returnedData;
     }

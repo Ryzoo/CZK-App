@@ -8,6 +8,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
     $scope.stillIsSending = true;
     $scope.analizeList = [];
     $scope.iconList = [];
+    $scope.selectedList = [];
     var cutterStart = null;
     var cutterEnd = null;
     var start;
@@ -47,6 +48,75 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
             $scope.initOptionsVid();
         }, "Dodano nową ikonę", true);
     });
+
+    $(document).off('change', ".analizeChecked");
+    $(document).on('change', ".analizeChecked", function() {
+        const thisElement = $(this);
+        $scope.$apply(function() {
+            const id = thisElement.attr("id").split("-")[1];
+            const notAll = id == 'all' ? false : true;
+            if (notAll) {
+                if (thisElement.is(':checked')) {
+                    addToSelectedList(id);
+                } else {
+                    deleteFromSelectedList(id);
+                }
+            } else {
+                if (thisElement.is(':checked')) {
+                    $scope.selectedList = [];
+                    $(".analizeChecked").each(function() {
+                        const id = $(this).attr("id").split("-")[1];
+                        $(this).prop('checked', true);
+                        if (id != 'all') {
+                            $scope.selectedList.push(id);
+                        }
+                    })
+                } else {
+                    $scope.selectedList = [];
+                    $(".analizeChecked").each(function() {
+                        const id = $(this).attr("id").split("-")[1];
+                        $(this).prop('checked', false);
+                    })
+                }
+            }
+        });
+    });
+
+    $scope.deleteList = function() {
+        $rootScope.showModalWindow("Nieodwracalne usunięcie analiz w liczbie: " + $scope.selectedList.length, function() {
+            $scope.$apply(function() {
+                for (let i = 0; i < $scope.selectedList.length; i++) {
+                    request.backend('deleteAnalize', { id: $scope.selectedList[i] }, function(data) {
+                        for (let i = 0; i < $scope.analizeList.length; i++) {
+                            if ($scope.analizeList[i].id == $scope.selectedList[i]) {
+                                $scope.analizeList.splice(i, 1);
+                                break;
+                            }
+                        }
+
+                    });
+                }
+            });
+        });
+    }
+
+    function deleteFromSelectedList(id) {
+        for (let i = 0; i < $scope.selectedList.length; i++) {
+            if ($scope.selectedList[i] == id) {
+                $scope.selectedList.splice(i, 1);
+                return;
+            }
+        }
+    }
+
+    function addToSelectedList(id) {
+        for (let i = 0; i < $scope.selectedList.length; i++) {
+            if ($scope.selectedList[i] == id) {
+                return;
+            }
+        }
+        $scope.selectedList.push(id);
+    }
 
     $(document).off('change', ".iconInput");
     $(document).on('change', ".iconInput", function() {
