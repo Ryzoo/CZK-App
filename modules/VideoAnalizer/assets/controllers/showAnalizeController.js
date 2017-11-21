@@ -40,12 +40,6 @@ app.controller('showAnalizeController', function($scope, auth, $rootScope, notif
         $('#videoPlayerContMain').show();
         $('#videoPlayerContMain video').first().attr("src", url);
         $('#videoPlayerContMain video')[0].load();
-
-        $('#videoPlayerContMain').off("click")
-        $('#videoPlayerContMain').on("click", function() {
-            $('#videoPlayerContMain video')[0].pause();
-            $('#videoPlayerContMain').hide();
-        });
     }
 
 });

@@ -162,6 +162,12 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         $route.reload();
     });
 
+    $('.closeVideoPlayer i').off("click")
+    $('.closeVideoPlayer i').on("click", function() {
+        $('#videoPlayerContMain video')[0].pause();
+        $('#videoPlayerContMain').hide();
+    });
+
     $rootScope.toggleCardOptions = function(id) {
         $('.cardOptions').each(function() {
             var tId = $(this).attr('id');
