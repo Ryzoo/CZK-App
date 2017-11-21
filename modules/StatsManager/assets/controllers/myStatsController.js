@@ -5,7 +5,20 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
     $scope.acutalSelectedGroup = 0;
     $scope.acutalSelectedGroupTest = []
     $scope.dataViewAsTable = true;
-
+    $(document).ready(function() {
+        var wSize = $(window).width();
+        if (wSize <= 768) {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWith");
+                $(this).addClass("adwWithout");
+            });
+        } else {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWithout");
+                $(this).addClass("adwWith");
+            });
+        }
+    });
     $scope.initMyStats = function() {
         request.backend('getStats', { usid: $rootScope.user.id, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {

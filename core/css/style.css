@@ -221,6 +221,27 @@ header nav {
     display: none;
 }
 
+.adw {
+    position: fixed;
+    border: 1px solid #e37d5d;
+    border-top: 5px solid #e37d5d;
+    bottom: 10px;
+    border-radius: 5px;
+    background: #fbf8f8;
+    max-width: 785px;
+    transform: translateX(-50%);
+}
+
+.adwWithout {
+    width: calc( 100% - 40px);
+    left: 50%;
+}
+
+.adwWith {
+    width: calc( 100% - 240px);
+    left: calc(50% + 105px);
+}
+
 #videoPlayerContMain video {
     max-width: 70vw;
     position: absolute;
@@ -1192,10 +1213,57 @@ ul.top-menu>li>a:focus {
 
 /*--sidebar toggle---*/
 
+.adwContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+    padding: 15px 20px;
+    padding-top: 10px;
+}
+
+.adwContent .logoButtonColumn {
+    width: 30%;
+    max-width: 300px;
+    margin: auto;
+}
+
+.adwContent .textColumn {
+    width: 70%;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #aaaaaa;
+}
+
+.adwContent button,
+.adwContent img {
+    width: 100%;
+}
+
+@media(max-width: 768px) {
+    .adwContent .logoButtonColumn,
+    .adwContent .textColumn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.closeAdw {
+    text-align: right;
+    padding: 2px 7px;
+}
+
+.closeAdw i:hover {
+    cursor: pointer;
+    color: #ec1800;
+}
+
 .sidebar-toggle-box {
     float: left;
     margin-right: 15px;
-    margin-left: 15px;
+    margin-left: 230px;
 }
 
 .sidebar-toggle-box .fa-bars {

@@ -4,7 +4,20 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     $scope.tests = [];
     $scope.showTest = false;
     $scope.selectedCategoryId = -1;
-
+    $(document).ready(function() {
+        var wSize = $(window).width();
+        if (wSize <= 768) {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWith");
+                $(this).addClass("adwWithout");
+            });
+        } else {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWithout");
+                $(this).addClass("adwWith");
+            });
+        }
+    });
     $scope.initTestMenager = function() {
         getAllCategoryWitchTest();
     }

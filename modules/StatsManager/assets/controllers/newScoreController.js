@@ -16,6 +16,20 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
         getAllCategoryWitchTest();
         getAllPlayers();
     }
+    $(document).ready(function() {
+        var wSize = $(window).width();
+        if (wSize <= 768) {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWith");
+                $(this).addClass("adwWithout");
+            });
+        } else {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWithout");
+                $(this).addClass("adwWith");
+            });
+        }
+    });
 
     function getAllCategoryWitchTest() {
         request.backend('getCategoryWitchTest', { tmid: $rootScope.user.tmid }, function(data) {

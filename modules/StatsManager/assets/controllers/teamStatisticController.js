@@ -7,7 +7,20 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
     var matchTeamScore = 0;
     var mainChartToCheck = null;
     var colorIndex = 0;
-
+    $(document).ready(function() {
+        var wSize = $(window).width();
+        if (wSize <= 768) {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWith");
+                $(this).addClass("adwWithout");
+            });
+        } else {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWithout");
+                $(this).addClass("adwWith");
+            });
+        }
+    });
     $scope.initTeamStats = function() {
         request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid }, function(data) {
             var allPersonsId = [];

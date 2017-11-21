@@ -9,6 +9,21 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
     $scope.showTestAndType = false;
     $scope.userForm = 0;
 
+    $(document).ready(function() {
+        var wSize = $(window).width();
+        if (wSize <= 768) {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWith");
+                $(this).addClass("adwWithout");
+            });
+        } else {
+            $(".adw").each(function() {
+                $(this).removeClass("adwWithout");
+                $(this).addClass("adwWith");
+            });
+        }
+    });
+
     $scope.initUsersStats = function() {
         getAllPlayers();
     }
