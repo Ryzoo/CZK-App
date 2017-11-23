@@ -132,8 +132,8 @@
                                         <div class="configleft ">
                                             <p class='confTitle showIs'>Konfiguracja obiektu</p>
                                             <div class="configleftContent" style="display:block">
-                                                <p class='confInfo' ng-show="!lastSelected">Zaznacz w <b>trybie ruchu</b> obiekt, aby wyświetlić jego opcje</p>
-                                                <div ng-show="lastSelected">
+                                                <p class='confInfo' ng-hide="lastSelected || selectedItemList.length > 0">Zaznacz w <b>trybie ruchu</b> obiekt, aby wyświetlić jego opcje</p>
+                                                <div ng-show="lastSelected || selectedItemList.length > 0">
                                                     <div id='lastSelectedConfig'></div>
                                                 </div>
                                             </div>
@@ -142,8 +142,8 @@
                                         <div class="configleft">
                                             <p class='confTitle hideIs'>Edycja obiektu</p>
                                             <div class="configleftContent">
-                                                <p class='confInfo' ng-show="!lastSelected">Zaznacz w <b>trybie ruchu</b> obiekt, aby wyświetlić jego pola edycyjne</p>
-                                                <div ng-show="lastSelected ">
+                                                <p class='confInfo' ng-hide="lastSelected || selectedItemList.length > 0">Zaznacz w <b>trybie ruchu</b> obiekt, aby wyświetlić jego pola edycyjne</p>
+                                                <div ng-show="lastSelected || selectedItemList.length > 0">
                                                     <p class='confInfo'>Skala obiektu</p>
                                                     <p class="range-field" style="padding: 0 20px">
                                                         <span>1'</span>
@@ -156,7 +156,7 @@
                                                     </p>
                                                     <p class='confInfo'>Usuwanie obiektu</p>
                                                     <div class='flexedIt'>
-                                                        <div class='categoryItems additionalIconInConf' id='canActionDel' ng-show="lastSelected!=null">
+                                                        <div class='categoryItems additionalIconInConf' id='canActionDel'>
                                                             <i class="fa fa-trash fa-2x fa-fw" style='color:#dedede' aria-hidden="true"></i>
                                                         </div>
                                                     </div>
@@ -190,6 +190,7 @@
                                     <div id="timeline" ng-show='isSelectedField'>
                                         <p style='color:#222a2d;'>Klatki animacji</p>
                                         <div class='timeElement' style='border-color:#ec1800'> 1 </div>
+                                        <div id='deleteFrame' ng-click='deleteFrame()'> - </div>
                                         <div id='addFrame'> + </div>
                                     </div>
                                 </div>

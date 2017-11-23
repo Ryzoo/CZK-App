@@ -849,10 +849,12 @@
             "objectsIn": {
                 "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"COACH_ADD\"",
                 "list": [{
+                        "config": "onlyText",
                         "img": "coach/version1/coach.png",
                         "tooltip": "Trener"
                     },
                     {
+                        "config": "onlyText",
                         "img": "coach/version2/coach.png",
                         "tooltip": "Trener"
                     }
@@ -870,6 +872,7 @@
                         "config": "ball"
                     },
                     {
+                        "config": "onlyText",
                         "img": "balls/medical-ball-rgb(145,27,0)rgb(0,0,0).png",
                         "tooltip": "Piłka lekarska"
                     }
@@ -930,18 +933,22 @@
             "objectsIn": {
                 "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"LADDER_ADD\"",
                 "list": [{
+                        "config": "onlyText",
                         "img": "ladders/ladder-3x.png",
                         "tooltip": "Drabinka (3 poziomy)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "ladders/ladder-4x.png",
                         "tooltip": "Drabinka (4 poziomy)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "ladders/ladder-5x.png",
                         "tooltip": "Drabinka (5 poziomów)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "ladders/ladder-6x.png",
                         "tooltip": "Drabinka (6 poziomów)"
                     }
@@ -966,38 +973,47 @@
             "objectsIn": {
                 "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
                 "list": [{
+                        "config": "onlyText",
                         "img": "goals/goal.png",
                         "tooltip": "Bramka"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/mini-goal.png",
                         "tooltip": "Mini-bramka"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/wide-mini-goal.png",
                         "tooltip": "Szeroka mini-bramka"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/perspective-goal-front.png",
                         "tooltip": "Bramka - przód (perspektywa)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/perspective-goal-back.png",
                         "tooltip": "Bramka - tył (perspektywa)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/perspective-goal-top.png",
                         "tooltip": "Bramka - górna (perspektywa)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/perspective-goal-bottom.png",
                         "tooltip": "Bramka - dolna (perspektywa)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/mini-perspective-goal-left.png",
                         "tooltip": "Mini-bramka - lewo (perspektywa)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "goals/mini-perspective-goal-right.png",
                         "tooltip": "Mini-bramka - prawo (perspektywa)"
                     }
@@ -1010,10 +1026,12 @@
             "objectsIn": {
                 "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
                 "list": [{
+                        "config": "onlyText",
                         "img": "volleyball/volleyball.png",
                         "tooltip": "Siatkonoga"
                     },
                     {
+                        "config": "onlyText",
                         "img": "volleyball/perspective-volleyball.png",
                         "tooltip": "Siatkonoga (perspektywa)"
                     }
@@ -1026,34 +1044,42 @@
             "objectsIn": {
                 "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"WALL_ADD\"",
                 "list": [{
+                        "config": "onlyText",
                         "img": "wall/version1/wall-1x.png",
                         "tooltip": "Murek (1x)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "wall/version1/wall-2x.png",
                         "tooltip": "Murek (2x)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "wall/version1/wall-3x.png",
                         "tooltip": "Murek (3x)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "wall/version1/wall-4x.png",
                         "tooltip": "Murek (4x)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "wall/version2/wall-1x.png",
                         "tooltip": "Murek (1x)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "wall/version2/wall-2x.png",
                         "tooltip": "Murek (2x)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "wall/version2/wall-3x.png",
                         "tooltip": "Murek (3x)"
                     },
                     {
+                        "config": "onlyText",
                         "img": "wall/version2/wall-4x.png",
                         "tooltip": "Murek (4x)"
                     }
@@ -1066,14 +1092,17 @@
             "objectsIn": {
                 "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"HURDLE_ADD\"",
                 "list": [{
+                        "config": "onlyText",
                         "img": "hurdles/low-hurdle.png",
                         "tooltip": "Niski płotek"
                     },
                     {
+                        "config": "onlyText",
                         "img": "hurdles/mid-hurdle.png",
                         "tooltip": "Średni płotek"
                     },
                     {
+                        "config": "onlyText",
                         "img": "hurdles/high-hurdle.png",
                         "tooltip": "Wysoki płotek"
                     }

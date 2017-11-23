@@ -18,6 +18,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.iloscklatekPomiedzyGlownymi = 40;
     $scope.jakoscAnimacji = 40;
     $scope.iloscfps = 30;
+    $scope.selectedItemList = [];
+    $scope.startPointSelectShape = null;
+    $scope.endPointSelectShape = null;
+    var multiDragPositionStart = { x: 0, y: 0 };
 
     $("#animCreator").niceScroll({
         cursorborderradius: '0px', // Scroll cursor radius
@@ -35,6 +39,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $scope.objConfig = {
         player: {
+            confName: "player",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -63,6 +68,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }]
         },
         arrow: {
+            confName: "arrow",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -70,6 +76,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             arrowType: "Podanie"
         },
         shape: {
+            confName: "shape",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -98,6 +105,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }]
         },
         ball: {
+            confName: "ball",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -114,6 +122,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }]
         },
         cones: {
+            confName: "cones",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -142,6 +151,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }]
         },
         rings: {
+            confName: "rings",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -170,6 +180,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }]
         },
         flags: {
+            confName: "flags",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -198,6 +209,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }]
         },
         poles: {
+            confName: "poles",
             text: " ",
             selectedColorText: "rgb(255,255,255)",
             selectedTextSize: "17",
@@ -224,9 +236,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 background: "rgb(255, 255, 255)",
                 border: "rgb(255, 255, 255)"
             }]
+        },
+        onlyText: {
+            confName: "onlyText",
+            text: " ",
+            selectedColorText: "rgb(255,255,255)",
+            selectedTextSize: "17"
         }
-
-
     };
 
     $scope.cwName = '';
@@ -339,10 +355,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     var fieldLayer = null;
     var mainLayer = null;
     var curveLayer = null;
+    var selectShapeLayer = null;
     var anchorLayer = null;
     var lineLayer = null;
     var quadCurves = [];
+    var somethingIsDraw = false;
     var isPlayerOpen = false;
+    $scope.shiftPressed = false;
 
     $(window).resize(function() {
         resize();
@@ -396,6 +415,64 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         clickOnContent();
     })
 
+    selectedFrame.on('mousedown touchstart', function(e) {
+        onMuseDown();
+    });
+
+    selectedFrame.on('mousemove touchmove', function(e) {
+        onMuseMove();
+    });
+
+    selectedFrame.on('mouseup touchend', function(e) {
+        onMuseUp();
+    });
+
+    $(document).ready(function() {
+        $(document).off('keydown', "#animCreator");
+        $(document).off('keyup', "#animCreator");
+        $(document).on('keydown', "#animCreator", function(e) {
+            if (e.keyCode == 16) {
+                $scope.shiftPressed = true;
+            } else if (e.keyCode == 46) {
+                $rootScope.showModalWindow("Nieodwracalnie usunie zaznaczone obiekty oraz wszystkie ich wystąpienia w następnych klatkach animacji", function() {
+                    deleteCurrent();
+                });
+            }
+        });
+        $(document).on('keyup', "#animCreator", function() {
+            $scope.shiftPressed = false;
+        });
+    });
+
+    function onMuseUp() {
+        if ($scope.actualMouseAction == $scope.mouseActionType.MOVE && $scope.startPointSelectShape != null && $scope.endPointSelectShape != null && !somethingIsDraw) {
+            selectFromMultiSelectShape();
+        }
+    }
+
+    function onMuseMove() {
+        if ($scope.actualMouseAction == $scope.mouseActionType.MOVE && $scope.startPointSelectShape != null) {
+            var scale = selectedFrame.getAttr('scaleX');
+            var mousePos = selectedFrame.getPointerPosition();
+            $scope.endPointSelectShape = {
+                x: mousePos.x / scale,
+                y: mousePos.y / scale
+            }
+            if (!somethingIsDraw) redrawMultiSelectShape();
+        }
+    }
+
+    function onMuseDown() {
+        if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
+            var scale = selectedFrame.getAttr('scaleX');
+            var mousePos = selectedFrame.getPointerPosition();
+            $scope.startPointSelectShape = {
+                x: mousePos.x / scale,
+                y: mousePos.y / scale
+            }
+        }
+    }
+
     $(document).off('click touch', '.categories');
     $(document).on('click touch', '.categories', function() {
         if ($(window).width() > 1000) {
@@ -442,154 +519,253 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     })
 
     $scope.showObjConfig = function() {
-        if ($scope.lastSelected && $scope.lastSelected != null) {
-            var settingsDiv = "<div class='lastSelectedConfigContent'><p class='confInfo' >Brak dostępnych opcji konfiguracyjnych</p></div>";
-            $("#lastSelectedConfig").first().html("");
-            $("#lastSelectedConfig").first().append(settingsDiv);
 
-            var config = $scope.lastSelected.getAttr("config");
-            if (!config) return;
-            if (config.text || config.colors || config.arrowTypes)
-                $('.lastSelectedConfigContent').first().html("");
+        var settingsDiv = "<div class='lastSelectedConfigContent'><p class='confInfo' >Brak dostępnych opcji konfiguracyjnych</p></div>";
+        $("#lastSelectedConfig").first().html("");
+        $("#lastSelectedConfig").first().append(settingsDiv);
+        if (!$scope.lastSelected && $scope.selectedItemList.length <= 0) return;
+        if (!$scope.lastSelected) return;
+        var config = $scope.lastSelected.getAttr("config");
+        if (!config) return;
+        if (config.text || config.colors || config.arrowTypes)
+            $('.lastSelectedConfigContent').first().html("");
+        //text
+        if (config.text) {
+            var textEdit = "<div class='configColorPickerForText'>";
 
-            //text
-            if (config.text) {
-                var textEdit = "<div class='configColorPickerForText'>";
+            textEdit += "<p class='confInfo' style='width: 100%'>Kolor czcionki:</p>"
+            textEdit += "<div class='configColorText' style='background-color:rgb(255,255,255); border-color:rgb(0,0,0)'></div>";
+            textEdit += "<div class='configColorText' style='background-color:rgb(0,0,0); border-color:rgb(0,0,0)'></div>";
+            textEdit += "<div class='configColorText' style='background-color:rgb(255,82,82); border-color:rgb(0,0,0)'></div>";
+            textEdit += "<div class='configColorText' style='background-color:rgb(253,216,53); border-color:rgb(0,0,0)'></div>";
+            textEdit += "</div>";
 
-                textEdit += "<p class='confInfo' style='width: 100%'>Kolor czcionki:</p>"
-                textEdit += "<div class='configColorText' style='background-color:rgb(255,255,255); border-color:rgb(0,0,0)'></div>";
-                textEdit += "<div class='configColorText' style='background-color:rgb(0,0,0); border-color:rgb(0,0,0)'></div>";
-                textEdit += "<div class='configColorText' style='background-color:rgb(255,82,82); border-color:rgb(0,0,0)'></div>";
-                textEdit += "<div class='configColorText' style='background-color:rgb(253,216,53); border-color:rgb(0,0,0)'></div>";
-                textEdit += "</div>";
+            textEdit += "<div class='textSizeChanger'>"
+            textEdit += "<p class='confInfo' style='padding-bottom:0'>Rozmiar czcionki:</p>"
+            textEdit += "<input style='height: 30px; margin-bottom:10px;text-align:center; color: #adadad' class='configTextSize' type='number' class='validate' value='" + config.selectedTextSize + "'></input>";
+            textEdit += "</div>";
 
-                textEdit += "<div class='textSizeChanger'>"
-                textEdit += "<p class='confInfo' style='padding-bottom:0'>Rozmiar czcionki:</p>"
-                textEdit += "<input style='height: 30px; margin-bottom:10px;text-align:center; color: #adadad' class='configTextSize' type='number' class='validate' value='" + config.selectedTextSize + "'></input>";
-                textEdit += "</div>";
+            textEdit += "<p class='confInfo' style='padding-bottom:0'>Tekst przy obiekcie</p>";
+            textEdit += "<div style='margin-top:0' class='input-field col s12'>";
+            textEdit += "<input style='height: 30px; margin-bottom:0;text-align:center' class='configEditText' placeholder='Treść' type='text' class='validate' value='" + config.text + "'></input>";
+            textEdit += "</div>";
+            $('.lastSelectedConfigContent').first().append(textEdit);
+            var thisObj = $scope.lastSelected;
+            thisObj = $scope.selectedItemList.length > 0 ? $scope.selectedItemList : thisObj;
 
-                textEdit += "<p class='confInfo' style='padding-bottom:0'>Tekst przy obiekcie</p>";
-                textEdit += "<div style='margin-top:0' class='input-field col s12'>";
-                textEdit += "<input style='height: 30px; margin-bottom:0;text-align:center' class='configEditText' placeholder='Treść' type='text' class='validate' value='" + config.text + "'></input>";
-                textEdit += "</div>";
-                $('.lastSelectedConfigContent').first().append(textEdit);
-                var thisOb = $scope.lastSelected;
-
-                $(document).off('click', '.configColorText');
-                $(document).on('click', '.configColorText', function() {
-                    var configNow = $scope.lastSelected.getAttr('config');
+            $(document).off('click', '.configColorText');
+            $(document).on('click', '.configColorText', function() {
+                if ($.isArray(thisObj)) {
+                    for (let i = 0; i < thisObj.length; i++) {
+                        var configNow = thisObj[i].getAttr('config');
+                        configNow.selectedColorText = ($(this).css("background-color"));
+                        thisObj[i].setAttr('config', configNow);
+                        var text = thisObj[i].getAttr('textObj');
+                        text.setAttr("fill", ($(this).css("background-color")));
+                        configTextUpdate(thisObj[i]);
+                    }
+                } else {
+                    var configNow = thisObj.getAttr('config');
                     configNow.selectedColorText = ($(this).css("background-color"));
-                    $scope.lastSelected.setAttr('config', configNow);
-                    var text = $scope.lastSelected.getAttr('textObj');
+                    thisObj.setAttr('config', configNow);
+                    var text = thisObj.getAttr('textObj');
                     text.setAttr("fill", ($(this).css("background-color")));
-                    mainLayer.draw();
-                });
-
-                $(document).off('change', '.configTextSize');
-                $(document).on('change', '.configTextSize', function() {
-                    var configNow = $scope.lastSelected.getAttr('config');
-                    configNow.selectedTextSize = $(this).val();
-                    $scope.lastSelected.setAttr('config', configNow);
-                    var text = $scope.lastSelected.getAttr('textObj');
-                    text.setAttr("fontSize", $(this).val());
-                    mainLayer.draw();
-                });
-
-                $(document).off('change', '.configEditText');
-                $(document).on('change', '.configEditText', function() {
-                    var shapes = selectedFrame.find(".movementObject");
-                    var val = $(this).val();
-                    var actualConf = thisOb.getAttr("config");
-                    actualConf.text = val;
-                    thisOb.setAttr("config", actualConf);
-
-                    var textObj = thisOb.getAttr("textObj");
-                    textObj.setAttr("text", actualConf.text);
-                    thisOb.setAttr("textObj", textObj);
-
-                    configTextUpdate(thisOb);
-                    mainLayer.draw();
-                });
-            }
-
-            //createColorPicker
-            if (config.colors) {
-                var colorPicker = "<div class='configColorPicker'>";
-                colorPicker += "<p class='confInfo'>Wersja kolorystyczna obiektu:</p>"
-                for (var i = 0; i < config.colors.length; i++) {
-                    colorPicker += "<div class='configColor' style='background-color:" + (config.colors[i].background) + "; border-color:" + (config.colors[i].border) + "'></div>";
+                    configTextUpdate(thisObj);
                 }
-                colorPicker += "</div>";
-                $('.lastSelectedConfigContent').first().append(colorPicker);
-                $(document).off('click', '.configColor');
-                $(document).on('click', '.configColor', function() {
-                    var configNow = $scope.lastSelected.getAttr('config');
+                mainLayer.draw();
+            });
+
+            $(document).off('change', '.configTextSize');
+            $(document).on('change', '.configTextSize', function() {
+                if ($.isArray(thisObj)) {
+                    for (let i = 0; i < thisObj.length; i++) {
+                        var configNow = thisObj[i].getAttr('config');
+                        configNow.selectedTextSize = $(this).val();
+                        thisObj[i].setAttr('config', configNow);
+                        var text = thisObj[i].getAttr('textObj');
+                        text.setAttr("fontSize", $(this).val());
+                        text.setAttr("offsetY", 30 - $(this).val());
+                        configTextUpdate(thisObj[i]);
+                    }
+                } else {
+                    var configNow = thisObj.getAttr('config');
+                    configNow.selectedTextSize = $(this).val();
+                    thisObj.setAttr('config', configNow);
+                    var text = thisObj.getAttr('textObj');
+                    text.setAttr("fontSize", $(this).val());
+                    text.setAttr("offsetY", 30 - $(this).val());
+                    configTextUpdate(thisObj);
+                }
+                mainLayer.draw();
+            });
+
+            $(document).off('change', '.configEditText');
+            $(document).on('change', '.configEditText', function() {
+                if ($.isArray(thisObj)) {
+                    for (let i = 0; i < thisObj.length; i++) {
+                        var val = $(this).val();
+                        var actualConf = thisObj[i].getAttr("config");
+                        actualConf.text = val;
+                        thisObj[i].setAttr("config", actualConf);
+
+                        var textObj = thisObj[i].getAttr("textObj");
+                        textObj.setAttr("text", actualConf.text);
+                        thisObj[i].setAttr("textObj", textObj);
+
+                        configTextUpdate(thisObj[i]);
+                    }
+                } else {
+                    var val = $(this).val();
+                    var actualConf = thisObj.getAttr("config");
+                    actualConf.text = val;
+                    thisObj.setAttr("config", actualConf);
+
+                    var textObj = thisObj.getAttr("textObj");
+                    textObj.setAttr("text", actualConf.text);
+                    thisObj.setAttr("textObj", textObj);
+
+                    configTextUpdate(thisObj);
+                }
+                mainLayer.draw();
+            });
+        }
+
+        //createColorPicker
+        if (config.colors) {
+            var colorPicker = "<div class='configColorPicker'>";
+            colorPicker += "<p class='confInfo'>Wersja kolorystyczna obiektu:</p>"
+            for (var i = 0; i < config.colors.length; i++) {
+                colorPicker += "<div class='configColor' style='background-color:" + (config.colors[i].background) + "; border-color:" + (config.colors[i].border) + "'></div>";
+            }
+            colorPicker += "</div>";
+            $('.lastSelectedConfigContent').first().append(colorPicker);
+
+            var thisObj = $scope.lastSelected;
+            thisObj = $scope.selectedItemList.length > 0 ? $scope.selectedItemList : thisObj;
+
+            $(document).off('click', '.configColor');
+            $(document).on('click', '.configColor', function() {
+                if ($.isArray(thisObj)) {
+                    for (let i = 0; i < thisObj.length; i++) {
+                        var configNow = thisObj[i].getAttr('config');
+                        configNow.selectedColor = {
+                            background: ($(this).css("background-color")),
+                            border: ($(this).css("border-color"))
+                        };
+                        thisObj[i].setAttr('config', configNow);
+                        var back = $(this).css("background-color").replace(/ /g, "");
+                        var border = $(this).css("border-color").replace(/ /g, "");
+                        // osobne zmiany dla kazdego typu obiektu TODO
+                        switch (thisObj[i].getAttr("name")) {
+                            case "movementObject":
+                                break;
+                            case "shapes":
+                                thisObj[i].setAttr('stroke', border);
+                                thisObj[i].setAttr('fill', back);
+                                break;
+                            default:
+                                break;
+                        }
+                        configColorUpdate(thisObj[i]);
+                    }
+                } else {
+                    var configNow = thisObj.getAttr('config');
                     configNow.selectedColor = {
                         background: ($(this).css("background-color")),
                         border: ($(this).css("border-color"))
                     };
-                    $scope.lastSelected.setAttr('config', configNow);
+                    thisObj.setAttr('config', configNow);
                     var back = $(this).css("background-color").replace(/ /g, "");
                     var border = $(this).css("border-color").replace(/ /g, "");
                     // osobne zmiany dla kazdego typu obiektu TODO
-                    switch ($scope.lastSelected.getAttr("name")) {
+                    switch (thisObj.getAttr("name")) {
                         case "movementObject":
                             break;
                         case "shapes":
-                            $scope.lastSelected.setAttr('stroke', border);
-                            $scope.lastSelected.setAttr('fill', back);
-                            mainLayer.draw();
+                            thisObj.setAttr('stroke', border);
+                            thisObj.setAttr('fill', back);
                             break;
                         default:
                             break;
                     }
-                    configColorUpdate($scope.lastSelected);
-                });
-            }
-
-            //arrow type
-            if (config.arrowTypes) {
-                var arrowPicker = "<div class='configArrowTypes'>";
-                arrowPicker += "<form style='display: table;margin: 10px;'>"
-                arrowPicker += "<p class='confInfo'>Typ akcji:</p>"
-                for (var i = 0; i < config.arrowTypes.length; i++) {
-                    if (config.arrowTypes[i] == config.arrowType) add = "checked='checked'";
-                    else add = '';
-                    arrowPicker += "<p><input name='arrowTypeGroup' " + add + " type='radio' id='" + config.arrowTypes[i] + "' /><label for='" + config.arrowTypes[i] + "'>" + config.arrowTypes[i] + "</label></p>";
+                    configColorUpdate(thisObj);
                 }
-                arrowPicker += "</form>";
-                arrowPicker += "</div>";
-                $('.lastSelectedConfigContent').first().append(arrowPicker);
-                $('input[name=arrowTypeGroup]').on('change', function() {
-                    config.arrowType = $(this).attr("id");
-                    $scope.lastSelected.setAttr("config", config);
-                    configTextUpdate($scope.lastSelected); // to samo
-                    mainLayer.draw();
-                });
-            }
+                mainLayer.draw();
+            });
+        }
 
+        //arrow type
+        if (config.arrowTypes) {
+            var arrowPicker = "<div class='configArrowTypes'>";
+            arrowPicker += "<form style='display: table;margin: 10px;'>"
+            arrowPicker += "<p class='confInfo'>Typ akcji:</p>"
+            for (var i = 0; i < config.arrowTypes.length; i++) {
+                if (config.arrowTypes[i] == config.arrowType) add = "checked='checked'";
+                else add = '';
+                arrowPicker += "<p><input name='arrowTypeGroup' " + add + " type='radio' id='" + config.arrowTypes[i] + "' /><label for='" + config.arrowTypes[i] + "'>" + config.arrowTypes[i] + "</label></p>";
+            }
+            arrowPicker += "</form>";
+            arrowPicker += "</div>";
+
+            var thisObj = $scope.lastSelected;
+            thisObj = $scope.selectedItemList.length > 0 ? $scope.selectedItemList : thisObj;
+
+            $('.lastSelectedConfigContent').first().append(arrowPicker);
+            $('input[name=arrowTypeGroup]').on('change', function() {
+                if ($.isArray(thisObj)) {
+                    for (let i = 0; i < thisObj.length; i++) {
+                        config.arrowType = $(this).attr("id");
+                        thisObj[i].setAttr("config", config);
+                        configTextUpdate(thisObj[i]);
+                    }
+                } else {
+                    config.arrowType = $(this).attr("id");
+                    thisObj.setAttr("config", config);
+                    configTextUpdate(thisObj);
+                }
+                mainLayer.draw();
+            });
         }
     }
 
     function configTextUpdate(obj) {
         var id = obj.getAttr("id");
         var config = obj.getAttr("config");
+        var txt = obj.getAttr("textObj");
         for (var i = 0; i < allObjectPerFrame.length; i++) {
             for (var j = 0; j < allObjectPerFrame[i].obj.length; j++) {
                 if (allObjectPerFrame[i].obj[j].getAttr("id") == id) {
                     allObjectPerFrame[i].obj[j].setAttr("config", config);
+                    if (txt) {
+                        var thisTxt = allObjectPerFrame[i].obj[j].getAttr("textObj");
+                        thisTxt.setAttr('fill', txt.getAttr('fill'));
+                        thisTxt.setAttr('text', txt.getAttr('text'));
+                        thisTxt.setAttr('fontSize', txt.getAttr('fontSize'));
+                    }
                     break;
                 }
             }
             for (var j = 0; j < allObjectPerFrame[i].arrow.length; j++) {
                 if (allObjectPerFrame[i].arrow[j].getAttr("id") == id) {
                     allObjectPerFrame[i].arrow[j].setAttr("config", config);
+                    if (txt) {
+                        var thisTxt = allObjectPerFrame[i].arrow[j].getAttr("textObj");
+                        thisTxt.setAttr('fill', txt.getAttr('fill'));
+                        thisTxt.setAttr('text', txt.getAttr('text'));
+                        thisTxt.setAttr('fontSize', txt.getAttr('fontSize'));
+                    }
                     break;
                 }
             }
             for (var j = 0; j < allObjectPerFrame[i].shapes.length; j++) {
                 if (allObjectPerFrame[i].shapes[j].getAttr("id") == id) {
                     allObjectPerFrame[i].shapes[j].setAttr("config", config);
+                    if (txt) {
+                        var thisTxt = allObjectPerFrame[i].shapes[j].getAttr("textObj");
+                        thisTxt.setAttr('fill', txt.getAttr('fill'));
+                        thisTxt.setAttr('text', txt.getAttr('text'));
+                        thisTxt.setAttr('fontSize', txt.getAttr('fontSize'));
+                    }
                     break;
                 }
             }
@@ -673,75 +849,158 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $(document).off('click touch', '#canActionDel');
     $(document).on('click touch', '#canActionDel', function() {
-        deleteCurrent();
+        $rootScope.showModalWindow("Nieodwracalnie usunie zaznaczone obiekty oraz wszystkie ich wystąpienia w następnych klatkach animacji", function() {
+            deleteCurrent();
+        });
     });
 
     function deleteCurrent() {
-        if ($scope.lastSelected && $scope.lastSelected != null) {
+        if ($scope.lastSelected && $scope.selectedItemList.length <= 0) {
+            deleteItem($scope.lastSelected);
+        } else if ($scope.selectedItemList.length > 0) {
+            for (let i = 0; i < $scope.selectedItemList.length; i++) {
+                deleteItem($scope.selectedItemList[i]);
+            }
+        }
+    }
+
+    function deleteItem(item) {
+        if (!item) return;
+
+        $scope.$apply(function() {
+            selectObjStyle(null);
+            $scope.changeCategories($scope.mouseActionType.MOVE);
+        });
+
+        var id = item.getAttr('id');
+        for (let c = currentObjPerFrame; c < allObjectPerFrame.length; c++) {
             var actual = -1;
-            for (var i = 0; i < allObjectPerFrame[currentObjPerFrame].obj.length; i++) {
-                var obb = allObjectPerFrame[currentObjPerFrame].obj[i].getAttr('id');
-                if (obb === $scope.lastSelected.getAttr('id')) {
+            var actualItem = null;
+            for (var i = 0; i < allObjectPerFrame[c].obj.length; i++) {
+                var obb = allObjectPerFrame[c].obj[i].getAttr('id');
+                if (obb == id) {
                     actual = i;
+                    actualItem = allObjectPerFrame[c].obj[i];
                     break;
                 }
             }
             if (actual < 0) {
-                for (var i = 0; i < allObjectPerFrame[currentObjPerFrame].arrow.length; i++) {
-                    var obb = allObjectPerFrame[currentObjPerFrame].arrow[i].getAttr('id');
-                    if (obb === $scope.lastSelected.getAttr('id')) {
+                for (var i = 0; i < allObjectPerFrame[c].arrow.length; i++) {
+                    var obb = allObjectPerFrame[c].arrow[i].getAttr('id');
+                    if (obb == id) {
                         actual = i;
+                        actualItem = allObjectPerFrame[c].arrow[i];
                         break;
                     }
                 }
-                if (actual >= 0) allObjectPerFrame[currentObjPerFrame].arrow.splice(actual, 1);
+                if (actual >= 0) allObjectPerFrame[c].arrow.splice(actual, 1);
                 else {
-                    for (var i = 0; i < allObjectPerFrame[currentObjPerFrame].shapes.length; i++) {
-                        var obb = allObjectPerFrame[currentObjPerFrame].shapes[i].getAttr('id');
-                        if (obb === $scope.lastSelected.getAttr('id')) {
+                    for (var i = 0; i < allObjectPerFrame[c].shapes.length; i++) {
+                        var obb = allObjectPerFrame[c].shapes[i].getAttr('id');
+                        if (obb == id) {
                             actual = i;
+                            actualItem = allObjectPerFrame[c].shapes[i];
                             break;
                         }
                     }
-                    if (actual >= 0) allObjectPerFrame[currentObjPerFrame].shapes.splice(actual, 1);
+                    if (actual >= 0) allObjectPerFrame[c].shapes.splice(actual, 1);
                 }
             } else {
-                allObjectPerFrame[currentObjPerFrame].obj.splice(actual, 1);
+                allObjectPerFrame[c].obj.splice(actual, 1);
             }
-            deleteAnchor(currentObjPerFrame, $scope.lastSelected.getAttr('id'));
-            deleteAnchor(currentObjPerFrame + 1, $scope.lastSelected.getAttr('id'));
+            deleteAnchor(c, id);
+            deleteAnchor(c + 1, id);
             if (anchorLayer != null) {
                 anchorLayer.destroy();
                 anchorLayer = null;
             }
             anchorLayer = new Konva.Layer();
             selectedFrame.add(anchorLayer);
-            var txt = $scope.lastSelected.getAttr("textObj");
-            if (txt) txt.destroy();
-            $scope.lastSelected.destroy();
-            $scope.$apply(function() {
-                $scope.lastSelected = null;
-            });
-            selectedFrame.draw();
+            if (actualItem) {
+                var txt = actualItem.getAttr("textObj");
+                if (txt) txt.destroy();
+                actualItem.destroy();
+                $scope.$apply(function() {
+                    actualItem = null;
+                });
+            }
         }
+        selectedFrame.draw();
     }
 
     function rotateCurrent(rot) {
-        if ($scope.lastSelected) {
-            $scope.lastSelected.setAttr("rotation", rot);
-            selectedFrame.draw();
+        if ($scope.lastSelected && $scope.selectedItemList.length <= 0) {
+            var thisId = $scope.lastSelected.getAttr("id");
+            for (let y = ($scope.turnOnRotation ? currentObjPerFrame : 0); y < ($scope.turnOnRotation ? currentObjPerFrame + 1 : allObjectPerFrame.length); y++) {
+                for (let u = 0; u < allObjectPerFrame[y].obj.length; u++) {
+                    if (allObjectPerFrame[y].obj[u].getAttr("id") == thisId) {
+                        allObjectPerFrame[y].obj[u].setAttr("rotation", rot);
+                        break;
+                    }
+                }
+                for (let u = 0; u < allObjectPerFrame[y].shapes.length; u++) {
+                    if (allObjectPerFrame[y].shapes[u].getAttr("id") == thisId) {
+                        allObjectPerFrame[y].shapes[u].setAttr("rotation", rot);
+                        break;
+                    }
+                }
+                for (let u = 0; u < allObjectPerFrame[y].arrow.length; u++) {
+                    if (allObjectPerFrame[y].arrow[u].getAttr("id") == thisId) {
+                        allObjectPerFrame[y].arrow[u].setAttr("rotation", rot);
+                        break;
+                    }
+                }
+            }
+        } else if ($scope.selectedItemList.length > 0) {
+            for (let i = 0; i < $scope.selectedItemList.length; i++) {
+                var thisId = $scope.selectedItemList[i].getAttr("id");
+                for (let y = ($scope.turnOnRotation ? currentObjPerFrame : 0); y < ($scope.turnOnRotation ? currentObjPerFrame + 1 : allObjectPerFrame.length); y++) {
+                    for (let u = 0; u < allObjectPerFrame[y].obj.length; u++) {
+                        if (allObjectPerFrame[y].obj[u].getAttr("id") == thisId) {
+                            allObjectPerFrame[y].obj[u].setAttr("rotation", rot);
+                            break;
+                        }
+                    }
+                }
+            }
         }
+        selectedFrame.draw();
     }
 
     function scaleCurrent(scale) {
-        if ($scope.lastSelected) {
-            var newScale = {
-                x: scale,
-                y: scale
-            };
-            $scope.lastSelected.scale(newScale);
-            selectedFrame.draw();
+        var newScale = {
+            x: scale,
+            y: scale
+        };
+        if ($scope.lastSelected && $scope.selectedItemList.length <= 0) {
+            var thisId = $scope.lastSelected.getAttr("id");
+            for (let y = ($scope.turnOnRotation ? currentObjPerFrame : 0); y < ($scope.turnOnRotation ? currentObjPerFrame + 1 : allObjectPerFrame.length); y++) {
+                for (let u = 0; u < allObjectPerFrame[y].obj.length; u++) {
+                    if (allObjectPerFrame[y].obj[u].getAttr("id") == thisId) {
+                        allObjectPerFrame[y].obj[u].scale(newScale);
+                        var txt = allObjectPerFrame[y].obj[u].getAttr("textObj");
+                        txt.setAttr('y', allObjectPerFrame[y].obj[u].getAttr('y') + (allObjectPerFrame[y].obj[u].height() / 2) * newScale.x);
+                        break;
+                    }
+                }
+            }
+        } else if ($scope.selectedItemList.length > 0) {
+            for (let i = 0; i < $scope.selectedItemList.length; i++) {
+                var thisId = $scope.selectedItemList[i].getAttr("id");
+
+                for (let y = ($scope.turnOnRotation ? currentObjPerFrame : 0); y < ($scope.turnOnRotation ? currentObjPerFrame + 1 : allObjectPerFrame.length); y++) {
+                    for (let u = 0; u < allObjectPerFrame[y].obj.length; u++) {
+                        if (allObjectPerFrame[y].obj[u].getAttr("id") == thisId) {
+                            allObjectPerFrame[y].obj[u].scale(newScale);
+                            var txt = allObjectPerFrame[y].obj[u].getAttr("textObj");
+                            txt.setAttr('y', allObjectPerFrame[y].obj[u].getAttr('y') + (allObjectPerFrame[y].obj[u].height() / 2) * newScale.x);
+                            break;
+                        }
+                    }
+                }
+            }
         }
+        selectedFrame.draw();
     }
 
     $(document).off('click touch', '.timeElement');
@@ -773,7 +1032,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function selectObjStyle(thisObj) {
-        if (anchorLayer) anchorLayer.destroy();
         var shapes = selectedFrame.find(".movementObject");
         shapes.each(function(shape) {
             shape.stroke('transparent');
@@ -803,8 +1061,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function createAnchorToArrow(x, y, arrowObj, arrowArrayIndex) {
         var anchor = new Konva.Circle({
-            x: x,
-            y: y,
+            x: x + arrowObj.getAttr("x"),
+            y: y + arrowObj.getAttr("y"),
             radius: 5,
             stroke: '#ddd',
             fill: '#dda613',
@@ -827,11 +1085,34 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         });
         anchor.on('dragend', function() {
             $scope.arrowArrayPostionAnchor[arrowArrayIndex] = {
-                x: anchor.getAttr("x"),
-                y: anchor.getAttr("y")
+                x: anchor.getAttr("x") - arrowObj.getAttr("x"),
+                y: anchor.getAttr("y") - arrowObj.getAttr("y")
             }
             updateArrow(arrowObj);
+        });
 
+        anchor.on('dragstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('touchstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('mouseup', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('touchend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
         });
         anchorLayer.add(anchor);
 
@@ -840,9 +1121,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function updateArrow(arrowObj) {
         arrowObj.setAttr('points', $scope.arrowArrayPostionAnchor);
+        var id = arrowObj.getAttr('id');
+        for (let i = 0; i < allObjectPerFrame.length; i++) {
+            for (let y = 0; y < allObjectPerFrame[i].arrow.length; y++) {
+                if (id == allObjectPerFrame[i].arrow[y].getAttr("id")) {
+                    allObjectPerFrame[i].arrow[y].setAttr("x", arrowObj.getAttr('x'));
+                    allObjectPerFrame[i].arrow[y].setAttr("y", arrowObj.getAttr('y'));
+                }
+            }
+        }
         var txtObj = arrowObj.getAttr("textObj");
-        txtObj.setAttr('x', $scope.arrowArrayPostionAnchor[0].x);
-        txtObj.setAttr('y', $scope.arrowArrayPostionAnchor[0].y);
+        txtObj.setAttr('x', $scope.arrowArrayPostionAnchor[0].x + arrowObj.getAttr('x'));
+        txtObj.setAttr('y', $scope.arrowArrayPostionAnchor[0].y + arrowObj.getAttr('y'));
         if ($scope.arrowArrayPostionAnchor[0].y < $scope.arrowArrayPostionAnchor[1].y) txtObj.setAttr('offsetY', 50);
         else txtObj.setAttr('offsetY', 10);
         arrowObj.setAttr('textObj', txtObj);
@@ -851,8 +1141,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function createAnchorToShape(x, y, shapeObj, shapeArrayIndex) {
         var anchor = new Konva.Circle({
-            x: x,
-            y: y,
+            x: x + shapeObj.getAttr("x"),
+            y: y + shapeObj.getAttr("y"),
             radius: 5,
             stroke: '#ddd',
             fill: '#dda613',
@@ -872,11 +1162,38 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             anchorLayer.draw();
         });
         anchor.on('dragend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
             $scope.shapeArrayPostionAnchor[shapeArrayIndex] = {
-                x: anchor.getAttr("x"),
-                y: anchor.getAttr("y")
+                x: anchor.getAttr("x") - shapeObj.getAttr("x"),
+                y: anchor.getAttr("y") - shapeObj.getAttr("y")
             }
             updateShape(shapeObj);
+        });
+
+        anchor.on('dragstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('touchstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('mouseup', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('touchend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
         });
         anchorLayer.add(anchor);
         return anchor;
@@ -885,10 +1202,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     function updateShape(shapeObj) {
         shapeObj.setAttr('arrowPoint', $scope.shapeArrayPostionAnchor);
-
+        var id = shapeObj.getAttr('id');
+        for (let i = 0; i < allObjectPerFrame.length; i++) {
+            for (let y = 0; y < allObjectPerFrame[i].shapes.length; y++) {
+                if (id == allObjectPerFrame[i].shapes[y].getAttr("id")) {
+                    allObjectPerFrame[i].shapes[y].setAttr("x", shapeObj.getAttr('x'));
+                    allObjectPerFrame[i].shapes[y].setAttr("y", shapeObj.getAttr('y'));
+                }
+            }
+        }
         var txtObj = shapeObj.getAttr("textObj");
-        txtObj.setAttr('x', $scope.shapeArrayPostionAnchor[0].x);
-        txtObj.setAttr('y', $scope.shapeArrayPostionAnchor[0].y);
+        txtObj.setAttr('x', $scope.shapeArrayPostionAnchor[0].x + shapeObj.getAttr('x'));
+        txtObj.setAttr('y', $scope.shapeArrayPostionAnchor[0].y + shapeObj.getAttr('y'));
         if ($scope.shapeArrayPostionAnchor[0].y < $scope.shapeArrayPostionAnchor[1].y) txtObj.setAttr('offsetY', 50);
         else txtObj.setAttr('offsetY', 10);
         shapeObj.setAttr('textObj', txtObj);
@@ -901,6 +1226,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             x: x,
             y: y,
             offsetX: 100,
+            offsetY: 30 - $scope.selectedObjConfig.selectedTextSize,
             text: text,
             fontSize: $scope.selectedObjConfig.selectedTextSize,
             fontFamily: 'Calibri',
@@ -1115,7 +1441,191 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         context.fillStrokeShape(obj);
     }
 
+    function addToMultiSelect(obj) {
+        var id = obj.getAttr('id');
+        var isIn = false;
+        var pos = 0;
+
+        if ($scope.lastSelected) {
+            for (let i = 0; i < $scope.selectedItemList.length; i++) {
+                if ($scope.lastSelected.getAttr('id') == $scope.selectedItemList[i].getAttr('id')) {
+                    isIn = true;
+                    pos = i;
+                    break;
+                }
+            }
+            if (!isIn) {
+                $scope.selectedItemList.push($scope.lastSelected);
+            }
+            $scope.lastSelected = null;
+        }
+
+        var isIn = false;
+        var pos = 0;
+
+        for (let i = 0; i < $scope.selectedItemList.length; i++) {
+            if (id == $scope.selectedItemList[i].getAttr('id')) {
+                isIn = true;
+                pos = i;
+                break;
+            }
+        }
+        if (!isIn) {
+            $scope.selectedItemList.push(obj);
+        } else {
+            $scope.selectedItemList.splice(pos, 1);
+        }
+
+
+        $scope.lastSelected = null;
+        $scope.startPointSelectShape = null;
+        $scope.endPointSelectShape = null;
+
+        var isSameConfig = true;
+        var confName = '';
+
+        var shapes = selectedFrame.find(".movementObject");
+        shapes.each(function(shape) {
+            shape.stroke('transparent');
+            for (let i = 0; i < $scope.selectedItemList.length; i++) {
+                if ($scope.selectedItemList[i].getAttr("id") == shape.getAttr("id")) {
+                    shape.strokeWidth(1);
+                    shape.stroke('red');
+                    var config = shape.getAttr("config");
+                    if (!config) isSameConfig = false;
+                    else {
+                        if (confName == '') {
+                            confName = config.confName;
+                        } else if (confName != config.confName) {
+                            isSameConfig = false;
+                        }
+                    }
+                }
+            }
+        });
+
+
+        var shapes = selectedFrame.find(".arrow");
+        shapes.each(function(shape) {
+            shape.stroke('white');
+            for (let i = 0; i < $scope.selectedItemList.length; i++) {
+                if ($scope.selectedItemList[i].getAttr("id") == shape.getAttr("id")) {
+                    shape.stroke('red');
+                    var config = shape.getAttr("config");
+                    if (!config) isSameConfig = false;
+                    else {
+                        if (confName == '') {
+                            confName = config.confName;
+                        } else if (confName != config.confName) {
+                            isSameConfig = false;
+                        }
+                    }
+                }
+            }
+        });
+        var shapes = selectedFrame.find(".shapes");
+        shapes.each(function(shape) {
+            var fillColor = shape.getAttr('fill');
+            fillColor.replace('0.4', '1');
+            shape.stroke(fillColor);
+            for (let i = 0; i < $scope.selectedItemList.length; i++) {
+                if ($scope.selectedItemList[i].getAttr("id") == shape.getAttr("id")) {
+                    shape.stroke('red');
+                    var config = shape.getAttr("config");
+                    if (!config) isSameConfig = false;
+                    else {
+                        if (confName == '') {
+                            confName = config.confName;
+                        } else if (confName != config.confName) {
+                            isSameConfig = false;
+                        }
+                    }
+                }
+            }
+        });
+
+        if (isSameConfig && $scope.selectedItemList.length > 0) {
+            $scope.lastSelected = $scope.selectedItemList[0];
+        }
+
+        if (selectShapeLayer != null) {
+            selectShapeLayer.destroy();
+            selectShapeLayer = null;
+        }
+        $scope.showObjConfig();
+        selectedFrame.draw();
+
+
+    }
+
+    function dragAllSelectedItem(idMain, offset) {
+
+        var isIn = false;
+        for (let x = 0; x < $scope.selectedItemList.length; x++) {
+            var id = $scope.selectedItemList[x].getAttr('id');
+            if (id == idMain) {
+                isIn = true;
+                break;
+            }
+        }
+        if (!isIn) return;
+
+        for (let x = 0; x < $scope.selectedItemList.length; x++) {
+            var id = $scope.selectedItemList[x].getAttr('id');
+
+            for (let z = 0; z < allObjectPerFrame[currentObjPerFrame].obj.length; z++) {
+                if (allObjectPerFrame[currentObjPerFrame].obj[z].getAttr('id') == id) {
+                    if (idMain == allObjectPerFrame[currentObjPerFrame].obj[z].getAttr('id')) break;
+                    allObjectPerFrame[currentObjPerFrame].obj[z].setAttr("x", allObjectPerFrame[currentObjPerFrame].obj[z].getAttr("x") - offset.x);
+                    allObjectPerFrame[currentObjPerFrame].obj[z].setAttr("y", allObjectPerFrame[currentObjPerFrame].obj[z].getAttr("y") - offset.y);
+                    var txt = allObjectPerFrame[currentObjPerFrame].obj[z].getAttr("textObj");
+                    txt.setAttr('x', allObjectPerFrame[currentObjPerFrame].obj[z].getAttr('x'));
+                    txt.setAttr('y', allObjectPerFrame[currentObjPerFrame].obj[z].getAttr('y') + allObjectPerFrame[currentObjPerFrame].obj[z].height() * allObjectPerFrame[currentObjPerFrame].obj[z].scale().x);
+                }
+            }
+
+            for (let i = 0; i < allObjectPerFrame.length; i++) {
+                var isFinded = false;
+
+                if (!isFinded)
+                    for (let z = 0; z < allObjectPerFrame[i].arrow.length; z++) {
+                        if (allObjectPerFrame[i].arrow[z].getAttr('id') == id) {
+                            isFinded = true;
+                            if (idMain == allObjectPerFrame[i].arrow[z].getAttr('id') && i == currentObjPerFrame) break;
+                            allObjectPerFrame[i].arrow[z].setAttr("x", allObjectPerFrame[i].arrow[z].getAttr("x") - offset.x);
+                            allObjectPerFrame[i].arrow[z].setAttr("y", allObjectPerFrame[i].arrow[z].getAttr("y") - offset.y);
+                            var txt = allObjectPerFrame[i].arrow[z].getAttr("textObj");
+                            txt.setAttr('x', allObjectPerFrame[i].arrow[z].getAttr('points')[0].x + allObjectPerFrame[i].arrow[z].getAttr("x"));
+                            txt.setAttr('y', allObjectPerFrame[i].arrow[z].getAttr('points')[0].y + allObjectPerFrame[i].arrow[z].getAttr("y"));
+                        }
+                    }
+                if (!isFinded)
+                    for (let z = 0; z < allObjectPerFrame[i].shapes.length; z++) {
+                        if (allObjectPerFrame[i].shapes[z].getAttr('id') == id) {
+                            if (idMain == allObjectPerFrame[i].shapes[z].getAttr('id') && i == currentObjPerFrame) break;
+                            allObjectPerFrame[i].shapes[z].setAttr("x", allObjectPerFrame[i].shapes[z].getAttr("x") - offset.x);
+                            allObjectPerFrame[i].shapes[z].setAttr("y", allObjectPerFrame[i].shapes[z].getAttr("y") - offset.y);
+                            var txt = allObjectPerFrame[i].shapes[z].getAttr("textObj");
+                            txt.setAttr('x', allObjectPerFrame[i].shapes[z].getAttr('arrowPoint')[0].x + allObjectPerFrame[i].shapes[z].getAttr("x"));
+                            txt.setAttr('y', allObjectPerFrame[i].shapes[z].getAttr('arrowPoint')[0].y + allObjectPerFrame[i].shapes[z].getAttr("y"));
+                        }
+                    }
+            }
+        }
+
+        drawBeforePositionPoint();
+        updateNextFrameBeforePosition();
+
+        if ($scope.turnOnRotation) rotateObject();
+        if (anchorLayer != null) {
+            anchorLayer.destroy();
+            anchorLayer = null;
+        }
+    }
+
     function clickOnContent() {
+        $scope.startPointSelectShape = null;
+        $scope.endPointSelectShape = null;
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD && $scope.selectedObjImg) {
             if (anchorLayer != null) {
                 anchorLayer.destroy();
@@ -1143,26 +1653,88 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $scope.lastSelected = obj;
             });
 
-            var complexText = createTextB(mousePos.x / scale, (mousePos.y / scale) + (obj.height() / 4), $scope.selectedObjConfig && $scope.selectedObjConfig.text ? $scope.selectedObjConfig.text : "");
+            var complexText = createTextB(mousePos.x / scale, (mousePos.y / scale) + (obj.height() / 2), $scope.selectedObjConfig && $scope.selectedObjConfig.text ? $scope.selectedObjConfig.text : "");
             mainLayer.add(complexText);
             obj.setAttr('textObj', complexText);
 
             obj.on('mousedown touchstart', function() {
-                selectObjStyle(this);
+                somethingIsDraw = true;
+                $scope.startPointSelectShape = null;
+                $scope.endPointSelectShape = null;
                 obj.setAttr('draggable', true);
+                if ($scope.shiftPressed) {} else if ($scope.selectedItemList.length <= 0) {
+                    $scope.selectedItemList = [];
+                    selectObjStyle(this);
+                    drawBeforePositionPoint();
+                    updateNextFrameBeforePosition();
+                    if ($scope.turnOnRotation) rotateObject();
+                }
             });
+
+            obj.on('click tap', function() {
+                if ($scope.shiftPressed) {
+                    addToMultiSelect(this);
+                } else {
+                    $scope.selectedItemList = [];
+                    selectObjStyle(this);
+                }
+            });
+
             obj.on('dragmove', function() {
+                var offset = {
+                    x: multiDragPositionStart.x - this.attrs.x,
+                    y: multiDragPositionStart.y - this.attrs.y
+                }
+                if ($scope.selectedItemList.length > 0) dragAllSelectedItem(this.getAttr('id'), offset);
+                multiDragPositionStart = {
+                    x: this.getAttr("x"),
+                    y: this.getAttr("y")
+                }
                 var txtObj = obj.getAttr("textObj");
                 txtObj.setAttr('x', obj.getAttr("x"));
-                txtObj.setAttr('y', obj.getAttr("y") + (obj.height() / 4));
+                txtObj.setAttr('y', obj.getAttr("y") + (obj.height() / 2) * obj.scale().x);
                 obj.setAttr('textObj', txtObj);
                 mainLayer.draw();
             });
 
-            obj.on('dragend', function() {
-                drawBeforePositionPoint();
-                updateNextFrameBeforePosition();
-                if ($scope.turnOnRotation) rotateObject();
+            obj.on('dragstart', function() {
+                multiDragPositionStart = {
+                    x: this.getAttr("x"),
+                    y: this.getAttr("y")
+                }
+                somethingIsDraw = true;
+                $scope.startPointSelectShape = null;
+                $scope.endPointSelectShape = null;
+            });
+
+            obj.on('touchstart', function() {
+                somethingIsDraw = true;
+                $scope.startPointSelectShape = null;
+                $scope.endPointSelectShape = null;
+            });
+
+            obj.on('mouseup', function() {
+                somethingIsDraw = false;
+                $scope.startPointSelectShape = null;
+                $scope.endPointSelectShape = null;
+            });
+
+            obj.on('touchend', function() {
+                somethingIsDraw = false;
+                $scope.startPointSelectShape = null;
+                $scope.endPointSelectShape = null;
+            });
+
+            obj.on('dragend', function(e) {
+                somethingIsDraw = false;
+                $scope.startPointSelectShape = null;
+                $scope.endPointSelectShape = null;
+
+                if ($scope.selectedItemList.length <= 1) {
+                    drawBeforePositionPoint();
+                    updateNextFrameBeforePosition();
+                    if ($scope.turnOnRotation) rotateObject();
+                }
             });
 
             obj.strokeWidth(1);
@@ -1171,6 +1743,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             // add the shape to the mainLayer
             mainLayer.add(obj);
             allObjectPerFrame[currentObjPerFrame].obj.push(obj);
+
+            for (let z = currentObjPerFrame + 1; z < allObjectPerFrame.length; z++) {
+                allObjectPerFrame[z].obj.push(createObjFromOther(obj));
+            }
+
+            $scope.$apply(function() {
+                $scope.changeCategories($scope.mouseActionType.MOVE);
+            });
+
             selectedFrame.find(".movementObject").each(function(shape) {
                 shape.on('mouseenter', function() {
                     if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
@@ -1209,6 +1790,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     id: id,
                     textObj: null,
                     name: 'arrow',
+                    draggable: true,
                     config: $.extend(true, {}, $scope.selectedObjConfig),
                     sceneFunc: function(context) {
                         drawArrowStyle(context, this);
@@ -1232,7 +1814,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 selectedFrame.draw();
 
                 arrow.on('mousedown touchstart', function() {
-                    selectObjStyle(this);
+                    somethingIsDraw = true;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                    if ($scope.shiftPressed) {} else if ($scope.selectedItemList.length <= 0) {
+                        $scope.selectedItemList = [];
+                        selectObjStyle(this);
+                    }
+                    if (anchorLayer) {
+                        anchorLayer.destroy();
+                        delete anchorLayer;
+                        anchorLayer = null;
+                    }
                     anchorLayer = new Konva.Layer();
                     selectedFrame.add(anchorLayer);
                     $scope.arrowArrayPostionAnchor = this.getAttr('points');
@@ -1242,8 +1835,97 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     selectedFrame.draw();
                 });
 
+                arrow.on('dragmove', function() {
+                    somethingIsDraw = true;
+                    var offset = {
+                        x: multiDragPositionStart.x - this.attrs.x,
+                        y: multiDragPositionStart.y - this.attrs.y
+                    }
+
+                    if ($scope.selectedItemList.length > 0) dragAllSelectedItem(this.getAttr('id'), offset);
+                    multiDragPositionStart = {
+                        x: this.getAttr("x"),
+                        y: this.getAttr("y")
+                    }
+                    var textObj = this.getAttr("textObj");
+                    var pt = this.getAttr("points");
+                    textObj.setAttr('x', this.getAttr("x") + pt[0].x);
+                    textObj.setAttr('y', this.getAttr("y") + pt[0].y);
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                    if (anchorLayer) {
+                        anchorLayer.destroy();
+                        delete anchorLayer;
+                        anchorLayer = null;
+                    }
+                    anchorLayer = new Konva.Layer();
+                    selectedFrame.add(anchorLayer);
+                    $scope.arrowArrayPostionAnchor = this.getAttr('points');
+                    for (var index = 0; index < $scope.arrowArrayPostionAnchor.length; index++) {
+                        createAnchorToArrow($scope.arrowArrayPostionAnchor[index].x, $scope.arrowArrayPostionAnchor[index].y, this, index);
+                    }
+                    selectedFrame.draw();
+                });
+
+                arrow.on('click tap', function() {
+                    if ($scope.shiftPressed) {
+                        addToMultiSelect(this);
+                    } else {
+                        $scope.selectedItemList = [];
+                        selectObjStyle(this);
+                    }
+                });
+
+                arrow.on('dragstart', function() {
+                    multiDragPositionStart = {
+                        x: this.getAttr("x"),
+                        y: this.getAttr("y")
+                    }
+                    somethingIsDraw = true;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
+                arrow.on('touchstart', function() {
+                    somethingIsDraw = true;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
+                arrow.on('dragend', function() {
+                    somethingIsDraw = false;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
+                arrow.on('mouseup', function() {
+                    somethingIsDraw = false;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                    var id = this.getAttr('id');
+                    for (let i = 0; i < allObjectPerFrame.length; i++) {
+                        for (let y = 0; y < allObjectPerFrame[i].arrow.length; y++) {
+                            if (id == allObjectPerFrame[i].arrow[y].getAttr("id")) {
+                                allObjectPerFrame[i].arrow[y].setAttr("x", this.getAttr('x'));
+                                allObjectPerFrame[i].arrow[y].setAttr("y", this.getAttr('y'));
+                            }
+                        }
+                    }
+                });
+
+                arrow.on('touchend', function() {
+                    somethingIsDraw = false;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
                 mainLayer.add(arrow);
                 allObjectPerFrame[currentObjPerFrame].arrow.push(arrow);
+                for (let z = currentObjPerFrame + 1; z < allObjectPerFrame.length; z++) {
+                    allObjectPerFrame[z].arrow.push(createObjFromOther(arrow));
+                }
+
+
                 mainLayer.draw();
             } else if ($scope.arrowPointCount > 2) {
                 $scope.lastSelected.setAttr("points", $scope.arrowPoint);
@@ -1260,7 +1942,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 selectedFrame.draw();
             }
         } else if ($scope.actualMouseAction == $scope.mouseActionType.SHAPE_ADD && $scope.selectedShape) {
-
             $scope.shapePointCount++;
             var scale = selectedFrame.getAttr('scaleX');
             var mousePos = selectedFrame.getPointerPosition();
@@ -1378,6 +2059,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         context.closePath();
                         context.fillStrokeShape(this);
                     },
+                    draggable: true,
                     name: "shapes",
                     fill: fillColor,
                     stroke: strokeColor,
@@ -1396,7 +2078,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
                 // add the shape to the layer
                 mainLayer.add(triangle);
-                allObjectPerFrame[currentObjPerFrame].shapes.push(triangle);
+
 
                 if (anchorLayer != null) {
                     anchorLayer.destroy();
@@ -1411,7 +2093,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 }
 
                 triangle.on('mousedown touchstart', function() {
-                    selectObjStyle(this);
+                    somethingIsDraw = true;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                    if ($scope.shiftPressed) {} else if ($scope.selectedItemList.length <= 0) {
+                        $scope.selectedItemList = [];
+                        selectObjStyle(this);
+                    }
                     if (anchorLayer != null) {
                         anchorLayer.destroy();
                         anchorLayer = null;
@@ -1423,6 +2111,99 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         createAnchorToShape($scope.shapeArrayPostionAnchor[index].x, $scope.shapeArrayPostionAnchor[index].y, this, index);
                     }
                     selectedFrame.draw();
+                });
+
+                triangle.on('dragmove', function() {
+                    somethingIsDraw = true;
+                    var offset = {
+                        x: multiDragPositionStart.x - this.attrs.x,
+                        y: multiDragPositionStart.y - this.attrs.y
+                    }
+                    if ($scope.selectedItemList.length > 0) dragAllSelectedItem(this.getAttr('id'), offset);
+                    multiDragPositionStart = {
+                        x: this.getAttr("x"),
+                        y: this.getAttr("y")
+                    }
+                    var textObj = this.getAttr("textObj")
+                    var pt = this.getAttr("arrowPoint");
+                    textObj.setAttr('x', this.getAttr("x") + pt[0].x);
+                    textObj.setAttr('y', this.getAttr("y") + pt[0].y);
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                    if (anchorLayer != null) {
+                        anchorLayer.destroy();
+                        anchorLayer = null;
+                    }
+                    anchorLayer = new Konva.Layer();
+                    selectedFrame.add(anchorLayer);
+                    $scope.shapeArrayPostionAnchor = this.getAttr('arrowPoint');
+                    for (var index = 0; index < $scope.shapeArrayPostionAnchor.length; index++) {
+                        createAnchorToShape($scope.shapeArrayPostionAnchor[index].x, $scope.shapeArrayPostionAnchor[index].y, this, index);
+                    }
+
+                    selectedFrame.draw();
+                });
+
+                triangle.on('click tap', function() {
+                    if ($scope.shiftPressed) {
+                        addToMultiSelect(this);
+                    } else {
+                        $scope.selectedItemList = [];
+                        selectObjStyle(this);
+                    }
+                });
+
+                triangle.on('dragstart', function() {
+                    multiDragPositionStart = {
+                        x: this.getAttr("x"),
+                        y: this.getAttr("y")
+                    }
+                    somethingIsDraw = true;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
+                triangle.on('touchstart', function() {
+                    somethingIsDraw = true;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
+                triangle.on('dragend', function() {
+                    somethingIsDraw = false;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                    var id = this.getAttr('id');
+                    for (let i = 0; i < allObjectPerFrame.length; i++) {
+                        for (let y = 0; y < allObjectPerFrame[i].shapes.length; y++) {
+                            if (id == allObjectPerFrame[i].shapes[y].getAttr("id")) {
+                                allObjectPerFrame[i].shapes[y].setAttr("x", this.getAttr('x'));
+                                allObjectPerFrame[i].shapes[y].setAttr("y", this.getAttr('y'));
+                            }
+                        }
+                    }
+                });
+
+                triangle.on('mouseup', function() {
+                    somethingIsDraw = false;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
+                triangle.on('touchend', function() {
+                    somethingIsDraw = false;
+                    $scope.startPointSelectShape = null;
+                    $scope.endPointSelectShape = null;
+                });
+
+                allObjectPerFrame[currentObjPerFrame].shapes.push(triangle);
+
+                for (let z = currentObjPerFrame + 1; z < allObjectPerFrame.length; z++) {
+                    allObjectPerFrame[z].triangle.push(createObjFromOther(triangle));
+                }
+
+                $scope.$apply(function() {
+                    $scope.changeCategories($scope.mouseActionType.MOVE);
                 });
 
                 $scope.shapePointCount = 0;
@@ -1453,15 +2234,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 name: "movementObject",
                 id: id
             });
-            obj.on('mousedown touchstart', function() {
-                selectObjStyle(this);
-            });
+
 
             selectObjStyle(obj);
 
             // add the shape to the mainLayer
             mainLayer.add(obj);
-            allObjectPerFrame[currentObjPerFrame].text.push(obj);
+
             selectedFrame.draw();
 
             obj.on('dblclick', function() {
@@ -1487,29 +2266,40 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 textarea.focus();
                 textarea.addEventListener('keydown', function(e) {
                     // hide on enter
+
                     if (e.keyCode === 13) {
                         obj.text(textarea.value);
                         selectedFrame.draw();
                         document.body.removeChild(textarea);
                     }
+
                 });
             })
-            $scope.changeCategories($scope.mouseActionType.MOVE);
+            allObjectPerFrame[currentObjPerFrame].text.push(obj);
+            for (let z = currentObjPerFrame + 1; z < allObjectPerFrame.length; z++) {
+                allObjectPerFrame[z].text.push(createObjFromOther(text));
+            }
+            $scope.$apply(function() {
+                $scope.changeCategories($scope.mouseActionType.MOVE);
+            });
         }
+
     }
 
 
     function createArrowObjFromOther(other, isNoObj = false) {
         var arrow;
         if (!isNoObj) {
+            var lastText = other.getAttr("textObj");
             var complexText = new Konva.Text({
-                x: other.getAttr("points")[0].x,
-                y: other.getAttr("points")[0].y,
-                offsetX: 100,
-                text: (other.getAttr("config") && other.getAttr("config").text) ? other.getAttr("config").text : "",
-                fontSize: 18,
+                x: lastText.getAttr('x'),
+                y: lastText.getAttr('y'),
+                offsetX: lastText.getAttr('offsetX'),
+                offsetY: lastText.getAttr('offsetY'),
+                text: lastText.getAttr('text'),
+                fontSize: lastText.getAttr('fontSize'),
                 fontFamily: 'Calibri',
-                fill: '#fff',
+                fill: lastText.getAttr('fill'),
                 padding: 20,
                 width: 200,
                 align: 'center'
@@ -1517,6 +2307,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             if (other.getAttr("points")[1] < other.getAttr("points")[3]) complexText.setAttr('offsetY', 50);
             else complexText.setAttr('offsetY', 10);
             arrow = new Konva.Shape({
+                x: other.getAttr("x"),
+                y: other.getAttr("y"),
                 points: other.getAttr("points"),
                 stroke: other.getAttr("stroke"),
                 strokeWidth: other.getAttr("strokeWidth"),
@@ -1525,6 +2317,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 },
                 id: other.getAttr("id"),
                 textObj: complexText,
+                draggable: true,
                 name: 'arrow',
                 config: other.getAttr("config")
             });
@@ -1544,6 +2337,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             if (other.attrs.points[1] < other.attrs.points[3]) complexText.setAttr('offsetY', 50);
             else complexText.setAttr('offsetY', 10);
             arrow = new Konva.Shape({
+                x: other.attrs.x,
+                y: other.attrs.y,
                 points: other.attrs.points,
                 stroke: other.attrs.stroke,
                 strokeWidth: other.attrs.strokeWidth,
@@ -1551,6 +2346,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     drawArrowStyle(context, this);
                 },
                 id: other.attrs.id,
+                draggable: true,
                 textObj: complexText,
                 name: 'arrow',
                 config: other.attrs.config
@@ -1559,7 +2355,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if (mainLayer) mainLayer.add(complexText);
         arrow.off('mousedown touchstart');
         arrow.on('mousedown touchstart', function() {
-            selectObjStyle(this);
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            if ($scope.shiftPressed) {} else if ($scope.selectedItemList.length <= 0) {
+                $scope.selectedItemList = [];
+                selectObjStyle(this);
+            }
             if (anchorLayer != null) {
                 anchorLayer.destroy();
                 anchorLayer = null;
@@ -1571,6 +2373,96 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 createAnchorToArrow($scope.arrowArrayPostionAnchor[index].x, $scope.arrowArrayPostionAnchor[index].y, arrow, index);
             }
             selectedFrame.draw();
+
+        });
+        arrow.off('click tap');
+        arrow.on('click tap', function() {
+            if ($scope.shiftPressed) {
+                addToMultiSelect(this);
+            } else {
+                $scope.selectedItemList = [];
+                selectObjStyle(this);
+            }
+        });
+        arrow.off('dragmove');
+        arrow.on('dragmove', function() {
+            somethingIsDraw = true;
+            var offset = {
+                x: multiDragPositionStart.x - this.attrs.x,
+                y: multiDragPositionStart.y - this.attrs.y
+            }
+            if ($scope.selectedItemList.length > 0) dragAllSelectedItem(this.getAttr('id'), offset);
+            multiDragPositionStart = {
+                x: this.getAttr("x"),
+                y: this.getAttr("y")
+            }
+            var textObj = this.getAttr("textObj")
+            var pt = this.getAttr("points");
+            textObj.setAttr('x', this.getAttr("x") + pt[0].x);
+            textObj.setAttr('y', this.getAttr("y") + pt[0].y);
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            if (anchorLayer) {
+                anchorLayer.destroy();
+                delete anchorLayer;
+                anchorLayer = null;
+            }
+            anchorLayer = new Konva.Layer();
+            selectedFrame.add(anchorLayer);
+            $scope.arrowArrayPostionAnchor = this.getAttr('points');
+            for (var index = 0; index < $scope.arrowArrayPostionAnchor.length; index++) {
+                createAnchorToArrow($scope.arrowArrayPostionAnchor[index].x, $scope.arrowArrayPostionAnchor[index].y, this, index);
+            }
+
+            selectedFrame.draw();
+        });
+
+        arrow.off('dragstart');
+        arrow.off('touchstart');
+        arrow.off('mouseup');
+        arrow.off('touchend');
+        arrow.off('dragend');
+        arrow.on('dragstart', function() {
+            multiDragPositionStart = {
+                x: this.getAttr("x"),
+                y: this.getAttr("y")
+            }
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        arrow.on('touchstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        arrow.on('dragend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            var id = this.getAttr('id');
+            for (let i = 0; i < allObjectPerFrame.length; i++) {
+                for (let y = 0; y < allObjectPerFrame[i].arrow.length; y++) {
+                    if (id == allObjectPerFrame[i].arrow[y].getAttr("id")) {
+                        allObjectPerFrame[i].arrow[y].setAttr("x", this.getAttr('x'));
+                        allObjectPerFrame[i].arrow[y].setAttr("y", this.getAttr('y'));
+                    }
+                }
+            }
+        });
+
+        arrow.on('mouseup', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        arrow.on('touchend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
         });
         return arrow;
     }
@@ -1579,17 +2471,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         var obj;
 
         if (!isNoObj) {
+            var lastText = other.getAttr("textObj");
             var complexText = new Konva.Text({
-                x: other.getAttr("x"),
-                y: other.getAttr("y") + other.height() / 4,
-                offsetX: 100,
-                text: other.getAttr("config") && other.getAttr("config").text ? other.getAttr("config").text : " ",
-                fontSize: other.getAttr("config") && other.getAttr("config").selectedTextSize ? other.getAttr("config").selectedTextSize : 17,
+                x: lastText.getAttr('x'),
+                y: lastText.getAttr('y'),
+                offsetX: lastText.getAttr('offsetX'),
+                offsetY: lastText.getAttr('offsetY'),
+                text: lastText.getAttr('text'),
+                fontSize: lastText.getAttr('fontSize'),
                 fontFamily: 'Calibri',
-                fill: other.getAttr("config") && other.getAttr("config").selectedColorText ? other.getAttr("config").selectedColorText : "rgb(255,255,255)",
+                fill: lastText.getAttr('fill'),
                 padding: 20,
                 width: 200,
-                listening: false,
                 align: 'center'
             });
             obj = new Konva.Image({
@@ -1644,22 +2537,85 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         obj.strokeWidth(1);
         obj.off('mousedown touchstart');
         obj.on('mousedown touchstart', function() {
-            selectObjStyle(this);
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            if ($scope.shiftPressed) {} else if ($scope.selectedItemList.length <= 0) {
+                $scope.selectedItemList = [];
+                selectObjStyle(this);
+                drawBeforePositionPoint();
+                updateNextFrameBeforePosition();
+                if ($scope.turnOnRotation) rotateObject();
+            }
         });
-        obj.off('mousemove');
+        obj.off('click tap');
+        obj.on('click tap', function() {
+            if ($scope.shiftPressed) {
+                addToMultiSelect(this);
+            } else {
+                $scope.selectedItemList = [];
+                selectObjStyle(this);
+            }
+        });
+        obj.off('dragmove');
         obj.on('dragmove', function() {
+            var offset = {
+                x: multiDragPositionStart.x - this.attrs.x,
+                y: multiDragPositionStart.y - this.attrs.y
+            }
+            if ($scope.selectedItemList.length > 0) dragAllSelectedItem(this.getAttr('id'), offset);
+            multiDragPositionStart = {
+                x: this.getAttr("x"),
+                y: this.getAttr("y")
+            }
             var txtObj = obj.getAttr("textObj");
             txtObj.setAttr('x', obj.getAttr("x"));
-            txtObj.setAttr('y', obj.getAttr("y") + obj.height() / 4);
+            txtObj.setAttr('y', obj.getAttr("y") + obj.height() / 2);
             obj.setAttr('textObj', txtObj);
             mainLayer.draw();
         });
-
+        obj.off('dragstart');
+        obj.off('touchstart');
+        obj.off('mouseup');
+        obj.off('touchend');
         obj.off('dragend');
+        obj.on('dragstart', function() {
+            multiDragPositionStart = {
+                x: this.getAttr("x"),
+                y: this.getAttr("y")
+            }
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        obj.on('touchstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        obj.on('mouseup', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        obj.on('touchend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
         obj.on('dragend', function() {
-            drawBeforePositionPoint();
-            updateNextFrameBeforePosition();
-            if ($scope.turnOnRotation) rotateObject();
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            if ($scope.selectedItemList.length <= 1) {
+                drawBeforePositionPoint();
+                updateNextFrameBeforePosition();
+                if ($scope.turnOnRotation) rotateObject();
+            }
         });
         return obj;
     }
@@ -1667,22 +2623,25 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function createShapeObjFromOther(other, isNoObj = false) {
         var shape;
         if (!isNoObj) {
+            var lastText = other.getAttr("textObj");
             var complexText = new Konva.Text({
-                x: other.getAttr("arrowPoint")[0].x,
-                y: other.getAttr("arrowPoint")[0].y,
-                offsetX: 100,
-                text: (other.getAttr("config") && other.getAttr("config").text) ? other.getAttr("config").text : "",
-                fontSize: 18,
+                x: lastText.getAttr('x'),
+                y: lastText.getAttr('y'),
+                offsetX: lastText.getAttr('offsetX'),
+                offsetY: lastText.getAttr('offsetY'),
+                text: lastText.getAttr('text'),
+                fontSize: lastText.getAttr('fontSize'),
                 fontFamily: 'Calibri',
-                fill: '#fff',
+                fill: lastText.getAttr('fill'),
                 padding: 20,
                 width: 200,
-                listening: false,
                 align: 'center'
             });
             if (other.getAttr("arrowPoint")[0].y < other.getAttr("arrowPoint")[1].y) complexText.setAttr('offsetY', 50);
             else complexText.setAttr('offsetY', 10);
             shape = new Konva.Shape({
+                x: other.getAttr("x"),
+                y: other.getAttr("y"),
                 arrowPoint: other.getAttr("arrowPoint"),
                 sceneFunc: function(context) {
                     context.beginPath();
@@ -1700,6 +2659,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 strokeWidth: other.getAttr("strokeWidth"),
                 id: other.getAttr("id"),
                 config: other.getAttr("config"),
+                draggable: true,
                 textObj: complexText
             });
         } else {
@@ -1719,6 +2679,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             if (other.attrs.arrowPoint[0].y < other.attrs.arrowPoint[1].y) complexText.setAttr('offsetY', 50);
             else complexText.setAttr('offsetY', 10);
             shape = new Konva.Shape({
+                x: other.attrs.x,
+                y: other.attrs.y,
                 arrowPoint: other.attrs.arrowPoint,
                 sceneFunc: function(context) {
                     context.beginPath();
@@ -1731,6 +2693,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 },
                 name: other.attrs.name,
                 fill: other.attrs.fill,
+                draggable: true,
                 stroke: other.attrs.stroke,
                 scale: {
                     x: other.attrs.scaleX,
@@ -1743,9 +2706,56 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             });
         }
         if (mainLayer) mainLayer.add(complexText);
+        shape.off('click tap');
+        shape.on('click tap', function() {
+            if ($scope.shiftPressed) {
+                addToMultiSelect(this);
+            } else {
+                $scope.selectedItemList = [];
+                selectObjStyle(this);
+            }
+        });
         shape.off('mousedown touchstart');
         shape.on('mousedown touchstart', function() {
-            selectObjStyle(this);
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            if ($scope.shiftPressed) {} else if ($scope.selectedItemList.length <= 0) {
+                $scope.selectedItemList = [];
+                selectObjStyle(this);
+            }
+            if (anchorLayer != null) {
+                anchorLayer.destroy();
+                anchorLayer = null;
+            }
+            anchorLayer = new Konva.Layer();
+            selectedFrame.add(anchorLayer);
+            $scope.shapeArrayPostionAnchor = this.getAttr('arrowPoint');
+            for (var index = 0; index < $scope.shapeArrayPostionAnchor.length; index++) {
+                createAnchorToShape($scope.shapeArrayPostionAnchor[index].x, $scope.shapeArrayPostionAnchor[index].y, this, index);
+            }
+
+            selectedFrame.draw();
+        });
+
+        shape.off('dragmove');
+        shape.on('dragmove', function() {
+            var offset = {
+                x: multiDragPositionStart.x - this.attrs.x,
+                y: multiDragPositionStart.y - this.attrs.y
+            }
+            if ($scope.selectedItemList.length > 0) dragAllSelectedItem(this.getAttr('id'), offset);
+            multiDragPositionStart = {
+                x: this.getAttr("x"),
+                y: this.getAttr("y")
+            }
+            var textObj = this.getAttr("textObj")
+            var pt = this.getAttr("arrowPoint");
+            textObj.setAttr('x', this.getAttr("x") + pt[0].x);
+            textObj.setAttr('y', this.getAttr("y") + pt[0].y);
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
             if (anchorLayer != null) {
                 anchorLayer.destroy();
                 anchorLayer = null;
@@ -1757,6 +2767,53 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 createAnchorToShape($scope.shapeArrayPostionAnchor[index].x, $scope.shapeArrayPostionAnchor[index].y, this, index);
             }
             selectedFrame.draw();
+        });
+        shape.off('dragstart');
+        shape.off('touchstart');
+        shape.off('mouseup');
+        shape.off('touchend');
+        shape.off('dragend');
+        shape.on('dragstart', function() {
+            multiDragPositionStart = {
+                x: this.getAttr("x"),
+                y: this.getAttr("y")
+            }
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        shape.on('touchstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        shape.on('dragend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            var id = this.getAttr('id');
+            for (let i = 0; i < allObjectPerFrame.length; i++) {
+                for (let y = 0; y < allObjectPerFrame[i].shapes.length; y++) {
+                    if (id == allObjectPerFrame[i].shapes[y].getAttr("id")) {
+                        allObjectPerFrame[i].shapes[y].setAttr("x", this.getAttr('x'));
+                        allObjectPerFrame[i].shapes[y].setAttr("y", this.getAttr('y'));
+                    }
+                }
+            }
+        });
+
+        shape.on('mouseup', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        shape.on('touchend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
         });
         return shape;
     }
@@ -1839,9 +2896,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function addFrame() {
+        $scope.selectedItemList = [];
         selectObjStyle(null);
         allObjectPerFrame.push({ arrow: [], obj: [], shapes: [], text: [] });
-        var beforeFrameNumber = currentObjPerFrame;
+        var beforeFrameNumber = allObjectPerFrame.length - 2;
         currentObjPerFrame = allObjectPerFrame.length - 1;
 
         for (var i = 0; i < allObjectPerFrame[beforeFrameNumber].arrow.length; i++) {
@@ -1864,10 +2922,28 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             var obj = createTextFromOther(objBef);
             allObjectPerFrame[currentObjPerFrame].text.push(obj);
         }
-
         $scope.changeCategories($scope.mouseActionType.MOVE);
     }
 
+    $scope.deleteFrame = function() {
+        if (allObjectPerFrame.length <= 1) {
+            notify.localNotify("Uwaga", "Nie można usunąć jedynej klatki animacji");
+            return;
+        }
+        $rootScope.showModalWindow("Nieodwracalnie usunie klatkę animacji wraz z zawartością", function() {
+            var frame = allObjectPerFrame.length - 1;
+            allObjectPerFrame.splice(frame, 1);
+            $(".timeElement").last().remove();
+            for (let i = 0; i < anchorHistory.length; i++) {
+                if (anchorHistory[i].frame == frame) {
+                    anchorHistory.splice(i, 1);
+                    break;
+                }
+            }
+            changeFrame(frame - 1);
+            drawNewStage();
+        });
+    }
 
     function changeFrame(count, frameContener = allObjectPerFrame) {
         currentObjPerFrame = count;
@@ -1960,6 +3036,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function drawNewStage(container = 'canvasContainer', frameContainer = allObjectPerFrame) {
+        $scope.selectedItemList = [];
         if ($scope.onlyPlayer) container = 'canvasPlayerContainer';
         if (mainLayer != null) {
             selectedFrame.off('contentClick contentTap');
@@ -2062,6 +3139,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 clickOnContent();
             });
 
+            selectedFrame.on('mousedown touchstart', function(e) {
+                onMuseDown();
+            });
+
+            selectedFrame.on('mousemove touchmove', function(e) {
+                onMuseMove();
+            });
+
+            selectedFrame.on('mouseup touchend', function(e) {
+                onMuseUp();
+            });
+
             selectedFrame.find(".movementObject").each(function(shape) {
                 shape.on('mouseenter', function() {
                     if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
@@ -2080,6 +3169,145 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
         checkHelperNet();
         resize();
+    }
+
+    function redrawMultiSelectShape() {
+        $scope.$apply(function() {
+            if (selectShapeLayer != null) {
+                selectShapeLayer.destroy();
+                selectShapeLayer = null;
+            }
+            selectShapeLayer = new Konva.Layer();
+
+            var start = $scope.startPointSelectShape;
+            var end = $scope.endPointSelectShape;
+
+            var poly = new Konva.Line({
+                points: [start.x, start.y, end.x, start.y, end.x, end.y, start.x, end.y],
+                fill: 'rgba(63, 127, 191, 0.25)',
+                stroke: 'rgb(63, 127, 191)',
+                strokeWidth: 2,
+                closed: true
+            });
+
+            selectShapeLayer.add(poly);
+            selectedFrame.add(selectShapeLayer);
+        });
+    }
+
+    function selectFromMultiSelectShape() {
+        if (!$scope.startPointSelectShape || !$scope.endPointSelectShape) return;
+
+        $scope.$apply(function() {
+            var maxX = Math.max($scope.startPointSelectShape.x, $scope.endPointSelectShape.x);
+            var minX = Math.min($scope.startPointSelectShape.x, $scope.endPointSelectShape.x);
+            var maxY = Math.max($scope.startPointSelectShape.y, $scope.endPointSelectShape.y);
+            var minY = Math.min($scope.startPointSelectShape.y, $scope.endPointSelectShape.y);
+            $scope.lastSelected = null;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+            $scope.selectedItemList = [];
+
+            var isSameConfig = true;
+            var confName = '';
+
+            var shapes = selectedFrame.find(".movementObject");
+            shapes.each(function(shape) {
+                shape.stroke('transparent');
+                var x = shape.getAttr("x");
+                var y = shape.getAttr("y");
+                if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
+                    $scope.selectedItemList.push(shape);
+                    shape.strokeWidth(1);
+                    shape.stroke('red');
+                    var config = shape.getAttr("config");
+                    if (!config) isSameConfig = false;
+                    else {
+                        if (confName == '') {
+                            confName = config.confName;
+                        } else if (confName != config.confName) {
+                            isSameConfig = false;
+                        }
+                    }
+                }
+            });
+
+
+            var shapes = selectedFrame.find(".arrow");
+            shapes.each(function(shape) {
+                shape.stroke('white');
+                var x = shape.getAttr("x");
+                var y = shape.getAttr("y");
+                var shapePoint = shape.getAttr("points");
+
+                var isAllInSelectShape = true;
+
+                for (let a = 0; a < shapePoint.length; a++) {
+                    if (!((shapePoint[a].x + x) >= minX && (shapePoint[a].x + x) <= maxX && (shapePoint[a].y + y) >= minY && (shapePoint[a].y + y) <= maxY)) {
+                        isAllInSelectShape = false;
+                        break;
+                    }
+                }
+
+                if (isAllInSelectShape) {
+                    $scope.selectedItemList.push(shape);
+                    shape.stroke('red');
+                    var config = shape.getAttr("config");
+                    if (!config) isSameConfig = false;
+                    else {
+                        if (confName == '') {
+                            confName = config.confName;
+                        } else if (confName != config.confName) {
+                            isSameConfig = false;
+                        }
+                    }
+                }
+            });
+            var shapes = selectedFrame.find(".shapes");
+            shapes.each(function(shape) {
+                var fillColor = shape.getAttr('fill');
+                fillColor.replace('0.4', '1');
+                shape.stroke(fillColor);
+                var x = shape.getAttr("x");
+                var y = shape.getAttr("y");
+                var shapePoint = shape.getAttr("arrowPoint");
+                var isAllInSelectShape = true;
+
+                for (let a = 0; a < shapePoint.length; a++) {
+                    if (!((shapePoint[a].x + x) >= minX && (shapePoint[a].x + x) <= maxX && (shapePoint[a].y + y) >= minY && (shapePoint[a].y + y) <= maxY)) {
+                        isAllInSelectShape = false;
+                        break;
+                    }
+                }
+
+                if (isAllInSelectShape) {
+                    $scope.selectedItemList.push(shape);
+                    shape.stroke('red');
+                    var config = shape.getAttr("config");
+                    if (!config) isSameConfig = false;
+                    else {
+                        if (confName == '') {
+                            confName = config.confName;
+                        } else if (confName != config.confName) {
+                            isSameConfig = false;
+                        }
+                    }
+                }
+            });
+
+
+            if (isSameConfig && $scope.selectedItemList.length > 0) {
+                $scope.lastSelected = $scope.selectedItemList[0];
+                showInConfigObjData($scope.selectedItemList[0]);
+            }
+
+            if (selectShapeLayer != null) {
+                selectShapeLayer.destroy();
+                selectShapeLayer = null;
+            }
+            $scope.showObjConfig();
+            selectedFrame.draw();
+        });
     }
 
     function checkHelperNet() {
@@ -2159,11 +3387,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         selectedFrame.draw();
     }
 
-    function drawBeforePositionPoint() {
-        if (currentObjPerFrame <= 0 || $scope.lastSelected == null ||
-            $scope.lastSelected.getAttr('name') !== 'movementObject') return;
+    function drawBeforePositionPointAllVersion(itemToDrawBef) {
+        if (currentObjPerFrame <= 0 || itemToDrawBef == null ||
+            itemToDrawBef.getAttr('name') !== 'movementObject') return;
 
-        var id = $scope.lastSelected.getAttr('id');
+        var id = itemToDrawBef.getAttr('id');
         var lastObj = null;
 
         for (var i = 0; i < allObjectPerFrame[currentObjPerFrame - 1].obj.length; i++) {
@@ -2173,15 +3401,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 break;
             }
         }
-        lineLayer.destroy();
-        anchorLayer.destroy();
-        curveLayer.destroy();
-        lineLayer = new Konva.Layer();
+        if (lineLayer) lineLayer.destroy();
+        if (anchorLayer) anchorLayer.destroy();
+        if (anchorLayer) curveLayer.destroy();
         anchorLayer = new Konva.Layer();
         curveLayer = new Konva.Layer();
-        selectedFrame.add(lineLayer);
         selectedFrame.add(curveLayer);
         selectedFrame.add(anchorLayer);
+
 
         anchorLayer.off('beforeDraw');
         anchorLayer.on('beforeDraw', function() {
@@ -2199,13 +3426,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 opacity: 0.3,
                 points: [0, 0]
             });
-            lineLayer.add(quadLine);
+            anchorLayer.add(quadLine);
 
             if (isAnchorHistoryFor(currentObjPerFrame, id)) {
                 var history = getAnchorHistoryFor(currentObjPerFrame, id);
                 var newo = {
-                    x: $scope.lastSelected.getAttr("x"),
-                    y: $scope.lastSelected.getAttr("y")
+                    x: itemToDrawBef.getAttr("x"),
+                    y: itemToDrawBef.getAttr("y")
                 };
                 quadCurves = {
                     start: createAnchorPoint(history.start.x, history.start.y, 'start'),
@@ -2218,8 +3445,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     y: lastObj.getAttr("y")
                 };
                 var newo = {
-                    x: $scope.lastSelected.getAttr("x"),
-                    y: $scope.lastSelected.getAttr("y")
+                    x: itemToDrawBef.getAttr("x"),
+                    y: itemToDrawBef.getAttr("y")
                 };
                 quadCurves = {
                     start: createAnchorPoint(last.x, last.y, 'start'),
@@ -2228,17 +3455,26 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 };
             }
 
-            saveAnchorPoint(currentObjPerFrame, id, quadCurves);
+            saveAnchorPoint(currentObjPerFrame, itemToDrawBef, quadCurves);
 
             if (quadCurves.start.getAttr("x") == quadCurves.end.getAttr("x") &&
                 quadCurves.start.getAttr("y") == quadCurves.end.getAttr("y")) return;
 
-            drawCurves();
-            updateDottedLines();
+
             if ($scope.turnOnRotation) rotateObject();
             selectedFrame.draw();
         } else {
             quadCurves = null;
+        }
+    }
+
+    function drawBeforePositionPoint() {
+        if ($scope.selectedItemList.length > 0) {
+            for (let d = 0; d < $scope.selectedItemList.length; d++) {
+                drawBeforePositionPointAllVersion($scope.selectedItemList[d]);
+            }
+        } else {
+            drawBeforePositionPointAllVersion($scope.lastSelected);
         }
     }
 
@@ -2269,6 +3505,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             }
         });
         anchor.on('dragend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
             if (type == 'ster') {
                 saveAnchorPoint();
                 drawCurves();
@@ -2276,12 +3515,36 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 if ($scope.turnOnRotation) rotateObject();
             }
         });
+
+        anchor.on('dragstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('touchstart', function() {
+            somethingIsDraw = true;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('mouseup', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
+
+        anchor.on('touchend', function() {
+            somethingIsDraw = false;
+            $scope.startPointSelectShape = null;
+            $scope.endPointSelectShape = null;
+        });
         anchorLayer.add(anchor);
         return anchor;
     }
 
     function drawCurves() {
-        if (quadCurves) {
+        if (quadCurves && $scope.selectedItemList.length <= 1) {
             var context = curveLayer.getContext();
             context.clear();
             context.beginPath();
@@ -2299,33 +3562,38 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function updateDottedLines() {
         if (quadCurves) {
             var q = quadCurves;
-            var quadLine = lineLayer.get('#quadLine')[0];
+            if (!(anchorLayer && anchorLayer.get('#quadLine').length > 0)) return;
+            var quadLine = anchorLayer.get('#quadLine')[0];
             quadLine.setPoints([q.start.attrs.x, q.start.attrs.y, q.control.attrs.x, q.control.attrs.y, q.end.attrs.x, q.end.attrs.y]);
-            lineLayer.draw();
         }
     }
 
-    function saveAnchorPoint() {
-        if ($scope.lastSelected == null) return;
-        if (quadCurves.start.getAttr("x") == quadCurves.end.getAttr("x") &&
-            quadCurves.start.getAttr("y") == quadCurves.end.getAttr("y")) return;
+    function saveAnchorPoint(currentObjPerFrame, element, quadCurv) {
+        if (!$scope.lastSelected && !element) return;
+        var quadCurvess = quadCurv ? quadCurv : quadCurves;
+
+        var el = element ? element : $scope.lastSelected;
+        if (!el) return;
+
+        if (quadCurvess.start.getAttr("x") == quadCurvess.end.getAttr("x") &&
+            quadCurvess.start.getAttr("y") == quadCurvess.end.getAttr("y")) return;
 
         var anchorToSave = {
             start: {
-                x: quadCurves.start.getAttr("x"),
-                y: quadCurves.start.getAttr("y"),
+                x: quadCurvess.start.getAttr("x"),
+                y: quadCurvess.start.getAttr("y"),
             },
             control: {
-                x: quadCurves.control.getAttr("x"),
-                y: quadCurves.control.getAttr("y"),
+                x: quadCurvess.control.getAttr("x"),
+                y: quadCurvess.control.getAttr("y"),
             },
             end: {
-                x: $scope.lastSelected.getAttr("x"),
-                y: $scope.lastSelected.getAttr("y"),
+                x: el.getAttr("x"),
+                y: el.getAttr("y"),
             }
         };
 
-        saveToAnchorHistory(currentObjPerFrame, $scope.lastSelected.getAttr("id"), anchorToSave);
+        saveToAnchorHistory(currentObjPerFrame, el.getAttr("id"), anchorToSave);
         if ($scope.turnOnRotation) rotateObject();
 
         selectedFrame.draw();
@@ -2346,34 +3614,63 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function rotateObject(id = null, obj = $scope.lastSelected) {
-        if (id == null) {
-            if ($scope.lastSelected && $scope.lastSelected != null) {
-                id = $scope.lastSelected.getAttr("id");
-            } else {
-                return;
+        if ($scope.selectedItemList.length > 0) {
+            for (let x = 0; x < $scope.selectedItemList.length; x++) {
+                var id = $scope.selectedItemList[i].getAttr("id");
+                if (isAnchorHistoryFor(currentObjPerFrame, id)) {
+                    var actual = getAnchorHistoryFor(currentObjPerFrame, id);
+                    var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0.9);
+                    var p2 = getPosOnCurves(actual.start, actual.control, actual.end, 1);
+                    var rotOffset = 0;
+                    if (p1.x > p2.x) rotOffset = 180;
+                    var a = (p2.y - p1.y) / (p2.x - p1.x);
+                    var degree = ((Math.atan(a) * 180) / Math.PI);
+                    obj.rotation(degree + rotOffset);
+                } else if (isAnchorHistoryFor(currentObjPerFrame + 1, id)) {
+                    var actual = getAnchorHistoryFor(currentObjPerFrame + 1, id);
+                    var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0);
+                    var p2 = getPosOnCurves(actual.start, actual.control, actual.end, 0.1);
+                    var rotOffset = 0;
+                    if (p1.x > p2.x) rotOffset = 180;
+                    var a = (p2.y - p1.y) / (p2.x - p1.x);
+                    var degree = ((Math.atan(a) * 180) / Math.PI);
+                    obj.rotation(degree + rotOffset);
+                }
+                selectedFrame.draw();
+                showInConfigObjData(obj);
             }
+        } else {
+            if (id == null) {
+                if ($scope.lastSelected && $scope.lastSelected != null) {
+                    id = $scope.lastSelected.getAttr("id");
+                } else {
+                    return;
+                }
+            }
+            if (isAnchorHistoryFor(currentObjPerFrame, id)) {
+                var actual = getAnchorHistoryFor(currentObjPerFrame, id);
+                var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0.9);
+                var p2 = getPosOnCurves(actual.start, actual.control, actual.end, 1);
+                var rotOffset = 0;
+                if (p1.x > p2.x) rotOffset = 180;
+                var a = (p2.y - p1.y) / (p2.x - p1.x);
+                var degree = ((Math.atan(a) * 180) / Math.PI);
+                obj.rotation(degree + rotOffset);
+            } else if (isAnchorHistoryFor(currentObjPerFrame + 1, id)) {
+                var actual = getAnchorHistoryFor(currentObjPerFrame + 1, id);
+                var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0);
+                var p2 = getPosOnCurves(actual.start, actual.control, actual.end, 0.1);
+                var rotOffset = 0;
+                if (p1.x > p2.x) rotOffset = 180;
+                var a = (p2.y - p1.y) / (p2.x - p1.x);
+                var degree = ((Math.atan(a) * 180) / Math.PI);
+                obj.rotation(degree + rotOffset);
+            }
+            selectedFrame.draw();
+            showInConfigObjData(obj);
         }
-        if (isAnchorHistoryFor(currentObjPerFrame, id)) {
-            var actual = getAnchorHistoryFor(currentObjPerFrame, id);
-            var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0.9);
-            var p2 = getPosOnCurves(actual.start, actual.control, actual.end, 1);
-            var rotOffset = 0;
-            if (p1.x > p2.x) rotOffset = 180;
-            var a = (p2.y - p1.y) / (p2.x - p1.x);
-            var degree = ((Math.atan(a) * 180) / Math.PI);
-            obj.rotation(degree + rotOffset);
-        } else if (isAnchorHistoryFor(currentObjPerFrame + 1, id)) {
-            var actual = getAnchorHistoryFor(currentObjPerFrame + 1, id);
-            var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0);
-            var p2 = getPosOnCurves(actual.start, actual.control, actual.end, 0.1);
-            var rotOffset = 0;
-            if (p1.x > p2.x) rotOffset = 180;
-            var a = (p2.y - p1.y) / (p2.x - p1.x);
-            var degree = ((Math.atan(a) * 180) / Math.PI);
-            obj.rotation(degree + rotOffset);
-        }
-        selectedFrame.draw();
-        showInConfigObjData(obj);
+
+
     }
 
     function showInConfigObjData(obj = $scope.lastSelected) {
@@ -2400,14 +3697,16 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 for (var x = 0; x < $scope.iloscklatekPomiedzyGlownymi; x++) {
                     arrowsArray = []
                     for (var z = 0; z < arrows.length; z++) {
+                        var lastText = arrows[z].getAttr("textObj");
                         var complexText = new Konva.Text({
-                            x: arrows[z].getAttr("points")[0].x,
-                            y: arrows[z].getAttr("points")[0].y,
-                            offsetX: 100,
-                            text: (arrows[z].getAttr("config") && arrows[z].getAttr("config").text) ? arrows[z].getAttr("config").text : "",
-                            fontSize: 18,
+                            x: lastText.getAttr('x'),
+                            y: lastText.getAttr('y'),
+                            offsetX: lastText.getAttr('offsetX'),
+                            offsetY: lastText.getAttr('offsetY'),
+                            text: lastText.getAttr('text'),
+                            fontSize: lastText.getAttr('fontSize'),
                             fontFamily: 'Calibri',
-                            fill: '#fff',
+                            fill: lastText.getAttr('fill'),
                             padding: 20,
                             width: 200,
                             align: 'center'
@@ -2415,6 +3714,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         if (arrows[z].getAttr("points")[0].y < arrows[z].getAttr("points")[1].y) complexText.setAttr('offsetY', 50);
                         else complexText.setAttr('offsetY', 10);
                         var arrow = new Konva.Shape({
+                            x: arrows[z].getAttr("x"),
+                            y: arrows[z].getAttr("y"),
+                            offsetX: arrows[z].getAttr('offsetX'),
+                            offsetY: arrows[z].getAttr('offsetY'),
                             points: arrows[z].getAttr("points"),
                             stroke: arrows[z].getAttr("stroke"),
                             strokeWidth: arrows[z].getAttr("strokeWidth"),
@@ -2431,19 +3734,25 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
                     shapesArray = []
                     for (var z = 0; z < shapes.length; z++) {
+                        var lastText = shapes[z].getAttr("textObj");
                         var complexText = new Konva.Text({
-                            x: shapes[z].getAttr("x"),
-                            y: shapes[z].getAttr("y"),
-                            offsetX: 100,
-                            text: (shapes[z].getAttr("config") && shapes[z].getAttr("config").text) ? shapes[z].getAttr("config").text : "",
-                            fontSize: 18,
+                            x: lastText.getAttr('x'),
+                            y: lastText.getAttr('y'),
+                            offsetX: lastText.getAttr('offsetX'),
+                            offsetY: lastText.getAttr('offsetY'),
+                            text: lastText.getAttr('text'),
+                            fontSize: lastText.getAttr('fontSize'),
                             fontFamily: 'Calibri',
-                            fill: '#fff',
+                            fill: lastText.getAttr('fill'),
                             padding: 20,
                             width: 200,
                             align: 'center'
                         });
                         var shape = new Konva.Shape({
+                            x: shapes[z].getAttr("x"),
+                            y: shapes[z].getAttr("y"),
+                            offsetX: shapes[z].getAttr('offsetX'),
+                            offsetY: shapes[z].getAttr('offsetY'),
                             arrowPoint: shapes[z].getAttr("arrowPoint"),
                             sceneFunc: shapes[z].getAttr("sceneFunc"),
                             name: shapes[z].getAttr("name"),
@@ -2460,18 +3769,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
                     textArray = []
                     for (var z = 0; z < text.length; z++) {
-                        var complexText = new Konva.Text({
-                            x: text[z].getAttr("x"),
-                            y: text[z].getAttr("y"),
-                            offsetX: 100,
-                            text: (text[z].getAttr("config") && text[z].getAttr("config").text) ? text[z].getAttr("config").text : "",
-                            fontSize: 18,
-                            fontFamily: 'Calibri',
-                            fill: '#fff',
-                            padding: 20,
-                            width: 200,
-                            align: 'center'
-                        });
+
                         var obj = new Konva.Text({
                             x: text[z].getAttr("x"),
                             y: text[z].getAttr("y"),
@@ -2485,8 +3783,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                             align: text[z].getAttr("align"),
                             scale: text[z].getAttr("scale"),
                             id: text[z].getAttr("id"),
-                            config: text[z].getAttr("config"),
-                            textObj: complexText
+                            config: text[z].getAttr("config")
                         });
                         textArray.push(obj);
                     }
@@ -2518,14 +3815,16 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                                 degree = parseFloat(degree) + Math.abs(lastDegreee - parseDeg(parseInt(objs[z].getAttr("rotation"))));
                             }
 
+                            var lastText = objs[z].getAttr("textObj");
                             var complexText = new Konva.Text({
                                 x: p1.x,
-                                y: p1.y,
-                                offsetX: 100,
-                                text: (objs[z].getAttr("config") && objs[z].getAttr("config").text) ? objs[z].getAttr("config").text : "",
-                                fontSize: 18,
+                                y: p1.y + objs[z].height() / 2,
+                                offsetX: lastText.getAttr('offsetX'),
+                                offsetY: lastText.getAttr('offsetY'),
+                                text: lastText.getAttr('text'),
+                                fontSize: lastText.getAttr('fontSize'),
                                 fontFamily: 'Calibri',
-                                fill: '#fff',
+                                fill: lastText.getAttr('fill'),
                                 padding: 20,
                                 width: 200,
                                 align: 'center'
@@ -2544,14 +3843,16 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                                 textObj: complexText
                             });
                         } else {
+                            var lastText = objs[z].getAttr("textObj");
                             var complexText = new Konva.Text({
-                                x: objs[z].getAttr("x"),
-                                y: objs[z].getAttr("y"),
-                                offsetX: 100,
-                                text: (objs[z].getAttr("config") && objs[z].getAttr("config").text) ? objs[z].getAttr("config").text : "",
-                                fontSize: 18,
+                                x: lastText.getAttr('x'),
+                                y: lastText.getAttr('y'),
+                                offsetX: lastText.getAttr('offsetX'),
+                                offsetY: lastText.getAttr('offsetY'),
+                                text: lastText.getAttr('text'),
+                                fontSize: lastText.getAttr('fontSize'),
                                 fontFamily: 'Calibri',
-                                fill: '#fff',
+                                fill: lastText.getAttr('fill'),
                                 padding: 20,
                                 width: 200,
                                 align: 'center'
@@ -2585,14 +3886,16 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             } else {
                 arrowsArray = []
                 for (var z = 0; z < arrows.length; z++) {
+                    var lastText = arrows[z].getAttr("textObj");
                     var complexText = new Konva.Text({
-                        x: arrows[z].getAttr("points")[0].x,
-                        y: arrows[z].getAttr("points")[0].y,
-                        offsetX: 100,
-                        text: (arrows[z].getAttr("config") && arrows[z].getAttr("config").text) ? arrows[z].getAttr("config").text : "",
-                        fontSize: 18,
+                        x: lastText.getAttr('x'),
+                        y: lastText.getAttr('y'),
+                        offsetX: lastText.getAttr('offsetX'),
+                        offsetY: lastText.getAttr('offsetY'),
+                        text: lastText.getAttr('text'),
+                        fontSize: lastText.getAttr('fontSize'),
                         fontFamily: 'Calibri',
-                        fill: '#fff',
+                        fill: lastText.getAttr('fill'),
                         padding: 20,
                         width: 200,
                         align: 'center'
@@ -2600,6 +3903,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     if (arrows[z].getAttr("points")[0].y < arrows[z].getAttr("points")[1].y) complexText.setAttr('offsetY', 50);
                     else complexText.setAttr('offsetY', 10);
                     var arrow = new Konva.Shape({
+                        x: arrows[z].getAttr("x"),
+                        y: arrows[z].getAttr("y"),
+                        offsetX: arrows[z].getAttr('offsetX'),
+                        offsetY: arrows[z].getAttr('offsetY'),
                         points: arrows[z].getAttr("points"),
                         stroke: arrows[z].getAttr("stroke"),
                         strokeWidth: arrows[z].getAttr("strokeWidth"),
@@ -2616,19 +3923,26 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
                 shapesArray = []
                 for (var z = 0; z < shapes.length; z++) {
+                    var lastText = shapes[z].getAttr("textObj");
                     var complexText = new Konva.Text({
-                        x: shapes[z].getAttr("x"),
-                        y: shapes[z].getAttr("y"),
-                        offsetX: 100,
-                        text: (shapes[z].getAttr("config") && shapes[z].getAttr("config").text) ? shapes[z].getAttr("config").text : "",
-                        fontSize: 18,
+
+                        x: lastText.getAttr('x'),
+                        y: lastText.getAttr('y'),
+                        offsetX: lastText.getAttr('offsetX'),
+                        offsetY: lastText.getAttr('offsetY'),
+                        text: lastText.getAttr('text'),
+                        fontSize: lastText.getAttr('fontSize'),
                         fontFamily: 'Calibri',
-                        fill: '#fff',
+                        fill: lastText.getAttr('fill'),
                         padding: 20,
                         width: 200,
                         align: 'center'
                     });
                     var shape = new Konva.Shape({
+                        x: shapes[z].getAttr("x"),
+                        y: shapes[z].getAttr("y"),
+                        offsetX: shapes[z].getAttr('offsetX'),
+                        offsetY: shapes[z].getAttr('offsetY'),
                         arrowPoint: shapes[z].getAttr("arrowPoint"),
                         sceneFunc: shapes[z].getAttr("sceneFunc"),
                         name: shapes[z].getAttr("name"),
@@ -2645,18 +3959,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
                 textArray = []
                 for (var z = 0; z < text.length; z++) {
-                    var complexText = new Konva.Text({
-                        x: text[z].getAttr("x"),
-                        y: text[z].getAttr("y"),
-                        offsetX: 100,
-                        text: (text[z].getAttr("config") && text[z].getAttr("config").text) ? text[z].getAttr("config").text : "",
-                        fontSize: 18,
-                        fontFamily: 'Calibri',
-                        fill: '#fff',
-                        padding: 20,
-                        width: 200,
-                        align: 'center'
-                    });
+
                     var obj = new Konva.Text({
                         x: text[z].getAttr("x"),
                         y: text[z].getAttr("y"),
@@ -2670,22 +3973,23 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         align: text[z].getAttr("align"),
                         scale: text[z].getAttr("scale"),
                         id: text[z].getAttr("id"),
-                        config: text[z].getAttr("config"),
-                        textObj: complexText
+                        config: text[z].getAttr("config")
                     });
                     textArray.push(obj);
                 }
 
                 objectArrays = []
                 for (var z = 0; z < objs.length; z++) {
+                    var lastText = objs[z].getAttr("textObj");
                     var complexText = new Konva.Text({
-                        x: objs[z].getAttr("x"),
-                        y: objs[z].getAttr("y"),
-                        offsetX: 100,
-                        text: (objs[z].getAttr("config") && objs[z].getAttr("config").text) ? objs[z].getAttr("config").text : "",
-                        fontSize: 18,
+                        x: lastText.getAttr('x'),
+                        y: lastText.getAttr('y'),
+                        offsetX: lastText.getAttr('offsetX'),
+                        offsetY: lastText.getAttr('offsetY'),
+                        text: lastText.getAttr('text'),
+                        fontSize: lastText.getAttr('fontSize'),
                         fontFamily: 'Calibri',
-                        fill: '#fff',
+                        fill: lastText.getAttr('fill'),
                         padding: 20,
                         width: 200,
                         align: 'center'
@@ -2836,7 +4140,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         isPlayerOpen = false;
         $('#canvasPlayer').hide();
         turnOnAllSter();
-        changeFrame(0);
+        changeFrame(allObjectPerFrame.length - 1);
         drawNewStage();
     }
 
@@ -2875,15 +4179,15 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
             $scope.cwName = data.name;
             $scope.cwFieldType = data.cwFieldType;
-            $scope.cwMaxTime = data.cwMaxTime;
-            $scope.cwMinTime = data.cwMinTime;
-            $scope.cwMaxPerson = data.cwMaxPerson;
-            $scope.cwMinPerson = data.cwMinPerson;
+            $scope.cwMaxTime = parseInt(data.cwMaxTime);
+            $scope.cwMinTime = parseInt(data.cwMinTime);
+            $scope.cwMaxPerson = parseInt(data.cwMaxPerson);
+            $scope.cwMinPerson = parseInt(data.cwMinPerson);
             $scope.cwOps = data.cwOps;
             $scope.cwWsk = data.cwWsk;
-            $scope.iloscklatekPomiedzyGlownymi = data.frameBeetween;
-            $scope.jakoscAnimacji = data.qualityAnim;
-            $scope.iloscfps = data.fps;
+            $scope.iloscklatekPomiedzyGlownymi = parseInt(data.frameBeetween);
+            $scope.jakoscAnimacji = parseInt(data.qualityAnim);
+            $scope.iloscfps = parseInt(data.fps);
 
             for (var x = 0; x < data.animFrame.length; x++) {
                 allObjectPerFrame.push({ arrow: [], obj: [], shapes: [], text: [] });
@@ -3092,7 +4396,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             return;
         }
 
-        if (!$scope.cwMaxTime || $scope.cwMaxTime.length <= 0 || $scope.cwMaxTime <= $scope.cwMinTime || $scope.cwMaxTime > 1000 || !$.isNumeric($scope.cwMaxTime)) {
+        if (!$scope.cwMaxTime || $scope.cwMaxTime.length <= 0 || $scope.cwMaxTime < $scope.cwMinTime || $scope.cwMaxTime > 1000 || !$.isNumeric($scope.cwMaxTime)) {
             notify.localNotify("Walidacja", "Wpisz poprawnie maksymalny czas trwania ( wiecej niż " + $scope.cwMinTime + " mniej niż 1000 )");
             return;
         }
@@ -3102,7 +4406,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             return;
         }
 
-        if (!$scope.cwMaxPerson || $scope.cwMaxPerson.length <= 0 || $scope.cwMaxPerson <= $scope.cwMinPerson || $scope.cwMaxPerson > 100 || !$.isNumeric($scope.cwMaxPerson)) {
+        if (!$scope.cwMaxPerson || $scope.cwMaxPerson.length <= 0 || $scope.cwMaxPerson < $scope.cwMinPerson || $scope.cwMaxPerson > 100 || !$.isNumeric($scope.cwMaxPerson)) {
             notify.localNotify("Walidacja", "Wpisz poprawnie maksymalną ilość zawodników ( wiecej niż " + $scope.cwMinPerson + " mniej niż 100 )");
             return;
         }

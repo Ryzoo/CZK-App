@@ -688,7 +688,8 @@ canvas,
 }
 
 .timeElement,
-#addFrame {
+#addFrame,
+#deleteFrame {
     padding: 0 5px;
     line-height: 1.8;
     background: rgb(42, 42, 42);
@@ -704,12 +705,14 @@ canvas,
     background-color: rgb(81, 19, 1);
 }
 
-#addFrame {
+#addFrame,
+#deleteFrame {
     background-color: rgb(191, 72, 36);
     border: 1px solid rgb(191, 72, 36);
 }
 
-#addFrame:hover {
+#addFrame:hover,
+#deleteFrame:hover {
     background-color: rgb(253, 112, 72);
     transition: background-color .2s;
 }

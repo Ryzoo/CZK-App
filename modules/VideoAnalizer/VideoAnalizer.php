@@ -178,7 +178,7 @@ class VideoAnalizer extends BasicModule {
         "filePath" => $pathToFile.$fileName
       ];
 
-      // unlink($pathToFile.$fileName);
+      unlink($pathToFile.$fileName);
 
       return $this->returnedData;
     }
