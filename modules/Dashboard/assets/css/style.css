@@ -1,7 +1,7 @@
 .today-date {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 35px;
+    font-size: 25px;
     font-weight: 700;
     font-family: 'Roboto';
 }
@@ -27,4 +27,15 @@
 
 .fullWidth {
     width: 100% !important;
+}
+
+.bottomLink {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.bottomLink a {
+    width: 100%;
+    text-align: center;
 }

@@ -61,8 +61,13 @@ Premium: http://www.gridgum.com
     width: 50%;
 }
 
-.f33 {
+.f33,
+.f33-1 {
     width: 33.3%;
+}
+
+.f67 {
+    width: 66%;
 }
 
 .loaderMainText h5 {
@@ -75,8 +80,12 @@ Premium: http://www.gridgum.com
 }
 
 @media (max-width:768px) {
-    .f33 {
+    .f33,
+    .f67 {
         width: 50%;
+    }
+    .f33-1 {
+        width: 100%;
     }
     #nav-accordion p a img {
         display: none;
@@ -85,7 +94,8 @@ Premium: http://www.gridgum.com
 
 @media (max-width:630px) {
     .f33,
-    .f50 {
+    .f50,
+    .f67 {
         width: 100%;
     }
 }
@@ -1100,7 +1110,8 @@ ul.top-menu>li>a:focus {
 
 .titleIn {
     font-weight: 550;
-    font-size: 25px;
+    font-size: 20px;
+    letter-spacing: 1px;
     font-family: 'Roboto';
     margin-top: 10px;
     margin-bottom: 10px;
@@ -1288,15 +1299,16 @@ ul.top-menu>li>a:focus {
     margin-left: 230px;
 }
 
-.sidebar-toggle-box .fa-bars {
+.sidebar-toggle-box i {
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
     color: #fff;
+    transition: all .2s;
 }
 
-.sidebar-toggle-box .fa-bars:hover {
-    color: #ec1800;
+.sidebar-toggle-box i:hover {
+    transform: rotate(90deg);
 }
 
 .sidebar-closed>#sidebar>ul {
