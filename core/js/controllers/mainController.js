@@ -83,6 +83,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     }
 
     $rootScope.showModalWindow = function(text, agreeFunction, disagreeFunction = null) {
+        console.log('asd');
         var data = "<h5 style='padding: 10px 20px;'>Czy jesteś pewny tego działania ?</h5>" +
             "<p style='padding: 0 20px 20px;'>" + text + "</p>" +
             "<button class='waves-effect waves-light btn widgetClose' style='width:calc(50% - 40px); float:left; margin: 0 20px 20px;' id='widgetAgree' >Tak, wykonaj</button>" +
@@ -100,7 +101,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         $(document).off("click", "#widgetDisagree");
         $(document).on("click", "#widgetDisagree", function() {
             $rootScope.closeWidget();
-            disagreeFunction();
+            if (disagreeFunction) disagreeFunction();
         });
     }
 

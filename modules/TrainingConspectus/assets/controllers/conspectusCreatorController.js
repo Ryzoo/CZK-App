@@ -428,19 +428,21 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     });
 
     $(document).ready(function() {
-        $(document).off('keydown', "#animCreator");
-        $(document).off('keyup', "#animCreator");
-        $(document).on('keydown', "#animCreator", function(e) {
+        $(document).off('keydown');
+        $(document).off('keyup');
+        $(document).on('keydown', function(e) {
             if (e.keyCode == 16) {
                 $scope.shiftPressed = true;
-            } else if (e.keyCode == 46) {
+            }
+        });
+        $(document).on('keyup', function(e) {
+            $scope.shiftPressed = false;
+            console.log(e);
+            if (e.keyCode == 46) {
                 $rootScope.showModalWindow("Nieodwracalnie usunie zaznaczone obiekty oraz wszystkie ich wystąpienia w następnych klatkach animacji", function() {
                     deleteCurrent();
                 });
             }
-        });
-        $(document).on('keyup', "#animCreator", function() {
-            $scope.shiftPressed = false;
         });
     });
 
@@ -2254,6 +2256,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 };
                 // create textarea and style it
                 var textarea = document.createElement('textarea');
+                textarea.className = "textToEditInCv";
                 document.body.appendChild(textarea);
                 textarea.value = obj.text();
                 textarea.style.position = 'absolute';
@@ -2264,15 +2267,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 textarea.style.color = "white";
                 textarea.style.backogrund = "rgba(0, 0, 0, 0.34)";
                 textarea.focus();
-                textarea.addEventListener('keydown', function(e) {
-                    // hide on enter
-
+                $(document).off('keydown', '.textToEditInCv');
+                $(document).on('keydown', '.textToEditInCv', function(e) {
                     if (e.keyCode === 13) {
                         obj.text(textarea.value);
                         selectedFrame.draw();
                         document.body.removeChild(textarea);
                     }
-
                 });
             })
             allObjectPerFrame[currentObjPerFrame].text.push(obj);
@@ -2283,7 +2284,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $scope.changeCategories($scope.mouseActionType.MOVE);
             });
         }
-
     }
 
 
@@ -3198,6 +3198,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function selectFromMultiSelectShape() {
         if (!$scope.startPointSelectShape || !$scope.endPointSelectShape) return;
 
+        if (anchorLayer) {
+            anchorLayer.destroy();
+            anchorLayer = null;
+        }
+        anchorLayer = new Konva.Layer();
+
         $scope.$apply(function() {
             var maxX = Math.max($scope.startPointSelectShape.x, $scope.endPointSelectShape.x);
             var minX = Math.min($scope.startPointSelectShape.x, $scope.endPointSelectShape.x);
@@ -3568,7 +3574,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
     }
 
-    function saveAnchorPoint(currentObjPerFrame, element, quadCurv) {
+    function saveAnchorPoint(currentFrame = null, element = null, quadCurv = null) {
         if (!$scope.lastSelected && !element) return;
         var quadCurvess = quadCurv ? quadCurv : quadCurves;
 
@@ -3592,8 +3598,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 y: el.getAttr("y"),
             }
         };
-
-        saveToAnchorHistory(currentObjPerFrame, el.getAttr("id"), anchorToSave);
+        saveToAnchorHistory(currentFrame ? currentFrame : currentObjPerFrame, el.getAttr("id"), anchorToSave);
         if ($scope.turnOnRotation) rotateObject();
 
         selectedFrame.draw();
@@ -3614,9 +3619,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function rotateObject(id = null, obj = $scope.lastSelected) {
+        console.log(id);
+        console.log(obj);
         if ($scope.selectedItemList.length > 0) {
             for (let x = 0; x < $scope.selectedItemList.length; x++) {
-                var id = $scope.selectedItemList[i].getAttr("id");
+                var id = $scope.selectedItemList[x].getAttr("id");
                 if (isAnchorHistoryFor(currentObjPerFrame, id)) {
                     var actual = getAnchorHistoryFor(currentObjPerFrame, id);
                     var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0.9);
@@ -3625,7 +3632,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     if (p1.x > p2.x) rotOffset = 180;
                     var a = (p2.y - p1.y) / (p2.x - p1.x);
                     var degree = ((Math.atan(a) * 180) / Math.PI);
-                    obj.rotation(degree + rotOffset);
+                    $scope.selectedItemList[x].rotation(degree + rotOffset);
                 } else if (isAnchorHistoryFor(currentObjPerFrame + 1, id)) {
                     var actual = getAnchorHistoryFor(currentObjPerFrame + 1, id);
                     var p1 = getPosOnCurves(actual.start, actual.control, actual.end, 0);
@@ -3634,10 +3641,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     if (p1.x > p2.x) rotOffset = 180;
                     var a = (p2.y - p1.y) / (p2.x - p1.x);
                     var degree = ((Math.atan(a) * 180) / Math.PI);
-                    obj.rotation(degree + rotOffset);
+                    $scope.selectedItemList[x].rotation(degree + rotOffset);
                 }
                 selectedFrame.draw();
-                showInConfigObjData(obj);
+                showInConfigObjData($scope.selectedItemList[x]);
             }
         } else {
             if (id == null) {

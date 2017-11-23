@@ -17,7 +17,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.coOp = '';
     $scope.coTags = '';
 
-    if ($rootScope.widgetInterval){
+    if ($rootScope.widgetInterval) {
         clearInterval($rootScope.widgetInterval);
     }
 
@@ -148,20 +148,20 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.deleteAnimCon = function(id) {
-        $rootScope.showModalWindow("Nieodwracalne usunięcie ćwiczenia",function(){
+        $rootScope.showModalWindow("Nieodwracalne usunięcie ćwiczenia", function() {
             request.backend('deleteAnimConspect', { id: id }, function(data) {
                 $scope.initConsAnimList();
             }, "Pomyślnie usunięto");
         });
     }
 
-    $scope.showShareWidget = function(aid,isConspect = false){
-        if(isConspect){
+    $scope.showShareWidget = function(aid, isConspect = false) {
+        if (isConspect) {
             $rootScope.sharedConspId = aid;
-            $rootScope.showWidget('shareListC','TrainingConspectus');
-        }else{
+            $rootScope.showWidget('shareListC', 'TrainingConspectus');
+        } else {
             $rootScope.sharedAnimId = aid;
-            $rootScope.showWidget('shareList','TrainingConspectus');
+            $rootScope.showWidget('shareList', 'TrainingConspectus');
         }
     }
 
@@ -304,7 +304,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     }
 
     $scope.deleteCon = function(id) {
-        $rootScope.showModalWindow("Nieodwracalne usunięcie konspektu",function(){
+        $rootScope.showModalWindow("Nieodwracalne usunięcie konspektu", function() {
             request.backend('deleteConspect', { id: id }, function(data) {
                 $scope.initConspectusList();
             }, "Pomyślnie usunięto");
