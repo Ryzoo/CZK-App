@@ -65,7 +65,7 @@
 
         addControl: function() {
             var label = this.getOption('label');
-            this.playElement = $("<ins class='play-gif'>" + label + "</ins>");
+            this.playElement = $("<ins class='play-gif noPrint'>" + label + "</ins>");
             this.wrapper.append(this.playElement);
             this.playElement.css('top', '50%');
             this.playElement.css('left', '50%');

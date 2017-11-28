@@ -359,6 +359,13 @@ h6 {
     padding-left: 10px;
 }
 
+@media (max-width:600px) {
+    .logoContener {
+        float: none;
+        margin: auto;
+    }
+}
+
 .conspectAuthor {
     display: table;
     margin: auto;
