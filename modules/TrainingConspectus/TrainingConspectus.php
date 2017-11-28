@@ -18,7 +18,7 @@ class TrainingConspectus extends BasicModule
     function install()
     {
         ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL , `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `frameBeetween` INT NOT NULL, `qualityAnim` INT NOT NULL, `fps` INT NOT NULL , `mainImgShow` VARCHAR(255) NOT NULL, `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
-        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `conspect` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL, `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL  ,`sezon` VARCHAR(255) NOT NULL, `date` DATE NOT NULL , `team` VARCHAR(255) NOT NULL , `about` TINYTEXT NOT NULL , `tags` VARCHAR(255) NOT NULL , `data` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `conspect` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL, `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL , `powerCount` VARCHAR(255) NOT NULL, `userCount` VARCHAR(255) NOT NULL ,`place` VARCHAR(255) NOT NULL, `date` DATETIME NOT NULL, `playTime` DATETIME NOT NULL , `team` VARCHAR(255) NOT NULL , `about` TINYTEXT NOT NULL , `tags` VARCHAR(255) NOT NULL , `data` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
     function uninstall()
@@ -43,10 +43,12 @@ class TrainingConspectus extends BasicModule
         $coName = $data['coName'];
         $usid = $data['id_user'];
         $coDate = $data['coDate'];
-        $coSezon = $data['coSezon'];
+        $coPlace = $data['coPlace'];
         $coTeam = $data['coTeam'];
         $coOp = $data['coOp'];
         $coTags = trim($data['coTags']);
+        $powerCount = $data['powerCount'];
+        $userCount = $data['userCount'];
         $data = $data['data'];
 
         if ($id >= 0) {
@@ -54,8 +56,10 @@ class TrainingConspectus extends BasicModule
                 "name" => $coName,
                 "id_user" => $usid,
                 "date" => $coDate,
-                "sezon" => $coSezon,
+                "place" => $coPlace,
                 "team" => $coTeam,
+                "powerCount" => $powerCount,
+                "userCount" => $userCount,
                 "about" => $coOp,
                 "tags" => $coTags,
                 "data" => $data
@@ -65,8 +69,10 @@ class TrainingConspectus extends BasicModule
                 "name" => $coName,
                 "id_user" => $usid,
                 "date" => $coDate,
-                "sezon" => $coSezon,
+                "place" => $coPlace,
                 "team" => $coTeam,
+                "powerCount" => $powerCount,
+                "userCount" => $userCount,
                 "about" => $coOp,
                 "tags" => $coTags,
                 "data" => $data
@@ -86,6 +92,10 @@ class TrainingConspectus extends BasicModule
     {
         $id = $data['id'];
         $this->returnedData['data'] = ($this->db->getConnection())->fetchRow("SELECT * FROM conspect WHERE id=" . $id);
+        if( isset($this->returnedData['data']["date"]) ){
+            $this->returnedData['data']["time"] = date("H:i:s",strtotime($this->returnedData['data']["date"]));
+            $this->returnedData['data']["date"] = date("d/m/Y",strtotime($this->returnedData['data']["date"]));
+        }
         return $this->returnedData;
     }
 
@@ -93,6 +103,10 @@ class TrainingConspectus extends BasicModule
     {
         $id = $data['id'];
         $conspect = ($this->db->getConnection())->fetchRow("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user && conspect.id=" . $id);
+        if( isset($conspect["date"]) ){
+            $conspect["time"] = date("H:i",strtotime($conspect["date"]));
+            $conspect["date"] = date("d/m/Y",strtotime($conspect["date"]));
+        }
         $conData = json_decode($conspect['data']);
 
         $group = [
@@ -101,15 +115,25 @@ class TrainingConspectus extends BasicModule
             'coEnd' => []
         ];
 
+        $minTime = 0;
+        $maxTime = 0;
+     
         for ($i = 0; $i < count($conData); $i++) {
             $place = $conData[$i]->data->place;
             if ($conData[$i]->type != 'simple') {
                 $conData[$i]->data = $this->loadConspectAnim(['id' => $conData[$i]->data->id])['data'];
+                $minTime += (int)$conData[$i]->data["cwMinTime"];
+                $maxTime += (int)$conData[$i]->data["cwMaxTime"];
+            }else{
+                $minTime += (int)$conData[$i]->data->timeMin;
+                $maxTime += (int)$conData[$i]->data->timeMax;
             }
+           
             array_push($group[$place], $conData[$i]);
         }
 
         $conspect['data'] = $group;
+        $conspect['playTime'] = $minTime."min.-".$maxTime."min.";
         $this->returnedData['data'] = $conspect;
 
         return $this->returnedData;
@@ -125,6 +149,13 @@ class TrainingConspectus extends BasicModule
             $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user ");
         } else {
             $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user AND (id_user = " . $usid . " OR conspect.shared_ids LIKE '%" . $usid . "%' ) ");
+        }
+
+        foreach ($this->returnedData['data']  as $key => $value) {
+            if( isset($this->returnedData['data'][$key]["date"]) ){
+                $this->returnedData['data'][$key]["time"] = date("H:i",strtotime($this->returnedData['data'][$key]["date"]));
+                $this->returnedData['data'][$key]["date"] = date("d/m/Y",strtotime($this->returnedData['data'][$key]["date"]));
+            }
         }
 
         return $this->returnedData;

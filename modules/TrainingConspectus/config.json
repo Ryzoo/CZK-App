@@ -17,8 +17,8 @@
         }, {
             "url": "saveConspect",
             "parameters": [
-                "coName", "coDate", "coSezon", "coTeam", "coOp",
-                "coTags", "data"
+                "coName", "coDate", "coPlace", "coTeam", "coOp",
+                "coTags", "data", "userCount", "powerCount"
             ],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },

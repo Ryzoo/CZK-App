@@ -10,7 +10,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="input-field col s12 ">
-                                        <input id='coName' type="text" placeholder="Tytuł" value='{{coName}}' class="validate" requi#ec1800>
+                                        <input id='coName' type="text" placeholder="Tytuł" value='{{coName}}' class="validate" requied>
                                         <label for="coName">Tytuł</label>
                                     </div>
                                 </div>
@@ -18,12 +18,24 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="input-field col s12 m6">
-                                        <input id='coDate' class='datetimepicker' type="text" placeholder="Data" value='{{coDate}}' class="validate" requi#ec1800>
+                                        <input id='coDate' class='datetimepicker' type="text" placeholder="Data" value='{{coDate}}' class="validate" requied>
                                         <label for="coDate">Data</label>
                                     </div>
                                     <div class="input-field col s12 m6">
-                                        <input id='coSezon' type="text" placeholder="Sezon" value='{{coSezon}}' class="validate" requi#ec1800>
-                                        <label for="coSezon">Sezon</label>
+                                        <input id='coPlace' type="text" placeholder="Miejsce" value='{{coPlace}}' class="validate" requied>
+                                        <label for="coPlace">Miejsce</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <input id='coUserCount' type="text" placeholder="Ilość osób" value='{{coUserCount}}' class="validate" requied>
+                                        <label for="coUserCount">Ilość osób</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <input id='coPower' type="text" placeholder="Obciążenie" value='{{coPower}}' class="validate" requied>
+                                        <label for="coPower">Obciążenie</label>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +53,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id='coTeam' type="text" placeholder="Drużyna / kategoria wiekowa" value='{{coTeam}}' class="validate" requi#ec1800>
+                                        <input id='coTeam' type="text" placeholder="Drużyna / kategoria wiekowa" value='{{coTeam}}' class="validate" requied>
                                         <label for="coTeam">Drużyna / kategoria wiekowa</label>
                                     </div>
                                     <div class="input-field col s12">
@@ -135,9 +147,9 @@
 <script>
     $(document).ready(function() {
         $('.datetimepicker').datetimepicker({
-            format: 'Y:m:d',
+            format: 'Y:m:d H:i:s',
             lang: 'pl',
-            timepicker: false,
+            timepicker: true,
         });
         Materialize.updateTextFields();
         $('.chips-placeholder').material_chip({

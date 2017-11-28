@@ -4,32 +4,62 @@
         <div class="col s12">
             <div class="card">
                 <div class="card-content" ng-controller='conspectusCreatorController'>
-                    <div class="card-title">{{conspect.name}}</div>
-                    <div class="row conspFullContener">
-                        <div class="conspFullElement">
-                            <i class="fa fa-user-circle-o fa-fw fa-2x" aria-hidden="true"></i>
-                            <p>{{conspect.firstname}} {{conspect.lastname}}</p>
+
+                    <div class='row conspectInformation'>
+                        <div class="col s12">
+                            <div class="col s12 m8 conspectIconList">
+                                <div class="conspectIconInList">
+                                    <i class="fa fa-calendar fa-fw fa-2x" aria-hidden="true"></i>
+                                    <p>{{conspect.date}}</p>
+                                </div>
+                                <div class="conspectIconInList">
+                                    <i class="fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                                    <p>{{conspect.time}}</p>
+                                </div>
+                                <div class="conspectIconInList">
+                                    <i class="fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
+                                    <p>{{conspect.place}}</p>
+                                </div>
+                                <div class="conspectIconInList">
+                                    <i class="fa fa-user-plus fa-fw fa-2x" aria-hidden="true"></i>
+                                    <p>{{conspect.userCount}}</p>
+                                </div>
+                                <div class="conspectIconInList">
+                                    <i class="fa fa-hourglass-end fa-fw fa-2x" aria-hidden="true"></i>
+                                    <p>{{conspect.playTime}}</p>
+                                </div>
+                                <div class="conspectIconInList">
+                                    <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
+                                    <p>{{conspect.team}}</p>
+                                </div>
+                                <div class="conspectIconInList">
+                                    <i class="fa fa-battery-half fa-fw fa-2x" aria-hidden="true"></i>
+                                    <p>{{conspect.powerCount}}</p>
+                                </div>
+                            </div>
+                            <div class="col s12 m4">
+                                <div class='logoContener'>
+                                    <img src="/files/img/cmc_logo.png" alt="Logo Club Management Center">
+                                    <img src="/files/img/club_logo.png" alt="Logo Klubu">
+                                </div>
+                            </div>
                         </div>
-                        <div class="conspFullElement">
-                            <i class="fa fa-calendar fa-fw fa-2x" aria-hidden="true"></i>
-                            <p>{{conspect.date}}</p>
+                        <div class="col s12 conspectThinks">{{conspect.about}}</div>
+                        <div class="col s12 conspectName">{{conspect.name}}</div>
+                        <div class="col s12">
+                            <div class='conspectAuthor'>
+                                <i class="fa fa-user-circle-o fa-fw fa-2x" aria-hidden="true"></i>
+                                <p>{{conspect.firstname}} {{conspect.lastname}}</p>
+                            </div>
                         </div>
-                        <div class="conspFullElement">
-                            <i class="fa fa-calendar-o fa-fw fa-2x" aria-hidden="true"></i>
-                            <p>{{conspect.sezon}}</p>
-                        </div>
-                        <div class="conspFullElement">
-                            <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
-                            <p>{{conspect.team}}</p>
-                        </div>
-                        <div class="conspFullElement">
-                            <i class="fa fa-pencil-square-o fa-fw fa-2x" aria-hidden="true"></i>
-                            <p style='font-size: .9rem'>{{conspect.about}}</p>
+                        <div class="col s12 noPrint">
+                            <div class='oneTagFull' ng-repeat="tag in conspect.tags track by $index">{{tag}}</div>
                         </div>
                     </div>
-                    <div class="row noPrint" style='margin: 20px !important;'>
-                        <div class='oneTagFull' ng-repeat="tag in conspect.tags track by $index">{{tag}}</div>
-                    </div>
+
+
+
+
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header "><i class="material-icons">filter_drama</i>Część wstępna</div>
@@ -156,10 +186,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div class='logoContener'>
-                        <img src="/files/img/cmc_logo.png" alt="Logo Club Management Center">
-                        <img src="/files/img/club_logo.png" alt="Logo Klubu">
-                    </div>
+
                 </div>
             </div>
         </div>

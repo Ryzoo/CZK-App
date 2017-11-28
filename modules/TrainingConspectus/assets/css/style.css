@@ -348,16 +348,42 @@ h6 {
 }
 
 .logoContener {
-    margin: auto;
     display: table;
-    overflow: hidden;
-    margin-top: 10px;
+    float: right;
+    margin-top: 20px;
 }
 
 .logoContener img {
-    width: 80px;
+    height: 60px;
     float: left;
-    padding: 10px;
+    padding-left: 10px;
+}
+
+.conspectAuthor {
+    display: table;
+    margin: auto;
+}
+
+.conspectAuthor p {
+    float: left;
+    line-height: 2rem !important;
+}
+
+.conspectAuthor i {
+    float: left;
+    line-height: 2rem !important;
+}
+
+.conspectThinks {
+    letter-spacing: 1px;
+    padding: 15px !important;
+}
+
+.conspectName {
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    padding: 0 0 15px !important;
 }
 
 .conspectBodyColE {
@@ -709,6 +735,29 @@ canvas,
 #deleteFrame {
     background-color: rgb(191, 72, 36);
     border: 1px solid rgb(191, 72, 36);
+}
+
+.conspectIconList {
+    margin-top: 10px;
+}
+
+.conspectIconInList {
+    display: table;
+    float: left;
+    line-height: 2rem;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+.conspectIconInList i {
+    padding-right: 5px;
+    font-size: 1.2rem;
+}
+
+.conspectIconInList i,
+.conspectIconInList p {
+    float: left;
+    line-height: 2rem !important;
 }
 
 #addFrame:hover,

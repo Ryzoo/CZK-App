@@ -53,7 +53,7 @@
                     </div>
                     <div class="row">
                         <div class="tagsContainer">
-                            <div class='oneTag' style='cursor:pointer;' ng-repeat="tag in conspect.tags | limitTo: 6 track by $index" ng-click='changeSearch(tag)'>{{tag}}</div>
+                            <div class='oneTag' style='cursor:pointer;' ng-repeat="tag in conspect.tags | track by $index" ng-click='changeSearch(tag)'>{{tag}}</div>
                         </div>
                     </div>
                 </div>
