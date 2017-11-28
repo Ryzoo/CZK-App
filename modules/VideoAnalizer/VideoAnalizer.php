@@ -109,7 +109,7 @@ class VideoAnalizer extends BasicModule {
       $videoName = str_replace("%20","_",str_replace(" ","_",$data['videoName']));
       $token = $data['token'];
 
-      $fileName = $token."_".$videoName;
+      $fileName = "_".$videoName;
       $pathToFile = "../files/videoAnalize/";
 
       $analizeId = ($this->db->getConnection())->insert("videoAnalize", [
@@ -190,14 +190,13 @@ class VideoAnalizer extends BasicModule {
 
     function saveVideoClip($data){
       $fileName = str_replace("%20","_",str_replace(" ","_",explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1]));
-      $tq = str_replace("tq=","",$_SERVER['HTTP_COOKIE']);
-      if(!isset($fileName) || strlen($fileName) <= 3 ||!isset($tq) || strlen($tq) <= 3 ){
+      if(!isset($fileName) || strlen($fileName) <= 3){
         $this->returnedData['success'] = false;
         $this->returnedData['error'] = "Brak odpowiednich danych";
       }else{
-        $putContent = file_put_contents("../files/videoAnalize/".$tq."_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
+        $putContent = file_put_contents("../files/videoAnalize/_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
         $this->returnedData['data'] = [
-          filePath => "File put in: " . "../files/videoAnalize/".$tq."_".$fileName,
+          filePath => "File put in: " . "../files/videoAnalize/_".$fileName,
           putContentReturn => $putContent
         ];
       }
