@@ -63,7 +63,7 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header "><i class="material-icons">filter_drama</i>Część wstępna</div>
-                            <div id='coStart' class="collapsible-body conspectBodyColE">
+                            <div id='coStart' class="collapsible-body">
                                 <div ng-repeat="coElement in conspect.data.coStart track by $index" class='coElement coElementFull'>
                                     <div class="elementContent">
                                         <div class="leftConspectColumn selfCenter">
@@ -71,31 +71,7 @@
                                                 <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
                                                 <h5 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h5>
                                             </div>
-                                        </div>
-                                        <div class="middleConspectColumn">
-                                            <div class="elementTime flexCenter">
-                                                <i class="iconPosition fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
-                                                <p class="paraPosition" ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
-                                                <p class="paraPosition" ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
-                                            </div>
-                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
-                                                <p>{{coElement.data.cwOps}}</p>
-                                            </div>
-                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type=='simple'" style='width: 100% !important'>
-                                                <p>{{coElement.data.wsk}}</p>
-                                            </div>
-                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
-                                                <p>{{coElement.data.cwOps}}</p>
-                                            </div>
-                                            <div class="conspFullContenerElement">
-                                                <div class="conspFullElementE" ng-show="coElement.type!='simple'">
-                                                    <i class="fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
-                                                    <p><b>{{coElement.data.cwFieldType}}</b></p>
-                                                </div>
-                                                <div class="conspFullElementE" ng-show="coElement.type!='simple'">
-                                                    <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
-                                                    <p><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
-                                                </div>
+                                            <div class="conspFullContenerElement" ng-show="coElement.type!='simple'">
                                                 <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">
                                                     <img data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{coElement.data.mainImgShow}}" data-gif='{{coElement.data.mainImg}}' alt="Zdjęcie poglądowe - {{coElement.dat.name}}">
                                                     <button type="button" class="waves-effect waves-light btn noPrint" ng-click="loadAndPlay(coElement.data.id)">Podgląd w odtwarzaczu</button>
@@ -106,6 +82,60 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="middleConspectColumn" ng-show="coElement.type=='simple'">
+                                            <div class="elementTime flexCenter" ng-show="coElement.type!='simple'">
+                                                <i class="iconPosition fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition" ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
+                                            </div>
+                                            <div class="elementTime flexCenter" ng-show="coElement.type=='simple'">
+                                                <i class="iconPosition fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition" ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
+                                            </div>
+                                            <div class="conspFullElementE" ng-show="coElement.type!='simple'">
+                                                <i class="fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p><b>{{coElement.data.cwFieldType}}</b></p>
+                                            </div>
+                                            <div class="conspFullElementE" ng-show="coElement.type!='simple'">
+                                                <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
+                                                <p>{{coElement.data.cwOps}}</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type=='simple'" style='width: 100% !important'>
+                                                <p>{{coElement.data.wsk}}</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
+                                                <p>{{coElement.data.cwOps}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="rightConspectColumn" ng-show="coElement.type!='simple'">
+                                            <div class="elementTime flexLeft" ng-show="coElement.type!='simple'">
+                                                <i class="iconPosition fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition" ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
+                                            </div>
+                                            <div class="elementTime flexLeft" ng-show="coElement.type=='simple'">
+                                                <i class="iconPosition fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition" ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
+                                            </div>
+                                            <div class="conspFullElementE flexLeft" ng-show="coElement.type!='simple'">
+                                                <i class="iconPosition fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition"><b>{{coElement.data.cwFieldType}}</b></p>
+                                            </div>
+                                            <div class="conspFullElementE flexLeft" ng-show="coElement.type!='simple'">
+                                                <i class="iconPosition fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition"><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
+                                                <p class="alignLeft">{{coElement.data.cwOps}}</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type=='simple'" style='width: 100% !important'>
+                                                <p>{{coElement.data.wsk}}</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
+                                                <p class="alignLeft">{{coElement.data.cwOps}}</p>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -113,7 +143,7 @@
                         </li>
                         <li>
                             <div class="collapsible-header"><i class="material-icons">place</i>Część główna</div>
-                            <div id='coMiddle' class="collapsible-body conspectBodyColE">
+                            <div id='coMiddle' class="collapsible-body">
                                 <div ng-repeat="coElement in conspect.data.coMiddle track by $index" class='coElement coElementFull'>
                                     <div class="elementContent">
                                         <div class="middleConspectColumn">
@@ -134,11 +164,11 @@
                                                 <p class="paraPosition" ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
                                                 <p class="paraPosition" ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
                                             </div>
-                                            <div class="conspFullElementE" ng-show="coElement.type!='simple'">
+                                            <div class="conspFullElementE flexLeft" ng-show="coElement.type!='simple'">
                                                 <i class="iconPosition fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
                                                 <p class="paraPosition"><b>{{coElement.data.cwFieldType}}</b></p>
                                             </div>
-                                            <div class="conspFullElementE" ng-show="coElement.type!='simple'">
+                                            <div class="conspFullElementE flexLeft" ng-show="coElement.type!='simple'">
                                                 <i class="iconPosition fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
                                                 <p class="paraPosition"><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
                                             </div>
@@ -152,7 +182,7 @@
                         </li>
                         <li>
                             <div class="collapsible-header"><i class="material-icons">whatshot</i>Część końcowa</div>
-                            <div id='coEnd' class="collapsible-body conspectBodyColE">
+                            <div id='coEnd' class="collapsible-body">
                                 <div ng-repeat="coElement in conspect.data.coEnd track by $index" class='coElement coElementFull'>
                                     <div class="elementContent">
                                         <div class="leftConspectColumn selfCenter">
@@ -160,33 +190,44 @@
                                                 <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
                                                 <h5 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h5>
                                             </div>
+                                            <div class="conspFullContenerElement">
+                                                <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">
+                                                    <img data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{coElement.data.mainImgShow}}" data-gif='{{coElement.data.mainImg}}' alt="Zdjęcie podglądowe - {{coElement.dat.name}}">
+                                                    <button type="button" class="waves-effect waves-light btn noPrint" ng-click="loadAndPlay(coElement.data.id)">Podgląd w odtwarzaczu</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="middleConspectColumn">
+                                        <div class="middleConspectColumn" ng-show="coElement.type=='simple'">
                                             <div class="elementTime">
                                                 <i class="fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
                                                 <p ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
                                                 <p ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
                                             </div>
-                                            <div class="conspFullContenerElement">
-                                                <div class="conspFullElementE" ng-show="coElement.type!='simple'">
-                                                    <i class="fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
-                                                    <p><b>{{coElement.data.cwFieldType}}</b></p>
-                                                </div>
-                                                <div class="conspFullElementE" ng-show="coElement.type!='simple'">
-                                                    <i class="fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
-                                                    <p><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
-                                                </div>
-                                                <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">
-                                                    <img data-scope='showgif' data-label="odtwórz" class="gifplayer" src="{{coElement.data.mainImgShow}}" data-gif='{{coElement.data.mainImg}}' alt="Zdjęcie podglądowe - {{coElement.dat.name}}">
-                                                    <button type="button" class="waves-effect waves-light btn noPrint" ng-click="loadAndPlay(coElement.data.id)">Podgląd w odtwarzaczu</button>
-                                                </div>
-                                                <div class="conspFullElementE opsFieldE">
-                                                    <p ng-show="coElement.type!='simple'"> {{coElement.data.cwOps}}</p>
-                                                    <p ng-show="coElement.type=='simple'"> {{coElement.data.wsk}}</p>
-                                                </div>
-                                                <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
-                                                    <p>{{coElement.data.cwOps}}</p>
-                                                </div>
+                                            <div class="conspFullElementE opsFieldE">
+                                                <p ng-show="coElement.type!='simple'"> {{coElement.data.cwOps}}</p>
+                                                <p ng-show="coElement.type=='simple'"> {{coElement.data.wsk}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="rightConspectColumn" ng-show="coElement.type!='simple'">
+                                            <div class="elementTime flexLeft">
+                                                <i class="iconPosition fa fa-clock-o fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition" ng-show="coElement.type!='simple'"><b>{{coElement.data.cwMinTime}}</b> min. - <b>{{coElement.data.cwMaxTime}}</b> min.</p>
+                                                <p ng-show="coElement.type=='simple'"><b>{{coElement.data.timeMin}}</b> min. - <b>{{coElement.data.timeMax}}</b> min.</p>
+                                            </div>
+                                            <div class="conspFullElementE flexLeft" ng-show="coElement.type!='simple'">
+                                                <i class="iconPosition fa fa-map-marker fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition"><b>{{coElement.data.cwFieldType}}</b></p>
+                                            </div>
+                                            <div class="conspFullElementE flexLeft" ng-show="coElement.type!='simple'">
+                                                <i class="iconPosition fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
+                                                <p class="paraPosition"><b>{{coElement.data.cwMinPerson}}</b> os. - <b>{{coElement.data.cwMaxPerson}}</b> os.</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE">
+                                                <p class="alignLeft" ng-show="coElement.type!='simple'"> {{coElement.data.cwOps}}</p>
+                                                <p ng-show="coElement.type=='simple'"> {{coElement.data.wsk}}</p>
+                                            </div>
+                                            <div class="conspFullElementE opsFieldE" ng-show="coElement.type!='simple'">
+                                                <p class="alignLeft">{{coElement.data.cwOps}}</p>
                                             </div>
                                         </div>
                                     </div>
