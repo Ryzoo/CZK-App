@@ -52,7 +52,15 @@
     }, { "url": "payWithPayu", "parameters": ["pmid"] }, { "url": "getPaymentOptions" }],
     "jsControllers": ["paymentController"],
     "css": ["style"],
-    "frontendRoute": [{ "url": "payment", "templateSrc": "payment.html", "controllerName": "paymentController" }, { "url": "clientPayment", "templateSrc": "clientPayment.html", "controllerName": "paymentController" }, { "url": "paymentSettings", "templateSrc": "paymentSettings.html", "controllerName": "paymentController" }, { "url": "cyclicPayment", "templateSrc": "cyclicPayment.html", "controllerName": "paymentController" }],
+    "frontendRoute": [{
+        "url": "payment",
+        "templateSrc": "payment.html",
+        "controllerName": "paymentController"
+    }, {
+        "url": "clientPayment",
+        "templateSrc": "clientPayment.html",
+        "controllerName": "paymentController"
+    }, { "url": "paymentSettings", "templateSrc": "paymentSettings.html", "controllerName": "paymentController" }, { "url": "cyclicPayment", "templateSrc": "cyclicPayment.html", "controllerName": "paymentController" }],
     "anchor": [{
         "destination": "leftMenu",
         "anchorPoint": "P\u0142atno\u015bci w klubie",

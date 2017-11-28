@@ -10,7 +10,8 @@
                 "cwFieldType", "cwMaxTime", "cwMinTime", "cwMaxPerson", "cwMinPerson", "cwOps", "cwWsk", "mainImgShow"
             ],
             "auth": ["KOORD", "TRENER", "STAFF"]
-        }, {
+        },
+        {
             "url": "getAllConspectList",
             "parameters": ["usid", "token"]
         }, {

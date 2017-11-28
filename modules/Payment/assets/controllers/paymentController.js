@@ -22,12 +22,14 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     }
 
     $scope.initPaymentCyclic = function() {
+
         request.backend('getAllCyclePayment', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.allCyclPayments = data;
                 $scope.showContent = true;
             });
         });
+
     }
 
     $scope.deleteCyclePay = function(id) {

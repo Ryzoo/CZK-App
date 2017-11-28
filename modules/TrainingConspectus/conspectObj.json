@@ -1022,9 +1022,9 @@
         }, {
             "icon": "fa-table",
             "tooltip": "Siatkonoga",
-            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL_ADD\"",
+            "ngClick": "changeCategories(mouseActionType.OBJECT_ADD ); OBJ_TYPE=\"GOAL1_ADD\"",
             "objectsIn": {
-                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL_ADD\"",
+                "ngShow": "actualMouseAction==mouseActionType.OBJECT_ADD && OBJ_TYPE==\"GOAL1_ADD\"",
                 "list": [{
                         "config": "onlyText",
                         "img": "volleyball/volleyball.png",

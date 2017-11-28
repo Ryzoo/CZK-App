@@ -267,11 +267,13 @@ class TrainingConspectus extends BasicModule
         return $this->returnedData;
     }
 
+
     function saveAnim($data)
     {
         $name = $data['name'];
-        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name . '.gif', base64_decode(str_replace(' ', '+', $data['mainImg'])), __DIR__ . '/../../files/anim') : '';
-        $mainImgShow = strlen($data['mainImgShow']) > 2 ? FileMenager::saveFile($name . '.jpg', base64_decode(str_replace(' ', '+', $data['mainImgShow'])), __DIR__ . '/../../files/anim') : '';
+        $fileName = substr(str_replace(".","_",$data['name']), 0 , strlen($name) > 10 ? 10 : strlen($name) );
+        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($fileName . '.gif', base64_decode(str_replace(' ', '+', $data['mainImg'])), __DIR__ . '/../../files/anim') : '';
+        $mainImgShow = strlen($data['mainImgShow']) > 2 ? FileMenager::saveFile($fileName . '.jpg', base64_decode(str_replace(' ', '+', $data['mainImgShow'])), __DIR__ . '/../../files/anim') : '';
         $animFrame = $data['animFrame'];
         $anchorHistory = $data['anchorHistory'];
         $tags = trim($data['tags']);
@@ -315,6 +317,7 @@ class TrainingConspectus extends BasicModule
     {
         $id = $data['id'];
         $name = $data['name'];
+        $fileName = substr(str_replace(".","_",$data['name']), 0 , strlen($name) > 10 ? 10 : strlen($name) );
         $animFrame = $data['animFrame'];
         $tags = trim($data['tags']);
         $anchorHistory = $data['anchorHistory'];
@@ -335,8 +338,8 @@ class TrainingConspectus extends BasicModule
         $animGifPath = ($this->db->getConnection())->fetchRow("SELECT mainImg, mainImgShow FROM conspectAnim WHERE id=" . $id);
         FileMenager::deleteFile($animGifPath['mainImg']);
         FileMenager::deleteFile($animGifPath['mainImgShow']);
-        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($name . '.gif', base64_decode(str_replace(' ', '+', $data['mainImg'])), __DIR__ . '/../../files/anim') : '';
-        $mainImgShow = strlen($data['mainImgShow']) > 2 ? FileMenager::saveFile($name . '.jpg', base64_decode(str_replace(' ', '+', $data['mainImgShow'])), __DIR__ . '/../../files/anim') : '';
+        $mainImg = strlen($data['mainImg']) > 2 ? FileMenager::saveFile($fileName . '.gif', base64_decode(str_replace(' ', '+', $data['mainImg'])), __DIR__ . '/../../files/anim') : '';
+        $mainImgShow = strlen($data['mainImgShow']) > 2 ? FileMenager::saveFile($fileName . '.jpg', base64_decode(str_replace(' ', '+', $data['mainImgShow'])), __DIR__ . '/../../files/anim') : '';
 
         ($this->db->getConnection())->update("conspectAnim", ['id' => $id], [
             "name" => $name,
