@@ -151,6 +151,13 @@ class TrainingConspectus extends BasicModule
             $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user AND (id_user = " . $usid . " OR conspect.shared_ids LIKE '%" . $usid . "%' ) ");
         }
 
+        foreach ($this->returnedData['data']  as $key => $value) {
+            if( isset($this->returnedData['data'][$key]["date"]) ){
+                $this->returnedData['data'][$key]["time"] = date("H:i",strtotime($this->returnedData['data'][$key]["date"]));
+                $this->returnedData['data'][$key]["date"] = date("d/m/Y",strtotime($this->returnedData['data'][$key]["date"]));
+            }
+        }
+
         return $this->returnedData;
     }
 
