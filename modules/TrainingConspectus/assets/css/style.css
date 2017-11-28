@@ -128,14 +128,48 @@ p.confInfo {
     margin: 0;
 }
 
+.rightConspectColumn {
+    padding-top: 60px;
+    width: 50%;
+    padding-left: 50px;
+}
+
 .leftConspectColumn {
     float: left;
-    width: 40%;
+    width: 50%;
+    align-self: center;
 }
 
 .middleConspectColumn {
     float: left;
-    width: 60%;
+    width: 50%;
+}
+
+.flexLeft {
+    display: flex;
+    justify-content: left;
+}
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.iconPosition {
+    line-height: 2rem;
+    margin-right: 5px;
+}
+
+.paraPosition {
+    line-height: 2rem !important;
+}
+
+.alignLeft {
+    text-align: left;
+}
+
+.selfCenter {
+    align-self: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -356,13 +390,9 @@ h6 {
 
 .logoContener img {
     width: 80px;
+    height: 80px;
     float: left;
     padding: 10px;
-}
-
-.conspectBodyColE {
-    max-height: 600px;
-    overflow-y: scroll;
 }
 
 .imgElem {
