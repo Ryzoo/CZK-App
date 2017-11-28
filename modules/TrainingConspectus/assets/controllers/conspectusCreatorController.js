@@ -428,14 +428,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     });
 
     $(document).ready(function() {
-        $(document).off('keydown');
-        $(document).off('keyup');
-        $(document).on('keydown', function(e) {
+        $("#animCreator").off('keydown');
+        $("#animCreator").off('keyup');
+        $("#animCreator").on('keydown', function(e) {
             if (e.keyCode == 16) {
                 $scope.shiftPressed = true;
             }
         });
-        $(document).on('keyup', function(e) {
+        $("#animCreator").on('keyup', function(e) {
             $scope.shiftPressed = false;
             console.log(e);
             if (e.keyCode == 46) {

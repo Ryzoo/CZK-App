@@ -12,9 +12,11 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.coName = '';
     $scope.coMaster = '';
     $scope.coDate = '';
-    $scope.coSezon = '';
+    $scope.coPlace = '';
     $scope.coTeam = '';
     $scope.coOp = '';
+    $scope.coPower = '';
+    $scope.coUserCount = '';
     $scope.coTags = '';
 
     if ($rootScope.widgetInterval) {
@@ -39,9 +41,11 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                 $scope.coName = data.name;
                 $scope.coMaster = data.master;
                 $scope.coDate = data.date;
-                $scope.coSezon = data.sezon;
+                $scope.coPlace = data.coPlace;
                 $scope.coTeam = data.team;
                 $scope.coOp = data.about;
+                $scope.coPower = data.powerCount;
+                $scope.coUserCount = data.userCount;
                 $scope.coTags = data.tags.split(' ');
             });
 
@@ -213,9 +217,11 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.saveConspect = function() {
         $scope.coName = $('#coName').val();
         $scope.coDate = $('#coDate').val();
-        $scope.coSezon = $('#coSezon').val();
+        $scope.coPlace = $('#coPlace').val();
         $scope.coTeam = $('#coTeam').val();
         $scope.coOp = $('#coOp').val();
+        $scope.coPower = $('#coPower').val();
+        $scope.coUserCount = $('#coUserCount').val();
         $scope.coTags = $('.chips-placeholder').material_chip('data');
 
         if (!$scope.coName || $scope.coName == '' || $scope.coName == ' ' || $scope.coName == null) {
@@ -228,8 +234,8 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             return;
         }
 
-        if (!$scope.coSezon || $scope.coSezon == '' || $scope.coSezon == ' ' || $scope.coSezon == null) {
-            notify.localNotify("Walidacja", "Wpisz nazwę sezonu");
+        if (!$scope.coPlace || $scope.coPlace == '' || $scope.coPlace == ' ' || $scope.coPlace == null) {
+            notify.localNotify("Walidacja", "Wpisz miejsce");
             return;
         }
 
@@ -286,9 +292,11 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             coName: $scope.coName,
             id_user: $rootScope.user.id,
             coDate: $scope.coDate,
-            coSezon: $scope.coSezon,
+            coPlace: $scope.coPlace,
             coTeam: $scope.coTeam,
             coOp: $scope.coOp,
+            powerCount: $scope.coPower,
+            userCount: $scope.coUserCount,
             coTags: allTagString,
             data: JSON.stringify(dataToSend)
         }
