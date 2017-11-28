@@ -41,7 +41,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                 $scope.coName = data.name;
                 $scope.coMaster = data.master;
                 $scope.coDate = data.date;
-                $scope.coPlace = data.coPlace;
+                $scope.coPlace = data.place;
                 $scope.coTeam = data.team;
                 $scope.coOp = data.about;
                 $scope.coPower = data.powerCount;

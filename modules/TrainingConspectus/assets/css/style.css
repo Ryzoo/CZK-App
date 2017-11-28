@@ -382,8 +382,8 @@ h6 {
 .conspectName {
     font-weight: 800;
     letter-spacing: 2px;
-    font-size: 2rem;
-    padding: 0 0 15px !important;
+    font-size: 1.3rem;
+    padding: 0 50px 15px !important;
 }
 
 .conspectBodyColE {
