@@ -17,7 +17,7 @@ class TrainingConspectus extends BasicModule
 
     function install()
     {
-        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL , `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `frameBeetween` INT NOT NULL, `qualityAnim` INT NOT NULL, `fps` INT NOT NULL , `mainImgShow` VARCHAR(255) NOT NULL, `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `conspectAnim` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL , `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL, `sezon` VARCHAR(255) NOT NULL, `tags` VARCHAR(255) NOT NULL, `mainImg` VARCHAR(255) NOT NULL , `frameBeetween` INT NOT NULL, `qualityAnim` INT NOT NULL, `fps` INT NOT NULL , `mainImgShow` VARCHAR(255) NOT NULL, `fieldImage` VARCHAR(255) NOT NULL , `animFrame` MEDIUMTEXT NOT NULL ,`cwFieldType` VARCHAR(255) NOT NULL ,`cwMaxTime` VARCHAR(10) NOT NULL ,`cwMinTime` VARCHAR(10) NOT NULL ,`cwMaxPerson` VARCHAR(10) NOT NULL ,`cwMinPerson` VARCHAR(10) NOT NULL ,`cwOps` MEDIUMTEXT NOT NULL ,`cwWsk` MEDIUMTEXT NOT NULL ,`anchorHistory` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
         ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `conspect` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_user` INT NOT NULL, `shared_ids` TINYTEXT NOT NULL, `name` VARCHAR(255) NOT NULL , `powerCount` VARCHAR(255) NOT NULL, `userCount` VARCHAR(255) NOT NULL ,`place` VARCHAR(255) NOT NULL, `date` DATETIME NOT NULL, `playTime` DATETIME NOT NULL , `team` VARCHAR(255) NOT NULL , `about` TINYTEXT NOT NULL , `tags` VARCHAR(255) NOT NULL , `data` MEDIUMTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
 
@@ -46,6 +46,7 @@ class TrainingConspectus extends BasicModule
         $coPlace = $data['coPlace'];
         $coTeam = $data['coTeam'];
         $coOp = $data['coOp'];
+        $sezon = $data['sezon'];
         $coTags = trim($data['coTags']);
         $powerCount = $data['powerCount'];
         $userCount = $data['userCount'];
@@ -58,6 +59,7 @@ class TrainingConspectus extends BasicModule
                 "date" => $coDate,
                 "place" => $coPlace,
                 "team" => $coTeam,
+                "sezon" => $sezon,
                 "powerCount" => $powerCount,
                 "userCount" => $userCount,
                 "about" => $coOp,
@@ -71,6 +73,7 @@ class TrainingConspectus extends BasicModule
                 "date" => $coDate,
                 "place" => $coPlace,
                 "team" => $coTeam,
+                "sezon" => $sezon,
                 "powerCount" => $powerCount,
                 "userCount" => $userCount,
                 "about" => $coOp,

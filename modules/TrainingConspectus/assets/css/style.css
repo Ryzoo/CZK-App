@@ -595,6 +595,10 @@ canvas,
     float: none !important;
 }
 
+.conspectIconInList b {
+    padding-right: 3px;
+}
+
 .lastSelectedConfigContent {
     overflow: hidden;
 }

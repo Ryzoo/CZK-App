@@ -13,6 +13,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.coMaster = '';
     $scope.coDate = '';
     $scope.coPlace = '';
+    $scope.sezon = '';
     $scope.coTeam = '';
     $scope.coOp = '';
     $scope.coPower = '';
@@ -42,6 +43,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                 $scope.coMaster = data.master;
                 $scope.coDate = data.date;
                 $scope.coPlace = data.place;
+                $scope.sezon = data.sezon;
                 $scope.coTeam = data.team;
                 $scope.coOp = data.about;
                 $scope.coPower = data.powerCount;
@@ -218,6 +220,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         $scope.coName = $('#coName').val();
         $scope.coDate = $('#coDate').val();
         $scope.coPlace = $('#coPlace').val();
+        $scope.sezon = $('#sezon').val();
         $scope.coTeam = $('#coTeam').val();
         $scope.coOp = $('#coOp').val();
         $scope.coPower = $('#coPower').val();
@@ -293,6 +296,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             id_user: $rootScope.user.id,
             coDate: $scope.coDate,
             coPlace: $scope.coPlace,
+            sezon: $scope.sezon,
             coTeam: $scope.coTeam,
             coOp: $scope.coOp,
             powerCount: $scope.coPower,
