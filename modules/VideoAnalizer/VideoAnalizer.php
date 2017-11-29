@@ -6,6 +6,8 @@ use \KHerGe\JSON\JSON;
 use Core\Teams\Teams;
 use Modules\VideoAnalizer\UploadHandler;
 
+use Core\System\FileMenager;
+
 class VideoAnalizer extends BasicModule {
     private $teamsMenager;
 
@@ -106,10 +108,11 @@ class VideoAnalizer extends BasicModule {
       $frDescription = $data['frDescription'];
       $frList = $data['frList'];
       $usid = $data['usid'];
-      $videoName = str_replace("%20","_",str_replace(" ","_",$data['videoName']));
+      $videoName = urldecode(str_replace(" ","_",$data['videoName']));
+      $videoName = FileMenager::noPolish($videoName);
       $token = $data['token'];
 
-      $fileName = "_".$videoName;
+      $fileName = $videoName;
       $pathToFile = "../files/videoAnalize/";
 
       $analizeId = ($this->db->getConnection())->insert("videoAnalize", [
@@ -189,14 +192,16 @@ class VideoAnalizer extends BasicModule {
     }
 
     function saveVideoClip($data){
-      $fileName = str_replace("%20","_",str_replace(" ","_",explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1]));
+      $fileName = urldecode(str_replace(" ","_",explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1]));
+      $fileName = FileMenager::noPolish($fileName);
+      
       if(!isset($fileName) || strlen($fileName) <= 3){
         $this->returnedData['success'] = false;
         $this->returnedData['error'] = "Brak odpowiednich danych";
       }else{
-        $putContent = file_put_contents("../files/videoAnalize/_".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
+        $putContent = file_put_contents("../files/videoAnalize/".$fileName, $this->decode_chunked(file_get_contents("php://input")), FILE_APPEND);
         $this->returnedData['data'] = [
-          filePath => "File put in: " . "../files/videoAnalize/_".$fileName,
+          filePath => "File put in: " . "../files/videoAnalize/".$fileName,
           putContentReturn => $putContent
         ];
       }
