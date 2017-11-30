@@ -21,6 +21,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.selectedItemList = [];
     $scope.startPointSelectShape = null;
     $scope.endPointSelectShape = null;
+    $scope.canAddItem = false;
     var multiDragPositionStart = { x: 0, y: 0 };
 
     $("#animCreator").niceScroll({
@@ -437,7 +438,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         });
         $("#animCreator").on('keyup', function(e) {
             $scope.shiftPressed = false;
-            console.log(e);
             if (e.keyCode == 46) {
                 $rootScope.showModalWindow("Nieodwracalnie usunie zaznaczone obiekty oraz wszystkie ich wystąpienia w następnych klatkach animacji", function() {
                     deleteCurrent();
@@ -485,9 +485,13 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         $('.categories').each(function() {
             $(this).css("border-color", "");
         });
+
+        $('.categoryItems').each(function() {
+            $(this).css("border-color", "");
+        });
         $(this).css("border-color", "rgb(191, 72, 36)");
         $scope.selectedObjConfig = $(this).data('config') ? $scope.objConfig[$(this).data('config')] : [];
-
+        $scope.canAddItem = false;
     })
 
     $(document).off('click touch', '.confTitle');
@@ -516,6 +520,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.selectedObjImg = new Image();
             $scope.selectedObjImg.src = $(this).find('img').attr('src');
         }
+        $scope.canAddItem = true;
         $scope.selectedObjConfig = $(this).find('img').data('config') ? $scope.objConfig[$(this).find('img').data('config')] : [];
 
     })
@@ -1049,9 +1054,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             shape.stroke(fillColor);
         });
         if (thisObj) {
-            if (thisObj.getAttr('name') != "arrow")
-                thisObj.stroke('#dd4213');
+            thisObj.stroke('#dd4213');
             thisObj.strokeWidth(1);
+            if (thisObj.getAttr('name') == 'arrow')
+                thisObj.strokeWidth(3);
+
             $scope.$apply(function() {
                 $scope.lastSelected = thisObj;
             });
@@ -1240,12 +1247,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         });
     }
 
-    function drawArrowStyle(context, obj) {
+    function drawArrowStyle(context, obj, isHitRegion = false) {
         context.beginPath();
         context.lineJoin = "round";
         context.lineCap = 'round';
         var pkt = obj.getAttr("points");
-        context.lineWidth = obj.getAttr("strokeWidth");
+        context.lineWidth = isHitRegion ? 30 : obj.getAttr("strokeWidth");
         context.strokeStyle = obj.getAttr("stroke");
         context.moveTo(pkt[0].x, pkt[0].y);
         var poz = 90;
@@ -1628,7 +1635,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function clickOnContent() {
         $scope.startPointSelectShape = null;
         $scope.endPointSelectShape = null;
-        if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD && $scope.selectedObjImg) {
+        if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD && $scope.selectedObjImg && $scope.canAddItem) {
             if (anchorLayer != null) {
                 anchorLayer.destroy();
                 anchorLayer = null;
@@ -1649,6 +1656,20 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 name: "movementObject",
                 id: id,
                 textObj: null
+            });
+
+
+            obj.hitFunc(function(context) {
+                context.beginPath();
+                var width = this.getWidth();
+                var height = this.getHeight();
+                var procW = width * 0.5;
+                procW = procW > 25 ? 25 : procW;
+                var procH = height * 0.5;
+                procH = procH > 25 ? 25 : procH;
+                context.rect(-procW, -procH, width + (procW * 2), height + (procH * 2));
+                context.closePath();
+                context.fillStrokeShape(this);
             });
 
             $scope.$apply(function() {
@@ -1788,7 +1809,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 var arrow = new Konva.Shape({
                     points: $scope.arrowPoint,
                     stroke: 'white',
-                    strokeWidth: 1,
+                    strokeWidth: 3,
                     id: id,
                     textObj: null,
                     name: 'arrow',
@@ -1798,7 +1819,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         drawArrowStyle(context, this);
                     }
                 });
-
                 selectObjStyle(arrow);
                 anchorLayer = new Konva.Layer();
                 selectedFrame.add(anchorLayer);
@@ -1808,6 +1828,14 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 if (pointsArray[1] < pointsArray[3]) complexText.setAttr('offsetY', 50);
                 else complexText.setAttr('offsetY', 10);
                 arrow.setAttr('textObj', complexText);
+
+                if (anchorLayer) {
+                    anchorLayer.destroy();
+                    delete anchorLayer;
+                    anchorLayer = null;
+                }
+                anchorLayer = new Konva.Layer();
+                selectedFrame.add(anchorLayer);
 
                 $scope.arrowArrayPostionAnchor = $scope.arrowPoint;
                 for (var index = 0; index < $scope.arrowPoint.length; index++) {
@@ -1927,6 +1955,16 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     allObjectPerFrame[z].arrow.push(createObjFromOther(arrow));
                 }
 
+                selectedFrame.find(".arrow").each(function(shape) {
+                    shape.on('mouseenter', function() {
+                        if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
+                            selectedFrame.container().style.cursor = 'move';
+                        }
+                    });
+                    shape.on('mouseleave', function() {
+                        selectedFrame.container().style.cursor = 'default';
+                    });
+                });
 
                 mainLayer.draw();
             } else if ($scope.arrowPointCount > 2) {
@@ -2203,6 +2241,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 for (let z = currentObjPerFrame + 1; z < allObjectPerFrame.length; z++) {
                     allObjectPerFrame[z].triangle.push(createObjFromOther(triangle));
                 }
+
+
+                selectedFrame.find(".shapes").each(function(shape) {
+                    shape.on('mouseenter', function() {
+                        if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
+                            selectedFrame.container().style.cursor = 'move';
+                        }
+                    });
+                    shape.on('mouseleave', function() {
+                        selectedFrame.container().style.cursor = 'default';
+                    });
+                });
 
                 $scope.$apply(function() {
                     $scope.changeCategories($scope.mouseActionType.MOVE);
@@ -2547,6 +2597,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 updateNextFrameBeforePosition();
                 if ($scope.turnOnRotation) rotateObject();
             }
+        });
+        obj.hitFunc(function(context) {
+            context.beginPath();
+            var width = this.getWidth();
+            var height = this.getHeight();
+            var procW = width * 0.5;
+            procW = procW > 25 ? 25 : procW;
+            var procH = height * 0.5;
+            procH = procH > 25 ? 25 : procH;
+            context.rect(-procW, -procH, width + (procW * 2), height + (procH * 2));
+            context.closePath();
+            context.fillStrokeShape(this);
         });
         obj.off('click tap');
         obj.on('click tap', function() {
@@ -3162,6 +3224,27 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 });
             });
 
+            selectedFrame.find(".arrow").each(function(shape) {
+                shape.on('mouseenter', function() {
+                    if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
+                        selectedFrame.container().style.cursor = 'move';
+                    }
+                });
+                shape.on('mouseleave', function() {
+                    selectedFrame.container().style.cursor = 'default';
+                });
+            });
+
+            selectedFrame.find(".shapes").each(function(shape) {
+                shape.on('mouseenter', function() {
+                    if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
+                        selectedFrame.container().style.cursor = 'move';
+                    }
+                });
+                shape.on('mouseleave', function() {
+                    selectedFrame.container().style.cursor = 'default';
+                });
+            });
             var shapes = selectedFrame.find(".movementObject");
             shapes.each(function(shape) {
                 shape.draggable(true);
@@ -3619,8 +3702,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     function rotateObject(id = null, obj = $scope.lastSelected) {
-        console.log(id);
-        console.log(obj);
         if ($scope.selectedItemList.length > 0) {
             for (let x = 0; x < $scope.selectedItemList.length; x++) {
                 var id = $scope.selectedItemList[x].getAttr("id");
