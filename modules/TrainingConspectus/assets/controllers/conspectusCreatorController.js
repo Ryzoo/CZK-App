@@ -1056,8 +1056,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if (thisObj) {
             thisObj.stroke('#dd4213');
             thisObj.strokeWidth(1);
-            if (thisObj.getAttr('name') == 'arrow')
-                thisObj.strokeWidth(3);
 
             $scope.$apply(function() {
                 $scope.lastSelected = thisObj;
@@ -1252,7 +1250,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         context.lineJoin = "round";
         context.lineCap = 'round';
         var pkt = obj.getAttr("points");
-        context.lineWidth = isHitRegion ? 30 : obj.getAttr("strokeWidth");
+        context.lineWidth = isHitRegion ? 10 : obj.getAttr("strokeWidth");
+        if (isHitRegion) obj.setAttr("strokeWidth", 10);
         context.strokeStyle = obj.getAttr("stroke");
         context.moveTo(pkt[0].x, pkt[0].y);
         var poz = 90;
@@ -1448,6 +1447,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
         context.stroke();
         context.fillStrokeShape(obj);
+        if (isHitRegion) obj.setAttr("strokeWidth", 1);
     }
 
     function addToMultiSelect(obj) {
@@ -1589,7 +1589,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     allObjectPerFrame[currentObjPerFrame].obj[z].setAttr("y", allObjectPerFrame[currentObjPerFrame].obj[z].getAttr("y") - offset.y);
                     var txt = allObjectPerFrame[currentObjPerFrame].obj[z].getAttr("textObj");
                     txt.setAttr('x', allObjectPerFrame[currentObjPerFrame].obj[z].getAttr('x'));
-                    txt.setAttr('y', allObjectPerFrame[currentObjPerFrame].obj[z].getAttr('y') + allObjectPerFrame[currentObjPerFrame].obj[z].height() * allObjectPerFrame[currentObjPerFrame].obj[z].scale().x);
+                    txt.setAttr('y', allObjectPerFrame[currentObjPerFrame].obj[z].getAttr('y') + (allObjectPerFrame[currentObjPerFrame].obj[z].height() / 2) * allObjectPerFrame[currentObjPerFrame].obj[z].scale().x);
                 }
             }
 
@@ -1661,12 +1661,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
             obj.hitFunc(function(context) {
                 context.beginPath();
-                var width = this.getWidth();
-                var height = this.getHeight();
-                var procW = width * 0.5;
-                procW = procW > 25 ? 25 : procW;
-                var procH = height * 0.5;
-                procH = procH > 25 ? 25 : procH;
+                var width = this.getWidth() * this.scaleX();
+                var height = this.getHeight() * this.scaleX();
+                var procW = 15;
+                var procH = 15;
                 context.rect(-procW, -procH, width + (procW * 2), height + (procH * 2));
                 context.closePath();
                 context.fillStrokeShape(this);
@@ -1771,10 +1769,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 allObjectPerFrame[z].obj.push(createObjFromOther(obj));
             }
 
-            $scope.$apply(function() {
-                $scope.changeCategories($scope.mouseActionType.MOVE);
-            });
-
             selectedFrame.find(".movementObject").each(function(shape) {
                 shape.on('mouseenter', function() {
                     if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
@@ -1809,7 +1803,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 var arrow = new Konva.Shape({
                     points: $scope.arrowPoint,
                     stroke: 'white',
-                    strokeWidth: 3,
+                    strokeWidth: 1,
                     id: id,
                     textObj: null,
                     name: 'arrow',
@@ -1820,6 +1814,16 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     }
                 });
                 selectObjStyle(arrow);
+
+                arrow.hitFunc(function(context) {
+                    drawArrowStyle(context, this, true);
+                });
+
+                if (anchorLayer) {
+                    anchorLayer.destroy();
+                    delete anchorLayer;
+                    anchorLayer = null;
+                }
                 anchorLayer = new Konva.Layer();
                 selectedFrame.add(anchorLayer);
 
@@ -1829,13 +1833,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 else complexText.setAttr('offsetY', 10);
                 arrow.setAttr('textObj', complexText);
 
-                if (anchorLayer) {
-                    anchorLayer.destroy();
-                    delete anchorLayer;
-                    anchorLayer = null;
-                }
-                anchorLayer = new Konva.Layer();
-                selectedFrame.add(anchorLayer);
+
 
                 $scope.arrowArrayPostionAnchor = $scope.arrowPoint;
                 for (var index = 0; index < $scope.arrowPoint.length; index++) {
@@ -2514,6 +2512,11 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.startPointSelectShape = null;
             $scope.endPointSelectShape = null;
         });
+
+        arrow.hitFunc(function(context) {
+            drawArrowStyle(context, this, true);
+        });
+
         return arrow;
     }
 
@@ -2600,12 +2603,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         });
         obj.hitFunc(function(context) {
             context.beginPath();
-            var width = this.getWidth();
-            var height = this.getHeight();
-            var procW = width * 0.5;
-            procW = procW > 25 ? 25 : procW;
-            var procH = height * 0.5;
-            procH = procH > 25 ? 25 : procH;
+            var width = this.getWidth() * this.scaleX();
+            var height = this.getHeight() * this.scaleX();
+            var procW = 15;
+            var procH = 15;
             context.rect(-procW, -procH, width + (procW * 2), height + (procH * 2));
             context.closePath();
             context.fillStrokeShape(this);
