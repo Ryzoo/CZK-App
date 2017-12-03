@@ -18,40 +18,77 @@ class VideoAnalizer extends BasicModule {
       $basicUrl = "./modules/VideoAnalizer/assets/media/icons/";
       ($this->db->getConnection())->insertMany("videoHelpIcon",[
           [
-            "url"=> $basicUrl."1.png",
-            "description"=>"Dośrodkowanie",
+            "url"=> $basicUrl."atak pozycyjny.png",
+            "description"=>"Atak pozycyjny",
           ],
           [
-            "url"=> $basicUrl."2.png",
-            "description"=>"Nieczyste zagranie",
+            "url"=> $basicUrl."budowa akcji od obrony.png",
+            "description"=>"Budowa akcji od obrony",
           ],
           [
-            "url"=> $basicUrl."3.png",
-            "description"=>"Podanie niskie",
+            "url"=> $basicUrl."dośrodkowanie z bocznego sektora boiska.png",
+            "description"=>"Dośrodkowanie z bocznego sektora boiska",
           ],
           [
-            "url"=> $basicUrl."4.png",
-            "description"=>"Przyjęcie wysokie",
+            "url"=> $basicUrl."faza przejścia z ataku do obrony.png",
+            "description"=>"Faza przejścia z ataku do obrony",
           ],
           [
-            "url"=> $basicUrl."5.png",
-            "description"=>"Przyjęcie",
+            "url"=> $basicUrl."faza przejścia z obrony do ataku.png",
+            "description"=>"Faza przejścia z obrony do ataku",
           ],
           [
-            "url"=> $basicUrl."6.png",
-            "description"=>"Strzał niski",
+            "url"=> $basicUrl."finalizacja.png",
+            "description"=>"Finalizacja",
           ],
           [
-            "url"=> $basicUrl."7.png",
-            "description"=>"Strzał głową",
+            "url"=> $basicUrl."kontratak.png",
+            "description"=>"Kontratak",
           ],
           [
-            "url"=> $basicUrl."8.png",
-            "description"=>"Wślizg",
+            "url"=> $basicUrl."obrona w strefie niskiej.png",
+            "description"=>"Obrona w strefie niskiej",
           ],
           [
-            "url"=> $basicUrl."9.png",
-            "description"=>"Wyrzut z autu",
+            "url"=> $basicUrl."obrona w strefie średniej.png",
+            "description"=>"Obrona w strefie średniej",
+          ],
+
+          [
+            "url"=> $basicUrl."obrona w strefie wysokiej.png",
+            "description"=>"Obrona w strefie wysokiej",
+          ],
+          [
+            "url"=> $basicUrl."odbiór piłki.png",
+            "description"=>"Odbiór piłki",
+          ],
+          [
+            "url"=> $basicUrl."podanie prostopadłe w pole karne.png",
+            "description"=>"Podanie prostopadłe w pole karne",
+          ],
+          [
+            "url"=> $basicUrl."rozpoczęcie z autu.png",
+            "description"=>"Rozpoczęcie z autu",
+          ],
+          [
+            "url"=> $basicUrl."rzut wolny w ataku.png",
+            "description"=>"Rzut wolny w ataku",
+          ],
+          [
+            "url"=> $basicUrl."rzut wolny w obronie.png",
+            "description"=>"Rzut wolny w obronie",
+          ],
+          [
+            "url"=> $basicUrl."strzał na bramkę.png",
+            "description"=>"Strzał na bramkę",
+          ],
+          [
+            "url"=> $basicUrl."wygrany pojedynek w powietrzu.png",
+            "description"=>"Wygrany pojedynek w powietrzu",
+          ],
+          [
+            "url"=> $basicUrl."wygrany pojedynek.png",
+            "description"=>"Wygrany pojedynek",
           ],
         ]);
     }
