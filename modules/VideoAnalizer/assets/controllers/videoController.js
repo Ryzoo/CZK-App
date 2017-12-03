@@ -23,6 +23,12 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
                 $scope.showContent = true;
                 $scope.iconList = data;
             });
+
+            setTimeout(() => {
+                $('.tooltipped').tooltip({
+                    delay: 50
+                });
+            }, 500);
         });
     }
 
