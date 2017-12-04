@@ -3,6 +3,7 @@ namespace Modules\Payment;
 
 use Core\System\BasicModule;
 use \KHerGe\JSON\JSON;
+use Core\System\MailSystem;
 use Core\Teams\Teams;
 
 class Payment extends BasicModule {
@@ -43,7 +44,7 @@ class Payment extends BasicModule {
           ];
           ($this->db->getConnection())->insert('payment_list', $data);
 
-          $userData = ($this->db->getConnection())->fetchRow('SELECT firstnam, lastname, email FROM users, user_data WHERE users.id = user_data.user_id AND users.id ='.$id_user);
+          $userData = ($this->db->getConnection())->fetchRow('SELECT firstname, lastname, email FROM users, user_data WHERE users.id = user_data.user_id AND users.id ='.$userIds[$i]);
           $mailRespond = MailSystem::sendMail($userData['email'],"Nowa płatność w systemie",
           "<p style='color:#ffffff'><b>Witaj! ".$userData['firstname']." ".$userData['lastname']."</b></p>
           <p style='color:#ffffff'>Właśnie do Twojego konta została dodana nowa płatność:</p>
