@@ -31,11 +31,42 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <h5>Poszczególne zestawienie zawodników w kategoriach</h5>
+                                            <h5>Poszczególne zestawienie zawodników</h5>
                                         </div>
                                         <div class="row">
-                                            <div class="col s12">
-                                                <canvas id="chart-main" style='min-height: 600px'></canvas>
+                                            <div class="card-tabs">
+                                                <ul class="tabs tabs-fixed-width" ng-init="cat=1;">
+                                                    <li class="tab"><a class="active" href="" ng-click='cat=1; tt=0;'>Kategorie</a></li>
+                                                    <li class="tab"><a href="" ng-click='cat=0; tt=1;'>Testy</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-content">
+                                                <div ng-show="cat">
+                                                    <div class="row" style='padding: 50px;'>
+                                                        <div class="col s12">
+                                                            <canvas id="chart-main" style='min-height: 600px'></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="tt">
+                                                    <div class="row" style='padding: 50px;'>
+                                                        <div class="col s12">
+                                                            <div class="col s6">
+                                                                <select id='categoryTestSelect'>
+                                                                        </select>
+                                                                <label>Wybierz kategorię</label>
+                                                            </div>
+                                                            <div class="col s6" ng-show="showTestSelect">
+                                                                <select id='testSelect'>
+                                                                        </select>
+                                                                <label>Wybierz test</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col s12">
+                                                            <canvas id="testChart" style='min-height: 600px'></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -75,6 +106,7 @@
         setTimeout(function() {
             Materialize.updateTextFields();
             $('select').material_select();
+            $('ul.tabs').tabs();
         }, 500);
     });
 </script>

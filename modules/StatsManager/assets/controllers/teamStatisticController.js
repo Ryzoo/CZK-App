@@ -3,10 +3,14 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
     $rootScope.actualStats = [];
     $rootScope.teamCategorySummary = [];
     $rootScope.teamMatchCategorySummary = [];
+    $scope.showTestSelect = false;
     var fullTeamScore = 0;
     var matchTeamScore = 0;
     var mainChartToCheck = null;
     var colorIndex = 0;
+    var selectedTestCategory = -1;
+    dataToChartTestInCategory = [];
+    var testChart = null;
     $(document).ready(function() {
         var wSize = $(window).width();
         if (wSize <= 768) {
@@ -58,9 +62,13 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                         $rootScope.showContent = true;
                         $rootScope.teamCategorySummary = [];
                         if ($rootScope.actualStats) {
+                            $('#categoryTestSelect').html('');
+                            $('#categoryTestSelect').append("<option value='' disabled selected>Wybierz kategorię testów</option>");
                             for (var j = 0; j < $rootScope.actualStats[0].data.potential.length; j++) {
                                 var testLabel = $rootScope.actualStats[0].data.potential[j].name;
                                 var score = 0;
+                                if ($rootScope.actualStats[0].data.potential[j].tests && $rootScope.actualStats[0].data.potential[j].tests.length > 0)
+                                    $('#categoryTestSelect').append("<option value='" + j + "'>" + testLabel + "</option>");
                                 for (var i = 0; i < $rootScope.actualStats.length; i++) {
                                     score += $rootScope.actualStats[i].data.potential[j].summary;
                                 }
@@ -77,10 +85,61 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     $scope.initChart();
                 });
             });
-
-
         });
     }
+
+    $(document).on("change", "#categoryTestSelect", function() {
+        const categoryId = $(this).val();
+        selectedTestCategory = categoryId;
+        $scope.showTestSelect = true;
+        $('#testSelect').html('');
+        $('#testSelect').append("<option value='' disabled selected>Wybierz test</option>");
+
+        for (var j = 0; j < $rootScope.actualStats[0].data.potential[categoryId].tests.length; j++) {
+            var testLabel = $rootScope.actualStats[0].data.potential[categoryId].tests[j].name;
+            $('#testSelect').append("<option value='" + j + "'>" + testLabel + "</option>");
+        }
+
+        setTimeout(function() {
+            Materialize.updateTextFields();
+            $('select').material_select();
+        }, 500);
+    });
+
+    $(document).on("change", "#testSelect", function() {
+        const testId = $(this).val();
+        var data = [{
+            label: $rootScope.actualStats[0].data.potential[selectedTestCategory].tests[testId].name,
+            backgroundColor: getRandomColor(),
+            data: []
+        }];
+        var label = [];
+
+        for (var j = 0; j < $rootScope.actualStats.length; j++) {
+            label.push($rootScope.actualStats[j].userName);
+            var score = $rootScope.actualStats[j].data.potential[selectedTestCategory].tests[testId].summary;
+            data[0].data.push(score);
+        }
+
+        if (!testChart || testChart == null) {
+            testChart = new Chart($('#testChart'), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: data,
+                    labels: label
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        } else {
+            testChart.data.labels = label;
+            testChart.data.datasets = data;
+            testChart.update();
+        }
+
+    });
 
     function getRandomColor() {
         var list = [
@@ -91,7 +150,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
             "#581845"
         ];
         colorIndex++;
-        if (colorIndex > list.length) colorIndex = 0;
+        if (colorIndex >= list.length) colorIndex = 0;
         return list[colorIndex];
     }
 
@@ -213,7 +272,6 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     backgroundColor: getRandomColor()
                 });
             }
-
             if (!mainChartToCheck || mainChartToCheck == null) {
                 mainChartToCheck = new Chart($('#chart-main'), {
                     type: 'horizontalBar',
