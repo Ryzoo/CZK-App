@@ -5,6 +5,7 @@ use Core\System\BasicModule;
 use \KHerGe\JSON\JSON;
 use Core\System\MailSystem;
 use Core\Teams\Teams;
+use Core\Notify\Notify;
 
 class Payment extends BasicModule {
     private $teamsMenager;
@@ -225,6 +226,7 @@ class Payment extends BasicModule {
         'intervalName'  => $intervalName,
         'amount'  => round($amount,2),
       ];
+   
       $this->returnedData['data'] = ($this->db->getConnection())->insert('cyclePayments', $data);
       $this->addPaymentCycleToUser($tmid,$token);
       return $this->returnedData;
@@ -235,7 +237,7 @@ class Payment extends BasicModule {
       for($i=0;$i<count($allCyclePayments);$i++){
         $this->addPaymentCycleUpdateToUser($allCyclePayments[$i]["id"],$tmid);
       }
-      $allUserCycelPay = ($this->db->getConnection())->fetchRowMany('SELECT cycleUserPayments.id as id, intervalTime, intervalName, date_start, id_user,is_added_today,title,amount  FROM cycleUserPayments, cyclePayments WHERE cycleUserPayments.id_cycle_pay = cyclePayments.id GROUP BY cycleUserPayments.id_user');
+      $allUserCycelPay = ($this->db->getConnection())->fetchRowMany('SELECT cycleUserPayments.id as id, intervalTime, intervalName, date_start, id_user,is_added_today,title,amount  FROM cycleUserPayments, cyclePayments WHERE cycleUserPayments.id_cycle_pay = cyclePayments.id ');
       for($i=0;$i<count($allUserCycelPay);$i++){
         
         $pid = $allUserCycelPay[$i]["id"];
@@ -266,6 +268,15 @@ class Payment extends BasicModule {
             "tmid" => $tmid,
             "amount" => $amount,
             "name" => $title,
+          ]);
+          $notify = new Notify();
+          $notify->addNotify([
+            "title"=> "Nowa płatność cykliczna: ".$title." na kwotę: ".$amount,
+            "tmid"=> $tmid,
+            "token"=> $token,
+            "to"=> [$id_user],
+            "toAll"=> false,
+            "url"=> "#!/clientPayment"
           ]);
           ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>1]);
           
