@@ -88,6 +88,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
         });
     }
 
+
+    $(document).off("change", "#categoryTestSelect");
     $(document).on("change", "#categoryTestSelect", function() {
         const categoryId = $(this).val();
         selectedTestCategory = categoryId;
@@ -106,6 +108,7 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
         }, 500);
     });
 
+    $(document).off("change", "#testSelect");
     $(document).on("change", "#testSelect", function() {
         const testId = $(this).val();
         var data = [{

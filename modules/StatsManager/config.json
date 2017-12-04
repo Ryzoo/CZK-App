@@ -57,7 +57,7 @@
     ],
     "js": ["chart.min"],
     "css": ["style"],
-    "jsControllers": ["myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController", "trainingBaseController"],
+    "jsControllers": ["teammateCompareController", "myStatsController", "teamStatisticController", "usersStatisticController", "testMenagerController", "newScoreController", "trainingBaseController"],
     "frontendRoute": [{
             "url": "myStats",
             "templateSrc": "myStats.html",
@@ -87,7 +87,13 @@
             "url": "trainingBase",
             "templateSrc": "trainingBase.html",
             "controllerName": "trainingBaseController"
+        },
+        {
+            "url": "teammateCompare",
+            "templateSrc": "teammateCompare.html",
+            "controllerName": "teammateCompareController"
         }
+
     ],
     "anchor": [{
             "destination": "leftMenu",
@@ -143,6 +149,17 @@
                 "link": {
                     "label": "Statystyki drużynowe",
                     "url": "#!/teamStatistic"
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Testy / statystyki",
+            "anchorPointIcon": "fa fa-bar-chart fa-fw",
+            "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
+            "content": {
+                "link": {
+                    "label": "Komparator zawodników",
+                    "url": "#!/teammateCompare"
                 }
             }
         }, {

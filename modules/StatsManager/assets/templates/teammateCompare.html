@@ -1,0 +1,131 @@
+<div ng-init="setPerm(['STAFF','TRENER','KOORD'])"></div>
+<div class="section" ng-init="initTeammate()">
+    <div ng-show='showContent' class="row">
+        <div class="col s12" ng-show="notSelectedPerson">
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <div class="card-title">
+                        Komparator zawodników
+                    </div>
+                    <div class="row">
+                        <h5 class='col s12'>Wybierz 2 lub 3 zawodników do porównania</h5>
+                    </div>
+                    <div class="row" style='margin: 50px 0; margin-bottom: 50px !important;'>
+                        <div class="col s4">
+                            <select id='firstUserSelect'></select>
+                        </div>
+                        <div class="col s4" ng-show='selected1'>
+                            <select id='secondUserSelect'></select>
+                        </div>
+                        <div class="col s4" ng-show='selected2'>
+                            <select id='thirdUserSelect'></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12" style='margin-bottom: 50px' ng-show='selected3 || selected2'>
+                            <button class="waves-effect waves-light btn" ng-click="showStat()">Porównaj</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" ng-hide='notSelectedPerson'>
+            <div class="card">
+                <div class="card-content" style='padding-bottom: 0 !important;'>
+                    <div class="card-title">
+                        Porównanie wybranych
+                    </div>
+                    <div class="row">
+                        <div class="col s12" ng-show='selected3 || selected2'>
+                            <button class="waves-effect waves-light btn" ng-click="hideStat()">< Wybór zawodników</button>
+                        </div>
+                    </div>
+                    <div class="row" ng-show='loadStat' style='padding: 0 50px;'>
+                        <div class='loaderContainer' style='height: 200px'>
+                            <div id="loader-wrapper">
+                                <div id="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show='!loadStat'>
+                        <div class="row" style='padding: 50px 0; margin: auto !important; display:table;' id='mainChartContainer'>
+                        </div>
+                        <div class="row">
+                            <h5>Porównanie w kategoriach</h5>
+                        </div>
+                        <div class="row" style='margin-bottom:50px !important;'>
+                            <div>
+                                <div class="row">
+                                    <table ng-show='dataViewAsTable && actualPotentialGroup!=null' class='highlight centered statTable'>
+                                        <thead>
+                                            <tr>
+                                                <th>Test</th>
+                                                <th ng-repeat="user in actualStats.users track by $index">{{user.userName}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="test in actualPotentialGroup">
+                                                <td>{{test.name}}</td>
+                                                <td ng-repeat="userScore in test.users track by $index" class='scoreIn'>{{userScore}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h5>Porównanie w poszczególnych testach</h5>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6 offset-m3">
+                                <select id='selectPotential'>
+                                    <option value="" disabled selected>Kategoria</option>
+                                </select>
+                                <label>Wybierz kategorię</label>
+                            </div>
+                        </div>
+                        <div class="row" style='margin-bottom:50px !important;'>
+                            <div>
+                                <div class="row">
+                                    <table ng-show='dataViewAsTable && actualStatGroup!=null && actualStatGroup.length > 0' class='highlight centered statTable'>
+                                        <thead>
+                                            <tr>
+                                                <th>Test</th>
+                                                <th ng-repeat="user in actualStats.users track by $index">{{user.userName}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="test in actualStatGroup">
+                                                <td>{{test.name}}</td>
+                                                <td ng-repeat="userScore in test.users track by $index" class='scoreIn'>{{userScore}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="adw noPrint" ng-show='showAdw'>
+        <div class="closeAdw" ng-click='turnOffAdw()'><i class="fa fa-window-close" aria-hidden="true"></i></div>
+        <div class="adwContent">
+            <div class="logoButtonColumn">
+                <img src="./modules/StatsManager/assets/media/logo4.png" alt="Logo firmy 4-athletes">
+                <button class="waves-effect waves-light btn"> <a target="_blank" href="//www.4-athletes.com" style='color: white;'>Sprawdź</a> </button>
+            </div>
+            <div class="textColumn">
+                Chcesz przeprowadzić testy w pełni profesjonalnie? </br>
+                Zależy Ci na jak najbardziej rzetelnych i precyzyjnych wynikach? </br>
+                Polecamy zapoznać się z ofertą firmy 4-Athletes! </br>
+            </div>
+        </div>
+    </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>
