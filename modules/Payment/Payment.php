@@ -42,6 +42,14 @@ class Payment extends BasicModule {
             "id_admin"  => $adminId
           ];
           ($this->db->getConnection())->insert('payment_list', $data);
+
+          $userData = ($this->db->getConnection())->fetchRow('SELECT firstnam, lastname, email FROM users, user_data WHERE users.id = user_data.user_id AND users.id ='.$id_user);
+          $mailRespond = MailSystem::sendMail($userData['email'],"Nowa płatność w systemie",
+          "<p style='color:#ffffff'><b>Witaj! ".$userData['firstname']." ".$userData['lastname']."</b></p>
+          <p style='color:#ffffff'>Właśnie do Twojego konta została dodana nowa płatność:</p>
+          <p style='color:#ffffff'>Nazwa: ".$name."</p>
+          <p style='color:#ffffff'>Kwota: ".str_replace( ',', '.', $amount)."</p>
+          <p style='color:#ffffff'>Informacje te dostępne są także na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a></p>");
         }
       }else{
         $this->returnedData["error"] = "Nie można uzyskać danych Twojego konta. Zaloguj się jeszcze raz.";
@@ -259,6 +267,8 @@ class Payment extends BasicModule {
             "name" => $title,
           ]);
           ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>1]);
+          
+    
           break;
         }else if( $dateNow !== $dateStart && $is_added_today){
           ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>0]);
