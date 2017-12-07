@@ -28,6 +28,7 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
                 $('.tooltipped').tooltip({
                     delay: 50
                 });
+
             }, 500);
         });
     }

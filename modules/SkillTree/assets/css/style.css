@@ -1,0 +1,173 @@
+.paymentClickIcon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.paymentClickIcon i:hover {
+    color: #ee6e73;
+}
+
+#clickEndPayment {
+    right: 30px;
+}
+
+#clickDeletePayment {
+    right: 0px;
+}
+
+.paymentSection .collapsible-body {
+    padding: 10px 0 !important;
+}
+
+.userOnePayRow {
+    cursor: pointer;
+}
+
+.skillIn {
+    display: table;
+    border-radius: 50%;
+    padding: 10px;
+    border: 2px solid;
+    transition: all .2s;
+    -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+}
+
+.skillIn:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    border-width: 3px;
+    -webkit-box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3);
+}
+
+.popReqList .skillIn {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.popMainSkill .skillIn:hover,
+.popReqList .skillIn:hover{
+    transform: none;
+    cursor: default;
+    border-width: 2px;
+    -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+}
+
+.popReqListElementRight {
+    text-align: left;
+    padding-left: 10px;
+    margin-top: -2px;
+}
+
+.popReqListElementRight h6{
+    padding-left: 0;
+}
+
+.popReqList .skillIn:hover{
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.chart{
+    margin-left: -11px;
+}
+
+h4.popReq {
+    text-align: left;
+    font-size: 1.6rem;
+}
+
+.skillTreeRootElement P {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #595959;
+    letter-spacing: 5px;
+}
+
+.skillRootElement p{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #595959;
+    letter-spacing: 2px;
+}
+
+h4.popSkillMainCat {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #4E4E4E;
+    margin:0;
+    margin-top: 3px;
+}
+
+h6.popSkillMainName {
+    width: 100%;
+    line-height: 14px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 3px;
+}
+
+.popMainSkill .skillIn {
+    margin: auto;
+}
+
+p.popSkillMainDesc {
+    width: 100%;
+    padding: 25px;
+    padding-top: 35px;
+}
+
+.popMainSkill .popSkillMainStatus span {
+    margin-top: 10px;
+    display: block;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+li.popReqListElement {
+    width:100%;
+    padding: 10px 0;
+    overflow:hidden;
+    transition: all .2s;
+}
+
+li.popReqListElement:hover{
+    background: #f1f1f1;
+    cursor:pointer;
+}
+
+.skillIn img {
+    width: 20px;
+    height: 20px;
+}
+
+.skillIn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.popMainSkill .skillIn img{
+    width: 60px;
+    height: 60px;
+}
+.popMainSkill .skillIn svg{
+    width: 60px;
+    height: 60px;
+}
+
+.popReqListElementRight,
+.popReqListElementLeft  {
+    float: left;
+}
+
+.popReqListElementLeft .skillIn img{
+    width: 24px;
+    height: 24px;
+}
+.popReqListElementLeft .skillIn svg{
+    width: 24px;
+    height: 24px;
+}

@@ -1,0 +1,68 @@
+{
+    "name": "SkillTree",
+    "description": "Dodaje drzewko rozwoju zawodnika",
+    "version": "1.0",
+    "require": [],
+    "backendRoute": [{
+        "url": "getMySkillsInTree",
+        "parameters": ["token"]
+    }],
+    "jsControllers": ["skillTreeListController", "userSkillTreeController", "mySkillTreeController"],
+    "css": ["style", "treant"],
+    "js": ["treant", "rap"],
+    "frontendRoute": [{
+            "url": "skillTreeList",
+            "templateSrc": "skillTreeList.html",
+            "controllerName": "skillTreeListController"
+        },
+        {
+            "url": "userSkillTree",
+            "templateSrc": "userSkillTree.html",
+            "controllerName": "userSkillTreeController"
+        },
+        {
+            "url": "mySkillTree",
+            "templateSrc": "mySkillTree.html",
+            "controllerName": "mySkillTreeController"
+        }
+    ],
+    "anchor": [{
+            "destination": "leftMenu",
+            "anchorPoint": "Drzewko rozwoju",
+            "anchorPointIcon": "fa fa-tree fa-fw",
+            "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
+            "content": {
+                "link": {
+                    "label": "Lista umiejętności",
+                    "url": "#!\/skillTreeList",
+                    "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' \""
+                }
+            }
+        }, {
+            "destination": "leftMenu",
+            "anchorPoint": "Drzewko rozwoju",
+            "anchorPointIcon": "fa fa-tree fa-fw",
+            "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
+            "content": {
+                "link": {
+                    "label": "Umiejętności zawodnika",
+                    "url": "#!\/userSkillTree",
+                    "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' \""
+                }
+            }
+        },
+        {
+            "destination": "leftMenu",
+            "anchorPoint": "Mój profil",
+            "anchorWeight": 5,
+            "anchorPointIcon": "fa fa-user fa-fw",
+            "content": {
+                "link": {
+                    "label": "Moje umiejętności",
+                    "url": "#!/mySkillTree",
+                    "additional": "ng-show=\"user.role == 'ZAWODNIK' && user.tmid != ''\""
+                }
+            }
+        }
+    ]
+}
