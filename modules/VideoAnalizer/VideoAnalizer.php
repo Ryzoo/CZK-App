@@ -72,11 +72,11 @@ class VideoAnalizer extends BasicModule {
           ],
           [
             "url"=> $basicUrl."rzut wolny w ataku.png",
-            "description"=>"Rzut wolny w ataku",
+            "description"=>"Rzut wolny w ofensywie",
           ],
           [
             "url"=> $basicUrl."rzut wolny w obronie.png",
-            "description"=>"Rzut wolny w obronie",
+            "description"=>"Rzut wolny w defensywie",
           ],
           [
             "url"=> $basicUrl."strzał na bramkę.png",
@@ -93,7 +93,7 @@ class VideoAnalizer extends BasicModule {
         ]);
     }
 
-    
+
     function uninstall(){
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS videoFragments');
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS videoAnalize');
@@ -165,11 +165,11 @@ class VideoAnalizer extends BasicModule {
       }
 
       $fragmentsList = [];
-       
+
       foreach($frList as $fragments){
         $name = $fragments["name"];
         foreach($fragments["list"] as $oneFragment){
-          
+
           $start = (int)round(((float)$oneFragment["start"])*100);
           $sh =  (int)( (int)($start / 60)/ 60);
           $sm =  (int)($start / 60) - $sh*60;
@@ -193,7 +193,7 @@ class VideoAnalizer extends BasicModule {
           $out = [];
           $execReturn = [];
           exec("ffmpeg -i '".$pathToFile.$fileName."' -ss ".$start." -t ".$duration." -vcodec copy -acodec copy '".$fragmentUrl."' >> output.txt",$out,$execReturn);
-          
+
           array_push($fragmentsList,[
             "fragmentMain"=>$pathToFile.$fileName,
             "fragmentUrl"=>$fragmentUrl,
@@ -202,7 +202,7 @@ class VideoAnalizer extends BasicModule {
             "start"=>$start,
             "duration"=>$duration,
           ]);
-          
+
           ($this->db->getConnection())->insert("videoFragments", [
               "id_analize" => $analizeId,
               "name" => $name,
@@ -231,7 +231,7 @@ class VideoAnalizer extends BasicModule {
     function saveVideoClip($data){
       $fileName = urldecode(str_replace(" ","_",explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1]));
       $fileName = FileMenager::noPolish($fileName);
-      
+
       if(!isset($fileName) || strlen($fileName) <= 3){
         $this->returnedData['success'] = false;
         $this->returnedData['error'] = "Brak odpowiednich danych";
@@ -268,32 +268,32 @@ class VideoAnalizer extends BasicModule {
         if (!preg_match('/^([0-9a-f]+)(?:;(?:[\w-]*)(?:=(?:(?:[\w-]*)*|"(?:[^\r\n])*"))?)*\r\n/i', trim($data))) {
             return $data;
         }
-    
+
         $decoded = '';
         $encoded = $data;
-    
+
         while (true) {
             $is_chunked = (bool) preg_match('/^([0-9a-f]+)(?:;(?:[\w-]*)(?:=(?:(?:[\w-]*)*|"(?:[^\r\n])*"))?)*\r\n/i', $encoded, $matches);
             if (!$is_chunked) {
                 // Looks like it's not chunked after all
                 return $data;
             }
-    
+
             $length = hexdec(trim($matches[1]));
             if ($length === 0) {
                 // Ignore trailer headers
                 return $decoded;
             }
-    
+
             $chunk_length = strlen($matches[0]);
             $decoded .= substr($encoded, $chunk_length, $length);
             $encoded = substr($encoded, $chunk_length + $length + 2);
-    
+
             if (trim($encoded) === '0' || empty($encoded)) {
                 return $decoded;
             }
         }
-    
+
         // We'll never actually get down here
         // @codeCoverageIgnoreStart
     }

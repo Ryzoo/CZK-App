@@ -169,7 +169,7 @@
             "anchorAdditional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\"",
             "content": {
                 "link": {
-                    "label": "Baza treningów",
+                    "label": "Baza testów",
                     "url": "#!/trainingBase"
                 }
             }

@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="file-field input-field" id="usermImgFileContener">
                                     <div class="btn">
-                                        <span>Zmień</span>
+                                        <span>Zmień zdjęcie</span>
                                         <input type="file" name="userImgFile" id="userImgFile">
                                     </div>
                                     <div class="file-path-wrapper">
@@ -100,11 +100,11 @@
                             <div class="row">
                                 <div class="input-field col s6">
                                     <input id='TelefonInput' type="text" name="tel" placeholder="Telefon " value="{{user.tel}}" class="validate">
-                                    <label for="TelefonInput">Telefon</label>
+                                    <label for="TelefonInput">Numer telefonu</label>
                                 </div>
                                 <div class="input-field col s6" ng-show="user.role == 'ZAWODNIK'">
                                     <input id='parenInput' type="text" name="parentTel" placeholder="Telefon rodzica " value="{{user.parentTel}}" class="validate">
-                                    <label for="parenInput">Telefon rodzica</label>
+                                    <label for="parenInput">Numer telefonu rodzica</label>
                                 </div>
                             </div>
                         </div>
@@ -114,10 +114,10 @@
                                 <div class="input-field col s6">
                                     <select name='mainPosition'>
                                         <option value="" disabled selected>Preferowana pozycja</option>
-                                        <option value="bramka" ng-selected="user.mainPosition == 'bramka'" >Bramka</option>
-                                        <option value="obrona" ng-selected="user.mainPosition == 'obrona'">Obrona</option>
-                                        <option value="pomoc" ng-selected="user.mainPosition == 'pomoc'">Pomoc</option>
-                                        <option value="atak" ng-selected="user.mainPosition == 'atak'">Atak</option>
+                                        <option value="bramka" ng-selected="user.mainPosition == 'bramka'" >Bramkarz</option>
+                                        <option value="obrona" ng-selected="user.mainPosition == 'obrona'">Obrońca</option>
+                                        <option value="pomoc" ng-selected="user.mainPosition == 'pomoc'">Pomocnik</option>
+                                        <option value="atak" ng-selected="user.mainPosition == 'atak'">Napastnik</option>
                                     </select>
                                     <label>Preferowana pozycja</label>
                                 </div>
@@ -142,7 +142,7 @@
                                                 <option value="Mezomorfik" ng-selected="user.bodyType == 'Mezomorfik'">Mezomorfik</option>
                                                 <option value="Endomorfik" ng-selected="user.bodyType == 'Endomorfik'">Endomorfik</option>
                                             </select>
-                                    <label>Wybierz budowę ciała która najlepiej do Ciebie pasuje</label>
+                                    <label>Wybierz budowę ciała, która najlepiej do Ciebie pasuje</label>
                                 </div>
                             </div>
                             <div class="row">

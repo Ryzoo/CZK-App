@@ -8,12 +8,12 @@
                         <div class="card-title">Wycinanie fragmentu</div>
                         <div class="row">
                             <div class="row" style='padding: 10px'>
-                                <h5>Wybierz z dysku video do obróbki</h5>
+                                <h5>Wybierz z dysku wideo do analizy</h5>
                                 <p styl='font-size:14px; color: #808080'>Pamiętaj! Używaj plików w foramcie mp4. Duży plik znacząco wpłynie na długość przetwarzania.</p>
                             </div>
                             <div class="file-field input-field" id="usermImgFileContener" style='width: 80%; margin: auto'>
                                 <div class="btn">
-                                    <span>Wgraj video</span>
+                                    <span>Wgraj wideo</span>
                                     <input type="file" name="files[]" accept="video/mp4" id="videoToAnalize">
                                 </div>
                                 <div class="file-path-wrapper">
@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="input-field col s12 m8">
                                         <input id='fragmentName' type="text" placeholder="Nazwa fragmentu" class="validate" style='margin-top: 8px; height: 1.7rem'>
-                                        <label for="fragmentName">Podaj nazwę wycinka</label>
+                                        <label for="fragmentName">Podaj nazwę fragmentu</label>
                                     </div>
                                     <button type="button " class="waves-effect waves-light btn col s12 m4" style='margin-top:16px' ng-click="addFragment()">Dodaj</button>
                                 </div>
@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="row" style='padding: 10px'>
                                 <h5 style='margin-top: 0;'>Wytnij coś</h5>
-                                <p>Pamiętaj, że fragmenty będą zgrupowane po nazwach jeśli te się powtórzą.</p>
+                                <p>Fragmenty będą posegregowane według nazw.</p>
                             </div>
                         </div>
                     </div>

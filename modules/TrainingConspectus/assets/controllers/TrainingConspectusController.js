@@ -248,7 +248,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         }
 
         if (!$scope.coTags || $scope.coTags.length < 2) {
-            notify.localNotify("Walidacja", "Wpisz przynajmniej dwie frazy z którymi będzie kojarzony dany konspekt");
+            notify.localNotify("Walidacja", "Wpisz przynajmniej dwie frazy, z którymi będzie kojarzony dany konspekt");
             return;
         }
 
