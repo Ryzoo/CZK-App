@@ -57,7 +57,7 @@
     }],
     "anchor": [{
         "destination": "leftMenu",
-        "anchorPoint": "Analiza wideo",
+        "anchorPoint": "Analiza video",
         "anchorPointIcon": "fa fa-video-camera fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
@@ -69,7 +69,7 @@
         }
     }, {
         "destination": "leftMenu",
-        "anchorPoint": "Analiza wideo",
+        "anchorPoint": "Analiza video",
         "anchorPointIcon": "fa fa-video-camera fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
@@ -81,7 +81,7 @@
         }
     }, {
         "destination": "leftMenu",
-        "anchorPoint": "Analiza wideo",
+        "anchorPoint": "Analiza video",
         "anchorPointIcon": "fa fa-video-camera fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
