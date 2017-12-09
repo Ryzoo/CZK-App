@@ -37,7 +37,7 @@
         },
         {
             "url": "addTestToCategory",
-            "parameters": ["name", "caid", "best", "worst", "tmid"],
+            "parameters": ["unit", "name", "caid", "best", "worst", "tmid"],
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {

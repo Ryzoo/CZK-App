@@ -107,6 +107,13 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                                 'Aktualna średnia',
                                 'Braki do maksimum'
                             ]
+                        },
+                        options: {
+                            tooltips: {
+                                callbacks: {
+                                    afterLabel: (item)=>{ return `%`},
+                                }
+                            },
                         }
                     });
                 }
@@ -129,6 +136,13 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                         'Aktualna forma',
                         'Braki do maksimum'
                     ]
+                },
+                options: {
+                    tooltips: {
+                        callbacks: {
+                            afterLabel: (item)=>{ return `%`},
+                        }
+                    },
                 }
             });
         }

@@ -70,6 +70,13 @@
                                         <label for="testName">Nazwa testu</label>
                                     </div>
                                     <div class="input-field col s6">
+                                        <input id="unitType" type="text" name="unitType" placeholder="Jednostka miary" class="validate">
+                                        <label for="unitType">Jednostka miary</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s6 offset-s6">
                                         <button class="waves-effect waves-light btn" ng-click="addTest();">Dodaj</button>
                                     </div>
                                 </div>
@@ -83,6 +90,7 @@
                                         <th style="text-align:center;">Nazwa</th>
                                         <th style="text-align:center;">Maks wynik</th>
                                         <th style="text-align:center;">Min wynik</th>
+                                        <th style="text-align:center;">Jednsotka</th>
                                         <th style="text-align:center;">Usuń</th>
                                     </tr>
                                 </thead>
@@ -94,6 +102,9 @@
                                         </td>
                                         <td style='text-align:center; padding: 2px 0'>
                                             <input style="text-align: center; margin: 0; width: 50px; height: 25px;" class='changeWorst' id="changeWorst-{{test.id}}" type="text" value="{{test.worst}}" required>
+                                        </td>
+                                        <td style='text-align:center; padding: 2px 0'>
+                                            <input style="text-align: center; margin: 0; width: 50px; height: 25px;" class='changeUnit' id="changeUnit-{{test.id}}" type="text" value="{{test.unit}}" required>
                                         </td>
                                         <td ng-click="deleteTest(test.id)" style='padding: 2px 0; color:red; cursor:pointer;  text-align:center;'>
                                             <i class="fa fa-times" aria-hidden="true"></i>

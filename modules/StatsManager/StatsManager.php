@@ -8,7 +8,7 @@ class StatsManager extends BasicModule {
     function install(){
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential` (`id` int(11) NOT NULL,`name` varchar(255) COLLATE utf8_polish_ci NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential_score` (`id` int(11) NOT NULL, `id_test` int(11) NOT NULL,`id_user` int(11) NOT NULL, `wynik` float NOT NULL,`data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
-        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `potential_test` (`id` int(11) NOT NULL, `id_team` int(11) NOT NULL, `id_potential` int(11) NOT NULL, `name` varchar(255) COLLATE utf8_polish_ci NOT NULL,`best` float NOT NULL, `worst` float NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci');
+        $result = ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `potential_test` (`id` int(11) NOT NULL, `id_team` int(11) NOT NULL, `id_potential` int(11) NOT NULL, `name` varchar(255) COLLATE utf8_polish_ci NOT NULL,`best` float NOT NULL, `worst` float NOT NULL,`unit` VARCHAR(20) NOT NULL DEFAULT '') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci");
         $result = ($this->db->getConnection())->executeSql('ALTER TABLE `potential` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
         $result = ($this->db->getConnection())->executeSql('ALTER TABLE `potential_score` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
         $result = ($this->db->getConnection())->executeSql('ALTER TABLE `potential_test` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
@@ -20,16 +20,17 @@ class StatsManager extends BasicModule {
         $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS potential_test');
     }
 
-    function getUserStat($usid, $tmid){
+    function getUserStat($usid, $tmid, $prc = true){
         $allPotential = ($this->db->getConnection())->fetchRowMany('SELECT * FROM potential');
         for($i=0;$i<count($allPotential);$i++){
-            $allPotential[$i]['tests'] = ($this->db->getConnection())->fetchRowMany('SELECT id, name, best, worst FROM potential_test WHERE id_team='.$tmid.' AND id_potential='.$allPotential[$i]['id']);
+            $allPotential[$i]['tests'] = ($this->db->getConnection())->fetchRowMany('SELECT id, name, best, worst, unit FROM potential_test WHERE id_team='.$tmid.' AND id_potential='.$allPotential[$i]['id']);
             for($j=0;$j<count($allPotential[$i]['tests']);$j++){
-                $allPotential[$i]['tests'][$j]['scores'] = ($this->db->getConnection())->fetchRowMany('SELECT id, data, wynik FROM potential_score WHERE id_test='.$allPotential[$i]['tests'][$j]['id'].' AND id_user='.$usid);
+                $allPotential[$i]['tests'][$j]['scores'] = ($this->db->getConnection())->fetchRowMany('SELECT potential_score.id, data, wynik, unit FROM potential_score, potential_test WHERE potential_score.id_test=potential_test.id AND id_test='.$allPotential[$i]['tests'][$j]['id'].' AND id_user='.$usid);
             
                 // get summary for this test
                 $scoresCount = count($allPotential[$i]['tests'][$j]['scores']);
                 $testSummary = 0;
+                $noPrc = 0;
 
                 if( $scoresCount > 0 ){
                     $best = $allPotential[$i]['tests'][$j]["best"];
@@ -42,12 +43,15 @@ class StatsManager extends BasicModule {
                     for ($k=0; $k < $scoresCount; $k++) { 
                         $actualPkt += $allPotential[$i]['tests'][$j]['scores'][$k]["wynik"];
                     }
+                    $noPrc = $actualPkt / $scoresCount;
+                    
                     if( $minPkt < $maxPkt )$actualPkt -= $minPkt;
                     else $actualPkt -= $maxPkt;
                     if($actualPkt < 0 ) $actualPkt=0;
                     $testSummary = round($best > $worst ? $actualPkt / abs($maxPkt - $minPkt) * 100 : (1.0 - $actualPkt / abs($maxPkt - $minPkt))*100);
                 }
                 $allPotential[$i]['tests'][$j]['summary'] = $testSummary;
+                $allPotential[$i]['tests'][$j]['noPrc'] = round($noPrc,2);
             }
 
             // get sumarry for this potential
@@ -92,13 +96,14 @@ class StatsManager extends BasicModule {
     function getStats($data){
         $usid = $data["usid"];
         $tmid = $data["tmid"];
+        $prc = !isset($data["prc"]) ? true : false ;
 
         if( is_array($usid) && count($usid) >= 1 ){
             $this->returnedData["data"] = [];
             $userData = [];
             $teamScore = 0;
             for($i=0;$i<count($usid);$i++){
-                $thisUser = $this->getUserStat($usid[$i],$tmid);
+                $thisUser = $this->getUserStat($usid[$i],$tmid,$prc);
                 array_push($userData,[
                     "usid" => $usid[$i],
                     "data" => $thisUser,
@@ -111,7 +116,7 @@ class StatsManager extends BasicModule {
                 "teamForm" => $teamScore
             ];
         }else if(!is_array($usid)){
-            $this->returnedData["data"] = $this->getUserStat($usid,$tmid);
+            $this->returnedData["data"] = $this->getUserStat($usid,$tmid,$prc);
         } else{
             $this->returnedData["data"] = 0;
         }
@@ -146,7 +151,7 @@ class StatsManager extends BasicModule {
         $success = true;
         $error = "";
        
-        $allScores =  ($this->db->getConnection())->fetchRowMany('SELECT id, data, wynik FROM potential_score WHERE id_test='.$tsid.' AND id_user='.$usid);
+        $allScores =  ($this->db->getConnection())->fetchRowMany('SELECT potential_score.id, data, wynik, unit FROM potential_score, potential_test WHERE potential_score.id_test = potential_test.id AND id_test='.$tsid.' AND id_user='.$usid);
         
         return array( "error"=>$error ,"success"=>$success,"data"=>$allScores );
     }
@@ -187,7 +192,7 @@ class StatsManager extends BasicModule {
         $error = "";
         $allPotential = ($this->db->getConnection())->fetchRowMany('SELECT * FROM potential');
         for($i=0;$i<count($allPotential);$i++){
-            $allPotential[$i]['tests'] = ($this->db->getConnection())->fetchRowMany('SELECT id, name, best, worst FROM potential_test WHERE id_team='.$tmid.' AND id_potential='.$allPotential[$i]['id']);
+            $allPotential[$i]['tests'] = ($this->db->getConnection())->fetchRowMany('SELECT id, name, best, worst, unit FROM potential_test WHERE id_team='.$tmid.' AND id_potential='.$allPotential[$i]['id']);
         }
         return array( "error"=>$error ,"success"=>$success,"data"=>$allPotential );
     }
@@ -227,13 +232,15 @@ class StatsManager extends BasicModule {
         $best = $data["best"];
         $worst = $data["worst"];
         $tmid = $data["tmid"];
+        $unit = $data["unit"];
 
         $data = [
             'id_potential' => $caid,
             'name' => $name,
             'best' => $best,
             'worst' => $worst,
-            "id_team" => $tmid
+            "id_team" => $tmid,
+            "unit" => $unit
         ];
         $toReturn = ($this->db->getConnection())->insert('potential_test', $data);
 
@@ -248,7 +255,13 @@ class StatsManager extends BasicModule {
         $changeType = $data["changeType"];
 
         $condsUsers['id'] = $id;
-        $dataUsers[($changeType=='best')?'best':'worst'] = trim($value);
+
+        if($changeType=='unit'){
+            $dataUsers['unit'] = trim($value);
+        }else{
+            $dataUsers[($changeType=='best')?'best':'worst'] = trim($value);
+        }
+
         $result = ($this->db->getConnection())->update('potential_test', $condsUsers, $dataUsers);
             
         return array( "error"=>$error ,"success"=>$success, "data"=>$result );

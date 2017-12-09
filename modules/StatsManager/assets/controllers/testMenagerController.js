@@ -80,6 +80,7 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
         var best = $('#maxScore').val();
         var worst = $('#minScore').val();
         var name = $('#testName').val();
+        var unit = $('#unitType').val();
         if (!best || !worst || !$.isNumeric(best) || !$.isNumeric(worst)) {
             $.gritter.add({
                 title: 'Walidacja',
@@ -115,10 +116,25 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
             $scope.showTest = false;
             return;
         }
+        if (!unit || unit.length > 10) {
+            $.gritter.add({
+                title: 'Walidacja',
+                text: 'Jednostka może mieć maks 10 znaków',
+                image: '',
+                sticky: true,
+                time: 3,
+                class_name: 'my-sticky-class'
+            });
+            return;
+        }
 
-        request.backend('addTestToCategory', { best: best, worst: worst, caid: $scope.selectedCategoryId, name: name, tmid: $rootScope.user.tmid }, function(data) {
+        request.backend('addTestToCategory', { unit: unit, best: best, worst: worst, caid: $scope.selectedCategoryId, name: name, tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 getAllCategoryWitchTest();
+                $('#minScore').val('');
+                $('#testName').val('');
+                $('#unitType').val('');
+                $('#maxScore').val('');
             });
         }, 'Pomyślnie dodano nowy test do kategorii');
 
@@ -163,6 +179,17 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
         }
         var id = ($(this).attr('id').split("-"))[1];
         changeTest(id, newWorst, 'worst');
+    });
+
+    $(document).off('change', '.changeUnit');
+    $(document).on('change', '.changeUnit', function() {
+        var newUnit = $(this).val();
+        if (newUnit.length > 10) {
+            notify.localNotify('Walidacja', 'Wpisz maks 10 znaków');
+            return;
+        }
+        var id = ($(this).attr('id').split("-"))[1];
+        changeTest(id, newUnit, 'unit');
     });
 
     function changeTest(id, value, changeType) {

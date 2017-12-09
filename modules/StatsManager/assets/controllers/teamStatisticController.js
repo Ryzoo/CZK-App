@@ -172,6 +172,13 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     'Poziom całej drużyny',
                     'Braki do maksimum'
                 ]
+            },
+            options: {
+                tooltips: {
+                    callbacks: {
+                        afterLabel: (item)=>{ return `%`},
+                    }
+                },
             }
         });
 
@@ -189,6 +196,13 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     'Poziom składu meczowego',
                     'Braki do maksimum'
                 ]
+            },
+            options: {
+                tooltips: {
+                    callbacks: {
+                        afterLabel: (item)=>{ return `%`},
+                    }
+                },
             }
         });
 
@@ -218,7 +232,12 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                         ticks: {
                             beginAtZero: true
                         }
-                    }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            afterLabel: (item)=>{ return `%`},
+                        }
+                    },
                 }
             });
         }
@@ -249,7 +268,12 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                         ticks: {
                             beginAtZero: true
                         }
-                    }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            afterLabel: (item)=>{ return `%`},
+                        }
+                    },
                 }
             });
         }
@@ -285,6 +309,11 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        tooltips: {
+                            callbacks: {
+                                afterLabel: (item)=>{ return `%`},
+                            }
+                        },
                     }
                 });
             } else {

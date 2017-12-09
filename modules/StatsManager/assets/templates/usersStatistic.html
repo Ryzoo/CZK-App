@@ -49,6 +49,7 @@
                                                         <h5><b>{{test.name}}</b></h5>
                                                         <p>Najlepszy możliwy wynik: <b class='bestSc'>{{test.best}}</b></p>
                                                         <p>Najgorszy możliwy wynik: <b class='worstSc'>{{test.worst}}</b></p>
+                                                        <p>Jednostka miary: <b class='worstSc'>{{test.unit}}</b></p>
                                                     </div>
                                                     <div class="col s12 m4">
                                                         <canvas style='width: 50px; float:right;' id='chart-percent-{{test.id}}'></canvas>
@@ -64,7 +65,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr ng-show='test.scores.length > 0' ng-repeat="score in test.scores">
-                                                                <td style="padding: 2px 2px">{{score.wynik}}</td>
+                                                                <td style="padding: 2px 2px">{{score.wynik}}{{score.unit | limitTo: 1}}.</td>
                                                                 <td style="padding: 2px 2px">{{score.data.split(' ')[0]}}</td>
                                                             </tr>
                                                         </tbody>

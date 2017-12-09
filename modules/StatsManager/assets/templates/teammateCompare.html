@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <h5>Porównanie w poszczególnych testach</h5>
+                            <h5>Porównanie średniej w poszczególnych testach</h5>
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6 offset-m3">
@@ -98,6 +98,9 @@
                                             <tr ng-repeat="test in actualStatGroup">
                                                 <td>{{test.name}}</td>
                                                 <td ng-repeat="userScore in test.users track by $index" class='scoreIn'>{{userScore}}</td>
+                                            </tr>
+                                            <tr ng-show="actualStatGroup.length <= 0">
+                                                <td>Brak wyników</td>
                                             </tr>
                                         </tbody>
                                     </table>
