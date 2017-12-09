@@ -58,6 +58,13 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                         'Aktualna forma',
                         'Braki do maksimum'
                     ]
+                },
+                options: {
+                    tooltips: {
+                        callbacks: {
+                            afterLabel: (item)=>{ return `%`},
+                        }
+                    },
                 }
             });
         }
@@ -89,7 +96,12 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                     ticks: {
                         beginAtZero: true
                     }
-                }
+                },
+                tooltips: {
+                    callbacks: {
+                        afterLabel: (item)=>{ return `%`},
+                    }
+                },
             }
         });
     }
@@ -156,6 +168,13 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                                 'Aktualna średnia',
                                 'Braki do maksimum'
                             ]
+                        },
+                        options: {
+                            tooltips: {
+                                callbacks: {
+                                    afterLabel: (item)=>{ return `%`},
+                                }
+                            },
                         }
                     });
                 }
