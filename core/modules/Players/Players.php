@@ -292,6 +292,12 @@ class Players extends BasicModule{
         
         ($this->db->getConnection())->delete('team_members', ['id_user' => $usid, "id_team"=>$tmid]);
 
+        $role = count(($this->db->getConnection())->fetchRowMany("SELECT id_role FROM users WHERE id=".$usid));
+        if( isset($role) && $role['id_role'] == 2){
+            ($this->db->getConnection())->delete('user_data', ['user_id' => $usid]);
+            ($this->db->getConnection())->delete('users', ['id' => $usid]);
+        }
+
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
