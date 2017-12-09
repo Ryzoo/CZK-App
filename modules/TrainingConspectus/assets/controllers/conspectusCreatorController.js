@@ -4501,7 +4501,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
 
         if (!$scope.tags || $scope.tags.length < 2) {
-            notify.localNotify("Walidacja", "Wpisz przynajmniej dwie frazy z którymi będzie kojarzone dane ćwiczenie");
+            notify.localNotify("Walidacja", "Wpisz przynajmniej dwie frazy, z którymi będzie kojarzone dane ćwiczenie");
             return;
         }
 
