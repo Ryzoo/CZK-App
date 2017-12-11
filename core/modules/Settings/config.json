@@ -72,7 +72,7 @@
         "anchorPoint": "Ustawienia",
         "anchorPointIcon": "fa fa-cog fa-fw",
         "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
-        "anchorWeight": 1000,
+        "anchorWeight": 49,
         "content": {
             "link": {
                 "label": "Główne",
@@ -84,7 +84,7 @@
         "anchorPoint": "Ustawienia",
         "anchorPointIcon": "fa fa-cog fa-fw",
         "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
-        "anchorWeight": 1000,
+        "anchorWeight": 49,
         "content": {
             "link": {
                 "label": "Moduły",
@@ -96,7 +96,7 @@
         "anchorPoint": "Ustawienia",
         "anchorPointIcon": "fa fa-cog fa-fw",
         "anchorAdditional": "ng-show=\"user.role == 'KOORD'\"",
-        "anchorWeight": 1000,
+        "anchorWeight": 49,
         "content": {
             "link": {
                 "label": "Wygląd",

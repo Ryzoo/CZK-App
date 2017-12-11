@@ -122,7 +122,8 @@
                     "url": "#!/teamsMenager",
                     "icon": "fa fa-address-card-o fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""
-                }
+                },
+                "weight": 10
             }
         },
         {
@@ -133,7 +134,8 @@
                     "url": "#!/sectionGet",
                     "icon": "fa fa-handshake-o fa-fw",
                     "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\""
-                }
+                },
+                "weight": 10
             }
         }, {
             "destination": "leftMenu",
@@ -143,7 +145,8 @@
                     "url": "#!/sectionGetForPlayer",
                     "icon": "fa fa-handshake-o fa-fw",
                     "additional": "ng-show=\"user.role == 'ZAWODNIK'\""
-                }
+                },
+                "weight": 10
             }
         }, {
             "destination": "leftMenu",
@@ -153,7 +156,8 @@
                     "url": "#!/masterMenager",
                     "icon": "fa fa-user-secret fa-fw",
                     "additional": "ng-show=\"user.role == 'KOORD'\""
-                }
+                },
+                "weight": 12
             }
         }
     ]

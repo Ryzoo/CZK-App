@@ -27,6 +27,7 @@
     "anchor": [{
         "destination": "leftMenu",
         "anchorPoint": "Grafik",
+        "anchorWeight": 4,
         "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "anchorPointIcon": "fa fa-calendar-times-o fa-fw",
         "content": {
@@ -39,6 +40,7 @@
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Grafik",
+        "anchorWeight": 4,
         "anchorPointIcon": "fa fa-calendar-times-o fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": {

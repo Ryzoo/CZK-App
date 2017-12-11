@@ -16,7 +16,7 @@
     "anchor": [{
         "destination": "leftMenu",
         "anchorPoint": "Szatnia",
-        "anchorWeight": 8,
+        "anchorWeight": 3,
         "anchorPointIcon": "fa fa-users fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": {

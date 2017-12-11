@@ -32,7 +32,8 @@
                 "url": "#!/teamFreq",
                 "icon": "fa fa-list-alt fa-fw",
                 "additional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\""
-            }
+            },
+            "weight": 4
         }
     }]
 }

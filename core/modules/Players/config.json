@@ -24,7 +24,7 @@
         },
         {
             "url": "registerNewApplayer",
-            "parameters": ["firstname","lastname","email"]
+            "parameters": ["firstname", "lastname", "email"]
         },
         {
             "url": "addPlayerToTeam",
@@ -60,7 +60,8 @@
                 "url": "#!/showPlayers",
                 "icon": "fa fa-address-book-o fa-fw",
                 "additional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\""
-            }
+            },
+            "weight": 11
         }
     }]
 }

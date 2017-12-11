@@ -28,7 +28,8 @@
     ],
     "anchor": [{
             "destination": "leftMenu",
-            "anchorPoint": "Drzewko rozwoju",
+            "anchorPoint": "Drzewo rozwoju",
+            "anchorWeight": 13,
             "anchorPointIcon": "fa fa-tree fa-fw",
             "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
             "content": {
@@ -40,7 +41,8 @@
             }
         }, {
             "destination": "leftMenu",
-            "anchorPoint": "Drzewko rozwoju",
+            "anchorPoint": "Drzewo rozwoju",
+            "anchorWeight": 13,
             "anchorPointIcon": "fa fa-tree fa-fw",
             "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
             "content": {
@@ -54,7 +56,7 @@
         {
             "destination": "leftMenu",
             "anchorPoint": "Mój profil",
-            "anchorWeight": 5,
+            "anchorWeight": 2,
             "anchorPointIcon": "fa fa-user fa-fw",
             "content": {
                 "link": {

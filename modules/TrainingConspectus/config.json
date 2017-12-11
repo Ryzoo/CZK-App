@@ -91,6 +91,7 @@
     "anchor": [{
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
+        "anchorWeight": 7,
         "anchorPointIcon": "fa fa-address-card fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
@@ -103,6 +104,7 @@
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
+        "anchorWeight": 7,
         "anchorPointIcon": "fa fa-address-card fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
@@ -115,6 +117,7 @@
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
+        "anchorWeight": 7,
         "anchorPointIcon": "fa fa-address-card fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {
@@ -127,6 +130,7 @@
     }, {
         "destination": "leftMenu",
         "anchorPoint": "Konspekty treningowe",
+        "anchorWeight": 7,
         "anchorPointIcon": "fa fa-address-card fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK'\"",
         "content": {

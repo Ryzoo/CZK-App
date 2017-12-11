@@ -39,7 +39,7 @@
         "anchorPoint": "Szatnia",
         "anchorPointIcon": "fa fa-users fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != ''\"",
-        "anchorWeight": 8,
+        "anchorWeight": 3,
         "content": {
             "link": {
                 "label": "Tablica",
