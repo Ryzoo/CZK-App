@@ -16,6 +16,7 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
     var secondUsid = 0;
     var thirdUsid = 0;
     var usidList = [];
+    var noPrcIs = true;
 
 
     $scope.initTeammate = function() {
@@ -44,7 +45,7 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
         ];
         if ($scope.selected3) usidList.push(thirdUsid);
 
-        request.backend('getStats', { usid: usidList, tmid: $rootScope.user.tmid, prc:"none" }, function(data) {
+        request.backend('getStats', { usid: usidList, tmid: $rootScope.user.tmid, prc: "none" }, function(data) {
             $rootScope.actualStats = data;
             console.log(data);
             addMainChartToPage();
@@ -123,22 +124,37 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
         checkStatBest();
     });
 
+    $(document).off('change', '#selectPrcType');
+    $(document).on('change', '#selectPrcType', function() {
+        var value = $(this).val();
+        if (value == "prc") {
+            noPrcIs = false;
+        } else {
+            noPrcIs = true;
+        }
+        changePotential();
+        checkStatBest();
+    });
+
+
+
     function changePotential() {
         $scope.showPreLoad = false;
         $scope.$apply(function() {
             $scope.acutalSelectedGroup = $("#selectPotential").val();
             $scope.actualStatGroup = [];
-            if($rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests)
-            for (let i = 0; i < $rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests.length; i++) {
-                const elName = $rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests[i].name;
-                $scope.actualStatGroup.push({
-                    name: elName,
-                    users: []
-                });
-                for (let x = 0; x < $rootScope.actualStats.users.length; x++) {
-                    $scope.actualStatGroup[i].users.push($rootScope.actualStats.users[x].data.potential[$scope.acutalSelectedGroup].tests[i].noPrc + "" + ($rootScope.actualStats.users[x].data.potential[$scope.acutalSelectedGroup].tests[i].unit).substring(0,1)+".");
+            if ($rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests)
+                for (let i = 0; i < $rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests.length; i++) {
+                    const elName = $rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests[i].name;
+                    $scope.actualStatGroup.push({
+                        name: elName,
+                        users: []
+                    });
+                    for (let x = 0; x < $rootScope.actualStats.users.length; x++) {
+                        if (noPrcIs) $scope.actualStatGroup[i].users.push($rootScope.actualStats.users[x].data.potential[$scope.acutalSelectedGroup].tests[i].noPrc + "" + ($rootScope.actualStats.users[x].data.potential[$scope.acutalSelectedGroup].tests[i].unit).substring(0, 1) + ".");
+                        else $scope.actualStatGroup[i].users.push($rootScope.actualStats.users[x].data.potential[$scope.acutalSelectedGroup].tests[i].summary + "%");
+                    }
                 }
-            }
         });
     }
 
@@ -155,8 +171,8 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
         if ($scope.selected3) $("#mainChartContainer").css('max-width', "1000px");
         for (let i = 0; i < ($scope.selected3 ? 3 : 2); i++) {
             var element = '<div class="' + elementClass + '">';
-            element += '<canvas class="col s12" id="main-summary-chart-' + i + '"></canvas>';
-            element += '<canvas class="col s12" id="main-summary-chart-radar-' + i + '"></canvas>';
+            element += '<canvas class="col s12" style="padding:0 !important" id="main-summary-chart-' + i + '"></canvas>';
+            element += '<canvas class="col s12" style="padding:0 !important" id="main-summary-chart-radar-' + i + '"></canvas>';
             element += '</div>';
             $("#mainChartContainer").append(element);
         }
@@ -181,10 +197,10 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
                         'Braki'
                     ]
                 },
-                options:{
+                options: {
                     tooltips: {
                         callbacks: {
-                            afterLabel: (item)=>{ return `%`},
+                            afterLabel: (item) => { return `%` },
                         }
                     },
                 }
@@ -222,7 +238,7 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
                     },
                     tooltips: {
                         callbacks: {
-                            afterLabel: (item)=>{ return `%`},
+                            afterLabel: (item) => { return `%` },
                         }
                     },
                 }

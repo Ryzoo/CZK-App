@@ -945,18 +945,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         break;
                     }
                 }
-                for (let u = 0; u < allObjectPerFrame[y].shapes.length; u++) {
-                    if (allObjectPerFrame[y].shapes[u].getAttr("id") == thisId) {
-                        allObjectPerFrame[y].shapes[u].setAttr("rotation", rot);
-                        break;
-                    }
-                }
-                for (let u = 0; u < allObjectPerFrame[y].arrow.length; u++) {
-                    if (allObjectPerFrame[y].arrow[u].getAttr("id") == thisId) {
-                        allObjectPerFrame[y].arrow[u].setAttr("rotation", rot);
-                        break;
-                    }
-                }
             }
         } else if ($scope.selectedItemList.length > 0) {
             for (let i = 0; i < $scope.selectedItemList.length; i++) {
