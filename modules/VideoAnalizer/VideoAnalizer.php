@@ -26,15 +26,15 @@ class VideoAnalizer extends BasicModule {
             "description"=>"Budowa akcji od obrony",
           ],
           [
-            "url"=> $basicUrl."dośrodkowanie z bocznego sektora boiska.png",
+            "url"=> $basicUrl."dosrodkowanie z bocznego sektora boiska.png",
             "description"=>"Dośrodkowanie z bocznego sektora boiska",
           ],
           [
-            "url"=> $basicUrl."faza przejścia z ataku do obrony.png",
+            "url"=> $basicUrl."faza przejscia z ataku do obrony.png",
             "description"=>"Faza przejścia z ataku do obrony",
           ],
           [
-            "url"=> $basicUrl."faza przejścia z obrony do ataku.png",
+            "url"=> $basicUrl."faza przejscia z obrony do ataku.png",
             "description"=>"Faza przejścia z obrony do ataku",
           ],
           [
@@ -50,7 +50,7 @@ class VideoAnalizer extends BasicModule {
             "description"=>"Obrona w strefie niskiej",
           ],
           [
-            "url"=> $basicUrl."obrona w strefie średniej.png",
+            "url"=> $basicUrl."obrona w strefie sredniej.png",
             "description"=>"Obrona w strefie średniej",
           ],
 
@@ -59,15 +59,15 @@ class VideoAnalizer extends BasicModule {
             "description"=>"Obrona w strefie wysokiej",
           ],
           [
-            "url"=> $basicUrl."odbiór piłki.png",
+            "url"=> $basicUrl."odbior pilki.png",
             "description"=>"Odbiór piłki",
           ],
           [
-            "url"=> $basicUrl."podanie prostopadłe w pole karne.png",
+            "url"=> $basicUrl."podanie prostopadle w pole karne.png",
             "description"=>"Podanie prostopadłe w pole karne",
           ],
           [
-            "url"=> $basicUrl."rozpoczęcie z autu.png",
+            "url"=> $basicUrl."rozpoczecie z autu.png",
             "description"=>"Rozpoczęcie z autu",
           ],
           [
@@ -79,7 +79,7 @@ class VideoAnalizer extends BasicModule {
             "description"=>"Rzut wolny w defensywie",
           ],
           [
-            "url"=> $basicUrl."strzał na bramkę.png",
+            "url"=> $basicUrl."strzal na bramke.png",
             "description"=>"Strzał na bramkę",
           ],
           [
@@ -192,7 +192,7 @@ class VideoAnalizer extends BasicModule {
           $fragmentUrl = $analizeDir.$fragmentName;
           $out = [];
           $execReturn = [];
-          exec("ffmpeg -i '".$pathToFile.$fileName."' -ss ".$start." -t ".$duration." -vcodec copy -acodec copy '".$fragmentUrl."' >> output.txt",$out,$execReturn);
+          exec("ffmpeg -i '".$pathToFile.$fileName."' -ss ".$start." -t ".$duration." '".$fragmentUrl."' >> output.txt",$out,$execReturn);
 
           array_push($fragmentsList,[
             "fragmentMain"=>$pathToFile.$fileName,

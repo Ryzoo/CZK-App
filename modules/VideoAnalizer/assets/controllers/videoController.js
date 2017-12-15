@@ -142,7 +142,10 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
         });
         $(this).addClass("oneIconfToAnalizerActive");
         $('#fragmentName').val(name);
-        $scope.addFragment();
+        $scope.$apply(function() {
+            $scope.addFragment();
+
+        });
     });
 
     $(document).off('change', "#videoToAnalize");
