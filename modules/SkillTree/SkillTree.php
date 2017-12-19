@@ -12,7 +12,6 @@ class SkillTree extends BasicModule {
 
     function install(){
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_category` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `color` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_must_have` ( `id` INT NOT NULL AUTO_INCREMENT , `skill_id` INT NOT NULL , `must_skill_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_skills` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `description` TEXT NOT NULL , `icon_path` VARCHAR(255) NOT NULL , `category_id` INT NOT NULL , `root_skill_id` INT NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_users` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `skill_have_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_skill_req` ( `id` INT NOT NULL AUTO_INCREMENT , `skill_id` INT NOT NULL , `req_skill_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
@@ -20,7 +19,6 @@ class SkillTree extends BasicModule {
 
     function uninstall(){
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS st_category');
-      ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS st_must_have');
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS st_skills');
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS st_users');
       ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS st_skill_req');
