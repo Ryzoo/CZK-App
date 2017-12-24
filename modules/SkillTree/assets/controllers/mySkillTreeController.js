@@ -140,6 +140,7 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
         }
 
         for (let i = 0; i < skill.reqs.length; i++) {
+            var level = parseInt(skill.reqs[i].level) > 0 ? " - poziom: "+skill.reqs[i].level : "" ;
             mo.find('.popReqList').first().append(`
             <li class='popReqListElement' data-skill-id='`+skill.reqs[i].id+`'>
                 <div class='popReqListElementLeft'>
@@ -147,7 +148,7 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
                 </div>
                 <div class='popReqListElementRight'>
                     <h4 class='popSkillMainCat'>`+skill.reqs[i].category.name+`</h4>
-                    <h6 class='popSkillMainName'>`+skill.reqs[i].name+`</h6>
+                    <h6 class='popSkillMainName'>`+skill.reqs[i].name+level+`</h6>
                     <small class='popSkillMainStatus'>`+getStatusHtml(skill.reqs[i])+`</small>
                 </div>
             </li>

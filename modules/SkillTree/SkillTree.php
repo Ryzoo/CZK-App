@@ -34,7 +34,7 @@ class SkillTree extends BasicModule {
 
     function getSkillTreeData($data){
       $this->returnedData['data']['categories'] = ($this->db->getConnection())->fetchRowMany('SELECT * FROM st_category');
-      $this->returnedData['data']['skills'] = ($this->db->getConnection())->fetchRowMany('SELECT st_skills.*, st_category.color FROM st_skills,st_category WHERE st_skills.category_id = st_category.id ORDER BY category_id');
+      $this->returnedData['data']['skills'] = $this->getAllSkill();
       return $this->returnedData;
     }
 
@@ -133,7 +133,7 @@ class SkillTree extends BasicModule {
       $category = $data['category'];
       $isRootSkill = isset($data['isRootSkill']) ? true : false;
       $rootSkill = $isRootSkill ? 0 : $data['rootSkill'];
-      $reqSkill = $isRootSkill ? [] : $data['reqSkill'];
+      $reqSkill = $isRootSkill ? [] : (isset($data['reqSkill'])?$data['reqSkill']:[]);
 
       if(!$isRootSkill){
         $thisId = -1;
@@ -167,6 +167,7 @@ class SkillTree extends BasicModule {
       $newId = ($this->db->getConnection())->update('st_skills',["id"=>$id],$skillElement);
 
       foreach ($reqSkill as $key => $value){
+        if( (int)$value <= 0 ) continue;
         $exist =  ($this->db->getConnection())->fetchRow('SELECT id FROM st_skill_req WHERE skill_id='.$id.' AND req_skill_id='.$value);
         if(!(isset($exist) && isset($exist['id']))){
           ($this->db->getConnection())->insert('st_skill_req',[
@@ -176,8 +177,14 @@ class SkillTree extends BasicModule {
         }
       }
 
-      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT st_skills.*, st_category.color FROM st_skills,st_category WHERE st_skills.category_id = st_category.id ORDER BY category_id");
+      $this->returnedData['data'] = $this->getAllSkill();
       return $this->returnedData;
+    }
+
+    function getAllSkill(){
+      $all = ($this->db->getConnection())->fetchRowMany("SELECT st_skills.*, st_category.color FROM st_skills,st_category WHERE st_skills.category_id = st_category.id ORDER BY category_id, st_skills.name");
+      if(!isset($all)) $all = [];
+      return $all; 
     }
 
     function addSkillTreeSkill($data){
@@ -189,7 +196,7 @@ class SkillTree extends BasicModule {
       $category = $data['category'];
       $isRootSkill = isset($data['isRootSkill']) ? true : false;
       $rootSkill = $isRootSkill ? 0 : $data['rootSkill'];
-      $reqSkill = $isRootSkill ? [] : $data['reqSkill'];
+      $reqSkill = $isRootSkill ? [] : (isset($data['reqSkill'])?$data['reqSkill']:[]);
 
       if(!$isRootSkill){
         $thisId = -1;
@@ -215,13 +222,14 @@ class SkillTree extends BasicModule {
       ]);
 
       foreach ($reqSkill as $key => $value){
+        if( (int)$value <= 0 ) continue;
         ($this->db->getConnection())->insert('st_skill_req',[
           "skill_id" => $newId,
           "req_skill_id" => $value,
         ]);
       }
 
-      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT st_skills.*, st_category.color FROM st_skills,st_category WHERE st_skills.category_id = st_category.id ORDER BY category_id");
+      $this->returnedData['data'] = $this->getAllSkill();
       return $this->returnedData;
     }
 
@@ -230,6 +238,7 @@ class SkillTree extends BasicModule {
       $skill = ($this->db->getConnection())->fetchRow("SELECT * FROM st_skills WHERE id=".$id);
       $dataSkillReq = ($this->db->getConnection())->fetchRowMany("SELECT * FROM st_skill_req WHERE skill_id=".$id);
       $arr = [];
+      if(!isset($dataSkillReq) || $dataSkillReq==null) $dataSkillReq = [];
       foreach($dataSkillReq as $value){
         array_push($arr,$value['id']);
       }

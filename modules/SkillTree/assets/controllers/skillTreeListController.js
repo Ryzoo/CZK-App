@@ -12,7 +12,6 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
                 $scope.skillTreeCategories = data.categories;
                 $scope.skillTreeSkills = data.skills;
                 $scope.showContent = true;
-                
             });
         });
     }
@@ -59,8 +58,6 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
             });
             $('#categoryColorForm').parent().parent().colorpicker('setValue',category.color);
         },200);
-
-
     }
 
 
@@ -89,6 +86,13 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
     $scope.closeModals = function(){
         $("#addCategoryModal").modal('close');
         $("#addSkillModal").modal('close');
+        $("#skillNameForm").val('');
+        $("#skillAboutForm").val('');
+        $("#skillLevelForm").val('0');
+        $("#skillFile").val('');
+        $("#skillTreeSkillRootSelect").val('');
+        $("#skillTreeReqSelect").val('');
+        $("#skillTreeCatSelect").val('');
         updatedId = 0;
         $scope.isUpdate = false;
     }
@@ -122,8 +126,11 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
         $("#skillTreeSkillRootSelect").html('');
         $("#skillTreeSkillRootSelect").append('<option value="" disabled selected>Wybierz umiejętność</option>');
         for(let i=0;i<$scope.skillTreeSkills.length;i++){
-            if($scope.skillTreeSkills[i].category_id == id)
-                $("#skillTreeSkillRootSelect").append('<option value="'+$scope.skillTreeSkills[i].id+'"  >'+$scope.skillTreeSkills[i].name+'</option>');
+            if($scope.skillTreeSkills[i].category_id == id){
+                var level = parseInt($scope.skillTreeSkills[i].level);
+                var name = level > 0 ?$scope.skillTreeSkills[i].name + " - poziom: "+$scope.skillTreeSkills[i].level : $scope.skillTreeSkills[i].name;
+                $("#skillTreeSkillRootSelect").append('<option value="'+$scope.skillTreeSkills[i].id+'"  >'+name+'</option>');
+              }
         }
         $('#skillTreeSkillRootSelect').material_select();
     });
@@ -133,6 +140,7 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
         $("#skillTreeCatSelect").html('');
         $("#skillTreeCatSelect").append('<option value="" disabled selected>Wybierz kategorię umiejętności</option>');
         for(let i=0;i<$scope.skillTreeCategories.length;i++){
+           
             $("#skillTreeCatSelect").append('<option value="'+$scope.skillTreeCategories[i].id+'"  >'+$scope.skillTreeCategories[i].name+'</option>');
         }
 
@@ -141,7 +149,9 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
         $("#skillTreeSkillRootSelect").html('');
         $("#skillTreeSkillRootSelect").append('<option value="" disabled selected>Wybierz najpierw kategorie</option>');
         for(let i=0;i<$scope.skillTreeSkills.length;i++){
-            $("#skillTreeReqSelect").append('<option value="'+$scope.skillTreeSkills[i].id+'"  >'+$scope.skillTreeSkills[i].name+'</option>');
+            var level = parseInt($scope.skillTreeSkills[i].level);
+            var name = level > 0 ?$scope.skillTreeSkills[i].name + " - poziom: "+$scope.skillTreeSkills[i].level : $scope.skillTreeSkills[i].name;
+            $("#skillTreeReqSelect").append('<option value="'+$scope.skillTreeSkills[i].id+'"  >'+name+'</option>');
         }
         
         $('select').material_select();
@@ -158,12 +168,20 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
                 });
             },"Umiejętność zapisana",true);
         }
+        $("#skillNameForm").val('');
+        $("#skillAboutForm").val('');
+        $("#skillLevelForm").val('0');
+        $("#skillFile").val('');
+        $("#skillTreeSkillRootSelect").val('');
+        $("#skillTreeReqSelect").val('');
+        $("#skillTreeCatSelect").val('');
         $scope.isUpdate = false;
     }
 
     $scope.editSkillModal = function(element){
         
         $("#addSkillModal").modal('open');
+        $("#skillFile").val('');
         $scope.isUpdate = true;
         updatedId = element.id;
 
@@ -180,14 +198,15 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
             $("#skillTreeSkillRootSelect").append('<option value="" disabled >Wybierz umiejętność</option>');
             for(let i=0;i<$scope.skillTreeSkills.length;i++){
                 var isInSkillArray = checkSkillReqIs($scope.skillTreeSkills[i].id,skillThis.req);
-                $("#skillTreeReqSelect").append('<option '+(isInSkillArray?"selected":"")+' value="'+$scope.skillTreeSkills[i].id+'"  >'+$scope.skillTreeSkills[i].name+'</option>');
+                var level = parseInt($scope.skillTreeSkills[i].level);
+                var name = level > 0 ?$scope.skillTreeSkills[i].name + " - poziom: "+$scope.skillTreeSkills[i].level : $scope.skillTreeSkills[i].name;
+                $("#skillTreeReqSelect").append('<option '+(isInSkillArray?"selected":"")+' value="'+$scope.skillTreeSkills[i].id+'"  >'+name+'</option>');
                 if($scope.skillTreeSkills[i].category_id == skillThis.category_id){
                     var isThisRoot = $scope.skillTreeSkills[i].id == skillThis.root_skill_id;
-                    $("#skillTreeSkillRootSelect").append('<option '+(isThisRoot?"selected":"")+' value="'+$scope.skillTreeSkills[i].id+'"  >'+$scope.skillTreeSkills[i].name+'</option>');
+                    $("#skillTreeSkillRootSelect").append('<option '+(isThisRoot?"selected":"")+' value="'+$scope.skillTreeSkills[i].id+'"  >'+name+'</option>');
                 }
             }
-            $scope.rootSkill = parseInt(skillThis.root_skill_id) > 0;
-            
+            $scope.rootSkill = parseInt(skillThis.root_skill_id) <= 0;
             $('select').material_select();
         });
 
@@ -209,10 +228,13 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
     }
 
     $scope.deleteSkill = function(){
-        $("#addSkillModal").modal('close');
         $("#skillNameForm").val('');
         $("#skillAboutForm").val('');
         $("#skillLevelForm").val('0');
+        $("#skillFile").val('');
+        $("#skillTreeSkillRootSelect").val('');
+        $("#skillTreeReqSelect").val('');
+        $("#skillTreeCatSelect").val('');
         $scope.isUpdate = false;
 
         $rootScope.showModalWindow("Usunięcie umiejętności w skilltree",function(){
@@ -233,7 +255,6 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
 
     $scope.addSkill = function(){
         $("#addSkillModal").modal('close');
-        
         if(validateSkillForm()){
             let dataToSend = new FormData($("#SkillTreeSkillForm")[0]);
             request.backend('addSkillTreeSkill', dataToSend, function(data) {
@@ -242,6 +263,13 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
                 });
             },"Umiejętność dodana",true);
         }
+        $("#skillNameForm").val('');
+        $("#skillAboutForm").val('');
+        $("#skillLevelForm").val('0');
+        $("#skillFile").val('');
+        $("#skillTreeSkillRootSelect").val('');
+        $("#skillTreeReqSelect").val('');
+        $("#skillTreeCatSelect").val('');
     }
 
     function validateSkillForm(){

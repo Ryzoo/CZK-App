@@ -148,7 +148,8 @@
                             <tr ng-repeat="skill in skillTreeSkills"  style='cursor:pointer;' ng-click="editSkillModal(skill)">
                                 <td class='cattColor' style='background-color:{{skill.color}}'>#</td>
                                 <td style='padding:0;'><img src="{{skill.icon_path}}" alt="{{skill.name}}"/></td>
-                                <td style='padding:0;'>{{skill.name}}</td>
+                                <td ng-show="skill.level > 0" style='padding:0;'>{{skill.name}} - poziom: {{skill.level}}</td>
+                                <td ng-show="skill.level <= 0" style='padding:0;'>{{skill.name}}</td>
                             </tr>
                             </tbody>
                         </table>
