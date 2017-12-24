@@ -1,12 +1,48 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
-<div class="section ">
+<div class="section " ng-init="loadUserFromTeam()">
     <div ng-show='showContent' class="row">
-        <div class="col s12 m12 l4">
+        <div class="col s12 m8 offset-m2">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Umiejętności zawodnika</div>
                     <div class="row">
-
+                        <div class="input-field col s6 offset-s3">
+                            <select name='rootSkill' id='userSelect'></select>
+                            <label>Wybór zawodnika</label>
+                        </div>
+                    </div>
+                    <div class="row" style='padding: 0 50px;' ng-show="userSelected && !skillLoaded">
+                        <div class='loaderContainer' style='height: 200px'>
+                            <div id="loader-wrapper">
+                                <div id="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="userSelected && skillLoaded">
+                        <table class='striped centered highlight'>
+                            <thead>
+                                <tr>
+                                    <th>Umiejętność</th>
+                                    <th>Akcja</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="skill in availableSkill" style='cursor:pointer;'>
+                                    <td ng-show="skill.level > 0" style='padding:0;'>{{skill.name}} - poziom: {{skill.level}}</td>
+                                    <td ng-show="skill.level <= 0" style='padding:0;'>{{skill.name}}</td>
+                                    <td>
+                                        <div class="switch">
+                                            <label>
+                                              Niezdane
+                                              <input class='selectSkillStatus' id='skill-{{skill.id}}' type="checkbox">
+                                              <span class="lever"></span>
+                                              Zdane
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

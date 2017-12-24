@@ -183,8 +183,10 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
         var background = skill.isComplete ? parentColor : skill.isEnabled ? "white" : "#e7e7e7";
         var levelColor = skill.isEnabled ? parentColor  : "#adadad";
         var spanWithLevel = `<span class='levelSpan' style='background-color:`+levelColor+`'>`+level+`</span>`;
+        var classType = skill.isComplete ? "completePathSvg" : skill.isEnabled ? "enabledPathSvg" : "notEnabledPathSvg";
+
         return `<div data-skill-id='`+skill.id+`' class='skillIn tooltipped ` + classIn + `' style='background-color:`+background+`;border-color:`+borderColor+`' data-position='bottom data-delay='20' data-tooltip='` + skill.name + `'>
-            <img class='svg' style='fill:`+fillColor+` !important; stroke:`+fillColor+` !important' src='` + skill.icon_path + `' alt='` + skill.name + `'/>
+            <img class='svg `+classType+`' style='fill:`+fillColor+` !important; stroke:`+fillColor+` !important' src='` + skill.icon_path + `' alt='` + skill.name + `'/>
             `+(level > 0 ? spanWithLevel : '')+`</div>`;
     }
 

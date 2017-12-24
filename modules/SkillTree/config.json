@@ -6,41 +6,49 @@
     "backendRoute": [{
         "url": "getMySkillsInTree",
         "parameters": ["token"]
-    },{
+    }, {
         "url": "getSkillTreeData",
         "parameters": ["token"]
-    },{
+    }, {
         "url": "addCategorySkillTree",
-        "parameters": ["color","name"],
+        "parameters": ["color", "name"],
         "auth": ["KOORD", "TRENER", "STAFF"]
-    },{
+    }, {
         "url": "saveCategorySkillTree",
-        "parameters": ["id","color","name"],
+        "parameters": ["id", "color", "name"],
         "auth": ["KOORD", "TRENER", "STAFF"]
-    },{
+    }, {
         "url": "deleteCategorySkillTree",
         "parameters": ["id"],
         "auth": ["KOORD", "TRENER", "STAFF"]
-    },{
+    }, {
         "url": "addSkillTreeSkill",
         "parameters": ["token"],
         "auth": ["KOORD", "TRENER", "STAFF"]
-    },{
+    }, {
         "url": "deleteSkillInTree",
-        "parameters": ["token","id"],
+        "parameters": ["token", "id"],
         "auth": ["KOORD", "TRENER", "STAFF"]
-    },{
+    }, {
         "url": "saveSkillInTree",
         "parameters": ["token"],
         "auth": ["KOORD", "TRENER", "STAFF"]
-    },{
+    }, {
         "url": "getSkillToEdit",
         "parameters": ["id"],
         "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "getUserAvailableSkill",
+        "parameters": ["usid"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "completeUserSkillTreeSkill",
+        "parameters": ["usid", "sid"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
     }],
     "jsControllers": ["skillTreeListController", "userSkillTreeController", "mySkillTreeController"],
-    "css": ["style", "treant","docs"],
-    "js": ["treant", "rap","colorpickerc","colorpicker","docs"],
+    "css": ["style", "treant", "docs"],
+    "js": ["treant", "rap", "colorpickerc", "colorpicker", "docs"],
     "frontendRoute": [{
             "url": "skillTreeList",
             "templateSrc": "skillTreeList.html",

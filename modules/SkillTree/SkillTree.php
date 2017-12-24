@@ -10,6 +10,12 @@ use Core\System\FileMenager;
 
 class SkillTree extends BasicModule {
     public $allSkill = [];
+    public $completeArray = [];
+
+    function __construct(){
+      parent::__construct();
+      $this->completeArray = ($this->db->getConnection())->fetchRowMany('SELECT * FROM st_users');
+    }
 
     function install(){
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_category` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `color` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
@@ -57,7 +63,7 @@ class SkillTree extends BasicModule {
       $skills = ($this->db->getConnection())->fetchRowMany('SELECT * FROM st_skills WHERE category_id='.$cid.' AND root_skill_id='.$sid);
       if(isset($skills) && count($skills) > 0)
       foreach ($skills as $key => $value) {
-        $skills[$key]['isComplete'] = $this->checkSkillComplete($usid,$value['id']);
+        $skills[$key]['isComplete'] = $this->checkSkillCompleteArray($usid,$value['id']);
         $req = $this->checkIsSkillEnabled($usid,$value['id']);
         $skills[$key]['isEnabled'] = $req['enabled'];
         $skills[$key]['req'] = $req['reqSkills'];
@@ -66,6 +72,16 @@ class SkillTree extends BasicModule {
         array_push($this->allSkill,$skills[$key]);
       }
       return $skills;
+    }
+
+    function checkSkillCompleteArray($usid,$sid){
+      if(!isset($this->completeArray) || count($this->completeArray) <=0 ) $this->completeArray = [];
+      foreach ($this->completeArray as $key => $value) {
+        if($value['user_id'] == $usid && $value['skill_have_id'] == $sid){
+          return true;
+        }
+      }
+      return false;
     }
 
     function checkSkillComplete($usid, $sid){
@@ -80,7 +96,7 @@ class SkillTree extends BasicModule {
       if(isset($allReq) && count($allReq) > 0)
       foreach ($allReq as $key => $value) {
         array_push($allSkills,$value['req_skill_id']);
-        if( $isEnabled && $this->checkSkillComplete($usid,$value['req_skill_id']) == false ) {
+        if( $isEnabled && $this->checkSkillCompleteArray($usid,$value['req_skill_id']) == false ) {
           $isEnabled = false;
         }
       }
@@ -88,6 +104,17 @@ class SkillTree extends BasicModule {
         "enabled"=>$isEnabled,
         "reqSkills"=>$allSkills
       ];
+    }
+
+    function completeUserSkillTreeSkill($data){
+      $usid = $data['usid'];
+      $sid = $data['sid'];
+      ($this->db->getConnection())->insert("st_users",[
+        "user_id" => $usid,
+        "skill_have_id" => $sid
+      ]);
+      $this->completeArray = ($this->db->getConnection())->fetchRowMany('SELECT * FROM st_users');
+      return $this->getUserAvailableSkill(["usid"=>$usid]);
     }
 
     function getUserSkillsInTree($data){
@@ -230,6 +257,23 @@ class SkillTree extends BasicModule {
       }
 
       $this->returnedData['data'] = $this->getAllSkill();
+      return $this->returnedData;
+    }
+
+    function getUserAvailableSkill($data){
+      $usid = $data['usid'];
+      $skills = ($this->db->getConnection())->fetchRowMany('SELECT st_skills.* FROM st_skills ');
+      $this->returnedData['data'] = [];
+      foreach ($skills as $key => $value) {
+        $sid = $value['id'];
+        $isCompleted = $this->checkSkillCompleteArray($usid,$sid);
+        if(!$isCompleted){
+          $isEnabled = $this->checkIsSkillEnabled($usid,$sid)["enabled"];
+          if($isEnabled){
+            array_push($this->returnedData['data'],$value);
+          }
+        }
+      }
       return $this->returnedData;
     }
 

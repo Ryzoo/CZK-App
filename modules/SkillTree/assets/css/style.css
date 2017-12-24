@@ -20,7 +20,7 @@
     padding: 10px 0 !important;
 }
 
-.cattColor{
+.cattColor {
     color: white;
     font-weight: 900;
 }
@@ -42,35 +42,50 @@ span.levelSpan {
     cursor: pointer;
 }
 
+.completePathSvg path{
+    fill: white !important;
+    stroke: white !important;
+}
+.enabledPathSvg path{
+    fill: black !important;
+    stroke: black !important;
+}
+.notEnabledPathSvg path{
+    fill: #adadad !important;
+    stroke: #adadad !important;
+}
+
 .skillIn {
+    position: relative;
     display: table;
     border-radius: 50%;
     padding: 10px;
     border: 2px solid;
     transition: all .2s;
-    -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
 }
 
-.skillIn:hover{
+.skillIn:hover {
     transform: scale(1.2);
     cursor: pointer;
     border-width: 3px;
-    -webkit-box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3);
-    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
 }
 
 .popReqList .skillIn {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
 .popMainSkill .skillIn:hover,
-.popReqList .skillIn:hover{
+.popReqList .skillIn:hover {
     transform: none;
     cursor: default;
     border-width: 2px;
-    -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
 }
 
 .popReqListElementRight {
@@ -79,16 +94,16 @@ span.levelSpan {
     margin-top: -2px;
 }
 
-.popReqListElementRight h6{
+.popReqListElementRight h6 {
     padding-left: 0;
 }
 
-.popReqList .skillIn:hover{
+.popReqList .skillIn:hover {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-.chart{
+.chart {
     margin-left: -11px;
 }
 
@@ -104,7 +119,7 @@ h4.popReq {
     letter-spacing: 5px;
 }
 
-.skillRootElement p{
+.skillRootElement p {
     font-size: 1rem;
     font-weight: 400;
     color: #595959;
@@ -116,7 +131,7 @@ h4.popSkillMainCat {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #4E4E4E;
-    margin:0;
+    margin: 0;
     margin-top: 3px;
 }
 
@@ -146,15 +161,15 @@ p.popSkillMainDesc {
 }
 
 li.popReqListElement {
-    width:100%;
+    width: 100%;
     padding: 10px 0;
-    overflow:hidden;
+    overflow: hidden;
     transition: all .2s;
 }
 
-li.popReqListElement:hover{
+li.popReqListElement:hover {
     background: #f1f1f1;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .skillIn img {
@@ -167,25 +182,27 @@ li.popReqListElement:hover{
     height: 20px;
 }
 
-.popMainSkill .skillIn img{
+.popMainSkill .skillIn img {
     width: 60px;
     height: 60px;
 }
-.popMainSkill .skillIn svg{
+
+.popMainSkill .skillIn svg {
     width: 60px;
     height: 60px;
 }
 
 .popReqListElementRight,
-.popReqListElementLeft  {
+.popReqListElementLeft {
     float: left;
 }
 
-.popReqListElementLeft .skillIn img{
+.popReqListElementLeft .skillIn img {
     width: 24px;
     height: 24px;
 }
-.popReqListElementLeft .skillIn svg{
+
+.popReqListElementLeft .skillIn svg {
     width: 24px;
     height: 24px;
 }
