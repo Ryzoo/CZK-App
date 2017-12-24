@@ -4,11 +4,11 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
 
     var resizeTimeout = null;
 
-    var treeConfig = {
+    $rootScope.treeConfig = {
         chart: {
             container: "#skillTree",
             levelSeparation: 45,
-            rootOrientation: "NORTH",
+            rootOrientation: "WEST",
             nodeAlign: "CENTER",
             connectors: {
                 type: "curve",
@@ -19,7 +19,6 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
             }
         },
         nodeStructure: {
-            text: { name: "LISTA UMIEJĘTNOŚCI" },
             HTMLclass: "skillTreeRootElement",
             children: [],
             connectors: {
@@ -32,16 +31,28 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
         }
     };
 
+    $(document).off('click',".sidebar-toggle-box");
+    $(document).on('click',".sidebar-toggle-box",function(){
+        $('#skillTree').html('');
+        new Treant($rootScope.treeConfig, function() {
+            replaceImgBySvg();
+            $('.tooltipped').tooltip({
+                delay: 20
+            });
+        });
+        $('.modal').modal();
+    });
+
     $scope.loadSkill = function() {
         request.backend('getMySkillsInTree', {}, function(data) {
             $scope.$apply(function() {
                 $scope.mySkills = data;
                 for (let i = 0; i < data.struct.length; i++) {
-                    treeConfig.nodeStructure.children.push(createElementRoot(data.struct[i]));
+                    $rootScope.treeConfig.nodeStructure.children.push(createElementRoot(data.struct[i]));
                 }
                 $scope.showContent = true;
                 setTimeout(() => {
-                    new Treant(treeConfig, function() {
+                    new Treant($rootScope.treeConfig, function() {
                         replaceImgBySvg();
                         $('.tooltipped').tooltip({
                             delay: 20
@@ -64,7 +75,7 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
                 $scope.showContent = true;
             });
             setTimeout(() => {
-                new Treant(treeConfig, function() {
+                new Treant($rootScope.treeConfig, function() {
                     replaceImgBySvg();
                     $('.tooltipped').tooltip({
                         delay: 20

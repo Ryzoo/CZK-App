@@ -174,8 +174,19 @@ class SkillTree extends BasicModule {
           array_splice($reqSkill, $thisId, 1);
         }
       }
-      $reqSkill = [$rootSkill];
+      array_push($reqSkill,$rootSkill);    
+
+      $existReq = ($this->db->getConnection())->fetchRowMany("SELECT * FROM st_skill_req WHERE skill_id=".$id);
       
+      if(!$existReq) $existReq = [];
+      foreach($existReq as $value){
+        if(!$this->isInArrayId($value['req_skill_id'],$reqSkill)){
+          ($this->db->getConnection())->delete("st_skill_req",[
+            "id" => $value['id']
+          ]);
+        }
+      }
+
       $skillElement=[
         "name" => $name,
         "level" => $level,
@@ -206,6 +217,13 @@ class SkillTree extends BasicModule {
 
       $this->returnedData['data'] = $this->getAllSkill();
       return $this->returnedData;
+    }
+
+    function isInArrayId($id,$array){
+      foreach ($array as $key => $value){
+       if($id === $value) return true;
+      }
+      return false;
     }
 
     function getAllSkill(){
@@ -284,7 +302,7 @@ class SkillTree extends BasicModule {
       $arr = [];
       if(!isset($dataSkillReq) || $dataSkillReq==null) $dataSkillReq = [];
       foreach($dataSkillReq as $value){
-        array_push($arr,$value['id']);
+        array_push($arr,$value['req_skill_id']);
       }
       $skill['req'] = $arr;
       $this->returnedData['data'] = $skill;

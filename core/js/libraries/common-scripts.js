@@ -99,6 +99,7 @@ var Script = function() {
     });
 
     $(document).on('click', 'ul.sidebar-menu .dcjq-parent-li ul.sub li a', function() {
+
         if ($(window).width() <= 768) {
             $('#container').addClass('sidebar-close');
             $('#sidebar > ul').hide();
