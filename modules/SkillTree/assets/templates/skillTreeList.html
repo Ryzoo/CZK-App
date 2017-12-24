@@ -1,12 +1,157 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
 <div class="section ">
-    <div ng-show='showContent' class="row">
-        <div class="col s12 m12 l4">
+
+    <div ng-show='showContent' class="row" ng-init="loadSkillTreeData()">
+        
+        <div id="addCategoryModal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Kategoria</h4>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Nazwa kategorii" id="categoryNameForm" type="text" class="validate" required autofocus>
+                            <label for="categoryNameForm">Nazwa</label>
+                        </div>
+                    </div>
+                    <p style='padding:20px;'>Kolor w formacie hex</p>
+                    <div class="row">
+                        <div class="file-field">
+                            <div class="btn"></div>
+                            <div class="file-path-wrapper">
+                                <input type="text" id="categoryColorForm" required />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="" ng-click='closeModals()' class="modal-action waves-effect waves-green btn-flat">Anuluj</a>
+                <a ng-show="isUpdate" href="" ng-click='deleteCategory()' class="modal-action waves-effect waves-green btn-flat">Usuń</a>
+                <a ng-show="isUpdate" href="" ng-click='saveCategory()' class="modal-action waves-effect waves-green btn-flat">Zapisz</a>
+                <a ng-show="!isUpdate" href="" ng-click='addCategory()' class="modal-action waves-effect waves-green btn-flat">Dodaj</a>
+            </div>
+        </div>
+
+        <div id="addSkillModal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Umiejętność</h4>
+                
+                <form class="col s12" id='SkillTreeSkillForm' ng-init="rootSkill=true" enctype="multipart/form-data">
+                    <input type="hidden" name="token" value="{{user.token}}">
+                    <input id='SkillUpdateIdForm' type="hidden" name="id" >
+                    <div class="row">
+                        <div class="file-field input-field">
+                            <div class="btn" style='margin: auto;display: table;float: none;'>
+                                <span>Ikona svg umiejętności</span>
+                                <input accept="image/svg+xml" id='skillFile' name='svg' type="file" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select name='category' required id='skillTreeCatSelect'></select>
+                            <label>Kategoria główna</label>
+                        </div>
+                        <div ng-show="!rootSkill" class="input-field col s6">
+                            <select name='reqSkill[]' multiple id='skillTreeReqSelect'></select>
+                            <label>Dodatkowe zależności</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p>Jeśli umiejętność jest korzeniem rozpoczyna nową gałąź w danej kategorii. Jeśli nie, musisz podać po jakiej umiejętności należy ją wyświetlić.</p>
+                    </div>
+                    <div class="row" >
+                        <p class="col s6">
+                            <input type="checkbox" id="isRootSkill" name='isRootSkill' ng-model="rootSkill" />
+                            <label for="isRootSkill">Korzeń w kategorii</label>
+                        </p>
+                        <div ng-show="!rootSkill" class="input-field col s6">
+                            <select name='rootSkill' id='skillTreeSkillRootSelect'></select>
+                            <label>Umiejętność do podczepienia</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s9">
+                            <input name='name' placeholder="Nazwa umiejętności" id="skillNameForm" type="text" class="validate" autofocus required>
+                            <label for="skillNameForm">Nazwa</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input value='0' name='level' placeholder="Poziom umiejętności" id="skillLevelForm" type="number" class="validate" required>
+                            <label for="skillLevelForm">Poziom</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea name='about' required id="skillAboutForm" class="materialize-textarea"></textarea>
+                            <label for="skillAboutForm">Opis</label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+            <a href="" ng-click='closeModals()' class="modal-action waves-effect waves-green btn-flat">Anuluj</a>
+                <a ng-show="isUpdate" ng-click="deleteSkill()" href="" class="modal-action waves-effect waves-green btn-flat">Usuń</a>
+                <a ng-show="isUpdate" ng-click="editSkill()" href="" class="modal-action waves-effect waves-green btn-flat">Zapisz</a>
+                <a ng-show="!isUpdate" ng-click="addSkill()" href="" class="modal-action waves-effect waves-green btn-flat">Dodaj</a>
+            </div>
+        </div>
+
+         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <div class="card-title">Lista umiejętności</div>
+                    <div class="card-title">Kategorie</div>
+                    <div class="row">
+                        <p style='padding: 20px'>Aby edytować / usunąć kategorię lub umiejętność kliknij w wybraną. Jeżeli chcesz dodać nowy element skorzystaj z przycisku poniżej</p>
+                        <button ng-click="openAddCategoryModal()" class="btn waves-effect waves-light" style='height: 25px; line-height: 25px;'>Dodaj
+                            <i class="material-icons right">add</i>
+                        </button>
+                        <table class='striped centered highlight'>
+                            <thead>
+                            <tr>
+                                <th>Nazwa kategorii</th>
+                                <th>Kolor</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="category in skillTreeCategories" style='cursor:pointer;' ng-click="editCategoryModal(category)" >
+                                <td>{{category.name}}</td>
+                                <td class='cattColor' style='background-color:{{category.color}}'>{{category.color}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                <div class="card-title">Umiejętności</div>
                     <div class="row">
 
+                    </div>
+                    <div class="row">
+                        <button ng-click="openAddSkillModal()" class="btn waves-effect waves-light" style='height: 25px; line-height: 25px;' >Dodaj
+                            <i class="material-icons right">add</i>
+                        </button>
+                        <table class='striped centered highlight'>
+                            <thead>
+                            <tr>
+                                <th>Kategoria</th>
+                                <th>Ikona</th>
+                                <th>Nazwa</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="skill in skillTreeSkills"  style='cursor:pointer;' ng-click="editSkillModal(skill)">
+                                <td class='cattColor' style='background-color:{{skill.color}}'>#</td>
+                                <td style='padding:0;'><img src="{{skill.icon_path}}" alt="{{skill.name}}"/></td>
+                                <td style='padding:0;'>{{skill.name}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

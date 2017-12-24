@@ -7,18 +7,20 @@ viewBox="0 0 846.66 846.66"
  <defs>
   <style type="text/css">
    <![CDATA[
-    .fil0 {fill:#2B2A29}
-    .fil1 {fill:black}
+    .fil1 {fill:none}
+    .fil0 {fill:black}
    ]]>
   </style>
  </defs>
- <g id="Layer_x0020_1">
+ <g id="Warstwa_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <g id="_2198584961376">
-   <rect class="fil0" transform="matrix(2.15096 -2.15714 0.581333 0.579666 534.737 300.847)" width="55.13" height="19.29"/>
-   <rect class="fil0" transform="matrix(2.19569 -2.202 0.593423 0.591721 360.487 474.503)" width="55.13" height="19.29"/>
-   <rect class="fil0" transform="matrix(2.19569 -2.202 0.593423 0.591721 176.987 659.123)" width="55.13" height="19.29"/>
+  <g id="_898681616">
+   <g>
+    <path class="fil0" d="M137.3 504.55c67.08,-241.12 326.83,-393.1 555.24,-275.78l48.91 30.71 -52.18 -23.5c-230.56,-91.31 -463.3,38.72 -523.94,274.15 -1.54,7.74 -9.07,12.76 -16.81,11.22 -7.74,-1.54 -12.76,-9.06 -11.22,-16.8z"/>
+   </g>
+   <path class="fil1" d="M151.31 507.34c42.35,-212.79 320.84,-415.03 590.14,-247.86"/>
+   <circle class="fil0" cx="124.48" cy="607.12" r="51.08"/>
+   <polygon class="fil0" points="773.4,276.22 743.14,281.73 712.87,287.25 732.78,252.77 752.69,218.28 763.04,247.25 "/>
   </g>
-  <polygon class="fil1" points="673.4,173.28 594.74,200.67 620.37,226.3 646,251.94 "/>
  </g>
 </svg>

@@ -128,10 +128,11 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
         var mo = $('#skillModal');
         clearPop();
         mo.modal('open');
+        var level = parseInt(skill.level) > 0 ? " - poziom: "+skill.level : "" ;
         mo.find('.popMainSkill').first().prepend(getIconHtml(skill));
         mo.find('.popMainSkill .popSkillMainStatus').first().html(getStatusHtml(skill));
         mo.find('.popMainSkill .popSkillMainCat').first().text(skill.category.name);
-        mo.find('.popMainSkill .popSkillMainName').first().text(skill.name);
+        mo.find('.popMainSkill .popSkillMainName').first().text(skill.name+level);
         mo.find('.popMainSkill .popSkillMainDesc').first().text(skill.description);
 
         if(skill.reqs.length == 0){
@@ -173,14 +174,17 @@ app.controller('mySkillTreeController', function($scope, auth, $rootScope, notif
     }
 
     function getIconHtml(skill){
+        var level = parseInt(skill.level);
         var parentColor = skill.category.color;
         var classIn = skill.isComplete ? "completedSkill" : skill.isEnabled ? "enabledSkill" : "notEnabledSkill";
         var fillColor = skill.isComplete ? "white" : skill.isEnabled ? 'black' : "#adadad";
         var borderColor = skill.isComplete ? parentColor : skill.isEnabled ? parentColor : "#adadad";
         var background = skill.isComplete ? parentColor : skill.isEnabled ? "white" : "#e7e7e7";
+        var levelColor = skill.isEnabled ? parentColor  : "#adadad";
+        var spanWithLevel = `<span class='levelSpan' style='background-color:`+levelColor+`'>`+level+`</span>`;
         return `<div data-skill-id='`+skill.id+`' class='skillIn tooltipped ` + classIn + `' style='background-color:`+background+`;border-color:`+borderColor+`' data-position='bottom data-delay='20' data-tooltip='` + skill.name + `'>
-            <img class='svg' style='fill:`+fillColor+` !important' src='` + skill.icon_path + `' alt='` + skill.name + `'/>
-        </div>`;
+            <img class='svg' style='fill:`+fillColor+` !important; stroke:`+fillColor+` !important' src='` + skill.icon_path + `' alt='` + skill.name + `'/>
+            `+(level > 0 ? spanWithLevel : '')+`</div>`;
     }
 
     function getStatusHtml(skill){

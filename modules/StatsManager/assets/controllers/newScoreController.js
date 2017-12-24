@@ -120,7 +120,6 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
         if ($scope.categories.length != 0) {
             $scope.isSelectedCategory = true;
             selectedCategoryKey = $(this).val();
-            console.log($scope.categories);
             selectedCategoryId = $scope.categories[selectedCategoryKey].id;
             getTest();
         }

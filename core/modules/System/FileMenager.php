@@ -17,6 +17,20 @@ class FileMenager
         return str_replace($_SERVER["DOCUMENT_ROOT"],"",$relPath);
     }
 
+    static public function saveFileFromTmp($name,$moduleName, $tmpFile){
+        $directory = $_SERVER["DOCUMENT_ROOT"]."/files/".$moduleName;
+        $name = FileMenager::noPolish(str_replace(" ","_",trim($name)));
+        $path = $directory . "/" . $name;
+        $relPath = $path;
+        $count = 1;
+        while(file_exists($relPath)){
+            $relPath = $_SERVER["DOCUMENT_ROOT"] . str_replace($_SERVER["DOCUMENT_ROOT"],"",$directory) ."/". $count . "_" . $name;
+            $count++;
+        }
+        if(!move_uploaded_file($tmpFile,$relPath)) return false;
+        return str_replace($_SERVER["DOCUMENT_ROOT"],".",$relPath);
+    }
+
     static public function deleteFile($directory){
         if(isset($directory)) return false;
         $directory = chop(str_replace('\\',"/",trim($directory)),"/");

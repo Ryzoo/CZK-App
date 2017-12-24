@@ -20,6 +20,24 @@
     padding: 10px 0 !important;
 }
 
+.cattColor{
+    color: white;
+    font-weight: 900;
+}
+
+span.levelSpan {
+    position: absolute;
+    color: white;
+    padding: 3px 6px;
+    line-height: 14px;
+    top: -5px;
+    right: -9px;
+    font-size: 13px;
+    transition: all .2s;
+    font-weight: 900;
+    border-radius: 50%;
+}
+
 .userOnePayRow {
     cursor: pointer;
 }

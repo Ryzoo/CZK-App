@@ -7,13 +7,13 @@ viewBox="0 0 846.66 846.66"
  <defs>
   <style type="text/css">
    <![CDATA[
-    .str0 {stroke:black;stroke-width:40;stroke-miterlimit:22.9256}
-    .fil0 {fill:none}
+    .fil0 {fill:#2B2A29}
    ]]>
   </style>
  </defs>
- <g id="Warstwa_x0020_1">
+ <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <polyline class="fil0 str0" points="192.34,173.27 192.34,673.09 654.46,673.27 "/>
+  <rect class="fil0" x="172.92" y="173.2" width="39.03" height="519.59"/>
+  <rect class="fil0" x="172.93" y="653.43" width="480.96" height="39.36"/>
  </g>
 </svg>

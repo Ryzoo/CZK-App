@@ -6,13 +6,14 @@ use \KHerGe\JSON\JSON;
 use Core\System\MailSystem;
 use Core\Teams\Teams;
 use Core\Notify\Notify;
+use Core\System\FileMenager;
 
 class SkillTree extends BasicModule {
     public $allSkill = [];
 
     function install(){
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_category` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `color` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_skills` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `description` TEXT NOT NULL , `icon_path` VARCHAR(255) NOT NULL , `category_id` INT NOT NULL , `root_skill_id` INT NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_skills` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `description` TEXT NOT NULL , `icon_path` VARCHAR(255) NOT NULL , `category_id` INT NOT NULL , `root_skill_id` INT NOT NULL,`st_skills` INT(2) NOT NULL DEFAULT '0', PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_users` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `skill_have_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `st_skill_req` ( `id` INT NOT NULL AUTO_INCREMENT , `skill_id` INT NOT NULL , `req_skill_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
@@ -28,6 +29,12 @@ class SkillTree extends BasicModule {
       $token = $data['token'];
       $usid = $this->auth->getUserId($token);
       $this->returnedData['data'] = $this->getUserSkillsForUserId($usid);
+      return $this->returnedData;
+    }
+
+    function getSkillTreeData($data){
+      $this->returnedData['data']['categories'] = ($this->db->getConnection())->fetchRowMany('SELECT * FROM st_category');
+      $this->returnedData['data']['skills'] = ($this->db->getConnection())->fetchRowMany('SELECT st_skills.*, st_category.color FROM st_skills,st_category WHERE st_skills.category_id = st_category.id ORDER BY category_id');
       return $this->returnedData;
     }
 
@@ -77,8 +84,6 @@ class SkillTree extends BasicModule {
           $isEnabled = false;
         }
       }
-      
-
       return [
         "enabled"=>$isEnabled,
         "reqSkills"=>$allSkills
@@ -90,24 +95,155 @@ class SkillTree extends BasicModule {
       $skillsList = $this->getUserSkillsForUserId($usid);
     }
 
-    function getAllSkillsInTree($data){
-
+    function saveCategorySkillTree($data){
+      $id = $data['id'];
+      $name = $data['name'];
+      $color = $data['color'];
+      $this->returnedData['data'] = ($this->db->getConnection())->update('st_category',["id" => $id],[
+        "name" => $name,
+        "color" => $color
+      ]);
+      return $this->returnedData;
     }
 
-    function addSkillCategoryInTree(){
-
+    function deleteCategorySkillTree($data){
+      $id = $data['id'];
+      $this->returnedData['data'] = ($this->db->getConnection())->delete('st_category',["id" => $id]);
+      $this->returnedData['data'] = ($this->db->getConnection())->delete('st_skills',["category_id" => $id]);
+      return $this->returnedData;
     }
 
-    function deleteSkillCategoryInTree(){
+    function addCategorySkillTree($data){
+      $name = $data['name'];
+      $color = $data['color'];
+      $this->returnedData['data'] = ($this->db->getConnection())->insert('st_category',[
+        "name" => $name,
+        "color" => $color
+      ]);
+      return $this->returnedData;
+    }
+
+    function saveSkillInTree($data){
+      $fileDir = '';
+      $id = $data['id'];
+
+      $name = $data['name'];
+      $level = $data['level'];
+      $about = $data['about'];
+      $category = $data['category'];
+      $isRootSkill = isset($data['isRootSkill']) ? true : false;
+      $rootSkill = $isRootSkill ? 0 : $data['rootSkill'];
+      $reqSkill = $isRootSkill ? [] : $data['reqSkill'];
+
+      if(!$isRootSkill){
+        $thisId = -1;
+        foreach ($reqSkill as $key => $value){
+          if($value == $rootSkill){
+            $thisId = $key;
+            break;
+          }
+        }
+        if($thisId != -1){
+          array_splice($reqSkill, $thisId, 1);
+        }
+      }
+      $reqSkill = [$rootSkill];
       
+      $skillElement=[
+        "name" => $name,
+        "level" => $level,
+        "description" => $about,
+        "category_id" => $category,
+        "root_skill_id" => $rootSkill
+      ];
+
+      if(isset($_FILES["svg"])&&isset($_FILES["svg"]["tmp_name"])&& $_FILES["svg"]["tmp_name"] != ""){
+        $thisSkillIcon = ($this->db->getConnection())->fetchRow("SELECT icon_path FROM st_skills WHERE id=".$id)['icon_path'];
+        FileMenager::deleteFile(str_replace("./",$_SERVER["DOCUMENT_ROOT"]."/",$thisSkillIcon));
+        $fileDir = FileMenager::saveFileFromTmp($_FILES["svg"]["name"],"skillTreeIcon",$_FILES["svg"]["tmp_name"]);
+        $skillElement['icon_path'] = $fileDir;
+      }
+
+      $newId = ($this->db->getConnection())->update('st_skills',["id"=>$id],$skillElement);
+
+      foreach ($reqSkill as $key => $value){
+        $exist =  ($this->db->getConnection())->fetchRow('SELECT id FROM st_skill_req WHERE skill_id='.$id.' AND req_skill_id='.$value);
+        if(!(isset($exist) && isset($exist['id']))){
+          ($this->db->getConnection())->insert('st_skill_req',[
+            "skill_id" => $id,
+            "req_skill_id" => $value,
+          ]);
+        }
+      }
+
+      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT st_skills.*, st_category.color FROM st_skills,st_category WHERE st_skills.category_id = st_category.id ORDER BY category_id");
+      return $this->returnedData;
     }
 
-    function addSkillInTree(){
-      
+    function addSkillTreeSkill($data){
+      $fileDir = FileMenager::saveFileFromTmp($_FILES["svg"]["name"],"skillTreeIcon",$_FILES["svg"]["tmp_name"]);
+
+      $name = $data['name'];
+      $level = $data['level'];
+      $about = $data['about'];
+      $category = $data['category'];
+      $isRootSkill = isset($data['isRootSkill']) ? true : false;
+      $rootSkill = $isRootSkill ? 0 : $data['rootSkill'];
+      $reqSkill = $isRootSkill ? [] : $data['reqSkill'];
+
+      if(!$isRootSkill){
+        $thisId = -1;
+        foreach ($reqSkill as $key => $value){
+          if($value == $rootSkill){
+            $thisId = $key;
+            break;
+          }
+        }
+        if($thisId != -1){
+          array_splice($reqSkill, $thisId, 1);
+        }
+      }
+      $reqSkill = [$rootSkill];
+
+      $newId = ($this->db->getConnection())->insert('st_skills',[
+        "name" => $name,
+        "level" => $level,
+        "description" => $about,
+        "category_id" => $category,
+        "root_skill_id" => $rootSkill,
+        "icon_path" => $fileDir,
+      ]);
+
+      foreach ($reqSkill as $key => $value){
+        ($this->db->getConnection())->insert('st_skill_req',[
+          "skill_id" => $newId,
+          "req_skill_id" => $value,
+        ]);
+      }
+
+      $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT st_skills.*, st_category.color FROM st_skills,st_category WHERE st_skills.category_id = st_category.id ORDER BY category_id");
+      return $this->returnedData;
     }
 
-    function deleteSkillInTree(){
-      
+    function getSkillToEdit($data){
+      $id = $data['id'];
+      $skill = ($this->db->getConnection())->fetchRow("SELECT * FROM st_skills WHERE id=".$id);
+      $dataSkillReq = ($this->db->getConnection())->fetchRowMany("SELECT * FROM st_skill_req WHERE skill_id=".$id);
+      $arr = [];
+      foreach($dataSkillReq as $value){
+        array_push($arr,$value['id']);
+      }
+      $skill['req'] = $arr;
+      $this->returnedData['data'] = $skill;
+      return $this->returnedData; 
+    }
+
+    function deleteSkillInTree($data){
+      $id = $data['id'];
+      ($this->db->getConnection())->delete('st_skill_req',["skill_id"=>$id]);
+      ($this->db->getConnection())->delete('st_skills',["id"=>$id]);
+      ($this->db->getConnection())->delete('st_users',["skill_have_id"=>$id]);
+      return $this->returnedData;
     }
 
 }
