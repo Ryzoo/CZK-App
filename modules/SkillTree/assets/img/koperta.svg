@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW 2017 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="8.4666mm" height="8.4666mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 846.66 846.66"
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="8.47mm" height="8.47mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 847 847"
  xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
   <style type="text/css">
@@ -13,11 +13,11 @@ viewBox="0 0 846.66 846.66"
  </defs>
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <rect class="fil0" x="165.89" y="165.79" width="515" height="18.52"/>
-  <rect class="fil0" x="165.91" y="662.23" width="515" height="18.52"/>
-  <rect class="fil0" transform="matrix(2.64363E-14 -0.998178 1 2.64845E-14 165.89 680.81)" width="515.94" height="18.52"/>
-  <rect class="fil0" transform="matrix(2.64363E-14 -0.998178 1 2.64845E-14 662.38 680.79)" width="515.94" height="18.52"/>
-  <rect class="fil0" transform="matrix(0.947979 -0.947979 0.824609 0.824609 173.635 656.223)" width="515.94" height="18.52"/>
-  <rect class="fil0" transform="matrix(-0.947979 -0.947979 -0.824609 0.824609 678.005 656.223)" width="515.94" height="18.52"/>
+  <rect class="fil0" x="17.89" y="17.79" width="811.33" height="29.18"/>
+  <rect class="fil0" x="17.92" y="799.88" width="811.33" height="29.18"/>
+  <rect class="fil0" transform="matrix(4.16476E-14 -1.57252 1.5754 4.17236E-14 17.89 829.15)" width="515.94" height="18.52"/>
+  <rect class="fil0" transform="matrix(4.16476E-14 -1.57252 1.5754 4.17236E-14 800.058 829.119)" width="515.94" height="18.52"/>
+  <rect class="fil0" transform="matrix(1.49344 -1.49344 1.29908 1.29908 30.0915 790.416)" width="515.94" height="18.52"/>
+  <rect class="fil0" transform="matrix(-1.49344 -1.49344 -1.29908 1.29908 824.673 790.416)" width="515.94" height="18.52"/>
  </g>
 </svg>

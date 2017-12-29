@@ -1,23 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Creator: CorelDRAW 2017 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="8.4666mm" height="8.4666mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 846.66 846.66"
- xmlns:xlink="http://www.w3.org/1999/xlink">
- <defs>
-  <style type="text/css">
-   <![CDATA[
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xml:space="preserve"
+   width="8.47mm"
+   height="8.47mm"
+   version="1.1"
+   style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+   viewBox="0 0 847 847"
+   id="svg15"
+   sodipodi:docname="skok_w_dal_z_miejsca.svg"
+   inkscape:version="0.92.1 r15371"><metadata
+     id="metadata19"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     id="namedview17"
+     showgrid="false"
+     inkscape:zoom="7.3720974"
+     inkscape:cx="16.0063"
+     inkscape:cy="16.0063"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg15" /><defs
+     id="defs4"><style
+       type="text/css"
+       id="style2"><![CDATA[
     .fil1 {fill:black}
     .fil0 {fill:black;fill-rule:nonzero}
-   ]]>
-  </style>
- </defs>
- <g id="Warstwa_x0020_1">
-  <metadata id="CorelCorpID_0Corel-Layer"/>
-  <g id="_897773472">
-   <path class="fil0" d="M684.15 500.54c-14.49,-61.22 -49.43,-114.51 -97.2,-152.24 -46.77,-36.95 -105.9,-59.01 -170.22,-59.01 -62.23,0 -120.07,25.74 -166.57,65.93 -49.08,42.42 -85.51,100.85 -101.22,162.15l-19.41 0c15.96,-66.6 55.12,-130.37 108.34,-176.36 49.77,-43.01 111.85,-70.56 178.86,-70.56 68.64,0 131.81,23.59 181.85,63.13 51.08,40.34 88.43,97.26 103.91,162.61l-18.34 4.35z"/>
-   <polygon class="fil1" points="698.76,517.37 677.22,502.93 655.69,488.48 687.98,479.33 720.28,470.18 709.52,493.78 "/>
-   <rect class="fil1" x="123.4" y="542.68" width="600" height="33.42"/>
-  </g>
- </g>
-</svg>
+   ]]></style></defs><path
+     style="fill:#000000;fill-rule:nonzero;stroke-width:0.03779528"
+     d="M 15.671875 8.2597656 C 12.275591 8.2597656 9.1295007 9.6562839 6.6074219 11.835938 C 3.9103509 14.166394 1.9240533 17.398319 1.1152344 20.773438 L 2.0996094 20.773438 C 2.8955779 17.667044 4.7412084 14.704483 7.2285156 12.554688 C 9.5850512 10.5179 12.517859 9.2148438 15.671875 9.2148438 C 18.93134 9.2148437 21.926733 10.3327 24.296875 12.205078 C 26.468251 13.920143 28.110461 16.27155 28.957031 18.976562 L 27.78125 19.308594 L 28.873047 20.041016 L 29.962891 20.773438 L 30.509766 19.578125 L 31.054688 18.380859 L 29.873047 18.716797 C 28.97076 15.819425 27.21483 13.297611 24.886719 11.458984 C 22.351034 9.4554567 19.150174 8.2597656 15.671875 8.2597656 z M 0.8046875 22.054688 L 0.8046875 23.75 L 31.212891 23.75 L 31.212891 22.054688 L 0.8046875 22.054688 z "
+     transform="scale(26.458332)"
+     id="path7" /></svg>
