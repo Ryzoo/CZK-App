@@ -911,6 +911,17 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         }
                     }
                     if (actual >= 0) allObjectPerFrame[c].shapes.splice(actual, 1);
+                    else {
+                        for (var i = 0; i < allObjectPerFrame[c].text.length; i++) {
+                            var obb = allObjectPerFrame[c].text[i].getAttr('id');
+                            if (obb == id) {
+                                actual = i;
+                                actualItem = allObjectPerFrame[c].text[i];
+                                break;
+                            }
+                        }
+                        if (actual >= 0) allObjectPerFrame[c].text.splice(actual, 1)
+                    }
                 }
             } else {
                 allObjectPerFrame[c].obj.splice(actual, 1);
