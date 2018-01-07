@@ -1,52 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW 2017 -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xml:space="preserve"
-   width="8.47mm"
-   height="8.47mm"
-   version="1.1"
-   style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-   viewBox="0 0 847 847"
-   id="svg15"
-   sodipodi:docname="skok_w_dal_z_miejsca.svg"
-   inkscape:version="0.92.1 r15371"><metadata
-     id="metadata19"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1051"
-     id="namedview17"
-     showgrid="false"
-     inkscape:zoom="7.3720974"
-     inkscape:cx="16.0063"
-     inkscape:cy="16.0063"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg15" /><defs
-     id="defs4"><style
-       type="text/css"
-       id="style2"><![CDATA[
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="8.47mm" height="8.47mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 847 847"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
     .fil1 {fill:black}
     .fil0 {fill:black;fill-rule:nonzero}
-   ]]></style></defs><path
-     style="fill:#000000;fill-rule:nonzero;stroke-width:0.03779528"
-     d="M 15.671875 8.2597656 C 12.275591 8.2597656 9.1295007 9.6562839 6.6074219 11.835938 C 3.9103509 14.166394 1.9240533 17.398319 1.1152344 20.773438 L 2.0996094 20.773438 C 2.8955779 17.667044 4.7412084 14.704483 7.2285156 12.554688 C 9.5850512 10.5179 12.517859 9.2148438 15.671875 9.2148438 C 18.93134 9.2148437 21.926733 10.3327 24.296875 12.205078 C 26.468251 13.920143 28.110461 16.27155 28.957031 18.976562 L 27.78125 19.308594 L 28.873047 20.041016 L 29.962891 20.773438 L 30.509766 19.578125 L 31.054688 18.380859 L 29.873047 18.716797 C 28.97076 15.819425 27.21483 13.297611 24.886719 11.458984 C 22.351034 9.4554567 19.150174 8.2597656 15.671875 8.2597656 z M 0.8046875 22.054688 L 0.8046875 23.75 L 31.212891 23.75 L 31.212891 22.054688 L 0.8046875 22.054688 z "
-     transform="scale(26.458332)"
-     id="path7" /></svg>
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_897773472">
+   <path class="fil0" d="M773.2 527.05c-19.43,-82.09 -66.28,-153.55 -130.33,-204.14 -62.71,-49.54 -142,-79.12 -228.24,-79.12 -83.45,0 -161,34.51 -223.35,88.4 -65.81,56.88 -114.66,135.23 -135.72,217.42l-26.03 0c21.4,-89.3 73.91,-174.81 145.27,-236.47 66.73,-57.67 149.97,-94.61 239.83,-94.61 92.03,0 176.74,31.63 243.83,84.64 68.49,54.09 118.58,130.42 139.33,218.04l-24.59 5.84z"/>
+   <polygon class="fil1" points="792.79,549.61 763.91,530.25 735.04,510.87 778.34,498.61 821.65,486.34 807.22,517.98 "/>
+   <rect class="fil1" x="21.31" y="583.55" width="804.52" height="44.81"/>
+  </g>
+ </g>
+</svg>

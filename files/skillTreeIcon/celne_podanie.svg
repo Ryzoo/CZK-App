@@ -7,18 +7,21 @@ viewBox="0 0 847 847"
  <defs>
   <style type="text/css">
    <![CDATA[
-    .fil1 {fill:black}
     .fil0 {fill:#2B2A29}
    ]]>
   </style>
  </defs>
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <g id="_2198584961376">
-   <rect class="fil0" transform="matrix(3.52123 -3.53135 0.951672 0.948943 604.672 223.907)" width="55.13" height="19.29"/>
-   <rect class="fil0" transform="matrix(3.59446 -3.60479 0.971464 0.968677 319.415 508.191)" width="55.13" height="19.29"/>
-   <rect class="fil0" transform="matrix(3.59446 -3.60479 0.971464 0.968677 19.0163 810.423)" width="55.13" height="19.29"/>
+  <g id="_2306413370416">
+   <rect class="fil0" transform="matrix(0.737033 -0.712443 0.712443 0.737033 200.217 599.635)" width="583.41" height="19.84"/>
+   <rect class="fil0" x="635.9" y="178.15" width="18.05" height="74.14"/>
+   <rect class="fil0" x="578.09" y="177.55" width="75.86" height="17.48"/>
   </g>
-  <polygon class="fil1" points="831.69,15.06 702.92,59.9 744.88,101.86 786.84,143.83 "/>
+  <g id="_2306413370384">
+   <circle class="fil0" cx="82.86" cy="737.34" r="65.74"/>
+   <polygon class="fil0" points="413.63,43.81 444.43,95.01 475.24,146.21 413.63,146.21 352.01,146.21 382.82,95.01 "/>
+   <polygon class="fil0" points="768.42,349.95 799.22,401.16 830.02,452.37 768.42,452.37 706.8,452.37 737.61,401.16 "/>
+  </g>
  </g>
 </svg>

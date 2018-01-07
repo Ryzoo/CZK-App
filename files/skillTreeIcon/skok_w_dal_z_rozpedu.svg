@@ -1,52 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW 2017 -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xml:space="preserve"
-   width="8.47mm"
-   height="8.47mm"
-   version="1.1"
-   style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-   viewBox="0 0 847 847"
-   id="svg22"
-   sodipodi:docname="skok_w_dal_z_rozpedu.svg"
-   inkscape:version="0.92.1 r15371"><metadata
-     id="metadata26"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="729"
-     inkscape:window-height="480"
-     id="namedview24"
-     showgrid="false"
-     inkscape:zoom="7.3720974"
-     inkscape:cx="16.0063"
-     inkscape:cy="16.0063"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg22" /><defs
-     id="defs4"><style
-       type="text/css"
-       id="style2"><![CDATA[
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="8.47mm" height="8.47mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 847 847"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
     .fil0 {fill:black}
     .fil1 {fill:black;fill-rule:nonzero}
-   ]]></style></defs><path
-     style="fill:#000000;stroke-width:0.03779528"
-     d="M 21.318359 11.402344 C 19.196533 11.402344 17.231935 12.218109 15.65625 13.492188 C 14.078078 14.76839 12.89926 16.509272 12.339844 18.345703 L 11.091797 18.345703 L 11.091797 18.71875 L 12.226562 18.71875 L 12.839844 18.71875 L 12.949219 18.71875 L 12.949219 18.376953 C 13.491911 16.687123 14.589014 15.091323 16.044922 13.914062 C 17.51667 12.723133 19.34847 11.960938 21.318359 11.960938 C 23.354769 11.960937 25.228165 12.614055 26.708984 13.708984 C 28.046002 14.696968 29.06206 16.045715 29.597656 17.597656 L 28.863281 17.804688 L 29.544922 18.261719 L 30.224609 18.71875 L 30.564453 17.972656 L 30.90625 17.226562 L 30.167969 17.435547 C 29.596344 15.775078 28.509448 14.331707 27.078125 13.273438 C 25.493747 12.101784 23.491588 11.402344 21.318359 11.402344 z M 4.1523438 18.345703 L 4.1523438 18.71875 L 6.2832031 18.71875 L 6.2832031 18.345703 L 4.1523438 18.345703 z M 7.6210938 18.345703 L 7.6210938 18.71875 L 9.7539062 18.71875 L 9.7539062 18.345703 L 7.6210938 18.345703 z M 0.68164062 18.363281 L 0.68164062 18.736328 L 2.8125 18.736328 L 2.8125 18.363281 L 0.68164062 18.363281 z M 12.4375 19.667969 L 12.4375 20.414062 L 31.337891 20.414062 L 31.337891 19.667969 L 12.4375 19.667969 z "
-     transform="scale(26.458332)"
-     id="polygon7" /></svg>
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <polygon class="fil0" points="799.71,495.27 781.69,483.19 763.66,471.09 790.7,463.44 817.72,455.79 808.71,475.53 "/>
+  <rect class="fil0" x="329.07" y="520.37" width="500.06" height="19.75"/>
+  <rect class="fil0" x="293.49" y="485.39" width="49.15" height="9.87"/>
+  <rect class="fil0" x="201.66" y="485.39" width="56.4" height="9.87"/>
+  <rect class="fil0" x="109.85" y="485.39" width="56.4" height="9.87"/>
+  <rect class="fil0" x="18.03" y="485.84" width="56.4" height="9.87"/>
+  <path class="fil1" d="M788.1 482.07c-12.14,-47.99 -41.4,-89.77 -81.43,-119.35 -39.18,-28.97 -88.72,-46.26 -142.6,-46.26 -52.12,0 -100.59,20.17 -139.53,51.68 -41.12,33.25 -71.64,79.07 -84.8,127.12l-16.26 0c13.37,-52.2 46.18,-102.21 90.76,-138.26 41.69,-33.71 93.69,-55.31 149.83,-55.31 57.5,0 110.43,18.49 152.35,49.49 42.78,31.63 74.07,76.25 87.04,127.48l-15.36 3.41z"/>
+ </g>
+</svg>
