@@ -10,7 +10,7 @@ a {
 }
 
 a:hover {
-  color: #0052ec;
+  color: #5791ff;
 }
 
 #loadingContent {
@@ -18,15 +18,15 @@ a:hover {
 }
 
 .btn {
-  background-color: #1f4da3;
+  background-color: #4671c1;
 }
 
 .btn:hover {
-  background-color: #0052ec;
+  background-color: #5791ff;
 }
 
 .btn:focus {
-  background-color: #1f4da3;
+  background-color: #4671c1;
 }
 
 table.highlight>tbody>tr:hover {
@@ -35,21 +35,21 @@ table.highlight>tbody>tr:hover {
 
 .tab a.active {
   background-color: #fff !important;
-  color: #1f4da3 !important;
+  color: #4671c1 !important;
 }
 
 .tabs .tab a {
   background-color: #fff !important;
-  color: #1f4da3 !important;
+  color: #4671c1 !important;
 }
 
 .tabs .tab a:hover {
-  color: #0052ec !important;
+  color: #5791ff !important;
 }
 
 .gritter-item {
   background: #2a2a2a !important;
-  border-top: 4px solid #1f4da3;
+  border-top: 4px solid #4671c1;
 }
 
 .collapsible-body {
@@ -77,7 +77,7 @@ text tspan {
 }
 
 .secondary-content {
-  color: #1f4da3;
+  color: #4671c1;
 }
 
 
@@ -91,7 +91,7 @@ ul.sidebar-menu li a.active,
 ul.sidebar-menu li a:hover,
 ul.sidebar-menu li a:focus {
   background: rgba(0, 0, 0, 0.2);
-  border-left: solid 1px #0052ec;
+  border-left: solid 1px #5791ff;
 }
 
 ul.sidebar-menu li ul.sub li {
@@ -130,11 +130,11 @@ ul.sidebar-menu li ul.sub li {
 /* --- TOPBAR --- */
 
 .topbar {
-  background: #1f4da3;
+  background: #4671c1;
 }
 
 nav ul a:hover {
-  color: #0052ec;
+  color: #5791ff;
 }
 
 .fa-color {
@@ -181,7 +181,7 @@ nav ul a:hover {
 }
 
 .card-title:after {
-  background: #ee6e73;
+  background: #4e98da;
 }
 
 .events-text-color {
@@ -198,7 +198,7 @@ nav ul a:hover {
 }
 
 #todoButton .fa-plus:hover {
-  color: #1f4da3;
+  color: #4671c1;
 }
 
 
@@ -272,7 +272,7 @@ input[type=tel]:not(.browser-default):focus:not([readonly])+label,
 input[type=number]:not(.browser-default):focus:not([readonly])+label,
 input[type=search]:not(.browser-default):focus:not([readonly])+label,
 textarea.materialize-textarea:focus:not([readonly])+label {
-  color: #1f4da3;
+  color: #4671c1;
 }
 
 
@@ -300,7 +300,7 @@ input[type=checkbox]:checked+.lever:after {
 }
 
 input[type=checkbox]:checked+.lever {
-  background-color: #1f4da3 !important;
+  background-color: #4671c1 !important;
 }
 
 
