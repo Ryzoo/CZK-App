@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2017 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="8.47mm" height="8.47mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 847 847"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <font id="FontID0" horiz-adv-x="739" font-variant="normal" style="fill-rule:nonzero" font-style="normal" font-weight="400">
+	<font-face 
+		font-family="Century Gothic">
+		<font-face-src>
+			<font-face-name name="Century Gothic"/>
+		</font-face-src>
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="O" horiz-adv-x="869" d="M429.329 736.006c108.671,0 199.672,-36.334 272.836,-108.837 73.1642,-72.5027 109.829,-161.837 109.829,-267.836 0,-105.16 -36.4994,-194.329 -109.498,-267.505 -73.1642,-73.1642 -162.167,-109.829 -267.327,-109.829 -106.33,0 -196.173,36.4994 -269.337,109.333 -73.1642,72.8334 -109.829,160.997 -109.829,264.503 0,69.0041 16.6658,132.83 49.9975,191.835 33.3316,58.8265 78.8382,104.995 136.494,138.326 57.5034,33.3316 119.841,50.0102 186.835,50.0102zm3.16778 -70.0092c-52.9998,0 -103.328,-13.8288 -150.997,-41.4992 -47.5039,-27.6703 -84.6649,-64.8313 -111.496,-111.661 -26.6653,-47.0078 -39.998,-99.168 -39.998,-156.837 0,-85.1611 29.4896,-157.168 88.6596,-215.829 59.17,-58.8392 130.502,-88.1762 213.831,-88.1762 55.8369,0 107.336,13.5108 154.674,40.5068 47.4912,26.9961 84.4995,64.0044 110.999,110.834 26.4999,46.8297 39.8326,98.8372 39.8326,156.163 0,57.0073 -13.3327,108.506 -39.8326,154.496 -26.4999,46.0027 -64.0044,82.8329 -112.17,110.503 -48.1655,27.6703 -99.3334,41.4992 -153.504,41.4992z"/>
+  </font>
+  <style type="text/css">
+   <![CDATA[
+    @font-face { font-family:"Century Gothic";font-variant:normal;font-style:normal;font-weight:normal;src:url("#FontID0") format(svg)}
+    .fil0 {fill:black}
+    .fnt0 {font-weight:normal;font-size:786.04px;font-family:'Century Gothic'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g transform="matrix(0.997344 0 0 1 -339.039 282.129)">
+   <text x="423.5" y="423.5"  class="fil0 fnt0">O</text>
+  </g>
+  <path class="fil0" d="M392.71 340.34l61.73 0 0 -326.97 -61.73 0 0 326.97zm440.42 116.68l0 -61.71 -326.97 0 0 61.71 326.97 0zm-492.15 -2.95l0 -61.72 -326.97 0 0 61.72 326.97 0zm51.73 379.44l61.73 0 0 -326.97 -61.73 0 0 326.97z"/>
+ </g>
+</svg>

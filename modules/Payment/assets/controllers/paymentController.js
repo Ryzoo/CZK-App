@@ -33,9 +33,15 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     }
 
     $scope.deleteCyclePay = function(id) {
-        request.backend('deleteCyclePayment', { id: id }, function(data) {
-            $scope.initPaymentCyclic();
-        }, "Płatność została usunięta");
+
+        $rootScope.showModalWindow("Usunięcie płatności", function() {
+            request.backend('deleteCyclePayment', { id: id }, function(data) {
+                $scope.initPaymentCyclic();
+            }, "Płatność została usunięta");
+        });
+
+
+
     }
 
     $scope.addCyclePay = function() {
@@ -222,9 +228,14 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     }
 
     $scope.deletePayment = function(id) {
-        request.backend('deletePayment', { pmid: id }, function(data) {
-            $scope.getUsersHistory(true);
-        }, "Pomyślnie usunięto płatność");
+
+        $rootScope.showModalWindow("Usunięcie płatności", function() {
+            request.backend('deletePayment', { pmid: id }, function(data) {
+                $scope.getUsersHistory(true);
+            }, "Pomyślnie usunięto płatność");
+        });
+
+
     }
 
     $scope.endPayment = function(id) {

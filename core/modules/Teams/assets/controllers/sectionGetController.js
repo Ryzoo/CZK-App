@@ -65,12 +65,16 @@ app.controller('sectionGetController', function($scope, auth, $rootScope, notify
     }
 
     $scope.deletePlayerApplay = function(aplId, usid) {
-        request.backend('deletePlayerAplay', { tmid: $rootScope.user.tmid, aplId: aplId, usid: usid }, function(data) {
-            $scope.$apply(function() {
-                $scope.sectionApplayer = data;
-            });
-            notify.addNew(new notify.Notification("Twoja prośba o dołączenie do sekcji: " + $rootScope.teamNameStr + " została odrzucona", [usid], "#!/sectionGetForPlayer"));
-        }, "Pomyślnie usunięto prośbę. Zostanie ona odpowiednio powiadomiona.");
+
+        $rootScope.showModalWindow("Oddalenie prośby o dołączenie do sekcji", function() {
+            request.backend('deletePlayerAplay', { tmid: $rootScope.user.tmid, aplId: aplId, usid: usid }, function(data) {
+                $scope.$apply(function() {
+                    $scope.sectionApplayer = data;
+                });
+                notify.addNew(new notify.Notification("Twoja prośba o dołączenie do sekcji: " + $rootScope.teamNameStr + " została odrzucona", [usid], "#!/sectionGetForPlayer"));
+            }, "Pomyślnie usunięto prośbę. Zostanie ona odpowiednio powiadomiona.");
+        });
+
     }
 
     $scope.addPlayerToTeam = function(aplId, usid) {

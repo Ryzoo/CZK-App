@@ -117,6 +117,17 @@ class SkillTree extends BasicModule {
       return $this->getUserAvailableSkill(["usid"=>$usid]);
     }
 
+    function uncompleteUserSkillTreeSkill($data){
+      $usid = $data['usid'];
+      $sid = $data['sid'];
+      ($this->db->getConnection())->delete("st_users",[
+        "user_id" => $usid,
+        "skill_have_id" => $sid
+      ]);
+      $this->completeArray = ($this->db->getConnection())->fetchRowMany('SELECT * FROM st_users');
+      return $this->getUserAvailableSkill(["usid"=>$usid]);
+    }
+
     function getUserSkillsInTree($data){
       $usid = $data['usid'];
       $skillsList = $this->getUserSkillsForUserId($usid);
@@ -284,12 +295,12 @@ class SkillTree extends BasicModule {
       $this->returnedData['data'] = [];
       foreach ($skills as $key => $value) {
         $sid = $value['id'];
-        $isCompleted = $this->checkSkillCompleteArray($usid,$sid);
-        if(!$isCompleted){
-          $isEnabled = $this->checkIsSkillEnabled($usid,$sid)["enabled"];
-          if($isEnabled){
-            array_push($this->returnedData['data'],$value);
-          }
+        $isCompleted = $this->checkSkillComplete($usid,$sid);
+        $isEnabled = $this->checkIsSkillEnabled($usid,$sid)["enabled"];
+        $ret = $value;
+        $ret['isCompleted'] = $isCompleted;
+        if($isEnabled){
+          array_push($this->returnedData['data'],$ret);
         }
       }
       return $this->returnedData;

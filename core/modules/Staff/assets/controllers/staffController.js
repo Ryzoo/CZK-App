@@ -46,9 +46,11 @@ app.controller('staffController', function($scope, auth, $rootScope, notify, req
     }
 
     $scope.deleteStaff = function(staffId) {
-        request.backend('deleteStaff', { stid: staffId }, function(data) {
-            $scope.getStaffMembers();
-        }, 'Personel usunięty pomyślnie');
+        $rootScope.showModalWindow("Nieodwracalne usunięcie personelu", function() {
+            request.backend('deleteStaff', { stid: staffId }, function(data) {
+                $scope.getStaffMembers();
+            }, 'Personel usunięty pomyślnie');
+        });
     }
 
     function getAllPersonel() {

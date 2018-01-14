@@ -63,10 +63,14 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     }
 
     $scope.deleteUser = function(usidN) {
-        request.backend('deleteUser', { usid: usidN, tmid: $rootScope.user.tmid }, function() {
-            $scope.getAllPlayers();
-            notify.addNew(new notify.Notification("Zostałeś usunięty z sekcji: " + $rootScope.teamNameStr, [usidN], "#!/"));
-        }, 'Osoba usunięta z sekcji');
+
+        $rootScope.showModalWindow("Usunięcie użytkownika z sekcji", function() {
+            request.backend('deleteUser', { usid: usidN, tmid: $rootScope.user.tmid }, function() {
+                $scope.getAllPlayers();
+                notify.addNew(new notify.Notification("Zostałeś usunięty z sekcji: " + $rootScope.teamNameStr, [usidN], "#!/"));
+            }, 'Osoba usunięta z sekcji');
+        });
+
     }
 
     $scope.addPerson = function() {
@@ -117,8 +121,14 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
     };
 
     $scope.deleteRaport = function(rpid) {
-        request.backend('deleteRaport', { id: rpid }, function() {
-            getUserRaports($scope.actualSelectedUserData.id);
-        }, 'Plik zostal usuniety');
+
+
+        $rootScope.showModalWindow("Usunięcie raportu użytkownika", function() {
+            request.backend('deleteRaport', { id: rpid }, function() {
+                getUserRaports($scope.actualSelectedUserData.id);
+            }, 'Plik zostal usuniety');
+        });
+
+
     }
 });

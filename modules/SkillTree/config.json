@@ -45,6 +45,10 @@
         "url": "completeUserSkillTreeSkill",
         "parameters": ["usid", "sid"],
         "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
+        "url": "uncompleteUserSkillTreeSkill",
+        "parameters": ["usid", "sid"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
     }],
     "jsControllers": ["skillTreeListController", "userSkillTreeController", "mySkillTreeController"],
     "css": ["style", "treant", "docs"],
