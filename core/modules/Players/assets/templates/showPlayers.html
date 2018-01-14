@@ -216,11 +216,13 @@
                                 <thead>
                                     <th class="center-align">Data dodania</th>
                                     <th class="center-align">Nazwa</th>
+                                    <th class="center-align">Usuń</th>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="raport in actualSelectedUserRaports">
                                         <td class="center-align prettydate">{{raport.date_add}}</td>
                                         <td class="center-align"><a href="{{raport.file_path}}" download><i class="fa fa-download" aria-hidden="true"></i>{{raport.name}}</a></td>
+                                        <td ng-click="deleteRaport(raport.id)" style='padding: 10px 0 !important; color:red; cursor:pointer;  text-align:center;'><i class="fa fa-trash-o" aria-hidden="true"></i></td>
                                     </tr>
                                 </tbody>
                             </table>

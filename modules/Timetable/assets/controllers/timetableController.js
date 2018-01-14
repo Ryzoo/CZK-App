@@ -4,14 +4,14 @@ app.controller('timetableController', function($scope, auth, $rootScope, notify,
     $scope.selectedColor = '#de5c8a';
 
     $scope.initTimetable = function() {
-        if( $rootScope.user.tmid && $rootScope.user.tmid != ''){
+        if ($rootScope.user.tmid && $rootScope.user.tmid != '') {
             request.backend('getTimetableEvent', { tmid: $rootScope.user.tmid }, function(data) {
                 $scope.$apply(function() {
                     $scope.events = data;
                     $scope.showContent = true;
                 });
             });
-        }else{
+        } else {
             $scope.showContent = true;
         }
     }
@@ -31,9 +31,14 @@ app.controller('timetableController', function($scope, auth, $rootScope, notify,
     }
 
     $scope.deleteTimetableEvent = function(id) {
-        request.backend('deleteTimetableEvent', { id: id }, function(data) {
-            $scope.iniTimetableSettings();
-        }, "Usunięto z grafiku");
+
+        $rootScope.showModalWindow("Nieodwracalne usunięcie zajęć z grafiku", function() {
+            request.backend('deleteTimetableEvent', { id: id }, function(data) {
+                $scope.iniTimetableSettings();
+            }, "Usunięto z grafiku");
+        });
+
+
     }
 
     $scope.addTimetableEvent = function() {

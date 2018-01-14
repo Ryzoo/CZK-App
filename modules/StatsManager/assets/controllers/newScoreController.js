@@ -103,16 +103,21 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
     }
 
     $scope.deleteScore = function(id) {
-        request.backend('deleteScore', { tmid: $rootScope.user.tmid, tsid: id }, function(data) {
-            $scope.$apply(function() {
-                for (key in $scope.scores) {
-                    if ($scope.scores[key].id == id) {
-                        $scope.scores.splice(key, 1);
-                        return;
+
+        $rootScope.showModalWindow("Nieodwracalne usunięcie wyniku testu", function() {
+            request.backend('deleteScore', { tmid: $rootScope.user.tmid, tsid: id }, function(data) {
+                $scope.$apply(function() {
+                    for (key in $scope.scores) {
+                        if ($scope.scores[key].id == id) {
+                            $scope.scores.splice(key, 1);
+                            return;
+                        }
                     }
-                }
-            });
-        }, 'Pomyślnie usunięto wynik testu');
+                });
+            }, 'Pomyślnie usunięto wynik testu');
+        });
+
+
     }
 
     $(document).off('change', '#catSelect');
@@ -141,11 +146,16 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
     });
 
     $scope.deleteUserScore = function(id) {
-        $scope.showTest = false;
-        $scope.selectedCategoryId = -1;
-        request.backend('deleteCategoryTest', { id: id }, function(data) {
-            getAllCategoryWitchTest();
-        }, 'Pomyślnie usunięto kategorie');
+
+        $rootScope.showModalWindow("Nieodwracalne usunięcie kategorii", function() {
+            $scope.showTest = false;
+            $scope.selectedCategoryId = -1;
+            request.backend('deleteCategoryTest', { id: id }, function(data) {
+                getAllCategoryWitchTest();
+            }, 'Pomyślnie usunięto kategorie');
+        });
+
+
     }
 
     $scope.addUserScore = function() {

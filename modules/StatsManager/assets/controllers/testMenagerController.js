@@ -38,21 +38,30 @@ app.controller('testMenagerController', function($scope, auth, $rootScope, notif
     }
 
     $scope.deleteCategory = function(id) {
-        $scope.showTest = false;
-        $scope.selectedCategoryId = -1;
-        request.backend('deleteCategoryTest', { id: id }, function(data) {
-            $scope.$apply(function() {
-                getAllCategoryWitchTest();
-            });
-        }, 'Pomyślnie usunięto kategorie');
+
+        $rootScope.showModalWindow("Nieodwracalne usunięcie kategorii", function() {
+            $scope.showTest = false;
+            $scope.selectedCategoryId = -1;
+            request.backend('deleteCategoryTest', { id: id }, function(data) {
+                $scope.$apply(function() {
+                    getAllCategoryWitchTest();
+                });
+            }, 'Pomyślnie usunięto kategorie');
+        });
+
+
     }
 
     $scope.deleteTest = function(id) {
-        request.backend('deleteTestFromCat', { id: id }, function(data) {
-            $scope.$apply(function() {
-                getAllCategoryWitchTest();
-            });
-        }, 'Pomyślnie usunięto test');
+
+        $rootScope.showModalWindow("Nieodwracalne usunięcie testu", function() {
+            request.backend('deleteTestFromCat', { id: id }, function(data) {
+                $scope.$apply(function() {
+                    getAllCategoryWitchTest();
+                });
+            }, 'Pomyślnie usunięto test');
+        });
+
     }
 
     $scope.addCategory = function() {

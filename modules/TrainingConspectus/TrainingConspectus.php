@@ -154,6 +154,7 @@ class TrainingConspectus extends BasicModule
             $this->returnedData['data'] = ($this->db->getConnection())->fetchRowMany("SELECT conspect.*, user_data.firstname, user_data.lastname FROM conspect, user_data WHERE user_data.user_id = conspect.id_user AND (id_user = " . $usid . " OR conspect.shared_ids LIKE '%" . $usid . "%' ) ");
         }
 
+        if(isset($this->returnedData['data']))
         foreach ($this->returnedData['data']  as $key => $value) {
             if( isset($this->returnedData['data'][$key]["date"]) ){
                 $this->returnedData['data'][$key]["time"] = date("H:i",strtotime($this->returnedData['data'][$key]["date"]));
@@ -252,6 +253,7 @@ class TrainingConspectus extends BasicModule
         $allMasters = $playersManager->getAllMaster()["data"];
 
         $this->returnedData['data'] = [];
+        if(isset($allMasters)&&isset($allMasters))
         foreach ($allMasters as $master) {
             $canAdd = true;
             foreach ($sharedList as $shared) {
@@ -450,6 +452,7 @@ class TrainingConspectus extends BasicModule
         $allMasters = $playersManager->getAllMaster()["data"];
 
         $this->returnedData['data'] = [];
+        if(isset($allMasters)&&isset($allMasters))
         foreach ($allMasters as $master) {
             $canAdd = true;
             foreach ($sharedList as $shared) {

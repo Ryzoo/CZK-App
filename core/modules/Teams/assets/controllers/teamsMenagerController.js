@@ -43,7 +43,7 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
 
     function getAllMastersFromTeam(id, functionSuccess) {
         $scope.actualSelectedTeamId = id;
-        request.backend('getAllMastersFromTeam', {tmid: id}, function(data) {
+        request.backend('getAllMastersFromTeam', { tmid: id }, function(data) {
             $scope.teamMasters = [];
             $scope.$apply(function() {
                 $scope.teamMasters = data;
@@ -64,12 +64,16 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
     }
 
     $scope.deleteTeam = function(id) {
-        request.backend('deleteTeam', {id: id}, function() {
-            getAllTeams();
-            $scope.$apply(function() {
-                $scope.showPlayerNow = false;
-            });
-        },'Udało się usunąc drużynę wraz z zawartością');
+
+        $rootScope.showModalWindow("Usunięcie drużyny", function() {
+            request.backend('deleteTeam', { id: id }, function() {
+                getAllTeams();
+                $scope.$apply(function() {
+                    $scope.showPlayerNow = false;
+                });
+            }, 'Udało się usunąc drużynę wraz z zawartością');
+        });
+
     }
 
     $scope.addTeam = function() {
@@ -82,9 +86,9 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
         request.backend('addTeam', { name: name, weight: weight }, function(data) {
             getAllTeams();
             request.backend('getTeams', {}, function(data) {
-                if(data.length == 0){
-                    notify.localNotify('Uwaga',"Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny");
-                }else{
+                if (data.length == 0) {
+                    notify.localNotify('Uwaga', "Twoje konto będzie ograniczone dopóki nie zostaniesz przypisany do drużyny");
+                } else {
                     $('#teamSelect').html('');
                     $('#teamSelect').append("<option value='' disabled> Wybierz drużynę </option>");
                     for (var i = 0; i < data.length; i++) {
@@ -101,16 +105,20 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
     }
 
     $scope.deleteMaster = function(id) {
-        request.backend('deleteMasterFromTeam', { mid: id, tmid: $scope.actualSelectedTeamId }, function(data) {
-            $scope.showThisTeam($scope.actualSelectedTeamId);
-            var actualTeamName = '';
-            for (var index = 0; index < $scope.teams.length; index++) {
-                if ($scope.teams[index].id == $scope.actualSelectedTeamId) {
-                    actualTeamName = $scope.teams[index].name
+
+        $rootScope.showModalWindow("Usunięcie trenera z drużyny", function() {
+            request.backend('deleteMasterFromTeam', { mid: id, tmid: $scope.actualSelectedTeamId }, function(data) {
+                $scope.showThisTeam($scope.actualSelectedTeamId);
+                var actualTeamName = '';
+                for (var index = 0; index < $scope.teams.length; index++) {
+                    if ($scope.teams[index].id == $scope.actualSelectedTeamId) {
+                        actualTeamName = $scope.teams[index].name
+                    }
                 }
-            }
-            notify.addNew(new notify.Notification("Zostałeś usunięty z drużyny: " + actualTeamName, [id], ""));
-        }, 'Udało się usunąc trenera z danej drużyny');
+                notify.addNew(new notify.Notification("Zostałeś usunięty z drużyny: " + actualTeamName, [id], ""));
+            }, 'Udało się usunąc trenera z danej drużyny');
+        });
+
     }
 
     $scope.addTeamMaster = function() {

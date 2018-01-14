@@ -62,7 +62,8 @@
             <div class="card" style='height: 288px'>
                 <div class="card-content">
                     <div class="card-title">
-                        Trener Koordynator
+                        <div ng-show="staff.email != 'cmc.app@centrumklubu.pl'">Trener Koordynator</div>
+                        <div ng-show="staff.email == 'cmc.app@centrumklubu.pl'">Administracja platformy</div>
                     </div>
                     <div id='st-{{staff.stid}}' class="row">
                         <div class="col-md-5" style='min-height:60px'>

@@ -46,9 +46,14 @@ app.controller('TrainingListAdditionalController', function($scope, auth, $rootS
     }
 
     $scope.deleteAnimCon = function(id) {
-        request.backend('deleteAnimConspect', { id: id }, function(data) {
-            $scope.initConsAnimList();
-        }, "Pomyślnie usunięto");
+
+
+        $rootScope.showModalWindow("Nieodwracalne usunięcie animacji", function() {
+            request.backend('deleteAnimConspect', { id: id }, function(data) {
+                $scope.initConsAnimList();
+            }, "Pomyślnie usunięto");
+        });
+
     }
 
     $scope.addSimpleFieldCo = function(placeId) {
