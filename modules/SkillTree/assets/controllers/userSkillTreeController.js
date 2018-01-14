@@ -35,7 +35,7 @@ app.controller('userSkillTreeController', function($scope, auth, $rootScope, not
     $(document).on("change", ".selectSkillStatus", function() {
         let skillStatus = $(this).val();
         let skillId = $(this).attr('id').split("-")[1];
-        if (skillStatus) {
+        if ($(".selectSkillStatus").first().is(':checked')) {
             $scope.userSelected = true;
             $scope.skillLoaded = false;
             request.backend('completeUserSkillTreeSkill', { usid: $scope.userIdNow, sid: skillId }, function(data) {

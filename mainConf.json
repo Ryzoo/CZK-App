@@ -1,7 +1,0 @@
-{
-    "installedModules": ["Todo", "Table", "MathComposition", "Frequency", "Calendar", "StatsManager", "Payment", "Timetable", "Dashboard", "TrainingConspectus", "VideoAnalizer", "SkillTree"],
-    "coreModules": ["Auth", "Database", "Settings", "Notify", "Staff", "Teams", "Players", "Raports", "Feedback"],
-    "database": { "host": "mysql18.mydevil.net", "user": "m1006_stomil_pr", "password": "MlM9iOB5f8yNXj3YkRj5", "dbName": "m1006_stomil_pr" },
-    "mainSettings": { "appName": "Stomil Olsztyn", "appVersion": "1.0.0", "licenseEnd": "15\/03\/2018", "licenseType": "CHAMPION", "maxTeams": "MAX", "maxMasters": "MAX", "maxPlayers": "MAX" },
-    "ownerData": { "id": "", "verificationToken": "" }
-}
