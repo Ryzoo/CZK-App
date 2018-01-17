@@ -903,7 +903,7 @@ ul.top-menu>li>a:focus {
     .dropdown-menu.extended {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
     }
-    ;
+
 }
 
 .dropdown-menu.extended li p {
@@ -1100,7 +1100,7 @@ ul.top-menu>li>a:focus {
 }
 
 .titleIn {
-    font-weight: 550;
+    font-weight: 600;
     font-size: 20px;
     letter-spacing: 1px;
     font-family: 'Roboto';
@@ -3110,22 +3110,42 @@ textarea.materialize-textarea {
 }
 
 @media print {
+
     .fc-header-left,
     .fc-header-right {
         display: none;
     }
+
+
+    *{display:inline;}
+    ul li{ -webkit-region-break-inside: avoid; page-break-inside:avoid }
+    img{
+        -webkit-region-break-inside: avoid; page-break-inside:avoid
+    }
+    .coElement{
+        -webkit-region-break-inside: avoid; page-break-inside:avoid
+    }
+    script,style{
+        display: none;
+    }
     @page {
-        margin: 0mm;
-        width: 1000px;
+        size: 210mm 297mm;
+        margin: 5mm;
+    }
+
+    .noBorderOnPrint{
+        border: 0;
+        box-shadow: none;
+    }
+    .blackBWhiteTOnPrint {
+        -webkit-print-color-adjust: exact;
+        color: white !important;
+        background-color: #333333 !important;
     }
     html {
-        width: 1000px;
+        width: 100%;
         margin: 0mm;
-        margin-top: -50px;
-    }
-    body {
-        width: 1000px;
-        margin: 0mm;
+        margin-top: -66px;
     }
     .printIt {
         display: block;

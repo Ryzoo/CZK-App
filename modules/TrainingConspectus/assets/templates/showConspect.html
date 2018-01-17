@@ -2,12 +2,12 @@
 <div class="section" ng-init="initConspect()">
     <div ng-show='showContent' class="row">
         <div class="col s12">
-            <div class="card">
-                <div class="card-content" ng-controller='conspectusCreatorController'>
+            <div class="card noBorderOnPrint">
+                <div class="card-content " ng-controller='conspectusCreatorController'>
 
                     <div class='row conspectInformation'>
                         <div class="col s12">
-                            <div class="col s12 m8 conspectIconList">
+                            <div class="col conspectIconList" style="width:calc(100% - 152px);float:left">
                                 <div class="conspectIconInList">
                                     <p><b>Data: </b></p>
                                     <p> {{conspect.date}}</p>
@@ -45,7 +45,7 @@
                                     <p> {{conspect.about}}</p>
                                 </div>
                             </div>
-                            <div class="col s12 m4">
+                            <div class="col " style="width:152px;float:left">
                                 <div class='logoContener'>
                                     <img src="/files/img/cmc_logo.png" alt="Logo Club Management Center">
                                     <img src="/files/img/club_logo.png" alt="Logo Klubu">
@@ -64,19 +64,16 @@
                         </div>
                     </div>
 
-
-
-
-                    <ul class="collapsible" data-collapsible="accordion">
+                    <ul class="collapsible noBorderOnPrint" data-collapsible="accordion" style="margin-top:20px">
                         <li>
-                            <div class="collapsible-header "><i class="material-icons">filter_drama</i>Część wstępna</div>
-                            <div id='coStart' class="collapsible-body">
-                                <div ng-repeat="coElement in conspect.data.coStart track by $index" class='coElement coElementFull'>
+                            <div class="collapsible-header blackBWhiteTOnPrint  page-break"><i class="material-icons">filter_drama</i>Część wstępna</div>
+                            <div id='coStart' class="collapsible-body ">
+                                <div ng-repeat="coElement in conspect.data.coStart track by $index" class='coElement   page-break'>
                                     <div class="elementContent">
                                         <div class="leftConspectColumn selfCenter">
                                             <div class="elementTitle">
-                                                <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
-                                                <h5 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h5>
+                                                <h6 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h6>
+                                                <h6 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h6>
                                             </div>
                                             <div class="conspFullContenerElement" ng-show="coElement.type!='simple'">
                                                 <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">
@@ -149,14 +146,14 @@
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">place</i>Część główna</div>
+                            <div class="collapsible-header blackBWhiteTOnPrint page-break"><i class="material-icons">place</i>Część główna</div>
                             <div id='coMiddle' class="collapsible-body">
-                                <div ng-repeat="coElement in conspect.data.coMiddle track by $index" class='coElement coElementFull'>
+                                <div ng-repeat="coElement in conspect.data.coMiddle track by $index" class='coElement   page-break'>
                                     <div class="elementContent">
                                         <div class="middleConspectColumn">
                                             <div class="elementTitle">
-                                                <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
-                                                <h5 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h5>
+                                                <h6 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h6>
+                                                <h6 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h6>
                                             </div>
                                             <div class="conspFullContenerElement">
                                                 <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">
@@ -188,14 +185,14 @@
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">whatshot</i>Część końcowa</div>
+                            <div class="collapsible-header blackBWhiteTOnPrint  page-break"><i class="material-icons">whatshot</i>Część końcowa</div>
                             <div id='coEnd' class="collapsible-body">
-                                <div ng-repeat="coElement in conspect.data.coEnd track by $index" class='coElement coElementFull'>
+                                <div ng-repeat="coElement in conspect.data.coEnd track by $index" class='coElement   page-break'>
                                     <div class="elementContent">
                                         <div class="leftConspectColumn selfCenter">
                                             <div class="elementTitle">
-                                                <h5 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h5>
-                                                <h5 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h5>
+                                                <h6 ng-show="coElement.type!='simple'"><b>{{coElement.data.name}}</b></h6>
+                                                <h6 ng-show="coElement.type=='simple'"><b>{{coElement.data.content}}</b></h6>
                                             </div>
                                             <div class="conspFullContenerElement">
                                                 <div ng-show='coElement.data.mainImg.length > 2' class="conspFullElementE imgElem" ng-show="coElement.type!='simple'">

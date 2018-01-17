@@ -35,13 +35,12 @@ app.controller('userSkillTreeController', function($scope, auth, $rootScope, not
     $(document).on("change", ".selectSkillStatus", function() {
         let skillStatus = $(this).val();
         let skillId = $(this).attr('id').split("-")[1];
-        if ($(".selectSkillStatus").first().is(':checked')) {
+        if ($("#" + $(this).attr('id')).first().is(':checked')) {
             $scope.userSelected = true;
             $scope.skillLoaded = false;
             request.backend('completeUserSkillTreeSkill', { usid: $scope.userIdNow, sid: skillId }, function(data) {
                 $scope.$apply(function() {
                     $scope.availableSkill = data;
-                    console.log(data);
                     $scope.skillLoaded = true;
                 });
             }, "Status umiejętności zmieniony na: zdana");

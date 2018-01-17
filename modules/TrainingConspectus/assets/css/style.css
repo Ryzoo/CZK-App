@@ -321,11 +321,15 @@ h6 {
 
 .coElement {
     position: relative;
-    margin-top: 30px;
-    padding: 10px;
-    display: block;
+    border-bottom: 1px solid #dedede;
+    padding: 15px 5px;
+    display: block !important;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
+}
+
+.coElement:last-child{
+    border-bottom: 0;
 }
 
 .elementTitle {
@@ -346,10 +350,6 @@ h6 {
 .coElementFull {
     display: flex;
     align-items: stretch;
-}
-
-.coElement:first-child {
-    margin-top: 0;
 }
 
 .tagsContainer {
@@ -383,7 +383,7 @@ h6 {
 .logoContener {
     display: table;
     float: right;
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .logoContener img {
@@ -493,10 +493,6 @@ canvas,
     .conspectBodyColE {
         max-height: none;
         overflow-y: auto;
-        page-break-after: auto;
-    }
-    .coElementFull {
-        page-break-inside: avoid;
         page-break-after: auto;
     }
 }
