@@ -157,9 +157,13 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     };
 
     $(document).on('click', '#printButton', function() {
-
+        $("body").prepend($("#main-content-in"));
+        var element = $("body>div").each(function(){
+            if( $(this).attr('id') != "main-content-in")
+            $(this).addClass('noPrint');
+        });
         window.print();
-
+        $("#main-content").prepend($("#main-content-in"));
     });
 
 

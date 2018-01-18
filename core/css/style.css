@@ -3110,27 +3110,26 @@ textarea.materialize-textarea {
 }
 
 @media print {
+    @page {
+        size: 210mm 297mm;
+        margin: 5mm;
+    }
 
     .fc-header-left,
     .fc-header-right {
         display: none;
     }
 
+    #main-content-in{
+        columns: 1;
+        -webkit-column-width: 800px;
+        -moz-column-width: 800px;
+        column-width: 800px;
+        display: table !important;
+    }
 
-    *{display:inline;}
-    ul li{ -webkit-region-break-inside: avoid; page-break-inside:avoid }
-    img{
-        -webkit-region-break-inside: avoid; page-break-inside:avoid
-    }
-    .coElement{
-        -webkit-region-break-inside: avoid; page-break-inside:avoid
-    }
-    script,style{
-        display: none;
-    }
-    @page {
-        size: 210mm 297mm;
-        margin: 5mm;
+    .page-break{
+        page-break-inside: avoid;
     }
 
     .noBorderOnPrint{
@@ -3154,8 +3153,7 @@ textarea.materialize-textarea {
         display: none;
     }
     .collapsible-body {
-        display: block !important;
-        page-break-after: always;
+        display: table !important;
     }
 }
 

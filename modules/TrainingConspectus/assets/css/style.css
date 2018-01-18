@@ -488,15 +488,6 @@ canvas,
 .collapsible {
     margin: 0 10px;
 }
-
-@media print {
-    .conspectBodyColE {
-        max-height: none;
-        overflow-y: auto;
-        page-break-after: auto;
-    }
-}
-
 .playAnimContainer {
     width: 100%;
     line-height: 2;
