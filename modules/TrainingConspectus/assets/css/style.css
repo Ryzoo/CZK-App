@@ -328,7 +328,7 @@ h6 {
     overflow: visible;
 }
 
-.coElement:last-child{
+.coElement:last-child {
     border-bottom: 0;
 }
 
@@ -387,7 +387,7 @@ h6 {
 }
 
 .logoContener img {
-    height: 60px;
+    width: 60px;
     float: left;
     padding-left: 10px;
 }
@@ -488,6 +488,7 @@ canvas,
 .collapsible {
     margin: 0 10px;
 }
+
 .playAnimContainer {
     width: 100%;
     line-height: 2;

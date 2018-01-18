@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="row" style="margin-top: 20px;">
+                    <div class="row page-break" style="margin-top: 20px;">
                         <div class="col 12">
                             <p style=" font-size: 15px; font-family: 'Roboto'; padding: 0 30px">{{ps.content}}</p>
                         </div>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="row">
                         <ul class="collection col s12">
-                            <li ng-repeat="cm in ps.comments | limitTo: ps.maxComment" class="collection-item avatar">
+                            <li ng-repeat="cm in ps.comments | limitTo: ps.maxComment" class="collection-item avatar page-break">
                                 <img src="{{cm.user_img_path}}" alt="" class="circle">
                                 <span class="title">{{cm.firstname}} {{cm.lastname}}</span>
                                 <p>{{cm.content}} <br> <span class="prettydate">{{cm.date_add}}</span></p>
@@ -58,8 +58,8 @@
                     </div>
                 </div>
             </div>
-            <a href='' ng-show='canGetMorePost' class='col s12' ng-click="morePost();" style="text-align:center; width: 100%; display:block;">Wyświetl więcej postów</a>
-            <p ng-hide='canGetMorePost' class='center-align'>To już niestety wszystkie posty</p>
+            <a href='' ng-show='canGetMorePost' class='col s12 noPrint' ng-click="morePost();" style="text-align:center; width: 100%; display:block;">Wyświetl więcej postów</a>
+            <p ng-hide='canGetMorePost' class='center-align noPrint'>To już niestety wszystkie posty</p>
         </div>
     </div>
     <div ng-hide='showContent' class='loaderContainer'>

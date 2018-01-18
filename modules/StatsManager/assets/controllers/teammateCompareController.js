@@ -47,11 +47,9 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
 
         request.backend('getStats', { usid: usidList, tmid: $rootScope.user.tmid, prc: "none" }, function(data) {
             $rootScope.actualStats = data;
-            console.log(data);
             addMainChartToPage();
             initMainSummary();
             initMainSummaryRadar();
-
 
             $scope.$apply(function() {
                 $scope.loadStat = false;

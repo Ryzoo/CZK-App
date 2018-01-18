@@ -13,9 +13,9 @@
                         <div class="form-group ">
                             <div class="row">
                                 <div class="row" ng-hide='showPreLoad' style='margin-bottom: 20px !important;'>
-                                    <div class="col s12">
-                                        <div class="col s12 m6"><canvas id="main-summary-chart"></canvas></div>
-                                        <div class="col s12 m6"><canvas id="main-summary-chart-radar"></canvas></div>
+                                    <div style="display:flex">
+                                        <div class="f50"><canvas id="main-summary-chart"></canvas></div>
+                                        <div class="f50"><canvas id="main-summary-chart-radar"></canvas></div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -31,7 +31,7 @@
                                         </select>
                                         <label>Wybierz grupę testową</label>
                                     </div>
-                                    <div class="input-field col s12 m4  " ng-show="showTestAndType">
+                                    <div class="input-field col s12 m4 noPrint" ng-show="showTestAndType">
                                         <select id='selectDataType'>
                                             <option value="" disabled >Sposób wyświetlania</option>
                                             <option value="tabele" selected>Tabela</option>
@@ -43,7 +43,7 @@
                                 <div ng-hide='showPreLoad' class="col s12">
                                     <div class="row">
                                         <div class="col s12">
-                                            <div ng-repeat="test in acutalSelectedGroupTest " style='margin-top:50px;'>
+                                            <div ng-repeat="test in acutalSelectedGroupTest " style='margin-top:50px;' class="page-break">
                                                 <div class="row">
                                                     <div class="col s12 m8">
                                                         <h5><b>{{test.name}}</b></h5>
@@ -121,4 +121,3 @@
             $('select').material_select();
         }, 500);
     });
-</script>

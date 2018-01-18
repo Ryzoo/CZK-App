@@ -53,7 +53,7 @@
                         <div class="row">
                             <h5>Porównanie w kategoriach</h5>
                         </div>
-                        <div class="row" style='margin-bottom:50px !important;'>
+                        <div class="row page-break" style='margin-bottom:50px !important; '>
                             <div>
                                 <div class="row">
                                     <table ng-show='dataViewAsTable && actualPotentialGroup!=null' class='highlight centered statTable'>
@@ -73,47 +73,50 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <h5>Porównanie średniej w poszczególnych testach</h5>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12 m6">
-                                <select id='selectPotential'>
-                                    <option value="" disabled selected>Kategoria</option>
-                                </select>
-                                <label>Wybierz kategorię</label>
+                        <div class="page-break">
+                            <div class="row">
+                                <h5>Porównanie średniej w poszczególnych testach</h5>
                             </div>
-                            <div class="input-field col s12 m6">
-                                <select id='selectPrcType'>
-                                    <option value="noPrc"  selected>Jednostkowy</option>
-                                    <option value="prc"  >Procentowy</option>
-                                </select>
-                                <label>Wybierz procentowy typ</label>
+                            <div class="row ">
+                                <div class="input-field col s12 m6">
+                                    <select id='selectPotential'>
+                                        <option value="" disabled selected>Kategoria</option>
+                                    </select>
+                                    <label>Wybierz kategorię</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <select id='selectPrcType'>
+                                        <option value="noPrc"  selected>Jednostkowy</option>
+                                        <option value="prc"  >Procentowy</option>
+                                    </select>
+                                    <label>Wybierz procentowy typ</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row" style='margin-bottom:50px !important;'>
-                            <div>
-                                <div class="row">
-                                    <table ng-show='dataViewAsTable && actualStatGroup!=null && actualStatGroup.length > 0' class='highlight centered statTable'>
-                                        <thead>
-                                            <tr>
-                                                <th>Test</th>
-                                                <th ng-repeat="user in actualStats.users track by $index">{{user.userName}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="test in actualStatGroup">
-                                                <td>{{test.name}}</td>
-                                                <td ng-repeat="userScore in test.users track by $index" class='scoreIn'>{{userScore}}</td>
-                                            </tr>
-                                            <tr ng-show="actualStatGroup.length <= 0">
-                                                <td>Brak wyników</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="row" style='margin-bottom:50px !important;'>
+                                <div>
+                                    <div class="row">
+                                        <table ng-show='dataViewAsTable && actualStatGroup!=null && actualStatGroup.length > 0' class='highlight centered statTable'>
+                                            <thead>
+                                                <tr>
+                                                    <th>Test</th>
+                                                    <th ng-repeat="user in actualStats.users track by $index">{{user.userName}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="test in actualStatGroup">
+                                                    <td>{{test.name}}</td>
+                                                    <td ng-repeat="userScore in test.users track by $index" class='scoreIn'>{{userScore}}</td>
+                                                </tr>
+                                                <tr ng-show="actualStatGroup.length <= 0">
+                                                    <td>Brak wyników</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -30,9 +30,9 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Podgląd obecności</div>
-                    <div class="row table-scroll" ng-show='isSelectedCorrectDate && loadedData'>
+                    <div class="row " ng-show='isSelectedCorrectDate && loadedData'>
                         <div class="input-field col s12">
-                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
+                            <input id='changeFilter' class="noPrint" type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
                         </div>
                         <table class="freqTable table ">
                             <thead>
@@ -43,7 +43,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="user in inDaysFreq | filter:searchText">
+                                <tr ng-repeat="user in inDaysFreq | filter:searchText " class="page-break">
                                     <td>{{user.firstname}}</td>
                                     <td>{{user.lastname}}</td>
                                     <td>

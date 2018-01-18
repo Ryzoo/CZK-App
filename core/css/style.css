@@ -903,7 +903,6 @@ ul.top-menu>li>a:focus {
     .dropdown-menu.extended {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
     }
-
 }
 
 .dropdown-menu.extended li p {
@@ -3114,25 +3113,31 @@ textarea.materialize-textarea {
         size: 210mm 297mm;
         margin: 5mm;
     }
-
+    * {
+        -webkit-print-color-adjust: exact;
+    }
+    .commentPostInput,
+    button,
+    input[type=file],
+    .file-field input[type=file],
+    .fa-times,
+    a,
+    .loaderContainer,
     .fc-header-left,
     .fc-header-right {
-        display: none;
+        display: none !important;
     }
-
-    #main-content-in{
+    #main-content-in {
         columns: 1;
         -webkit-column-width: 800px;
         -moz-column-width: 800px;
         column-width: 800px;
         display: table !important;
     }
-
-    .page-break{
-        page-break-inside: avoid;
+    .page-break {
+        page-break-inside: avoid !important;
     }
-
-    .noBorderOnPrint{
+    .noBorderOnPrint {
         border: 0;
         box-shadow: none;
     }

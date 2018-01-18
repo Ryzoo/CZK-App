@@ -1,25 +1,26 @@
-.paymentClickIcon{
+.paymentClickIcon {
     position: absolute;
     top: 50%;
-    transform:translateY(-50%);
+    transform: translateY(-50%);
 }
 
-.paymentClickIcon i:hover{
+.paymentClickIcon i:hover {
     color: #ee6e73;
 }
 
-#clickEndPayment{
+#clickEndPayment {
     right: 30px;
 }
 
-#clickDeletePayment{
+#clickDeletePayment {
     right: 0px;
 }
 
-.paymentSection .collapsible-body{
+.paymentSection .collapsible-body {
     padding: 10px 0 !important;
+    width: 100% !important;
 }
 
-.userOnePayRow{
+.userOnePayRow {
     cursor: pointer;
 }
