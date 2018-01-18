@@ -158,25 +158,31 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
 
     $(document).on('click', '#printButton', function() {
         $("body").prepend($("#main-content-in"));
-        var element = $("body>div").each(function(){
-            if( $(this).attr('id') != "main-content-in")
+        var element = $("body>div").each(function() {
+            if ($(this).attr('id') != "main-content-in")
+                $(this).addClass('noPrint');
+        });
+        $(".ng-hide").each(function() {
             $(this).addClass('noPrint');
         });
         window.print();
         $("#main-content").prepend($("#main-content-in"));
+        $(".ng-hide").each(function() {
+            $(this).removeClass('noPrint');
+        });
     });
 
 
     function createPDF() {
         var element = document.getElementById('main-content-in');
-        html2pdf(element,{
-            margin:       2,
-            filename:     'myfile.pdf',
-            image:        { type: 'jpeg', quality: 1 },
-            html2canvas:  { dpi: 256, letterRendering: true },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        html2pdf(element, {
+            margin: 2,
+            filename: 'myfile.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { dpi: 256, letterRendering: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         });
-    }// create canvas object
+    } // create canvas object
 
 
     $(document).on('change', '#teamSelect', function() {

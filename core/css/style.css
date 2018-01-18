@@ -3114,7 +3114,7 @@ textarea.materialize-textarea {
         margin: 5mm;
     }
     * {
-        -webkit-print-color-adjust: exact;
+        -webkit-print-color-adjust: exact !important;
     }
     .commentPostInput,
     button,
@@ -3142,7 +3142,7 @@ textarea.materialize-textarea {
         box-shadow: none;
     }
     .blackBWhiteTOnPrint {
-        -webkit-print-color-adjust: exact;
+        -webkit-print-color-adjust: exact !important;
         color: white !important;
         background-color: #333333 !important;
     }
