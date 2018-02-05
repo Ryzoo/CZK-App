@@ -1,7 +1,33 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
 <div class="section paymentSection" ng-init="initPayment()">
     <div ng-show='showContent' class="row">
-        <div class="col s12 m12 l4 noPrint">
+        <div class="col s12 m12 l6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Wystawianie płatności</div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="row" style='margin-top: 10px; margin-bottom: 40px;'>
+                                <div class="input-field col s12">
+                                    <input id='payName' type="text" name="payName" placeholder="Nazwa płatności" class="validate">
+                                    <label for="payAmount">Nazwa płatności:</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <input id='payAmount' type="text" name="amount" placeholder="Kwota w PLN (0,00zł)" class="validate">
+                                    <label for="payAmount">Kwota płatności dla zaznaczonych zawodników:</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <input id='dateToPay' type="text" class='datetimepicker' ng-model="paymentDate" name="dateToPay" placeholder="Data rozliczenia" class="validate">
+                                    <label for="dateToPay">Data rozliczenia płatności</label>
+                                </div>
+                                <button type="button" class="waves-effect waves-light btn" ng-click="sendPayment()">Wyślij płatność</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m12 l6 noPrint">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Ludzie i płatności</div>
@@ -33,113 +59,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m12 l8">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">Zarządzanie</div>
-                    <div class="row">
-                        <div class="card-tabs noPrint">
-                            <ul class="tabs tabs-fixed-width" ng-init="payAdd=1;">
-                                <li class="tab"><a class="active" href="" ng-click='payAdd=1; payHistory=0'>Dodaj płatność</a></li>
-                                <li class="tab"><a href="" ng-click='payAdd=0; payHistory=1; getUsersHistory()'>Edycja płatności</a></li>
-                            </ul>
-                        </div>
-                        <div class="card-content">
-                            <div ng-show="payAdd">
-                                <div class="form-group">
-                                    <div class="row" style='margin-top: 40px; margin-bottom: 40px;'>
-                                        <div class="input-field col s12 m6">
-                                            <input id='payName' type="text" name="payName" placeholder="Nazwa płatności" class="validate">
-                                            <label for="payAmount">Nazwa płatności:</label>
-                                        </div>
-                                        <div class="input-field col s12 m6">
-                                            <input id='payAmount' type="text" name="amount" placeholder="Kwota w PLN (0,00zł)" class="validate">
-                                            <label for="payAmount">Kwota płatności dla zaznaczonych zawodników:</label>
-                                        </div>
-                                        <button type="button" class="waves-effect waves-light btn" ng-click="sendPayment()">Wyślij płatność</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-show="payHistory">
-                                <div class="row" ng-hide="loadHistory">
-                                    <ul class="collapsible" data-collapsible="accordion">
-                                        <li ng-repeat="userHistory in selectedUserHistory">
-                                            <div class="collapsible-header">{{userHistory.firstname}} {{userHistory.lastname}}</div>
-                                            <div class="collapsible-body">
-                                                <ul class="collapsible noBorderOnPrint" data-collapsible="accordion">
-                                                    <li ng-repeat="data in userHistory.data" class="noBorderOnPrint page-break">
-                                                        <div class="collapsible-header" style="position:relative;">
-                                                            {{data.name}} - <b>{{data.statusName}}</b>
-                                                            <span class='paymentClickIcon noPrint' id='clickDeletePayment'>
-                                                                <i ng-click="deletePayment(data.id)" class="fa fa-trash" aria-hidden="true"></i>
-                                                            </span>
-                                                            <span class='paymentClickIcon noPrint' id='clickEndPayment'>
-                                                                <i ng-click="endPayment(data.id)" class="fa fa-check" aria-hidden="true"></i>
-                                                            </span>
-                                                        </div>
-                                                        <div class="collapsible-body">
-                                                            <table style="width:100%" class="table highlight centered">
-                                                                <tbody>
-                                                                    <tr class="row">
-                                                                        <td style="padding: 5px 0;"><b>Tytuł płatności</b></td>
-                                                                        <td style="padding: 5px 0;">{{data.name}}</td>
-                                                                    </tr>
-                                                                    <tr class="row">
-                                                                        <td style="padding: 5px 0;"><b>Kwota</b></td>
-                                                                        <td style="padding: 5px 0;">{{data.amount}} zł</td>
-                                                                    </tr>
-                                                                    <tr class="row">
-                                                                        <td style="padding: 5px 0;"><b>Status</b></td>
-                                                                        <td style="padding: 5px 0;">{{data.statusName}}</td>
-                                                                    </tr>
-                                                                    <tr class="row">
-                                                                        <td style="padding: 5px 0;"><b>Zlecający</b></td>
-                                                                        <td style="padding: 5px 0;">{{data.adminFirstname}} {{data.adminLastname}}</td>
-                                                                    </tr>
-                                                                    <tr class="row">
-                                                                        <td style="padding: 5px 0;"><b>Data dodania</b></td>
-                                                                        <td style="padding: 5px 0;">{{data.date_add}}</td>
-                                                                    </tr>
-                                                                    <tr class="row">
-                                                                        <td style="padding: 5px 0;"><b>Ostatni zmiana statusu</b></td>
-                                                                        <td style="padding: 5px 0;">{{data.date_change}}</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="row" ng-show='loadHistory'>
-                                    <div class="preloader-wrapper big active" style="margin-top: 50px">
-                                        <div class="spinner-layer spinner-blue">
-                                            <div class="circle-clipper left">
-                                                <div class="circle"></div>
-                                            </div>
-                                            <div class="gap-patch">
-                                                <div class="circle"></div>
-                                            </div>
-                                            <div class="circle-clipper right">
-                                                <div class="circle"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-show="toUpdate">
-                                <div class="row">
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@
     "require": [],
     "backendRoute": [{
         "url": "addPaymentToUser",
-        "parameters": ["tmid", "userIds", "amount", "name"],
+        "parameters": ["tmid", "userIds", "amount", "name","date_to_pay"],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
         "url": "getAllCyclePayment",
@@ -13,7 +13,7 @@
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
         "url": "deleteCyclePayment",
-        "parameters": ["id"],
+        "parameters": ["id","tmid"],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
         "url": "addCyclePayment",
@@ -60,7 +60,14 @@
         "url": "clientPayment",
         "templateSrc": "clientPayment.html",
         "controllerName": "paymentController"
-    }, { "url": "paymentSettings", "templateSrc": "paymentSettings.html", "controllerName": "paymentController" }, { "url": "cyclicPayment", "templateSrc": "cyclicPayment.html", "controllerName": "paymentController" }],
+    },
+        {
+            "url": "clientPaymentHistory",
+            "templateSrc": "clientPaymentHistory.html",
+            "controllerName": "paymentController"
+        } ,
+        {
+        "url": "paymentSettings", "templateSrc": "paymentSettings.html", "controllerName": "paymentController" }, { "url": "cyclicPayment", "templateSrc": "cyclicPayment.html", "controllerName": "paymentController" }],
     "anchor": [{
         "destination": "leftMenu",
         "anchorWeight": 9,
@@ -82,7 +89,15 @@
         "anchorPointIcon": "fa fa-shopping-cart fa-fw",
         "anchorAdditional": "ng-show=\"user.tmid != ''\"",
         "content": { "link": { "label": "P\u0142atno\u015bci cykliczne", "url": "#!\/cyclicPayment", "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' \"" } }
-    }, {
+    },
+        {
+            "destination": "leftMenu",
+            "anchorWeight": 9,
+            "anchorPoint": "P\u0142atno\u015bci w klubie",
+            "anchorPointIcon": "fa fa-shopping-cart fa-fw",
+            "anchorAdditional": "ng-show=\"user.tmid != ''\"",
+            "content": { "link": { "label": "Historia płatności", "url": "#!\/clientPaymentHistory", "additional": "ng-show=\"user.tmid != '' && user.role != 'ZAWODNIK' \"" } }
+        },{
         "destination": "leftMenu",
         "anchorPoint": "P\u0142atno\u015bci w klubie",
         "anchorWeight": 9,

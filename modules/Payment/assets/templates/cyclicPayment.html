@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="form-group col s12">
-                            <div class="row" ng-init=" payDay=''; payWeek=''; payMonth=''; ">
+                            <div class="row" >
                                 <div class="input-field col s12 m4">
                                     <input id='payForDay' ng-disabled="payMonth.length >= 1 || payWeek.length >= 1" ng-model="payDay" type="number" placeholder="(0,23)" class="validate" min="0" max="23">
                                     <label for="payForDay">Raz dziennie o godzinie ? </label>
@@ -65,7 +65,7 @@
                             <tbody>
                                 <tr ng-repeat="pay in allCyclPayments">
                                     <td><b>{{pay.howLongBefore}}</b></td>
-                                    <td>{{pay.intervalTime}} {{pay.intervalName}}</td>
+                                    <td>{{pay.intervalTime}} -- {{pay.intervalName}}</td>
                                     <td>{{pay.title}}</td>
                                     <td><b>{{pay.amount}} zł</b></td>
                                     <td>

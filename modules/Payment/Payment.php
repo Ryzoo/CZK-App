@@ -16,7 +16,7 @@ class Payment extends BasicModule {
     function install(){
       ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `payment_status` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
       ($this->db->getConnection())->executeSql('INSERT INTO payment_status (`name`) VALUES ("Do zapłaty"), ("Oczekiwanie na potwierdzenie"), ("Zakończono"), ("Nie zapłacono"), ("Potrzebna kontrola")');
-      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `payment_list` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `amount` INT NOT NULL , `id_user` INT NOT NULL , `id_status` INT NOT NULL , `id_team` INT NOT NULL ,`date_to_pay` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, `date_change` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `date_add` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+      ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `payment_list` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `amount` FLOAT NOT NULL , `id_user` INT NOT NULL , `id_status` INT NOT NULL , `id_team` INT NOT NULL ,`date_to_pay` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, `date_change` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `date_add` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `cyclePayments` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_team` INT NOT NULL, `howLongBefore` INT NOT NULL, `intervalTime` INT NOT NULL , `intervalName` VARCHAR(50) NOT NULL , `title` VARCHAR(200) NOT NULL , `amount` FLOAT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
       ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `cycleUserPayments` ( `id` INT NOT NULL AUTO_INCREMENT , `id_user` INT NOT NULL , `id_cycle_pay` INT NOT NULL , `is_added_today` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
     }
@@ -67,8 +67,6 @@ class Payment extends BasicModule {
     }
 
     function getPaymentSummary($data){
-      $tmid = $data['tmid'];
-      $this->addPaymentCycleToUser($tmid,$data['token']);
       $completed = ($this->db->getConnection())->fetchRow('SELECT sum( amount ) as sum FROM payment_list WHERE MONTH(date_add) = MONTH(CURRENT_DATE()) AND id_status = 3');
       $waiting = ($this->db->getConnection())->fetchRow('SELECT sum( amount ) as sum FROM payment_list WHERE MONTH(date_add) = MONTH(CURRENT_DATE()) AND (id_status = 1 OR id_status = 2)');
       $this->returnedData["data"]["completed"] = isset($completed["sum"]) ? $completed["sum"] : 0;
@@ -79,14 +77,10 @@ class Payment extends BasicModule {
 
     function getUserPaymentHistory($data){
       $tmid = $data['tmid'];
-      $this->addPaymentCycleToUser($tmid,$data['token']);
       $usids = $data['usids'];
-      $this->returnedData["data"] = [];
 
       for($i=0;$i<count($usids);$i++){
-        $userHistory = ($this->db->getConnection())->fetchRowMany('SELECT payment_list.id, payment_list.amount, payment_list.name, payment_status.name as statusName, payment_list.date_add, payment_list.date_change FROM payment_list, users, payment_status, user_data WHERE users.id = user_data.user_id AND payment_list.id_admin=users.id AND payment_list.id_status = payment_status.id AND payment_list.id_user='.$usids[$i].' AND payment_list.id_team='.$tmid.' ORDER BY payment_list.date_add DESC');
-        $userData = ($this->db->getConnection())->fetchRow('SELECT user_data.firstname, user_data.lastname FROM user_data WHERE user_data.user_id='.$usids[$i]);
-        array_push($this->returnedData["data"],[ "usid"=>$usids[$i], "firstname"=>$userData["firstname"], "lastname"=>$userData["lastname"], "data"=>$userHistory]);
+        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT payment_list.id, payment_list.amount, payment_list.name, payment_status.name as statusName, DATE(payment_list.date_to_pay) AS date_to_pay FROM payment_list, payment_status WHERE payment_list.id_status = payment_status.id AND payment_list.id_user='.$usids[$i].' AND payment_list.id_team='.$tmid.' GROUP BY payment_list.id ORDER BY payment_list.id  DESC');
       }
       
       return $this->returnedData;
@@ -208,9 +202,22 @@ class Payment extends BasicModule {
     }
 
     function deleteCyclePayment($data){
-      $id = $data["id"];
-      $this->returnedData['data'] = ($this->db->getConnection())->delete('cyclePayments', ['id' => $id]);
-      $this->returnedData['data'] = ($this->db->getConnection())->delete('cycleUserPayments', ['id_cycle_pay' => $id]);
+        $id = $data["id"];
+        $tmid = $data["tmid"];
+        $this->returnedData['data'] = ($this->db->getConnection())->delete('cyclePayments', ['id' => $id]);
+        $this->teamsMenager = new Teams();
+        $allTeamUser = $this->teamsMenager->getUserFromTeam(["tmid"=>$tmid]);
+        $crontabRepository = new CrontabRepository(new CrontabAdapter());
+        for($i=0;$i<count($allTeamUser["data"]);$i++){
+            $usid = $allTeamUser["data"][$i]["usid"];
+            $name = $usid.'_'.$id.'_'.$tmid;
+            if(file_exists(__DIR__.'/cron/'.$usid.'_'.$id.'_'.$tmid.'.php')){
+                unlink(__DIR__.'/cron/'.$usid.'_'.$id.'_'.$tmid.'.php');
+            }
+            $results = $crontabRepository->findJobByRegex('/'.$name.'/');
+            if(isset($results[0]))$crontabRepository->removeJob($results[0]);
+        }
+        $crontabRepository->persist();
       return $this->returnedData;
     }
 
@@ -233,6 +240,7 @@ class Payment extends BasicModule {
       ];
    
       $this->returnedData['data'] = ($this->db->getConnection())->insert('cyclePayments', $data);
+      shell_exec("PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:login/bin");
       $this->addCronPaymentForUser($tmid,$data,$this->returnedData['data'],$token);
       return $this->returnedData;
     }
@@ -267,90 +275,38 @@ class Payment extends BasicModule {
                 $crontabJob->dayOfWeek = '*';
             }
 
-            file_put_contents(__DIR__.'/cron/'.$usid.'_'.$id.'.php',
+
+
+            file_put_contents(__DIR__.'/cron/'.$usid.'_'.$id.'_'.$tmid.'.php',
                 '
                 <?php
+                    require "'.__DIR__.'/../../core/vendor/autoload.php";
                     use Core\Notify\Notify;
                     use Modules\Payment\Payment;
                     $payment = new Payment();
                     $payment->addPaymentToUser([
-                        "token" => '.$token.',
+                        "token" => "'.$token.'",
                         "userIds" => ['.$usid.'],
                         "tmid" => '.$tmid.',
-                        "amount" => '.data["amount"].',
-                        "name" => '.data["title"].',
-                        "date_to_pay" => date("Y-m-d", strtotime(date("Y-m-d") . " + ".'.$data['howLongBefore'].'." days"))
+                        "amount" => "'.$data["amount"].'",
+                        "name" => "'.$data["title"].'",
+                        "date_to_pay" => date("Y-m-d", strtotime(date("Y-m-d") . " + '.$data['howLongBefore'].' days"))
                     ]);
                     $notify = new Notify();
                     $notify->addNotify([
-                        "title"=> "'."Nowa płatność cykliczna: ".data["title"]." na kwotę: ".data["amount"].'",
+                        "title"=> "'."Nowa płatność cykliczna: ".$data["title"]." na kwotę: ".$data["amount"].'",
                         "tmid"=> '.$tmid.',
-                        "token"=> '.$token.',
+                        "token"=> "'.$token.'",
                         "to"=> ['.$usid.'],
-                        "toAll"=> '.false.',
+                        "toAll"=> false,
                         "url"=> "'."#!/clientPayment".'"
                     ]);
                 '
                 ,FILE_USE_INCLUDE_PATH);
-            $crontabJob->taskCommandLine = 'php71 '.__DIR__.'/cron/'.$usid.'_'.$id.'.php';
-            $crontabJob->comments = $usid.'_'.$id;
+            $crontabJob->taskCommandLine = 'php71 '.__DIR__.'/cron/'.$usid.'_'.$id.'_'.$tmid.'.php';
+            $crontabJob->comments = $usid.'_'.$id.'_'.$tmid;
             $crontabRepository->addJob($crontabJob);
         }
         $crontabRepository->persist();
-    }
-
-    function addPaymentCycleToUser($tmid,$token){
-      $allCyclePayments = ($this->db->getConnection())->fetchRowMany('SELECT id as id FROM cyclePayments WHERE id_team='.$tmid);
-      for($i=0;$i<count($allCyclePayments);$i++){
-        $this->addPaymentCycleUpdateToUser($allCyclePayments[$i]["id"],$tmid);
-      }
-      $allUserCycelPay = ($this->db->getConnection())->fetchRowMany('SELECT cycleUserPayments.id as id, intervalTime, intervalName, date_start, id_user,is_added_today,title,amount  FROM cycleUserPayments, cyclePayments WHERE cycleUserPayments.id_cycle_pay = cyclePayments.id ');
-      for($i=0;$i<count($allUserCycelPay);$i++){
-        
-        $pid = $allUserCycelPay[$i]["id"];
-        $interval = $allUserCycelPay[$i]["intervalTime"];
-        $intervalName = $allUserCycelPay[$i]["intervalName"];
-        $dateStart = date('Y-m-d',strtotime($allUserCycelPay[$i]["date_start"]));
-        $dateNow = date('Y-m-d');
-
-        $id_user = $allUserCycelPay[$i]["id_user"];
-        $is_added_today = $allUserCycelPay[$i]["is_added_today"];
-        $title = $allUserCycelPay[$i]["title"];
-        $amount = $allUserCycelPay[$i]["amount"];
-        
-        while( strtotime($dateStart) < strtotime($dateNow)){
-          if( $intervalName === "dzień"){
-            $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' days'));
-          }else if($intervalName === "tydzień"){
-            $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' weeks'));
-          }else{
-            $dateStart = date('Y-m-d', strtotime($dateStart . ' + '.$interval.' months'));
-          }
-        }
-
-        if( $dateNow >= $dateStart && !$is_added_today ){
-          $this->addPaymentToUser([
-            "token" => $token,
-            "userIds" => [$id_user],
-            "tmid" => $tmid,
-            "amount" => $amount,
-            "name" => $title,
-          ]);
-          $notify = new Notify();
-          $notify->addNotify([
-            "title"=> "Nowa płatność cykliczna: ".$title." na kwotę: ".$amount,
-            "tmid"=> $tmid,
-            "token"=> $token,
-            "to"=> [$id_user],
-            "toAll"=> false,
-            "url"=> "#!/clientPayment"
-          ]);
-          ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>1]);
-          break;
-        }else if( $dateNow !== $dateStart && $is_added_today){
-          ($this->db->getConnection())->update('cycleUserPayments', ['id'=>$pid], ["is_added_today"=>0]);
-        }
-
-      }
     }
 }

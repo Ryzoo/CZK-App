@@ -3,6 +3,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     $scope.loadHistory = false;
     $scope.selectedUserHistory = [];
     $scope.selectedPayment = [];
+    $scope.selectedUser = null;
     $scope.showPay = false;
     $scope.ip = 0;
     $scope.signature = 0;
@@ -11,38 +12,47 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     $scope.merchantKey = '';
     $scope.paymentSummary = [];
     $scope.allCyclPayments = [];
+    $scope.paymentDate = '';
+    $scope.payDay = '';
+    $scope.payWeek = '';
+    $scope.payMonth = '';
+    $scope.userIsSelected = false;
 
     $scope.initPaymentSettings = function() {
         getSettings();
-    }
+    };
 
     $scope.initPayment = function() {
         getUserFromTeam();
         getSettings();
-    }
+        $('.datetimepicker').datetimepicker({
+            format: 'Y:m:d',
+            lang: 'pl',
+            timepicker: false,
+        });
+    };
+
+    $scope.initPaymentHistory = function(){
+        getUserFromTeam();
+        $scope.showContent = true;
+    };
 
     $scope.initPaymentCyclic = function() {
-
         request.backend('getAllCyclePayment', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.allCyclPayments = data;
                 $scope.showContent = true;
             });
         });
-
-    }
+    };
 
     $scope.deleteCyclePay = function(id) {
-
         $rootScope.showModalWindow("Usunięcie płatności", function() {
-            request.backend('deleteCyclePayment', { id: id }, function(data) {
+            request.backend('deleteCyclePayment', { id: id, tmid: $rootScope.user.tmid }, function(data) {
                 $scope.initPaymentCyclic();
             }, "Płatność została usunięta");
         });
-
-
-
-    }
+    };
 
     $scope.addCyclePay = function() {
         var title = $("#cyclikPayTitle").val();
@@ -63,6 +73,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             notify.localNotify("Walidacja", "Wprowadź poprawnie kwotę płatności");
             return;
         }
+
 
         if ($scope.payDay >= 0 && $scope.payDay <= 23) {
             var interval = $scope.payDay;
@@ -107,7 +118,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             });
         });
         getSettings();
-    }
+    };
 
     function getSettings() {
         request.backend('getPaymentOptions', {}, function(data) {
@@ -143,7 +154,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             $scope.showPay = true;
             $scope.getSignatureVerify();
         }
-    }
+    };
 
     $scope.payWithPayu = function() {
         request.backend('payWithPayu', { pmid: $scope.selectedPayment.id }, function(data) {
@@ -154,7 +165,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
                 });
             });
         });
-    }
+    };
 
     $scope.getSignatureVerify = function() {
         var sigData = new Object();
@@ -179,7 +190,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
                 $scope.signature = data;
             });
         });
-    }
+    };
 
     $scope.sendPayment = function() {
         var paymentName = $("#payName").val();
@@ -197,86 +208,71 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             notify.localNotify("Walidacja", "Zaznacz przynajmniej jedną osobę");
             return;
         }
-        var selectedUserId = [];
-        $('.userSelectInput:checked').each(function() {
-            selectedUserId.push($(this).attr("id").split("-")[1]);
-        });
-        request.backend('addPaymentToUser', { tmid: $rootScope.user.tmid, userIds: selectedUserId, amount: paymentAmount, name: paymentName }, function(data) {
-            notify.addNew(new notify.Notification("Nowe płatność. Tytuł: " + paymentName + " Kwota: " + paymentAmount + " zł", selectedUserId, "#!/clientPayment"));
-        }, "Pomyślnie dodano płatnośc do kont użytkowników oraz wysłano powiadomienie");
-    }
 
-    $scope.getUsersHistory = function(historyload = false) {
-        var selectedUserAmount = $('.userSelectInput:checked').length;
-        if (selectedUserAmount <= 0) {
-            notify.localNotify("Walidacja", "Zaznacz przynajmniej jedną osobę");
+        if ( !$scope.paymentDate || $scope.paymentDate.length < 5) {
+            notify.localNotify("Walidacja", "Wprowadź datę płatnośći");
             return;
         }
         var selectedUserId = [];
         $('.userSelectInput:checked').each(function() {
             selectedUserId.push($(this).attr("id").split("-")[1]);
         });
+        request.backend('addPaymentToUser', { date_to_pay:$scope.paymentDate, tmid: $rootScope.user.tmid, userIds: selectedUserId, amount: paymentAmount, name: paymentName }, function(data) {
+            notify.addNew(new notify.Notification("Nowe płatność. Tytuł: " + paymentName + " Kwota: " + paymentAmount + " zł", selectedUserId, "#!/clientPayment"));
+        }, "Pomyślnie dodano płatnośc do kont użytkowników oraz wysłano powiadomienie");
+    };
 
-        request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: selectedUserId }, function(data) {
+    $scope.getUsersHistory = function(usid) {
+        request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: [usid] }, function(data) {
             $scope.$apply(function() {
-                $scope.selectedUserHistory = data;
-                $scope.loadHistory = false;
-                $('ul.tabs').tabs();
-                $('.collapsible').collapsible();
+                $scope.selectedUserHistory = data ? data : [];
+                setTimeout(function(){
+                    let toPayDate = $(".paymentDateToPay").text();
+                    let status = $(".paymentStatus").text();
+                    if(status === "Zakończono") $(".paymentStatus").css('color','#82ce2a');
+                    if(moment(toPayDate).isBefore(moment())) $(".paymentDateToPay").css('color','#d01d1d');
+                },300);
             });
         });
-    }
+    };
 
     $scope.deletePayment = function(id) {
-
         $rootScope.showModalWindow("Usunięcie płatności", function() {
             request.backend('deletePayment', { pmid: id }, function(data) {
-                $scope.getUsersHistory(true);
+                $scope.getUsersHistory($('#selectUserToGetHistory').val());
             }, "Pomyślnie usunięto płatność");
         });
-
-
-    }
+    };
 
     $scope.endPayment = function(id) {
         request.backend('endPayment', { pmid: id }, function(data) {
-            $scope.getUsersHistory(true);
+            $scope.getUsersHistory($('#selectUserToGetHistory').val());
         }, "Zakończono płatność");
-    }
+    };
 
     function getUserFromTeam() {
         request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.allUsers = data;
                 $scope.showContent = true;
+                setTimeout(function() {
+                    Materialize.updateTextFields();
+                    $('select').material_select();
+                    $('ul.tabs').tabs();
+                    $('.collapsible').collapsible();
+                }, 500);
             });
         });
     }
 
-    $(document).off('change', '#selectAllUser');
-    $(document).on("change", "#selectAllUser", function() {
-        var select = false;
-        if ($('#selectAllUser').is(':checked')) {
-            select = true;
-        } else {
-            select = false;
-        }
-        $(".userSelectInput").each(function() {
-            $(this).prop('checked', select);
+    $(document).off('change', '#selectUserToGetHistory');
+    $(document).on("change", "#selectUserToGetHistory", function() {
+        $scope.getUsersHistory($('#selectUserToGetHistory').val());
+        $scope.$apply(function(){
+            $scope.userIsSelected = true;
         });
     });
 
-    $(document).off('change', '.userSelectInput');
-    $(document).on("change", ".userSelectInput, #selectAllUser", function() {
-        if ($scope.payHistory == 1) {
-            $scope.getUsersHistory();
-        }
-    });
-
-    $(document).off('change', '.collapsible');
-    $(document).on("click", ".collapsible", function() {
-        $('.collapsible').collapsible();
-    });
 
     $(document).off('change', '.payOption');
     $(document).on("change", ".payOption", function() {
