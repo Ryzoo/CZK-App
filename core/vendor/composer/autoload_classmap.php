@@ -675,6 +675,9 @@ return array(
     'Psr\\Log\\NullLogger' => $vendorDir . '/psr/log/Psr/Log/NullLogger.php',
     'Psr\\Log\\Test\\DummyTest' => $vendorDir . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
     'Psr\\Log\\Test\\LoggerInterfaceTest' => $vendorDir . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+    'Pusher\\Pusher' => $vendorDir . '/pusher/pusher-php-server/src/Pusher.php',
+    'Pusher\\PusherException' => $vendorDir . '/pusher/pusher-php-server/src/PusherException.php',
+    'Pusher\\PusherInstance' => $vendorDir . '/pusher/pusher-php-server/src/PusherInstance.php',
     'Seld\\CliPrompt\\CliPrompt' => $vendorDir . '/seld/cli-prompt/src/CliPrompt.php',
     'Seld\\JsonLint\\DuplicateKeyException' => $vendorDir . '/seld/jsonlint/src/Seld/JsonLint/DuplicateKeyException.php',
     'Seld\\JsonLint\\JsonParser' => $vendorDir . '/seld/jsonlint/src/Seld/JsonLint/JsonParser.php',
@@ -834,4 +837,7 @@ return array(
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
     'Test\\Crud\\NameModel' => $vendorDir . '/simplon/mysql/test/Crud/NameModel.php',
     'Test\\Crud\\NamesStore' => $vendorDir . '/simplon/mysql/test/Crud/NamesStore.php',
+    'TiBeN\\CrontabManager\\CrontabAdapter' => $vendorDir . '/tiben/crontab-manager/src/CrontabManager/CrontabAdapter.php',
+    'TiBeN\\CrontabManager\\CrontabJob' => $vendorDir . '/tiben/crontab-manager/src/CrontabManager/CrontabJob.php',
+    'TiBeN\\CrontabManager\\CrontabRepository' => $vendorDir . '/tiben/crontab-manager/src/CrontabManager/CrontabRepository.php',
 );

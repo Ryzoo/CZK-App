@@ -2,6 +2,7 @@
     "name": "Staff",
     "description": "Dodaj rolę personelu oraz jego panel zarządzania",
     "version": "1.0",
+    "css": ["style"],
     "backendRoute": [{
             "url": "getTeamStaff",
             "parameters": ["tmid"]

@@ -17,3 +17,7 @@
     margin-bottom: 50px;
     position: relative;
 }
+
+.avatar .title{
+    float: left;
+}

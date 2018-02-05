@@ -70,6 +70,7 @@ app.service('auth', function($http, $rootScope, request) {
                     $rootScope.user.mainPosition = reqData.data.main_position;
                     $rootScope.user.bodyType = reqData.data.body_type;
                     $rootScope.user.address = reqData.data.address;
+                    $rootScope.user.license_type = reqData.data.license_type;
                 },
                 function(jqXHR, textStatus) {
                     console.log("Bład podczas komunikacji z serverem: " + textStatus);

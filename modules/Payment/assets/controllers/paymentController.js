@@ -50,7 +50,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
         var amount = parseFloat($("#payValue").val().replace(",", "."));
 
         if (!startDate || startDate.length <= 0) {
-            notify.localNotify("Walidacja", "Wproawdź datę pierwszej płatności");
+            notify.localNotify("Walidacja", "Wproawdź ilość dni wyprzedzenia");
             return;
         }
 
@@ -64,13 +64,13 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             return;
         }
 
-        if ($scope.payDay != 0) {
+        if ($scope.payDay >= 0 && $scope.payDay <= 23) {
             var interval = $scope.payDay;
             var intervalName = "dzień";
-        } else if ($scope.payWeek != 0) {
+        } else if ($scope.payWeek >= 0 && $scope.payWeek <= 6) {
             var interval = $scope.payWeek;
             var intervalName = "tydzień";
-        } else if ($scope.payMonth != 0) {
+        } else if ($scope.payMonth >= 1 && $scope.payMonth <= 31) {
             var interval = $scope.payMonth;
             var intervalName = "miesiąc";
         } else {
@@ -78,7 +78,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             return;
         }
 
-        request.backend('addCyclePayment', { tmid: $rootScope.user.tmid, title: title, startDate: startDate, interval: interval, intervalName: intervalName, amount: amount }, function(data) {
+        request.backend('addCyclePayment', { tmid: $rootScope.user.tmid, title: title, howLongBefore: startDate, interval: interval, intervalName: intervalName, amount: amount }, function(data) {
             $scope.initPaymentCyclic();
         }, "Płatność została dodana");
     }

@@ -13,8 +13,8 @@
                         <div class="form-group col s12">
                             <div class="row">
                                 <div class="input-field col s12 m6">
-                                    <input id='dataInput' type="text" class='datetimepicker' placeholder="Data pierwszego wystawienia" class="validate">
-                                    <label for="dataInput">Data pierwszego wystawienia</label>
+                                    <input id='dataInput' type="text"  placeholder="ilość dni" class="validate">
+                                    <label for="dataInput">Wyprzedzenie wystawienia od płatności</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <input id='cyclikPayTitle' type="text" placeholder="Tytuł płatności" class="validate">
@@ -23,18 +23,18 @@
                             </div>
                         </div>
                         <div class="form-group col s12">
-                            <div class="row" ng-init=" payDay=0; payWeek=0; payMonth=0; ">
+                            <div class="row" ng-init=" payDay=''; payWeek=''; payMonth=''; ">
                                 <div class="input-field col s12 m4">
-                                    <input id='payForDay' ng-disabled="payMonth != '0' || payWeek !='0'" ng-model="payDay" type="number" placeholder="Co ile dni ?" class="validate" min="0" max="30">
-                                    <label for="payForDay">Co ile dni ?</label>
+                                    <input id='payForDay' ng-disabled="payMonth.length >= 1 || payWeek.length >= 1" ng-model="payDay" type="number" placeholder="(0,23)" class="validate" min="0" max="23">
+                                    <label for="payForDay">Raz dziennie o godzinie ? </label>
                                 </div>
                                 <div class="input-field col s12 m4">
-                                    <input id='payForWeek' ng-disabled="payDay != '0' || payMonth !='0' " ng-model="payWeek" type="number" placeholder="Co ile tygodni ?" class="validate" min="0" max="30">
-                                    <label for="payForWeek">Co ile tygodni ?</label>
+                                    <input id='payForWeek' ng-disabled="payDay.length >= 1 || payMonth.length >= 1 " ng-model="payWeek" type="number" placeholder="(0,6)" class="validate" min="0" max="6">
+                                    <label for="payForWeek">Raz w tygodniu, w dniu ? </label>
                                 </div>
                                 <div class="input-field col s12 m4">
-                                    <input id='payForMonth' ng-disabled="payWeek != '0' || payDay !='0'" ng-model="payMonth" type="number" placeholder="Co ile miesięcy ?" class="validate" min="0" max="30">
-                                    <label for="payForMonth">Co ile miesięcy ?</label>
+                                    <input id='payForMonth' ng-disabled="payWeek.length >= 1 || payDay.length >= 1" ng-model="payMonth" type="number" placeholder="(1,31)" class="validate" min="1" max="31">
+                                    <label for="payForMonth">Raz w miesiącu, w dniu ? </label>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         <table class="table highlight centered">
                             <thead>
                                 <tr>
-                                    <th>Data pierwszej płatności</th>
+                                    <th>Dni wyprzedzenia</th>
                                     <th>Okres czasowy</th>
                                     <th>Tytuł</th>
                                     <th>Kwota</th>
@@ -64,7 +64,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="pay in allCyclPayments">
-                                    <td><b>{{pay.date_start}}</b></td>
+                                    <td><b>{{pay.howLongBefore}}</b></td>
                                     <td>{{pay.intervalTime}} {{pay.intervalName}}</td>
                                     <td>{{pay.title}}</td>
                                     <td><b>{{pay.amount}} zł</b></td>

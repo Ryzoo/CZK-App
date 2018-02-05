@@ -17,7 +17,7 @@
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
         "url": "addCyclePayment",
-        "parameters": ["token", "tmid", "title", "startDate", "interval", "intervalName", "amount"],
+        "parameters": ["token", "tmid", "title", "howLongBefore", "interval", "intervalName", "amount"],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
         "url": "turnOffOnPayuPay",

@@ -29,7 +29,8 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         mainLeg: "",
         mainPosition: "",
         address: "",
-        bodyType: ""
+        bodyType: "",
+        license_type: ""
     }
     $rootScope.feedType = 'opinia';
 
@@ -54,6 +55,9 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         } else {
             $scope.showAllNewsNotify = false;
         }
+
+
+
     }
 
     $rootScope.closeWidget = function(response = null) {
@@ -62,11 +66,10 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     }
 
     $rootScope.dayToDate = function(date) {
-        var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-        var firstDate = new Date();
-        var secondDate = new Date(date.split('/')[2], date.split('/')[1], date.split('/')[0]);
+        var a = moment();
+        var b = moment([date.split('/')[2], date.split('/')[1] - 1, date.split('/')[0]]);
 
-        var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
+        var diffDays = b.diff(a, 'days');
         var color = diffDays > 30 ? '#30a42e' : diffDays < 14 ? '#a32d1f' : '#eab233';
         $('.licenseEndDay').css("color", color);
         return diffDays;
@@ -135,16 +138,17 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                             $rootScope.user.tmid = data[0].tmid;
                             $rootScope.teamNameStr = data[0].name;
                         }
-                        setInterval(function() {
-                            notify.getNew();
-                        }, 2000);
+
                     }
                     setTimeout(function() {
                         $('#loadingContent').hide('slide', {}, 1000);
                         $('#mainContent').show('fade', {}, 1000);
                         document.location.href = "/panel#!/";
                         $route.reload();
-
+                        notify.getNew(true);
+                        setInterval(function() {
+                            notify.getNew();
+                        }, 5000);
                     }, 500);
                     $('select').material_select();
                 });

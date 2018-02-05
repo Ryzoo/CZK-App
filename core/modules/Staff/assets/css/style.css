@@ -1,0 +1,21 @@
+
+
+.licenseTypeBadge{
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 !important;
+    font-weight: 300;
+    font-size: 12px !important;
+    color: white!important;
+}
+
+.licenseTypeBadgeTable{
+    margin: 0 !important;
+    margin-left: 9px !important;
+    margin-top: -5px !important;
+    font-weight: 300;
+    font-size: 12px !important;
+    color: white!important;
+}

@@ -16,7 +16,7 @@ class Staff extends BasicModule {
         $success = true;
         $error = "";
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT staff.id as stid, staff.name as stname, firstname, lastname, email, tel, user_img_path FROM staff, users, user_data WHERE staff.id_user = users.id AND user_data.user_id = users.id AND staff.id_team = '.$tmid.' ORDER BY user_data.lastname' );
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT staff.id as stid, staff.name as stname, firstname, lastname, email, tel, user_img_path, license_type FROM staff, users, user_data WHERE staff.id_user = users.id AND user_data.user_id = users.id AND staff.id_team = '.$tmid.' ORDER BY user_data.lastname' );
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }

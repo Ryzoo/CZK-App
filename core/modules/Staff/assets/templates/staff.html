@@ -2,7 +2,7 @@
 
 <div class="section">
     <div ng-show='showContent' class="row" ng-init="getStaffMembers()">
-        <div class="col s12 col m6 col l4 noPrint" ng-show="user.role == 'TRENER' || user.role == 'KOORD' ">
+        <div class="col s12 m6 noPrint" ng-show="user.role == 'TRENER' || user.role == 'KOORD' ">
             <div class="card" style='height: 288px'>
                 <div class="card-content">
                     <div class="card-title">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 col m6 col l4 noPrint" ng-show="user.role == 'TRENER' || user.role == 'KOORD' ">
+        <div class="col s12 m6 noPrint" ng-show="user.role == 'TRENER' || user.role == 'KOORD' ">
             <div class="card" style='height: 288px'>
                 <div class="card-content">
                     <div class="card-title">
@@ -57,30 +57,27 @@
                 </div>
             </div>
         </div>
-
-        <div class="col s12 col m6 col l4 page-break" ng-repeat="staff in koordsInSite">
-            <div class="card" style='height: 288px'>
+        <div class="col s12 m6 l4 page-break" ng-repeat="staff in koordsInSite">
+            <div class="card" style='min-height: 210px'>
                 <div class="card-content">
                     <div class="card-title">
                         <div ng-show="staff.email != 'cmc.app@centrumklubu.pl'">Trener Koordynator</div>
                         <div ng-show="staff.email == 'cmc.app@centrumklubu.pl'">Administracja platformy</div>
                     </div>
+                    <span class="licenseTypeBadge badge red" ng-show="staff.license_type.length > 1">{{staff.license_type}}</span>
                     <div id='st-{{staff.stid}}' class="row">
-                        <div class="col-md-5" style='min-height:60px'>
-                            <img src="{{staff.user_img_path}}" style='margin-top:20px;' class="circle" width="60" height="60" alt="{{staff.firstname}}-{{staff.lastname}}"></img>
+                        <div class="col-md-5" style='height:60px;margin-top:24px;'>
+                            <img src="{{staff.user_img_path}}"  class="circle" width="60" height="60" alt="{{staff.firstname}}-{{staff.lastname}}"></img>
                         </div>
                         <div class="col-md-7">
                             <div class="row">
                                 <div class='titleIn'>{{staff.firstname}} {{staff.lastname}}</div>
                             </div>
-                            </br>
                             <div class="row">
-                                <div class="col s12"><b>nr telefonu</b></div>
-                                <div class="col s12">{{staff.tel}}</div>
+                                <small class="col s12">{{staff.email}}</small>
                             </div>
                             <div class="row">
-                                <div class="col s12"><b>adres email</b></div>
-                                <div class="col s12">{{staff.email}}</div>
+                                <small class="col s12" style="padding-top:10px;">{{staff.tel}}</small>
                             </div>
                         </div>
 
@@ -89,8 +86,8 @@
             </div>
         </div>
 
-        <div class="col s12 col m6 col l4 page-break" ng-repeat="staff in staffMembers">
-            <div class="card" style='height: 288px'>
+        <div class="col s12 m6 l4 page-break" ng-repeat="staff in staffMembers">
+            <div class="card" style='min-height: 210px'>
                 <div class="card-content">
                     <div class="card-title">
                         {{staff.stname}}
@@ -98,22 +95,20 @@
                             <i class="fa fa-times" aria-hidden="true" ng-click="deleteStaff(staff.stid)"></i>
                         </div>
                     </div>
+                    <span class="licenseTypeBadge badge red" ng-show="staff.license_type.length > 1">{{staff.license_type}}</span>
                     <div id='st-{{staff.stid}}' class="row">
-                        <div class="col-md-5" style='min-height:60px'>
-                            <img src="{{staff.user_img_path}}" style='margin-top:20px;' class="circle" width="60" height="60" alt="{{staff.firstname}}-{{staff.lastname}}"></img>
+                        <div class="col-md-5" style='height:60px;margin-top:24px;'>
+                            <img src="{{staff.user_img_path}}" class="circle" width="60" height="60" alt="{{staff.firstname}}-{{staff.lastname}}"></img>
                         </div>
                         <div class="col-md-7">
                             <div class="row">
                                 <div class='titleIn'>{{staff.firstname}} {{staff.lastname}}</div>
                             </div>
-                            </br>
                             <div class="row">
-                                <div class="col s12"><b>nr telefonu</b></div>
-                                <div class="col s12">{{staff.tel}}</div>
+                                <small class="col s12" >{{staff.email}}</small>
                             </div>
                             <div class="row">
-                                <div class="col s12"><b>adres email</b></div>
-                                <div class="col s12">{{staff.email}}</div>
+                                <small class="col s12" style="padding-top:10px;">{{staff.tel}}</small>
                             </div>
                         </div>
 

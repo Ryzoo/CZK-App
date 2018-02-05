@@ -22,7 +22,7 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
 
     $scope.setPerm = function(perm) {
         $rootScope.viewPerm = perm;
-    }
+    };
 
     $scope.updateUserDate = function(isPass = false) {
         var id = isPass ? "#userUpdateDataFormPassImg" : "#userUpdateDataForm";
@@ -32,7 +32,7 @@ app.controller('accountController', function($scope, auth, $rootScope, request, 
                 auth.getUserData();
             });
         }, 'Twoje dane zostały pomyślnie zaktualizowane. Niektóre zmiany mogą być widoczne dopiero po odświeżeniu strony.( ctrl+f5 )', true);
-    }
+    };
 
     $(document).off("change", "#userImgFile");
     $(document).on("change", "#userImgFile", function(event) {

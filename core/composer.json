@@ -4,7 +4,9 @@
         "kherge/json": "*",
         "alchemy/zippy": "*",
         "composer/composer": "*",
-        "php-ffmpeg/php-ffmpeg": "*"
+        "php-ffmpeg/php-ffmpeg": "*",
+        "pusher/pusher-php-server": "^3.0",
+        "tiben/crontab-manager": "~1.2"
     },
     "autoload": {
         "psr-4": {

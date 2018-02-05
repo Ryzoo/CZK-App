@@ -126,6 +126,7 @@ class Auth {
         if( isset( $data["weight"] ) ) $dataUsers["weight"] = trim($data["weight"]);
         if( isset( $data["height"] ) ) $dataUsers["height"] = trim($data["height"]);
         if( isset( $data["address"] ) ) $dataUsers["address"] = trim($data["address"]);
+        if( isset( $data["license_type"] ) ) $dataUsers["license_type"] = trim($data["license_type"]);
 
         $result = ($this->db->getConnection())->update('user_data', $condsUsers, $dataUsers);
 

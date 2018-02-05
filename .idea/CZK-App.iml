@@ -27,6 +27,7 @@
           <root url="file://$MODULE_DIR$/../go2sport/vendor/guzzlehttp/promises" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/guzzlehttp/psr7" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/hamcrest/hamcrest-php" />
+          <root url="file://$MODULE_DIR$/../go2sport/vendor/htmlmin/htmlmin" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/illuminate/contracts" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/illuminate/filesystem" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/illuminate/http" />
@@ -46,6 +47,7 @@
           <root url="file://$MODULE_DIR$/../go2sport/vendor/league/oauth2-server" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/mockery/mockery" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/monolog/monolog" />
+          <root url="file://$MODULE_DIR$/../go2sport/vendor/mrclay/minify" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/mtdowling/cron-expression" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/myclabs/deep-copy" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/nesbot/carbon" />
@@ -121,6 +123,7 @@
           <root url="file://$MODULE_DIR$/../go2sport/vendor/guzzlehttp/promises" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/guzzlehttp/psr7" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/hamcrest/hamcrest-php" />
+          <root url="file://$MODULE_DIR$/../go2sport/vendor/htmlmin/htmlmin" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/illuminate/contracts" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/illuminate/filesystem" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/illuminate/http" />
@@ -140,6 +143,7 @@
           <root url="file://$MODULE_DIR$/../go2sport/vendor/league/oauth2-server" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/mockery/mockery" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/monolog/monolog" />
+          <root url="file://$MODULE_DIR$/../go2sport/vendor/mrclay/minify" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/mtdowling/cron-expression" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/myclabs/deep-copy" />
           <root url="file://$MODULE_DIR$/../go2sport/vendor/nesbot/carbon" />

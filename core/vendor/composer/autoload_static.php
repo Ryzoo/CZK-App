@@ -14,6 +14,7 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
+            'TiBeN\\' => 6,
             'Test\\' => 5,
         ),
         'S' => 
@@ -31,6 +32,7 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         ),
         'P' => 
         array (
+            'Pusher\\' => 7,
             'Psr\\Log\\' => 8,
         ),
         'M' => 
@@ -66,6 +68,10 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
     );
 
     public static $prefixDirsPsr4 = array (
+        'TiBeN\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tiben/crontab-manager/src',
+        ),
         'Test\\' => 
         array (
             0 => __DIR__ . '/..' . '/simplon/mysql/test',
@@ -109,6 +115,10 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         'Seld\\CliPrompt\\' => 
         array (
             0 => __DIR__ . '/..' . '/seld/cli-prompt/src',
+        ),
+        'Pusher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pusher/pusher-php-server/src',
         ),
         'Psr\\Log\\' => 
         array (
@@ -872,6 +882,9 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Pusher\\Pusher' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Pusher.php',
+        'Pusher\\PusherException' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherException.php',
+        'Pusher\\PusherInstance' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherInstance.php',
         'Seld\\CliPrompt\\CliPrompt' => __DIR__ . '/..' . '/seld/cli-prompt/src/CliPrompt.php',
         'Seld\\JsonLint\\DuplicateKeyException' => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint/DuplicateKeyException.php',
         'Seld\\JsonLint\\JsonParser' => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint/JsonParser.php',
@@ -1031,6 +1044,9 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Test\\Crud\\NameModel' => __DIR__ . '/..' . '/simplon/mysql/test/Crud/NameModel.php',
         'Test\\Crud\\NamesStore' => __DIR__ . '/..' . '/simplon/mysql/test/Crud/NamesStore.php',
+        'TiBeN\\CrontabManager\\CrontabAdapter' => __DIR__ . '/..' . '/tiben/crontab-manager/src/CrontabManager/CrontabAdapter.php',
+        'TiBeN\\CrontabManager\\CrontabJob' => __DIR__ . '/..' . '/tiben/crontab-manager/src/CrontabManager/CrontabJob.php',
+        'TiBeN\\CrontabManager\\CrontabRepository' => __DIR__ . '/..' . '/tiben/crontab-manager/src/CrontabManager/CrontabRepository.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

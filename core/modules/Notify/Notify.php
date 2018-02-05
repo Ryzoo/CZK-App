@@ -2,6 +2,7 @@
 namespace Core\Notify;
 
 use Core\System\BasicModule;
+use Pusher;
 
 class Notify extends BasicModule {
     function install(){
@@ -21,6 +22,16 @@ class Notify extends BasicModule {
         $toAll = $data["toAll"] == 'true' ? true : false;
         $url = $data["url"];
         $idUser = ($this->auth)->getUserId($token);
+        $options = array(
+            'cluster' => 'eu',
+            'encrypted' => true
+        );
+        $pusher = new Pusher\Pusher(
+            'f6e645e5d1587187d17e',
+            'cc5035aab8bc39cd3813',
+            '464577',
+            $options
+        );
 
         $data = [
             'title'   => $title,
@@ -46,7 +57,6 @@ class Notify extends BasicModule {
             }
             $toReturn = ($this->db->getConnection())->insertMany('user_notifications', $data);
         }
-
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 

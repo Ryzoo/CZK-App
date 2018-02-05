@@ -23,11 +23,11 @@ class Table extends BasicModule {
         $error = "";
         $tmid = $data["tmid"];
 
-        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT posts.id as psid, content, date_add, users.id as usid, firstname, lastname, user_img_path, token FROM users, user_data, posts WHERE posts.id_user = users.id AND user_data.user_id = users.id AND posts.id_team = '.$tmid.' ORDER BY posts.id DESC ');
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT posts.id as psid, content, date_add, users.id as usid, firstname, lastname, user_img_path, token, license_type FROM users, user_data, posts WHERE posts.id_user = users.id AND user_data.user_id = users.id AND posts.id_team = '.$tmid.' ORDER BY posts.id DESC ');
 
         for($i=0;$i<count($toReturn);$i++){
             $id_post = $toReturn[$i]['psid'];
-            $toReturn[$i]['comments'] = ($this->db->getConnection())->fetchRowMany('SELECT comments.id as cmid, users.id as usid, content, date_add, firstname, lastname, user_img_path FROM comments, users, user_data WHERE user_data.user_id =users.id AND comments.id_user = users.id AND id_post = '.$id_post.' ORDER BY comments.id DESC ');
+            $toReturn[$i]['comments'] = ($this->db->getConnection())->fetchRowMany('SELECT comments.id as cmid, users.id as usid, content, date_add, firstname, lastname, user_img_path, license_type FROM comments, users, user_data WHERE user_data.user_id =users.id AND comments.id_user = users.id AND id_post = '.$id_post.' ORDER BY comments.id DESC ');
         }
 
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );

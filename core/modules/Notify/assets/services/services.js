@@ -25,7 +25,7 @@ app.service('notify', function($http, $rootScope, request) {
 
     }
 
-    this.getNew = function() {
+    this.getNew = function(firstIs = false) {
         var urlToPost = "backend/getNewNotify";
         var dataToSend = {
             token: $rootScope.user.token,
@@ -39,40 +39,39 @@ app.service('notify', function($http, $rootScope, request) {
                     $rootScope.$apply(function() {
                         if (reqData.data) {
                             if (reqData.data[0]) {
-
                                 if (reqData.data[0].id === $rootScope.lastNotId) return;
-
+                                $rootScope.lastNotId = reqData.data[0].id;
                                 $rootScope.newNotify = reqData.data;
-                                $rootScope.notifyCount = reqData.data.length;
-
-                                var count = 0;
-                                for (var i = 0; i < $rootScope.notifyCount; i++) {
+                                let count = 0;
+                                let toShow = null;
+                                for (var i = 0; i < $rootScope.newNotify.length; i++) {
                                     if (reqData.data[i].is_new === "1") {
                                         count++;
+                                        toShow = reqData.data[i];
+                                    }
+                                }
+                                if(toShow){
+                                    if(!firstIs){
+                                        local('Otrzymano powiadomienie', toShow.title);
+                                        if (Notification) {
+                                            if (Notification.permission === "granted") {
+                                                var notification = new Notification(toShow.title);
+                                            }
+                                            else {
+                                                Notification.requestPermission(function (permission) {
+                                                    if (permission === "granted") {
+                                                        var notification = new Notification(toShow.title);
+                                                    }
+                                                });
+                                            }
+                                        }
                                     }
                                 }
                                 $rootScope.notifyCount = count;
-                            }
-
-                        } else {
-                            $rootScope.notifyCount = 0;
-                        }
-                        var powAdded = false;
-                        for (var i = 0; i < $rootScope.notifyCount; i++) {
-                            if (reqData.data[i].id > $rootScope.lastNotId) {
-                                local('Otrzymano powiadomienie', reqData.data[i].title);
-                                $rootScope.lastNotId = reqData.data[i].id;
-                                if (window.Notification && Notification.permission !== "denied" && i - 1 == $rootScope.notifyCount) {
-                                    powAdded = true;
-                                    Notification.requestPermission(function(status) {
-                                        if (status === "granted") {
-                                            var notification = new Notification(reqData.data[i].title);
-                                        }
-                                    });
-                                }
+                            }else {
+                                $rootScope.notifyCount = 0;
                             }
                         }
-
                     });
                 }
             },
