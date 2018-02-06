@@ -42,9 +42,12 @@ app.service('request', function($http, $rootScope) {
                             locaNotifyFun('Sukces',successMessage);
                         }
                     } else {
-                        console.log(msg);
                         if (msg.error) {
                             locaNotifyFun('Bład',msg.error);
+                        }
+                        if(msg.error == 'Nie masz wystarczających uprawnień'){
+                            Cookies.remove('tq');
+                            document.location = "login";
                         }
                     }
                 },
@@ -72,9 +75,12 @@ app.service('request', function($http, $rootScope) {
                             locaNotifyFun('Sukces',successMessage);
                         }
                     } else {
-                        console.log(msg);
                         if (msg.error) {
                             locaNotifyFun('Bład',msg.error);
+                        }
+                        if(msg.error == 'Nie masz wystarczających uprawnień'){
+                            Cookies.remove('tq');
+                            document.location = "login";
                         }
                     }
                 },

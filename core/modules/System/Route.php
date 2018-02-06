@@ -231,7 +231,7 @@ class Route{
                         if( isset($this->modules[$i]->backendRoute[$j]->auth) ){
                             $permission = $this->modules[$i]->backendRoute[$j]->auth;
                             if( !$this->auth->checkPerm($token,$permission)){
-                                $errorMessage = "Nie masz wystarczających uprawnień: ".$token;
+                                $errorMessage = "Nie masz wystarczających uprawnień";
                                 break;
                             }
                         }
