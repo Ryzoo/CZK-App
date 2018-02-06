@@ -20,12 +20,12 @@
         height: auto;
         max-height: 100vh;
         width: 100%;
-        z-index: 97;
-        padding-top: 54px;
+        z-index: 90 !important;
+        padding-top: 70px;
     }
     /* body container */
     #main-content {
-        margin: 0px!important;
+        margin: 0px !important;
         position: none !important;
     }
     #sidebar>ul>li>a>span {
@@ -201,9 +201,7 @@
 }
 
 @media(max-width: 601px) {
-    #sidebar {
-        padding-top: 50px;
-    }
+
     .section,
     .wrapper {
         padding-left: 0;

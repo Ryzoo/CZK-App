@@ -1,13 +1,18 @@
 app.controller('accountController', function($scope, auth, $rootScope, request, notify) {
     $scope.logout = auth.logout;
-
+    let interval = null;
 
     $scope.initAccount = function() {
         if (!auth.checkIsLogged()) {
             auth.logout();
             return;
         }
-        $('#mainProfileImg').attr("src", $rootScope.user.imgPath);
+        if(interval) clearInterval(interval);
+        interval = setInterval(function(){
+            $(".prettydate").each(function(){
+                $(this).prettydate();
+            });
+        },200);
     };
 
     $scope.$on('$viewContentLoaded', function() {

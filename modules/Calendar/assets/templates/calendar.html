@@ -41,7 +41,7 @@
                         </form>
                     </div>
                     <div class="row">
-                        <p>Wybierz wydarzenie w kalendarzu, aby je edytować lub usunąć </p>
+                        <p ng-show='!actualEdit' style="margin: 20px;">Wybierz wydarzenie w kalendarzu, aby je edytować lub usunąć </p>
                         <div class='editEvent' style='display: none;'>
                             <div class='titleIn'>Edycja wydarzenia</div>
                             <form class="form-horizontal style-form" id="userUpdateDataForm">

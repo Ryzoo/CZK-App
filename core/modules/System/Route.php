@@ -53,13 +53,7 @@ class Route{
                     array_push($this->modulesJs,$js[$x]);
                 }
             }
-            if( isset($moduleJson->css) ){
-                $css = $moduleJson->css;
-                for ($x=0; $x < count($css); $x++) { 
-                    $css[$x] = "modules/".$moduleJson->name."/assets/css/" . $css[$x].".css";
-                    array_push($this->modulesCss,$css[$x]);
-                }
-            }
+
             if( isset($moduleJson->anchor) ){
                 $anchor = $moduleJson->anchor;
                 for ($x=0; $x < count($anchor); $x++) { 
@@ -133,13 +127,7 @@ class Route{
                     array_push($this->modulesJs,$js[$x]);
                 }
             }
-            if( isset($moduleJson->css) ){
-                $css = $moduleJson->css;
-                for ($x=0; $x < count($css); $x++) { 
-                    $css[$x] = "core/modules/".$moduleJson->name."/assets/css/" . $css[$x].".css";
-                    array_push($this->modulesCss,$css[$x]);
-                }
-            }
+
             if( isset($moduleJson->anchor) ){
                 $anchor = $moduleJson->anchor;
                 for ($x=0; $x < count($anchor); $x++) { 

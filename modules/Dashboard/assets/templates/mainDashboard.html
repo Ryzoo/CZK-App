@@ -109,7 +109,7 @@
                                         <p>Brak aktualnie trwających wydarzeń</p>
                                     </div>
                                     <ul class="collection eventTableDashboard" ng-show='nowEvents.length > 0'>
-                                        <li class="collection-item" ng-repeat="now in nowEvents" style="border-color:{{now.color}}; border-bottom:1px solid;">{{now.title}}</br>-Do zakończenia: <b class='prettydate'>{{now.end}}</b></li>
+                                        <li class="collection-item" ng-repeat="now in nowEvents" style="border-color:{{now.color}}; border-bottom:1px solid;">{{now.title}}</br>-Zakończenie: <b class='prettydate'>{{now.end}}</b></li>
                                     </ul>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                                     </form>
                                 </div>
                                 <div class="row" ng-show="todoList.length <= 0 ">
-                                    <p style='color: #9e9e9e;font-size: 16px;'>Masz coś ważnego do zrobienia? Zapisz to tutaj, aby nie zapomnieć.</p>
+                                    <p style='color: #9e9e9e;font-size: 16px; padding: 0 20px;'>Masz coś ważnego do zrobienia? Zapisz to tutaj, aby nie zapomnieć.</p>
                                 </div>
                                 <div class="col s12">
                                     <ul class="collection todoTable">

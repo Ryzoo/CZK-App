@@ -149,6 +149,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                         setInterval(function() {
                             notify.getNew();
                         }, 5000);
+
                     }, 500);
                     $('select').material_select();
                 });

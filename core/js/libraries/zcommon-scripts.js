@@ -34,13 +34,18 @@ var Script = function() {
             var wSize = $(window).width();
             if (wSize <= 768) {
                 $('#container').addClass('sidebar-close');
-                $('#sidebar > ul').hide();
-                $('#main-content').css({
-                    'margin-left': '0px'
-                });
-                $(".sidebar-toggle-box").first().css("margin-left", "15px");
-                $('#sidebar').css({
-                    'margin-left': '-768px'
+
+                $('#main-content').stop().animate({
+                    marginLeft: 0
+                },500);
+
+                $(".sidebar-toggle-box").first().stop().animate({
+                    marginLeft: 15
+                },500);
+                $('#sidebar').stop().animate({
+                    marginLeft: -768
+                },1200,function(){
+                    $('#sidebar > ul').hide();
                 });
 
                 $(".adw").each(function() {
@@ -52,14 +57,16 @@ var Script = function() {
             if (wSize > 768) {
                 $('#container').removeClass('sidebar-close');
                 $('#sidebar > ul').show();
-                $('#main-content').css({
-                    'margin-left': '210px'
-                });
-                $(".sidebar-toggle-box").first().css("margin-left", "230px");
+                $('#main-content').stop().animate({
+                    marginLeft: 210
+                },500);
+                $(".sidebar-toggle-box").first().stop().animate({
+                    marginLeft: 230
+                },500);
                 $('#sidebar > ul').show();
-                $('#sidebar').css({
-                    'margin-left': '0'
-                });
+                $('#sidebar').stop().animate({
+                    marginLeft: 0
+                },500);
 
                 $(".adw").each(function() {
                     $(this).removeClass("adwWithout");
@@ -71,7 +78,9 @@ var Script = function() {
         function responseResize() {
             var wSize = $(window).width();
             if (wSize <= 768) {
-                $(".sidebar-toggle-box").first().css("margin-left", "15px");
+                $(".sidebar-toggle-box").first().stop().animate({
+                    marginLeft: 15
+                },500);
                 $(".adw").each(function() {
                     $(this).removeClass("adwWith");
                     $(this).addClass("adwWithout");
@@ -79,14 +88,15 @@ var Script = function() {
             } else {
                 $('#container').removeClass('sidebar-close');
                 $('#sidebar > ul').show();
-                $('#main-content').css({
-                    'margin-left': '210px'
-                });
-                $(".sidebar-toggle-box").first().css("margin-left", "230px");
-                $('#sidebar > ul').show();
-                $('#sidebar').css({
-                    'margin-left': '0'
-                });
+                $('#main-content').stop().animate({
+                    marginLeft: 210
+                },500);
+                $(".sidebar-toggle-box").first().stop().animate({
+                    marginLeft: 230
+                },500);
+                $('#sidebar').stop().animate({
+                    marginLeft: 0
+                },500);
                 $(".adw").each(function() {
                     $(this).removeClass("adwWithout");
                     $(this).addClass("adwWith");
@@ -102,12 +112,14 @@ var Script = function() {
 
         if ($(window).width() <= 768) {
             $('#container').addClass('sidebar-close');
-            $('#sidebar > ul').hide();
-            $('#main-content').css({
-                'margin-left': '0px'
-            });
-            $('#sidebar').css({
-                'margin-left': '-768px'
+
+            $('#main-content').stop().animate({
+                marginLeft: 0
+            },500);
+            $('#sidebar').stop().animate({
+                marginLeft: -768
+            },1200,function(){
+                $('#sidebar > ul').hide();
             });
 
             $(".adw").each(function() {
@@ -121,11 +133,13 @@ var Script = function() {
         if ($(window).width() <= 768) {
             $('#container').addClass('sidebar-close');
             $('#sidebar > ul').hide();
-            $('#main-content').css({
-                'margin-left': '0px'
-            });
-            $('#sidebar').css({
-                'margin-left': '-768px'
+            $('#main-content').stop().animate({
+                marginLeft: 0
+            },500);
+            $('#sidebar').stop().animate({
+                marginLeft: -768
+            },1200,function(){
+                $('#sidebar > ul').hide();
             });
 
             $(".adw").each(function() {
@@ -141,36 +155,37 @@ var Script = function() {
 
     function toggleSidebar() {
         if ($('#sidebar > ul').is(":visible") === true) {
-            $('#main-content').css({
-                'margin-left': '0px'
+            $('#main-content').stop().animate({
+                marginLeft: 0
+            },500);
+            $('#sidebar').stop().animate({
+                marginLeft: -768
+            },1200,function(){
+                $('#sidebar > ul').hide();
             });
-            $('#sidebar').css({
-                'margin-left': '-768px'
-            });
-            $('#sidebar > ul').hide();
             $("#container").addClass("sidebar-closed");
-            $(".sidebar-toggle-box").first().css("margin-left", "15px");
-
-
+            $(".sidebar-toggle-box").first().stop().animate({
+                marginLeft: 15
+            },500);
             $(".adw").each(function() {
                 $(this).removeClass("adwWith");
                 $(this).addClass("adwWithout");
             });
 
-
         } else {
-            $('#main-content').css({
-                'margin-left': '210px'
-            });
+            $('#main-content').stop().animate({
+                marginLeft: 210
+            },500);
             $('#sidebar > ul').show();
-            $('#sidebar').css({
-                'margin-left': '0'
-            });
+            $('#sidebar').stop().animate({
+                marginLeft: 0
+            },500);
             $("#container").removeClass("sidebar-closed");
             if ($(window).width() >= 768) {
-                $(".sidebar-toggle-box").first().css("margin-left", "230px");
+                $(".sidebar-toggle-box").first().stop().animate({
+                    marginLeft: 230
+                },500);
             }
-
             $(".adw").each(function() {
                 $(this).removeClass("adwWithout");
                 $(this).addClass("adwWith");

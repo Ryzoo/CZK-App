@@ -7,9 +7,12 @@
     <meta name="keywords" content="Team App Football">
     <meta name="author" content="Main - Grzegorz Kastelik second - Łukasz Kościelniak">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/files/img/favicon.ico">
     <title ng-show="mainSettings.length > 0">{{mainSettings.appName}}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="icon" href="/files/img/favicon.ico">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/public/styles.min.css" rel="stylesheet">
     <div id="fb-root"></div>
     <script>
         (function(d, s, id) {
@@ -21,6 +24,171 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+    <style>
+        #loader-wrapper {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            transform: translate(-50%, -50%);
+        }
+
+        #canvasPlayer {
+            display: none;
+        }
+
+        #loader {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #16a085;
+            animation: spinIt 1.7s linear infinite;
+        }
+
+        .loaderContainer {
+            position: relative;
+            width: 100%;
+            height: calc( 100vh - 120px);
+        }
+
+        #loader::before {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #e74c3c;
+            animation: spin-reverse .9s linear infinite;
+        }
+
+        .fElementRowConainer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .f50 {
+            width: 50%;
+        }
+
+        .f33,
+        .f33-1 {
+            width: 33.3%;
+        }
+
+        .f67 {
+            width: 66%;
+        }
+
+        .loaderMainText h5 {
+            font-size: 22px;
+            text-align: center;
+            margin-top: -20vh;
+            padding: 0 10px;
+            color: #9f9f9f;
+            font-weight: 300;
+        }
+
+        @media (max-width:768px) {
+            .f33,
+            .f67 {
+                width: 50%;
+            }
+            .f33-1 {
+                width: 100%;
+            }
+            #nav-accordion p a img {
+                display: none;
+            }
+        }
+
+        @media (max-width:630px) {
+            .f33,
+            .f50,
+            .f67 {
+                width: 100%;
+            }
+        }
+
+        #loader::after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #f9c922;
+            animation: spinIt .8s linear infinite;
+        }
+
+        @keyframes spinIt {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-reverse {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        #loader-wrapper .loader-section {
+            position: fixed;
+            top: 0;
+            width: 51%;
+            height: 100%;
+            background: #222;
+            z-index: 10;
+        }
+
+        #loader-wrapper .loader-section.section-left {
+            left: 0;
+        }
+
+        #loader-wrapper .loader-section.section-right {
+            right: 0;
+        }
+
+
+        /* Loaded styles */
+
+        .loaded #loader-wrapper .loader-section.section-left {
+            transform: translateX(-100%);
+            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .loaded #loader-wrapper .loader-section.section-right {
+            transform: translateX(100%);
+            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .loaded #loader {
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        .loaded #loader-wrapper {
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s 1s ease-out;
+        }
+
+    </style>
 </head>
 
 <body ng-controller="accountController">
@@ -117,7 +285,7 @@
         <aside id="sidebar" class="nav-collapse noPrint">
             <ul class="sidebar-menu" id="nav-accordion">
                 <p class="centered">
-                    <a href="#!/myProfile"><img id='mainProfileImg' src="" class="circle" width="60" height="60"></a>
+                    <a href="#!/myProfile"><img id='mainProfileImg' ng-src="{{user.imgPath}}" class="circle" width="60" height="60"></a>
                 </p>
                 <h5 class="centered">{{user.firstname}} {{user.lastname}}</h5>
             </ul>
@@ -134,177 +302,44 @@
         </section>
     </div>
 
-    <link href="/core/css/style.css" rel="stylesheet">
-    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script>
-        function GetXmlHttpObject() {
-            var objXMLHttp = null;
-            if (window.XMLHttpRequest) {
-                objXMLHttp = new XMLHttpRequest();
-            } else if (window.ActiveXObject) {
-                objXMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            return objXMLHttp;
-        }
-        var JavaScript = {
-            load: function(src) {
-                var xhrObj = GetXmlHttpObject();
-                xhrObj.open('GET', src, false);
-                xhrObj.send('');
-                var se = document.createElement('script');
-                se.type = "text/javascript";
-                se.text = xhrObj.responseText;
-                document.getElementsByTagName('body')[0].appendChild(se);
-            },
-            loadCss: function(src) {
-                var xhrObj = GetXmlHttpObject();
-                xhrObj.open('GET', src, false);
-                xhrObj.send('');
-                var se = document.createElement('style');
-                se.type = 'text/css';
-                if (se.styleSheet) {
-                    se.styleSheet.cssText = xhrObj.responseText;
-                } else {
-                    se.appendChild(document.createTextNode(xhrObj.responseText));
-                }
-                document.getElementsByTagName('body')[0].appendChild(se);
-            }
-        };
-        var urlToPost = 'backend/getPageCss';
-        $.ajax({
-            url: urlToPost,
-            type: "POST",
-            data: [],
-            async: false,
-            success: function(msg) {
-                if (msg.success) {
-                    for (var x = 0; x < msg.data.length; x++) {
-                        JavaScript.loadCss(msg.data[x]);
-                    }
-                } else {
-                    if (msg.error)
-                        $.gritter.add({
-                            title: 'Bład',
-                            text: msg.error,
-                            image: '',
-                            sticky: true,
-                            time: 3,
-                            class_name: 'my-sticky-class'
-                        });
-                }
-            },
-            error: function(jqXHR, textStatus) {
-                $.gritter.add({
-                    title: 'Bład',
-                    text: "Blad podczas laczenia z serverem: " + textStatus,
-                    image: '',
-                    sticky: true,
-                    time: 3,
-                    class_name: 'my-sticky-class'
-                });
-            }
-        });
-    </script>
+
 </body>
 
 </html>
 
-<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-<script src="/core/js/libraries/jquery-ui.js"></script>
-<script src="/core/js/libraries/jquery.dcjqaccordion.2.7.js"></script>
-<script src="/core/js/libraries/jquery.scrollTo.min.js"></script>
-<script src="/core/js/libraries/jquery.nicescroll.js"></script>
-<script src="/core/js/libraries/jquery.sparkline.js"></script>
-<script src="/core/js/libraries/jquery.datetimepicker.full.js"></script>
-<script src="/core/js/libraries/gritter/js/jquery.gritter.js"></script>
-<script src="/core/js/libraries/gritter-conf.js"></script>
-<script src="/core/js/libraries/js.cookie.js"></script>
-<script src="/core/js/libraries/zabuto_calendar.js"></script>
-<script src="/core/js/libraries/fullcalendar/fullcalendar.min.js"></script>
-<script src="/core/js/libraries/moments.js"></script>
-<script src="/core/js/libraries/calendar-conf-events.js"></script>
-<script src="/core/js/libraries/common-scripts.js"></script>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $.ajax({
+        url: "backend/getPageCss",
+        type: "POST",
+        data: [],
+        async: false,
+        success: function(msg) {
+            if (msg.success) {
+                for (var x = 0; x < msg.data.length; x++) {
+                    let newLink=document.createElement("link");
+                    newLink.setAttribute("rel", "stylesheet");
+                    newLink.setAttribute("type", "text/css");
+                    newLink.setAttribute("href", msg.data[x]);
+                    document.getElementsByTagName("head")[0].appendChild(newLink)
+                }
+            }
+        },
+        error: function(jqXHR, textStatus) {
+            window.location('login');
+        }
+    });
+</script>
+<script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="/public/additionalScripts.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 <script src="//cdn.rawgit.com/konvajs/konva/1.6.8/konva.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="/public/angularScripts.min.js"></script>
 <script>
-    var urlToPost = 'backend/getServices';
     $.ajax({
-        url: urlToPost,
-        type: "POST",
-        data: [],
-        async: false,
-        success: function(msg) {
-            if (msg.success) {
-                JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js");
-                JavaScript.load("//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js");
-                JavaScript.load("/core/js/services.js");
-                for (var x = 0; x < msg.data.length; x++) {
-                    JavaScript.load(msg.data[x]);
-                }
-
-            } else {
-                if (msg.error)
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: msg.error,
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-            }
-        },
-        error: function(jqXHR, textStatus) {
-            $.gritter.add({
-                title: 'Bład',
-                text: "Blad podczas laczenia z serverem: " + textStatus,
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
-        }
-    });
-    var urlToPost = 'backend/getPageJs';
-    $.ajax({
-        url: urlToPost,
-        type: "POST",
-        data: [],
-        async: false,
-        success: function(msg) {
-            if (msg.success) {
-                for (var x = 0; x < msg.data.length; x++) {
-                    JavaScript.load(msg.data[x]);
-                }
-                JavaScript.load("/core/js/controllers/mainController.js");
-                JavaScript.load("/core/js/route.js");
-            } else {
-                if (msg.error)
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: msg.error,
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
-            }
-        },
-        error: function(jqXHR, textStatus) {
-            $.gritter.add({
-                title: 'Bład',
-                text: "Blad podczas laczenia z serverem: " + textStatus,
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
-        }
-    });
-
-    var urlToPost = 'backend/getLeftMenu';
-    $.ajax({
-        url: urlToPost,
+        url: "backend/getLeftMenu",
         type: "POST",
         data: [],
         async: false,
@@ -345,51 +380,14 @@
                                 toAppend = "<li class='main-sidebar' " + additional + "> <a class='waves-effect waves-light' href='" + msg.data[i].link.url +
                                     "'> " + icon + "<span>" + msg.data[i].link.label + "</span> </a> </li>";
                             }
-
                         }
                     }
                     $("#nav-accordion").append(toAppend);
                 }
-            } else {
-                if (msg.error)
-                    $.gritter.add({
-                        title: 'Bład',
-                        text: msg.error,
-                        image: '',
-                        sticky: true,
-                        time: 3,
-                        class_name: 'my-sticky-class'
-                    });
             }
         },
         error: function(jqXHR, textStatus) {
-            $.gritter.add({
-                title: 'Bład',
-                text: "Blad podczas laczenia z serverem: " + textStatus,
-                image: '',
-                sticky: true,
-                time: 3,
-                class_name: 'my-sticky-class'
-            });
+            window.location('login');
         }
     });
-
-    $(document).ready(function() {
-        setTimeout(function() {
-            $(document).find(".prettydate").prettydate();
-        }, 500);
-
-        setInterval(function() {
-            $(document).find(".prettydate").prettydate();
-        }, 1500);
-    });
 </script>
-
-<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/core/css/zabuto_calendar.css">
-<link rel="stylesheet" type="text/css" href="/core/js/libraries/gritter/css/jquery.gritter.css" />
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<link href="/core/css/style-responsive.css" rel="stylesheet">
-<link href="/core/js/libraries/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-<link href="/core/css/jquery.datetimepicker.min.css" rel="stylesheet" />
-

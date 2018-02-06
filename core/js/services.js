@@ -9,7 +9,7 @@ var locaNotifyFun = function(type, message) {
         text: message,
         sticky: true,
         fade: true,
-        time: 3,
+        time: 6,
         class_name: 'my-sticky-class'
     });
 }

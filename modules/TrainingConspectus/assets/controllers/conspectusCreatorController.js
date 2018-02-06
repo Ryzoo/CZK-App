@@ -1820,7 +1820,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
                 if (anchorLayer) {
                     anchorLayer.destroy();
-                    delete anchorLayer;
                     anchorLayer = null;
                 }
                 anchorLayer = new Konva.Layer();
@@ -1850,7 +1849,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     }
                     if (anchorLayer) {
                         anchorLayer.destroy();
-                        delete anchorLayer;
                         anchorLayer = null;
                     }
                     anchorLayer = new Konva.Layer();
@@ -1882,7 +1880,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     $scope.endPointSelectShape = null;
                     if (anchorLayer) {
                         anchorLayer.destroy();
-                        delete anchorLayer;
                         anchorLayer = null;
                     }
                     anchorLayer = new Konva.Layer();
@@ -2451,7 +2448,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             $scope.endPointSelectShape = null;
             if (anchorLayer) {
                 anchorLayer.destroy();
-                delete anchorLayer;
                 anchorLayer = null;
             }
             anchorLayer = new Konva.Layer();
@@ -3103,7 +3099,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if (mainLayer != null) {
             selectedFrame.off('contentClick contentTap');
             selectedFrame.destroy();
-            delete selectedFrame;
             selectedFrame = null;
         }
         selectedFrame = new Konva.Stage({
@@ -4212,7 +4207,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function showPlayer() {
         pauseAnim = false;
         isPlayerOpen = true;
-        delete allAnimFrame;
         allAnimFrame = null;
         allAnimFrame = createFrameToAnim();
         $('#canvasPlayer').show();
@@ -4258,10 +4252,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         request.backend('loadConspectAnim', { id: $scope.animId }, function(data) {
             data.anchorHistory = JSON.parse(data.anchorHistory);
             data.animFrame = JSON.parse(data.animFrame);
-            delete anchorHistory;
+            anchorHistory = null;
             anchorHistory = data.anchorHistory;
 
-            delete allObjectPerFrame;
             allObjectPerFrame = null;
             allObjectPerFrame = [];
 
@@ -4358,7 +4351,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     function renderAnim() {
         $scope.turnOnHelperNet = false;
         isPlayerOpen = true;
-        delete allAnimFrame;
         allAnimFrame = null;
         allAnimFrame = createFrameToAnim();
         $('#canvasPlayer').show();
