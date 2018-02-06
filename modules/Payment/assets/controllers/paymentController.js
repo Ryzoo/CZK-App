@@ -34,7 +34,11 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
 
     $scope.initPaymentHistory = function(){
         getUserFromTeam();
-        $scope.showContent = true;
+        $scope.getUsersHistory([0]);
+    };
+
+    $scope.sendReminder = function(payId){
+        request.backend('sendPaymentReminder', { payId: payId }, function(data) {},'Ponaglenie wysłane');
     };
 
     $scope.initPaymentCyclic = function() {
@@ -223,17 +227,46 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     };
 
     $scope.getUsersHistory = function(usid) {
-        request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: [usid] }, function(data) {
+        request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: usid }, function(data) {
             $scope.$apply(function() {
-                $scope.selectedUserHistory = data ? data : [];
+                $scope.selectedUserHistory = data.data ? data.data : [];
+                let mainChart = new Chart($('#userPaymentStat'), {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [{
+                            data: [data.payed, data.notPayed, data.delayed],
+                            backgroundColor: [
+                                '#89c33e',
+                                '#4e4e4e',
+                                '#ec5536',
+                            ]
+                        }],
+                        labels: [
+                            'Rozliczone',
+                            'Nierozliczone',
+                            'Opóźnione'
+                        ]
+                    }
+                });
                 setTimeout(function(){
-                    let toPayDate = $(".paymentDateToPay").text();
-                    let status = $(".paymentStatus").text();
-                    if(status === "Zakończono") $(".paymentStatus").css('color','#82ce2a');
-                    if(moment(toPayDate).isBefore(moment())) $(".paymentDateToPay").css('color','#d01d1d');
-                },300);
+                    $(".paymentDateToPay").each(function(){
+                        let toPayDate = $(this).text();
+                        if($scope.checkIsBefore(toPayDate)) $(this).css('color','#d01d1d');
+                    });
+
+                    $(".paymentStatus").each(function(){
+                        let status = $(this).text();
+                        if(status === "Zakończono") $(this).css('color','#82ce2a');
+                    });
+
+                    $('.tooltipped').tooltip({delay: 50});
+                },50);
             });
         });
+    };
+
+    $scope.checkIsBefore = function(date){
+        return moment(date).isBefore(moment());
     };
 
     $scope.deletePayment = function(id) {
@@ -254,25 +287,25 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
         request.backend('getUserFromTeam', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.allUsers = data;
-                $scope.showContent = true;
                 setTimeout(function() {
+                    $scope.showContent = true;
                     Materialize.updateTextFields();
                     $('select').material_select();
                     $('ul.tabs').tabs();
                     $('.collapsible').collapsible();
-                }, 500);
+                }, 200);
             });
         });
     }
 
     $(document).off('change', '#selectUserToGetHistory');
     $(document).on("change", "#selectUserToGetHistory", function() {
-        $scope.getUsersHistory($('#selectUserToGetHistory').val());
+        let value = parseInt($('#selectUserToGetHistory').val());
+        $scope.getUsersHistory(value < 0 ? [0] : value);
         $scope.$apply(function(){
-            $scope.userIsSelected = true;
+            $scope.userIsSelected = value >= 0 ;
         });
     });
-
 
     $(document).off('change', '.payOption');
     $(document).on("change", ".payOption", function() {

@@ -12,6 +12,10 @@
         "parameters": ["tmid"],
         "auth": ["KOORD", "TRENER", "STAFF"]
     }, {
+        "url": "sendPaymentReminder",
+        "parameters": ["payId"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+    }, {
         "url": "deleteCyclePayment",
         "parameters": ["id","tmid"],
         "auth": ["KOORD", "TRENER", "STAFF"]

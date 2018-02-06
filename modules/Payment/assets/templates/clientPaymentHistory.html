@@ -1,38 +1,47 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
 <div class="section paymentSection" ng-init="initPaymentHistory()">
     <div ng-show='showContent' class="row">
-        <div class="col s12">
+        <div class=" noPrint" style="margin:auto; max-width: 800px; width:100%;">
             <div class="card">
                 <div class="card-content" style='padding-bottom: 0 !important;'>
                     <div class="row" style="padding-top:20px;">
                         <div class="input-field col s12" >
                             <select id="selectUserToGetHistory">
-                                <option value="" disabled selected>Wybierz użytkownika</option>
+                                <option value="-1" selected>Wszyscy</option>
                                 <option ng-repeat="user in allUsers" value="{{user.usid}}">{{user.firstname}} {{user.lastname}}</option>
                             </select>
                             <label>Płatności dla użytkownika</label>
                         </div>
-                        <div class="input-field col s12 m8 offset-m2" ng-hide="selectedUserHistory.length <= 0">
-                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę' ng-model='searchText'>
+                        <div class="row">
+                            <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom:30px;">
+                                <canvas id='userPaymentStat'></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col s12" ng-show="!userIsSelected">
-            <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Wybierz użytkownika</h5>
-        </div>
         <div class="col s12" ng-show="selectedUserHistory.length <= 0 && userIsSelected">
             <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Niestety dany użytkownik nie ma żadnych wystawionych płatności.</h5>
+        </div>
+        <div class="col s12" ng-show="selectedUserHistory.length <= 0 && !userIsSelected">
+            <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Niestety dana sekcja nie ma żadnych wystawionych płatności</h5>
         </div>
         <div class="col s12" ng-hide="selectedUserHistory.length <= 0">
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Lista płatności</div>
                     <div class="row">
+                        <div class="input-field col s12 m8 offset-m2" ng-hide="selectedUserHistory.length <= 0">
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę' ng-model='searchText'>
+                            <label>Wyszukaj w zbiorze</label>
+                        </div>
+                    </div>
+                    <div class="row">
                         <table class='table centered highlight striped'>
                             <thead>
                                 <tr>
+                                    <th ng-show="!userIsSelected">#</th>
                                     <th>Tytuł</th>
                                     <th>Kwota</th>
                                     <th>Do kiedy</th>
@@ -42,13 +51,15 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="userHis in selectedUserHistory | filter:searchText track by $index">
+                                    <td ng-show="!userIsSelected">{{userHis.firstname}} {{userHis.lastname}}</td>
                                     <td>{{userHis.name}}</td>
                                     <td><b>{{userHis.amount}} zł</b></td>
                                     <td class="paymentDateToPay">{{userHis.date_to_pay}}</td>
                                     <td class="paymentStatus">{{userHis.statusName}}</td>
-                                    <td>
-                                        <span style='cursor: pointer; padding: 10px;' ng-click="endPayment(userHis.id)"><i class="fa fa-check fa-fw" aria-hidden="true"></i></span>
-                                        <span style='cursor: pointer; padding: 10px;' ng-click="deletePayment(userHis.id)"><i class="fa fa-trash fa-fw" aria-hidden="true"></i></span>
+                                    <td class="row">
+                                        <span ng-show="userHis.statusName != 'Zakończono'" style='cursor: pointer; padding: 10px;' ng-click="endPayment(userHis.id)" class="tooltipped col s12 m4" data-position="bottom" data-delay="50" data-tooltip="Potwierdź płatność"><i class="fa fa-check fa-fw" aria-hidden="true"></i></span>
+                                        <span ng-show="checkIsBefore(userHis.date_to_pay)" style='cursor: pointer; padding: 10px;' ng-click="sendReminder(userHis.id)" class="tooltipped col s12 m4" data-position="bottom" data-delay="50" data-tooltip="Wyślij ponaglenie do zapłaty"><i class="fa fa-bell fa-fw" aria-hidden="true"></i></span>
+                                        <span style='cursor: pointer; padding: 10px;' ng-click="deletePayment(userHis.id)" class="tooltipped col s12 m4" data-position="bottom" data-delay="50" data-tooltip="Usuń płatność"><i class="fa fa-trash fa-fw" aria-hidden="true"></i></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -71,6 +82,7 @@
             Materialize.updateTextFields();
             $('select').material_select();
             $('ul.tabs').tabs();
+            $('.tooltipped').tooltip({delay: 50});
             $('.collapsible').collapsible();
             $('.datetimepicker').datetimepicker({
                 format: 'Y/m/d',

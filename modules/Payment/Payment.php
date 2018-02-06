@@ -1,11 +1,11 @@
 <?php
 namespace Modules\Payment;
 
+use Core\Notify\Notify;
 use Core\System\BasicModule;
 use \KHerGe\JSON\JSON;
 use Core\System\MailSystem;
 use Core\Teams\Teams;
-use Core\Notify\Notify;
 use TiBeN\CrontabManager\CrontabJob;
 use TiBeN\CrontabManager\CrontabRepository;
 use TiBeN\CrontabManager\CrontabAdapter;
@@ -72,17 +72,57 @@ class Payment extends BasicModule {
       $this->returnedData["data"]["completed"] = isset($completed["sum"]) ? $completed["sum"] : 0;
       $this->returnedData["data"]["waiting"] = isset($waiting["sum"]) ? $waiting["sum"] : 0;
       $this->returnedData["data"]["all"] = (float) $this->returnedData["data"]["completed"] + (float) $this->returnedData["data"]["waiting"];
+        $this->returnedData["data"]["completed"] = round($this->returnedData["data"]["completed"] ,2);
+        $this->returnedData["data"]["waiting"] = round($this->returnedData["data"]["waiting"] ,2);
+        $this->returnedData["data"]["all"] = round($this->returnedData["data"]["all"] ,2);
       return $this->returnedData;
+    }
+
+    function sendPaymentReminder($data){
+        $payId = $data['payId'];
+        $token = $data['token'];
+        $payment = ($this->db->getConnection())->fetchRow('SELECT * FROM payment_list WHERE id='.$payId);
+
+        $notify = new Notify();
+        $notify->addNotify([
+            "title"=> "Ponaglenie do zapłaty: ".$payment['name']." w kwocie: ".round($payment['amount'],2)." zł",
+                "tmid"=> $payment['id_team'],
+                "token"=> $token,
+                "to"=> [$payment['id_user']],
+                "toAll"=> false,
+                "url"=> "#!/clientPayment"
+            ]);
+
+        $userData = ($this->db->getConnection())->fetchRow('SELECT firstname, lastname, email FROM users, user_data WHERE users.id = user_data.user_id AND users.id ='.$payment['id_user']);
+        $mailRespond = MailSystem::sendMail($userData['email'],"Ponaglenie do płatności",
+            "<p style='color:#ffffff'><b>Witaj! ".$userData['firstname']." ".$userData['lastname']."</b></p>
+          <p style='color:#ffffff'>Otrzymałeś włąsnie ponaglenie do płatności:</p>
+          <p style='color:#ffffff'>Tytuł płatności: ".$payment['name']."</p>
+          <p style='color:#ffffff'>Kwota: ".str_replace( ',', '.', round($payment['amount'],2))."</p>
+          <p style='color:#ffffff'>Płatne do dnia: ".$payment['date_to_pay']."</p>
+          <p style='color:#ffffff'>Informacje te dostępne są także na <a style='color: #ffcb6a;' href='//".$_SERVER['HTTP_HOST']."'>Stronie Klubu</a></p>");
+
+        return $this->returnedData;
     }
 
     function getUserPaymentHistory($data){
       $tmid = $data['tmid'];
       $usids = $data['usids'];
 
-      for($i=0;$i<count($usids);$i++){
-        $this->returnedData["data"] = ($this->db->getConnection())->fetchRowMany('SELECT payment_list.id, payment_list.amount, payment_list.name, payment_status.name as statusName, DATE(payment_list.date_to_pay) AS date_to_pay FROM payment_list, payment_status WHERE payment_list.id_status = payment_status.id AND payment_list.id_user='.$usids[$i].' AND payment_list.id_team='.$tmid.' GROUP BY payment_list.id ORDER BY payment_list.id  DESC');
+      if(is_array($usids)){
+          $this->returnedData["data"]["data"] = ($this->db->getConnection())->fetchRowMany('SELECT payment_list.id, payment_list.amount, payment_list.name, payment_status.name as statusName, DATE(payment_list.date_to_pay) AS date_to_pay, user_data.firstname, user_data.lastname FROM payment_list, payment_status, users, user_data WHERE payment_list.id_user = users.id AND user_data.user_id = users.id AND payment_list.id_status = payment_status.id AND payment_list.id_team='.$tmid.' GROUP BY payment_list.id ORDER BY payment_list.id DESC LIMIT 50');
+          $this->returnedData["data"]["payed"] = round(($this->db->getConnection())->fetchRow('SELECT SUM(payment_list.amount) AS summary FROM payment_list WHERE payment_list.id_status = 3 AND payment_list.id_team='.$tmid.' GROUP BY payment_list.id')['summary'],2);
+          $this->returnedData["data"]["delayed"] = round(($this->db->getConnection())->fetchRow('SELECT SUM(payment_list.amount) AS summary FROM payment_list WHERE (payment_list.id_status = 1 OR payment_list.id_status = 2) AND payment_list.id_team='.$tmid.' AND NOW() > DATE(payment_list.date_to_pay) GROUP BY payment_list.id')['summary'],2);
+          $this->returnedData["data"]["notPayed"] = round(($this->db->getConnection())->fetchRow('SELECT SUM(payment_list.amount) AS summary FROM payment_list WHERE (payment_list.id_status = 1 OR payment_list.id_status = 2) AND payment_list.id_team='.$tmid.' GROUP BY payment_list.id')['summary'],2);
+      }else{
+          $this->returnedData["data"]["data"] = ($this->db->getConnection())->fetchRowMany('SELECT payment_list.id, payment_list.amount, payment_list.name, payment_status.name as statusName, DATE(payment_list.date_to_pay) AS date_to_pay, user_data.firstname, user_data.lastname FROM payment_list, payment_status, users, user_data WHERE payment_list.id_user = users.id AND user_data.user_id = users.id AND payment_list.id_status = payment_status.id AND payment_list.id_user='.$usids.' AND payment_list.id_team='.$tmid.' GROUP BY payment_list.id ORDER BY payment_list.id DESC LIMIT 50');
+          $this->returnedData["data"]["payed"] = round(($this->db->getConnection())->fetchRow('SELECT SUM(payment_list.amount) AS summary FROM payment_list WHERE payment_list.id_status = 3 AND payment_list.id_user='.$usids.' AND payment_list.id_team='.$tmid.' GROUP BY payment_list.id')['summary'],2);
+          $this->returnedData["data"]["delayed"] = round(($this->db->getConnection())->fetchRow('SELECT SUM(payment_list.amount) AS summary FROM payment_list WHERE (payment_list.id_status = 1 OR payment_list.id_status = 2) AND payment_list.id_team='.$tmid.' AND payment_list.id_user='.$usids.' AND NOW() > DATE(payment_list.date_to_pay) GROUP BY payment_list.id')['summary'],2);
+          $this->returnedData["data"]["notPayed"] = round(($this->db->getConnection())->fetchRow('SELECT SUM(payment_list.amount) AS summary FROM payment_list WHERE (payment_list.id_status = 1 OR payment_list.id_status = 2) AND payment_list.id_team='.$tmid.' AND payment_list.id_user='.$usids.' GROUP BY payment_list.id')['summary'],2);
       }
-      
+
+        $this->returnedData["data"]["notPayed"] = $this->returnedData["data"]["notPayed"] - $this->returnedData["data"]["delayed"];
+
       return $this->returnedData;
     }
 
@@ -275,8 +315,6 @@ class Payment extends BasicModule {
                 $crontabJob->dayOfWeek = '*';
             }
 
-
-
             file_put_contents(__DIR__.'/cron/'.$usid.'_'.$id.'_'.$tmid.'.php',
                 '
                 <?php
@@ -294,12 +332,12 @@ class Payment extends BasicModule {
                     ]);
                     $notify = new Notify();
                     $notify->addNotify([
-                        "title"=> "'."Nowa płatność cykliczna: ".$data["title"]." na kwotę: ".$data["amount"].'",
+                        "title"=> "'."Nowa płatność cykliczna: ".$data["title"]." na kwotę: ".round($data["amount"],2).' zł",
                         "tmid"=> '.$tmid.',
                         "token"=> "'.$token.'",
                         "to"=> ['.$usid.'],
                         "toAll"=> false,
-                        "url"=> "'."#!/clientPayment".'"
+                        "url"=> "#!/clientPayment"
                     ]);
                 '
                 ,FILE_USE_INCLUDE_PATH);
