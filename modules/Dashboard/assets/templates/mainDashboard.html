@@ -149,6 +149,9 @@
                                     </div>
                                     <div style='font-size: 10px; padding-top: 10px;'><b class='prettydate'>{{lastPost[0].date_add}}</b></div>
                                 </div>
+                                <div class="row" ng-show="!isLoadedPost || !lastPost[0]">
+                                    <p style='color: #9e9e9e;font-size: 16px;padding: 90px 50px;'>Nikt nie dodał jeszcze postu. Przejdź do tablicy i bądź pierwszy !</p>
+                                </div>
                             </div>
                             <div class="row bottomLink" style="padding-top: 15px;">
                                 <a href="#!/tab">Przejdź do tablicy ></a>
@@ -207,54 +210,69 @@
                         </div>
                         <div class="timetable" style='padding:0' ng-controller='timetableController' ng-init='initTimetable()'>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 0">
-
+                                <div class="row" ng-show='events["Poniedziałek"].length <= 0'>
+                                    <p style='color: #9e9e9e;font-size: 16px;margin-top: 35px;'>Dzisiaj wolne !</p>
+                                </div>
                                 <div class="timetableEvent" ng-repeat='event in events["Poniedziałek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
                                     <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 1">
-
+                                <div class="row" ng-show='events["Wtorek"].length <= 0'>
+                                    <p style='color: #9e9e9e;font-size: 16px;margin-top: 35px;'>Dzisiaj wolne !</p>
+                                </div>
                                 <div class="timetableEvent" ng-repeat='event in events["Wtorek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
                                     <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 2">
-
+                                <div class="row" ng-show='events["Środa"].length <= 0'>
+                                    <p style='color: #9e9e9e;font-size: 16px;margin-top: 35px;'>Dzisiaj wolne !</p>
+                                </div>
                                 <div class="timetableEvent" ng-repeat='event in events["Środa"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
                                     <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 3">
-
+                                <div class="row" ng-show='events["Czwartek"].length <= 0'>
+                                    <p style='color: #9e9e9e;font-size: 16px;margin-top: 35px;'>Dzisiaj wolne !</p>
+                                </div>
                                 <div class="timetableEvent" ng-repeat='event in events["Czwartek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
                                     <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 4">
-
+                                <div class="row" ng-show='events["Piątek"].length <= 0'>
+                                    <p style='color: #9e9e9e;font-size: 16px;margin-top: 35px;'>Dzisiaj wolne !</p>
+                                </div>
                                 <div class="timetableEvent" ng-repeat='event in events["Piątek"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
                                     <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 5">
-
+                                <div class="row" ng-show='events["Sobota"].length <= 0'>
+                                    <p style='color: #9e9e9e;font-size: 16px;margin-top: 35px;'>Dzisiaj wolne !</p>
+                                </div>
                                 <div class="timetableEvent" ng-repeat='event in events["Sobota"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
                                     <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
                             <div class='timetableElement fullWidth' ng-show="todayInt == 6">
-
+                                <div class="row" ng-show='events["Niedziela"].length <= 0'>
+                                    <p style='color: #9e9e9e;font-size: 16px;margin-top: 35px;'>Dzisiaj wolne !</p>
+                                </div>
                                 <div class="timetableEvent" ng-repeat='event in events["Niedziela"]' style='background-color: {{event.color}}'>
                                     <p>{{event.title}}</p>
                                     <b>{{event.time}} - {{event.timeEnd}}</b>
                                 </div>
                             </div>
+
                         </div>
                         <div class="row bottomLink">
                             <a href="#!/timetable">Przejdź do planu zajęć > </a>
