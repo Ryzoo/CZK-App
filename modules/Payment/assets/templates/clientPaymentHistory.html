@@ -12,7 +12,7 @@
                             </select>
                             <label>Płatności dla użytkownika</label>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-show="selectedUserHistory.length > 0">
                             <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom:30px;">
                                 <canvas id='userPaymentStat'></canvas>
                             </div>
