@@ -17,7 +17,9 @@ app.controller('showConspectController', function($scope, auth, $rootScope, noti
                 $scope.conspect.tags = $scope.conspect.tags.split(' ');
                 $scope.showContent = true;
             });
+
             setTimeout(function() {
+                $('.collapsible').collapsible();
                 $('.gifplayer').each(function() {
                     if (!$(this).hasClass('isGifed')) {
                         $(this).addClass('isGifed');

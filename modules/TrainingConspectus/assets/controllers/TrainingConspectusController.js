@@ -62,6 +62,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
             }
 
             $('.chips-placeholder').material_chip(tagTo);
+            $('.collapsible').collapsible();
 
             var fullFieldData = JSON.parse(data.data);
             for (var i = 0; i < fullFieldData.length; i++) {

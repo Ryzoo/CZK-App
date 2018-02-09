@@ -34,6 +34,9 @@ app.controller('sectionGetController', function($scope, auth, $rootScope, notify
             $scope.$apply(function() {
                 $scope.availableSection = data;
                 $scope.showContent = true;
+                setTimeout(function(){
+                    $('.collapsible').collapsible();
+                },100);
             });
         });
     }

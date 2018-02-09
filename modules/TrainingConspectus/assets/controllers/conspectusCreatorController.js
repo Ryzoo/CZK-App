@@ -277,6 +277,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         $('.tooltipped').tooltip({
                             delay: 50
                         });
+                        $('.collapsible').collapsible();
                     });
                 }
             });

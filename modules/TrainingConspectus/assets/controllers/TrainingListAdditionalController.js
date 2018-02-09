@@ -15,6 +15,7 @@ app.controller('TrainingListAdditionalController', function($scope, auth, $rootS
                 $scope.showContent = true;
                 $rootScope.idFromAnimConspectToEdit = null;
                 setInterval(function() {
+                    $('.collapsible').collapsible();
                     $('.gifplayer').each(function() {
                         if (!$(this).hasClass('isGifed')) {
                             $(this).addClass('isGifed');
