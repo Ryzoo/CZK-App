@@ -5,20 +5,38 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Historia płatności</div>
-                    <div class="row">
+                    <div class="row" ng-show="selectedUserHistory.length > 0">
+                        <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom:30px;">
+                            <canvas id='userPaymentStat'></canvas>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="selectedUserHistory.length <= 0">
+                        <div class="col s12">
+                            <h5 style="text-align: center;color: #a1a1a1; margin-top: 50px">Nie posiadasz żadnych płatności</h5>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="selectedUserHistory.length > 0">
+                        <div class="input-field col s12 m8 offset-m2" >
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę' ng-model='searchText'>
+                            <label>Wyszukaj w zbiorze</label>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="selectedUserHistory.length > 0">
                         <table class="table highlight centered">
                             <thead>
                                 <tr>
                                     <th>Nazwa</th>
                                     <th>Kwota</th>
+                                    <th>Data spłaty</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="payment in selectedUserHistory.data" class='userOnePayRow'>
+                                <tr ng-repeat="payment in selectedUserHistory | filter:searchText track by $index" class='userOnePayRow'>
                                     <td ng-click='showPayment($index)'>{{payment.name}}</td>
                                     <td ng-click='showPayment($index)'>{{payment.amount}} zł</td>
-                                    <td ng-click='showPayment($index)'><b>{{payment.statusName}}</b></td>
+                                    <td class="paymentDateToPay" ng-click='showPayment($index)'>{{payment.date_to_pay}}</td>
+                                    <td class="paymentStatus" ng-click='showPayment($index)'><b>{{payment.statusName}}</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -30,8 +48,8 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Płatność online</div>
-                    <div class="row" ng-show="showPay">
-                        <table class="table highlight centered">
+                    <div class="row" ng-show="showPay" style="padding: 0 50px">
+                        <table class="table highlight" >
                             <tbody>
                                 <tr class="row">
                                     <td style="padding: 5px 0;"><b>Tytuł płatności</b></td>
@@ -46,16 +64,8 @@
                                     <td style="padding: 5px 0;"><b>{{selectedPayment.statusName}}</b></td>
                                 </tr>
                                 <tr class="row">
-                                    <td style="padding: 5px 0;"><b>Zlecający</b></td>
-                                    <td style="padding: 5px 0;">{{selectedPayment.adminFirstname}} {{selectedPayment.adminLastname}}</td>
-                                </tr>
-                                <tr class="row">
-                                    <td style="padding: 5px 0;"><b>Data dodania</b></td>
-                                    <td style="padding: 5px 0;">{{selectedPayment.date_add}}</td>
-                                </tr>
-                                <tr class="row">
-                                    <td style="padding: 5px 0;"><b>Ostatni zmiana statusu</b></td>
-                                    <td style="padding: 5px 0;">{{selectedPayment.date_change}}</td>
+                                    <td style="padding: 5px 0;"><b>Data rozliczenia</b></td>
+                                    <td style="padding: 5px 0;">{{selectedPayment.date_to_pay}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -83,7 +93,11 @@
                                 <button target='_blank' type="button " class="waves-effect waves-light btn" ng-click="payWithPayu()">Płacę z PayU</button>
                             </div>
                         </form>
-
+                    </div>
+                    <div class="row" ng-show='!isPayuEnabled && showPay'>
+                        <div class="col s12">
+                            <h5 style="text-align: center;color: #a1a1a1; font-size: 20px; margin-top: 18px; padding: 0 50px">Niestety koordynator Twojego klubu, nie zezwala na płatność online.</h5>
+                        </div>
                     </div>
                 </div>
             </div>

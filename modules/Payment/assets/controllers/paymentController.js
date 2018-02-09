@@ -115,12 +115,8 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             });
         });
         $scope.host = window.location.protocol + "//" + window.location.hostname;
-        request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: $rootScope.user.id }, function(data) {
-            $scope.$apply(function() {
-                $scope.selectedUserHistory = data[0] ? data[0] : [];
-                $scope.showContent = true;
-            });
-        });
+
+        $scope.getUsersHistory($rootScope.user.id);
         getSettings();
     };
 
@@ -153,7 +149,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     })
 
     $scope.showPayment = function(index) {
-        $scope.selectedPayment = $scope.selectedUserHistory.data[index];
+        $scope.selectedPayment = $scope.selectedUserHistory[index];
         if ($scope.selectedPayment) {
             $scope.showPay = true;
             $scope.getSignatureVerify();
@@ -229,6 +225,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     $scope.getUsersHistory = function(usid) {
         request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: usid }, function(data) {
             $scope.$apply(function() {
+                $scope.showContent = true;
                 $scope.selectedUserHistory = data.data ? data.data : [];
                 let mainChart = new Chart($('#userPaymentStat'), {
                     type: 'doughnut',
