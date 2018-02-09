@@ -58,7 +58,7 @@
                                     <td class="paymentStatus">{{userHis.statusName}}</td>
                                     <td class="row">
                                         <span ng-show="userHis.statusName != 'Zakończono'" style='cursor: pointer; padding: 10px;' ng-click="endPayment(userHis.id)" class="tooltipped col s12 m4" data-position="bottom" data-delay="50" data-tooltip="Potwierdź płatność"><i class="fa fa-check fa-fw" aria-hidden="true"></i></span>
-                                        <span ng-show="checkIsBefore(userHis.date_to_pay) && userHis.statusName != 'Zakończono'" style='cursor: pointer; padding: 10px;' ng-click="sendReminder(userHis.id)" class="tooltipped col s12 m4" data-position="bottom" data-delay="50" data-tooltip="Wyślij ponaglenie do zapłaty"><i class="fa fa-bell fa-fw" aria-hidden="true"></i></span>
+                                        <span ng-show="checkIsBefore(userHis.date_to_pay,userHis.statusName) &&  != 'Zakończono'" style='cursor: pointer; padding: 10px;' ng-click="sendReminder(userHis.id)" class="tooltipped col s12 m4" data-position="bottom" data-delay="50" data-tooltip="Wyślij ponaglenie do zapłaty"><i class="fa fa-bell fa-fw" aria-hidden="true"></i></span>
                                         <span style='cursor: pointer; padding: 10px;' ng-click="deletePayment(userHis.id)" class="tooltipped col s12 m4" data-position="bottom" data-delay="50" data-tooltip="Usuń płatność"><i class="fa fa-trash fa-fw" aria-hidden="true"></i></span>
                                     </td>
                                 </tr>

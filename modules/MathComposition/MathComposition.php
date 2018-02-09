@@ -11,7 +11,7 @@ class MathComposition extends BasicModule {
     }
 
     function getUsersHelpfulness($data){
-        $teamForm = (float)  $data['teamForm'];
+        $teamForm = (float) $data['teamForm'];
         $matchTeam = isset($data['matchTeam']) ?$data['matchTeam']:[];
         $otherTeam = $data['otherTeam'];
         $tmid = $data['tmid'];
@@ -29,7 +29,8 @@ class MathComposition extends BasicModule {
                 $userArray = array_merge($matchTeam,[$otherTeam[$i]]);
                 $formWithThisUser = 100 * ($statManager->getStats([
                     "tmid"=>$tmid,
-                    "usid"=>$userArray
+                    "usid"=>$userArray,
+                    "last"=>true
                 ])['data']['teamForm'])/(1100.0);
 
                 $varToShow = round($formWithThisUser - $teamForm,2);

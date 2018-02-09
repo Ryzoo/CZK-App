@@ -45,7 +45,7 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
         ];
         if ($scope.selected3) usidList.push(thirdUsid);
 
-        request.backend('getStats', { usid: usidList, tmid: $rootScope.user.tmid, prc: "none" }, function(data) {
+        request.backend('getStats', { usid: usidList, tmid: $rootScope.user.tmid, prc: "none", last: true }, function(data) {
             $rootScope.actualStats = data;
             addMainChartToPage();
             initMainSummary();
@@ -55,7 +55,6 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
                 $scope.loadStat = false;
                 $('#selectPotential').html('');
                 $('#selectPotential').append("<option value='' disabled selected>Kategoria</option>");
-
 
                 for (let i = 0; i < $rootScope.actualStats.users[0].data.potential.length; i++) {
                     const element = $rootScope.actualStats.users[0].data.potential[i].name;
@@ -84,9 +83,38 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
 
     function checkStatBest() {
         $('table tbody tr').each(function() {
-            var scoreInElements = $(this).find('.scoreIn');
+            let scoreInElements = $(this).find('.scoreIn');
+            let best = parseFloat($(this).find('.scBest').eq(0).text());
+            let worst = parseFloat($(this).find('.scWorst').eq(0).text());
+            if (scoreInElements.length > 0){
+                let maxScore = getMaxScore(scoreInElements,noPrcIs ? best : 100);
+                if( maxScore != null ){
+                    scoreInElements.each(function() {
+                        $(this).find('span').each(function(){
+                            $(this).remove();
+                        });
+                        if( best < worst ){
+                            if (parseFloat($(this).text()) > maxScore) {
+                                $(this).append("<span style='color: red;font-size: 10px;font-weight:600'>" + "+" + ((parseFloat($(this).text())) - maxScore).toFixed(2)  + "</span>");
+                            } else if (parseFloat($(this).text()) == maxScore) {
+                                $(this).css("color", "rgb(22, 193, 22)");
+                                $(this).css("font-weight", "600");
+                            }
+                        }else{
+                            if (parseFloat($(this).text()) < maxScore) {
+                                $(this).append("<span style='color: red;font-size: 10px;font-weight:600'>" + "-" + (maxScore - parseFloat($(this).text())).toFixed(2) + "</span>");
+                            } else if (parseFloat($(this).text()) == maxScore) {
+                                $(this).css("color", "rgb(22, 193, 22)");
+                                $(this).css("font-weight", "600");
+                            }
+                        }
+                    });
+                }
+            }
+
+            scoreInElements = $(this).find('.scoreInP');
             if (scoreInElements.legend <= 0) return;
-            var maxScore = getMaxScore(scoreInElements);
+            maxScore = getMaxScore(scoreInElements,100);
             scoreInElements.each(function() {
                 if (parseFloat($(this).text()) < maxScore) {
                     $(this).find('span').first().remove();
@@ -99,14 +127,19 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
         });
     }
 
-    function getMaxScore(elements) {
-        var max = 0;
+    function getMaxScore(elements,best) {
+        if(!elements.eq(0)) return;
+        best = parseFloat(best).toFixed(2);
+        let max =  Math.abs(best - parseFloat(elements.eq(0).text()));
+        if( isNaN(max) ) return null;
+        let toReturn = parseFloat(elements.eq(0).text());
         elements.each(function() {
-            if (parseFloat($(this).text()) > max) {
-                max = parseFloat($(this).text());
+            if ( Math.abs(best - parseFloat($(this).text())) < max) {
+                max = Math.abs(best - parseFloat($(this).text()));
+                toReturn = parseFloat($(this).text());
             }
         });
-        return max;
+        return toReturn.toFixed(2);
     }
 
     $scope.hideStat = function() {
@@ -146,7 +179,9 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
                     const elName = $rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests[i].name;
                     $scope.actualStatGroup.push({
                         name: elName,
-                        users: []
+                        users: [],
+                        best: $rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests[i].best,
+                        worst: $rootScope.actualStats.users[0].data.potential[$scope.acutalSelectedGroup].tests[i].worst
                     });
                     for (let x = 0; x < $rootScope.actualStats.users.length; x++) {
                         if (noPrcIs) $scope.actualStatGroup[i].users.push($rootScope.actualStats.users[x].data.potential[$scope.acutalSelectedGroup].tests[i].noPrc + "" + ($rootScope.actualStats.users[x].data.potential[$scope.acutalSelectedGroup].tests[i].unit).substring(0, 1) + ".");

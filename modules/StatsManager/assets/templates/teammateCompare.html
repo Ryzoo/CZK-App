@@ -66,7 +66,7 @@
                                         <tbody>
                                             <tr ng-repeat="test in actualPotentialGroup">
                                                 <td>{{test.name}}</td>
-                                                <td ng-repeat="userScore in test.users track by $index" class='scoreIn'>{{userScore}}</td>
+                                                <td ng-repeat="userScore in test.users track by $index" class='scoreInP'>{{userScore}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="page-break">
                             <div class="row">
-                                <h5>Porównanie średniej w poszczególnych testach</h5>
+                                <h5>Średnie porównanie z maks 3 ostatnich wyników</h5>
                             </div>
                             <div class="row ">
                                 <div class="input-field col s12 m6">
@@ -104,7 +104,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="test in actualStatGroup">
-                                                    <td>{{test.name}}</td>
+                                                    <td>{{test.name}}<span style="display:none;" class="scBest">{{test.best}}</span><span style="display:none;" class="scWorst">{{test.worst}}</span></td>
                                                     <td ng-repeat="userScore in test.users track by $index" class='scoreIn'>{{userScore}}</td>
                                                 </tr>
                                                 <tr ng-show="actualStatGroup.length <= 0">

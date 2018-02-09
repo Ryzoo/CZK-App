@@ -34,7 +34,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
 
     $scope.initPaymentHistory = function(){
         getUserFromTeam();
-        $scope.getUsersHistory([0]);
+        $scope.getUsersHistory(-1);
     };
 
     $scope.sendReminder = function(payId){
@@ -115,7 +115,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             });
         });
         $scope.host = window.location.protocol + "//" + window.location.hostname;
-        request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: [$rootScope.user.id] }, function(data) {
+        request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: $rootScope.user.id }, function(data) {
             $scope.$apply(function() {
                 $scope.selectedUserHistory = data[0] ? data[0] : [];
                 $scope.showContent = true;
@@ -162,7 +162,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
 
     $scope.payWithPayu = function() {
         request.backend('payWithPayu', { pmid: $scope.selectedPayment.id }, function(data) {
-            request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: [$rootScope.user.id] }, function(data) {
+            request.backend('getUserPaymentHistory', { tmid: $rootScope.user.tmid, usids: $rootScope.user.id }, function(data) {
                 $scope.$apply(function() {
                     $scope.selectedUserHistory = data[0] ? data[0] : [];
                     $scope.showContent = true;
@@ -256,7 +256,9 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
 
                     $(".paymentStatus").each(function(){
                         let status = $(this).text();
-                        if(status === "Zakończono") $(this).css('color','#82ce2a');
+                        if(status == "Zakończono") $(this).css('color','#82ce2a');
+                        else if(status == "Do zapłaty") $(this).css('color','#d2a10f');
+                        else $(this).css('color','#40403e');
                     });
 
                     $('.tooltipped').tooltip({delay: 50});
@@ -301,7 +303,7 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
     $(document).off('change', '#selectUserToGetHistory');
     $(document).on("change", "#selectUserToGetHistory", function() {
         let value = parseInt($('#selectUserToGetHistory').val());
-        $scope.getUsersHistory(value < 0 ? [0] : value);
+        $scope.getUsersHistory(value);
         $scope.$apply(function(){
             $scope.userIsSelected = value >= 0 ;
         });

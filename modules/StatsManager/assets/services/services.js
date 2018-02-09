@@ -1,11 +1,12 @@
 app.service('statistic', function($http, $rootScope, request) {
 
-    this.getStats = function(userId, functionSuccess, async = true) {
+    this.getStats = function(userId, functionSuccess, async = true, last = false) {
         var urlToPost = "backend/getStats";
         var dataToSend = {
             token: $rootScope.user.token,
             usid: userId,
-            tmid: $rootScope.user.tmid
+            tmid: $rootScope.user.tmid,
+            last: last
         };
         var toReturn = [];
         request.sync('POST', urlToPost, dataToSend,
@@ -32,7 +33,7 @@ app.service('statistic', function($http, $rootScope, request) {
         if (!usersId || usersId.length == 0) {
             return 0;
         }
-        var returnedData = this.getStats(usersId, function() {}, false);
+        var returnedData = this.getStats(usersId, function() {}, false, true);
         return parseFloat(100 * (isMatchTeamForm ? (returnedData.teamForm / (1100)) : (returnedData.teamForm / (usersId.length * 100)))).toFixed(2);
     }
 

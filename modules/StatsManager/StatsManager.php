@@ -20,14 +20,18 @@ class StatsManager extends BasicModule {
         $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS potential_test');
     }
 
-    function getUserStat($usid, $tmid, $prc = true){
+    function getUserStat($usid, $tmid, $prc = true, $last = false){
         $allPotential = ($this->db->getConnection())->fetchRowMany('SELECT * FROM potential');
         for($i=0;$i<count($allPotential);$i++){
             $allPotential[$i]['tests'] = ($this->db->getConnection())->fetchRowMany('SELECT id, name, best, worst, unit FROM potential_test WHERE id_team='.$tmid.' AND id_potential='.$allPotential[$i]['id']);
             for($j=0;$j<count($allPotential[$i]['tests']);$j++){
-                $allPotential[$i]['tests'][$j]['scores'] = ($this->db->getConnection())->fetchRowMany('SELECT potential_score.id, data, wynik, unit FROM potential_score, potential_test WHERE potential_score.id_test=potential_test.id AND id_test='.$allPotential[$i]['tests'][$j]['id'].' AND id_user='.$usid);
-            
-                // get summary for this test
+
+                if($last){
+                    $allPotential[$i]['tests'][$j]['scores'] = ($this->db->getConnection())->fetchRowMany('SELECT potential_score.id, data, wynik, unit FROM potential_score, potential_test WHERE potential_score.id_test=potential_test.id AND id_test='.$allPotential[$i]['tests'][$j]['id'].' AND id_user='.$usid.' ORDER BY potential_score.id DESC LIMIT 3');
+                }else{
+                    $allPotential[$i]['tests'][$j]['scores'] = ($this->db->getConnection())->fetchRowMany('SELECT potential_score.id, data, wynik, unit FROM potential_score, potential_test WHERE potential_score.id_test=potential_test.id AND id_test='.$allPotential[$i]['tests'][$j]['id'].' AND id_user='.$usid);
+                }
+
                 $scoresCount = count($allPotential[$i]['tests'][$j]['scores']);
                 $testSummary = 0;
                 $noPrc = 0;
@@ -97,13 +101,14 @@ class StatsManager extends BasicModule {
         $usid = $data["usid"];
         $tmid = $data["tmid"];
         $prc = !isset($data["prc"]) ? true : false ;
+        $last = !isset($data["last"]) ? true : false ;
 
         if( is_array($usid) && count($usid) >= 1 ){
             $this->returnedData["data"] = [];
             $userData = [];
             $teamScore = 0;
             for($i=0;$i<count($usid);$i++){
-                $thisUser = $this->getUserStat($usid[$i],$tmid,$prc);
+                $thisUser = $this->getUserStat($usid[$i],$tmid,$prc,$last);
                 array_push($userData,[
                     "usid" => $usid[$i],
                     "data" => $thisUser,
@@ -116,7 +121,7 @@ class StatsManager extends BasicModule {
                 "teamForm" => $teamScore
             ];
         }else if(!is_array($usid)){
-            $this->returnedData["data"] = $this->getUserStat($usid,$tmid,$prc);
+            $this->returnedData["data"] = $this->getUserStat($usid,$tmid,$prc,$last);
         } else{
             $this->returnedData["data"] = 0;
         }
