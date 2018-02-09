@@ -24,6 +24,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.canAddItem = false;
     var multiDragPositionStart = { x: 0, y: 0 };
 
+
+
     $("#animCreator").niceScroll({
         cursorborderradius: '0px', // Scroll cursor radius
         cursorborder: 'none',
@@ -279,9 +281,24 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         });
                         $('.collapsible').collapsible();
                     });
+
                 }
             });
         });
+    }
+
+    $scope.initBackPrompt = function(){
+        setTimeout(function(){
+            // $(window).off('popstate');
+            // $(window).on('popstate',function(e){
+            //     var r = confirm("Czy na pewno chcesz opuścic tą stronę ? Niezapisane dane zostaną utracone!");
+            //     if (r != true) {
+            //         history.back();
+            //     }else{
+            //         $(window).off('popstate');
+            //     }
+            // });
+        },200);
     }
 
     if ($rootScope.idFromAnimConspectToEdit && $rootScope.idFromAnimConspectToEdit != '' && $rootScope.idFromAnimConspectToEdit != null) {
