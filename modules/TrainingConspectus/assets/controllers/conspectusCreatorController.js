@@ -288,18 +288,18 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     $scope.initBackPrompt = function(){
-        setTimeout(function(){
-            // $(window).off('popstate');
-            // $(window).on('popstate',function(e){
-            //     var r = confirm("Czy na pewno chcesz opuścic tą stronę ? Niezapisane dane zostaną utracone!");
-            //     if (r != true) {
-            //         history.back();
-            //     }else{
-            //         $(window).off('popstate');
-            //     }
-            // });
-        },200);
-    }
+        $scope.$on("$locationChangeStart", function(event) {
+            if (!confirm('Niezapisane zmiany nie zostaną zapisane! Na pewno chcesz wyjść ?')) {
+                event.preventDefault();
+            }else{
+                $(window).off('beforeunload');
+            }
+        });
+        $(window).off('beforeunload');
+        $(window).on('beforeunload',function(){
+            return confirm('Niezapisane zmiany nie zostaną zapisane! Na pewno chcesz wyjść ?');
+        });
+    };
 
     if ($rootScope.idFromAnimConspectToEdit && $rootScope.idFromAnimConspectToEdit != '' && $rootScope.idFromAnimConspectToEdit != null) {
         $scope.animId = $rootScope.idFromAnimConspectToEdit;

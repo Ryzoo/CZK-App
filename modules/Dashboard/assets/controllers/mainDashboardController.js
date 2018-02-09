@@ -50,8 +50,6 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
                 $scope.lastPost = data;
                 if (data.length > 0)
                     $scope.isLoadedPost = true;
-
-
             });
         });
     }
