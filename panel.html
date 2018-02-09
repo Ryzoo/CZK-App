@@ -261,7 +261,7 @@
                     <ul class="right">
                         <li><a href='' id='printButton' class='waves-effect waves-light'><i class="fa-color fa fa-print" aria-hidden="true"></i></a></li>
                         <li ng-show='user.tmid != ""'><a href="#!/calendar" class='waves-effect waves-light'><i class="fa-color fa fa-calendar" aria-hidden="true"></i></a></li>
-                        <li ng-show='user.tmid != ""'><a ng-click='showNotifications()' href="" class='waves-effect waves-light'><i class="fa-color fa fa-bell-o" aria-hidden="true"></i><span class="new badge" ng-show="notifyCount > 0">{{notifyCount}}</span></a></li>
+                        <li ng-show='user.tmid != ""'><a ng-click='showNotifications()' href="" class='waves-effect waves-light'><i class="fa-color fa fa-bell-o" aria-hidden="true"></i><span class="new badge" data-badge-caption="" ng-show="notifyCount > 0">{{notifyCount}}</span></a></li>
                     </ul>
                 </div>
             </nav>
