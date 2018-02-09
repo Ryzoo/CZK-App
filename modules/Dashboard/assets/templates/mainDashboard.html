@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="f33">
+            <div class="f33" ng-show="user.tmid && user.tmid != ''">
                 <div class="card">
                     <div class="card-content" style='min-height: 300px;'>
                         <div class="card-title">
@@ -131,7 +131,7 @@
                     </div>
                 </div>
             </div>
-            <div class="f67" style='display:flex; flex-wrap: wrap'>
+            <div class="f67" ng-show="user.tmid && user.tmid != ''" style='display:flex; flex-wrap: wrap'>
                 <div style='width: 100%'>
                     <div class="card">
                         <div class="card-content" style='height: 300px;'>
@@ -161,7 +161,7 @@
                 </div>
 
             </div>
-            <div class="f50">
+            <div class="f50" ng-show="user.tmid && user.tmid != ''">
                 <div class="card">
                     <div class="card-content" ng-controller="todoController" ng-init='initToDo();' style='min-height: 180px'>
                         <div class="card-title">
