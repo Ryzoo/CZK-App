@@ -78,14 +78,13 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
             return;
         }
 
-
-        if ($scope.payDay >= 0 && $scope.payDay <= 23) {
+        if ($scope.payDay != null && $scope.payDay != '' && $scope.payDay >= 0 && $scope.payDay <= 23 ) {
             var interval = $scope.payDay;
             var intervalName = "dzień";
-        } else if ($scope.payWeek >= 0 && $scope.payWeek <= 6) {
+        } else if ($scope.payWeek != null && $scope.payWeek != '' && $scope.payWeek >= 0 && $scope.payWeek <= 6) {
             var interval = $scope.payWeek;
             var intervalName = "tydzień";
-        } else if ($scope.payMonth >= 1 && $scope.payMonth <= 31) {
+        } else if ($scope.payMonth != null && $scope.payMonth != '' && $scope.payMonth >= 1 && $scope.payMonth <= 31) {
             var interval = $scope.payMonth;
             var intervalName = "miesiąc";
         } else {

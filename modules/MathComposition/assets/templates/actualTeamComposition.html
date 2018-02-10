@@ -2,14 +2,60 @@
 
 <div class="section">
     <div ng-show='showContent' class="row">
-        <div class="col s12 m6 l5" id='notOnFieldCard'>
+
+        <div class="row" style="margin-bottom: 0 !important;">
+            <div style="float:left;" class="f33 page-break">
+                <div class="card" style="height: 205px;">
+                    <div class="card-content page-break noPrint" style="padding:0">
+                        <div class="card-title">
+                            Statystyka
+                        </div>
+                        <div class="row page-break" style="max-width:287px; margin: auto !important;">
+                            <div class="row noPrint" style="overflow:hidden;"><canvas id='teamStat'></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float:left;" class="f33 zpage-break noPrint">
+                <div class="card" style="height: 205px;">
+                    <div class="card-content page-break noPrint" style="padding:0">
+                        <div class="card-title">
+                            Ustawienia
+                        </div>
+                        <div class="row page-break">
+                            <div class="input-field col s12">
+                                <input placeholder="Ilość zawodników na boisku" id="maxPlayers" type="text" class="validate">
+                                <label for="maxPlayers">Ilość zawodników na boisku</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float:left;" class="f33-1 page-break noPrint">
+                <div class="card" style="height: 205px;">
+                    <div class="card-content page-break noPrint" style="padding:0">
+                        <div class="card-title">
+                            Informacje
+                        </div>
+                        <div class="row page-break">
+                            <div class="input-field col s12">
+                                <input placeholder="Ilość zawodników na boisku" id="maxPlayers" type="text" class="validate">
+                                <label for="maxPlayers">Ilość zawodników na boisku</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6 l6" style="padding: 0;" id='notOnFieldCard'>
             <div class="card">
                 <div class="card-content" style="padding:0">
                     <div class="card-title">
                         Ławka rezerwowych
                     </div>
                     <div class="row ">
-                        <div class="row noPrint" style="overflow:hidden;"><canvas id='teamStat'></canvas></div>
+
                         <div class="input-field col s12 noPrint">
                             <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
                         </div>
@@ -38,7 +84,8 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l7 page-break">
+
+        <div class="col s12 m6 l6 page-break" style="padding: 0;">
             <div class="card">
                 <div class="card-content page-break" style="padding:0">
                     <div class="card-title">
@@ -48,7 +95,6 @@
                         <div id="canvas_container" style='width: 100%; height: 100%;'>
                             <canvas id="canvas"></canvas>
                         </div>
-
                     </div>
                 </div>
             </div>

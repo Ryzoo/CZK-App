@@ -25,5 +25,7 @@
                 "url": "#!/teamComposition"
             }
         }
-    }]
+    }],
+    "maxPlayers": 11,
+    "colorId": 1
 }

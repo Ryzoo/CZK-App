@@ -3,7 +3,6 @@ namespace Core\System;
 
 use \KHerGe\JSON\JSON;
 use Core\Auth\Auth;
-use Core\Database\Database;
 use Core\Settings\Settings;
 
 class Route{

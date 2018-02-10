@@ -1,6 +1,9 @@
 app.controller('trainingBaseController', function($scope, auth, $rootScope, notify, statistic, request) {
     $rootScope.showContent = true;
     $(document).ready(function() {
+        setTimeout(function(){
+            $('.collapsible').collapsible();
+        },1000);
         var wSize = $(window).width();
         if (wSize <= 768) {
             $(".adw").each(function() {

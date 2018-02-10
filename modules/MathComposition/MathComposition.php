@@ -2,12 +2,29 @@
 namespace Modules\MathComposition;
 use Core\System\BasicModule;
 use Modules\StatsManager\StatsManager;
+use \KHerGe\JSON\JSON;
 
 class MathComposition extends BasicModule {
+    private $maxPlayers;
+    private $colorId;
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->getModuleOptions();
+    }
+
     function install(){
     }
 
     function uninstall(){
+    }
+
+    function getModuleOptions(){
+        $json = new JSON();
+        $moduleConfig = $json->decodeFile(__DIR__. '/config.json' );
+        $this->maxPlayers = $moduleConfig->maxPlayers;
+        $this->colorId = $moduleConfig->colorId;
     }
 
     function getUsersHelpfulness($data){
@@ -17,7 +34,7 @@ class MathComposition extends BasicModule {
         $tmid = $data['tmid'];
         $this->returnedData["data"] = [];
 
-        if(count($matchTeam) >= 11){
+        if(count($matchTeam) >= $this->maxPlayers){
             for ($i=0; $i < count($otherTeam); $i++) { 
                 array_push($this->returnedData["data"],[
                     "help" => 'osiągnięto limit zawodników'
@@ -31,7 +48,7 @@ class MathComposition extends BasicModule {
                     "tmid"=>$tmid,
                     "usid"=>$userArray,
                     "last"=>true
-                ])['data']['teamForm'])/(1100.0);
+                ])['data']['teamForm'])/($this->maxPlayers*100.0);
 
                 $varToShow = round($formWithThisUser - $teamForm,2);
                 $wordToShow =  $varToShow == 0 ? "" : $varToShow > 0 ? "+" : "-";
