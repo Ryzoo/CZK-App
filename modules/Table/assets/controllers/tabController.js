@@ -4,6 +4,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
     $scope.maxPost = 5;
     $scope.showContent = false;
     $scope.canGetMorePost = false;
+    $scope.addIsShow = false;
 
     $scope.morePost = function() {
         $scope.maxPost += 5;
@@ -25,6 +26,13 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
 
     $scope.getLastPost = function() {
         request.backend('getPost', { tmid: $rootScope.user.tmid }, function(data) {
+            $(document).ready(function() {
+                $('#summernote').summernote({
+                    placeholder: 'Podziel się informacjami z całą sekcją',
+                    lang: 'pl-PL',
+                    height: 200
+                });
+            });
             $scope.$apply(function() {
                 $scope.showContent = true;
                 $scope.posts = [];
@@ -42,9 +50,9 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
 
     $scope.addPost = function() {
         $('#errorNewPost').html("").hide();
-        var message = $("#newPostInput").val();
-        if (message.length < 5 || message.length > 500) {
-            notify.localNotify('Walidacja', 'Wiadomosc musi być dłuższa niż 5 znaków oraz krótsza niż 500');
+        var message = $("#summernote").val();
+        if (message.length < 5 ) {
+            notify.localNotify('Walidacja', 'Wpisz dłuższą wiadomość');
             return;
         }
 
@@ -52,7 +60,7 @@ app.controller('tabController', function($scope, auth, $rootScope, notify, reque
             $scope.getLastPost();
             notify.addNew(new notify.Notification($rootScope.user.firstname + " " + $rootScope.user.lastname + " dodał post", null, "#!/tab", true));
         }, 'Twój post został pomyślnie dodany');
-    }
+    };
 
     $scope.addComment = function(psid) {
         var message = $("#tx_" + psid).val();

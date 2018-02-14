@@ -84,13 +84,15 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                     $scope.addCwCo(fieldData);
                 }
             }
+            $('.collapsible').collapsible();
         });
     }
 
     $scope.selectFromWidget = function(place) {
         $rootScope.lastPlaceInConspect = place;
         $rootScope.showWidget('selectTraining', 'TrainingConspectus');
-    }
+        $('.collapsible').collapsible();
+    };
 
     if ($rootScope.editConspectWithId && $rootScope.editConspectWithId != null && $rootScope.editConspectWithId >= 0) {
         $scope.loadConspect($rootScope.editConspectWithId);
@@ -104,6 +106,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
 
     $scope.initConsectusCreate = function() {
         $scope.showContent = true;
+        $('.collapsible').collapsible();
     }
 
     $scope.initConsAnimList = function() {
@@ -128,11 +131,13 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                     });
                 }, 500);
             });
+            $('.collapsible').collapsible();
         });
     }
 
     $scope.initConspectusAdd = function() {
         $scope.showContent = true;
+        $('.collapsible').collapsible();
     }
 
     $scope.initConspectusList = function() {
@@ -145,6 +150,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                     $scope.conspectArray[i].tags.push(tags[x]);
                 }
             }
+            $('.collapsible').collapsible();
             $scope.showContent = true;
         });
     }

@@ -72,7 +72,6 @@ app.controller('shareList', function($scope, auth, $rootScope, notify, request, 
             }, "Usunięto pozwolenie na wgląd");
         });
 
-
     }
 
     $scope.deleteFromSharedC = function(usid) {

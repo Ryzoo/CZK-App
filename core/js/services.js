@@ -1,4 +1,4 @@
-var app = angular.module("CMCApp", ["ngRoute"]);
+var app = angular.module("CMCApp", ["ngRoute","ngSanitize"]);
 var locaNotifyFun = function(type, message) {
     $.extend($.gritter.options, { 
         position: 'bottom-right', 
