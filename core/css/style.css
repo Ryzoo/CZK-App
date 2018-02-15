@@ -13,6 +13,12 @@ body {
     display: none;
 }
 
+.tutorialOnButton{
+    width: 34px !important;
+    height: 34px !important;
+    margin: 0 5px !important;
+}
+
 .widgetContentContainer {
     margin: auto;
     margin-top: 5vw;

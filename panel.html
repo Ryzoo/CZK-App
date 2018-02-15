@@ -192,12 +192,20 @@
 </head>
 
 <body ng-controller="accountController">
-    <div id="widgetContainer">
+    <div id="widgetContainer" class="noPrint">
         <div class="widgetContentContainer">
         </div>
     </div>
 
-    <div id="videoPlayerContMain">
+    <div id="tutorialModal" class="modal noPrint">
+        <div class="modal-content">
+        </div>
+        <div class="modal-footer">
+            <div ng-click="closeTutorial();" class="modal-action modal-close waves-effect waves-cyan btn-flat">Rozumiem</div>
+        </div>
+    </div>
+
+    <div id="videoPlayerContMain" class="noPrint">
         <div class="videoPlayerCont">
             <div class='closeVideoPlayer'><i class="fa fa-window-close" aria-hidden="true"></i></div>
             <video controls>

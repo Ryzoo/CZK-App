@@ -111,6 +111,32 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         if (e.keyCode === 27) $rootScope.closeWidget();
     });
 
+    $rootScope.tutorialOn = false;
+    $rootScope.getTutorial = function( tutorialName ){
+        $rootScope.tutorialOn = true;
+
+        $.get("/public/tutorial/"+tutorialName+".html", function(data){
+            $('#tutorialModal').find(".modal-content").first().html(data);
+            $('#tutorialModal').modal('open',{
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .75, // Opacity of modal background
+                    inDuration: 300, // Transition in duration
+                    outDuration: 300, // Transition out duration
+                    startingTop: '4%', // Starting top style attribute
+                    endingTop: '10%', // Ending top style attribute
+                    complete: function() { $rootScope.tutorialOn = false }
+                }
+            );
+        }).fail(function() {
+            notify.localNotify('Przepraszamy', "Nie posiadamy jeszcze poradnika do tej części.");
+        });
+    };
+
+    $rootScope.closeTutorial = function(){
+        $rootScope.tutorialOn = false;
+        $('#tutorialModal').modal('close');
+    };
+
     $scope.mainInit = function() {
 
         if (!auth.checkIsLogged()) {
