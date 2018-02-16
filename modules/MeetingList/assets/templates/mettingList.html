@@ -12,11 +12,11 @@
                         </div>
                         <div class="row">
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model="settings.listMinYear" type="number" class="validate selectListYearShow" min="2017" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.listMinYear" type="number" class="validate selectListYearShow" min="2017" >
                                 <label >Wyświetlaj od roku</label>
                             </div>
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model="settings.listMaxYear" type="number" class="validate selectListYearShow" min="2017" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.listMaxYear" type="number" class="validate selectListYearShow" min="2017" >
                                 <label >Wyświetlaj do roku</label>
                             </div>
                         </div>
@@ -31,11 +31,11 @@
                         </div>
                         <div class="row">
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model="settings.sezonStart" type="text" class="validate datetimepicker" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.sezonStart" type="text" class="validate datetimepicker" >
                                 <label >Rozpoczęcie bierzącego sezonu</label>
                             </div>
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model="settings.sezonEnd" type="text" class="validate datetimepicker" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.sezonEnd" type="text" class="validate datetimepicker" >
                                 <label >Zakończenie bierzącego sezonu</label>
                             </div>
                         </div>
@@ -50,9 +50,6 @@
                         </div>
                         <div class="row">
                             <div class="col s12">
-                                <p style="margin: 15px 10px">Dostosuj działanie modułu do potrzeb swojej sekcji</p>
-                            </div>
-                            <div class="col s12">
                                 <div class="switch">
                                     <label>
                                         <input type="checkbox" ng-model="settings.eventInCalendar">
@@ -60,6 +57,10 @@
                                         Informacje o spotkaniach w kalendarzu
                                     </label>
                                 </div>
+                            </div>
+                            <div style='margin-top: 38px;' class="input-field col s12">
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.maxPlayers" type="number" class="validate" >
+                                <label >Maksymalna ilość zawodników na boisku</label>
                             </div>
                         </div>
                     </div>
@@ -196,18 +197,19 @@
                     </div>
                     <div class="mainCreateContener" >
 
-                        <div id='itemBox'>
-                            <div id='itemBoxFromCat' style='margin-top: 50px; position:relative; top:0; background: #29383d;' class='itemBoxWithItem'>
-                                <div class="itemsList">
-                                    <div class="categoryItems soccerField">
-                                        <img data-config="onlyText" src="/modules/MeetingList/assets/media/grass/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niski płotek">
-                                    </div>
-                                    <div class="categoryItems soccerField">
-                                        <img data-config="onlyText" src="/modules/MeetingList/assets/media/grass/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
-                                    </div>
-                                    <div class="categoryItems soccerField">
-                                        <img data-config="onlyText" src="/modules/MeetingList/assets/media/grass/lower-half.jpg" class="tooltipped " data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">
-                                    </div>
+                        <div id='itemBox' style="display: flex;justify-content: center;background: #29383d;">
+                            <div class="itemsList">
+                                <div class="categoryItems soccerField">
+                                    <img src="/modules/MeetingList/assets/media/grass/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niski płotek">
+                                </div>
+                                <div class="categoryItems soccerField">
+                                    <img src="/modules/MeetingList/assets/media/grass/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
+                                </div>
+                                <div class="categoryItems soccerField">
+                                    <img src="/modules/MeetingList/assets/media/grass/background.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
+                                </div>
+                                <div class="categoryItems soccerField">
+                                    <img src="/modules/MeetingList/assets/media/grass/lower-half.jpg" class="tooltipped " data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">
                                 </div>
                             </div>
                         </div>
@@ -215,17 +217,7 @@
                             <div class='containerforcontainer'>
                                 <div id='canvasContainer' ng-show='isSelectedField'></div>
                             </div>
-                            <div id='leftBlockItem'>
-                                <div class="row selectedPlayerData"  ng-show="selectedUser && !selectedOnField">
-                                    <div class="row" style="display: flex; margin-bottom:5px">
-                                        <img class="selectedUserMeetImg" ng-src="{{selectedUser.img}}" alt="{{selectedUser.name}}">
-                                        <p class="selectedUserMeetName">{{selectedUser.userName}}</p>
-                                    </div>
-                                    <div class="row selectedUserMeetStats" >
-                                        <p>Aktualna forma zawodnika: <span>{{selectedUser.data.form}}%</span></p>
-                                        <p ng-repeat="potential in selectedUser.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
-                                    </div>
-                                </div>
+                            <div id='leftBlockItem' style="margin-right:-20px;">
                                 <div class="row selectedPlayerData" ng-show="!selectedUser && selectedOnField">
                                     <div class="row" style="display: flex; margin-bottom:5px">
                                         <img class="selectedUserMeetImg" ng-src="{{selectedOnField.img}}" alt="{{selectedOnField.name}}">
@@ -239,17 +231,27 @@
                                         <p ng-repeat="potential in selectedOnField.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
                                     </div>
                                 </div>
-                                <div class="row" ng-show="allPlayers.length > 0" style="margin:0">
-                                    <div class="col s12">
-                                        <input type="text" placeholder='Wyszukaj osobę' ng-model='searchPerson'>
+                                <div ng-show="onFieldUser.length < settings.maxPlayers">
+                                    <div class="row selectedPlayerData"  ng-show="selectedUser && !selectedOnField">
+                                        <div class="row" style="display: flex; margin-bottom:5px">
+                                            <img class="selectedUserMeetImg" ng-src="{{selectedUser.img}}" alt="{{selectedUser.name}}">
+                                            <p class="selectedUserMeetName">{{selectedUser.userName}}</p>
+                                        </div>
+                                        <div class="row selectedUserMeetStats" >
+                                            <p>Aktualna forma zawodnika: <span>{{selectedUser.data.form}}%</span></p>
+                                            <p ng-repeat="potential in selectedUser.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
+                                        </div>
+                                    </div>
+                                    <div id="playerMeetList">
+                                        <div ng-repeat="user in allPlayers | filter:searchPerson track by $index" class="oneMeetUser" data-meetid="{{$index}}">
+                                            <img class="userMeetImg" ng-src="{{user.img}}" alt="{{user.name}}">
+                                            <span class="userMeetForm">{{user.data.form}}%</span>
+                                            <div class="userMeetName">{{user.userName}}</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row" id="playerMeetList">
-                                    <div ng-repeat="user in allPlayers | filter:searchPerson track by $index" class="oneMeetUser" data-meetid="{{$index}}">
-                                        <img class="userMeetImg" ng-src="{{user.img}}" alt="{{user.name}}">
-                                        <span class="userMeetForm">{{user.data.form}}%</span>
-                                        <div class="userMeetName">{{user.userName}}</div>
-                                    </div>
+                                <div ng-show="onFieldUser.length >= settings.maxPlayers">
+                                    <p style="margin: 50px;text-align: center;color: #b5b5b5;">Uzyskano maksymalną ilość zawodników na boisku: {{settings.maxPlayers}}</p>
                                 </div>
                             </div>
                         </div>
@@ -283,5 +285,7 @@
             lang: 'pl',
             step: 5,
         });
+        $('.tooltipped').tooltip({delay: 50});
+
     });
 </script>

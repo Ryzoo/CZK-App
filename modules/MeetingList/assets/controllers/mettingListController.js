@@ -13,13 +13,13 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
         enemyName: '',
         teamScore: null,
         enemyScore: null,
-        status: '',
+        status: ''
     };
     $scope.showScoreInAddModal = false;
 
     $scope.endFromFull = function(){
         $scope.showAnimCreator = false;
-    }
+    };
 
     $scope.$watch('meetModel.date', function (newValue, oldValue, scope) {
         $scope.showScoreInAddModal = moment(newValue).isSameOrBefore(moment());
@@ -45,6 +45,7 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
                 $scope.settings = data;
                 $scope.settings.listMinYear = parseInt($scope.settings.listMinYear);
                 $scope.settings.listMaxYear = parseInt($scope.settings.listMaxYear);
+                $scope.settings.maxPlayers = parseInt($scope.settings.maxPlayers);
                 $scope.settings.eventInCalendar = $scope.settings.eventInCalendar == '1';
                 $scope.$watch('settings', function (newValue, oldValue, scope) {
                     if($scope.showContent){

@@ -20,6 +20,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-top: 7px;
+    padding: 13px 5px;
+    border-top: 1px solid #353535;
 }
 
 #playerMeetList>div:hover{
