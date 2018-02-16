@@ -311,6 +311,14 @@ class Settings extends BasicModule{
         return $this->returnedData;
     }
 
+    public function updateAppPredisposition($data){
+        $json = new JSON();
+        $siteConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');
+        $siteConfig->mainSettings->appPredisposition = $data['appPred'];
+        $json->encodeFile($siteConfig, __DIR__. '/../../mainConf.json');
+        return $this->returnedData;
+    }
+
     public function getOwnerData(){
         $json = new JSON();
         $siteConfig = $json->decodeFile(__DIR__. '/../../mainConf.json');

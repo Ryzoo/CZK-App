@@ -8,7 +8,6 @@ class Calendar extends BasicModule {
     function install(){
         $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `events` ( `id` int(11) NOT NULL,`id_team` int(11) NOT NULL,`title` text NOT NULL, `start` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,`end` datetime NOT NULL, `color` varchar(30) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8');
         $result = ($this->db->getConnection())->executeSql('ALTER TABLE `events` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
-        
     }
 
     function uninstall(){

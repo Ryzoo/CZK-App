@@ -128,7 +128,8 @@ class StatsManager extends BasicModule {
                 array_push($userData,[
                     "usid" => $usid[$i],
                     "data" => $thisUser,
-                    "userName" => $this->auth->getUserName($usid[$i])
+                    "userName" => $this->auth->getUserNameImg($usid[$i])['name'],
+                    "img" => $this->auth->getUserNameImg($usid[$i])['img'],
                 ]);
                 $teamScore += $thisUser["form"];
             }

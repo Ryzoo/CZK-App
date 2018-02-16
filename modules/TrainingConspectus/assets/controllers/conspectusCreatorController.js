@@ -24,8 +24,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.canAddItem = false;
     var multiDragPositionStart = { x: 0, y: 0 };
 
-
-
     $("#animCreator").niceScroll({
         cursorborderradius: '0px', // Scroll cursor radius
         cursorborder: 'none',
@@ -281,7 +279,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                         });
                         $('.collapsible').collapsible();
                     });
-
                 }
             });
         });

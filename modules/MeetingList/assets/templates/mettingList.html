@@ -1,0 +1,287 @@
+<div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK','STAFF'])"></div>
+
+<div class="section">
+    <div ng-show='showContent' class="row" ng-init="initMeetingList()">
+
+        <div class="fElementRowConainer" >
+            <div class="f33">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            Ustawienia listy
+                        </div>
+                        <div class="row">
+                            <div style='margin-top: 0;' class="input-field col s12">
+                                <input ng-model="settings.listMinYear" type="number" class="validate selectListYearShow" min="2017" >
+                                <label >Wyświetlaj od roku</label>
+                            </div>
+                            <div style='margin-top: 0;' class="input-field col s12">
+                                <input ng-model="settings.listMaxYear" type="number" class="validate selectListYearShow" min="2017" >
+                                <label >Wyświetlaj do roku</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f33">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            Ustawienia sezonu
+                        </div>
+                        <div class="row">
+                            <div style='margin-top: 0;' class="input-field col s12">
+                                <input ng-model="settings.sezonStart" type="text" class="validate datetimepicker" >
+                                <label >Rozpoczęcie bierzącego sezonu</label>
+                            </div>
+                            <div style='margin-top: 0;' class="input-field col s12">
+                                <input ng-model="settings.sezonEnd" type="text" class="validate datetimepicker" >
+                                <label >Zakończenie bierzącego sezonu</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f33-1">
+                <div class="card" style="height: 188px;">
+                    <div class="card-content">
+                        <div class="card-title">
+                            Ustawienia dodatkowe
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <p style="margin: 15px 10px">Dostosuj działanie modułu do potrzeb swojej sekcji</p>
+                            </div>
+                            <div class="col s12">
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" ng-model="settings.eventInCalendar">
+                                        <span class="lever" style="margin: 5px 5px 5px 0"></span>
+                                        Informacje o spotkaniach w kalendarzu
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m7 l8 xl9 page-break" style="padding: 0;">
+            <div class="card">
+                <div class="card-content page-break" style="padding:0">
+                    <div class="card-title">
+                        Lista spotkań
+                    </div>
+                    <div class="row">
+                        <button class="btn" style="margin: 15px 0 0" ng-click="initModalAddMeeting()">Dodaj nowe spotkanie</button>
+                    </div>
+                    <div class="row" ng-show="meetingList.length <= 0">
+                        <div class="col s12" >
+                            <h5 style="text-align: center;color: #a1a1a1; margin: 25px;">Niestety brak spotkań w danym przedziale. Możesz dodać nowe spotkanie klikając przycisk wyżej.</h5>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="meetingList.length > 0">
+                        <div class="input-field col s12 m8 offset-m2">
+                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę' ng-model='searchText'>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="meetingList.length > 0">
+                        <table class='table centered highlight striped responsive-table'>
+                            <thead>
+                                <tr>
+                                    <th>Data spotkania</th>
+                                    <th>Godzina</th>
+                                    <th>Przeciwnik</th>
+                                    <th>Wynik</th>
+                                    <th>Status spotkania</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="meeting in meetingList | filter:searchText track by $index">
+                                    <td>{{getDateFromDateTime(meeting.date)}}</td>
+                                    <td>{{getTimeFromDateTime(meeting.date)}}</td>
+                                    <td>{{meeting.enemyName}}</td>
+                                    <td>{{meeting.teamScore ? meeting.teamScore : '-'}} : {{meeting.enemyScore ? meeting.enemyScore : '-'}}</td>
+                                    <td ng-bind-html="putStatus(meeting.status)"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m5 l4 xl3 page-break" style="padding:0">
+            <div class="row">
+                <div class="col s12" style="padding:0">
+                    <div class="card">
+                        <div class="card-content page-break" style="padding:0">
+                            <div class="card-title">
+                                Podsumowanie sezonu
+                            </div>
+                            <div class="row page-break">
+                                <p>Rozegrane spotkania: <span style="color: #f45c30"><b>{{stats["Rozegrane"]}}</b></span></p>
+                                <p>W tym zwycięstw: <span style="color: #f45c30"><b>{{stats["Zwycięstwo"]}}</b></span></p>
+                                <p>Remisów: <span style="color: #f45c30"><b>{{stats["Remis"]}}</b></span></p>
+                                <p>Porażek: <span style="color: #f45c30"><b>{{stats["Porażka"]}}</b></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12" style="padding:0">
+                    <div class="card">
+                        <div class="card-content page-break" style="padding:0">
+                            <div class="card-title">
+                                Stosunek spotkań
+                            </div>
+                            <div class="row page-break">
+                                <div class="row noPrint" style="overflow:hidden;"><canvas id='meetStats'></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="addMeetingListElementModal" class="modal">
+            <div class="modal-content">
+               <div class="row">
+                   <div class="col s12">
+                       <h5>Tworzenie nowego spotkania</h5>
+                        <div class="row">
+                            <div style='margin-top: 0;' class="input-field col s12 m6">
+                                <input ng-model="meetModel.date" type="text" class="validate datetimepicker2" required>
+                                <label>Data spotkania</label>
+                            </div>
+                            <div style='margin-top: 0;' class="input-field col s12 m6">
+                                <input ng-model="meetModel.enemyName" type="text" class="validate" required>
+                                <label>Nazwa drużyny przeciwnej</label>
+                            </div>
+                            <div ng-show='showScoreInAddModal' style='margin-top: 0;' class="input-field col s12 m6">
+                                <input ng-model="meetModel.teamScore" type="number" class="validate">
+                                <label>Wynik zespołu</label>
+                            </div>
+                            <div ng-show='showScoreInAddModal' style='margin-top: 0;' class="input-field col s12 m6">
+                                <input ng-model="meetModel.enemyScore" type="number" class="validate">
+                                <label>Wynik drużyny przeciwnej</label>
+                            </div>
+                            <div style='margin-top: 0;' class="input-field col s12">
+                                <input disabled ng-model="meetModel.status" type="text" class="validate" required>
+                                <label>Status spotkania</label>
+                            </div>
+                            <div style='margin-top: 0;' class="input-field col s12">
+                                <textarea ng-model="meetModel.description" class="materialize-textarea"></textarea>
+                                <label>Dodatkowy opis spotkania</label>
+                            </div>
+                            <div class="col s12" style="display: flex;justify-content: center;margin-top: 30px;">
+                                <button class="btn" ng-click="initPlayerComposition()">Konfiguruj skład</button>
+                            </div>
+                        </div>
+                   </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-action modal-close btn">Rezygnuje</button>
+                <button class="modal-action btn" ng-click="addNewMeeting()">Dodaj spotkanie</button>
+            </div>
+        </div>
+
+        <div id='animCreator' ng-show='showAnimCreator'>
+            <div class="animCreatorConainer">
+                <button class='waves-effect waves-light btn widgetClose' style='width:100%' ng-click='endFromFull()'>Zamknij okno</button>
+                <div class="row" ng-controller="meetPlayerCompositionController" ng-init="initBackPrompt()">
+                    <div class="row center-align" ng-show='!isSelectedField'>
+                        <h5 style='color: white'>Wybierz rodzaj grafiki boiska</h5>
+                    </div>
+                    <div class="mainCreateContener" >
+
+                        <div id='itemBox'>
+                            <div id='itemBoxFromCat' style='margin-top: 50px; position:relative; top:0; background: #29383d;' class='itemBoxWithItem'>
+                                <div class="itemsList">
+                                    <div class="categoryItems soccerField">
+                                        <img data-config="onlyText" src="/modules/MeetingList/assets/media/grass/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niski płotek">
+                                    </div>
+                                    <div class="categoryItems soccerField">
+                                        <img data-config="onlyText" src="/modules/MeetingList/assets/media/grass/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
+                                    </div>
+                                    <div class="categoryItems soccerField">
+                                        <img data-config="onlyText" src="/modules/MeetingList/assets/media/grass/lower-half.jpg" class="tooltipped " data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id='canvasBck' ng-show='isSelectedField'>
+                            <div class='containerforcontainer'>
+                                <div id='canvasContainer' ng-show='isSelectedField'></div>
+                            </div>
+                            <div id='leftBlockItem'>
+                                <div class="row selectedPlayerData"  ng-show="selectedUser && !selectedOnField">
+                                    <div class="row" style="display: flex; margin-bottom:5px">
+                                        <img class="selectedUserMeetImg" ng-src="{{selectedUser.img}}" alt="{{selectedUser.name}}">
+                                        <p class="selectedUserMeetName">{{selectedUser.userName}}</p>
+                                    </div>
+                                    <div class="row selectedUserMeetStats" >
+                                        <p>Aktualna forma zawodnika: <span>{{selectedUser.data.form}}%</span></p>
+                                        <p ng-repeat="potential in selectedUser.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
+                                    </div>
+                                </div>
+                                <div class="row selectedPlayerData" ng-show="!selectedUser && selectedOnField">
+                                    <div class="row" style="display: flex; margin-bottom:5px">
+                                        <img class="selectedUserMeetImg" ng-src="{{selectedOnField.img}}" alt="{{selectedOnField.name}}">
+                                        <p class="selectedUserMeetName">{{selectedOnField.userName}}</p>
+                                    </div>
+                                    <div class="row selectedUserMeetStats">
+                                        <button class="btn" style="height: 25px;margin: 0 0 5px;line-height: 8px;" ng-click="removeFromField()">Usuń z boiska</button>
+                                    </div>
+                                    <div class="row selectedUserMeetStats" >
+                                        <p>Aktualna forma zawodnika: <span>{{selectedOnField.data.form}}%</span></p>
+                                        <p ng-repeat="potential in selectedOnField.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
+                                    </div>
+                                </div>
+                                <div class="row" ng-show="allPlayers.length > 0" style="margin:0">
+                                    <div class="col s12">
+                                        <input type="text" placeholder='Wyszukaj osobę' ng-model='searchPerson'>
+                                    </div>
+                                </div>
+                                <div class="row" id="playerMeetList">
+                                    <div ng-repeat="user in allPlayers | filter:searchPerson track by $index" class="oneMeetUser" data-meetid="{{$index}}">
+                                        <img class="userMeetImg" ng-src="{{user.img}}" alt="{{user.name}}">
+                                        <span class="userMeetForm">{{user.data.form}}%</span>
+                                        <div class="userMeetName">{{user.userName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-hide='showContent' class='loaderContainer'>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('.selectListYearShow').each(function(){
+            $(this).prop('max', function(){
+                return (new Date()).getFullYear();
+            });
+        });
+        $('.datetimepicker').datetimepicker({
+            format: 'Y-m-d',
+            lang: 'pl',
+            timepicker: false,
+        });
+        $('.datetimepicker2').datetimepicker({
+            format: 'Y-m-d H:i',
+            lang: 'pl',
+            step: 5,
+        });
+    });
+</script>

@@ -92,3 +92,61 @@ app.service('request', function($http, $rootScope) {
         }
     }
 });
+
+app.service('validator', function() {
+    this.valid = function( elementArray ) {
+        let toReturn = true;
+        elementArray.forEach(function(element){
+            if(!toReturn) return;
+            if(!element.value){
+                locaNotifyFun('Błąd walidacji',element.name + " - Musi zostać podane");
+                toReturn = false;
+                return;
+            }
+            if(element.filter.isNumeric){
+                if( !$.isNumeric( element.value ) ) {
+                    locaNotifyFun('Błąd walidacji',element.name + " - Musi być wartością numeryczną");
+                    toReturn = false;
+                    return;
+                }
+                if(element.filter.min){
+                    if( parseFloat(element.value) < parseFloat(element.filter.min)) {
+                        locaNotifyFun('Błąd walidacji',element.name + " - Musi być większe lub równe: " + element.filter.min);
+                        toReturn = false;
+                        return;
+                    }
+                }
+                if(element.filter.max){
+                    if( parseFloat(element.value) > parseFloat(element.filter.max)) {
+                        locaNotifyFun('Błąd walidacji',element.name + " - Musi być mniejsze lub równe: " + element.filter.max);
+                        toReturn = false;
+                        return;
+                    }
+                }
+            }
+            else if(element.filter.isDate){
+                if(!moment(element.value).isValid()){
+                    locaNotifyFun('Błąd walidacji',element.name + " - Musi być poprawnym formatem daty");
+                    toReturn = false;
+                    return;
+                }
+            }else{
+                if(element.filter.lengthMin){
+                    if( (element.value) < (element.filter.lengthMin)) {
+                        locaNotifyFun('Błąd walidacji',element.name + " - Musi mieć przynajmniej: " + element.filter.lengthMin + " znaków");
+                        toReturn = false;
+                        return;
+                    }
+                }
+                if(element.filter.lengthMax){
+                    if( (element.value) > (element.filter.lengthMax)) {
+                        locaNotifyFun('Błąd walidacji',element.name + " - Może mieć maksymalnie: " + element.filter.lengthMax + " znaków");
+                        toReturn = false;
+                        return;
+                    }
+                }
+            }
+        });
+        return toReturn;
+    }
+});

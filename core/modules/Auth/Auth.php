@@ -133,9 +133,12 @@ class Auth {
         return array( "error"=>$error ,"success"=>$success, "data"=>array("url"=>$file_name, "post"=>$data) );
     }
 
-    function getUserName($usid){
-        $data = $result = ($this->db->getConnection())->fetchRow('SELECT user_data.firstname, user_data.lastname FROM users, roles, user_data WHERE user_data.user_id = users.id AND users.id_role = roles.id AND users.id = :id', ['id' => $usid]);
-        return $data['firstname']. " ".$data['lastname'];
+    function getUserNameImg($usid){
+        $data = $result = ($this->db->getConnection())->fetchRow('SELECT user_data.firstname, user_data.lastname, user_img_path FROM users, roles, user_data WHERE user_data.user_id = users.id AND users.id_role = roles.id AND users.id = :id', ['id' => $usid]);
+        return [
+            "name" => $data['firstname']. " ".$data['lastname'],
+            "img" => $data['user_img_path']
+        ];
     }
 
     function checkPerm($token, $perm){

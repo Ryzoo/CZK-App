@@ -9,14 +9,26 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     $scope.initSettings = function() {
         getInstalledModules();
         getAvilableModules();
-    }
+    };
 
     $scope.initThemes = function() {
         getActualThemes();
-    }
+    };
+
+    $(document).off('change','#appPredispositionSelect');
+    $(document).on('change','#appPredispositionSelect',function(){
+        $rootScope.mainSettings.appPredisposition = $('#appPredispositionSelect').val();
+        updateAppPredisposition();
+    });
 
     $scope.initMainSettings = function() {
         getMainSettings();
+        $('#appPredispositionSelect option[value="'+$rootScope.mainSettings.appPredisposition+'"]').prop('selected', true);
+        $('select').material_select();
+    };
+
+    function updateAppPredisposition() {
+        request.backend('updateAppPredisposition', {appPred: $rootScope.mainSettings.appPredisposition}, function(data) {},'Zmieniono predyspozycję aplikacji');
     }
 
     $scope.installModule = function(moduleName) {
@@ -24,7 +36,7 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
             getInstalledModules();
             getAvilableModules();
         }, "Moduł zainstalowany. Odświerz stronę, aby zobaczyć zmiany");
-    }
+    };
 
     $scope.uninstallModule = function(moduleName) {
         request.backend('uninstallModule', { name: moduleName }, function(data) {

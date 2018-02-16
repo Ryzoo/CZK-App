@@ -1,0 +1,80 @@
+.userMeetForm{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #F44336;
+    color: white;
+    border-radius: 10px;
+    top: 30px;
+    padding: 2px 4px;
+}
+
+.userMeetImg{
+    width: 40px;
+    margin: auto;
+    display: block;
+    border-radius: 50%;
+}
+
+#playerMeetList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#playerMeetList>div:hover{
+    border-color: #373736;
+}
+
+.userMeetName {
+    max-width: 72px;
+    padding-top: 5px;
+    text-align: center;
+    color: #7b7b7b;
+}
+
+.selectedUserMeetStats{
+    margin: 0;
+}
+
+.selectedPlayerData{
+    padding: 20px 20px 0;
+    margin: 0;
+}
+
+.selectedUserMeetStats p {
+    margin: 0 0 3px;
+    color: #5e5e5e;
+}
+
+.selectedUserMeetStats p span{
+    color: #d4d4d4;
+}
+
+.selectedUserMeetName{
+    margin: 0;
+    line-height: 45px !important;
+    padding-left: 10px;
+    font-size: 15px;
+    color: #b7b7b7;
+}
+
+#playerMeetList > div{
+    margin: 0 0 10px;
+    position: relative;
+    transition: all .2s;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 5px 2px;
+}
+
+.selectedUserMeetImg {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#playerMeetList>div:hover{
+    border-color: #373736;
+    cursor: pointer;
+}

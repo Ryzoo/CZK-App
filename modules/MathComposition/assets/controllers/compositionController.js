@@ -23,7 +23,6 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                 teamFormChartInit();
             }, 1000);
         });
-
     }
 
     $(document).off("change", ".changeNumber");

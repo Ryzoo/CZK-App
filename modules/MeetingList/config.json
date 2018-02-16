@@ -1,0 +1,55 @@
+{
+    "name": "MeetingList",
+    "description": "Tabela spotkań wraz z danymi oraz statystykami",
+    "version": "1.0",
+    "jsControllers": ["mettingListController","meetPlayerCompositionController"],
+    "frontendRoute": [{
+        "url": "mettingList",
+        "templateSrc": "mettingList.html",
+        "controllerName": "mettingListController"
+    }],
+    "backendRoute": [
+      {
+        "url": "getMettingListSettings",
+        "parameters": ["tmid"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+      },
+      {
+        "url": "getMeetPlayers",
+        "parameters": ["tmid"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+      },
+      {
+        "url": "getMettingList",
+        "parameters": ["tmid", "settings"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+      },
+      {
+        "url": "getMeetStats",
+        "parameters": ["tmid", "settings"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+      },
+      {
+        "url": "updateMettingListSettings",
+        "parameters": ["tmid","settings"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+      },
+      {
+        "url": "addNewMeet",
+        "parameters": ["meetModel","settings"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+      }
+    ],
+    "anchor": [{
+        "destination": "leftMenu",
+        "content": {
+          "link": {
+            "label": "Terminarz spotkań",
+            "url": "#!/mettingList",
+            "icon": "fa fa-calendar fa-fw",
+            "additional": "ng-show=\"user.role != 'ZAWODNIK'\""
+          },
+          "weight": 4
+        }
+    }]
+}

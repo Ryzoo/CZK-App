@@ -52,6 +52,17 @@ class Teams extends BasicModule {
         return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
     }
 
+    function getUserIdFromTeam( $data ){
+        $id = $data['tmid'];
+        $toReturn = null;
+        $success = true;
+        $error = "";
+
+        $toReturn = ($this->db->getConnection())->fetchRowMany('SELECT users.id as id FROM teams, users, team_members WHERE teams.id = team_members.id_team AND team_members.id_user = users.id AND users.id_role = 3 AND team_members.id_team = '.$id.' GROUP BY users.id' );
+
+        return array( "error"=>$error ,"success"=>$success,"data"=>$toReturn );
+    }
+
     function savePositionOnField($data){
         $toReturn = null;
         $success = true;
