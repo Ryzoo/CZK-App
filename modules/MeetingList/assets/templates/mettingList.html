@@ -12,11 +12,11 @@
                         </div>
                         <div class="row">
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.listMinYear" type="number" class="validate selectListYearShow" min="2017" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.listMinYear" type="number" class="validate selectListYearShow" min="2017" >
                                 <label >Wyświetlaj od roku</label>
                             </div>
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.listMaxYear" type="number" class="validate selectListYearShow" min="2017" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.listMaxYear" type="number" class="validate selectListYearShow" min="2017" >
                                 <label >Wyświetlaj do roku</label>
                             </div>
                         </div>
@@ -31,11 +31,11 @@
                         </div>
                         <div class="row">
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.sezonStart" type="text" class="validate datetimepicker" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.sezonStart" type="text" class="validate datetimepicker" >
                                 <label >Rozpoczęcie bierzącego sezonu</label>
                             </div>
                             <div style='margin-top: 0;' class="input-field col s12">
-                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.sezonEnd" type="text" class="validate datetimepicker" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.sezonEnd" type="text" class="validate datetimepicker" >
                                 <label >Zakończenie bierzącego sezonu</label>
                             </div>
                         </div>
@@ -52,14 +52,14 @@
                             <div class="col s12">
                                 <div class="switch">
                                     <label>
-                                        <input type="checkbox" ng-model="settings.eventInCalendar">
+                                        <input type="checkbox" ng-model="settingsMeet.eventInCalendar">
                                         <span class="lever" style="margin: 5px 5px 5px 0"></span>
                                         Informacje o spotkaniach w kalendarzu
                                     </label>
                                 </div>
                             </div>
                             <div style='margin-top: 38px;' class="input-field col s12">
-                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settings.maxPlayers" type="number" class="validate" >
+                                <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.maxPlayers" type="number" class="validate" >
                                 <label >Maksymalna ilość zawodników na boisku</label>
                             </div>
                         </div>
@@ -195,8 +195,7 @@
                     <div class="row center-align" ng-show='!isSelectedField'>
                         <h5 style='color: white'>Wybierz rodzaj grafiki boiska</h5>
                     </div>
-                    <div class="mainCreateContener" >
-
+                    <div class="mainCreateContener2" >
                         <div id='itemBox' style="display: flex;justify-content: center;background: #29383d;">
                             <div class="itemsList">
                                 <div class="categoryItems soccerField">
@@ -214,10 +213,10 @@
                             </div>
                         </div>
                         <div id='canvasBck' ng-show='isSelectedField'>
-                            <div class='containerforcontainer'>
+                            <div class='containerforcontainer' style="display:flex">
                                 <div id='canvasContainer' ng-show='isSelectedField'></div>
                             </div>
-                            <div id='leftBlockItem' style="margin-right:-20px;">
+                            <div id='leftBlockItem'>
                                 <div class="row selectedPlayerData" ng-show="!selectedUser && selectedOnField">
                                     <div class="row" style="display: flex; margin-bottom:5px">
                                         <img class="selectedUserMeetImg" ng-src="{{selectedOnField.img}}" alt="{{selectedOnField.name}}">
@@ -231,7 +230,7 @@
                                         <p ng-repeat="potential in selectedOnField.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
                                     </div>
                                 </div>
-                                <div ng-show="onFieldUser.length < settings.maxPlayers">
+                                <div ng-show="onFieldUser.length < settingsMeet.maxPlayers">
                                     <div class="row selectedPlayerData"  ng-show="selectedUser && !selectedOnField">
                                         <div class="row" style="display: flex; margin-bottom:5px">
                                             <img class="selectedUserMeetImg" ng-src="{{selectedUser.img}}" alt="{{selectedUser.name}}">
@@ -250,10 +249,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ng-show="onFieldUser.length >= settings.maxPlayers">
-                                    <p style="margin: 50px;text-align: center;color: #b5b5b5;">Uzyskano maksymalną ilość zawodników na boisku: {{settings.maxPlayers}}</p>
+                                <div ng-show="onFieldUser.length >= settingsMeet.maxPlayers">
+                                    <p style="margin: 50px;text-align: center;color: #b5b5b5;">Uzyskano maksymalną ilość zawodników na boisku: {{settingsMeet.maxPlayers}}</p>
                                 </div>
                             </div>
+                        </div>
+                        <div style="display: flex;justify-content: center;background: #29383d;">
+                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0"><canvas height="250" width="360" id='teamAllMeetStats'></canvas></div>
+                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0"><canvas height="220" width="360" id='teamAllMeetStatsForm'></canvas></div>
                         </div>
                     </div>
                 </div>

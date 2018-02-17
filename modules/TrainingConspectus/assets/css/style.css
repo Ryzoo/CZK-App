@@ -20,6 +20,17 @@
     min-height: 350px;
 }
 
+
+.mainCreateContener2 {
+    width: 95%;
+    margin: auto;
+    display: block;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    min-height: 350px;
+}
+
 .containerforcontainer {
     float: left;
     width: calc(100% - 250px);
@@ -33,6 +44,13 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    .mainCreateContener2 {
+        float: none;
+        position: absolute;
+        top: 7%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
@@ -716,6 +734,16 @@ canvas,
     max-height: 450px;
     overflow-y: scroll;
     background: #222a2d;
+}
+
+
+.mainCreateContener2 #leftBlockItem {
+    width: 300px;
+    float: left;
+    overflow-y: scroll;
+    background: #222a2d;
+    margin-right:-20px;
+    max-height: 600px;
 }
 
 .categories {

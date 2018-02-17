@@ -2,7 +2,7 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     $scope.showContent = false;
     $scope.meetingList = [];
     $scope.searchText = '';
-    $scope.settings = [];
+    $rootScope.settingsMeet = [];
     $scope.stats = [];
     $scope.showAnimCreator = false;
     $scope.meetModel = {
@@ -42,20 +42,20 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     $scope.initMeetingList = function() {
         request.backend('getMettingListSettings', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
-                $scope.settings = data;
-                $scope.settings.listMinYear = parseInt($scope.settings.listMinYear);
-                $scope.settings.listMaxYear = parseInt($scope.settings.listMaxYear);
-                $scope.settings.maxPlayers = parseInt($scope.settings.maxPlayers);
-                $scope.settings.eventInCalendar = $scope.settings.eventInCalendar == '1';
+                $rootScope.settingsMeet = data;
+                $rootScope.settingsMeet.listMinYear = parseInt($rootScope.settingsMeet.listMinYear);
+                $rootScope.settingsMeet.listMaxYear = parseInt($rootScope.settingsMeet.listMaxYear);
+                $rootScope.settingsMeet.maxPlayers = parseInt($rootScope.settingsMeet.maxPlayers);
+                $rootScope.settingsMeet.eventInCalendar = $rootScope.settingsMeet.eventInCalendar == '1';
                 $scope.$watch('settings', function (newValue, oldValue, scope) {
                     if($scope.showContent){
-                        request.backend('updateMettingListSettings', { tmid: $rootScope.user.tmid, settings: $scope.settings }, function(data) {
+                        request.backend('updateMettingListSettings', { tmid: $rootScope.user.tmid, settings: $rootScope.settingsMeet }, function(data) {
                         },'Ustawienia zapisane');
                     }
                 },true);
             });
             loadStats();
-            request.backend('getMettingList', { tmid: $rootScope.user.tmid, settings: $scope.settings }, function(data) {
+            request.backend('getMettingList', { tmid: $rootScope.user.tmid, settings: $rootScope.settingsMeet }, function(data) {
                 $scope.$apply(function() {
                     $scope.meetingList = data;
                     $scope.showContent = true;
@@ -66,7 +66,7 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     };
 
     function loadStats(){
-        request.backend('getMeetStats', { tmid: $rootScope.user.tmid, settings: $scope.settings }, function(data) {
+        request.backend('getMeetStats', { tmid: $rootScope.user.tmid, settings: $rootScope.settingsMeet }, function(data) {
             $scope.$apply(function() {
                 $scope.stats = [];
                 data.forEach(function(element){
@@ -150,7 +150,7 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
 
         if( validator.valid(toValidate) ){
             $('#addMeetingListElementModal').modal('close');
-            request.backend('addNewMeet', { settings: $scope.settings, meetModel: $scope.meetModel }, function(data) {
+            request.backend('addNewMeet', { settings: $rootScope.settingsMeet, meetModel: $scope.meetModel }, function(data) {
                 $scope.$apply(function() {
                     $scope.meetingList = data;
                     $scope.meetModel = {

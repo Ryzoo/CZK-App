@@ -6,6 +6,8 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
     $scope.mouseActionType = {
         FIELD_LIST: 0,
     };
+    let myLineChart = null;
+    let teamFormChart = null;
     $scope.onFieldUser=[];
     $scope.searchPerson = '';
     $scope.actualMouseAction = $scope.mouseActionType.FIELD_LIST;
@@ -72,7 +74,7 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                 newUserToField.image.src = '/'+newUserToField.img;
             }
         });
-        drawStage();
+        mainCanvas.draw();
     });
 
     $scope.selectField = function(src) {
@@ -84,7 +86,112 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             drawStage();
         };
         $scope.selectedField.src = src;
+        generateChart();
     };
+
+    function generateChart(){
+
+        if(myLineChart){
+            myLineChart.data.datasets[0].data = generatePotentialData();
+            myLineChart.update();
+        }else{
+            myLineChart = new Chart($('#teamAllMeetStats'), {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        backgroundColor: "rgba(255, 99, 132,0.5)",
+                        borderColor: "rgb(255, 99, 132)",
+                        data: generatePotentialData(),
+                        label: 'Sprawność drużyny',
+                        fill: 'start'
+                    }],
+                    labels: generateLabel()
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                min: 0,
+                                beginAtZero: true,
+                                max: 100,
+                                stepSize: 25
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 14,
+                                stepSize: 1,
+                                autoSkip: false,
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        if(teamFormChart){
+            let actualForm = getActualForm();
+            teamFormChart.data.datasets[0].data = [actualForm, 100-actualForm];
+            teamFormChart.update();
+        }else{
+            let actualForm = getActualForm();
+            teamFormChart = new Chart($('#teamAllMeetStatsForm'), {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [actualForm, 100-actualForm],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            '#4e4e4e'
+                        ]
+                    }],
+                    labels: [
+                        'Forma',
+                        'Braki'
+                    ]
+                }
+            });
+        }
+    }
+
+    function getActualForm(){
+        let potentialData = [];
+
+        let potentialScore = 0;
+        for(let j=0;j<$scope.onFieldUser.length;j++){
+            potentialScore += parseInt($scope.onFieldUser[j].getAttr('stat').data.form);
+        }
+        potentialData.push(  parseInt((potentialScore / ($rootScope.settingsMeet.maxPlayers * 100.0))*100.0)  );
+
+        return potentialData;
+    }
+
+    function generatePotentialData(){
+        let potentialData = [];
+        let label = generateLabel();
+
+        for(let i=0;i<label.length;i++){
+            let potentialScore = 0;
+            console.log($scope.onFieldUser);
+            for(let j=0;j<$scope.onFieldUser.length;j++){
+                potentialScore += parseInt($scope.onFieldUser[j].getAttr('stat').data.potential[i].summary);
+            }
+            potentialData.push(  parseInt((potentialScore / ($rootScope.settingsMeet.maxPlayers * 100.0))*100.0)  );
+        }
+
+        return potentialData;
+    }
+
+    function generateLabel(){
+        let allLabel = [];
+        if($scope.allPlayers[0]){
+            $scope.allPlayers[0].data.potential.forEach(function (element) {
+                allLabel.push(element.name);
+            });
+        }
+        return allLabel;
+    }
 
     $scope.initBackPrompt = function(){
         $scope.$on("$locationChangeStart", function(event) {
@@ -179,8 +286,8 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                     }
                 }
             });
-
             drawStage();
+            generateChart();
         }
     }
 
