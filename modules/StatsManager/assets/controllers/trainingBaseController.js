@@ -342,4 +342,10 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
             ]
         }
     ]
+
+    $scope.funkcja = function(){
+        console.log('elo '+ $rootScope.user.firstname);
+        notify.localNotify("Walidacja","asdasdasd");
+
+    }
 });

@@ -22,7 +22,6 @@ class MeetingList extends BasicModule
         // | id  | id_team | date | id_playerComposition  | description | teamScore | enemyScore | enemyName | status  |
         // | int | int     | date | int                   | text        | int       | int        | varchar   | varchar |
         ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_meet` ( `id` INT NOT NULL AUTO_INCREMENT , `id_team` INT NOT NULL , `id_playerComposition` INT NULL , `description` TEXT NOT NULL , `enemyName` VARCHAR(255) NOT NULL , `teamScore` INT(5) NULL , `enemyScore` INT(5) NULL , `status` VARCHAR(50) NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`), INDEX (`id_team`), UNIQUE (`id_playerComposition`)) ENGINE = InnoDB;");
-
     }
 
     function uninstall(){

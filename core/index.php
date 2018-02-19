@@ -1,10 +1,8 @@
 <?php
 define('DEBUG',false);
-if(!DEBUG){
-    header('Content-Type: application/json');
-}else{
-    error_reporting(E_ERROR);
-}
+header('Content-Type: application/json');
+error_reporting(E_ERROR);
+
 require "vendor/autoload.php";
 use Core\System\Route;
 

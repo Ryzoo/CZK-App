@@ -31,6 +31,12 @@
         "password": "15FNKgq18blCNFtN6RYR",
         "dbName": "m1006_cmc_app"
     },
+    "localDatabase":{
+        "host": "localhost",
+        "user": "root",
+        "password": "",
+        "dbName": "m1006_cmc_app"
+    },
     "mainSettings": {
         "appName": "Club Management Center",
         "appVersion": "1.1.0",

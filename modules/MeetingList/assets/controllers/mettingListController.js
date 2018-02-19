@@ -174,6 +174,7 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
         $scope.showAnimCreator = true;
     }
 
+
     $scope.getDateFromDateTime = function(dateTime){
         return moment(dateTime).format('YYYY-MM-DD');
     }
