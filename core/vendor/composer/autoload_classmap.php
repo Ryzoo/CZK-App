@@ -565,6 +565,7 @@ return array(
     'Modules\\Dashboard\\Dashboard' => $baseDir . '/../modules/Dashboard/Dashboard.php',
     'Modules\\Frequency\\Frequency' => $baseDir . '/../modules/Frequency/Frequency.php',
     'Modules\\MathComposition\\MathComposition' => $baseDir . '/../modules/MathComposition/MathComposition.php',
+    'Modules\\MeetingList\\MeetingList' => $baseDir . '/../modules/MeetingList/MeetingList.php',
     'Modules\\Payment\\Payment' => $baseDir . '/../modules/Payment/Payment.php',
     'Modules\\SkillTree\\SkillTree' => $baseDir . '/../modules/SkillTree/SkillTree.php',
     'Modules\\StatsManager\\StatsManager' => $baseDir . '/../modules/StatsManager/StatsManager.php',

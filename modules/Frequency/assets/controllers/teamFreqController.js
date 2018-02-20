@@ -19,7 +19,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
         resetDayInMonthMax();
         M.updateTextFields();
-
+        $('.modal').modal();
     }
 
     function loadFrequencyData(year, month, day) {

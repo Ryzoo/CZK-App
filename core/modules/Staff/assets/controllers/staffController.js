@@ -14,7 +14,8 @@ app.controller('staffController', function($scope, auth, $rootScope, notify, req
                 $scope.showContent = true;
             });
         });
-    }
+    };
+
     $scope.addPerson = function() {
         var firstname = $('#addedFirstname').val();
         var lastname = $('#addedLastname').val();
@@ -34,7 +35,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify, req
             $('#addedEmail').val('');
             $scope.getStaffMembers();
         }, 'Osoba została dodana. Na jej adres email zostało wysłane hasło. Wiadomość może trafić do folderu spam');
-    }
+    };
 
     $scope.addStaff = function() {
         var addUserId = $('#addStaffMembersSelect').val();
@@ -43,7 +44,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify, req
             $scope.getStaffMembers();
             notify.addNew(new notify.Notification("Dodano nowy personel: " + addName, null, "#!/staff", true));
         }, 'Personel dodany pomyślnie');
-    }
+    };
 
     $scope.deleteStaff = function(staffId) {
         $rootScope.showModalWindow("Nieodwracalne usunięcie personelu", function() {
@@ -51,7 +52,7 @@ app.controller('staffController', function($scope, auth, $rootScope, notify, req
                 $scope.getStaffMembers();
             }, 'Personel usunięty pomyślnie');
         });
-    }
+    };
 
     function getAllPersonel() {
         request.backend('getFullPersonel', { tmid: $rootScope.user.tmid }, function(data) {
@@ -63,9 +64,8 @@ app.controller('staffController', function($scope, auth, $rootScope, notify, req
                 $('#addStaffMembersSelect').append("<option value='" + data[i].usid + "'>" + data[i].firstname + " " + data[i].lastname + " [ " + data[i].rlname + " ] </option>");
             }
             $('select').formSelect();
-
         });
-    }
+    };
 
     function getKoords() {
         request.backend('getKoords', {}, function(data) {

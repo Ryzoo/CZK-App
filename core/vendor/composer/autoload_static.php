@@ -772,6 +772,7 @@ class ComposerStaticInit5949d98f44f795fdfa73506ff3507dc6
         'Modules\\Dashboard\\Dashboard' => __DIR__ . '/../..' . '/../modules/Dashboard/Dashboard.php',
         'Modules\\Frequency\\Frequency' => __DIR__ . '/../..' . '/../modules/Frequency/Frequency.php',
         'Modules\\MathComposition\\MathComposition' => __DIR__ . '/../..' . '/../modules/MathComposition/MathComposition.php',
+        'Modules\\MeetingList\\MeetingList' => __DIR__ . '/../..' . '/../modules/MeetingList/MeetingList.php',
         'Modules\\Payment\\Payment' => __DIR__ . '/../..' . '/../modules/Payment/Payment.php',
         'Modules\\SkillTree\\SkillTree' => __DIR__ . '/../..' . '/../modules/SkillTree/SkillTree.php',
         'Modules\\StatsManager\\StatsManager' => __DIR__ . '/../..' . '/../modules/StatsManager/StatsManager.php',
