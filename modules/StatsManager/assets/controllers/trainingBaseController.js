@@ -7,7 +7,7 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     };
 
     $scope.initTrainingBase = function(){
-
+        $('.modal').modal();
         $scope.showContent = true;
         $(document).ready(function() {
             setTimeout(function(){
@@ -76,8 +76,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         { // rozpoczecie pierwszego obiektu, w srodku jego pola
             name: "Beep Test",
-            category: "szybkość",
-            unit: "s",
+            category: "wytrzymałość",
+            unit: "p.o",
             ageCategory: "od 13 roku życia wzwyż",
             equipment: "2 linie (lub inne znaczniki), urządzenie audio do sygnalizowania (np. laptop)",
             execution: [ // wartosc tego pola jest tablica czyli []
@@ -102,6 +102,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Bieg bez piłki",
+            category: "szybkość",
+            unit: "s",
             ageCategory: "od 8 do 13 roku życia",
             equipment: "8 tyczek (lub innych znaczników)",
             execution: [
@@ -120,6 +122,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         {
             name: "FMS - Mobilność barków",
             ageCategory: "wszyscy",
+            category: "funkcjonalność ruchowa",
+            unit: "pkt",
             equipment: "taśma centymetrowa (lub inny przyrząd do pomiaru odległości)",
             execution: [
                 "1. Należy zmierzyć zawodnikowi odległość między podstawą dłoni a końcem środkowego palca.",
@@ -139,6 +143,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
             name: "FMS - Pompka",
             ageCategory: "wszyscy",
             equipment: "brak",
+            category: "funkcjonalność ruchowa",
+            unit: "pkt",
             execution: [
                 "1. Zawodnik przyjmuje pozycję do pompki z rękoma rozstawionymi na szerokość barków.",
                 "2. Mężczyźni: kciuki mają znajdować się na wysokości czubka głowy.",
@@ -158,6 +164,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         {
             name: "FMS - Przejście pod płotkiem",
             ageCategory: "wszyscy",
+            category: "funkcjonalność ruchowa",
+            unit: "pkt",
             equipment: "drążek (może być tyczka lub kij), płotek (lub sznurek)",
             execution: [
                 "1. Zawodnik stoi przed płotkiem (palce stóp pod płotkiem).",
@@ -176,6 +184,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         {
             name: "FMS - Przysiad głęboki",
             ageCategory: "wszyscy",
+            category: "funkcjonalność ruchowa",
+            unit: "pkt",
             equipment: "drążek (może być tyczka lub kij)",
             execution: [
                 "1. Zawodnik stoi w rozkroku na szerokość bioder.",
@@ -193,6 +203,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         {
             name: "FMS - Przysiad w wykroku",
             ageCategory: "wszyscy",
+            category: "funkcjonalność ruchowa",
+            unit: "pkt",
             equipment: "drążek (może być tyczka lub kij), podstawa (lub listwa), taśma centymetrowa (lub inny przyrząd do pomiaru odległości)",
             execution: [
                 "1. Należy zacząć od zmierzenia długości podudzia zawodnika.",
@@ -213,6 +225,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
             name: "FMS - Stabilność rotacyjna tułowia",
             ageCategory: "wszyscy",
             equipment: "brak",
+            category: "funkcjonalność ruchowa",
+            unit: "pkt",
             execution: [
                 "1. Zawodnik ustawia się w następujący sposób: klęczy w podporze na ziemi tak, aby biodra i barki były ustawione do tułowia pod kątem 90 stopni. Stopy mają być wyprostowane.",
                 "2. Zawodnik ma jednocześnie unieść lewą rękę i lewą nogę, a następnie wyprostować obie kończyny w powietrzu.",
@@ -230,6 +244,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         {
             name: "FMS - Uniesienie wyprostowanej nogi",
             ageCategory: "wszyscy",
+            category: "funkcjonalność ruchowa",
+            unit: "pkt",
             equipment: "deska, drążek (lub tyczka)",
             execution: [
                 "1. Zawodnik kładzie się na plecach.",
@@ -249,6 +265,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Ławeczki",
+            category: "technika",
+            unit: "pkt",
             ageCategory: "od 13 do 16 roku życia",
             equipment: "2 tyczki (lub inne znaczniki), ławeczka, piłka",
             execution: [
@@ -270,6 +288,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Prowadzenie piłki",
+            category: "technika",
+            unit: "s",
             ageCategory: "od 8 do 13 roku życia",
             equipment: "8 tyczek (lub innych znaczników), piłka",
             execution: [
@@ -287,6 +307,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "RAST",
+            category: "wytrzymałość",
+            unit: "s",
             ageCategory: "od 16 roku życia wzwyż",
             equipment: "4 tyczki (lub inne znaczniki), fotokomórki",
             execution: [
@@ -305,6 +327,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Skok w dal z miejsca",
+            category: "skoczność",
+            unit: "cm",
             ageCategory: "od 8 do 13 roku życia",
             equipment: "jedna linia, taśma centymetrowa",
             execution: [
@@ -324,6 +348,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Szybkość (30m)",
+            category: "szybkość",
+            unit: "s",
             ageCategory: "od 13 roku życia wzwyż",
             equipment: "2 linie, fotokomórki",
             execution: [
@@ -342,6 +368,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Wyskok dosiężny",
+            category: "skoczność",
+            unit: "cm",
             ageCategory: "od 13 roku życia wzwyż",
             equipment: "tablica, kreda, taśma centymetrowa",
             execution: [
@@ -364,6 +392,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Zwroty z piłką",
+            category: "technika",
+            unit: "s",
             ageCategory: "od 8 do 13 roku życia",
             equipment: "dwie linie (lub pachołki), piłka",
             execution: [
@@ -385,6 +415,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
         {
             name: "Żonglerka piłką",
+            category: "technika",
+            unit: "p",
             ageCategory: "od 8 do 13 roku życia",
             equipment: "cztery pachołki (lub inne znaczniki), piłka",
             execution: [
@@ -403,8 +435,8 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     $scope.rugbyTrainingBase = [
         { // rozpoczecie pierwszego obiektu, w srodku jego pola
             name: "Beep Test",
-            category: "szybkość",
-            unit: "s",
+            category: "wytrzymalosc",
+            unit: "p.o",
             ageCategory: "od 13 roku życia wzwyż",
             equipment: "2 linie (lub inne znaczniki), urządzenie audio do sygnalizowania (np. laptop)",
             execution: [ // wartosc tego pola jest tablica czyli []
