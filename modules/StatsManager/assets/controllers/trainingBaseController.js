@@ -7,12 +7,12 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
     };
 
     $scope.initTrainingBase = function(){
-        $('.modal').modal();
         $scope.showContent = true;
         $(document).ready(function() {
             setTimeout(function(){
                 $('.collapsible').collapsible();
-                Materialize.updateTextFields();
+                M.updateTextFields();
+                $('.modal').modal();
             },1000);
             var wSize = $(window).width();
             if (wSize <= 768) {
