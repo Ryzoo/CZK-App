@@ -17,6 +17,11 @@
             "auth": ["KOORD", "TRENER", "STAFF"]
         },
         {
+            "url": "addTrainingFromBase",
+            "parameters": ["tmid", "category", "name", "max", "min", "unit"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
             "url": "deleteScore",
             "parameters": ["tsid"],
             "auth": ["KOORD", "TRENER", "STAFF"]

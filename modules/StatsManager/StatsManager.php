@@ -36,6 +36,39 @@ class StatsManager extends BasicModule {
         $this->colorId = $moduleConfig->colorId;
     }
 
+    function addTrainingFromBase($data){
+        $tmid = $data["tmid"];
+        $category = $data["category"];
+        $name = $data["name"];
+        $max = $data["max"];
+        $min = $data["min"];
+        $unit = $data["unit"];
+
+        $idPotential = ($this->db->getConnection())->fetchRow('SELECT id FROM potential WHERE LOWER("'.$category.'") LIKE LOWER(name) LIMIT 1');
+
+        if (!isset($idPotential)){
+            $idPotential['id'] = $this->addCategoryTest(["name" => $category])['data'];
+        }
+
+        $idTest = ($this->db->getConnection())->fetchRow('SELECT id FROM potential_test WHERE LOWER("'.$name.'") LIKE LOWER(name) AND id_potential = '.$idPotential['id'].' LIMIT 1');
+
+        if (isset($idTest)){
+            $this->returnedData['success'] = false;
+            $this->returnedData['error'] = "Test już istnieje.";
+        }else{
+            $this->returnedData['data'] = $this->addTestToCategory([
+                "tmid" => $tmid,
+                "caid" => $idPotential['id'],
+                "best" => $max,
+                "worst" => $min,
+                "name" => $name,
+                "unit" => $unit
+            ]);
+        }
+
+        return $this->returnedData;
+    }
+
     function getUserStat($usid, $tmid, $prc = true, $last = false){
         $allPotential = ($this->db->getConnection())->fetchRowMany('SELECT * FROM potential');
         for($i=0;$i<count($allPotential);$i++){
