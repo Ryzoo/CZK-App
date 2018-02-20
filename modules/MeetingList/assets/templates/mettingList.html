@@ -214,35 +214,61 @@
                         </div>
                         <div id='canvasBck' ng-show='isSelectedField'>
                             <div class='containerforcontainer' style="display:flex">
-                                <div id='canvasContainer' ng-show='isSelectedField'></div>
+                                <div id='canvasContainer' style="max-width: 900px;" ng-show='isSelectedField'></div>
                             </div>
                             <div id='leftBlockItem'>
                                 <div class="row selectedPlayerData" ng-show="!selectedUser && selectedOnField">
-                                    <div class="row" style="display: flex; margin-bottom:5px">
+                                    <div class="row" style="display: flex; margin-bottom:5px;flex-wrap:wrap;">
                                         <img class="selectedUserMeetImg" ng-src="{{selectedOnField.img}}" alt="{{selectedOnField.name}}">
-                                        <p class="selectedUserMeetName">{{selectedOnField.userName}}</p>
+                                        <div style="width=calc(100% - 45px)">
+                                            <p class="selectedUserMeetName">{{selectedOnField.userName}}</p>
+                                            <p style="padding-left: 10px;">Aktualna forma zawodnika: <span style="color:white">{{selectedOnField.data.form}}%</span></p>
+                                        </div>
                                     </div>
                                     <div class="row selectedUserMeetStats">
-                                        <button class="btn" style="height: 25px;margin: 0 0 5px;line-height: 8px;" ng-click="removeFromField()">Usuń z boiska</button>
+                                        <div style="width:100%; display:flex; justify-content:center;">
+                                           <div style='margin-top: 0; width: 105px' class="input-field">
+                                               <input style='margin-bottom: 11px;text-align: center;color: white;' ng-model="selectedOnField.position" type="text" class="validate" required>
+                                               <label>Numer na koszulce</label>
+                                           </div>
+                                        </div>
+                                        <button class="btn" style="height: 25px;margin: 0 0 10px;line-height: 8px;" ng-click="removeFromField()">Usuń z boiska</button>
                                     </div>
                                     <div class="row selectedUserMeetStats" >
-                                        <p>Aktualna forma zawodnika: <span>{{selectedOnField.data.form}}%</span></p>
                                         <p ng-repeat="potential in selectedOnField.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
                                     </div>
                                 </div>
-                                <div ng-show="onFieldUser.length < settingsMeet.maxPlayers">
-                                    <div class="row selectedPlayerData"  ng-show="selectedUser && !selectedOnField">
-                                        <div class="row" style="display: flex; margin-bottom:5px">
-                                            <img class="selectedUserMeetImg" ng-src="{{selectedUser.img}}" alt="{{selectedUser.name}}">
+                                <div class="row selectedPlayerData"  ng-show="selectedUser && !selectedOnField">
+                                    <div class="row" style="display: flex; margin-bottom:5px;flex-wrap:wrap;">
+                                        <img class="selectedUserMeetImg" ng-src="{{selectedUser.img}}" alt="{{selectedUser.name}}">
+                                        <div style="width=calc(100% - 45px)">
                                             <p class="selectedUserMeetName">{{selectedUser.userName}}</p>
-                                        </div>
-                                        <div class="row selectedUserMeetStats" >
-                                            <p>Aktualna forma zawodnika: <span>{{selectedUser.data.form}}%</span></p>
-                                            <p ng-repeat="potential in selectedUser.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
+                                            <p style="padding-left: 10px;">Aktualna forma zawodnika: <span style="color:white">{{selectedUser.data.form}}%</span></p>
                                         </div>
                                     </div>
+                                    <div class="row selectedUserMeetStats">
+                                        <div style="width:100%; display:flex; justify-content:center;">
+                                            <div style='margin-top: 0; width: 105px' class="input-field">
+                                                <input style='margin-bottom: 11px;text-align: center;color: white;' ng-model="selectedUser.position" type="text" class="validate" required>
+                                                <label>Numer na koszulce</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row selectedUserMeetStats" >
+                                        <p ng-repeat="potential in selectedUser.data.potential">{{potential.name}}: <span>{{potential.summary}}%</span></p>
+                                    </div>
+                                </div>
+                                <div ng-show="onFieldUser.length < settingsMeet.maxPlayers">
                                     <div id="playerMeetList">
-                                        <div ng-repeat="user in allPlayers | filter:searchPerson track by $index" class="oneMeetUser" data-meetid="{{$index}}">
+                                        <h5 style="
+                                            width: 100%;
+                                            margin: 0;
+                                            text-align: center;
+                                            color: #c2c2c2;
+                                            font-size: 20px;
+                                            padding-bottom: 12px;
+                                        ">Ławka rezerwowych</h5>
+                                        <div ng-repeat="user in allPlayers | filter:searchPerson track by user.usid" class="oneMeetUser" data-meetid="{{user.usid}}">
                                             <img class="userMeetImg" ng-src="{{user.img}}" alt="{{user.name}}">
                                             <span class="userMeetForm">{{user.data.form}}%</span>
                                             <div class="userMeetName">{{user.userName}}</div>
@@ -254,9 +280,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="display: flex;justify-content: center;background: #29383d;">
-                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0"><canvas height="250" width="360" id='teamAllMeetStats'></canvas></div>
-                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0"><canvas height="220" width="360" id='teamAllMeetStatsForm'></canvas></div>
+                        <div style="display: flex;justify-content: space-around;background: #29383d; height:250px;" >
+                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0; height:250px;" ><canvas height="250" width="360" id='teamAllMeetStats'></canvas></div>
+                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0; height:250px;" ><canvas height="220" width="360" id='teamAllMeetStatsForm'></canvas></div>
                         </div>
                     </div>
                 </div>

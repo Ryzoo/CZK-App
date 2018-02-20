@@ -47,18 +47,19 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
                 $rootScope.settingsMeet.listMaxYear = parseInt($rootScope.settingsMeet.listMaxYear);
                 $rootScope.settingsMeet.maxPlayers = parseInt($rootScope.settingsMeet.maxPlayers);
                 $rootScope.settingsMeet.eventInCalendar = $rootScope.settingsMeet.eventInCalendar == '1';
-                $scope.$watch('settings', function (newValue, oldValue, scope) {
-                    if($scope.showContent){
+                $scope.$watch('settingsMeet', function (newValue, oldValue, scope) {
+                    if($scope.showContent && $rootScope.settingsMeet ){
                         request.backend('updateMettingListSettings', { tmid: $rootScope.user.tmid, settings: $rootScope.settingsMeet }, function(data) {
                         },'Ustawienia zapisane');
                     }
                 },true);
             });
-            loadStats();
+
             request.backend('getMettingList', { tmid: $rootScope.user.tmid, settings: $rootScope.settingsMeet }, function(data) {
                 $scope.$apply(function() {
                     $scope.meetingList = data;
                     $scope.showContent = true;
+                    loadStats();
                     Materialize.updateTextFields();
                 });
             });
@@ -82,14 +83,16 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
                     type: 'doughnut',
                     data: {
                         datasets: [{
-                            data: [$scope.stats["Zwycięstwo"], $scope.stats["Porażka"]],
+                            data: [$scope.stats["Zwycięstwo"],$scope.stats["Remis"], $scope.stats["Porażka"]],
                             backgroundColor: [
-                                '#ec1800',
-                                '#4e4e4e'
+                                '#a7ec50',
+                                '#4e4e4e',
+                                '#ec1800'
                             ]
                         }],
                         labels: [
                             'Zwycięstwa',
+                            'Remis',
                             'Porażki'
                         ]
                     }

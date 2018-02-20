@@ -1,5 +1,5 @@
 <?php
-define('DEBUG',false);
+define('DEBUG',true);
 header('Content-Type: application/json');
 error_reporting(E_ERROR);
 
