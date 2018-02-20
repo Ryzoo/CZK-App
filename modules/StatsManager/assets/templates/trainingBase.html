@@ -46,7 +46,26 @@
                             {{ jednaWartosc }}
                         </div>
                         <div class="flex-container">
-                            <button class="btn" ng-repeat="testRange in training.testRange" ng-click="addTrainingFromBase(training.category,training.name,testRange.min,testRange.max,training.unit)" >Dodaj({{testRange.name}})</button>
+                            <button class="btn" ng-click="initModalAddTrainingFromBase()">Dodaj nowy test</button>
+                        </div>
+
+                        <div id="addTrainingFromBase" class="modal">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <input ng-model="testOptions.max" id="maxScore" type="text" name="maxScore" placeholder="Najlepszy możliwy wynik" class="validate">
+                                        <label for="maxScore">Najlepszy możliwy wynik</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <input ng-model="testOptions.min" id="minScore" type="text" name="minScore" placeholder="Najgorszy możliwy wynik" class="validate">
+                                        <label for="maxScore">Najgorszy możliwy wynik</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button ng-click="closeModalAddTrainingFromBase()" class="btn">Anuluj</button>
+                                <button ng-click="addTrainingFromBase(training.category,training.name,training.unit)" class="btn">Dodaj</button>
+                            </div>
                         </div>
                     </div>
                 </li>
