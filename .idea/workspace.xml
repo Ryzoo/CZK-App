@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/core/index.php" afterPath="$PROJECT_DIR$/core/index.php" />
+      <change beforePath="$PROJECT_DIR$/modules/Frequency/Frequency.php" afterPath="$PROJECT_DIR$/modules/Frequency/Frequency.php" />
+      <change beforePath="$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js" afterPath="$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js" />
+      <change beforePath="$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html" afterPath="$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html" />
+      <change beforePath="$PROJECT_DIR$/modules/Frequency/config.json" afterPath="$PROJECT_DIR$/modules/Frequency/config.json" />
       <change beforePath="$PROJECT_DIR$/public/additionalScripts.min.js" afterPath="$PROJECT_DIR$/public/additionalScripts.min.js" />
       <change beforePath="$PROJECT_DIR$/public/angularScripts.min.js" afterPath="$PROJECT_DIR$/public/angularScripts.min.js" />
       <change beforePath="$PROJECT_DIR$/public/styles.min.css" afterPath="$PROJECT_DIR$/public/styles.min.css" />
@@ -66,8 +72,18 @@
       <file leaf-file-name="trainingBase.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="56" column="85" lean-forward="false" selection-start-line="56" selection-start-column="62" selection-end-line="56" selection-end-column="85" />
+            <state relative-caret-position="602">
+              <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -76,40 +92,67 @@
       <file leaf-file-name="trainingBaseController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="709">
-              <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+            <state relative-caret-position="289">
+              <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/js/services.js">
+      <file leaf-file-name="teamFreq.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2700">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mettingListController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/MeetingList/assets/controllers/mettingListController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="16" selection-end-line="114" selection-end-column="33" />
+            <state relative-caret-position="65">
+              <caret line="42" column="22" lean-forward="false" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
               <folding>
-                <marker date="1519135783289" expanded="true" signature="8370:8376" ph="..." />
+                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/index.php">
+      <file leaf-file-name="teamFreqController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+            <state relative-caret-position="319">
+              <caret line="136" column="31" lean-forward="false" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Frequency.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/Frequency/Frequency.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="101" column="13" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="32" />
+              <folding>
+                <marker date="1519154269621" expanded="true" signature="1149:1268" ph="SELECT * FRO... freq" />
+                <marker date="1519154269621" expanded="true" signature="2651:2733" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="3417:3499" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="3855:3907" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="3855:3908" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="3855:3922" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="3855:3936" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="3855:3937" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="4065:4190" ph="CREATE TABLE... IF" />
+                <marker date="1519154269621" expanded="true" signature="4065:4235" ph="CREATE TABLE... IF" />
+                <marker date="1519154269621" expanded="true" signature="4290:4376" ph="ALTER TABLE `freq`... " />
+                <marker date="1519154269621" expanded="true" signature="4431:4540" ph="CREATE TABLE... IF" />
+                <marker date="1519154269621" expanded="true" signature="4431:4567" ph="CREATE TABLE... IF" />
+                <marker date="1519154269621" expanded="true" signature="4431:4653" ph="CREATE TABLE... freq_team_day_status" />
+                <marker date="1519154269621" expanded="true" signature="4742:4767" ph="DROP TABLE I... " />
+                <marker date="1519154269621" expanded="true" signature="4821:4862" ph="DROP TABLE I... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/Frequency/config.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="682">
+              <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -187,6 +230,11 @@
         <option value="$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html" />
         <option value="$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js" />
         <option value="$PROJECT_DIR$/core/index.php" />
+        <option value="$PROJECT_DIR$/modules/Frequency/assets/css/style.css" />
+        <option value="$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html" />
+        <option value="$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js" />
+        <option value="$PROJECT_DIR$/modules/Frequency/Frequency.php" />
+        <option value="$PROJECT_DIR$/modules/Frequency/config.json" />
       </list>
     </option>
   </component>
@@ -364,22 +412,38 @@
               <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
               <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="MeetingList" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Frequency" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
               <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="MeetingList" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Frequency" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
               <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="MeetingList" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Frequency" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Frequency" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Frequency" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
@@ -493,7 +557,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56146000" />
+    <option name="totallyTimeSpent" value="70244000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -557,35 +621,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/showConspectController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="15" lean-forward="true" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnimList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="36" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4296">
-          <caret line="183" column="37" lean-forward="true" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="db://[CMC-DB] TABLE - m1006_cmc_app.comments" />
     <entry file="file://$PROJECT_DIR$/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -937,27 +972,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="56" column="85" lean-forward="false" selection-start-line="56" selection-start-column="62" selection-end-line="56" selection-end-column="85" />
+        <state relative-caret-position="602">
+          <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+        <state relative-caret-position="289">
+          <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/index.php">
+    <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        <state relative-caret-position="65">
+          <caret line="42" column="22" lean-forward="false" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="136" column="31" lean-forward="false" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/Frequency/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/Frequency/Frequency.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="101" column="13" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="32" />
+          <folding>
+            <marker date="1519154269621" expanded="true" signature="1149:1268" ph="SELECT * FRO... freq" />
+            <marker date="1519154269621" expanded="true" signature="2651:2733" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="3417:3499" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="3855:3907" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="3855:3908" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="3855:3922" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="3855:3936" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="3855:3937" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="4065:4190" ph="CREATE TABLE... IF" />
+            <marker date="1519154269621" expanded="true" signature="4065:4235" ph="CREATE TABLE... IF" />
+            <marker date="1519154269621" expanded="true" signature="4290:4376" ph="ALTER TABLE `freq`... " />
+            <marker date="1519154269621" expanded="true" signature="4431:4540" ph="CREATE TABLE... IF" />
+            <marker date="1519154269621" expanded="true" signature="4431:4567" ph="CREATE TABLE... IF" />
+            <marker date="1519154269621" expanded="true" signature="4431:4653" ph="CREATE TABLE... freq_team_day_status" />
+            <marker date="1519154269621" expanded="true" signature="4742:4767" ph="DROP TABLE I... " />
+            <marker date="1519154269621" expanded="true" signature="4821:4862" ph="DROP TABLE I... " />
+          </folding>
         </state>
       </provider>
     </entry>

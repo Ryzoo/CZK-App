@@ -77,13 +77,52 @@ class Frequency extends BasicModule {
         return $this->returnedData;
     }
 
+    function updateDayStatusFreq($data){
+        $tmid = $data['tmid'];
+        $date = $data['data'];
+        $status = $data['status'];
+        $reason = isset($data['reason']) ? $data['reason'] : "";
+        $dayStatus = ($this->db->getConnection())->fetchRow('SELECT * FROM freq_team_day_status WHERE date = DATE(\''.$date.'\') AND id_team = '. $tmid);
+        if (isset($dayStatus)){
+            ($this->db->getConnection())->update('freq_team_day_status', ['id'=>$dayStatus['id']], [
+                "status"=>$status,
+                "reason"=>$reason
+            ]);
+        }else{
+            ($this->db->getConnection())->insert('freq_team_day_status', [
+                "status"=>$status,
+                "id_team"=>$tmid,
+                "date"=>$date,
+                "reason"=>$reason
+            ]);
+        }
+        return $this->returnedData;
+    }
+
+    function deleteDayStatusFreq($data){
+        $tmid = $data['tmid'];
+        $date = $data['data'];
+        $id_freq = ($this->db->getConnection())->fetchRow('SELECT * FROM freq_team_day_status WHERE date = DATE(\''.$date.'\') AND id_team = '. $tmid)['id'];
+        $this->returnedData['data'] = ($this->db->getConnection())->delete('freq_team_day_status', ['id'=>$id_freq]);
+        return $this->returnedData;
+    }
+
+    function getDayStatusFreq($data){
+        $tmid = $data['tmid'];
+        $date = $data['data'];
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRow('SELECT * FROM freq_team_day_status WHERE date = DATE(\''.$date.'\') AND id_team = '. $tmid);
+        return $this->returnedData;
+    }
+
     function install(){
-        $result = ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `freq` (`id` int(11) NOT NULL,`usid` int(11) NOT NULL,`tmid` int(11) NOT NULL,`date` date NOT NULL) DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;');
-        $result = ($this->db->getConnection())->executeSql('ALTER TABLE `freq` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
-        
+        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `freq` (`id` int(11) NOT NULL,`usid` int(11) NOT NULL,`tmid` int(11) NOT NULL,`date` date NOT NULL) DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;');
+        ($this->db->getConnection())->executeSql('ALTER TABLE `freq` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
+        ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `freq_team_day_status` ( `id` INT NOT NULL AUTO_INCREMENT ,`id_team` INT NOT NULL,`reason` VARCHAR(255) NULL, `date` DATE NOT NULL , `status` INT(1) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;');
+
     }
 
     function uninstall(){
-        $result = ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS freq');
+        ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS freq');
+        ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS freq_team_day_status');
     }
 }
