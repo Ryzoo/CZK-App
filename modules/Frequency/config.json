@@ -15,6 +15,21 @@
             "url": "setOffTraining",
             "parameters": ["tmid", "usid", "year", "month", "day"],
             "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "updateDayStatusFreq",
+            "parameters": ["tmid", "data", "status"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getDayStatusFreq",
+            "parameters": ["tmid", "data"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "deleteDayStatusFreq",
+            "parameters": ["tmid", "data"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
         }
     ],
     "jsControllers": ["teamFreqController"],

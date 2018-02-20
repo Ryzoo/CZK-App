@@ -3,6 +3,11 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
     $scope.isSelectedCorrectDate = true;
     $scope.inDaysFreq = [];
     $scope.loadedData = false;
+    $scope.status = "W tym dniu trening się nie odbył.";
+    $scope.statusNumber = 0;
+    $scope.currentDay = [];
+    $scope.isFreqShow = false;
+
     var currentTime = new Date();
 
     $scope.initFreq = function() {
@@ -23,7 +28,12 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         request.backend('getFrequency', { tmid: $rootScope.user.tmid, year: year, month: month, day: day }, function(data) {
             $scope.$apply(function() {
                 $scope.inDaysFreq = data;
-                $scope.loadedData = true;
+            });
+        });
+        request.backend('getDayStatusFreq', { tmid: $rootScope.user.tmid, data: moment(year+"-"+month+"-"+day).format("YYYY-MM-DD") }, function(data) {
+            $scope.$apply(function() {
+                $scope.currentDay = data;
+                $scope.checkTeamStatusFreq();
             });
         });
     }
@@ -91,4 +101,70 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $("#dayDate").attr("max", dayCount);
 
     }
+
+    $scope.checkTeamStatusFreq = function(){
+        if($scope.currentDay && $scope.currentDay != null && !$.isArray($scope.currentDay)){
+            $scope.status = $scope.currentDay.status == 1 ? "W tym dniu odbył się trening." : "W tym dniu trening został odwołany.";
+            $scope.statusNumber = $scope.currentDay.status;
+            $scope.isFreqShow = $scope.currentDay.status == 1;
+            $scope.reason = $scope.currentDay.reason;
+        }else{
+            $scope.status = "W tym dniu trening się nie odbył.";
+            $scope.statusNumber = 0;
+            $scope.isFreqShow = false;
+            $scope.reason = "";
+        }
+
+    };
+
+    $scope.initTeamStatus = function(){
+        var year = $("#yearDate").val();
+        var month = $("#monthDate").val();
+        var day = $("#dayDate").val();
+        request.backend('updateDayStatusFreq', { status: 1, tmid: $rootScope.user.tmid, data: moment(year+"-"+month+"-"+day).format("YYYY-MM-DD") }, function(data) {
+            $scope.$apply(function() {
+                $scope.status = "W tym dniu odbył się trening.";
+                $scope.statusNumber = 1;
+                $scope.isFreqShow = true;
+                $scope.reason = "";
+            });
+        },"Status został zmieniony.");
+    };
+
+    $scope.initDefaultStatus = function(){
+        var year = $("#yearDate").val();
+        var month = $("#monthDate").val();
+        var day = $("#dayDate").val();
+        request.backend('deleteDayStatusFreq', { status: 1, tmid: $rootScope.user.tmid, data: moment(year+"-"+month+"-"+day).format("YYYY-MM-DD") }, function(data) {
+            $scope.$apply(function() {
+                $scope.status = "W tym dniu trening się nie odbył.";
+                $scope.statusNumber = 0;
+                $scope.isFreqShow = false;
+                $scope.reason = "";
+            });
+        },"Status został zmieniony.");
+    };
+
+    $scope.initReasonModal = function () {
+        $('#cancellationReason').modal('open');
+    };
+
+    $scope.cancelReasonModal = function () {
+        $('#cancellationReason').modal('close');
+    };
+
+    $scope.initChangeStatus = function () {
+        var year = $("#yearDate").val();
+        var month = $("#monthDate").val();
+        var day = $("#dayDate").val();
+        request.backend('updateDayStatusFreq', { reason: $scope.reason ? $scope.reason : "" ,status: 2, tmid: $rootScope.user.tmid, data: moment(year+"-"+month+"-"+day).format("YYYY-MM-DD") }, function(data) {
+            $scope.$apply(function() {
+                $scope.isFreqShow = false;
+                $scope.status = "W tym dniu trening został odwołany.";
+                $scope.statusNumber = 2;
+                $('#cancellationReason').modal('close');
+            });
+        },"Status został zmieniony.");
+    };
+
 });

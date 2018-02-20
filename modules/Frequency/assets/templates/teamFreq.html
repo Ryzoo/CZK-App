@@ -2,47 +2,91 @@
 <div class="section" ng-init="initFreq()">
     <div ng-show='showContent' class="row">
         <div class="col s12 m3 lg2">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">Wybór daty</div>
-                    <div class="row">
-                        <div class="freqInputGroup form-group">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input value="{{user.email}}" id="yearDate" name='userEmail' type="number" class="validate" min="2017">
-                                    <label for="yearDate">Rok</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input value="{{user.addAccountDate}}" id="monthDate" type="number" class="validate" min="1" max="12">
-                                    <label for="monthDate">Miesiąc</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input value="{{user.addAccountDate}}" id="dayDate" type="number" class="validate" min="1">
-                                    <label for="dayDate">Dzień</label>
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Wybór daty</div>
+                        <div class="row">
+                            <div class="freqInputGroup form-group">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input value="{{user.email}}" id="yearDate" name='userEmail' type="number" class="validate" min="2017">
+                                        <label for="yearDate">Rok</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input value="{{user.addAccountDate}}" id="monthDate" type="number" class="validate" min="1" max="12">
+                                        <label for="monthDate">Miesiąc</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input value="{{user.addAccountDate}}" id="dayDate" type="number" class="validate" min="1">
+                                        <label for="dayDate">Dzień</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Status treningu</div>
+                        <p>{{status}}</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="reason.length > 0" class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Powód odwołania treningu</div>
+                        <p>{{reason}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col s12 m9 lg10">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-title">Podgląd obecności</div>
-                    <div class="row " ng-show='isSelectedCorrectDate && loadedData'>
-                        <div class="input-field col s12">
-                            <input id='changeFilter' class="noPrint" type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Zmiana statusu</div>
+                        <div class="flex-container">
+                            <button class="btn" ng-show="statusNumber != 1" ng-click="initTeamStatus()">Odbył się</button>
+                            <button class="btn" ng-show="statusNumber != 2" ng-click="initReasonModal()">Tak, ale został odwołany</button>
+                            <button class="btn" ng-show="statusNumber == 1 || statusNumber == 2" ng-click="initDefaultStatus()">Nie odbył się</button>
                         </div>
-                        <table class="freqTable table ">
-                            <thead>
+                    </div>
+                </div>
+            </div>
+            <div id="cancellationReason" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <h4>Podaj powód odwołania</h4>
+                        <textarea id="reason" ng-model="reason" class="materialize-textarea"></textarea>
+                        <label for="reason">Powód</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="cancelReasonModal()" class="btn">Anuluj</button>
+                    <button ng-click="initChangeStatus()" class="btn">Dodaj</button>
+                </div>
+            </div>
+            <div ng-show="isFreqShow" class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Podgląd obecności</div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id='changeFilter' class="noPrint" type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
+                            </div>
+                            <table class="freqTable table ">
+                                <thead>
                                 <tr>
                                     <th>Imię</th>
                                     <th>Nazwisko</th>
                                     <th>Obecność</th>
                                 </tr>
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
                                 <tr ng-repeat="user in inDaysFreq | filter:searchText " class="page-break">
                                     <td>{{user.firstname}}</td>
                                     <td>{{user.lastname}}</td>
@@ -65,8 +109,9 @@
                                         </div>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
