@@ -1,6 +1,10 @@
-app.controller('trainingBaseController', function($scope, auth, $rootScope, notify, statistic, request) {
+app.controller('trainingBaseController', function($scope, auth, $rootScope, notify, statistic, request, validator) {
     $scope.showContent = false;
     $scope.trainingBase = [];
+    $scope.testOptions = {
+        min: 0,
+        max: 0
+    };
 
     $scope.initTrainingBase = function(){
 
@@ -8,6 +12,7 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         $(document).ready(function() {
             setTimeout(function(){
                 $('.collapsible').collapsible();
+                Materialize.updateTextFields();
             },1000);
             var wSize = $(window).width();
             if (wSize <= 768) {
@@ -34,9 +39,37 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
 
     };
 
-    $scope.addTrainingFromBase = function(category, name, min, max, unit){
-        request.backend('addTrainingFromBase', { tmid: $rootScope.user.tmid, category: category, name: name, min: min, max: max, unit: unit}, function(data) {
-        },"Test dodano poprawnie.");
+    $scope.initModalAddTrainingFromBase = function () {
+        $('#addTrainingFromBase').modal('open');
+    };
+
+    $scope.closeModalAddTrainingFromBase = function () {
+        $('#addTrainingFromBase').modal('close');
+    };
+
+
+    $scope.addTrainingFromBase = function(category, name, unit){
+        let isValid = validator.valid([
+            {
+                value: $scope.testOptions.max,
+                name: "Najlepszy możliwy wynik",
+                filter: {
+                    isNumeric: true
+                }
+            },
+            {
+                value: $scope.testOptions.min,
+                name: "Najgorszy możliwy wynik",
+                filter: {
+                    isNumeric: true
+                }
+            }
+        ]);
+        if (isValid){
+            request.backend('addTrainingFromBase', { tmid: $rootScope.user.tmid, category: category, name: name, min: $scope.testOptions.min, max: $scope.testOptions.max, unit: unit}, function(data) {
+                $('#addTrainingFromBase').modal('close');
+            },"Test dodano poprawnie.");
+        }
     };
 
     $scope.futbollTrainingBase = [ //tablica obiektow, jeden obiekt to jeden trening
@@ -44,11 +77,6 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         { // rozpoczecie pierwszego obiektu, w srodku jego pola
             name: "Beep Test",
             category: "szybkość",
-            testRange:[
-                {name: "trampkarz", max:13,min:22},
-                {name: "junior", max:13,min:22},
-                {name: "senior", max:13,min:22},
-            ],
             unit: "s",
             ageCategory: "od 13 roku życia wzwyż",
             equipment: "2 linie (lub inne znaczniki), urządzenie audio do sygnalizowania (np. laptop)",
@@ -376,11 +404,6 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         { // rozpoczecie pierwszego obiektu, w srodku jego pola
             name: "Beep Test",
             category: "szybkość",
-            testRange:[
-                {name: "trampkarz", max:13,min:22},
-                {name: "junior", max:13,min:22},
-                {name: "senior", max:13,min:22},
-            ],
             unit: "s",
             ageCategory: "od 13 roku życia wzwyż",
             equipment: "2 linie (lub inne znaczniki), urządzenie audio do sygnalizowania (np. laptop)",

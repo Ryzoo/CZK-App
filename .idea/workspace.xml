@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CZK-App.iml" afterPath="$PROJECT_DIR$/.idea/CZK-App.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/angular_js.xml" afterPath="$PROJECT_DIR$/.idea/libraries/angular_js.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jQuery.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jQuery.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jQuery_ui.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jQuery_ui.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/core/js/controllers/mainController.js" afterPath="$PROJECT_DIR$/core/js/controllers/mainController.js" />
-      <change beforePath="$PROJECT_DIR$/core/mainConf.json" afterPath="$PROJECT_DIR$/core/mainConf.json" />
-      <change beforePath="$PROJECT_DIR$/modules/StatsManager/StatsManager.php" afterPath="$PROJECT_DIR$/modules/StatsManager/StatsManager.php" />
-      <change beforePath="$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js" afterPath="$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js" />
-      <change beforePath="$PROJECT_DIR$/modules/StatsManager/assets/css/style.css" afterPath="$PROJECT_DIR$/modules/StatsManager/assets/css/style.css" />
-      <change beforePath="$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html" afterPath="$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html" />
-      <change beforePath="$PROJECT_DIR$/modules/StatsManager/config.json" afterPath="$PROJECT_DIR$/modules/StatsManager/config.json" />
       <change beforePath="$PROJECT_DIR$/public/additionalScripts.min.js" afterPath="$PROJECT_DIR$/public/additionalScripts.min.js" />
       <change beforePath="$PROJECT_DIR$/public/angularScripts.min.js" afterPath="$PROJECT_DIR$/public/angularScripts.min.js" />
       <change beforePath="$PROJECT_DIR$/public/styles.min.css" afterPath="$PROJECT_DIR$/public/styles.min.css" />
@@ -79,18 +66,8 @@
       <file leaf-file-name="trainingBase.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+            <state relative-caret-position="422">
+              <caret line="56" column="85" lean-forward="false" selection-start-line="56" selection-start-column="62" selection-end-line="56" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -99,75 +76,40 @@
       <file leaf-file-name="trainingBaseController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="709">
+              <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/js/services.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2700">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mettingListController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/MeetingList/assets/controllers/mettingListController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="16" selection-end-line="114" selection-end-column="33" />
               <folding>
-                <element signature="e#1471#20034#0" expanded="false" />
-                <element signature="e#20067#22008#0" expanded="false" />
+                <marker date="1519135783289" expanded="true" signature="8370:8376" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/js/controllers/mainController.js">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-              <folding>
-                <marker date="1519085390042" expanded="true" signature="2405:2415" ph="..." />
-                <marker date="1519085390042" expanded="true" signature="2832:2851" ph="..." />
-                <marker date="1519085390042" expanded="true" signature="2918:2939" ph="..." />
-                <marker date="1519085390042" expanded="true" signature="3038:3094" ph="..." />
-                <marker date="1519085390042" expanded="true" signature="3216:3272" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatsManager.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/StatsManager/StatsManager.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="830">
-              <caret line="58" column="66" lean-forward="false" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
-              <folding>
-                <element signature="e#3537#7081#0#PHP" expanded="false" />
-                <element signature="e#7087#8413#0#PHP" expanded="false" />
-                <marker date="1519082479761" expanded="true" signature="371:544" ph="CREATE TABLE... IF" />
-                <marker date="1519082479761" expanded="true" signature="608:864" ph="CREATE TABLE... IF" />
-                <marker date="1519082479761" expanded="true" signature="928:1252" ph="CREATE TABLE... IF" />
-                <marker date="1519082479761" expanded="true" signature="1316:1407" ph="ALTER TABLE `potential`... " />
-                <marker date="1519082479761" expanded="true" signature="1472:1569" ph="ALTER TABLE `potential_score`... " />
-                <marker date="1519082479761" expanded="true" signature="1634:1730" ph="ALTER TABLE `potential_test`... " />
-                <marker date="1519082479761" expanded="true" signature="1828:1858" ph="DROP TABLE I... " />
-                <marker date="1519082479761" expanded="true" signature="1922:1958" ph="DROP TABLE I... " />
-                <marker date="1519082479761" expanded="true" signature="2022:2057" ph="DROP TABLE I... " />
-                <marker date="1519082479761" expanded="true" signature="2623:2653" ph="SELECT id FR... potential" />
-                <marker date="1519082479761" expanded="true" signature="2623:2654" ph="SELECT id FR... potential" />
-                <marker date="1519082479761" expanded="true" signature="2623:2660" ph="SELECT id FR... potential" />
-                <marker date="1519082479761" expanded="true" signature="2623:2664" ph="SELECT id FR... potential" />
-                <marker date="1519082479761" expanded="true" signature="2623:2701" ph="SELECT id FR... potential" />
-                <marker date="1519082479761" expanded="true" signature="2623:2703" ph="SELECT id FR... potential" />
-                <marker date="1519082479761" expanded="true" signature="2898:2940" ph="SELECT id FR... potential_test" />
-                <marker date="1519082479761" expanded="true" signature="2898:2988" ph="SELECT id FR... potential_test" />
-                <marker date="1519082479761" expanded="true" signature="2898:2989" ph="SELECT id FR... potential_test" />
-                <marker date="1519082479761" expanded="true" signature="2898:3019" ph="SELECT id FR... potential_test" />
-                <marker date="1519082479761" expanded="true" signature="8652:8675" ph="SELECT * FRO... potential" />
-                <marker date="1519082479761" expanded="true" signature="8812:8902" ph="SELECT id, n... potential_test" />
-                <marker date="1519082479761" expanded="true" signature="9252:9363" ph="SELECT id, d... potential_score" />
-                <marker date="1519082479761" expanded="true" signature="9761:9927" ph="SELECT poten... potential_score" />
-                <marker date="1519082479761" expanded="true" signature="11069:11092" ph="SELECT * FRO... potential" />
-                <marker date="1519082479761" expanded="true" signature="11229:11325" ph="SELECT id, n... potential_test" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myStatsController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/myStatsController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            <state relative-caret-position="270">
+              <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -208,6 +150,11 @@
       <find>appPredispositionSelect</find>
       <find>main</find>
       <find>maininit</find>
+      <find>initModalAddMeeting</find>
+      <find>addMeetingListElementModal</find>
+      <find>showTest</find>
+      <find>getAllCategoryWitchTest</find>
+      <find>initmoda</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -234,11 +181,12 @@
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/conspectObj.json" />
         <option value="$PROJECT_DIR$/modules/TrainingConspectus/TrainingConspectus.php" />
         <option value="$PROJECT_DIR$/modules/StatsManager/config.json" />
-        <option value="$PROJECT_DIR$/modules/StatsManager/StatsManager.php" />
         <option value="$PROJECT_DIR$/core/js/controllers/mainController.js" />
-        <option value="$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js" />
-        <option value="$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html" />
         <option value="$PROJECT_DIR$/modules/StatsManager/assets/css/style.css" />
+        <option value="$PROJECT_DIR$/modules/StatsManager/StatsManager.php" />
+        <option value="$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html" />
+        <option value="$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js" />
+        <option value="$PROJECT_DIR$/core/index.php" />
       </list>
     </option>
   </component>
@@ -297,7 +245,7 @@
       <path value="$PROJECT_DIR$/core/vendor/doctrine/cache" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="976" />
     <option name="height" value="1088" />
@@ -416,6 +364,27 @@
               <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
               <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="MeetingList" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="MeetingList" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="MeetingList" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="StatsManager" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -439,22 +408,14 @@
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="StatsManager" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CZK-App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CZK-App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="StatsManager" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -489,9 +450,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.mettingListController.js">
     <configuration default="true" type="AppEnginePhpConfigurationType" factoryName="App Engine for PHP" session_id="" />
     <configuration default="true" type="FirefoxRemoteDebugType" factoryName="Firefox Remote" editBeforeRun="true" />
+    <configuration name="mettingListController.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="mettingListController.js" working-dir="$PROJECT_DIR$/modules/MeetingList/assets/controllers" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="PHP Web Page.cmc" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.mettingListController.js" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.mettingListController.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -516,12 +487,13 @@
       <workItem from="1519076347629" duration="1608000" />
       <workItem from="1519077977339" duration="3404000" />
       <workItem from="1519081402883" duration="260000" />
-      <workItem from="1519081703730" duration="5663000" />
+      <workItem from="1519081703730" duration="5783000" />
+      <workItem from="1519126556888" duration="7652000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48365000" />
+    <option name="totallyTimeSpent" value="56146000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -533,7 +505,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27801725" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -545,20 +517,31 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25725028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07541322" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978448" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39876032" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27801725" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23845327" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27196652" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07541322" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14930183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25725028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39876032" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,67 +552,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://table:/28e88370/0b18bd5a-789b-4707-be3d-45bdedbb1f24/m1006_cmc_app.conspect">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusAnim.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="39" column="42" lean-forward="false" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/TrainingConspectusController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3936">
-          <caret line="164" column="9" lean-forward="true" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/widget/shareListC.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="80" lean-forward="true" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1392">
-          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/shareList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="888">
-          <caret line="62" column="37" lean-forward="true" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/28e88370/0b18bd5a-789b-4707-be3d-45bdedbb1f24/m1006_cmc_app.conspect">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/templates/conspectusList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="25" column="62" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/TrainingConspectus/assets/controllers/showConspectController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -842,13 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/testMenager.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/modules/Notify/Notify.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-29">
@@ -867,51 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/StatsManager/StatsManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="830">
-          <caret line="58" column="66" lean-forward="false" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
-          <folding>
-            <element signature="e#3537#7081#0#PHP" expanded="false" />
-            <element signature="e#7087#8413#0#PHP" expanded="false" />
-            <marker date="1519082479761" expanded="true" signature="371:544" ph="CREATE TABLE... IF" />
-            <marker date="1519082479761" expanded="true" signature="608:864" ph="CREATE TABLE... IF" />
-            <marker date="1519082479761" expanded="true" signature="928:1252" ph="CREATE TABLE... IF" />
-            <marker date="1519082479761" expanded="true" signature="1316:1407" ph="ALTER TABLE `potential`... " />
-            <marker date="1519082479761" expanded="true" signature="1472:1569" ph="ALTER TABLE `potential_score`... " />
-            <marker date="1519082479761" expanded="true" signature="1634:1730" ph="ALTER TABLE `potential_test`... " />
-            <marker date="1519082479761" expanded="true" signature="1828:1858" ph="DROP TABLE I... " />
-            <marker date="1519082479761" expanded="true" signature="1922:1958" ph="DROP TABLE I... " />
-            <marker date="1519082479761" expanded="true" signature="2022:2057" ph="DROP TABLE I... " />
-            <marker date="1519082479761" expanded="true" signature="2623:2653" ph="SELECT id FR... potential" />
-            <marker date="1519082479761" expanded="true" signature="2623:2654" ph="SELECT id FR... potential" />
-            <marker date="1519082479761" expanded="true" signature="2623:2660" ph="SELECT id FR... potential" />
-            <marker date="1519082479761" expanded="true" signature="2623:2664" ph="SELECT id FR... potential" />
-            <marker date="1519082479761" expanded="true" signature="2623:2701" ph="SELECT id FR... potential" />
-            <marker date="1519082479761" expanded="true" signature="2623:2703" ph="SELECT id FR... potential" />
-            <marker date="1519082479761" expanded="true" signature="2898:2940" ph="SELECT id FR... potential_test" />
-            <marker date="1519082479761" expanded="true" signature="2898:2988" ph="SELECT id FR... potential_test" />
-            <marker date="1519082479761" expanded="true" signature="2898:2989" ph="SELECT id FR... potential_test" />
-            <marker date="1519082479761" expanded="true" signature="2898:3019" ph="SELECT id FR... potential_test" />
-            <marker date="1519082479761" expanded="true" signature="8652:8675" ph="SELECT * FRO... potential" />
-            <marker date="1519082479761" expanded="true" signature="8812:8902" ph="SELECT id, n... potential_test" />
-            <marker date="1519082479761" expanded="true" signature="9252:9363" ph="SELECT id, d... potential_score" />
-            <marker date="1519082479761" expanded="true" signature="9761:9927" ph="SELECT poten... potential_score" />
-            <marker date="1519082479761" expanded="true" signature="11069:11092" ph="SELECT * FRO... potential" />
-            <marker date="1519082479761" expanded="true" signature="11229:11325" ph="SELECT id, n... potential_test" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/myStatsController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -919,15 +794,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/js/controllers/mainController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        <state relative-caret-position="-208">
+          <caret line="62" column="55" lean-forward="false" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
           <folding>
+            <element signature="e#1679#1786#0" expanded="false" />
+            <element signature="e#1830#2157#0" expanded="false" />
+            <element signature="e#2220#2709#0" expanded="false" />
+            <element signature="e#2799#3931#0" expanded="false" />
+            <element signature="e#3967#4030#0" expanded="false" />
+            <element signature="e#4122#5039#0" expanded="false" />
+            <element signature="e#5083#5173#0" expanded="false" />
             <marker date="1519085390042" expanded="true" signature="2405:2415" ph="..." />
             <marker date="1519085390042" expanded="true" signature="2832:2851" ph="..." />
             <marker date="1519085390042" expanded="true" signature="2918:2939" ph="..." />
@@ -937,29 +826,137 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js">
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/newScore.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="-2340">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/myStats.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-972">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/teammateCompare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1350">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/myStatsController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/StatsManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
           <folding>
-            <element signature="e#1471#20034#0" expanded="false" />
-            <element signature="e#20067#22008#0" expanded="false" />
+            <element signature="e#3537#7081#0#PHP" expanded="false" />
+            <element signature="e#7087#8624#0#PHP" expanded="false" />
+            <marker date="1519135783310" expanded="true" signature="371:544" ph="CREATE TABLE... IF" />
+            <marker date="1519135783310" expanded="true" signature="608:864" ph="CREATE TABLE... IF" />
+            <marker date="1519135783310" expanded="true" signature="928:1252" ph="CREATE TABLE... IF" />
+            <marker date="1519135783310" expanded="true" signature="1316:1407" ph="ALTER TABLE `potential`... " />
+            <marker date="1519135783310" expanded="true" signature="1472:1569" ph="ALTER TABLE `potential_score`... " />
+            <marker date="1519135783310" expanded="true" signature="1634:1730" ph="ALTER TABLE `potential_test`... " />
+            <marker date="1519135783310" expanded="true" signature="1828:1858" ph="DROP TABLE I... " />
+            <marker date="1519135783310" expanded="true" signature="1922:1958" ph="DROP TABLE I... " />
+            <marker date="1519135783310" expanded="true" signature="2022:2057" ph="DROP TABLE I... " />
+            <marker date="1519135783310" expanded="true" signature="2623:2653" ph="SELECT id FR... potential" />
+            <marker date="1519135783310" expanded="true" signature="2623:2654" ph="SELECT id FR... potential" />
+            <marker date="1519135783310" expanded="true" signature="2623:2660" ph="SELECT id FR... potential" />
+            <marker date="1519135783310" expanded="true" signature="2623:2701" ph="SELECT id FR... potential" />
+            <marker date="1519135783310" expanded="true" signature="2623:2703" ph="SELECT id FR... potential" />
+            <marker date="1519135783310" expanded="true" signature="2898:2940" ph="SELECT id FR... potential_test" />
+            <marker date="1519135783310" expanded="true" signature="2898:2988" ph="SELECT id FR... potential_test" />
+            <marker date="1519135783310" expanded="true" signature="2898:2989" ph="SELECT id FR... potential_test" />
+            <marker date="1519135783310" expanded="true" signature="2898:3019" ph="SELECT id FR... potential_test" />
+            <marker date="1519135783310" expanded="true" signature="8863:8886" ph="SELECT * FRO... potential" />
+            <marker date="1519135783310" expanded="true" signature="9023:9113" ph="SELECT id, n... potential_test" />
+            <marker date="1519135783310" expanded="true" signature="9463:9574" ph="SELECT id, d... potential_score" />
+            <marker date="1519135783310" expanded="true" signature="9972:10138" ph="SELECT poten... potential_score" />
+            <marker date="1519135783310" expanded="true" signature="11280:11303" ph="SELECT * FRO... potential" />
+            <marker date="1519135783310" expanded="true" signature="11440:11536" ph="SELECT id, n... potential_test" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/testMenagerController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="147" column="23" lean-forward="true" selection-start-line="147" selection-start-column="23" selection-end-line="147" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/testMenager.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="53" column="51" lean-forward="false" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/MeetingList/assets/templates/mettingList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="79" column="71" lean-forward="true" selection-start-line="79" selection-start-column="71" selection-end-line="79" selection-end-column="71" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/MeetingList/assets/controllers/mettingListController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="16" selection-end-line="114" selection-end-column="33" />
+          <folding>
+            <marker date="1519135783289" expanded="true" signature="8370:8376" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2700">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/trainingBase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
+        <state relative-caret-position="422">
+          <caret line="56" column="85" lean-forward="false" selection-start-line="56" selection-start-column="62" selection-end-line="56" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/css/style.css">
+    <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/controllers/trainingBaseController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state relative-caret-position="709">
+          <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding />
         </state>
       </provider>
