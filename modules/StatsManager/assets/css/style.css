@@ -9,3 +9,18 @@
 .tableProgressElementNegative {
     color: #ee6e73;
 }
+
+.flex-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 1250px) {
+    .flex-container {
+        display: grid;
+        grid-template-columns: max-content;
+        grid-row-gap: 15px;
+        justify-content: center;
+    }
+}

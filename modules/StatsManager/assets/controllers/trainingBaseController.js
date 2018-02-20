@@ -1,26 +1,55 @@
 app.controller('trainingBaseController', function($scope, auth, $rootScope, notify, statistic, request) {
-    $rootScope.showContent = true;
-    $(document).ready(function() {
-        setTimeout(function(){
-            $('.collapsible').collapsible();
-        },1000);
-        var wSize = $(window).width();
-        if (wSize <= 768) {
-            $(".adw").each(function() {
-                $(this).removeClass("adwWith");
-                $(this).addClass("adwWithout");
-            });
-        } else {
-            $(".adw").each(function() {
-                $(this).removeClass("adwWithout");
-                $(this).addClass("adwWith");
-            });
+    $scope.showContent = false;
+    $scope.trainingBase = [];
+
+    $scope.initTrainingBase = function(){
+
+        $scope.showContent = true;
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('.collapsible').collapsible();
+            },1000);
+            var wSize = $(window).width();
+            if (wSize <= 768) {
+                $(".adw").each(function() {
+                    $(this).removeClass("adwWith");
+                    $(this).addClass("adwWithout");
+                });
+            } else {
+                $(".adw").each(function() {
+                    $(this).removeClass("adwWithout");
+                    $(this).addClass("adwWith");
+                });
+            }
+        });
+
+        switch($rootScope.mainSettings.appPredisposition){
+            case "football":
+                $scope.trainingBase = $scope.futbollTrainingBase;
+                break;
+            case "rugby":
+                $scope.trainingBase = $scope.rugbyTrainingBase;
+                break;
         }
-    });
-    $scope.trainingBase = [ //tablica obiektow, jeden obiekt to jeden trening
+
+    };
+
+    $scope.addTrainingFromBase = function(category, name, min, max, unit){
+        request.backend('addTrainingFromBase', { tmid: $rootScope.user.tmid, category: category, name: name, min: min, max: max, unit: unit}, function(data) {
+        },"Test dodano poprawnie.");
+    };
+
+    $scope.futbollTrainingBase = [ //tablica obiektow, jeden obiekt to jeden trening
 
         { // rozpoczecie pierwszego obiektu, w srodku jego pola
             name: "Beep Test",
+            category: "szybkość",
+            testRange:[
+                {name: "trampkarz", max:13,min:22},
+                {name: "junior", max:13,min:22},
+                {name: "senior", max:13,min:22},
+            ],
+            unit: "s",
             ageCategory: "od 13 roku życia wzwyż",
             equipment: "2 linie (lub inne znaczniki), urządzenie audio do sygnalizowania (np. laptop)",
             execution: [ // wartosc tego pola jest tablica czyli []
@@ -343,9 +372,37 @@ app.controller('trainingBaseController', function($scope, auth, $rootScope, noti
         }
     ]
 
-    $scope.funkcja = function(){
-        console.log('elo '+ $rootScope.user.firstname);
-        notify.localNotify("Walidacja","asdasdasd");
-
-    }
+    $scope.rugbyTrainingBase = [
+        { // rozpoczecie pierwszego obiektu, w srodku jego pola
+            name: "Beep Test",
+            category: "szybkość",
+            testRange:[
+                {name: "trampkarz", max:13,min:22},
+                {name: "junior", max:13,min:22},
+                {name: "senior", max:13,min:22},
+            ],
+            unit: "s",
+            ageCategory: "od 13 roku życia wzwyż",
+            equipment: "2 linie (lub inne znaczniki), urządzenie audio do sygnalizowania (np. laptop)",
+            execution: [ // wartosc tego pola jest tablica czyli []
+                "1. Linie oddalone są od siebie na odległość 20m.",
+                "2. Zawodnik staje na jednej z nich.",
+                "3. Zadaniem zawodnika jest biec od linii do linii w wyznaczonych przedziałach czasu.",
+                "4. Każdy start z linii musi być zsynchronizowany z sygnałem dźwiękowym („Beep”).",
+                "5. Zawodnik biega tak długo, dopóki nie zrezygnuje (nie da rady więcej biec) lub w chwili gdy po raz drugi nie dotrze do linii na czas.",
+                "6. Zapisywany jest ostatni etap oraz odcinek, w którym zawodnik dotarł do linii.",
+                "7. Zaczynamy od tempa 8.5km/h. Prędkość się zwiększa.",
+                "8. Jeśli zawodnik dotrze do linii za szybko, powinien poczekać na sygnał."
+            ],
+            scoring: [
+                "Im więcej zaliczonych etapów i odcinków 20-metrowych – tym lepiej.",
+                "Do e-platformy Club Management Center wynik wprowadzamy w następujący sposób:",
+                "liczba przed kropką oznacza etap, a po kropce – odcinek.",
+                "Takim sposobem, gdy zawodnik ukończył test na 10 etapie i 2 odcinku, zapisujemy wynik jako 10.02.",
+                "Analogicznie jeśli ukończył test na 9 etapie i 10 odcinku, zapisujemy wynik jako 9.1.",
+                "W razie niepewności prosimy o kontakt z działem technicznym."
+            ]
+        },
+    ]
+    
 });

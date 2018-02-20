@@ -146,9 +146,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
             var data = auth.getUserData();
             if (data.success) {
                 request.backend('getMainPageSettings', {}, function(data) {
-                    $rootScope.$apply(function() {
-                        $rootScope.mainSettings = data;
-                    });
+                    $rootScope.mainSettings = data;
                 });
 
                 request.backend('getTeams', {}, function(data) {
