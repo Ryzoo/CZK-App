@@ -48,7 +48,7 @@
     .mainCreateContener2 {
         float: none;
         position: absolute;
-        top: 7%;
+        top: 9%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -738,12 +738,12 @@ canvas,
 
 
 .mainCreateContener2 #leftBlockItem {
-    width: 300px;
+    width: 385px;
     float: left;
     overflow-y: scroll;
     background: #222a2d;
     margin-right:-20px;
-    max-height: 600px;
+    max-height: 540px;
 }
 
 .categories {

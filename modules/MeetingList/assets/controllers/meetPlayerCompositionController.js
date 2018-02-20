@@ -61,7 +61,13 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             $(this).css("border-color", "");
         });
         $(this).css("border-color", "#783030");
-        let user = $scope.allPlayers[$(this).data('meetid')];
+        let user = [];
+        for(let i=0;i<$scope.allPlayers.length;i++){
+            if(parseInt($scope.allPlayers[i].usid) === parseInt($(this).data('meetid'))){
+                user = $scope.allPlayers[i];
+                break;
+            }
+        }
         $scope.$apply(function(){
             $scope.selectedOnField = null;
             for(let i=0;i<$scope.onFieldUser.length;i++){
@@ -71,10 +77,15 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             $scope.selectedUser = newUserToField;
             if(!newUserToField.image){
                 newUserToField.image = new Image();
+                newUserToField.image.onload = function(){
+                    mainCanvas.draw();
+                };
                 newUserToField.image.src = '/'+newUserToField.img;
             }
+            setTimeout(function(){
+                Materialize.updateTextFields();
+            },100);
         });
-        mainCanvas.draw();
     });
 
     $scope.selectField = function(src) {
@@ -84,9 +95,9 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         $scope.selectedField.onload = function() {
             $scope.fieldImage = $scope.selectedField;
             drawStage();
+            setTimeout(generateChart,100);
         };
         $scope.selectedField.src = src;
-        generateChart();
     };
 
     function generateChart(){
@@ -108,10 +119,18 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                     labels: generateLabel()
                 },
                 options: {
+                    legend: {
+                        labels: {
+                            fontColor: "#bababa",
+                            fontSize: 16
+                        }
+                    },
                     scales: {
                         yAxes: [{
                             display: true,
                             ticks: {
+                                fontColor: "#bababa",
+                                fontSize: 14,
                                 min: 0,
                                 beginAtZero: true,
                                 max: 100,
@@ -120,6 +139,7 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                         }],
                         xAxes: [{
                             ticks: {
+                                fontColor: "#bababa",
                                 fontSize: 14,
                                 stepSize: 1,
                                 autoSkip: false,
@@ -141,15 +161,27 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                 data: {
                     datasets: [{
                         data: [actualForm, 100-actualForm],
+                        borderColor: [
+                            '#ff6384',
+                            '#626a6e'
+                        ],
                         backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            '#4e4e4e'
+                            'rgba(255, 99, 132,0.5)',
+                            'rgba(98, 106, 110,0.8)'
                         ]
                     }],
                     labels: [
                         'Forma',
                         'Braki'
                     ]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: "#bababa",
+                            fontSize: 16
+                        }
+                    }
                 }
             });
         }
@@ -173,7 +205,6 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
 
         for(let i=0;i<label.length;i++){
             let potentialScore = 0;
-            console.log($scope.onFieldUser);
             for(let j=0;j<$scope.onFieldUser.length;j++){
                 potentialScore += parseInt($scope.onFieldUser[j].getAttr('stat').data.potential[i].summary);
             }
@@ -268,12 +299,20 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                     $('.oneMeetUser').each(function() {
                         $(this).css("border-color", "");
                     });
+                    setTimeout(function(){
+                        Materialize.updateTextFields();
+                    },100);
                 });
             });
 
             $scope.$apply(function(){
                 $scope.onFieldUser.push(obj);
-                $scope.allPlayers.splice($(this).data('meetid'),1);
+                for(let i=0;i<$scope.allPlayers.length;i++){
+                    if($scope.allPlayers[i].usid == $scope.selectedUser.usid){
+                        $scope.allPlayers.splice(i,1);
+                        break;
+                    }
+                }
                 $scope.selectedUser = null;
                 $scope.selectedOnField = obj.getAttr('stat');
                 $('.oneMeetUser').each(function() {
@@ -288,6 +327,9 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             });
             drawStage();
             generateChart();
+            setTimeout(function(){
+                Materialize.updateTextFields();
+            },100);
         }
     }
 
