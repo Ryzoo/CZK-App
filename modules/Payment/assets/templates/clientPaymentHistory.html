@@ -79,8 +79,8 @@
 <script>
     $(document).ready(function() {
         setTimeout(function() {
-            Materialize.updateTextFields();
-            $('select').material_select();
+            M.updateTextFields();
+            $('select').formSelect();
             $('ul.tabs').tabs();
             $('.tooltipped').tooltip({delay: 50});
             $('.collapsible').collapsible();
@@ -89,6 +89,9 @@
                 lang: 'pl',
                 timepicker: false,
             });
+
+
+
         }, 500);
     });
 </script>

@@ -51,7 +51,9 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                     }
                 }
             }
-            $('select').material_select();
+            $('select').formSelect();
+
+
             setTimeout(function() {
                 changePotential();
                 initMainSummary();
@@ -253,8 +255,9 @@ app.controller('usersStatisticController', function($scope, auth, $rootScope, no
                 }
             }
             $rootScope.showContent = true;
-            Materialize.updateTextFields();
-            $('select').material_select();
+            M.updateTextFields();
+            $('select').formSelect();
+
         });
     }
 });

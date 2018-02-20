@@ -46,7 +46,8 @@ app.controller('showPlayersController', function($scope, auth, $rootScope, notif
                 for (var i = 0; i < data.length; i++) {
                     $('#selectPersonFromApp').append("<option value='" + i + "'>" + data[i].firstname + " " + data[i].lastname + "</option>");
                 }
-                $('select').material_select();
+                $('select').formSelect();
+
             });
         });
     }

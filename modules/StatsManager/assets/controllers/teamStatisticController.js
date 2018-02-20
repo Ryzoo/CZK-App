@@ -103,8 +103,8 @@ app.controller('teamStatisticController', function($scope, auth, $rootScope, not
         }
 
         setTimeout(function() {
-            Materialize.updateTextFields();
-            $('select').material_select();
+            M.updateTextFields();
+            $('select').formSelect();
         }, 500);
     });
 

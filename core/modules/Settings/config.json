@@ -10,7 +10,6 @@
         "auth": ["KOORD"]
     }, {
         "url": "getAvailableModules",
-        "parameters": ["appPred"],
         "auth": ["KOORD"]
     },{
         "url": "updateAppPredisposition",

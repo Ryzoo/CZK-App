@@ -33,7 +33,9 @@ app.controller('myStatsController', function($scope, auth, $rootScope, notify, s
                     $('#selectPotential').append("<option value='" + i + "'>" + $rootScope.actualStats[i].name + "</option>");
                 }
             }
-            $('select').material_select();
+            $('select').formSelect();
+
+
             $scope.showTestAndType = true;
             $rootScope.showContent = true;
             initMainSummary();

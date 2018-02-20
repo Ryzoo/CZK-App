@@ -38,8 +38,10 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
                 for (key in $scope.categories) {
                     $('#catSelect').append('<option value="' + key + '">' + $scope.categories[key].name + '</option>');
                 }
-                Materialize.updateTextFields();
-                $('select').material_select();
+                M.updateTextFields();
+                 $('select').formSelect();
+
+
             });
         });
     }
@@ -68,8 +70,8 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
                         $('#userSelect').append('<option value="' + key + '">' + data[key].firstname + ' ' + data[key].lastname + '</option>');
                     }
                 }
-                Materialize.updateTextFields();
-                $('select').material_select();
+                M.updateTextFields();
+                 $('select').formSelect();
                 $scope.showContent = true;
             });
         });
@@ -85,8 +87,8 @@ app.controller('newScoreController', function($scope, auth, $rootScope, notify, 
                 $('#testSelect').append('<option value="' + key + '">' + $scope.categories[selectedCategoryKey].tests[key].name + '</option>');
             }
         }
-        Materialize.updateTextFields();
-        $('select').material_select();
+        M.updateTextFields();
+         $('select').formSelect();
     }
 
     $scope.addScore = function() {

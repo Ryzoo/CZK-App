@@ -184,8 +184,8 @@
 <script>
     $(document).ready(function() {
         setTimeout(function() {
-            Materialize.updateTextFields();
-            $('select').material_select();
+            M.updateTextFields();
+            $('select').formSelect();
             $('ul.tabs').tabs();
             $('.collapsible').collapsible();
             $('.datetimepicker').datetimepicker({
@@ -194,5 +194,7 @@
                 timepicker: false,
             });
         }, 500);
+
+
     });
 </script>

@@ -31,9 +31,11 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
                 $('#firstUserSelect').append("<option value='" + allUsers[i].usid + "'>" + userName + "</option>");
             }
 
-            Materialize.updateTextFields();
-            $('select').material_select();
+            M.updateTextFields();
+            $('select').formSelect();
             $('ul.tabs').tabs();
+
+
         });
     }
 
@@ -75,8 +77,8 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
             });
 
             checkStatBest();
-            Materialize.updateTextFields();
-            $('select').material_select();
+            M.updateTextFields();
+            $('select').formSelect();
             $('ul.tabs').tabs();
         });
     }
@@ -291,8 +293,8 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
             $('#secondUserSelect').append("<option value='" + allUsers[i].usid + "'>" + userName + "</option>");
         }
 
-        Materialize.updateTextFields();
-        $('select').material_select();
+        M.updateTextFields();
+        $('select').formSelect();
         $('ul.tabs').tabs();
         $scope.$apply(function() {
             $scope.selected1 = true;
@@ -313,8 +315,8 @@ app.controller('teammateCompareController', function($scope, auth, $rootScope, n
             $('#thirdUserSelect').append("<option value='" + allUsers[i].usid + "'>" + userName + "</option>");
         }
 
-        Materialize.updateTextFields();
-        $('select').material_select();
+        M.updateTextFields();
+        $('select').formSelect();
         $('ul.tabs').tabs();
         $scope.$apply(function() {
             $scope.selected2 = true;

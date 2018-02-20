@@ -23,6 +23,10 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         height: stageHeight
     });
 
+    $(document).ready(function () {
+        $('.tooltipped').tooltip();
+    });
+
     $(window).resize(function() {
         resize();
     });
@@ -83,7 +87,8 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                 newUserToField.image.src = '/'+newUserToField.img;
             }
             setTimeout(function(){
-                Materialize.updateTextFields();
+                M.updateTextFields();
+
             },100);
         });
     });
@@ -98,6 +103,7 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             setTimeout(generateChart,100);
         };
         $scope.selectedField.src = src;
+
     };
 
     function generateChart(){
@@ -300,7 +306,9 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                         $(this).css("border-color", "");
                     });
                     setTimeout(function(){
-                        Materialize.updateTextFields();
+                        M.updateTextFields();
+
+
                     },100);
                 });
             });
@@ -328,7 +336,9 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             drawStage();
             generateChart();
             setTimeout(function(){
-                Materialize.updateTextFields();
+                M.updateTextFields();
+
+
             },100);
         }
     }

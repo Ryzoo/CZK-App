@@ -55,9 +55,6 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
         } else {
             $scope.showAllNewsNotify = false;
         }
-
-
-
     }
 
     $rootScope.closeWidget = function(response = null) {
@@ -175,7 +172,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
                         }, 5000);
 
                     }, 500);
-                    $('select').material_select();
+                    $('select').formSelect();
                 });
 
             } else {

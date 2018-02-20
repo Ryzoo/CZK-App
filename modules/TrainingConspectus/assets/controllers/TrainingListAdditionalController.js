@@ -75,7 +75,8 @@ app.controller('TrainingListAdditionalController', function($scope, auth, $rootS
         var element = angular.element($('#' + placeId).find('.data').first());
         var generated = element.html(element.html() + el);
         $compile(generated.contents())($scope);
-        Materialize.updateTextFields();
+        M.updateTextFields();
+
     }
 
     $scope.addCwCo = function(response) {
@@ -94,7 +95,7 @@ app.controller('TrainingListAdditionalController', function($scope, auth, $rootS
         var element = angular.element($('#' + response.place).find('.data').first());
         var generated = element.html(element.html() + el);
         $compile(generated.contents())($scope);
-        Materialize.updateTextFields();
+        M.updateTextFields();
     }
 
     $scope.deleteField = function(id) {
@@ -110,7 +111,7 @@ app.controller('TrainingListAdditionalController', function($scope, auth, $rootS
         $scope.coSezon = $('#coSezon').val();
         $scope.coTeam = $('#coTeam').val();
         $scope.coOp = $('#coOp').val();
-        $scope.coTags = $('.chips-placeholder').material_chip('data');
+        $scope.coTags = $('.chips-placeholder').chips('data');
 
         if (!$scope.coName || $scope.coName == '' || $scope.coName == ' ' || $scope.coName == null) {
             notify.localNotify("Walidacja", "Wpisz nazwę danego konspektu");

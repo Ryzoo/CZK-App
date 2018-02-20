@@ -60,7 +60,11 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
                     $scope.meetingList = data;
                     $scope.showContent = true;
                     loadStats();
-                    Materialize.updateTextFields();
+                    M.updateTextFields();
+                    setTimeout(function() {
+                        M.updateTextFields();
+                        $('select').formSelect();
+                    }, 500);
                 });
             });
         });

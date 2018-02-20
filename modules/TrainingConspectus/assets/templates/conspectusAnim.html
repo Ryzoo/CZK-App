@@ -210,8 +210,9 @@
 </div>
 
 <script>
-    Materialize.updateTextFields();
-    $('.chips-placeholder').material_chip({
+    M.updateTextFields();
+
+    $('.chips-placeholder').chips({
         placeholder: ' + Kolejne',
         secondaryPlaceholder: 'Wpisz powiązane słowa kluczowe',
     });
@@ -221,3 +222,4 @@
             delay: 50
         });
     });
+</script>

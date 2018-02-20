@@ -132,7 +132,8 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
                 $("#skillTreeSkillRootSelect").append('<option value="'+$scope.skillTreeSkills[i].id+'"  >'+name+'</option>');
               }
         }
-        $('#skillTreeSkillRootSelect').material_select();
+        $('#skillTreeSkillRootSelect').formSelect();
+
     });
 
     $scope.openAddSkillModal = function(){
@@ -153,8 +154,10 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
             var name = level > 0 ?$scope.skillTreeSkills[i].name + " - poziom: "+$scope.skillTreeSkills[i].level : $scope.skillTreeSkills[i].name;
             $("#skillTreeReqSelect").append('<option value="'+$scope.skillTreeSkills[i].id+'"  >'+name+'</option>');
         }
-        
-        $('select').material_select();
+        $('select').formSelect();
+
+
+
     }
 
     $scope.editSkill = function(){
@@ -207,7 +210,10 @@ app.controller('skillTreeListController', function($scope, auth, $rootScope, not
                 }
             }
             $scope.rootSkill = parseInt(skillThis.root_skill_id) <= 0;
-            $('select').material_select();
+            $('select').formSelect();
+
+
+
         });
 
 

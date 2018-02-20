@@ -129,10 +129,11 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
                 else $('#turnOffOnPayu').prop('checked', false);
                 $scope.showContent = true;
                 setTimeout(function() {
-                    Materialize.updateTextFields();
-                    $('select').material_select();
+                    M.updateTextFields();
+                    $('select').formSelect();
                     $('ul.tabs').tabs();
                     $('.collapsible').collapsible();
+
                 }, 500);
             });
         });
@@ -287,10 +288,11 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
                 $scope.allUsers = data;
                 setTimeout(function() {
                     $scope.showContent = true;
-                    Materialize.updateTextFields();
-                    $('select').material_select();
+                    M.updateTextFields();
+                    $('select').formSelect();
                     $('ul.tabs').tabs();
                     $('.collapsible').collapsible();
+
                 }, 200);
             });
         });

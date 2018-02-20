@@ -24,7 +24,9 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
     $scope.initMainSettings = function() {
         getMainSettings();
         $('#appPredispositionSelect option[value="'+$rootScope.mainSettings.appPredisposition+'"]').prop('selected', true);
-        $('select').material_select();
+        $('select').formSelect();
+
+
     };
 
     function updateAppPredisposition() {
@@ -91,7 +93,8 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
                         else
                             $('#selectThemes').append("<option value='" + $scope.allThemes[i] + "'>" + $scope.allThemes[i] + "</option>");
                     }
-                    $('select').material_select();
+                    $('select').formSelect();
+
                 });
             });
         });
@@ -133,8 +136,9 @@ app.controller('settingsController', function($scope, auth, $rootScope, request,
             $rootScope.$apply(function() {
                 $rootScope.mainSettings = data;
                 $(document).ready(function() {
-                    Materialize.updateTextFields();
+                    M.updateTextFields();
                 });
+
             });
             $scope.$apply(function() {
                 $scope.showContent = true;

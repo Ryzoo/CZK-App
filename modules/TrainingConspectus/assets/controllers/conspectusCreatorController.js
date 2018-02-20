@@ -4330,7 +4330,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 });
             }
 
-            $('.chips-placeholder').material_chip(tagTo);
+            $('.chips-placeholder').chips(tagTo);
 
             if (data.fieldImage && data.fieldImage.length > 2) {
                 selectField(data.fieldImage);
@@ -4385,7 +4385,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 encoder.finish();
                 var binary_gif = encoder.stream().getData();
                 $scope.gif = encode64(binary_gif);
-                var tags = $('.chips-placeholder').material_chip('data');
+                var tags = $('.chips-placeholder').chips('data');
                 var allTagString = '';
                 for (var x = 0; x < tags.length; x++) {
                     allTagString += " ";
@@ -4466,7 +4466,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $scope.saveAnim = function() {
         $scope.animName = $('#cwName').val();
-        $scope.tags = $('.chips-placeholder').material_chip('data');
+        $scope.tags = $('.chips-placeholder').chips('data');
 
         $scope.cwFieldType = $('#cwFieldType').val();
         $scope.cwMaxTime = parseInt($('#maxTime').val());

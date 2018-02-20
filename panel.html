@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title ng-show="mainSettings.length > 0">{{mainSettings.appName}}</title>
     <link rel="icon" href="/files/img/favicon.ico">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/public/styles.min.css" rel="stylesheet">
@@ -341,7 +341,6 @@
 </script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
 <script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 <script src="//cdn.rawgit.com/konvajs/konva/1.6.8/konva.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
@@ -349,6 +348,12 @@
 <script src="/public/angular-froala.js"></script>
 <script src="/public/additionalScripts.min.js"></script>
 <script src="/public/angularScripts.min.js"></script>
+<script>
+    $.widget.bridge('uitooltip', $.ui.tooltip);
+    $.widget.bridge('uibutton', $.ui.button);
+    $.widget.bridge('tooltip', $.ui.tooltip);
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
 <script>
     $.ajax({
         url: "backend/getLeftMenu",

@@ -61,7 +61,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                 });
             }
 
-            $('.chips-placeholder').material_chip(tagTo);
+            $('.chips-placeholder').chips(tagTo);
             $('.collapsible').collapsible();
 
             var fullFieldData = JSON.parse(data.data);
@@ -196,7 +196,9 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         var element = angular.element($('#' + placeId).find('.data').first());
         var generated = element.html(element.html() + el);
         $compile(generated.contents())($scope);
-        Materialize.updateTextFields();
+        M.updateTextFields();
+
+
     }
 
     $scope.addCwCo = function(response) {
@@ -215,7 +217,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         var element = angular.element($('#' + response.place).find('.data').first());
         var generated = element.html(element.html() + el);
         $compile(generated.contents())($scope);
-        Materialize.updateTextFields();
+        M.updateTextFields();
     }
 
     $scope.deleteField = function(id) {
@@ -232,7 +234,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         $scope.coOp = $('#coOp').val();
         $scope.coPower = $('#coPower').val();
         $scope.coUserCount = $('#coUserCount').val();
-        $scope.coTags = $('.chips-placeholder').material_chip('data');
+        $scope.coTags = $('.chips-placeholder').chips('data');
 
         if (!$scope.coName || $scope.coName == '' || $scope.coName == ' ' || $scope.coName == null) {
             notify.localNotify("Walidacja", "Wpisz nazwę danego konspektu");

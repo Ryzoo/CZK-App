@@ -199,16 +199,7 @@
                         <div id='itemBox' style="display: flex;justify-content: center;background: #29383d;">
                             <div class="itemsList">
                                 <div class="categoryItems soccerField">
-                                    <img src="/modules/MeetingList/assets/media/grass/empty.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Niski płotek">
-                                </div>
-                                <div class="categoryItems soccerField">
-                                    <img src="/modules/MeetingList/assets/media/grass/full.jpg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
-                                </div>
-                                <div class="categoryItems soccerField">
                                     <img src="/modules/MeetingList/assets/media/grass/background.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
-                                </div>
-                                <div class="categoryItems soccerField">
-                                    <img src="/modules/MeetingList/assets/media/grass/lower-half.jpg" class="tooltipped " data-position="bottom" data-delay="50" data-tooltip="Wysoki płotek">
                                 </div>
                             </div>
                         </div>
@@ -314,7 +305,11 @@
             lang: 'pl',
             step: 5,
         });
-        $('.tooltipped').tooltip({delay: 50});
-
     });
+    $(document).ready(function(){
+        $('.modal').modal();
+        var elem = document.querySelector('.tooltipped');
+        var instance = M.Tooltip.init(elem);
+    });
+
 </script>

@@ -62,7 +62,8 @@ app.controller('staffController', function($scope, auth, $rootScope, notify, req
             for (var i = 0; i < data.length; i++) {
                 $('#addStaffMembersSelect').append("<option value='" + data[i].usid + "'>" + data[i].firstname + " " + data[i].lastname + " [ " + data[i].rlname + " ] </option>");
             }
-            $('select').material_select();
+            $('select').formSelect();
+
         });
     }
 

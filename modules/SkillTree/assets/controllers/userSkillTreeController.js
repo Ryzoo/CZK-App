@@ -12,7 +12,10 @@ app.controller('userSkillTreeController', function($scope, auth, $rootScope, not
             for (var j = 0; j < data.length; j++) {
                 $('#userSelect').append("<option value='" + data[j].usid + "'>" + data[j].firstname + ' ' + data[j].lastname + "</option>");
             }
-            $('select').material_select();
+            $('select').formSelect();
+
+
+
             $scope.showContent = true;
         });
     }

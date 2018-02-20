@@ -28,7 +28,8 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                 for (var i = 0; i < data.length; i++) {
                     $('#mastersSelect').append("<option value='" + data[i].usid + "'>" + data[i].firstname + " " + data[i].lastname + "</option>");
                 }
-                $('select').material_select();
+                $('select').formSelect();
+
             });
         });
     }
@@ -99,7 +100,8 @@ app.controller('teamsMenagerController', function($scope, auth, $rootScope, noti
                         notify.getNew();
                     }, 2000);
                 }
-                $('select').material_select();
+                $('select').formSelect();
+
             });
         }, "Dodano nową drużynę, możesz przydzielić teraz trenerów");
     }

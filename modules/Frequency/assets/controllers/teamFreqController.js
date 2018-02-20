@@ -13,7 +13,8 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $("#dayDate").val(currentTime.getDate());
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
         resetDayInMonthMax();
-        Materialize.updateTextFields();
+        M.updateTextFields();
+
     }
 
     function loadFrequencyData(year, month, day) {
