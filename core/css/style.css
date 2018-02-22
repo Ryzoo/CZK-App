@@ -1,7 +1,9 @@
-body {
+body,html {
     padding: 0px !important;
     margin: 0px !important;
     font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+
 }
 
 #widgetContainer {
@@ -141,12 +143,28 @@ header nav {
     margin-bottom: 0px !important;
 }
 
+#mainProfileImg{
+    margin-top: 20px;
+}
+
 .sidebar-menu .caret {
     color: white !important;
 }
 
 .teamSelect {
-    margin: 25px 0 0 0 !important;
+    margin: 20px 0 15px 0 !important;
+}
+
+.teamSelect>div {
+    margin: 0 !important;
+}
+
+.teamSelect>div>div {
+    margin-bottom: 10px !important;
+}
+
+.teamSelect input {
+    color: white;
 }
 
 nav ul a {
@@ -413,6 +431,7 @@ ul.top-menu>li>.logout:hover {
     color: #fff;
     font-weight: 700;
     font-size: 1.2rem !important;
+    margin-top: 10px;
 }
 
 #sidebar .sub-menu>.sub li a {
@@ -931,7 +950,7 @@ ul.top-menu>li>a:focus {
     font-weight: 600;
     font-size: 20px;
     letter-spacing: 1px;
-    font-family: 'Roboto';
+
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -2158,12 +2177,6 @@ label {
     -webkit-border-radius: 500px;
 }
 
-textarea.materialize-textarea {
-    padding: 10px;
-    margin: 0;
-    margin-top: 13px;
-}
-
 @media (min-width: 768px) {
     .form-horizontal .control-label {
         text-align: left;
@@ -2728,7 +2741,7 @@ textarea.materialize-textarea {
     box-sizing: border-box;
     z-index: 990;
     text-align: center;
-    font-family: 'Roboto';
+
     font-weight: 500;
     font-size: 13px;
     position: fixed;

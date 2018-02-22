@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <ul class="collection none-border">
                                         <li class="collection-item avatar moduleCollection" ng-repeat="module in installedModules">
-                                            <img src="{{module.icon}}" alt="module icon"><span class="title">{{module.name}} - {{module.version}}</span>
+                                            <img ng-src="{{module.icon}}" alt="module icon"><span class="title">{{module.name}} - {{module.version}}</span>
                                             <p style='padding: 5px 15px;'>{{module.description}}</p>
                                             <p style='padding: 5px 15px;' ng-show="module.require.length > 0">Wymaga: <b>{{module.require}}</b></p>
                                             <a href="" class="secondary-content" ng-click="uninstallModule(module.name)"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <ul class="collection none-border">
                                         <li class="collection-item avatar moduleCollection" ng-repeat="module in notInstalledModules">
-                                            <img src="{{module.icon}}" alt="module icon">
+                                            <img ng-src="{{module.icon}}" alt="module icon">
                                             <span class="title">{{module.name}} - {{module.version}}</span>
                                             <p>{{module.description}}</p>
                                             <p ng-show="module.require.length > 0">Wymaga: <b>{{module.require}}</b></p>

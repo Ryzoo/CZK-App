@@ -39,10 +39,12 @@
                                     <th>Imię</th>
                                     <th>Nazwisko</th>
                                     <th>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="selectAllUser" />
-                                            <label for="selectAllUser">Wszyscy</label>
-                                        </div>
+                                        <p>
+                                            <label>
+                                                <input id="selectAllUser" type="checkbox" class="filled-in" />
+                                                <span>Wszyscy</span>
+                                            </label>
+                                        </p>
                                     </th>
                                 </tr>
                             </thead>
@@ -51,10 +53,12 @@
                                     <td style="padding: 5px 0;">{{us.firstname}}</td>
                                     <td style="padding: 5px 0;">{{us.lastname}}</td>
                                     <td style="padding: 5px 0;">
-                                        <div class="form-group">
-                                            <input type="checkbox" class='userSelectInput' id="userSelect-{{us.usid}}" />
-                                            <label for="userSelect-{{us.usid}}">-</label>
-                                        </div>
+                                        <p>
+                                            <label>
+                                                <input id="userSelect-{{us.usid}}" type="checkbox" class="filled-in userSelectInput" />
+                                                <span></span>
+                                            </label>
+                                        </p>
                                     </td>
                                 </tr>
                             </tbody>

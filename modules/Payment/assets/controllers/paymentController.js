@@ -314,4 +314,11 @@ app.controller('paymentController', function($scope, auth, $rootScope, notify, r
         }, "Pomyslnie zmieniono dane payu");
     });
 
+    $(document).off('change', '#selectAllUser');
+    $(document).on("change", "#selectAllUser", function() {
+        $('.userSelectInput').each(function(){
+            $(this).prop('checked', $("#selectAllUser").prop('checked'));
+        });
+    });
+
 });
