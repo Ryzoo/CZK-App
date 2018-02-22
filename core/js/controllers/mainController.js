@@ -42,7 +42,11 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
     $scope.goFeed = function(type) {
         $rootScope.feedType = type;
         $location.url("/feedback");
-    }
+    };
+
+    setInterval(function(){
+        $('.modal').modal();
+    },300);
 
     $scope.showNotifications = function(isMainClik = true) {
         if (isMainClik) {
@@ -114,6 +118,7 @@ app.controller('mainController', function($scope, auth, $rootScope, $route, noti
 
         $.get("/public/tutorial/"+tutorialName+".html", function(data){
             $('#tutorialModal').find(".modal-content").first().html(data);
+
             $('#tutorialModal').modal('open',{
                     dismissible: true, // Modal can be dismissed by clicking outside of the modal
                     opacity: .75, // Opacity of modal background
