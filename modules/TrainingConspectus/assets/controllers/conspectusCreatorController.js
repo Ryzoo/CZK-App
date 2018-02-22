@@ -262,6 +262,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     $scope.selectedObjConfig = [];
 
     $scope.initObjList = function() {
+        let elem = document.querySelector('.chips');
+        M.Chips.init(elem);
         request.backend('getConspectAnimObj', {}, function(data) {
             $scope.$apply(function() {
                 if (data.length > 0) {
@@ -285,6 +287,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
     }
 
     $scope.initBackPrompt = function(){
+        var elem = document.querySelector('.chips');
+        M.Chips.init(elem);
         $scope.$on("$locationChangeStart", function(event) {
             if (!confirm('Niezapisane zmiany nie zostaną zapisane! Na pewno chcesz wyjść ?')) {
                 event.preventDefault();
@@ -4385,7 +4389,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 encoder.finish();
                 var binary_gif = encoder.stream().getData();
                 $scope.gif = encode64(binary_gif);
-                var tags = $('.chips-placeholder').chips('data');
+                var elem = document.querySelector('.chips-placeholder');
+                var instance = M.Chips.getInstance(elem);
+                var tags = instance.chipsData;
                 var allTagString = '';
                 for (var x = 0; x < tags.length; x++) {
                     allTagString += " ";
@@ -4466,7 +4472,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $scope.saveAnim = function() {
         $scope.animName = $('#cwName').val();
-        $scope.tags = $('.chips-placeholder').chips('data');
+        var elem = document.querySelector('.chips-placeholder');
+        var instance = M.Chips.getInstance(elem);
+        $scope.tags = instance.chipsData;
 
         $scope.cwFieldType = $('#cwFieldType').val();
         $scope.cwMaxTime = parseInt($('#maxTime').val());

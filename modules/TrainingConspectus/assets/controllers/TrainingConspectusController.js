@@ -20,6 +20,8 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.coUserCount = '';
     $scope.coTags = '';
 
+
+
     if ($rootScope.widgetInterval) {
         clearInterval($rootScope.widgetInterval);
     }
@@ -60,8 +62,7 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
                     tag: $scope.coTags[ind]
                 });
             }
-
-            $('.chips-placeholder').chips(tagTo);
+            $('#coTags').chips(tagTo);
             $('.collapsible').collapsible();
 
             var fullFieldData = JSON.parse(data.data);
@@ -107,6 +108,8 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.initConsectusCreate = function() {
         $scope.showContent = true;
         $('.collapsible').collapsible();
+        let elem = document.querySelector('.chips');
+        M.Chips.init(elem);
     }
 
     $scope.initConsAnimList = function() {
@@ -138,8 +141,10 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
     $scope.initConspectusAdd = function() {
         $scope.showContent = true;
         $('.collapsible').collapsible();
+        let elem = document.querySelector('.chips');
+        M.Chips.init(elem);
     }
-
+;
     $scope.initConspectusList = function() {
         request.backend('getAllConspectList', { usid: $rootScope.user.id }, function(data) {
             $scope.conspectArray = data;
@@ -197,8 +202,6 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         var generated = element.html(element.html() + el);
         $compile(generated.contents())($scope);
         M.updateTextFields();
-
-
     }
 
     $scope.addCwCo = function(response) {
@@ -234,7 +237,10 @@ app.controller('TrainingConspectusController', function($scope, auth, $rootScope
         $scope.coOp = $('#coOp').val();
         $scope.coPower = $('#coPower').val();
         $scope.coUserCount = $('#coUserCount').val();
-        $scope.coTags = $('.chips-placeholder').chips('data');
+        let elem = document.querySelector('#coTags');
+        let instance = M.Chips.getInstance(elem);
+        $scope.coTags = instance.chipsData;
+
 
         if (!$scope.coName || $scope.coName == '' || $scope.coName == ' ' || $scope.coName == null) {
             notify.localNotify("Walidacja", "Wpisz nazwę danego konspektu");
