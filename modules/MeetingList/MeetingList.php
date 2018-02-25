@@ -19,12 +19,14 @@ class MeetingList extends BasicModule
         ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `maxPlayers` INT NOT NULL , `id_team` INT NOT NULL , `listMinYear` SMALLINT(4) NOT NULL , `listMaxYear` SMALLINT(4) NOT NULL , `sezonStart` DATE NOT NULL , `sezonEnd` DATE NOT NULL , `eventInCalendar` BOOLEAN NOT NULL, `id_event` INT(11) NULL , PRIMARY KEY (`id`), UNIQUE (`id_team`)) ENGINE = InnoDB;");
 
         // ma_meet -- informacje na temat pojedynczego spotkania
-        // | id  | id_team | date | id_playerComposition  | description | teamScore | enemyScore | enemyName | status  |
-        // | int | int     | date | int                   | text        | int       | int        | varchar   | varchar |
-        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_meet` ( `id` INT NOT NULL AUTO_INCREMENT , `id_team` INT NOT NULL , `id_playerComposition` INT NULL , `description` TEXT NOT NULL , `enemyName` VARCHAR(255) NOT NULL , `teamScore` INT(5) NULL , `enemyScore` INT(5) NULL , `status` VARCHAR(50) NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`), INDEX (`id_team`), UNIQUE (`id_playerComposition`)) ENGINE = InnoDB;");
+        // | id  | id_team | date | id_playerComposition  | description | teamScore | enemyScore | enemyName | status  | id_event |
+        // | int | int     | date | int                   | text        | int       | int        | varchar   | varchar | int      |
+        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_meet` ( `id` INT NOT NULL AUTO_INCREMENT , `id_event` INT NULL, `id_team` INT NOT NULL , `id_playerComposition` INT NULL , `description` TEXT NOT NULL , `enemyName` VARCHAR(255) NOT NULL , `teamScore` INT(5) NULL , `enemyScore` INT(5) NULL , `status` VARCHAR(50) NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`), INDEX (`id_team`), UNIQUE (`id_playerComposition`)) ENGINE = InnoDB;");
     }
 
     function uninstall(){
+        ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS ma_settings');
+        ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS ma_meet');
     }
 
     function getMettingListSettings($data){
