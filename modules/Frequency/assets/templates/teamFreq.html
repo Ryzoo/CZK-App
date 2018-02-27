@@ -35,6 +35,16 @@
                     </div>
                 </div>
             </div>
+            <div style="padding:0" class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Statystki frekwencji drużyny</div>
+                        <div class="row page-break">
+                            <div class="row noPrint" style="overflow:hidden;"><canvas id='freqStats'></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div ng-show="reason.length > 0" class="col s12">
                 <div class="card">
                     <div class="card-content">
@@ -84,6 +94,7 @@
                                     <th>Imię</th>
                                     <th>Nazwisko</th>
                                     <th>Obecność</th>
+                                    <th>Staystyki frekwencji</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -108,6 +119,22 @@
                                             </label>
                                         </div>
                                     </td>
+                                    <td>
+                                        <a ng-click="showPlayerFreq(user.usid)" class="btn-floating blue darken-4"><i class="material-icons">remove_red_eye</i></a>
+                                    </td>
+                                    <div id="modalPlayerFreq" class="modal">
+                                        <div class="modal-content">
+                                            <div class="row">
+                                                <h4>Statystyka frekwencji zawodnika w tym miesiącu</h4>
+                                                <div class="row page-break">
+                                                    <div class="row noPrint" style="overflow:hidden;"><canvas id='playerFreqStats'></canvas></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button ng-click="closePlayerFreq()" class="btn">Zamknij</button>
+                                        </div>
+                                    </div>
                                 </tr>
                                 </tbody>
                             </table>
