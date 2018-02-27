@@ -15,7 +15,7 @@ class MathComposition extends BasicModule {
 
     function getNextMatchComposition($data){
         $tmid = $data['tmid'];
-        $this->returnedData['data'] = ($this->db->getConnection())->fetchRow("SELECT * FROM ma_meet WHERE status LIKE 'Oczekiwanie' AND DATE(date) >= DATE(NOW()) AND id_team='.$tmid.' ORDER BY date LIMIT 1");
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRow("SELECT * FROM ma_meet WHERE status LIKE 'Oczekiwanie' AND date >= NOW() AND id_team=".$tmid." ORDER BY date LIMIT 1");
         return $this->returnedData;
     }
 }
