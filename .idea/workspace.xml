@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="" />
+    <list default="true" id="61e5a2e8-9deb-4121-a25b-d99d83382c1a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/core/modules/Settings/Settings.php" afterPath="$PROJECT_DIR$/core/modules/Settings/Settings.php" />
+      <change beforePath="$PROJECT_DIR$/public/additionalScripts.min.js" afterPath="$PROJECT_DIR$/public/additionalScripts.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/angularScripts.min.js" afterPath="$PROJECT_DIR$/public/angularScripts.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/styles.min.css" afterPath="$PROJECT_DIR$/public/styles.min.css" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +111,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="teamFreq.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="teamFreq.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="600">
@@ -122,6 +128,16 @@
                 <element signature="n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Settings.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/modules/Settings/Settings.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -216,6 +232,7 @@
         <option value="$PROJECT_DIR$/modules/Frequency/Frequency.php" />
         <option value="$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js" />
         <option value="$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html" />
+        <option value="$PROJECT_DIR$/core/modules/Settings/Settings.php" />
       </list>
     </option>
   </component>
@@ -530,7 +547,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91467000" />
+    <option name="totallyTimeSpent" value="91617000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -594,13 +611,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://table:/28e88370/0b18bd5a-789b-4707-be3d-45bdedbb1f24/m1006_cmc_app.users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/modules/Auth/Auth.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1020,6 +1030,14 @@
             <element signature="n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/modules/Settings/Settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
