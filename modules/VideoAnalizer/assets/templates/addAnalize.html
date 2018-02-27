@@ -46,7 +46,7 @@
                             <div class="form-group ">
                                 <div class="flexIconContener">
                                     <div ng-repeat='icon in iconList' class='oneIconfToAnalizer tooltipped' data-position="bottom" data-delay="50" data-tooltip="{{icon.description}}" data-analize-name='{{icon.description}}'>
-                                        <img src="{{icon.url}}" alt="{{icon.description}}">
+                                        <img ng-src="{{icon.url}}" alt="{{icon.description}}">
                                     </div>
                                 </div>
                             </div>

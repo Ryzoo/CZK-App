@@ -150,7 +150,11 @@ app.controller('videoController', function($scope, auth, $rootScope, notify, req
 
     $(document).off('change', "#videoToAnalize");
     $(document).on('change', "#videoToAnalize", function() {
-        var source = $('#playerVid');
+        if(!$(this).val() || $(this).val().split('.')[1] != "mp4"){
+            notify.localNotify("Uwaga","Wprowadź plik z rozszerzeniem MP4");
+            return;
+        }
+        let source = $('#playerVid');
         source.on('loadedmetadata', function() {
             $scope.$apply(function() {
                 $scope.showVideoPlayer = true;

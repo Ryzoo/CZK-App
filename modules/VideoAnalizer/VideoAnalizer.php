@@ -147,7 +147,6 @@ class VideoAnalizer extends BasicModule {
       $usid = $data['usid'];
       $videoName = urldecode(str_replace(" ","_",$data['videoName']));
       $videoName = FileMenager::noPolish($videoName);
-      $token = $data['token'];
 
       $fileName = $videoName;
       $pathToFile = "../files/videoAnalize/";
@@ -229,7 +228,7 @@ class VideoAnalizer extends BasicModule {
     }
 
     function saveVideoClip($data){
-      $fileName = urldecode(str_replace(" ","_",explode("=",str_replace("\"","",$_SERVER['HTTP_CONTENT_DISPOSITION']))[1]));
+        $fileName = str_replace("\"","",str_replace(" ","_", explode("=",urldecode($_SERVER['HTTP_CONTENT_DISPOSITION']),2)[1]));
       $fileName = FileMenager::noPolish($fileName);
 
       if(!isset($fileName) || strlen($fileName) <= 3){
