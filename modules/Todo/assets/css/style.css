@@ -81,12 +81,22 @@
 }
 
 .todoColorPink,
+.todoColorBlack,
+.todoColorWhite,
 .todoColorPurple,
 .todoColorRoyal,
 .todoColorTurquoise {
     width: 30%;
     height: 15px;
     cursor: pointer;
+}
+
+.todoColorWhite {
+    background: #ffffff;
+}
+
+.todoColorBlack {
+    background: #000000;
 }
 
 .todoColorPink {

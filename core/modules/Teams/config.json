@@ -17,7 +17,7 @@
         },
         {
             "url": "changeCollection",
-            "parameters": ["tmid", "val", "type"]
+            "parameters": ["tmid", "val"]
         },
         {
             "url": "getAllTeams"

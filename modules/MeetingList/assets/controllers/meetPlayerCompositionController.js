@@ -6,6 +6,7 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
     $scope.mouseActionType = {
         FIELD_LIST: 0,
     };
+    $scope.editedNow = false;
     let myLineChart = null;
     let teamFormChart = null;
     $scope.onFieldUser=[];
@@ -73,12 +74,14 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             }
         }
         $scope.$apply(function(){
-            $scope.selectedOnField = null;
             for(let i=0;i<$scope.onFieldUser.length;i++){
                 $scope.onFieldUser[i].setAttr('strokeWidth',0);
             }
             let newUserToField = user;
+            $scope.editedNow=true;
             $scope.selectedUser = newUserToField;
+            $scope.selectedOnField = null;
+
             if(!newUserToField.image){
                 newUserToField.image = new Image();
                 newUserToField.image.onload = function(){
@@ -100,7 +103,6 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         $scope.selectedField.onload = function() {
             $scope.fieldImage = $scope.selectedField;
             drawStage();
-            setTimeout(generateChart,100);
         };
         $scope.selectedField.src = src;
 
@@ -275,12 +277,26 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                 fillPatternImage: $scope.selectedUser.image,
                 name: "movementObject",
                 id: $scope.selectedUser.usid,
-                textObj: $scope.selectedUser.userName,
                 stat: $.extend($scope.selectedUser,{}),
+                textObj: null,
                 draggable: true,
                 stroke: "red",
                 strokeWidth: 10
             });
+
+            let textObj = new Konva.Text({
+                x: obj.getAttr("x"),
+                y: obj.getAttr("y") + 25,
+                text: $scope.selectedUser.position + " " + $scope.selectedUser.userName,
+                fontSize: 14,
+                fill: $rootScope.settingsMeet.color
+            });
+
+            textObj.setOffset({
+                x: textObj.getWidth() / 2.0
+            });
+
+            obj.setAttr("textObj",textObj);
 
             obj.on('mouseenter', function () {
                 mainCanvas.container().style.cursor = 'move';
@@ -290,10 +306,20 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                 mainCanvas.container().style.cursor = 'default';
             });
 
+            obj.on('dragend dragmove', function () {
+                let text = this.getAttr("textObj");
+                text.setAttr("x",this.getAttr("x"));
+                text.setAttr("y",this.getAttr("y")+25);
+                text.setOffset({
+                    x: text.getWidth() / 2.0
+                });
+                this.setAttr("textObj",text);
+                mainCanvas.draw();
+            });
+
             obj.on('click tap mousedown dragstart', function() {
                 let self = this;
                 $scope.$apply(function(){
-                    $scope.selectedOnField = self.getAttr('stat');
                     $scope.selectedUser = null;
                     for(let i=0;i<$scope.onFieldUser.length;i++){
                         $scope.onFieldUser[i].setAttr('strokeWidth',0);
@@ -305,10 +331,12 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                     $('.oneMeetUser').each(function() {
                         $(this).css("border-color", "");
                     });
+                    $scope.editedNow = true;
                     setTimeout(function(){
+                        $scope.$apply(function(){
+                            $scope.selectedOnField = self.getAttr('stat');
+                        });
                         M.updateTextFields();
-
-
                     },100);
                 });
             });
@@ -321,8 +349,10 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
                         break;
                     }
                 }
-                $scope.selectedUser = null;
+                $scope.editedNow = true;
                 $scope.selectedOnField = obj.getAttr('stat');
+                $scope.selectedUser = null;
+
                 $('.oneMeetUser').each(function() {
                     $(this).css("border-color", "");
                 });
@@ -337,8 +367,6 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             generateChart();
             setTimeout(function(){
                 M.updateTextFields();
-
-
             },100);
         }
     }
@@ -357,6 +385,19 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         drawStage();
         $scope.selectedOnField = null;
     };
+
+    $scope.$watch('selectedOnField.position', function (newValue, oldValue, scope) {
+        if(!$scope.selectedOnField || !$scope.selectedOnField.position || !oldValue || $scope.editedNow){$scope.editedNow=false; return;}
+        request.backend('changeCollection', {tmid: $scope.selectedOnField.teamMemberId, val:newValue}, function(data) {
+            drawStage();
+        });
+    });
+
+    $scope.$watch('selectedUser.position', function (newValue, oldValue, scope) {
+        if(!$scope.selectedUser || !$scope.selectedUser.position || !oldValue || $scope.editedNow){$scope.editedNow=false; return;}
+        request.backend('changeCollection', {tmid: $scope.selectedUser.teamMemberId, val:newValue}, function(data) {
+        });
+    });
 
     function drawStage(){
         mainCanvas = null;
@@ -389,6 +430,16 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
 
         $scope.onFieldUser.forEach(function(element){
             mainLayer.add(element);
+            let text = element.getAttr("textObj");
+            let stat = element.getAttr('stat');
+            text.setAttr("text",stat.position+" "+stat.userName);
+            text.setAttr("x",element.getAttr("x"));
+            text.setAttr("y",element.getAttr("y")+25);
+            text.setOffset({
+                x: text.getWidth() / 2.0
+            });
+            element.setAttr("textObj",text);
+            mainLayer.add(text);
         });
 
         mainCanvas.add(mainLayer);

@@ -159,12 +159,14 @@ class StatsManager extends BasicModule {
             for($i=0;$i<count($usid);$i++){
                 $thisUser = $this->getUserStat($usid[$i],$tmid,$prc,$last);
                 $thisUserNameImg = $this->auth->getUserNameImg($usid[$i]);
+                $compData = ($this->db->getConnection())->fetchRow('SELECT nr_on_tshirt, id as tmid FROM team_members WHERE id_user = '.$usid[$i].' AND id_team = '.$tmid);
                 array_push($userData,[
                     "usid" => $usid[$i],
                     "data" => $thisUser,
                     "userName" =>$thisUserNameImg['name'],
                     "img" => $thisUserNameImg['img'],
-                    "position" => ($this->db->getConnection())->fetchRow('SELECT nr_on_tshirt FROM team_members WHERE id_user = '.$usid[$i].' AND id_team = '.$tmid)['nr_on_tshirt']
+                    "position" => $compData['nr_on_tshirt'],
+                    "teamMemberId" => $compData['tmid'],
                 ]);
                 $teamScore += $thisUser["form"];
             }

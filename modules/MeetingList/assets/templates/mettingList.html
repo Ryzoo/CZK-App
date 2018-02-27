@@ -11,7 +11,7 @@
                             Ustawienia listy
                         </div>
                         <div class="row">
-                            <div style='margin-top: 0;' class="input-field col s12">
+                            <div style='margin-top: 8px;' class="input-field col s12">
                                 <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.listMinYear" type="number" class="validate selectListYearShow" min="2017" >
                                 <label >Wyświetlaj od roku</label>
                             </div>
@@ -30,7 +30,7 @@
                             Ustawienia sezonu
                         </div>
                         <div class="row">
-                            <div style='margin-top: 0;' class="input-field col s12">
+                            <div style='margin-top: 8px;' class="input-field col s12">
                                 <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.sezonStart" type="text" class="validate datetimepicker" >
                                 <label >Rozpoczęcie bierzącego sezonu</label>
                             </div>
@@ -58,9 +58,18 @@
                                     </label>
                                 </div>
                             </div>
-                            <div style='margin-top: 38px;' class="input-field col s12">
+                            <div style='margin-top: 15px; margin-bottom:0' class="input-field col s12">
                                 <input ng-model-options="{ updateOn: 'blur' }" ng-model="settingsMeet.maxPlayers" type="number" class="validate" >
                                 <label >Maksymalna ilość zawodników na boisku</label>
+                            </div>
+                            <div class="col s12" style="margin:0;">
+                                <p style="margin:0;padding:2px;border-radius:5px; border: 1px solid; border-color:{{settingsMeet.color}}">Kolor tekstu na boisku</p>
+                                <div class="todoColorPicker">
+                                    <div class="todoColorWhite" ng-click="changeTextColor('#ffffff')"></div>
+                                    <div class="todoColorBlack" ng-click="changeTextColor('#000000')"></div>
+                                    <div class="todoColorRoyal" ng-click="changeTextColor('#5579b7')"></div>
+                                    <div class="todoColorTurquoise" ng-click="changeTextColor('#17ae9f')"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -96,6 +105,7 @@
                                     <th>Przeciwnik</th>
                                     <th>Wynik</th>
                                     <th>Status spotkania</th>
+                                    <th>Akcje</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,6 +115,11 @@
                                     <td>{{meeting.enemyName}}</td>
                                     <td>{{meeting.teamScore ? meeting.teamScore : '-'}} : {{meeting.enemyScore ? meeting.enemyScore : '-'}}</td>
                                     <td ng-bind-html="putStatus(meeting.status)"></td>
+                                    <td>
+                                        <a class="btn-floating blue darken-2"><i class="material-icons">mode_edit</i></a>
+                                        <a class="btn-floating "><i class="material-icons">remove_red_eye</i></a>
+                                        <a class="btn-floating red darken-3" ng-click="deleteTermin(meeting.id)"><i class="material-icons">delete_forever</i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -147,42 +162,38 @@
 
         <div id="addMeetingListElementModal" class="modal">
             <div class="modal-content" style="padding-bottom:0">
-               <div class="row">
+               <div class="row" style="margin:0">
                    <div class="col s12">
-                       <h5>Tworzenie nowego spotkania</h5>
-                        <div class="row">
-                            <div style='margin-top: 0;' class="input-field col s12 m6">
-                                <input ng-model="meetModel.date" type="text" class="validate datetimepicker2" required>
-                                <label>Data spotkania</label>
-                            </div>
-                            <div style='margin-top: 0;' class="input-field col s12 m6">
-                                <input ng-model="meetModel.enemyName" type="text" class="validate" required>
-                                <label>Nazwa drużyny przeciwnej</label>
-                            </div>
-                            <div ng-show='showScoreInAddModal' style='margin-top: 0;' class="input-field col s12 m6">
-                                <input ng-model="meetModel.teamScore" type="number" class="validate">
-                                <label>Wynik zespołu</label>
-                            </div>
-                            <div ng-show='showScoreInAddModal' style='margin-top: 0;' class="input-field col s12 m6">
-                                <input ng-model="meetModel.enemyScore" type="number" class="validate">
-                                <label>Wynik drużyny przeciwnej</label>
-                            </div>
-                            <div style='margin-top: 0;' class="input-field col s12">
-                                <input disabled ng-model="meetModel.status" type="text" class="validate" required>
-                                <label>Status spotkania</label>
-                            </div>
-                            <div style='margin-top: 0;' class="input-field col s12">
-                                <textarea ng-model="meetModel.description" class="materialize-textarea"></textarea>
-                                <label>Dodatkowy opis spotkania</label>
-                            </div>
-                            <div class="col s12" style="display: flex;justify-content: center;margin-top: 30px;">
-                                <button class="btn" ng-click="initPlayerComposition()">Konfiguruj skład</button>
-                            </div>
+                       <h5 class="col s12" style="margin-bottom:30px;">Tworzenie nowego spotkania</h5>
+                        <div style='margin-top: 0;' class="input-field col s12 m6">
+                            <input id='meetModel.date' ng-model="meetModel.date" type="text" class="validate datetimepicker2" required>
+                            <label for="meetModel.date">Data spotkania</label>
+                        </div>
+                        <div style='margin-top: 0;' class="input-field col s12 m6">
+                            <input id='meetModel.enemyName' ng-model="meetModel.enemyName" type="text" class="validate" required>
+                            <label for='meetModel.enemyName'>Nazwa drużyny przeciwnej</label>
+                        </div>
+                        <div ng-show='showScoreInAddModal' style='margin-top: 0;' class="input-field col s12 m6">
+                            <input id='meetModel.teamScore' ng-model="meetModel.teamScore" type="number" class="validate">
+                            <label for='meetModel.teamScore'>Wynik zespołu</label>
+                        </div>
+                        <div ng-show='showScoreInAddModal' style='margin-top: 0;' class="input-field col s12 m6">
+                            <input id='meetModel.enemyScore' ng-model="meetModel.enemyScore" type="number" class="validate">
+                            <label for='meetModel.enemyScore'>Wynik drużyny przeciwnej</label>
+                        </div>
+                        <div style='margin-top: 0;' class="input-field col s12">
+                            <input id='meetModel.status' disabled ng-model="meetModel.status" type="text" class="validate" required>
+                            <label for='meetModel.status'>Status spotkania</label>
+                        </div>
+                        <div style='margin-top: 0;' class="input-field col s12">
+                            <textarea id='meetModel.description' ng-model="meetModel.description" class="materialize-textarea"></textarea>
+                            <label for='meetModel.description'>Dodatkowy opis spotkania</label>
                         </div>
                    </div>
                </div>
             </div>
             <div class="modal-footer">
+                <button class="modal-action btn" ng-click="initPlayerComposition()">Konfiguruj skład</button>
                 <button class="modal-action modal-close btn">Rezygnuje</button>
                 <button class="modal-action btn" ng-click="addNewMeeting()">Dodaj spotkanie</button>
             </div>
@@ -196,7 +207,7 @@
                         <h5 style='color: white'>Wybierz rodzaj grafiki boiska</h5>
                     </div>
                     <div class="mainCreateContener2" >
-                        <div id='itemBox' style="display: flex;justify-content: center;background: #29383d;">
+                        <div id='itemBox' style="display: flex; padding: 0 20px; background: #29383d;">
                             <div class="itemsList">
                                 <div class="categoryItems soccerField">
                                     <img src="/modules/MeetingList/assets/media/grass/background.png" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Średni płotek">
@@ -219,7 +230,7 @@
                                     <div class="row selectedUserMeetStats">
                                         <div style="width:100%; display:flex; justify-content:center;">
                                            <div style='margin-top: 0; width: 105px' class="input-field">
-                                               <input style='margin-bottom: 11px;text-align: center;color: white;' ng-model="selectedOnField.position" type="text" class="validate" required>
+                                               <input style='margin-bottom: 11px;text-align: center;color: white;' ng-model="selectedOnField.position" ng-model-options="{allowInvalid: false, updateOn: 'blur'}" type="text" class="validate" required>
                                                <label>Numer na koszulce</label>
                                            </div>
                                         </div>
@@ -240,7 +251,7 @@
                                     <div class="row selectedUserMeetStats">
                                         <div style="width:100%; display:flex; justify-content:center;">
                                             <div style='margin-top: 0; width: 105px' class="input-field">
-                                                <input style='margin-bottom: 11px;text-align: center;color: white;' ng-model="selectedUser.position" type="text" class="validate" required>
+                                                <input style='margin-bottom: 11px;text-align: center;color: white;' ng-model="selectedUser.position" ng-model-options="{allowInvalid: false, updateOn: 'blur'}" type="text" class="validate" required>
                                                 <label>Numer na koszulce</label>
                                             </div>
                                         </div>
@@ -271,7 +282,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="display: flex;justify-content: space-around;background: #29383d; height:250px;" >
+                        <div style="display: flex;justify-content: space-around;background: #29383d; height:250px;" ng-show='isSelectedField'>
                             <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0; height:250px;" ><canvas height="250" width="360" id='teamAllMeetStats'></canvas></div>
                             <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0; height:250px;" ><canvas height="220" width="360" id='teamAllMeetStatsForm'></canvas></div>
                         </div>

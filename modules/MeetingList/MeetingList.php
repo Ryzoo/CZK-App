@@ -14,9 +14,9 @@ class MeetingList extends BasicModule
         // db prefix ma_
 
         // ma_settings -- ustawienia modulu dla danego teamu
-        // | id  | id_team | listMinYear | listMaxYear | sezonStart | sezonEnd | eventInCalendar | maxPlayers |
-        // | int | int     | varchar     | varchar     | date       | date     | boolean         | int        |
-        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `maxPlayers` INT NOT NULL , `id_team` INT NOT NULL , `listMinYear` SMALLINT(4) NOT NULL , `listMaxYear` SMALLINT(4) NOT NULL , `sezonStart` DATE NOT NULL , `sezonEnd` DATE NOT NULL , `eventInCalendar` BOOLEAN NOT NULL, `id_event` INT(11) NULL , PRIMARY KEY (`id`), UNIQUE (`id_team`)) ENGINE = InnoDB;");
+        // | id  | id_team | listMinYear | listMaxYear | sezonStart | sezonEnd | eventInCalendar | maxPlayers | color  |
+        // | int | int     | varchar     | varchar     | date       | date     | boolean         | int        | varchar |
+        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `maxPlayers` INT NOT NULL , `id_team` INT NOT NULL , `listMinYear` SMALLINT(4) NOT NULL , `listMaxYear` SMALLINT(4) NOT NULL ,`color` VARCHAR(10) NOT NULL, `sezonStart` DATE NOT NULL , `sezonEnd` DATE NOT NULL , `eventInCalendar` BOOLEAN NOT NULL, `id_event` INT(11) NULL , PRIMARY KEY (`id`), UNIQUE (`id_team`)) ENGINE = InnoDB;");
 
         // ma_meet -- informacje na temat pojedynczego spotkania
         // | id  | id_team | date | id_playerComposition  | description | teamScore | enemyScore | enemyName | status  | id_event |
@@ -27,6 +27,13 @@ class MeetingList extends BasicModule
     function uninstall(){
         ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS ma_settings');
         ($this->db->getConnection())->executeSql('DROP TABLE IF EXISTS ma_meet');
+    }
+
+    function deleteMettingList($data){
+        $id = $data['id'];
+        ($this->db->getConnection())->delete('ma_meet',["id"=>$id]);
+        $this->returnedData['data'] = ($this->db->getConnection())->delete('ma_meet',["id"=>$id]);
+        return $this->returnedData;
     }
 
     function getMettingListSettings($data){
@@ -41,7 +48,8 @@ class MeetingList extends BasicModule
                 'sezonStart' => "01-01-".$currrentYear,
                 'sezonEnd' => "31-12-".$currrentYear,
                 'eventInCalendar' => true,
-                'maxPlayers' => 11
+                'maxPlayers' => 11,
+                'color'=>"#ffffff"
             ];
             ($this->db->getConnection())->insert('ma_settings',$settings);
         }

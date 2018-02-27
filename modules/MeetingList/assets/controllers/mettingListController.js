@@ -5,6 +5,9 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     $rootScope.settingsMeet = [];
     $scope.stats = [];
     $scope.showAnimCreator = false;
+    $scope.changeTextColor = function(color){
+        $rootScope.settingsMeet.color = color;
+    },
     $scope.meetModel = {
         id_team: $rootScope.user.tmid,
         id_playerComposition: null,
@@ -38,6 +41,23 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
             $scope.meetModel.status = ($scope.meetModel.teamScore > $scope.meetModel.enemyScore) ? "Zwycięstwo" : (($scope.meetModel.teamScore < $scope.meetModel.enemyScore) ? "Porażka" : "Remis")
         }
     });
+
+    $scope.deleteTermin = function(id){
+        request.backend('deleteMettingList', { id: id}, function(data) {
+            request.backend('getMettingList', { tmid: $rootScope.user.tmid, settings: $rootScope.settingsMeet }, function(data) {
+                $scope.$apply(function() {
+                    $scope.meetingList = data;
+                    $scope.showContent = true;
+                    loadStats();
+                    M.updateTextFields();
+                    setTimeout(function() {
+                        M.updateTextFields();
+                        $('select').formSelect();
+                    }, 500);
+                });
+            });
+        },"Usunięto!");
+    };
 
     $scope.initMeetingList = function() {
         request.backend('getMettingListSettings', { tmid: $rootScope.user.tmid }, function(data) {
@@ -107,6 +127,10 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
 
     $scope.initModalAddMeeting = function () {
         $('#addMeetingListElementModal').modal('open');
+        setTimeout(function() {
+            M.updateTextFields();
+            $('select').formSelect();
+        }, 500);
     };
 
     $scope.addNewMeeting = function () {
@@ -180,7 +204,6 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     $scope.initPlayerComposition = function(){
         $scope.showAnimCreator = true;
     }
-
 
     $scope.getDateFromDateTime = function(dateTime){
         return moment(dateTime).format('YYYY-MM-DD');

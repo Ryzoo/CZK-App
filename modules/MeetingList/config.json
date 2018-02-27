@@ -1,6 +1,7 @@
 {
     "name": "MeetingList",
     "description": "Tabela spotkań wraz z danymi oraz statystykami",
+    "require": ["StatsManager"],
     "version": "1.0",
     "jsControllers": ["mettingListController","meetPlayerCompositionController"],
     "frontendRoute": [{
@@ -37,6 +38,11 @@
       {
         "url": "addNewMeet",
         "parameters": ["meetModel","settings"],
+        "auth": ["KOORD", "TRENER", "STAFF"]
+      },
+      {
+        "url": "deleteMettingList",
+        "parameters": ["id"],
         "auth": ["KOORD", "TRENER", "STAFF"]
       }
     ],
