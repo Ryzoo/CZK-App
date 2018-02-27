@@ -462,7 +462,7 @@ h6 {
     left: 0;
     z-index: 9999;
     background: rgba(0, 0, 0, 0.89);
-    overflow-y: scroll;
+    overflow-y: visible;
 }
 
 .animCreatorConainer {
@@ -743,7 +743,7 @@ canvas,
     overflow-y: scroll;
     background: #222a2d;
     margin-right:-20px;
-    max-height: 540px;
+    max-height: 480px;
 }
 
 .categories {

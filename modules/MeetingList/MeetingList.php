@@ -19,9 +19,10 @@ class MeetingList extends BasicModule
         ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `maxPlayers` INT NOT NULL , `id_team` INT NOT NULL , `listMinYear` SMALLINT(4) NOT NULL , `listMaxYear` SMALLINT(4) NOT NULL ,`color` VARCHAR(10) NOT NULL, `sezonStart` DATE NOT NULL , `sezonEnd` DATE NOT NULL , `eventInCalendar` BOOLEAN NOT NULL, `id_event` INT(11) NULL , PRIMARY KEY (`id`), UNIQUE (`id_team`)) ENGINE = InnoDB;");
 
         // ma_meet -- informacje na temat pojedynczego spotkania
-        // | id  | id_team | date | id_playerComposition  | description | teamScore | enemyScore | enemyName | status  | id_event |
-        // | int | int     | date | int                   | text        | int       | int        | varchar   | varchar | int      |
-        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_meet` ( `id` INT NOT NULL AUTO_INCREMENT , `id_event` INT NULL, `id_team` INT NOT NULL , `id_playerComposition` INT NULL , `description` TEXT NOT NULL , `enemyName` VARCHAR(255) NOT NULL , `teamScore` INT(5) NULL , `enemyScore` INT(5) NULL , `status` VARCHAR(50) NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`), INDEX (`id_team`), UNIQUE (`id_playerComposition`)) ENGINE = InnoDB;");
+        // | id  | id_team | date | description | teamScore | enemyScore | enemyName | status  | id_event | compositionData |
+        // | int | int     | date | text        | int       | int        | varchar   | varchar | int      | JSON            |
+
+        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_meet` ( `id` INT NOT NULL AUTO_INCREMENT , `compositionData` LONGTEXT NULL, `id_event` INT NULL, `id_team` INT NOT NULL ,  `description` TEXT NOT NULL , `enemyName` VARCHAR(255) NOT NULL , `teamScore` INT(5) NULL , `enemyScore` INT(5) NULL , `status` VARCHAR(50) NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`), INDEX (`id_team`), UNIQUE (`id_playerComposition`)) ENGINE = InnoDB;");
     }
 
     function uninstall(){
@@ -111,24 +112,56 @@ class MeetingList extends BasicModule
     function addNewMeet($data){
         $meetModel = $data['meetModel'];
         $settings = $data['settings'];
+        $mtid = isset($data['id']) ? $data['id'] : null;
+        $compositionData = isset($data['compositionData']) ? $data['compositionData'] : null;
 
-        if( strlen($meetModel['id_playerComposition']) == 0) $meetModel['id_playerComposition'] = NULL;
         if( strlen($meetModel['teamScore']) == 0) $meetModel['teamScore'] = NULL;
         if( strlen($meetModel['enemyScore']) == 0) $meetModel['enemyScore'] = NULL;
         $meetModel['id_event'] = NULL;
+        $meetModel['compositionData'] = (isset($compositionData) && $compositionData != null )? json_encode($compositionData) : null;
 
-        if( ($settings['eventInCalendar'] === 'true' || $settings['eventInCalendar'] === true) ){
+        if(isset($mtid) && $mtid!=null && $mtid != ""){
+            $meet = ($this->db->getConnection())->fetchRow('SELECT * FROM ma_meet WHERE id='.$mtid);
             $calendar = new Calendar();
-            $meetModel['id_event'] = $calendar->addNews([
-                "title" => 'MECZ - '.$meetModel['enemyName'],
-                "start" => $meetModel['date'],
-                "end" => (new DateTime($meetModel['date']))->modify('+2 hours')->format('Y-m-d H:i:s'),
-                "tmid" => $meetModel["id_team"],
-                "color" => '#F44336'
-            ])['data'];
+            if( ($settings['eventInCalendar'] === 'true' || $settings['eventInCalendar'] === true) ){
+                if(isset($meet["id_event"]) && $meet["id_event"] != null){
+                    $calendar->editNews([
+                        "id" => $meet["id_event"],
+                        "title" => 'MECZ - '.$meetModel['enemyName'],
+                        "start" => $meetModel['date'],
+                        "end" => (new DateTime($meetModel['date']))->modify('+2 hours')->format('Y-m-d H:i:s'),
+                    ]);
+                }else{
+                    $meetModel['id_event'] = $calendar->addNews([
+                        "title" => 'MECZ - '.$meetModel['enemyName'],
+                        "start" => $meetModel['date'],
+                        "end" => (new DateTime($meetModel['date']))->modify('+2 hours')->format('Y-m-d H:i:s'),
+                        "tmid" => $meetModel["id_team"],
+                        "color" => '#F44336',
+                    ])['data'];
+                }
+            }else{
+                if(isset($meet["id_event"]) && $meet["id_event"] != null){
+                    $calendar->deleteNews(["id"=>$meet["id_event"]]);
+                    $meetModel['id_event'] = NULL;
+                }
+            }
+            ($this->db->getConnection())->update("ma_meet",["id"=>$mtid],$meetModel);
+        }else{
+            if( ($settings['eventInCalendar'] === 'true' || $settings['eventInCalendar'] === true) ){
+                $calendar = new Calendar();
+                $meetModel['id_event'] = $calendar->addNews([
+                    "title" => 'MECZ - '.$meetModel['enemyName'],
+                    "start" => $meetModel['date'],
+                    "end" => (new DateTime($meetModel['date']))->modify('+2 hours')->format('Y-m-d H:i:s'),
+                    "tmid" => $meetModel["id_team"],
+                    "color" => '#F44336',
+                ])['data'];
+            }
+            ($this->db->getConnection())->insert("ma_meet",$meetModel);
         }
 
-        ($this->db->getConnection())->insert("ma_meet",$meetModel);
+
         $this->returnedData['data'] = $this->getMettingList(["tmid"=>$meetModel["id_team"],"settings"=>$settings])['data'];
         return $this->returnedData;
     }
