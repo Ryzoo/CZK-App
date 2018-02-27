@@ -30,6 +30,16 @@
             "url": "deleteDayStatusFreq",
             "parameters": ["tmid", "data"],
             "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getMonthFrequency",
+            "parameters": ["tmid", "year", "month"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
+        },
+        {
+            "url": "getMonthPlayerFrequency",
+            "parameters": ["tmid", "usid", "year", "month"],
+            "auth": ["KOORD", "TRENER", "STAFF"]
         }
     ],
     "jsControllers": ["teamFreqController"],

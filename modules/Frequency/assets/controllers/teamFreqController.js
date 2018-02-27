@@ -7,6 +7,8 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
     $scope.statusNumber = 0;
     $scope.currentDay = [];
     $scope.isFreqShow = false;
+    $scope.chart = null;
+    $scope.playerChart = null;
 
     var currentTime = new Date();
 
@@ -17,6 +19,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $("#monthDate").val(currentTime.getMonth() + 1);
         $("#dayDate").val(currentTime.getDate());
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
+        getCurrentMonthStats();
         resetDayInMonthMax();
         M.updateTextFields();
         $('.modal').modal();
@@ -50,6 +53,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         resetDayInMonthMax();
         $("#dayDate").val("1");
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
+        getCurrentMonthStats();
     });
 
     $(document).off("change", "#monthDate");
@@ -64,6 +68,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         resetDayInMonthMax();
         $("#dayDate").val("1");
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
+        getCurrentMonthStats();
     });
 
     $(document).off("change", "#dayDate");
@@ -76,6 +81,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         }
         $scope.isSelectedCorrectDate = true;
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
+        getCurrentMonthStats();
     });
 
     $(document).off("change", ".onTrainingChecbox");
@@ -101,6 +107,65 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $("#dayDate").attr("max", dayCount);
 
     }
+
+    function getCurrentMonthStats() {
+        request.backend('getMonthFrequency', { tmid: $rootScope.user.tmid, month: $("#monthDate").val(), year: $("#yearDate").val() }, function(data) {
+            $scope.$apply(function() {
+                if ($scope.chart){
+                    $scope.chart.data.datasets[0].data = [data,100-data];
+                    $scope.chart.update();
+                }else{
+                    $scope.chart = new Chart($('#freqStats'), {
+                        type: 'doughnut',
+                        data: {
+                            datasets: [{
+                                data: [data,100-data],
+                                backgroundColor: [
+                                    '#a7ec50',
+                                    '#ec1800'
+                                ]
+                            }],
+                            labels: [
+                                'Obecność',
+                                'Nieobecność'
+                            ]
+                        }
+                    });
+                }
+
+            });
+        });
+    }
+
+    function getCurrentPlayerMonthStats(id) {
+        request.backend('getMonthPlayerFrequency', { tmid: $rootScope.user.tmid, usid: id, month: $("#monthDate").val(), year: $("#yearDate").val() }, function(data) {
+            $scope.$apply(function() {
+                if ($scope.playerChart){
+                    $scope.playerChart.data.datasets[0].data = [data,100-data];
+                    $scope.playerChart.update();
+                }else{
+                    $scope.playerChart = new Chart($('#playerFreqStats'), {
+                        type: 'doughnut',
+                        data: {
+                            datasets: [{
+                                data: [data,100-data],
+                                backgroundColor: [
+                                    '#a7ec50',
+                                    '#ec1800'
+                                ]
+                            }],
+                            labels: [
+                                'Obecność',
+                                'Nieobecność'
+                            ]
+                        }
+                    });
+                }
+
+            });
+        });
+    }
+
 
     $scope.checkTeamStatusFreq = function(){
         if($scope.currentDay && $scope.currentDay != null && !$.isArray($scope.currentDay)){
@@ -166,5 +231,15 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
             });
         },"Status został zmieniony.");
     };
+
+    $scope.showPlayerFreq = function (id) {
+        $('#modalPlayerFreq').modal('open');
+        getCurrentPlayerMonthStats(id);
+    };
+
+    $scope.closePlayerFreq = function () {
+        $('#modalPlayerFreq').modal('close');
+    }
+
 
 });

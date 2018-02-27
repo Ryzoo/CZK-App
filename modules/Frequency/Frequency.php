@@ -114,6 +114,54 @@ class Frequency extends BasicModule {
         return $this->returnedData;
     }
 
+    function getMonthFrequency($data) {
+        $tmid = $data['tmid'];
+        $month = $data['month'];
+        $year = $data['year'];
+        $monthTrainingCount = ($this->db->getConnection())->fetchRow('SELECT COUNT(*) as ilosc FROM `freq_team_day_status` WHERE MONTH(date) = '.$month.' AND YEAR(date) = '.$year.' AND id_team = '. $tmid)['ilosc'];
+        $teamPlayers = ($this->db->getConnection())->fetchRowMany('SELECT id_user as usid FROM `team_members` JOIN users on users.id = team_members.id_user WHERE users.id_role = 3 AND id_team = '. $tmid);
+        $userFreq = ($this->db->getConnection())->fetchRowMany("SELECT COUNT(*) as ilosc, usid FROM `freq` WHERE MONTH(date) = ".$month." AND YEAR(date) = ".$year." AND tmid = ".$tmid." GROUP BY usid");
+        $allCount = 0;
+        foreach ($teamPlayers as $tmpl) {
+            $count = 0;
+            foreach ($userFreq as $usfr) {
+                if ($tmpl['usid'] == $usfr['usid']){
+                    $count = $usfr['ilosc'];
+                    break;
+                }
+            }
+            $allCount += $count;
+        }
+
+        $dziel = (count($teamPlayers)*$monthTrainingCount);
+        if((!isset($dziel)) || ($dziel == 0)){
+            $this->returnedData['data'] = 0;
+        }else{
+            $this->returnedData['data'] = round(($allCount / $dziel) * 100,2);
+        }
+
+        return $this->returnedData;
+    }
+
+    function getMonthPlayerFrequency($data) {
+        $tmid = $data['tmid'];
+        $month = $data['month'];
+        $year = $data['year'];
+        $usid = $data['usid'];
+        $monthTrainingCount = ($this->db->getConnection())->fetchRow('SELECT COUNT(*) as ilosc FROM `freq_team_day_status` WHERE MONTH(date) = '.$month.' AND YEAR(date) = '.$year.' AND id_team = '. $tmid)['ilosc'];
+        $userFreq = ($this->db->getConnection())->fetchRow("SELECT COUNT(*) as ilosc, usid FROM `freq` WHERE MONTH(date) = ".$month." AND YEAR(date) = ".$year." AND tmid = ".$tmid." AND usid = ".$usid." GROUP BY usid")['ilosc'];
+
+        $dziel = $monthTrainingCount;
+        if((!isset($dziel)) || ($dziel == 0)){
+            $this->returnedData['data'] = 0;
+        }else{
+            $this->returnedData['data'] = round(($userFreq / $dziel) * 100,2);
+        }
+
+        return $this->returnedData;
+    }
+
+
     function install(){
         ($this->db->getConnection())->executeSql('CREATE TABLE IF NOT EXISTS `freq` (`id` int(11) NOT NULL,`usid` int(11) NOT NULL,`tmid` int(11) NOT NULL,`date` date NOT NULL) DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;');
         ($this->db->getConnection())->executeSql('ALTER TABLE `freq` ADD PRIMARY KEY (`id`), MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
