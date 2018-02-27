@@ -22,7 +22,7 @@ class MeetingList extends BasicModule
         // | id  | id_team | date | description | teamScore | enemyScore | enemyName | status  | id_event | compositionData |
         // | int | int     | date | text        | int       | int        | varchar   | varchar | int      | JSON            |
 
-        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_meet` ( `id` INT NOT NULL AUTO_INCREMENT , `compositionData` LONGTEXT NULL, `id_event` INT NULL, `id_team` INT NOT NULL ,  `description` TEXT NOT NULL , `enemyName` VARCHAR(255) NOT NULL , `teamScore` INT(5) NULL , `enemyScore` INT(5) NULL , `status` VARCHAR(50) NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`), INDEX (`id_team`), UNIQUE (`id_playerComposition`)) ENGINE = InnoDB;");
+        ($this->db->getConnection())->executeSql("CREATE TABLE IF NOT EXISTS `ma_meet` ( `id` INT NOT NULL AUTO_INCREMENT , `compositionData` LONGTEXT NULL, `id_event` INT NULL, `id_team` INT NOT NULL ,  `description` TEXT NOT NULL , `enemyName` VARCHAR(255) NOT NULL , `teamScore` INT(5) NULL , `enemyScore` INT(5) NULL , `status` VARCHAR(50) NOT NULL , `date` DATETIME NOT NULL , PRIMARY KEY (`id`), INDEX (`id_team`)) ENGINE = InnoDB;");
     }
 
     function uninstall(){
@@ -44,10 +44,10 @@ class MeetingList extends BasicModule
             $currrentYear = date("Y");
             $settings = [
                 'id_team' => $tmid,
-                'listMinYear' => $currrentYear,
+                'listMinYear' => $currrentYear-1,
                 'listMaxYear' => $currrentYear,
-                'sezonStart' => "01-01-".$currrentYear,
-                'sezonEnd' => "31-12-".$currrentYear,
+                'sezonStart' => $currrentYear."-01-01",
+                'sezonEnd' => $currrentYear."-12-31",
                 'eventInCalendar' => true,
                 'maxPlayers' => 11,
                 'color'=>"#ffffff"
