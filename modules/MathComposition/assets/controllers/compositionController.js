@@ -6,9 +6,11 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
         request.backend('getNextMatchComposition', { tmid: $rootScope.user.tmid }, function(data) {
             $scope.$apply(function() {
                 $scope.meetViewSelected = data;
-                $scope.meetViewSelected.date = moment($scope.meetViewSelected.date).format('YYYY-MM-DD HH:mm');
-                $scope.meetViewSelected.compositionData = $scope.meetViewSelected.compositionData && $scope.meetViewSelected.compositionData.length > 10 ? $.parseJSON($scope.meetViewSelected.compositionData) : null;
-                $scope.showContent = true;
+                if(data != null && data != [] && data.length > 0){
+                    $scope.meetViewSelected.date = moment($scope.meetViewSelected.date).format('YYYY-MM-DD HH:mm');
+                    $scope.meetViewSelected.compositionData = $scope.meetViewSelected.compositionData && $scope.meetViewSelected.compositionData.length > 10 ? $.parseJSON($scope.meetViewSelected.compositionData) : null;
+                }
+                 $scope.showContent = true;
             });
         });
     };
