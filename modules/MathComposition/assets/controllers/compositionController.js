@@ -9,6 +9,8 @@ app.controller('compositionController', function($scope, auth, $rootScope, reque
                 if(data != null && data != [] && data.length > 0){
                     $scope.meetViewSelected.date = moment($scope.meetViewSelected.date).format('YYYY-MM-DD HH:mm');
                     $scope.meetViewSelected.compositionData = $scope.meetViewSelected.compositionData && $scope.meetViewSelected.compositionData.length > 10 ? $.parseJSON($scope.meetViewSelected.compositionData) : null;
+                }else{
+                    $scope.meetViewSelected = null;
                 }
                  $scope.showContent = true;
             });

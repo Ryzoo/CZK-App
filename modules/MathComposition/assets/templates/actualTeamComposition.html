@@ -8,7 +8,7 @@
                     <div class="card-title">
                         Następny mecz
                     </div>
-                    <div class="row page-break" nh-show="meetViewSelected && meetViewSelected!=null && meetViewSelected!=[] && ">
+                    <div class="row page-break" nh-show="meetViewSelected">
                         <div>
                             <small>{{meetViewSelected.date}}</small>
                             <h5 style="margin: 2px 0;">Spotkanie przeciwko: {{meetViewSelected.enemyName}}</h5>
@@ -21,7 +21,7 @@
                             <img style='width:100%' ng-src="{{meetViewSelected.compositionData.img.length > 10 ? meetViewSelected.compositionData.img : ''}}" alt="Skład meczowy">
                         </div>
                     </div>
-                    <div class="row page-break" ng-show="!meetViewSelected || meetViewSelected==null || meetViewSelected==[] || meetViewSelected.length==0">
+                    <div class="row page-break" ng-show="!meetViewSelected">
                         <p style="margin:20px"> Niestety, Twój zespół nie ma zaplanowanych żadnych meczy na przyszłe dni!</p>
                     </div>
                 </div>
