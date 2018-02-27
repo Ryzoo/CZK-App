@@ -54,7 +54,29 @@
                 </div>
             </div>
         </div>
-        <div style="padding:0" class="col s12 m9 lg10">
+        <div ng-show="user.role == 'ZAWODNIK'" class="col s12 m5 lg4">
+            <div ng-init="playerFreq()" class="card">
+                <div class="card-content">
+                    <div class="card-title">Statystyka frekwencji w wybranym miesiącu</div>
+                    <div class="row">
+                        <div class="row page-break">
+                            <div class="row noPrint" style="overflow:hidden;"><canvas id='currentPlayerFreqStats'></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="user.role == 'ZAWODNIK'" class="col s12 m4 lg4">
+            <div ng-init="playerDayFreq()" class="card">
+                <div class="card-content">
+                    <div class="card-title">Frekwencja</div>
+                    <div class="row" style="padding: 20px;">
+                        {{ presence }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="user.role != 'ZAWODNIK'" style="padding:0" class="col s12 m9 lg10">
             <div style="padding:0" class="col s12">
                 <div class="card">
                     <div class="card-content">

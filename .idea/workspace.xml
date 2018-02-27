@@ -68,33 +68,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Frequency.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Frequency.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/Frequency/Frequency.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+            <state relative-caret-position="251">
+              <caret line="151" column="103" lean-forward="false" selection-start-line="151" selection-start-column="103" selection-end-line="151" selection-end-column="103" />
               <folding>
-                <marker date="1519744703650" expanded="true" signature="1149:1268" ph="SELECT * FRO... freq" />
-                <marker date="1519744703650" expanded="true" signature="2651:2733" ph="SELECT * FRO... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="3417:3499" ph="SELECT * FRO... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="3855:3907" ph="SELECT * FRO... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="3855:3908" ph="SELECT * FRO... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="3855:3922" ph="SELECT * FRO... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="3855:3936" ph="SELECT * FRO... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="3855:3937" ph="SELECT * FRO... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="4196:4321" ph="SELECT COUNT... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="4408:4535" ph="SELECT id_us... team_members" />
-                <marker date="1519744703650" expanded="true" signature="4610:4745" ph="SELECT COUNT... freq" />
-                <marker date="1519744703650" expanded="true" signature="5624:5749" ph="SELECT COUNT... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="5829:5985" ph="SELECT COUNT... freq" />
-                <marker date="1519744703650" expanded="true" signature="6352:6477" ph="CREATE TABLE... IF" />
-                <marker date="1519744703650" expanded="true" signature="6352:6522" ph="CREATE TABLE... IF" />
-                <marker date="1519744703650" expanded="true" signature="6577:6663" ph="ALTER TABLE `freq`... " />
-                <marker date="1519744703650" expanded="true" signature="6718:6827" ph="CREATE TABLE... IF" />
-                <marker date="1519744703650" expanded="true" signature="6718:6854" ph="CREATE TABLE... IF" />
-                <marker date="1519744703650" expanded="true" signature="6718:6940" ph="CREATE TABLE... freq_team_day_status" />
-                <marker date="1519744703650" expanded="true" signature="7029:7054" ph="DROP TABLE I... " />
-                <marker date="1519744703650" expanded="true" signature="7108:7149" ph="DROP TABLE I... " />
+                <marker date="1519754436651" expanded="true" signature="1149:1268" ph="SELECT * FRO... freq" />
+                <marker date="1519754436651" expanded="true" signature="2651:2733" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="3417:3499" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="3855:3907" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="3855:3908" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="3855:3922" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="3855:3936" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="3855:3937" ph="SELECT * FRO... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="4196:4321" ph="SELECT COUNT... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="4408:4535" ph="SELECT id_us... team_members" />
+                <marker date="1519754436651" expanded="true" signature="4610:4745" ph="SELECT COUNT... freq" />
+                <marker date="1519754436651" expanded="true" signature="5663:5794" ph="SELECT * FRO... freq" />
+                <marker date="1519754436651" expanded="true" signature="5663:5795" ph="SELECT * FRO... freq" />
+                <marker date="1519754436651" expanded="true" signature="5663:5815" ph="SELECT * FRO... freq" />
+                <marker date="1519754436651" expanded="true" signature="5663:5816" ph="SELECT * FRO... freq" />
+                <marker date="1519754436651" expanded="true" signature="6113:6238" ph="SELECT COUNT... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="6318:6474" ph="SELECT COUNT... freq" />
+                <marker date="1519754436651" expanded="true" signature="6841:6966" ph="CREATE TABLE... IF" />
+                <marker date="1519754436651" expanded="true" signature="6841:7011" ph="CREATE TABLE... IF" />
+                <marker date="1519754436651" expanded="true" signature="7066:7152" ph="ALTER TABLE `freq`... " />
+                <marker date="1519754436651" expanded="true" signature="7207:7316" ph="CREATE TABLE... IF" />
+                <marker date="1519754436651" expanded="true" signature="7207:7343" ph="CREATE TABLE... IF" />
+                <marker date="1519754436651" expanded="true" signature="7207:7429" ph="CREATE TABLE... freq_team_day_status" />
+                <marker date="1519754436651" expanded="true" signature="7518:7543" ph="DROP TABLE I... " />
+                <marker date="1519754436651" expanded="true" signature="7597:7638" ph="DROP TABLE I... " />
               </folding>
             </state>
           </provider>
@@ -103,28 +107,29 @@
       <file leaf-file-name="teamFreqController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2940">
-              <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+            <state relative-caret-position="547">
+              <caret line="90" column="28" lean-forward="false" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="teamFreq.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="teamFreq.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="122" column="75" lean-forward="false" selection-start-line="122" selection-start-column="75" selection-end-line="122" selection-end-column="75" />
+            <state relative-caret-position="600">
+              <caret line="72" column="58" lean-forward="false" selection-start-line="72" selection-start-column="58" selection-end-line="72" selection-end-column="58" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
                 <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#div#3;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="false" />
+                <element signature="n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,8 +138,8 @@
       <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/Frequency/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="39" column="43" lean-forward="false" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+            <state relative-caret-position="385">
+              <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -152,11 +157,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>anim</find>
-      <find>imgConspectAnim</find>
-      <find>sharedPersonContainer</find>
-      <find>conspectcwdata</find>
-      <find>deleteanim</find>
       <find>$rootScope.sharedAnimId</find>
       <find>tagsc</find>
       <find>deleteCon</find>
@@ -182,6 +182,11 @@
       <find>getcurre</find>
       <find>info</find>
       <find>cance</find>
+      <find>ng-show</find>
+      <find>modalpla</find>
+      <find>status</find>
+      <find>change&quot;</find>
+      <find>playerFreq</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -216,10 +221,10 @@
         <option value="$PROJECT_DIR$/core/index.php" />
         <option value="$PROJECT_DIR$/modules/Frequency/assets/css/style.css" />
         <option value="$PROJECT_DIR$/modules/MeetingList/config.json" />
-        <option value="$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html" />
         <option value="$PROJECT_DIR$/modules/Frequency/config.json" />
-        <option value="$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js" />
         <option value="$PROJECT_DIR$/modules/Frequency/Frequency.php" />
+        <option value="$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js" />
+        <option value="$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html" />
       </list>
     </option>
   </component>
@@ -534,7 +539,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83300000" />
+    <option name="totallyTimeSpent" value="91274000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -547,16 +552,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27801725" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13119835" sideWeight="0.50208336" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14930183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25725028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13119835" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13119835" sideWeight="0.49791667" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39876032" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -802,20 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/js/controllers/mainController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-208">
-          <caret line="62" column="55" lean-forward="false" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
-          <folding>
-            <element signature="e#1679#1786#0" expanded="false" />
-            <element signature="e#1830#2157#0" expanded="false" />
-            <element signature="e#2220#2709#0" expanded="false" />
-            <element signature="e#2799#3931#0" expanded="false" />
-            <element signature="e#3967#4030#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/StatsManager/assets/templates/newScore.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2340">
@@ -953,66 +945,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html">
+    <entry file="file://$PROJECT_DIR$/core/js/controllers/mainController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="122" column="75" lean-forward="false" selection-start-line="122" selection-start-column="75" selection-end-line="122" selection-end-column="75" />
+        <state relative-caret-position="1560">
+          <caret line="61" column="55" lean-forward="false" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#1679#1786#0" expanded="false" />
+            <element signature="e#1830#2157#0" expanded="false" />
+            <element signature="e#2220#2709#0" expanded="false" />
+            <element signature="e#2799#3931#0" expanded="false" />
+            <element signature="e#3967#4030#0" expanded="false" />
+            <marker date="1519729927365" expanded="true" signature="2405:2415" ph="..." />
+            <marker date="1519729927365" expanded="true" signature="2832:2851" ph="..." />
+            <marker date="1519729927365" expanded="true" signature="2918:2939" ph="..." />
+            <marker date="1519729927365" expanded="true" signature="3038:3094" ph="..." />
+            <marker date="1519729927365" expanded="true" signature="3216:3272" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2940">
-          <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/Frequency/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="39" column="43" lean-forward="false" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+        <state relative-caret-position="385">
+          <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/Frequency/Frequency.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+        <state relative-caret-position="251">
+          <caret line="151" column="103" lean-forward="false" selection-start-line="151" selection-start-column="103" selection-end-line="151" selection-end-column="103" />
           <folding>
-            <marker date="1519744703650" expanded="true" signature="1149:1268" ph="SELECT * FRO... freq" />
-            <marker date="1519744703650" expanded="true" signature="2651:2733" ph="SELECT * FRO... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="3417:3499" ph="SELECT * FRO... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="3855:3907" ph="SELECT * FRO... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="3855:3908" ph="SELECT * FRO... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="3855:3922" ph="SELECT * FRO... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="3855:3936" ph="SELECT * FRO... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="3855:3937" ph="SELECT * FRO... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="4196:4321" ph="SELECT COUNT... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="4408:4535" ph="SELECT id_us... team_members" />
-            <marker date="1519744703650" expanded="true" signature="4610:4745" ph="SELECT COUNT... freq" />
-            <marker date="1519744703650" expanded="true" signature="5624:5749" ph="SELECT COUNT... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="5829:5985" ph="SELECT COUNT... freq" />
-            <marker date="1519744703650" expanded="true" signature="6352:6477" ph="CREATE TABLE... IF" />
-            <marker date="1519744703650" expanded="true" signature="6352:6522" ph="CREATE TABLE... IF" />
-            <marker date="1519744703650" expanded="true" signature="6577:6663" ph="ALTER TABLE `freq`... " />
-            <marker date="1519744703650" expanded="true" signature="6718:6827" ph="CREATE TABLE... IF" />
-            <marker date="1519744703650" expanded="true" signature="6718:6854" ph="CREATE TABLE... IF" />
-            <marker date="1519744703650" expanded="true" signature="6718:6940" ph="CREATE TABLE... freq_team_day_status" />
-            <marker date="1519744703650" expanded="true" signature="7029:7054" ph="DROP TABLE I... " />
-            <marker date="1519744703650" expanded="true" signature="7108:7149" ph="DROP TABLE I... " />
+            <marker date="1519754436651" expanded="true" signature="1149:1268" ph="SELECT * FRO... freq" />
+            <marker date="1519754436651" expanded="true" signature="2651:2733" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="3417:3499" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="3855:3907" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="3855:3908" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="3855:3922" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="3855:3936" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="3855:3937" ph="SELECT * FRO... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="4196:4321" ph="SELECT COUNT... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="4408:4535" ph="SELECT id_us... team_members" />
+            <marker date="1519754436651" expanded="true" signature="4610:4745" ph="SELECT COUNT... freq" />
+            <marker date="1519754436651" expanded="true" signature="5663:5794" ph="SELECT * FRO... freq" />
+            <marker date="1519754436651" expanded="true" signature="5663:5795" ph="SELECT * FRO... freq" />
+            <marker date="1519754436651" expanded="true" signature="5663:5815" ph="SELECT * FRO... freq" />
+            <marker date="1519754436651" expanded="true" signature="5663:5816" ph="SELECT * FRO... freq" />
+            <marker date="1519754436651" expanded="true" signature="6113:6238" ph="SELECT COUNT... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="6318:6474" ph="SELECT COUNT... freq" />
+            <marker date="1519754436651" expanded="true" signature="6841:6966" ph="CREATE TABLE... IF" />
+            <marker date="1519754436651" expanded="true" signature="6841:7011" ph="CREATE TABLE... IF" />
+            <marker date="1519754436651" expanded="true" signature="7066:7152" ph="ALTER TABLE `freq`... " />
+            <marker date="1519754436651" expanded="true" signature="7207:7316" ph="CREATE TABLE... IF" />
+            <marker date="1519754436651" expanded="true" signature="7207:7343" ph="CREATE TABLE... IF" />
+            <marker date="1519754436651" expanded="true" signature="7207:7429" ph="CREATE TABLE... freq_team_day_status" />
+            <marker date="1519754436651" expanded="true" signature="7518:7543" ph="DROP TABLE I... " />
+            <marker date="1519754436651" expanded="true" signature="7597:7638" ph="DROP TABLE I... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/controllers/teamFreqController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="90" column="28" lean-forward="false" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/Frequency/assets/templates/teamFreq.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="72" column="58" lean-forward="false" selection-start-line="72" selection-start-column="58" selection-end-line="72" selection-end-column="58" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

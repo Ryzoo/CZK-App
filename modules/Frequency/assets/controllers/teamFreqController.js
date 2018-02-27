@@ -9,6 +9,7 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
     $scope.isFreqShow = false;
     $scope.chart = null;
     $scope.playerChart = null;
+    $scope.presence = "";
 
     var currentTime = new Date();
 
@@ -54,6 +55,8 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $("#dayDate").val("1");
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
         getCurrentMonthStats();
+        $scope.playerDayFreq();
+        $scope.playerFreq();
     });
 
     $(document).off("change", "#monthDate");
@@ -69,6 +72,8 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $("#dayDate").val("1");
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
         getCurrentMonthStats();
+        $scope.playerDayFreq();
+        $scope.playerFreq();
     });
 
     $(document).off("change", "#dayDate");
@@ -82,6 +87,8 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $scope.isSelectedCorrectDate = true;
         loadFrequencyData($("#yearDate").val(), $("#monthDate").val(), $("#dayDate").val());
         getCurrentMonthStats();
+        $scope.playerDayFreq();
+        $scope.playerFreq();
     });
 
     $(document).off("change", ".onTrainingChecbox");
@@ -143,8 +150,25 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
                 if ($scope.playerChart){
                     $scope.playerChart.data.datasets[0].data = [data,100-data];
                     $scope.playerChart.update();
-                }else{
+                }else if ($rootScope.user.role != "ZAWODNIK"){
                     $scope.playerChart = new Chart($('#playerFreqStats'), {
+                        type: 'doughnut',
+                        data: {
+                            datasets: [{
+                                data: [data,100-data],
+                                backgroundColor: [
+                                    '#a7ec50',
+                                    '#ec1800'
+                                ]
+                            }],
+                            labels: [
+                                'Obecność',
+                                'Nieobecność'
+                            ]
+                        }
+                    });
+                }else{
+                    $scope.playerChart = new Chart($('#currentPlayerFreqStats'), {
                         type: 'doughnut',
                         data: {
                             datasets: [{
@@ -241,5 +265,21 @@ app.controller('teamFreqController', function($scope, auth, $rootScope, request,
         $('#modalPlayerFreq').modal('close');
     }
 
+    $scope.playerFreq = function () {
+        getCurrentPlayerMonthStats($rootScope.user.id);
+    };
+
+    $scope.playerDayFreq = function () {
+        let day = $("#dayDate").val();
+        request.backend('getCurrentUserDayFrequency', { tmid: $rootScope.user.tmid, usid: $rootScope.user.id, month: $("#monthDate").val(), year: $("#yearDate").val(), day: day }, function(data) {
+            $scope.$apply(function() {
+                if(data.dzien == day){
+                    $scope.presence = "W tym dniu byłeś na treningu.";
+                }else{
+                    $scope.presence = "W tym dniu nie byłeś na treningu.";
+                }
+            });
+        });
+    };
 
 });

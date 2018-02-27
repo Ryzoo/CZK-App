@@ -24,7 +24,7 @@
         {
             "url": "getDayStatusFreq",
             "parameters": ["tmid", "data"],
-            "auth": ["KOORD", "TRENER", "STAFF"]
+            "auth": ["KOORD", "TRENER", "STAFF", "ZAWODNIK"]
         },
         {
             "url": "deleteDayStatusFreq",
@@ -34,12 +34,17 @@
         {
             "url": "getMonthFrequency",
             "parameters": ["tmid", "year", "month"],
-            "auth": ["KOORD", "TRENER", "STAFF"]
+            "auth": ["KOORD", "TRENER", "STAFF", "ZAWODNIK"]
         },
         {
             "url": "getMonthPlayerFrequency",
             "parameters": ["tmid", "usid", "year", "month"],
-            "auth": ["KOORD", "TRENER", "STAFF"]
+            "auth": ["KOORD", "TRENER", "STAFF", "ZAWODNIK"]
+        },
+        {
+            "url": "getCurrentUserDayFrequency",
+            "parameters": ["tmid", "usid", "day", "year", "month"],
+            "auth": ["KOORD", "TRENER", "STAFF", "ZAWODNIK"]
         }
     ],
     "jsControllers": ["teamFreqController"],
@@ -56,7 +61,7 @@
                 "label": "Frekwencja zawodników",
                 "url": "#!/teamFreq",
                 "icon": "fa fa-list-alt fa-fw",
-                "additional": "ng-show=\"user.role != 'ZAWODNIK' && user.tmid != ''\""
+                "additional": "ng-show=\"user.tmid != ''\""
             },
             "weight": 4
         }

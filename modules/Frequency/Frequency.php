@@ -143,6 +143,17 @@ class Frequency extends BasicModule {
         return $this->returnedData;
     }
 
+    function getCurrentUserDayFrequency($data){
+        $tmid = $data['tmid'];
+        $day = $data['day'];
+        $month = $data['month'];
+        $year = $data['year'];
+        $usid = $data['usid'];
+        $this->returnedData['data'] = ($this->db->getConnection())->fetchRow('SELECT DAY(date) as dzien FROM `freq` WHERE MONTH(date) = '.$month.' and YEAR(date) = '.$year.' AND DAY(date) = '.$day.' AND tmid = '.$tmid.' AND usid = '. $usid);
+
+        return $this->returnedData;
+    }
+
     function getMonthPlayerFrequency($data) {
         $tmid = $data['tmid'];
         $month = $data['month'];
