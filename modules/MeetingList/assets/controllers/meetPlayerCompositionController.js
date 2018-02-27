@@ -96,20 +96,19 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         });
     });
 
-    $scope.selectField = function(src) {
+    $scope.selectField = function(src,callaback=function(){}) {
         drawStage();
         $scope.selectedField = new Image();
         $scope.isSelectedField = true;
         $scope.selectedField.onload = function() {
             $scope.fieldImage = $scope.selectedField;
+            callaback();
             drawStage();
         };
         $scope.selectedField.src = src;
-
     };
 
     function generateChart(){
-
         if(myLineChart){
             myLineChart.data.datasets[0].data = generatePotentialData();
             myLineChart.update();
@@ -246,10 +245,11 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         });
     };
 
-    $scope.getPlayers = function(){
+    $scope.getPlayers = function(callback = function(){}){
         request.backend('getMeetPlayers', {tmid: $rootScope.user.tmid}, function(data) {
             $scope.$apply(function(){
                 $scope.allPlayers = data.users;
+                callback();
             });
         });
     };
@@ -371,6 +371,196 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         }
     }
 
+    $rootScope.saveMeetComposition = function (callback = function(){}) {
+        let userInField = [];
+        for(let i=0;i<$scope.onFieldUser.length;i++){
+            $scope.onFieldUser[i].setAttr('strokeWidth',0);
+            userInField.push({
+                x: $scope.onFieldUser[i].getAttr("x").toFixed(2),
+                y: $scope.onFieldUser[i].getAttr("y").toFixed(2),
+                usid: $scope.onFieldUser[i].getAttr("id"),
+            });
+        }
+        mainCanvas.draw();
+        let img = mainCanvas ? mainCanvas.toCanvas().toDataURL("image/jpg") : null;
+        callback( (img &&  $scope.onFieldUser.length > 0) ? {
+            img : img,
+            user: userInField,
+            fieldImg: $scope.selectedField.src,
+            maxPlayers: $rootScope.settingsMeet.maxPlayers,
+            stats:{
+                actualForm: getActualForm(),
+                data: generatePotentialData(),
+                labels: generateLabel()
+            }
+        }: null);
+    };
+
+    $rootScope.reinitMeetingComposition = function (callback= function(){}) {
+        $scope.isSelectedField = false;
+        $scope.allPlayers = [];
+        $scope.selectedUser = null;
+        $scope.selectedOnField = null;
+        $scope.editedNow = false;
+        teamFormChart = null;
+        $scope.onFieldUser=[];
+        $scope.searchPerson = '';
+        $scope.orientation = 'landscape';
+        $scope.selectedField = '';
+        $scope.fieldImage = '';
+        stageWidth = 800;
+        stageHeight = stageWidth * 0.6;
+        $scope.getPlayers(function(){
+            generateChart();
+            callback();
+        });
+    };
+
+    $rootScope.loadMeetingComposition = function(data,callback=function(){}){
+        $rootScope.reinitMeetingComposition(function(){
+            if(data && data.fieldImg && data.user && data.user.length > 0){
+                $scope.selectField(parseUrl(data.fieldImg),function(){
+                    for(let i=0;i<data.user.length;i++){
+                        let user = [];
+
+                        for(let j=0;j<$scope.allPlayers.length;j++){
+                            if(parseInt($scope.allPlayers[j].usid) == data.user[i].usid){
+                                user = $scope.allPlayers[j];
+                                break;
+                            }
+                        }
+                        let newUserToField = user;
+                        $scope.editedNow=true;
+                        $scope.selectedUser = newUserToField;
+                        $scope.selectedOnField = null;
+
+                        if(!newUserToField.image){
+                            newUserToField.image = new Image();
+                            newUserToField.image.onload = function(){
+
+                                let hRatio = 45.0  / newUserToField.image.width;
+                                let vRatio =  45.0 / newUserToField.image.height;
+                                let ratio  = Math.min ( hRatio, vRatio );
+                                let obj = new Konva.Rect({
+                                    x: parseFloat(data.user[i].x),
+                                    y: parseFloat(data.user[i].y),
+                                    cornerRadius: 50,
+                                    width: 45,
+                                    height: 45,
+                                    offsetX: (45 / 2.0),
+                                    offsetY: (45 / 2.0),
+                                    fillPatternRepeat: 'no-repeat',
+                                    fillPatternScale: {x: ratio, y:ratio},
+                                    fillPatternImage: newUserToField.image,
+                                    name: "movementObject",
+                                    id: newUserToField.usid,
+                                    stat: $.extend(newUserToField,{}),
+                                    textObj: null,
+                                    draggable: true,
+                                    stroke: "red",
+                                    strokeWidth: 10
+                                });
+
+                                let textObj = new Konva.Text({
+                                    x: obj.getAttr("x"),
+                                    y: obj.getAttr("y") + 25,
+                                    text: newUserToField.position + " " + newUserToField.userName,
+                                    fontSize: 14,
+                                    fill: $rootScope.settingsMeet.color
+                                });
+
+                                textObj.setOffset({
+                                    x: textObj.getWidth() / 2.0
+                                });
+
+                                obj.setAttr("textObj",textObj);
+
+                                obj.on('mouseenter', function () {
+                                    mainCanvas.container().style.cursor = 'move';
+                                });
+
+                                obj.on('mouseleave', function () {
+                                    mainCanvas.container().style.cursor = 'default';
+                                });
+
+                                obj.on('dragend dragmove', function () {
+                                    let text = this.getAttr("textObj");
+                                    text.setAttr("x",this.getAttr("x"));
+                                    text.setAttr("y",this.getAttr("y")+25);
+                                    text.setOffset({
+                                        x: text.getWidth() / 2.0
+                                    });
+                                    this.setAttr("textObj",text);
+                                    mainCanvas.draw();
+                                });
+
+                                obj.on('click tap mousedown dragstart', function() {
+                                    let self = this;
+                                    $scope.$apply(function(){
+                                        $scope.selectedUser = null;
+                                        for(let i=0;i<$scope.onFieldUser.length;i++){
+                                            $scope.onFieldUser[i].setAttr('strokeWidth',0);
+                                            if($scope.onFieldUser[i].getAttr('id') == self.getAttr('id')){
+                                                $scope.onFieldUser[i].setAttr('strokeWidth',10);
+                                            }
+                                        }
+                                        mainCanvas.draw();
+                                        $('.oneMeetUser').each(function() {
+                                            $(this).css("border-color", "");
+                                        });
+                                        $scope.editedNow = true;
+                                        setTimeout(function(){
+                                            $scope.$apply(function(){
+                                                $scope.selectedOnField = self.getAttr('stat');
+                                            });
+                                            M.updateTextFields();
+                                        },100);
+                                    });
+                                });
+
+                                $scope.$apply(function(){
+                                    $scope.onFieldUser.push(obj);
+                                    for(let i=0;i<$scope.allPlayers.length;i++){
+                                        if($scope.allPlayers[i].usid == newUserToField.usid){
+                                            $scope.allPlayers.splice(i,1);
+                                            break;
+                                        }
+                                    }
+                                    $scope.editedNow = true;
+                                    $scope.selectedUser = null;
+                                });
+
+                                if(data.user.length-1 == i){
+                                    setTimeout(function () {
+                                        generateChart();
+                                        drawStage();
+                                        for(let i=0;i<$scope.onFieldUser.length;i++){
+                                            $scope.onFieldUser[i].setAttr('strokeWidth',0);
+                                        }
+                                    },200);
+                                }
+                            };
+                            newUserToField.image.src = '/'+newUserToField.img;
+                        }
+                    }
+                    $('.oneMeetUser').each(function() {
+                        $(this).css("border-color", "");
+                    });
+                    for(let i=0;i<$scope.onFieldUser.length;i++){
+                        $scope.onFieldUser[i].setAttr('strokeWidth',0);
+                    }
+                    setTimeout(function(){
+                        M.updateTextFields();
+                        $scope.selectedUser = null;
+                        $scope.selectedOnField = null;
+                        $scope.isSelectedField = true;
+                    },500);
+                });
+            }
+            callback();
+        });
+    };
+
     $scope.removeFromField = function(){
         if(!$scope.selectedOnField) return;
         $scope.allPlayers.push($.extend($scope.selectedOnField,{}));
@@ -383,6 +573,7 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
         }
 
         drawStage();
+        generateChart();
         $scope.selectedOnField = null;
     };
 
@@ -444,6 +635,11 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
 
         mainCanvas.add(mainLayer);
         setTimeout(resize,300);
+    }
+
+
+    function parseUrl(url){
+        return url.replace(/https?:\/\/[^\/]+/i, "");
     }
 
 });

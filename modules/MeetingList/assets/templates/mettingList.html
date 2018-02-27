@@ -116,8 +116,8 @@
                                     <td>{{meeting.teamScore ? meeting.teamScore : '-'}} : {{meeting.enemyScore ? meeting.enemyScore : '-'}}</td>
                                     <td ng-bind-html="putStatus(meeting.status)"></td>
                                     <td>
-                                        <a class="btn-floating blue darken-2"><i class="material-icons">mode_edit</i></a>
-                                        <a class="btn-floating "><i class="material-icons">remove_red_eye</i></a>
+                                        <a class="btn-floating blue darken-2" ng-click="loadModalAddMeeting($index,meeting.id)"><i class="material-icons">mode_edit</i></a>
+                                        <a class="btn-floating " ng-click="showMeetView($index)"><i class="material-icons">remove_red_eye</i></a>
                                         <a class="btn-floating red darken-3" ng-click="deleteTermin(meeting.id)"><i class="material-icons">delete_forever</i></a>
                                     </td>
                                 </tr>
@@ -125,6 +125,25 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="meetView" class="modal">
+            <div class="modal-content">
+                <div>
+                    <small>{{meetViewSelected.date}}</small>
+                    <h5 style="margin: 2px 0;">Spotkanie przeciwko: {{meetViewSelected.enemyName}}</h5>
+                    <small>Status: <span ng-bind-html="putStatus(meetViewSelected.status)"></span>  <span ng-show="meetViewSelected.teamScore"> Wynik: {{meetViewSelected.teamScore}}:{{meetViewSelected.enemyScore}}</span></small>
+                </div>
+                <div style="margin:10px 0">
+                    {{meetViewSelected.description}}
+                </div>
+                <div ng-show="meetViewSelected.compositionData && meetViewSelected.compositionData.img.length > 10">
+                    <img style='width:100%' ng-src="{{meetViewSelected.compositionData.img.length > 10 ? meetViewSelected.compositionData.img : ''}}" alt="Skład meczowy">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="closeMeetView()">Zamknij</a>
             </div>
         </div>
 
@@ -145,14 +164,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12" style="padding:0">
+                <div  class="col s12" style="padding:0">
                     <div class="card">
                         <div class="card-content page-break" style="padding:0">
                             <div class="card-title">
                                 Stosunek spotkań
                             </div>
-                            <div class="row page-break">
+                            <div ng-show='showMeetStats' class="row page-break">
                                 <div class="row noPrint" style="overflow:hidden;"><canvas id='meetStats'></canvas></div>
+                            </div>
+                            <div ng-show='!showMeetStats' class="row">
+                                <p style="padding:15px;">Nie masz żadnych rozegranych spotkań z wynikiem</p>
                             </div>
                         </div>
                     </div>
@@ -283,8 +305,8 @@
                             </div>
                         </div>
                         <div style="display: flex;justify-content: space-around;background: #29383d; height:250px;" ng-show='isSelectedField'>
-                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0; height:250px;" ><canvas height="250" width="360" id='teamAllMeetStats'></canvas></div>
-                            <div class="row noPrint" style="overflow:hidden; margin: 10px 0 0; height:250px;" ><canvas height="220" width="360" id='teamAllMeetStatsForm'></canvas></div>
+                            <div class="row noPrint" style="position: relative; width:30%; margin: 10px 0 0; height:250px;" ><canvas height="250" width="360" id='teamAllMeetStats'></canvas></div>
+                            <div class="row noPrint" style="position: relative; width:30%; margin: 10px 0 0; height:250px;" ><canvas height="220" width="360" id='teamAllMeetStatsForm'></canvas></div>
                         </div>
                     </div>
                 </div>

@@ -5,18 +5,32 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     $rootScope.settingsMeet = [];
     $scope.stats = [];
     $scope.showAnimCreator = false;
+    $scope.showMeetStats = true;
+    let meetingSelectIndex = -1;
     $scope.changeTextColor = function(color){
         $rootScope.settingsMeet.color = color;
-    },
-    $scope.meetModel = {
-        id_team: $rootScope.user.tmid,
-        id_playerComposition: null,
-        date: moment().add(2, 'd').format('YYYY-MM-DD HH:mm'),
+    };
+    $scope.isSaved = {
+        status: false,
+        id: -1
+    };
+    $scope.meetViewSelected ={
+        date: null,
+        compositionData: null,
         description: '',
         enemyName: '',
         teamScore: null,
         enemyScore: null,
         status: ''
+    };
+    $scope.meetModel = {
+        id_team: $rootScope.user.tmid,
+        date: moment().add(2, 'd').format('YYYY-MM-DD HH:mm'),
+        description: '',
+        enemyName: '',
+        teamScore: null,
+        enemyScore: null,
+        status: 'Oczekiwanie'
     };
     $scope.showScoreInAddModal = false;
 
@@ -27,19 +41,22 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     $scope.$watch('meetModel.date', function (newValue, oldValue, scope) {
         $scope.showScoreInAddModal = moment(newValue).isSameOrBefore(moment());
         $scope.meetModel.teamScore = $scope.meetModel.enemyScore = null;
-        $scope.meetModel.status = (!$scope.showScoreInAddModal) ? "Oczekiwanie" : "Zakończone"
+        $scope.meetModel.status = (!$scope.showScoreInAddModal) ? "Oczekiwanie" : "Zakończone";
+        M.updateTextFields();
     });
 
     $scope.$watch('meetModel.teamScore', function (newValue, oldValue, scope) {
         if($scope.meetModel.teamScore && $scope.meetModel.enemyScore){
             $scope.meetModel.status = ($scope.meetModel.teamScore > $scope.meetModel.enemyScore) ? "Zwycięstwo" : (($scope.meetModel.teamScore < $scope.meetModel.enemyScore) ? "Porażka" : "Remis")
         }
+        M.updateTextFields();
     });
 
     $scope.$watch('meetModel.enemyScore', function (newValue, oldValue, scope) {
         if($scope.meetModel.teamScore && $scope.meetModel.enemyScore){
             $scope.meetModel.status = ($scope.meetModel.teamScore > $scope.meetModel.enemyScore) ? "Zwycięstwo" : (($scope.meetModel.teamScore < $scope.meetModel.enemyScore) ? "Porażka" : "Remis")
         }
+        M.updateTextFields();
     });
 
     $scope.deleteTermin = function(id){
@@ -84,6 +101,7 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
                     setTimeout(function() {
                         M.updateTextFields();
                         $('select').formSelect();
+                        $('.modal').modal();
                     }, 500);
                 });
             });
@@ -103,6 +121,7 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
                 $scope.stats["Zwycięstwo"] = $scope.stats["Zwycięstwo"] ? parseInt($scope.stats["Zwycięstwo"]) : 0;
                 $scope.stats["Zakończone"] = $scope.stats["Zakończone"] ? parseInt($scope.stats["Zakończone"]) : 0;
                 $scope.stats["Rozegrane"] = $scope.stats["Zakończone"] + $scope.stats["Zwycięstwo"] + $scope.stats["Remis"] + $scope.stats["Porażka"];
+                $scope.showMeetStats = !($scope.stats["Zwycięstwo"] == 0 && $scope.stats["Remis"] == 0 && $scope.stats["Porażka"] == 0);
                 new Chart($('#meetStats'), {
                     type: 'doughnut',
                     data: {
@@ -126,12 +145,24 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
     }
 
     $scope.initModalAddMeeting = function () {
+        $scope.isSaved.status = false;
+        $scope.meetModel = {
+            id_team: $rootScope.user.tmid,
+            date: moment().add(2, 'd').format('YYYY-MM-DD HH:mm'),
+            description: '',
+            enemyName: '',
+            teamScore: null,
+            enemyScore: null,
+            status: 'Oczekiwanie'
+        };
         $('#addMeetingListElementModal').modal('open');
         setTimeout(function() {
             M.updateTextFields();
             $('select').formSelect();
         }, 500);
     };
+
+
 
     $scope.addNewMeeting = function () {
         let toValidate = [
@@ -179,39 +210,89 @@ app.controller('mettingListController', function($scope, auth, $rootScope, notif
             });
         }
 
-        if( validator.valid(toValidate) ){
-            $('#addMeetingListElementModal').modal('close');
-            request.backend('addNewMeet', { settings: $rootScope.settingsMeet, meetModel: $scope.meetModel }, function(data) {
-                $scope.$apply(function() {
-                    $scope.meetingList = data;
-                    $scope.meetModel = {
-                        id_team: $rootScope.user.tmid,
-                        id_playerComposition: null,
-                        date: moment().add(2, 'd').format('YYYY-MM-DD HH:mm'),
-                        description: '',
-                        enemyName: '',
-                        teamScore: null,
-                        enemyScore: null,
-                        status: '',
-                    };
-                    $scope.showScoreInAddModal = false;
-                    loadStats();
-                });
-            },'Nowe spotkanie dodane');
-        }
+        $rootScope.saveMeetComposition(function(compositionData){
+            if( validator.valid(toValidate) ){
+                $('#addMeetingListElementModal').modal('close');
+                request.backend('addNewMeet', { id: $scope.isSaved.status ? $scope.isSaved.id : null,  settings: $rootScope.settingsMeet, meetModel: $scope.meetModel, compositionData: compositionData }, function(data) {
+                    $scope.$apply(function() {
+                        $scope.isSaved.status = false;
+                        $scope.meetingList = data;
+                        $scope.meetModel = {
+                            id_team: $rootScope.user.tmid,
+                            date: moment().add(2, 'd').format('YYYY-MM-DD HH:mm'),
+                            description: '',
+                            enemyName: '',
+                            teamScore: null,
+                            enemyScore: null,
+                            status: 'Oczekiwanie',
+                        };
+                        $scope.showScoreInAddModal = false;
+                        loadStats();
+                    });
+                },'Nowe spotkanie dodane');
+            }
+        });
+    };
+
+    $scope.closeMeetView = function(){
+        $('#meetView').modal('close');
+    };
+
+    $scope.showMeetView = function(index){
+        $scope.isSaved.status = false;
+        let meet = $scope.meetingList[index];
+        $scope.meetViewSelected = {
+            date: meet.date,
+            compositionData: $.parseJSON(meet.compositionData),
+            description: meet.description,
+            enemyName: meet.enemyName,
+            teamScore: meet.teamScore,
+            enemyScore: meet.enemyScore,
+            status: meet.status,
+        };
+        $('#meetView').modal('open');
+    };
+
+    $scope.loadModalAddMeeting = function (index,id) {
+        let meet = $scope.meetingList[index];
+        meetingSelectIndex = index;
+        $scope.meetModel = {
+            id_team: $rootScope.user.tmid,
+            date: moment(meet.date).format('YYYY-MM-DD HH:mm'),
+            description: meet.description,
+            enemyName: meet.enemyName,
+            teamScore: meet.teamScore,
+            enemyScore: meet.enemyScore,
+            status: meet.status
+        };
+        $scope.isSaved = {
+            status: true,
+            id: id
+        };
+        $('#addMeetingListElementModal').modal('open');
+        setTimeout(function() {
+            M.updateTextFields();
+            $('select').formSelect();
+        }, 500);
     };
 
     $scope.initPlayerComposition = function(){
         $scope.showAnimCreator = true;
-    }
+        if($scope.isSaved.status){
+            let meet = $scope.meetingList[meetingSelectIndex];
+            $rootScope.loadMeetingComposition($.parseJSON(meet.compositionData),function(){});
+        }else{
+            $rootScope.reinitMeetingComposition();
+        }
+    };
 
     $scope.getDateFromDateTime = function(dateTime){
         return moment(dateTime).format('YYYY-MM-DD');
-    }
+    };
 
     $scope.getTimeFromDateTime = function(dateTime){
         return moment(dateTime).format('HH:mm');
-    }
+    };
 
     $scope.putStatus = function(status){
         let textIn = status;
