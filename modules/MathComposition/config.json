@@ -1,11 +1,10 @@
 {
     "name": "MathComposition",
-    "description": "Dodaje możliwość graficznego ułożenia zawodników na boisku oraz podglądu formy dla danego zestawienia",
-    "require": ["StatsManager"],
+    "description": "Dodaje możliwość wyświetlenia widoku z następnym meczem",
     "version": "1.0",
     "backendRoute": [{
-        "url": "getUsersHelpfulness",
-        "parameters": ["teamForm", "otherTeam", "tmid"]
+        "url": "getNextMatchComposition",
+        "parameters": ["tmid"]
     }],
     "jsControllers": ["compositionController"],
     "frontendRoute": [{

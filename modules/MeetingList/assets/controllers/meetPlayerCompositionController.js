@@ -387,7 +387,12 @@ app.controller('meetPlayerCompositionController', function($scope, auth, $rootSc
             img : img,
             user: userInField,
             fieldImg: $scope.selectedField.src,
-            maxPlayers: $rootScope.settingsMeet.maxPlayers
+            maxPlayers: $rootScope.settingsMeet.maxPlayers,
+            stats:{
+                actualForm: getActualForm(),
+                data: generatePotentialData(),
+                labels: generateLabel()
+            }
         }: null);
     };
 

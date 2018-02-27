@@ -1,106 +1,28 @@
 <div ng-init="setPerm(['KOORD','TRENER', 'ZAWODNIK','STAFF'])"></div>
 
 <div class="section">
-    <div ng-show='showContent' class="row">
-
-        <div class="row" style="margin-bottom: 0 !important;">
-            <div style="float:left;" class="f33 page-break">
-                <div class="card" style="height: 205px;">
-                    <div class="card-content page-break noPrint" style="padding:0">
-                        <div class="card-title">
-                            Statystyka
-                        </div>
-                        <div class="row page-break" style="max-width:287px; margin: auto !important;">
-                            <div class="row noPrint" style="overflow:hidden;"><canvas id='teamStat'></canvas></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="float:left;" class="f33 zpage-break noPrint">
-                <div class="card" style="height: 205px;">
-                    <div class="card-content page-break noPrint" style="padding:0">
-                        <div class="card-title">
-                            Ustawienia
-                        </div>
-                        <div class="row" >
-                            <p style='color: #9e9e9e;font-size: 16px;padding: 90px 50px;'>W przygotowaniu!</p>
-                        </div>
-                        <!--<div class="row page-break">-->
-                            <!--<div class="input-field col s12">-->
-                                <!--<input placeholder="Ilość zawodników na boisku" id="maxPlayers" type="text" class="validate">-->
-                                <!--<label for="maxPlayers">Ilość zawodników na boisku</label>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    </div>
-                </div>
-            </div>
-            <div style="float:left;" class="f33-1 page-break noPrint">
-                <div class="card" style="height: 205px;">
-                    <div class="card-content page-break noPrint" style="padding:0">
-                        <div class="card-title">
-                            Informacje
-                        </div>
-                        <div class="row" >
-                            <p style='color: #9e9e9e;font-size: 16px;padding: 90px 50px;'>W przygotowaniu!</p>
-                        </div>
-                        <!--<div class="row page-break">-->
-                            <!--<div class="input-field col s12">-->
-                                <!--<input placeholder="Ilość zawodników na boisku" id="maxPlayers" type="text" class="validate">-->
-                                <!--<label for="maxPlayers">Ilość zawodników na boisku</label>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m6 l6" style="padding: 0;" id='notOnFieldCard'>
-            <div class="card">
-                <div class="card-content" style="padding:0">
-                    <div class="card-title">
-                        Ławka rezerwowych
-                    </div>
-                    <div class="row ">
-
-                        <div class="input-field col s12 noPrint">
-                            <input id='changeFilter' type="text" placeholder='Wpisz szukaną frazę, imię, nazwisko' ng-model='searchText'>
-                        </div>
-                        <table class="table highlight centered" ng-init="getTeam()">
-                            <thead>
-                                <tr>
-                                    <th>Zawodnik</th>
-                                    <th>Numer koszulki</th>
-                                    <th>Wpływ (poziom)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="us in notOnField | filter:searchText" class='row dragedUser' id='fieldUser-{{us.usid}}' draggable="true">
-                                    <td style="padding: 5px 0;">{{us.firstname.slice(0,1)}}.{{us.lastname}}</td>
-                                    <td style="padding: 5px 0;">
-                                        <div class="input-field col" style="text-align: center; padding: 0 5px; margin: 0;width: 100%">
-                                            <input style="text-align: center; margin: 0; height: 25px; width: 100%" ng-show="user.role != 'ZAWODNIK' " class='changeNumber' id='changeNumber-{{us.tmmid}}-0' type="text" value="{{us.nr_on_tshirt}}" required>
-                                        </div>
-                                        <p ng-show="user.role == 'ZAWODNIK'  ">{{us.nr_on_tshirt}}</p>
-                                    </td>
-                                    <td class='helpTd'>{{us.help}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m6 l6 page-break" style="padding: 0;">
+    <div ng-show='showContent' ng-init='initComposition()' class="row">
+        <div class="col s12 m10 lg8 offset-m1 offset-lg2 page-break" style="padding: 0;">
             <div class="card">
                 <div class="card-content page-break" style="padding:0">
                     <div class="card-title">
-                        Skład meczowy
+                        Następny mecz
                     </div>
-                    <div class="row page-break">
-                        <div id="canvas_container" style='width: 100%; height: 100%;'>
-                            <canvas id="canvas"></canvas>
+                    <div class="row page-break" nh-show="meetViewSelected && meetViewSelected!=null && meetViewSelected!=[]">
+                        <div>
+                            <small>{{meetViewSelected.date}}</small>
+                            <h5 style="margin: 2px 0;">Spotkanie przeciwko: {{meetViewSelected.enemyName}}</h5>
+                            <small>Status: <span ng-bind-html="putStatus(meetViewSelected.status)"></span>  <span ng-show="meetViewSelected.teamScore"> Wynik: {{meetViewSelected.teamScore}}:{{meetViewSelected.enemyScore}}</span></small>
                         </div>
+                        <div style="margin:40px 0 10px">
+                            {{meetViewSelected.description}}
+                        </div>
+                        <div ng-show="meetViewSelected.compositionData && meetViewSelected.compositionData.img.length > 10">
+                            <img style='width:100%' ng-src="{{meetViewSelected.compositionData.img.length > 10 ? meetViewSelected.compositionData.img : ''}}" alt="Skład meczowy">
+                        </div>
+                    </div>
+                    <div class="row page-break" ng-show="!meetViewSelected || meetViewSelected==null || meetViewSelected==[] || meetViewSelected.length==0">
+                        <p style="margin:20px"> Niestety, Twój zespół nie ma zaplanowanych żadnych meczy na przyszłe dni!</p>
                     </div>
                 </div>
             </div>
