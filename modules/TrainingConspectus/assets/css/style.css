@@ -454,6 +454,47 @@ h6 {
     width: 100%;
 }
 
+.infoContainer p {
+    color: #b8b5b5;
+    font-weight: 300;
+    padding: 5px;
+}
+
+.infoContainer {
+    background: #262f32;
+    border-top: 2px solid #636363;
+}
+
+@keyframes flash_border {
+    0% {
+        border-color: #e9655d;
+    }
+    50% {
+        border-color: #e9e1d5;
+    }
+    100% {
+        border-color: #e9655d;
+    }
+}
+
+.buttonInfoSpan {
+    background: #f45f54;
+    color: white;
+    font-size: 12px;
+    padding: 0px 9px;
+    border-radius: 3px;
+    border: 2px solid #e9655d;
+    transition: all .2s;
+    cursor: pointer;
+    animation-name: flash_border;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.buttonInfoSpan:hover{
+    background: #b93d34;
+}
+
 #animCreator {
     position: fixed;
     width: 100vw;
@@ -463,6 +504,10 @@ h6 {
     z-index: 9999;
     background: rgba(0, 0, 0, 0.89);
     overflow-y: scroll;
+}
+
+.textToEditInCv {
+    z-index: 9999999 !important;
 }
 
 .animCreatorConainer {
@@ -767,11 +812,10 @@ canvas,
 }
 
 #timeline p {
-    color: #9e9e9e;
-    margin-top: 5px;
+    margin-top: 6px;
     font-size: .8rem;
     text-align: left;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 
 .timeElement,

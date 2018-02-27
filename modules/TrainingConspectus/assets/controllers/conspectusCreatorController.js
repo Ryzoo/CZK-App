@@ -316,7 +316,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         OBJECT_ADD: 1,
         ARROW_ADD: 2,
         FIELD_LIST: 3,
-        SHAPE_ADD: 4
+        SHAPE_ADD: 4,
+        TEXT_ADD:5,
     }
     $scope.arrowType = {
         FULL_2: 1,
@@ -396,44 +397,55 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
     $scope.selectArrow = function(arrowTypw) {
         $scope.actualMouseAction = $scope.mouseActionType.ARROW_ADD;
+        $scope.infoActionText("<p>Kliknij w miejsce do rozpoczęcia rysowania strzałki</p>");
         $scope.arrowPointCount = 0;
         $scope.arrowPoint = [];
-    }
+    };
 
     $scope.selectShape = function(shapeType) {
         $scope.selectedShape = shapeType;
         $scope.shapePointCount = 0;
         $scope.shapePoint = [];
-    }
+        $scope.infoActionText("<p>Kliknij na boisku, aby zacząć rysować</p>");
+    };
 
     $scope.changeCategories = function(categoryType) {
         $scope.actualMouseAction = categoryType;
         if ($scope.actualMouseAction == $scope.mouseActionType.MOVE) {
-            var shapes = selectedFrame.find(".movementObject");
+            let shapes = selectedFrame.find(".movementObject");
             shapes.each(function(shape) {
                 shape.draggable(true);
             });
+            $scope.infoActionText("<p>Przesuwaj lub zaznaczaj obiekty na boisku</p>");
         } else {
-            var shapes = selectedFrame.find(".movementObject");
+            let shapes = selectedFrame.find(".movementObject");
             shapes.each(function(shape) {
                 shape.draggable(false);
             });
+            if($scope.actualMouseAction == $scope.mouseActionType.FIELD_LIST){
+                $scope.infoActionText("<p>Wybierz boisko, aby zmienić.</p>");
+            }else if($scope.actualMouseAction == $scope.mouseActionType.TEXT_ADD){
+                $scope.infoActionText("<p>Wybierz miejsce w którym chcesz umieścić tekst.</p>");
+            }else{
+                $scope.infoActionText("<p>Wybierz obiekt, który chcesz umieścć na boisku.</p>");
+            }
         }
         if ($scope.actualMouseAction == $scope.mouseActionType.ARROW_ADD) {
             $scope.selectedArrow = null;
         } else if ($scope.actualMouseAction == $scope.mouseActionType.SHAPE_ADD) {
             $scope.selectedShape = null;
+            $scope.infoActionText("<p>Wybierz ilo kątowy obszar chcesz stworzyć</p>");
         }
 
         $('.categories').each(function() {
             $(this).css("border-color", "");
         });
         $('.categories').eq(0).css("border-color", "rgb(191, 72, 36)");
-    }
+    };
 
     selectedFrame.on('contentClick contentTap', function(e) {
         clickOnContent();
-    })
+    });
 
     selectedFrame.on('mousedown touchstart', function(e) {
         onMuseDown();
@@ -538,6 +550,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         if ($scope.actualMouseAction == $scope.mouseActionType.OBJECT_ADD) {
             $scope.selectedObjImg = new Image();
             $scope.selectedObjImg.src = $(this).find('img').attr('src');
+            $scope.infoActionText("<p>Kliknij w wybranym miejscu, aby umieścić obiekt.</p>");
         }
         $scope.canAddItem = true;
         $scope.selectedObjConfig = $(this).find('img').data('config') ? $scope.objConfig[$(this).find('img').data('config')] : [];
@@ -728,7 +741,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             for (var i = 0; i < config.arrowTypes.length; i++) {
                 if (config.arrowTypes[i] == config.arrowType) add = "checked='checked'";
                 else add = '';
-                arrowPicker += "<p><input name='arrowTypeGroup' " + add + " type='radio' id='" + config.arrowTypes[i] + "' /><label for='" + config.arrowTypes[i] + "'>" + config.arrowTypes[i] + "</label></p>";
+                arrowPicker += "<p><label><input name='arrowTypeGroup' " + add + " type='radio' id='" + config.arrowTypes[i] + "' /><span>" + config.arrowTypes[i] + "</span></label></p>";
             }
             arrowPicker += "</form>";
             arrowPicker += "</div>";
@@ -753,6 +766,12 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
             });
         }
     }
+
+    $scope.infoActionText = function( text ){
+        let target = $(".infoContainer>p").first();
+        target.html(text);
+        $compile(target)($scope);
+    };
 
     function configTextUpdate(obj) {
         var id = obj.getAttr("id");
@@ -851,7 +870,7 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 $scope.fieldImage = $scope.selectedField;
                 drawNewStage();
             }
-            $scope.actualMouseAction = $scope.mouseActionType.MOVE;
+            $scope.changeCategories($scope.mouseActionType.MOVE);
             $scope.selectedField.src = src;
         });
     }
@@ -1650,6 +1669,10 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
         }
     }
 
+    $scope.resetCursor = function(){
+        $scope.changeCategories($scope.mouseActionType.MOVE);
+    };
+
     function clickOnContent() {
         $scope.startPointSelectShape = null;
         $scope.endPointSelectShape = null;
@@ -1801,6 +1824,9 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
 
         } else if ($scope.actualMouseAction == $scope.mouseActionType.ARROW_ADD) {
             $scope.arrowPointCount++;
+
+            $scope.infoActionText("<p>Kliknij aby dodać kolejną część strzałki lub <span class='buttonInfoSpan' ng-click='resetCursor()'>ZAKOŃCZ</span> rysowanie.</p>");
+
             var scale = selectedFrame.getAttr('scaleX');
             var mousePos = selectedFrame.getPointerPosition();
             $scope.arrowPoint.push({
@@ -1849,8 +1875,6 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                 if (pointsArray[1] < pointsArray[3]) complexText.setAttr('offsetY', 50);
                 else complexText.setAttr('offsetY', 10);
                 arrow.setAttr('textObj', complexText);
-
-
 
                 $scope.arrowArrayPostionAnchor = $scope.arrowPoint;
                 for (var index = 0; index < $scope.arrowPoint.length; index++) {
@@ -2097,6 +2121,8 @@ app.controller('conspectusCreatorController', function($scope, auth, $rootScope,
                     strokeColor = 'rgba(247, 49, 3,1)';
                     break;
             }
+
+            $scope.infoActionText("<p>Wybierz jeszcze <span style='color:white'>"+(countLimit -$scope.shapePointCount)+"</span> punkty na boisku, aby stworzyć powierzchnię</p>");
 
             if ($scope.shapePointCount >= countLimit) {
                 var shapPointArr = $scope.shapePoint;
