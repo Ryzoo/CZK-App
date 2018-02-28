@@ -1,4 +1,7 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<a ng-click="getTutorial('lista_umiejetnosci')" class="btn-floating btn-large waves-effect waves-light tutorialOnButton"  ng-show="user && user.role != 'ZAWODNIK'">
+    <i class="fa fa-question"></i>
+</a>
 <div class="section ">
 
     <div ng-show='showContent' class="row" ng-init="loadSkillTreeData()">
@@ -159,7 +162,6 @@
         </div>
     </div>
 </div>
-<a class="btn btn-floating cyan tutorialOnButton" ng-click="getTutorial('lista_umiejetnosci')"><i class="fa fa-question"></i></a>
 
 <div ng-hide='showContent' class='loaderContainer'>
     <div id="loader-wrapper">

@@ -1,4 +1,7 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<a ng-click="getTutorial('historia_platnosci')" class="btn-floating btn-large waves-effect waves-light tutorialOnButton"  ng-show="user && user.role != 'ZAWODNIK'">
+    <i class="fa fa-question"></i>
+</a>
 <div class="section paymentSection" ng-init="initPaymentHistory()">
     <div ng-show='showContent' class="row">
         <div class=" noPrint" style="margin:auto; max-width: 800px; width:100%;">
@@ -75,7 +78,7 @@
         </div>
     </div>
 </div>
-<a class="btn btn-floating cyan tutorialOnButton" ng-click="getTutorial('historia_platnosci')"><i class="fa fa-question"></i></a>
+
 
 <script>
     $(document).ready(function() {

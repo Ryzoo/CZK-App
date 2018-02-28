@@ -1,4 +1,7 @@
 <div ng-init="setPerm(['STAFF','TRENER','KOORD','ZAWODNIK'])"></div>
+<a ng-click="getTutorial('lista_cwiczen')" class="btn-floating btn-large waves-effect waves-light tutorialOnButton"  ng-show="user && user.role != 'ZAWODNIK'">
+    <i class="fa fa-question"></i>
+</a>
 <div class="section" ng-controller='TrainingConspectusController' ng-init="initConsAnimList()">
     <div ng-show='showContent' class="row" ng-controller="conspectusCreatorController">
         <div class="col s12 noPrint" ng-show="animArray.length > 0">
@@ -79,7 +82,7 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-floating cyan tutorialOnButton" ng-click="getTutorial('lista_cwiczen')"><i class="fa fa-question"></i></a>
+
 
     <div ng-hide='showContent' class='loaderContainer'>
         <div id="loader-wrapper">

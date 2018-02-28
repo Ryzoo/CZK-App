@@ -1,4 +1,7 @@
 <div ng-init="setPerm(['STAFF','TRENER','KOORD','ZAWODNIK'])"></div>
+<a ng-click="getTutorial('lista_konspektow')" class="btn-floating btn-large waves-effect waves-light tutorialOnButton"  ng-show="user && user.role != 'ZAWODNIK'">
+    <i class="fa fa-question"></i>
+</a>
 <div class="section" ng-init="initConspectusList()">
     <div ng-show='showContent' class="row">
         <div class="col s12 noPrint" ng-hide="conspectArray.length <= 0">
@@ -60,7 +63,7 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-floating cyan tutorialOnButton" ng-click="getTutorial('lista_konspektow')"><i class="fa fa-question"></i></a>
+
 
     <div ng-hide='showContent' class='loaderContainer'>
         <div id="loader-wrapper">

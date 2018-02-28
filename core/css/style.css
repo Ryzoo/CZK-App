@@ -16,9 +16,18 @@ body,html {
 }
 
 .tutorialOnButton{
-    width: 34px !important;
-    height: 34px !important;
-    margin: 0 5px !important;
+    position: fixed;
+    bottom: 38px;
+    right: 30px;
+}
+
+#tutorialModal img {
+    max-width: 65%;
+    margin: 20px auto;
+}
+
+.tutorialOnButton i{
+    font-size: 42px;
 }
 
 .widgetContentContainer {

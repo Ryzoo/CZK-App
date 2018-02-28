@@ -1,4 +1,7 @@
 <div ng-init="setPerm(['KOORD','TRENER','STAFF'])"></div>
+<a ng-click="getTutorial('platnosci_cykliczne')" class="btn-floating btn-large waves-effect waves-light tutorialOnButton"  ng-show="user && user.role != 'ZAWODNIK'">
+    <i class="fa fa-question"></i>
+</a>
 <div class="section paymentSection" ng-init="initPaymentCyclic()">
     <div ng-show='showContent' class="row">
         <div class="col s12 l10 offset-l1">
@@ -79,7 +82,7 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-floating cyan tutorialOnButton" ng-click="getTutorial('platnosci_cykliczne')"><i class="fa fa-question"></i></a>
+
 
     <div ng-hide='showContent' class='loaderContainer'>
         <div id="loader-wrapper">

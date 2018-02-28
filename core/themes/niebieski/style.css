@@ -21,6 +21,24 @@ a:hover {
   background-color: #28509a;
 }
 
+.tutorialOnButton{
+    background-color: #28509a;
+  }
+
+@keyframes animation {
+  0%     {color: #e9655d;}
+  50.0%  {color:#ffffff;}
+  100.0%  {color: #e9655d;}
+}
+
+.tutorialOnButton i{
+  animation-name: animation;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+
 .btn:hover {
   background-color: #5791ff;
 }
