@@ -25,10 +25,14 @@ a:hover {
     background-color: #28509a;
   }
 
+.tutorialOnButton:hover{
+  background-color: #14326b;
+}
+
 @keyframes animation {
-  0%     {color: #e9655d;}
+  0%     {color: #88e1ec;}
   50.0%  {color:#ffffff;}
-  100.0%  {color: #e9655d;}
+  100.0%  {color: #88e1ec;}
 }
 
 .tutorialOnButton i{
