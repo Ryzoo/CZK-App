@@ -24,6 +24,7 @@
     <script src="/core/js/controllers/loginController.js"></script>
     <script src="/core/js/controllers/mainController.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="/core/js/route.js"></script>
 </head>
 
@@ -31,53 +32,31 @@
     <div id='backgroundLogin'>
         <img src="/files/img/background.jpg" alt="glowne zdjecie logowania">
     </div>
-    <div class='loginMainContener' ng-controller='loginController'>
-        <div class='loginFormContener'>
-            <div class="formContener">
-                <div class="row">
-                    <div class="col s12 text welcome">
-                        <p>Witaj</p>
-                    </div>
-                    <div class="col s12 text login">
-                        <p>Zaloguj się</p>
-                    </div>
-                </div>
-                <form class="col s12" ng-submit="login(login_email,login_password)" ng-init="initLogin()">
+    <div class='loginMainContener' style="display: none !important;" ng-controller='loginController'>
+        <div ng-show='!isLicenseEnd' class="loginRegContainer">
+            <p class="title">Witaj</p>
+            <div ng-show="loginFormShow">
+                <form type="POST" class="col s12" ng-submit="login(login_email,login_password)" ng-init="initLogin()">
                     <div class="row" style='margin-bottom: 0;'>
                         <div class="input-field col s12">
                             <input id='loginEmail' type="email" style="-webkit-text-fill-color: white;-webkit-box-shadow: 0 0 0px 1000px transparent inset;transition: background-color 5000s ease-in-out 0s;" ng-model="login_email" name="login_email" placeholder="Adres email" class="validate white-text"
-                                required validate>
+                                   required validate>
                             <label for="loginEmail">Adres email</label>
                         </div>
                         <div class="input-field col s12">
                             <input id='loginPassowrd' type="password" style="-webkit-text-fill-color: white;-webkit-box-shadow: 0 0 0px 1000px transparent inset;transition: background-color 5000s ease-in-out 0s;" ng-model="login_password" name="login_password" placeholder="Hasło"
-                                class="validate white-text" required validate>
+                                   class="validate white-text" required validate>
                             <label for="loginPassowrd">Hasło</label>
                         </div>
                     </div>
                     <div class="error col s12">
                     </div>
-                    <button type="submit" class="waves-effect waves-light btn">Zaloguj</button>
+                    <button class="loginButton">Zaloguj się</button>
                 </form>
+                <button ng-show='isActiveApplayer' ng-click="registerFormShow=true;loginFormShow=false" class="gotoregisterButton">Przejdź do naboru</button>
             </div>
-            <div class="col s12 text footer">
-                <div class='copyrightText'>
-                    <p class='reg'>Logując się akceptujesz <a href="https://centrumklubu.pl/polityka-prywatnosci/">Politykę prywatnośći</a> oraz <a href="https://centrumklubu.pl/polityka-cookies/">Wykorzystanie plików cookies</a> </p>
-                </div>
-                <img class='footerLogo' src="/files/img/club_logo.png" alt="logo klubu" width="50px" height="auto">
-            </div>
-        </div>
-        <div class='registerFormContener' ng-show='isActiveApplayer'>
-            <div class="formContener">
-                <div class="row">
-                    <div class="col s12 text welcome">
-                        <p style='font-size: 25px;'>Zapisy do sekcji otwarte</p>
-                    </div>
-                    <div class="col s12 text login">
-                        <p style='letter-spacing: 1px;'>Zapraszamy do rejestracji i wyboru sekcji</p>
-                    </div>
-                </div>
-                <form class="col s12">
+            <div ng-show="registerFormShow">
+                <form type="POST" class="col s12">
                     <div class="row" style='margin-bottom: 0;'>
                         <div class="input-field col s12">
                             <input id='registerFristname' type="text" style="-webkit-text-fill-color: white;-webkit-box-shadow: 0 0 0px 1000px transparent inset;transition: background-color 5000s ease-in-out 0s;" placeholder="Wprowadź imię" class="validate white-text" required validate>
@@ -96,15 +75,22 @@
                     </div>
                     <div class="successRegister col s12">
                     </div>
-                    <button type="submit" ng-click='registerNewAccount()' class="waves-effect waves-light btn">Utwórz konto</button>
+                    <button  class="registerButton" ng-click='registerNewAccount()' >Utwórz konto</button>
                 </form>
+                <button ng-click="registerFormShow=false;loginFormShow=true" class="gotologinButton">Przejdź do logowania</button>
             </div>
             <div class="col s12 text footer">
                 <div class='copyrightText'>
-                    <p class='reg'>Klikając przycisk 'Utwórz konto' akceptujesz <a href="https://centrumklubu.pl/polityka-prywatnosci/">Politykę prywatnośći</a> oraz <a href="https://centrumklubu.pl/polityka-cookies/">Wykorzystanie plików cookies</a> </p>
+                    <p class='reg'>Klikając przycisk 'Utwórz konto' lub 'Zaloguj się' akceptujesz <a href="https://centrumklubu.pl/polityka-prywatnosci/">Politykę prywatnośći</a> oraz <a href="https://centrumklubu.pl/polityka-cookies/">Wykorzystanie plików cookies</a> </p>
                 </div>
                 <img class='footerLogo' src="/files/img/club_logo.png" alt="logo klubu" width="50px" height="auto">
             </div>
+        </div>
+
+        <div ng-show='isLicenseEnd' class="licenseEndContainer">
+            <i class="far fa-frown fa-8x" style="color:white;"></i>
+            <p>Niestety licencja na platformę wygasła.Jeśli jesteś właścicielem i chcesz przedłużyć licencję napisz do nas jak najszybciej.</p>
+            <button class="contactButton" ng-click="goToContactPage()">Strona kontaktowa</button>
         </div>
     </div>
 </body>
@@ -112,5 +98,5 @@
 </html>
 
 <script>
-    $('.reg').append('</br>' + (new Date().getFullYear()) + ' Ⓒ Club Management Center');
+    $('.loginRegContainer').append('<p class="cmc-reserved">' + (new Date().getFullYear()) + ' Ⓒ Club Management Center') + "</p>";
 </script>

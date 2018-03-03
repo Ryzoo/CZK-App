@@ -2,6 +2,7 @@
 namespace Core\Teams;
 use Core\System\BasicModule;
 use Core\Settings\Settings;
+use \KHerGe\JSON\JSON;
 
 class Teams extends BasicModule {
     function install(){
@@ -174,11 +175,19 @@ class Teams extends BasicModule {
 
     function isApplayerActive($data=null){
         $actived = ($this->db->getConnection())->fetchRowMany("SELECT id FROM teams WHERE isGetEnabled=1");
-        if( isset($actived) && count($actived) >= 1 ){
-            $this->returnedData['data'] = true;
-        }else{
-            $this->returnedData['data'] = false;
-        }
+
+        $json = new JSON();
+
+        $config = $json->decodeFile(__DIR__. '/../../mainConf.json' );
+
+        $dataConf = $config->mainSettings->licenseEnd;
+
+        $toReturn = [
+            "applayer" =>isset($actived) && count($actived) >= 1,
+            "license" =>strtotime($dataConf) < strtotime('now'),
+        ];
+
+        $this->returnedData['data'] = $toReturn;
         return $this->returnedData;
     }
 

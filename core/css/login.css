@@ -1,6 +1,105 @@
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Lato', sans-serif;
     text-align: center;
+}
+
+.loginRegContainer{
+    width: 100%;
+    margin: auto;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    padding: 25px;
+    border-radius: 5px;
+    background: rgba(23, 23, 23, 0.75);
+    transform: translate(-50%,-50%);
+    left: 50%;
+}
+
+.loginRegContainer .title {
+    color: white;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 60px;
+}
+
+.loginRegContainer button{
+    padding: 10px 20px;
+    width: 200px;
+    margin: 5px;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill !important;
+    -webkit-animation-fill-mode: both !important;
+}
+
+.loginRegContainer .loginButton,
+.loginRegContainer .registerButton,
+.contactButton{
+    background-color: #26a69a;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-out;
+    border: 1px solid #26a69a;
+}
+
+.loginRegContainer .loginButton:hover,
+.loginRegContainer .registerButton:hover,
+.contactButton:hover{
+    background-color: #29d5c9;
+    transition: all 0.3s ease-out;
+}
+
+.loginRegContainer .gotoregisterButton,
+.loginRegContainer .gotologinButton{
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgb(158, 158, 158);
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-out;
+    border: 1px solid #26a69a;
+}
+
+.loginRegContainer .gotoregisterButton:hover,
+.loginRegContainer .gotologinButton:hover{
+    background-color: #26a69a;
+    color: #fff;
+    transition: all 0.3s ease-out;
+}
+
+.licenseEndContainer {
+    width: 100%;
+    margin: auto;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    padding: 25px;
+    border-radius: 5px;
+    background: rgba(23, 23, 23, 0.75);
+    transform: translate(-50%,-50%);
+    left: 50%;
+}
+
+.licenseEndContainer p {
+    color: white;
+    margin: 25px 0;
+}
+
+.licenseEndContainer button {
+    padding: 13px 20px;
 }
 
 #backgroundLogin {
@@ -10,8 +109,8 @@ body {
 }
 
 #backgroundLogin img {
-    min-width: 100vw;
-    height: 100vh;
+    min-width: 101vw;
+    height: 101vh;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -40,28 +139,6 @@ body {
 
 .copyrightText p {
     margin: 0;
-}
-
-.loginFormContener {
-    background-color: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    left: 5%;
-    width: 40vw;
-    max-width: 450px;
-    overflow: hidden;
-    padding: 20px;
-    min-height: 100vh;
-}
-
-.registerFormContener {
-    background-color: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    right: 5%;
-    max-width: 450px;
-    width: 40vw;
-    overflow: hidden;
-    padding: 20px;
-    min-height: 100vh;
 }
 
 .logoContener {
@@ -98,22 +175,6 @@ body {
     text-transform: uppercase;
 }
 
-.welcome p {
-    color: #fff;
-    font-size: 50px;
-    letter-spacing: 5px;
-    font-weight: 900;
-    margin: 0;
-}
-
-.login p {
-    color: #fff;
-    font-size: 15px;
-    letter-spacing: 5px;
-    font-weight: 900;
-    margin: 0;
-}
-
 .input-style {
     padding: 10px 20px;
     border: none;
@@ -127,28 +188,22 @@ body {
     margin: 5px 0px;
 }
 
-button[type=submit],
-button[type=submit]:focus,
-button[type=submit]:active {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: rgb(158, 158, 158);
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease-out;
-    border: 1px solid #26a69a;
-}
-
-button[type=submit]:hover {
-    background-color: #26a69a;
-    color: #fff;
-    transition: all 0.3s ease-out;
+p.cmc-reserved {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 12px;
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    color: #444444;
+    left: 0;
 }
 
 .footer {
     width: 100%;
     float: left;
-    padding: 50px 10px 0;
+    padding: 25px 0 5px;
 }
 
 .footer p {
@@ -156,7 +211,8 @@ button[type=submit]:hover {
     font-weight: 400;
     font-size: 10px;
     float: right;
-    margin-top: 35px;
+    margin-top: 3px;
+    text-align: center;
 }
 
 .error p {
@@ -180,7 +236,6 @@ button[type=submit]:hover {
     margin-bottom: 10px !important;
 }
 .footerLogo {
-    margin-top: 28px;
     float: left
 }
 
@@ -195,20 +250,19 @@ button[type=submit]:hover {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 2500px) {
     .footerLogo {
-        margin: auto;
+        margin: 10px auto 0;
         display: block;
         float: none;
-        margin-bottom: -10px;
-        margin-top: 10px;
     }
     .footer p {
         width: 100%;
-        margin-top: 20px;
+        margin: 0;
     }
     .copyrightText {
         width: 100%;
+        float: none;
     }
 }
 

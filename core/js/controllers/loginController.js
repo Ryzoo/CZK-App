@@ -1,16 +1,21 @@
 app.controller('loginController', function($scope, auth, request) {
     $scope.isActiveApplayer = false;
+    $scope.isLicenseEnd = false;
+    $scope.loginFormShow = true;
+    $scope.registerFormShow = false;
+
+    $(".loginMainContener").first().css("display","block");
 
     $scope.initLogin = function() {
         if (auth.checkIsLogged()) {
             document.location = "panel";
         }
-        var dataToSend = {};
-        var urlToPost = "backend/isApplayerActive";
-        var toReturn;
-        request.sync('POST', urlToPost, dataToSend, function(reqData) {
+        let urlToPost = "backend/isApplayerActive";
+        let toReturn;
+        request.sync('POST', urlToPost, {}, function(reqData) {
             if (reqData.success) {
-                $scope.isActiveApplayer = reqData.data;
+                $scope.isActiveApplayer = reqData.data.applayer;
+                $scope.isLicenseEnd = reqData.data.license;
             }
         }, function(jqXHR, textStatus) {
             console.log("Bład podczas komunikacji z serverem: " + textStatus);
@@ -21,7 +26,7 @@ app.controller('loginController', function($scope, auth, request) {
     $scope.login = function(email, password) {
         if (email == null || password == null) $(".error").html("<p> Podaj poprawnie dane </p>");
         else {
-            var req = auth.logIn(email, password);
+            let req = auth.logIn(email, password);
             if (req.success) {
                 document.location = "panel";
             } else {
@@ -30,10 +35,15 @@ app.controller('loginController', function($scope, auth, request) {
         }
     };
 
+    $scope.goToContactPage = function(){
+        location.replace("https://centrumklubu.pl/kontakt/");
+    };
+
     $scope.registerNewAccount = function(){
-        var firstname = $('#registerFristname').val();
-        var lastname = $('#registerLastname').val();
-        var email = $('#registerEmail').val();
+        if(!$scope.isActiveApplayer) return;
+        let firstname = $('#registerFristname').val();
+        let lastname = $('#registerLastname').val();
+        let email = $('#registerEmail').val();
         if( !firstname || firstname.length < 3 || firstname.length > 30 ){
             $(".errorRegister").html("<p> Podaj poprawnie imię ( min 3 maks 30 znaków ) </p>");
             return;
@@ -47,9 +57,9 @@ app.controller('loginController', function($scope, auth, request) {
             return;
         }
 
-        var dataToSend = { firstname: firstname, lastname: lastname,email:email };
-        var urlToPost = "backend/registerNewApplayer";
-        var toReturn;
+        let dataToSend = { firstname: firstname, lastname: lastname,email:email };
+        let urlToPost = "backend/registerNewApplayer";
+        let toReturn;
         request.sync('POST', urlToPost, dataToSend, function(reqData) {
             if (reqData.success) {
                 $(".successRegister").html("<p> Twoje konto zostało utworzone. Wysłaliśmy wiadomość na Twój adres email. Znajduję się w nim hasło, po uzyskaniu go możesz skorzystać z panelu logowania obok. </p>");
