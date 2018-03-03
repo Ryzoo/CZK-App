@@ -34,8 +34,8 @@
                         </div>
                         <div class="row">
                             <div class="col s12 m10 offset-m1">
-                                <p>Data wygaśnięcia: <span style='font-weight: bold'> {{mainSettings.licenseEnd}} </span></p>
-                                <p>Pozostało: <span style='font-weight: bold' class='licenseEndDay'> {{dayToDate(mainSettings.licenseEnd)}} </span> dni</p>
+                                <p>Data wygaśnięcia: <span style='font-weight: bold'> {{getLicenseEndDate()}} </span></p>
+                                <p>Pozostało: <span style='font-weight: bold' class='licenseEndDay'> {{dayToLicenseEnd()}} </span> dni</p>
                                 <p>Wersja licencji: <span style='font-weight: bold'> {{mainSettings.licenseType}} </span></p>
                             </div>
                         </div>

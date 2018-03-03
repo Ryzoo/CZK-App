@@ -7,6 +7,15 @@ app.controller('mainDashboardController', function($scope, auth, $rootScope, req
     $scope.todayInt = (new Date()).getDay();
     $scope.licenseDate = [];
 
+    $scope.getLicenseEndDate = function(){
+        return moment($rootScope.mainSettings.licenseEnd).format("YYYY/MM/DD");
+    };
+
+    $scope.dayToLicenseEnd = function(){
+        let a = moment($rootScope.mainSettings.licenseEnd);
+        let b = moment();
+        return a.diff(b, 'days');
+    };
 
     $scope.getAllEvents = function() {
         if ($rootScope.user.tmid && $rootScope.user.tmid != "") {

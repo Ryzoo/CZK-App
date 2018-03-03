@@ -13,6 +13,7 @@ app.controller('loginController', function($scope, auth, request) {
         let urlToPost = "backend/isApplayerActive";
         let toReturn;
         request.sync('POST', urlToPost, {}, function(reqData) {
+            $(".loginMainContener").first().css("display","block");
             if (reqData.success) {
                 $scope.isActiveApplayer = reqData.data.applayer;
                 $scope.isLicenseEnd = reqData.data.license;
