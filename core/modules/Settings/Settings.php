@@ -161,7 +161,7 @@ class Settings extends BasicModule{
     public function getDatabaseConfig(){
         $json = new JSON();
         $dbConfig = $json->decodeFile(__DIR__. '/../../mainConf.json' );
-        return $dbConfig->localDatabase;
+        return $dbConfig->Database;
     }
 
     public function getAvailableThemes(){

@@ -2,6 +2,7 @@
 namespace Core\Auth;
 
 use Core\Database\Database;
+use \KHerGe\JSON\JSON;
 
 class Auth {
     public $db;
@@ -16,6 +17,16 @@ class Auth {
         $email =$data['email'];
         $password =$data['pass'];
         $token='';
+
+        $json = new JSON();
+        $config = $json->decodeFile(__DIR__. '/../../mainConf.json' );
+        $dataConf = $config->mainSettings->licenseEnd;
+
+        if(strtotime($dataConf) < strtotime('now')){
+            $error = "Licenjca platformy wygasła!";
+            $success = false;
+            return array( "error"=>$error,"success"=>$success,"token"=>$token );
+        }
 
         $result = ($this->db->getConnection())->fetchColumn('SELECT password FROM users WHERE email = :email', ['email' => $email]);
         if( !is_null($result) ){
